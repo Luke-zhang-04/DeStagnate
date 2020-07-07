@@ -1,3 +1,4 @@
+#!/bin/bash
 # Build shell script for DeStagnate
 # Copyright (C) 2020 Luke Zhang | MIT License | luke-zhang-04.github.io
 
