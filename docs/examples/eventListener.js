@@ -1,10 +1,10 @@
 /* eslint-disable multiline-comment-style, no-undef, no-magic-numbers */
 /* Already declared
 const DS = DeStagnate,
-    createElement = DS.createElement.default
+    {createElement} = DS
 */
 
-class EventListener extends DS.DeStagnate {
+class EventListener extends DS.default {
 
     render = () => createElement("button", {
         class: "btn btn-primary",

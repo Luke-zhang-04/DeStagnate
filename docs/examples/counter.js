@@ -1,8 +1,8 @@
 /* eslint-disable multiline-comment-style, no-undef */
 const DS = DeStagnate,
-    createElement = DS.createElement.default
+    {createElement} = DS
 
-class Counter extends DS.DeStagnate {
+class Counter extends DS.default {
 
     constructor (props) {
         super(props)

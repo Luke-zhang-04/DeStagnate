@@ -40,12 +40,12 @@ See [https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/examples](http
 ```js
 // browser env requires this
 const DS = DeStagnate,
-    createElement = DS.createElement.default
+    {createElement} = DS
 
 // node env requires this
 import * as DS from "destagnate"
 
-class Counter extends DS.DeStagnate {
+class Counter extends DS.defualt {
 
     constructor (parent) {
         super(parent)

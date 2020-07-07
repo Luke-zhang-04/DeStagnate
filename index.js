@@ -1,4 +1,12 @@
 "use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.0.1
+ */
 
 var __createBinding = void 0 && (void 0).__createBinding || (Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;

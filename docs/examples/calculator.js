@@ -1,10 +1,10 @@
 /* eslint-disable multiline-comment-style, no-undef, no-magic-numbers */
 /* Already declared
 const DS = DeStagnate,
-    createElement = DS.createElement.default
+    {createElement} = DS
 */
 
-class Calculator extends DS.DeStagnate {
+class Calculator extends DS.default {
 
     constructor (props) {
         super(props)

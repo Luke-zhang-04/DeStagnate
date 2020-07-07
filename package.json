@@ -1,6 +1,6 @@
 {
   "name": "destagnate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Make creating dynamic components within static sites easier",
   "main": "index.js",
   "devDependencies": {
