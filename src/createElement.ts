@@ -15,6 +15,13 @@ type ChildrenType = HTMLElement[]
     | number 
     | number[]
 
+/**
+ * Binds children to element
+ * @package
+ * @param {HTMLElement} element - element to bind
+ * @param {undefined | Object.<string, string | number>} props - props to bind with
+ * @returns {void} void
+ */
 const bindProps = (
         element: HTMLElement,
         props?: {[key: string]: unknown},
@@ -41,21 +48,13 @@ const bindProps = (
     },
 
     /**
-     * Creates a child element to DynamComponent
-     * @param {string} tagName - name of HTML element
-     * @param {undefined | Object.<string, string | number>} props - element properties
-     * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - child of element, or array of children
-     * @returns {HTMLElement} html element
+     * Binds children to element
+     * @package
+     * @param {HTMLElement} element - element to bind
+     * @param {undefined | ChildrenType} children - children to bind with
+     * @returns {void} void
      */
-    createElement = <T extends keyof HTMLElementTagNameMap>(
-        tagName: T,
-        props?: {[key: string]: unknown},
-        children?: ChildrenType,
-    ): HTMLElement => {
-        const element = document.createElement(tagName)
-
-        bindProps(element, props)
-
+    bindChildren = (element: HTMLElement, children?: ChildrenType): void => {
         if (children || children === 0) {
             if (children instanceof Array) {
                 for (const child of children) {
@@ -77,6 +76,25 @@ const bindProps = (
                 element.appendChild(children)
             }
         }
+    },
+
+    /**
+     * Creates a child element to DynamComponent
+     * @param {string} tagName - name of HTML element
+     * @param {undefined | Object.<string, string | number>} props - element properties
+     * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - child of element, or array of children
+     * @returns {HTMLElement} html element
+     */
+    createElement = <T extends keyof HTMLElementTagNameMap>(
+        tagName: T,
+        props?: {[key: string]: unknown},
+        children?: ChildrenType,
+    ): HTMLElement => {
+        const element = document.createElement(tagName)
+
+        bindProps(element, props)
+
+        bindChildren(element, children)
 
         return element
     }
