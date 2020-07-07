@@ -6,8 +6,8 @@
  * @license MIT
  * @version 1.0.0
  * @exports DynamComponent
- * @namespace
  */
+import Preset from "./_preset"
 import createChild from "./createChild"
 
 /**
@@ -17,7 +17,8 @@ import createChild from "./createChild"
  * @namespace
  */
 export abstract class DynamComponent
-    <Props = Record<string, unknown>, State = Record<string, unknown>> {
+    <Props = Record<string, unknown>, State = Record<string, unknown>>
+    extends Preset {
 
     /**
      * Creates a child element to DynamComponent
@@ -56,24 +57,13 @@ export abstract class DynamComponent
         parent: HTMLElement,
         public props?: Props,
     ) {
+        super()
         if (["body", "html"].includes(parent.tagName.toLowerCase())) {
             console.warn(`WARNING! Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
         }
 
         this.parent = parent
     }
-
-    /**
-     * What to call on component mounting
-     * @returns {void} void
-     */
-    public componentDidMount = (): void => undefined
-
-    /**
-     * Rendering HTML, must be part of extended class
-     * @returns {null | HTMLElement} if returns null error will be thrown
-     */
-    public render = (): null | HTMLElement => null
 
     /**
      * Gets state
@@ -91,6 +81,7 @@ export abstract class DynamComponent
      * @returns {void} void
      */
     public setState = (obj: State): void => {
+        this.componentWillUpdate()
         Object.assign(this._state, obj)
 
         while (this.parent.firstChild) {
@@ -102,6 +93,7 @@ export abstract class DynamComponent
         }
 
         this.parent.appendChild(this.render() as HTMLElement)
+        this.componentDidUpdate()
     }
 
     /* eslint-disable max-len */
@@ -112,7 +104,8 @@ export abstract class DynamComponent
      * @returns {HTMLElement} - result of append child to parent element
      * @throws {Error} error if no render method found
      */
-    protected initRender = (): HTMLElement => {
+    public mountComponent = (): HTMLElement => {
+        this.componentWillMount()
         if (!this.render()) {
             throw new Error("Expected render method to be included in component class, no render method found")
         }
@@ -121,7 +114,17 @@ export abstract class DynamComponent
 
         return this.parent.appendChild(this.render() as HTMLElement) as HTMLElement
     }
-    /* eslint-enable max-len */
+
+    /* eslint-disable @typescript-eslint/member-ordering */
+    /**
+     * Initial render to be called by user
+     * @protected
+     * @instance
+     * @returns {HTMLElement} - result of append child to parent element
+     * @throws {Error} error if no render method found
+     */
+    public mount = this.mountComponent
+    /* eslint-enable max-len, @typescript-eslint/member-ordering */
 
 }
 

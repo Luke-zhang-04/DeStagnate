@@ -31,4 +31,4 @@ class MyComponent extends DC.DynamComponent {
 
 const myComponent = new MyComponent(document.querySelector("#counter"))
 
-myComponent.initRender() // Must call once
+myComponent.mount() // Must call once

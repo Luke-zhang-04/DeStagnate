@@ -8,6 +8,13 @@
  * @exports createChild
  */
 
+type ChildrenType = HTMLElement[]
+    | HTMLElement
+    | string 
+    | string[] 
+    | number 
+    | number[]
+
 /**
  * Creates a child element to DynamComponent
  * @param {string} tagName - name of HTML element
@@ -18,7 +25,7 @@
 const createChild = <T extends keyof HTMLElementTagNameMap>(
     tagName: T,
     props?: {[key: string]: string | number},
-    children?: HTMLElement[] | HTMLElement | string | string[] | number | number[],
+    children?: ChildrenType,
 ): HTMLElement => {
     const element = document.createElement(tagName)
 
@@ -41,7 +48,10 @@ const createChild = <T extends keyof HTMLElementTagNameMap>(
                     element.appendChild(child)
                 }
             }
-        } else if (typeof(children) === "string" || typeof(children) === "number") {
+        } else if (
+            typeof(children) === "string" ||
+            typeof(children) === "number"
+        ) {
             element.innerText = children.toString()
         } else {
             element.appendChild(children)
