@@ -7,7 +7,7 @@ Make creating dynamic components within static sites easier with DeStagnate, a R
 [See some examples](https://luke-zhang-04.github.io/DeStagnate/)
 
 ## Why not just use React?
-React is not well optimised for static-like sites. With DeStagnate, you can create React-like componnets within the browser environment, or a bundler such as Webpack or Browserify.
+React is great for dynamic web applications, but it is not well optimised for static-like sites. With DeStagnate, you can create React-like componnets within the browser environment, or a bundler such as Webpack or Browserify. DeStagnate uses less resources, and was made with use in static sites as it's main purpose.
 
 ## Basic Use
 See [https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/examples](https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/examples) for example code
