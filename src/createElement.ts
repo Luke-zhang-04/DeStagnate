@@ -5,7 +5,7 @@
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
  * @version 1.0.0
- * @exports createChild
+ * @exports createElement
  */
 
 type ChildrenType = HTMLElement[]
@@ -47,7 +47,7 @@ const bindProps = (
      * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - child of element, or array of children
      * @returns {HTMLElement} html element
      */
-    createChild = <T extends keyof HTMLElementTagNameMap>(
+    createElement = <T extends keyof HTMLElementTagNameMap>(
         tagName: T,
         props?: {[key: string]: unknown},
         children?: ChildrenType,
@@ -81,4 +81,4 @@ const bindProps = (
         return element
     }
 
-export default createChild
+export default createElement

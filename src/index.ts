@@ -8,7 +8,7 @@
  * @exports DeStagnate
  */
 import Preset from "./_preset"
-import createChild from "./createChild"
+import createElement from "./createElement"
 
 /**
  * Dynamic Component
@@ -29,7 +29,7 @@ export abstract class DeStagnate
      * @param {undefined | Array.<HTMLElement> | HTMLElement} children - child of element, or array of children
      * @returns {HTMLElement} html element
      */
-    public static createChild = createChild
+    public static createElement = createElement
 
     /**
      * Parent that this element if bound to
@@ -146,4 +146,4 @@ export abstract class DeStagnate
 
 }
 
-export * as createChild from "./createChild"
+export * as createElement from "./createElement"

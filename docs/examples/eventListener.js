@@ -1,12 +1,12 @@
 /* eslint-disable multiline-comment-style, no-undef, no-magic-numbers */
 /* Already declared
 const DS = DeStagnate,
-    createChild = DS.createChild.default
+    createElement = DS.createElement.default
 */
 
 class EventListener extends DS.DeStagnate {
 
-    render = () => createChild("button", {
+    render = () => createElement("button", {
         class: "btn btn-primary",
         onClick: () => alert("Clicked!")
     }, "Click Me!")

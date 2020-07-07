@@ -1,5 +1,5 @@
 {
-  "name": "@luke-zhang-04/estagnate",
+  "name": "destagnate",
   "version": "1.0.0",
   "description": "Make creating dynamic components within static sites easier",
   "main": "index.js",
@@ -24,13 +24,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Luke-zhang-04/dynamic-component.git"
+    "url": "git+https://github.com/Luke-zhang-04/DeStagnate.git"
   },
   "keywords": [],
   "author": "Luke Zhang",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Luke-zhang-04/dynamic-component/issues"
+    "url": "https://github.com/Luke-zhang-04/DeStagnate/issues"
   },
-  "homepage": "https://github.com/Luke-zhang-04/dynamic-component.github.io"
+  "homepage": "https://github.com/Luke-zhang-04/DeStagnate.github.io"
 }

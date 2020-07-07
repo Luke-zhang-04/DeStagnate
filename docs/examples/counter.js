@@ -1,6 +1,6 @@
 /* eslint-disable multiline-comment-style, no-undef */
 const DS = DeStagnate,
-    createChild = DS.createChild.default
+    createElement = DS.createElement.default
 
 class Counter extends DS.DeStagnate {
 
@@ -18,9 +18,9 @@ class Counter extends DS.DeStagnate {
         }, 1000)
     }
 
-    render = () => createChild("div", {}, [
-        createChild("p", {}, "Seconds:"),
-        createChild("p", {}, this.state.count)
+    render = () => createElement("div", {}, [
+        createElement("p", {}, "Seconds:"),
+        createElement("p", {}, this.state.count)
     ])
 
 }

@@ -1,7 +1,7 @@
 /* eslint-disable multiline-comment-style, no-undef, no-magic-numbers */
 /* Already declared
 const DS = DeStagnate,
-    createChild = DS.createChild.default
+    createElement = DS.createElement.default
 */
 
 class Calculator extends DS.DeStagnate {
@@ -20,7 +20,7 @@ class Calculator extends DS.DeStagnate {
      * @param {string | undefined} append - value to append to calculaton
      * @returns {HTMLElement} col element
      */
-    _calcButton = (text, append) => createChild("div", {
+    _calcButton = (text, append) => createElement("div", {
         class: "col-3 calc-btn", // Bootstrap grid
         onClick: () => this.setState({
             calculation: this.state.calculation + (append ? append : text),
@@ -40,7 +40,7 @@ class Calculator extends DS.DeStagnate {
      * @type {Array.<HTMLElement>}
      */
     _numBtns = [
-        createChild("div", {class: "calc-btns row"}, 
+        createElement("div", {class: "calc-btns row"}, 
             ["7", "8", "9", ["x", "*"]].map((val) => (
                 this._calcButton(
                     val instanceof Array ? val[0] : val,
@@ -48,7 +48,7 @@ class Calculator extends DS.DeStagnate {
                 )
             ))
         ),
-        createChild("div", {class: "calc-btns row"}, 
+        createElement("div", {class: "calc-btns row"}, 
             ["4", "5", "6", "-"].map((val) => (
                 this._calcButton(
                     val instanceof Array ? val[0] : val,
@@ -56,7 +56,7 @@ class Calculator extends DS.DeStagnate {
                 )
             ))
         ),
-        createChild("div", {class: "calc-btns row"}, 
+        createElement("div", {class: "calc-btns row"}, 
             ["1", "2", "3", "+"].map((val) => (
                 this._calcButton(
                     val instanceof Array ? val[0] : val,
@@ -70,20 +70,20 @@ class Calculator extends DS.DeStagnate {
      * Calculator Display
      * @returns {HTMLElement} display
      */
-    _calcDisplay = () => createChild(
+    _calcDisplay = () => createElement(
         "div",
         {class: "calc-display"},
         this.state.calculation,
     )
 
-    render = () => createChild("div", {}, [
+    render = () => createElement("div", {}, [
         this._calcDisplay(),
-        createChild("div", {class: "calc-btns row"}, [
-            createChild("div", {
+        createElement("div", {class: "calc-btns row"}, [
+            createElement("div", {
                 class: "col-3 calc-btn clear",
                 onClick: () => this.setState({calculation: ""}),
             }, "C"), // Clear
-            createChild("div", {
+            createElement("div", {
                 class: "col-3 calc-btn",
                 onClick: () => this.setState({
                     calculation: this.state.calculation.slice(
@@ -96,10 +96,10 @@ class Calculator extends DS.DeStagnate {
             this._calcButton("\u00f7", "/"),
         ]),
         ...this._numBtns,
-        createChild("div", {class: "calc-btns row"}, [
+        createElement("div", {class: "calc-btns row"}, [
             this._calcButton("0"),
             this._calcButton("."),
-            createChild("div", {
+            createElement("div", {
                 class: "col-6 calc-btn equals",
                 onClick: () => this.setState({calculation: this._evalCalc()}),
             }, "="), // Equals
