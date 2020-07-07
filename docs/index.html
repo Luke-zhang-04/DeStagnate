@@ -18,9 +18,9 @@
                 <code class="language-js">
 // Browser env, everything exposed to one global var, or namespace
 const DS = DeStagnate,
-    createChild = DS.createChild.default
+    {createElement} = DS
 
-class Counter extends DS.DeStagnate {
+class Counter extends DS.default {
 
     constructor (props) {
         super(props)
@@ -62,9 +62,9 @@ counter.mount() // Must call once
                 <code class="language-js">
 // Browser env, everything exposed to one global var, or namespace
 const DS = DeStagnate,
-    createChild = DS.createChild.default
+    {createElement} = DS
 
-class EventListener extends DS.DeStagnate {
+class EventListener extends DS.default {
 
     render = () => createChild("button", {
         class: "btn btn-primary",
@@ -94,9 +94,9 @@ eListener.mount() // Must call once
                 <code class="language-js">
 // Browser env, everything exposed to one global var, or namespace
 const DS = DeStagnate,
-    createChild = DS.createChild.default
+    {createElement} = DS
 
-class Calculator extends DS.DeStagnate {
+class Calculator extends DS.default {
 
     constructor (props) {
         super(props)
