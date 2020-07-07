@@ -96,10 +96,10 @@ export abstract class DynamComponent
         this.componentDidUpdate()
     }
 
-    /* eslint-disable max-len */
+    /* eslint-disable max-len, @typescript-eslint/member-ordering */
     /**
-     * Initial render to be called by user
-     * @protected
+     * Initial mounting to be manually called
+     * @public
      * @instance
      * @returns {HTMLElement} - result of append child to parent element
      * @throws {Error} error if no render method found
@@ -114,16 +114,37 @@ export abstract class DynamComponent
 
         return this.parent.appendChild(this.render() as HTMLElement) as HTMLElement
     }
-
-    /* eslint-disable @typescript-eslint/member-ordering */
+    
     /**
-     * Initial render to be called by user
-     * @protected
+     * Initial mounting to be manually called
+     * @public
      * @instance
      * @returns {HTMLElement} - result of append child to parent element
      * @throws {Error} error if no render method found
      */
     public mount = this.mountComponent
+
+    /**
+     * Unmounting to be manually called 
+     * @public
+     * @instance
+     * @returns {HTMLElement} - result of append child to parent element
+     * @throws {void} error if no render method found
+     */
+    public unmountComponent = (): void => {
+        this.componentWillUnmount()
+        
+        this.parent.remove()
+    }
+    
+    /**
+     * Unmounting to be manually called 
+     * @public
+     * @instance
+     * @returns {HTMLElement} - result of append child to parent element
+     * @throws {void} error if no render method found
+     */
+    public unmount = this.unmountComponent
     /* eslint-enable max-len, @typescript-eslint/member-ordering */
 
 }

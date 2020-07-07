@@ -15,7 +15,7 @@ class MyComponent extends DC.DynamComponent {
     componentDidMount = () => {
         setInterval(() => {
             this.setState({count: this.getState().count + 1})
-        }, 1000);
+        }, 1000)
     }
 
     render = () => {
