@@ -8,7 +8,7 @@
  * @exports DeStagnate
  */
 import Preset from "./_preset"
-import createElement from "./createElement"
+import {default as _createElement} from "./createElement"
 
 /**
  * Dynamic Component
@@ -16,7 +16,7 @@ import createElement from "./createElement"
  * @class
  * @namespace
  */
-export abstract class DeStagnate
+export default abstract class DeStagnate
     <Props = Record<string, unknown>, State = Record<string, unknown>>
     extends Preset {
 
@@ -29,7 +29,7 @@ export abstract class DeStagnate
      * @param {undefined | Array.<HTMLElement> | HTMLElement} children - child of element, or array of children
      * @returns {HTMLElement} html element
      */
-    public static createElement = createElement
+    public static createElement = _createElement
 
     /**
      * Parent that this element if bound to
@@ -41,7 +41,7 @@ export abstract class DeStagnate
     /**
      * State of component. Works similar React State
      * @type {Object.<string, unknown> | undefined}
-     * @private
+     * @protected
      * @instance
      */
     protected state: State = {} as State
@@ -117,7 +117,6 @@ export abstract class DeStagnate
      * @public
      * @instance
      * @returns {HTMLElement} - result of append child to parent element
-     * @throws {Error} error if no render method found
      */
     public mount = this.mountComponent
 
@@ -125,8 +124,7 @@ export abstract class DeStagnate
      * Unmounting to be manually called 
      * @public
      * @instance
-     * @returns {HTMLElement} - result of append child to parent element
-     * @throws {void} error if no render method found
+     * @returns {void} - void
      */
     public unmountComponent = (): void => {
         this.componentWillUnmount()
@@ -138,12 +136,11 @@ export abstract class DeStagnate
      * Unmounting to be manually called 
      * @public
      * @instance
-     * @returns {HTMLElement} - result of append child to parent element
-     * @throws {void} error if no render method found
+     * @returns {void} - void
      */
     public unmount = this.unmountComponent
     /* eslint-enable max-len, @typescript-eslint/member-ordering */
 
 }
 
-export * as createElement from "./createElement"
+export const createElement = _createElement
