@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Make creating dynamic components within static sites easier",
   "main": "index.js",
-  "dependencies": {
-    "typescript": "^3.9.6"
-  },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",
@@ -15,6 +12,7 @@
     "eslint": "^7.4.0",
     "eslint-config-recommended": "^4.1.0",
     "eslint-plugin-prefer-arrow": "^1.2.1",
+    "typescript": "^3.9.6",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
   },
