@@ -5,65 +5,10 @@
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
  * @version 1.0.0
- * @exports DynamicComponent
+ * @exports DynamComponent
  * @namespace
  */
-
-/**
- * Applies attributes from props
- * @param {HTMLElement} element - HTML element
- * @param {Object.<string, string | number>} props - element properties
- * @returns {void} void
- * @package
- */
-const applyAttributes = (
-    element: HTMLElement,
-    props: {[key: string]: string | number},
-): void => {
-    for (const [key, value] of Object.entries(props)) {
-        switch (key) {
-        case ("accept"):
-            if (!(element instanceof HTMLInputElement)) {
-                throw new Error(`Prop ${key} is not valid in HTML element ${value}`)
-            }
-            (element as HTMLInputElement).accept = value.toString()
-            break
-        default:
-            throw Error("Unknow error")
-        }
-    }
-}
-
-/**
- * Creates a child element to DynamComponent
- * @param {string} tagName - name of HTML element
- * @param {undefined | Object.<string, string | number>} props - element properties
- * @param {undefined | Array.<HTMLElement> | HTMLElement} children - child of element, or array of children
- * @returns {HTMLElement} html element
- */
-export const createChild = <T extends keyof HTMLElementTagNameMap>(
-    tagName: T,
-    props?: {[key: string]: string | number},
-    children?: HTMLElement[] | HTMLElement,
-): HTMLElement => {
-    const element = document.createElement(tagName)
-
-    if (props) {
-        applyAttributes(element, props)
-    }
-
-    if (children) {
-        if (children instanceof Array) {
-            for (const child of children) {
-                element.appendChild(child)
-            }
-        } else {
-            element.appendChild(children)
-        }
-    }
-
-    return element
-}
+import createChild from "./createChild"
 
 /**
  * Dynamic Component
@@ -71,10 +16,13 @@ export const createChild = <T extends keyof HTMLElementTagNameMap>(
  * @class
  * @namespace
  */
-export default class DynamComponent {
+export abstract class DynamComponent
+    <Props = Record<string, unknown>, State = Record<string, unknown>> {
 
     /**
      * Creates a child element to DynamComponent
+     * @public
+     * @static
      * @param {string} tagName - name of HTML element
      * @param {undefined | Object.<string, string | number>} props - element properties
      * @param {undefined | Array.<HTMLElement> | HTMLElement} children - child of element, or array of children
@@ -82,8 +30,66 @@ export default class DynamComponent {
      */
     public static createChild = createChild
 
-    public constructor (element: HTMLElement) {
+    /**
+     * State of component. Works similar React State
+     * @type {Object.<string, unknown> | undefined}
+     * @protected
+     * @instance
+     */
+    protected state: State | undefined
 
+    /**
+     * Parent that this element if bound to
+     * @protected
+     * @instance
+     */
+    protected parent: HTMLElement
+
+    /**
+     * Construct class component
+     * @public
+     * @constructor
+     * @param {HTMLElement} parent - parent of this element
+     * @param {undefined | Object.<string, string | number>} props - element properties
+     */
+    public constructor (
+        parent: HTMLElement,
+        public props?: Props,
+    ) {
+        this.parent = parent
     }
 
+    /**
+     * What to call on component mounting
+     * @returns {void} void
+     */
+    public componentDidMount = (): void => undefined
+
+    /**
+     * Rendering HTML, must be part of extended class
+     * @returns {null | HTMLElement} if returns null error will be thrown
+     */
+    public render = (): null | HTMLElement => null
+
+    /* eslint-disable max-len */
+    /**
+     * Initial render to be called by user
+     * @protected
+     * @instance
+     * @returns {HTMLElement} - result of append child to parent element
+     * @throws {Error} error if no render method found
+     */
+    protected initRender = (): HTMLElement => {
+        if (!this.render()) {
+            throw new Error("Expected render method to be included in component class, no render method found")
+        }
+        
+        this.componentDidMount()
+
+        return this.parent.appendChild(this.render() as HTMLElement) as HTMLElement
+    }
+    /* eslint-enable max-len */
+
 }
+
+export * as createChild from "./createChild"

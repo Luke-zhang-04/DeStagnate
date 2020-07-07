@@ -6,6 +6,9 @@ verison="1.1.2"
 # Compile typescript
 npx tsc -p .
 
+sed -i -e 's/src/lib/g' index.js
+rm -rf index.js-e
+
 mkdir build
 cd src
 find . -name "*.js" -exec mv "{}" ../build \;
@@ -18,13 +21,13 @@ npx babel index.js -o index.js
 npx webpack
 
 # Copy bundle
-cp ./dist/dateplus.bundle.js ./dist/dateplus.bundle.min.js
+cp ./dist/dynamComponent.bundle.js ./dist/dynamComponent.bundle.min.js
 
 # Minify copy of bundle
-npx babel ./dist/dateplus.bundle.min.js -o ./dist/dateplus.bundle.min.js --minified --compact true --no-comments -s inline
+npx babel ./dist/dynamComponent.bundle.min.js -o ./dist/dynamComponent.bundle.min.js --minified --compact true --no-comments -s inline
 
 # Run babel on bundle
-npx babel ./dist/dateplus.bundle.js -o ./dist/dateplus.bundle.js -s inline
+npx babel ./dist/dynamComponent.bundle.js -o ./dist/dynamComponent.bundle.js -s inline
 
 # Remove previous lib
 if [ -d "lib" ]; then
@@ -34,6 +37,3 @@ fi
 npx babel build --out-dir lib
 
 rm -r build
-
-sed -i -e 's/src/lib/g' index.js
-rm -rf index.js-e
