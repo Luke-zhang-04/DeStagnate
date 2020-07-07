@@ -93,15 +93,18 @@ export abstract class DynamComponent
      * Initial mounting to be manually called
      * @public
      * @instance
-     * @returns {HTMLElement} - result of append child to parent element
-     * @throws {Error} error if no render method found
+     * @returns {HTMLElement | error} - result of append child to parent element
      */
-    public mountComponent = (): HTMLElement => {
+    public mountComponent = (): HTMLElement | error => {
         const component = this.render()
 
         this.componentWillMount()
         if (!component) {
-            throw new Error("Expected render method to be included in component class, no render method found")
+            const msg = "Expected render method to be included in component class, no render method found"
+
+            console.error(msg)
+
+            return Error(msg)
         }
         
         this.componentDidMount()
