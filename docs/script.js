@@ -4,12 +4,24 @@ const DC = DynamComponent,
 
 class MyComponent extends DC.DynamComponent {
 
+    constructor (props) {
+        super(props)
+
+        this.setState({
+            count: 0
+        })
+    }
+
+    componentDidMount = () => {
+        setInterval(() => {
+            this.setState({count: this.getState().count + 1})
+        }, 1000);
+    }
+
     render = () => {
         const elem = createChild("div", {}, [
-            createChild("div", {}, [
-                createChild("p", {}, "Hello World!"),
-                createChild("button", {href: "/", class: "btn btn-blue"}, "Click Me!")
-            ]),
+            createChild("p", {}, "Hello World!"),
+            createChild("p", {}, this.getState().count)
         ])
 
         return elem
@@ -17,6 +29,6 @@ class MyComponent extends DC.DynamComponent {
 
 }
 
-const myComponent = new MyComponent(document.querySelector("body"))
+const myComponent = new MyComponent(document.querySelector("#counter"))
 
 myComponent.initRender() // Must call once

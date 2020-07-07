@@ -31,19 +31,19 @@ export abstract class DynamComponent
     public static createChild = createChild
 
     /**
-     * State of component. Works similar React State
-     * @type {Object.<string, unknown> | undefined}
-     * @protected
-     * @instance
-     */
-    protected state: State | undefined
-
-    /**
      * Parent that this element if bound to
      * @protected
      * @instance
      */
     protected parent: HTMLElement
+
+    /**
+     * State of component. Works similar React State
+     * @type {Object.<string, unknown> | undefined}
+     * @private
+     * @instance
+     */
+    private _state: State = {} as State
 
     /**
      * Construct class component
@@ -56,6 +56,10 @@ export abstract class DynamComponent
         parent: HTMLElement,
         public props?: Props,
     ) {
+        if (["body", "html"].includes(parent.tagName.toLowerCase())) {
+            console.warn(`WARNING! Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
+        }
+
         this.parent = parent
     }
 
@@ -70,6 +74,35 @@ export abstract class DynamComponent
      * @returns {null | HTMLElement} if returns null error will be thrown
      */
     public render = (): null | HTMLElement => null
+
+    /**
+     * Gets state
+     * @public
+     * @instance
+     * @returns {State} state
+     */
+    public getState = (): State => this._state
+
+    /**
+     * Sets state
+     * @public
+     * @instance
+     * @param {State} obj - state to set
+     * @returns {void} void
+     */
+    public setState = (obj: State): void => {
+        Object.assign(this._state, obj)
+
+        while (this.parent.firstChild) {
+            if (this.parent.lastChild) {
+                this.parent.removeChild(this.parent.lastChild)
+            } else {
+                break
+            }
+        }
+
+        this.parent.appendChild(this.render() as HTMLElement)
+    }
 
     /* eslint-disable max-len */
     /**
