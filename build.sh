@@ -2,8 +2,6 @@
 # Build shell script for DeStagnate
 # Copyright (C) 2020 Luke Zhang | MIT License | luke-zhang-04.github.io
 
-verison="1.1.2"
-
 # Compile sass for docs (not really necessary)
 sass docs/scss/style.scss docs/styles.css --style compressed
 
