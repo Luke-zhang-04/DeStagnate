@@ -44,7 +44,7 @@ export abstract class DynamComponent
      * @private
      * @instance
      */
-    private _state: State = {} as State
+    protected state: State = {} as State
 
     /**
      * Construct class component
@@ -66,14 +66,6 @@ export abstract class DynamComponent
     }
 
     /**
-     * Gets state
-     * @public
-     * @instance
-     * @returns {State} state
-     */
-    public getState = (): State => this._state
-
-    /**
      * Sets state
      * @public
      * @instance
@@ -82,7 +74,7 @@ export abstract class DynamComponent
      */
     public setState = (obj: State): void => {
         this.componentWillUpdate()
-        Object.assign(this._state, obj)
+        Object.assign(this.state, obj)
 
         while (this.parent.firstChild) {
             if (this.parent.lastChild) {
@@ -105,14 +97,16 @@ export abstract class DynamComponent
      * @throws {Error} error if no render method found
      */
     public mountComponent = (): HTMLElement => {
+        const component = this.render()
+
         this.componentWillMount()
-        if (!this.render()) {
+        if (!component) {
             throw new Error("Expected render method to be included in component class, no render method found")
         }
         
         this.componentDidMount()
 
-        return this.parent.appendChild(this.render() as HTMLElement) as HTMLElement
+        return this.parent.appendChild(component as HTMLElement) as HTMLElement
     }
     
     /**

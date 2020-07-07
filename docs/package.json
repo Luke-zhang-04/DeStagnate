@@ -1,0 +1,21 @@
+{
+  "name": "dynamic-component-docs",
+  "version": "1.0.0",
+  "description": "Examples for dynamic componnet",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^5.0.0-alpha1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luke-zhang-04/dynamic-component.git"
+  },
+  "keywords": [],
+  "author": "Luke Zhang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Luke-zhang-04/dynamic-component/issues"
+  },
+  "homepage": "https://github.com/Luke-zhang-04/dynamic-component.github.io"
+}

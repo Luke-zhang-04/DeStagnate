@@ -39,7 +39,7 @@ const createChild = <T extends keyof HTMLElementTagNameMap>(
         }
     }
 
-    if (children) {
+    if (children || children === 0) {
         if (children instanceof Array) {
             for (const child of children) {
                 if (typeof(child) === "string" || typeof(child) === "number") {

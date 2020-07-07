@@ -3,6 +3,9 @@
 
 verison="1.1.2"
 
+# Compile sass for docs (not really necessary)
+sass docs/scss/style.scss docs/styles.css --style compressed
+
 # Compile typescript
 npx tsc -p .
 

@@ -3,11 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Element test</title>
+    <title>Dynamic Element Examples</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-tomorrow.min.css"/>
 </head>
 <body>
-    <div id="counter"></div>
-    
+    <div class="row">
+        <div class="col-6 pl-5 pt-5">
+            <div id="counter"></div>
+        </div>
+        <div class="col-6">
+            <pre>
+                <code class="language-js">
+const DC = DynamComponent,
+    createChild = DC.createChild.default
+
+class Counter extends DC.DynamComponent {
+
+    constructor (props) {
+        super(props)
+
+        this.state = {
+            count: 0,
+        }
+    }
+
+    componentDidMount = () => {
+        setInterval(() => {
+            this.setState({count: this.state.count + 1})
+        }, 1000)
+    }
+
+    render = () => createChild("div", {}, [
+            createChild("p", {}, "Seconds:"),
+            createChild("p", {}, this.state.count)
+        ])
+
+}
+
+const counter = new Counter(
+    document.querySelector("#counter")
+) // Bind counter
+
+counter.mount() // Must call once                    
+                </code>
+            </pre>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> <!-- Popper.js for bootstrap, not actually needed for functionality -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script> <!-- Bootstrap for styling, not actually needed for functionality -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/prism.min.js"></script>
+
     <script src="../dist/dynamComponent.bundle.js"></script>
     <script src="script.js"></script>
 </body>
