@@ -33,5 +33,6 @@ checks:
   identical-code:
     enabled: true
 exclude_patterns:
-  - "src/serviceWorker.ts"
-  - "*.js"
+  - "./docs"
+  - "./lib"
+  - "./dist"
