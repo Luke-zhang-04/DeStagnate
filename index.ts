@@ -1,5 +1,5 @@
-import {DynamComponent} from "./src"
+import {DeStagnate} from "./src"
 
-export default DynamComponent
+export default DeStagnate
 
 export * from "./src"

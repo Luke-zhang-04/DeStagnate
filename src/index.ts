@@ -5,7 +5,7 @@
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
  * @version 1.0.0
- * @exports DynamComponent
+ * @exports DeStagnate
  */
 import Preset from "./_preset"
 import createChild from "./createChild"
@@ -16,12 +16,12 @@ import createChild from "./createChild"
  * @class
  * @namespace
  */
-export abstract class DynamComponent
+export abstract class DeStagnate
     <Props = Record<string, unknown>, State = Record<string, unknown>>
     extends Preset {
 
     /**
-     * Creates a child element to DynamComponent
+     * Creates a child element to DeStagnate
      * @public
      * @static
      * @param {string} tagName - name of HTML element
@@ -95,7 +95,7 @@ export abstract class DynamComponent
      * @instance
      * @returns {HTMLElement | error} - result of append child to parent element
      */
-    public mountComponent = (): HTMLElement | error => {
+    public mountComponent = (): HTMLElement | Error => {
         const component = this.render()
 
         this.componentWillMount()

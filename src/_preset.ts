@@ -1,5 +1,5 @@
 /**
- * Dynamic Component
+ * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
@@ -7,6 +7,10 @@
  * @version 1.0.0
  * @exports Preset
  * @package
+ */
+
+/**
+ * Lifecycle member functions
  */
 export default class Preset {
 

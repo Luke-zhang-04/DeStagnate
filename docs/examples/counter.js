@@ -1,8 +1,8 @@
-/* eslint-disable */
-const DC = DynamComponent,
-    createChild = DC.createChild.default
+/* eslint-disable multiline-comment-style, no-undef */
+const DS = DeStagnate,
+    createChild = DS.createChild.default
 
-class Counter extends DC.DynamComponent {
+class Counter extends DS.DeStagnate {
 
     constructor (props) {
         super(props)
@@ -19,9 +19,9 @@ class Counter extends DC.DynamComponent {
     }
 
     render = () => createChild("div", {}, [
-            createChild("p", {}, "Seconds:"),
-            createChild("p", {}, this.state.count)
-        ])
+        createChild("p", {}, "Seconds:"),
+        createChild("p", {}, this.state.count)
+    ])
 
 }
 

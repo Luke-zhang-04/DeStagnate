@@ -1,7 +1,50 @@
 @import "bootstrap";
+@import "animations";
 
 body {
-    overflow-x: hidden;
-    background-color: $dark;
-    color: $light;
+  overflow-x: hidden;
+  background-color: $dark;
+  color: $light;
+}
+
+#calculator {
+  .calc-display {
+    background-color: $secondary;
+    height: 7.5rem;
+    width: 100%;
+    padding: 2.5rem;
+    font-size: 2rem;
+    text-align: right;
+  }
+
+  .calc-btns {
+    margin: 0;
+
+    .calc-btn {
+      padding: 1rem;
+      cursor: pointer;
+      background-color: $primary;
+      text-align: center;
+
+      &:hover {
+        animation: calc-hover 0.5s ease forwards;
+      }
+
+      &.equals {
+        background-color: $info;
+
+        &:hover {
+          animation: calc-hover-equals 0.5s ease forwards;
+        }
+      }
+
+      &.clear {
+        background-color: $danger;
+
+        &:hover {
+          animation: calc-hover-clear 0.5s ease forwards;
+        }
+      }
+    }
+  }
 }

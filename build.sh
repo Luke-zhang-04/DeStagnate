@@ -1,4 +1,4 @@
-# Build shell script for dynamic-component
+# Build shell script for DeStagnate
 # Copyright (C) 2020 Luke Zhang | MIT License | luke-zhang-04.github.io
 
 verison="1.1.2"
@@ -24,13 +24,13 @@ npx babel index.js -o index.js
 npx webpack
 
 # Copy bundle
-cp ./dist/dynamComponent.bundle.js ./dist/dynamComponent.bundle.min.js
+cp ./dist/deStagnate.bundle.js ./dist/deStagnate.bundle.min.js
 
 # Minify copy of bundle
-npx babel ./dist/dynamComponent.bundle.min.js -o ./dist/dynamComponent.bundle.min.js --minified --compact true --no-comments -s inline
+npx babel ./dist/deStagnate.bundle.min.js -o ./dist/deStagnate.bundle.min.js --minified --compact true --no-comments -s inline
 
 # Run babel on bundle
-npx babel ./dist/dynamComponent.bundle.js -o ./dist/dynamComponent.bundle.js -s inline
+npx babel ./dist/deStagnate.bundle.js -o ./dist/deStagnate.bundle.js -s inline
 
 # Remove previous lib
 if [ -d "lib" ]; then

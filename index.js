@@ -25,6 +25,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var lib_1 = require("./lib");
 
-exports["default"] = lib_1.DynamComponent;
+exports["default"] = lib_1.DeStagnate;
 
 __exportStar(require("./lib"), exports);
