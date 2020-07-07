@@ -36,3 +36,4 @@ exclude_patterns:
   - "./docs"
   - "./lib"
   - "./dist"
+  - "./src/createElement.ts"
