@@ -133,3 +133,5 @@ build.sh
 makefile
 tsconfig.json
 webpack.config.js
+assets
+.codeclimate.yml

@@ -14,6 +14,10 @@ type ChildrenType = HTMLElement[]
     | string[] 
     | number 
     | number[]
+    | (HTMLElement | string)[]
+    | (HTMLElement | number)[]
+    | (string | number)[]
+    | (HTMLElement | string | number)[]
 
 /**
  * Binds children to element
