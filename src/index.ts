@@ -31,12 +31,25 @@ export default abstract class DeStagnate
      * Creates a child element to DynamComponent
      * @public
      * @static
+     * @readonly
      * @param {string} tagName - name of HTML element
      * @param {undefined | Object.<string, string | number>} props - element properties
      * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - child of element, or array of children
      * @returns {HTMLElement} html element
      */
-    public static createElement = _createElement
+    public static readonly createElement = _createElement
+
+    /**
+     * Creates a child element to DynamComponent
+     * @public
+     * @instance
+     * @readonly
+     * @param {string} tagName - name of HTML element
+     * @param {undefined | Object.<string, string | number>} props - element properties
+     * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - child of element, or array of children
+     * @returns {HTMLElement} html element
+     */
+    public readonly createElement = DeStagnate.createElement
 
     /**
      * State of component. Works similar React State
@@ -71,6 +84,19 @@ export default abstract class DeStagnate
 
         this._parent = parent
     }
+
+    /**
+     * What to call before component update (state mutation)
+     * @public
+     * @instance
+     * @param {Props} prevProps - previous props
+     * @param {State} prevState - previous state
+     * @returns {void} void
+     */
+    public getSnapshotBeforeUpdate = (
+        prevProps: Props,
+        prevState: State
+    ): [Props, State] => [prevProps, prevState]
 
     /**
      * Public getState getter as this.state itself is protected
