@@ -15,6 +15,13 @@
 export default class Preset {
 
     /**
+     * Called when component catches error. Default behaviour is console.error
+     * @param {Error} error - error object with info
+     * @returns {void} void
+     */
+    public componentDidCatch = (error: Error): void => console.error(error)
+
+    /**
      * What to call after component mounting
      * @public
      * @instance

@@ -77,22 +77,28 @@ export default abstract class DeStagnate
      * @instance
      * @readonly
      * @param {State} obj - state to set
-     * @returns {void} void
+     * @returns {void | Error} void
      */
-    public readonly setState = (obj: State): void => {
-        this.componentWillUpdate()
-        Object.assign(this.state, obj)
+    public readonly setState = (obj: State): void | Error => {
+        try {
+            this.componentWillUpdate()
+            Object.assign(this.state, obj)
 
-        while (this.parent.firstChild) {
-            if (this.parent.lastChild) {
-                this.parent.removeChild(this.parent.lastChild)
-            } else {
-                break
+            while (this.parent.firstChild) {
+                if (this.parent.lastChild) {
+                    this.parent.removeChild(this.parent.lastChild)
+                } else {
+                    break
+                }
             }
-        }
 
-        this.parent.appendChild(this.render() as HTMLElement)
-        this.componentDidUpdate()
+            this.parent.appendChild(this.render() as HTMLElement)
+            this.componentDidUpdate()
+        } catch (err) {
+            this.componentDidCatch(err)
+
+            return err as Error
+        }
     }
 
     /* eslint-disable max-len, @typescript-eslint/member-ordering */
@@ -104,20 +110,26 @@ export default abstract class DeStagnate
      * @returns {HTMLElement | error} - result of append child to parent element
      */
     public readonly mountComponent = (): HTMLElement | Error => {
-        const component = this.render()
+        try {
+            const component = this.render()
 
-        this.componentWillMount()
-        if (!component) {
-            const msg = "Expected render method to be included in component class, no render method found"
+            this.componentWillMount()
+            if (!component) {
+                const msg = "Expected render method to be included in component class, no render method found"
 
-            console.error(msg)
+                console.error(msg)
 
-            return Error(msg)
+                return Error(msg)
+            }
+            
+            this.componentDidMount()
+
+            return this.parent.appendChild(component as HTMLElement) as HTMLElement
+        } catch (err) {
+            this.componentDidCatch(err)
+
+            return err as Error
         }
-        
-        this.componentDidMount()
-
-        return this.parent.appendChild(component as HTMLElement) as HTMLElement
     }
     
     /**
@@ -137,15 +149,20 @@ export default abstract class DeStagnate
      * @returns {void} - void
      */
     public readonly unmountComponent = (): void => {
-        this.componentWillUnmount()
+        try {
+            this.componentWillUnmount()
     
-        while (this.parent.firstChild) {
-            if (this.parent.lastChild) {
-                this.parent.removeChild(this.parent.lastChild)
-            } else {
-                break
+            while (this.parent.firstChild) {
+                if (this.parent.lastChild) {
+                    this.parent.removeChild(this.parent.lastChild)
+                } else {
+                    break
+                }
             }
+        } catch (err) {
+            this.componentDidCatch(err)
         }
+
     }
     
     /**
