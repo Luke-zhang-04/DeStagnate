@@ -88,6 +88,53 @@ if (document.querySelector("#parent")) {
 }
 ```
 
+## CreateElement
+```ts
+/**
+ * All types the children parameter can be
+ */
+type ChildrenType = HTMLElement[]
+    | HTMLElement
+    | string 
+    | string[] 
+    | number 
+    | number[]
+    | (HTMLElement | string)[]
+    | (HTMLElement | number)[]
+    | (string | number)[]
+    | (HTMLElement | string | number)[]
+    
+/**
+ * Creates a child element to DynamComponent
+ * @param {string} tagName - name of HTML element
+ * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
+ * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+ * @returns {HTMLElement} html element
+ */
+createElement = <T extends keyof HTMLElementTagNameMap>(
+    tagName: T,
+    props?: {[key: string]: string | number},
+    children?: ChildrenType,
+) => HTMLElement
+```
+
+## Props
+You can pass in props to your component so they can be accessed later
+See [this example](https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/examples/props.js) for help on using state
+```ts
+const myComponent = new MyComponent(
+    document.querySelector("#props"),
+    {
+        exampleArr: [
+        "example1",
+        "example1",
+        "example1",
+        ],
+        exampleProp: 2,
+    }
+)
+```
+
 ## Lifecycle Methods
 ### State
 ```ts
@@ -111,6 +158,14 @@ export default abstract class DeStagnate
      */
     protected state: State
 
+    /**
+     * Public getState getter as this.state itself is protected
+     * @public
+     * @instance
+     * @returns {State} component state
+     */
+    public get getState () => State
+
 }
 ```
 See [this example](https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/examples/counter.js) for help on using state
@@ -121,19 +176,21 @@ See [this example](https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/
  * Initial mounting to be manually called
  * @public
  * @instance
- * @returns {HTMLElement | error} - result of append child to parent element
+ * @readonly
+ * @returns {HTMLElement | Array.<HTMLElement> | error} - result of append child to parent element
  */
-public mountComponent = () => HTMLElement | Error
-public mount = this.mountComponent
+public readonly mountComponent = () => HTMLElement | HTMLElement[] | Error
+public readonly mount = this.mountComponent
 
 /**
  * Unmounting to be manually called 
  * @public
  * @instance
+ * @readonly
  * @returns {void} - void
  */
-public unmountComponent = () => void
-public unmount = this.unmountComponent
+public readonly unmountComponent = () => void
+public readonly unmount = this.unmountComponent
 
 /**
  * What to call after component mounting
@@ -160,7 +217,21 @@ public componentWillMount = () => void // Note that this function may return any
 public componentWillUnmount = () => void // Note that this function may return anything, but return void by default
 ```
 
-## Updating
+
+### Render
+This method is compulsory
+```ts
+/**
+ * Rendering HTML, must be part of extended class
+ * @public
+ * @instance
+ * @abstract
+ * @returns {null | HTMLElement | Array.<HTMLElement>} if returns null error will be thrown
+ */
+public abstract render = (): null | HTMLElement | HTMLElement[] => null
+```
+
+### Updating
 These methods are called on state mutation
 ```ts
 /**
@@ -180,16 +251,14 @@ public componentDidUpdate = (): void => undefined
 public componentWillUpdate = (): void => undefined
 ```
 
-### Render
-This method is compulsory
-```ts
+### Error catching
+```js
 /**
- * Rendering HTML, must be part of extended class
- * @public
- * @instance
- * @returns {null | HTMLElement} if returns null error will be thrown via console.error
+ * Called when component catches error. Default behaviour is console.error
+ * @param {Error} error - error object with info
+ * @returns {void} void
  */
-public render = () => null | HTMLElement
+public componentDidCatch = (error: Error) => void
 ```
 
 Created my free logo at [LogoMakr.com](https://my.logomakr.com/)

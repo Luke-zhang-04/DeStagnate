@@ -129,7 +129,7 @@ docs
 .babelrc.json
 .eslintignore
 .eslintrc.json
-build.sh
+*.sh
 makefile
 tsconfig.json
 webpack.config.js

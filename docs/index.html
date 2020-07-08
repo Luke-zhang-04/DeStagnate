@@ -12,9 +12,10 @@
         <h1 class="mt-3 ml-4">State example</h1>
         <div class="col-6 pl-5 pt-5">
             <div id="counter"></div>
+            <div id="state-btn"></div>
         </div>
-        <div class="col-6">
-            <pre>
+        <div id="state-source" class="col-6">
+            <pre class="d-block">
                 <code class="language-js">
 // Browser env, everything exposed to one global var, or namespace
 const DS = DeStagnate,
@@ -22,8 +23,8 @@ const DS = DeStagnate,
 
 class Counter extends DS.default {
 
-    constructor (props) {
-        super(props)
+    constructor (parent) {
+        super(parent)
 
         this.state = {
             count: 0,
@@ -36,9 +37,9 @@ class Counter extends DS.default {
         }, 1000)
     }
 
-    render = () => createChild("div", {}, [
-        createChild("p", {}, "Seconds:"),
-        createChild("p", {}, this.state.count)
+    render = () => createElement("div", {}, [
+        createElement("p", {}, "Seconds:"),
+        createElement("p", {}, this.state.count)
     ])
 
 }
@@ -46,7 +47,118 @@ class Counter extends DS.default {
 const counter = new Counter(document.querySelector("#counter"))
 
 counter.mount() // Must call once
-                
+                </code>
+            </pre>
+            <pre class="d-none">
+                <code class="language-js">
+// Node env, import from node_modules, or use require
+import DeStagnate, {createElement} from "destagnate"
+
+class Counter extends DeStagnate {
+
+    constructor (parent) {
+        super(parent)
+
+        this.state = {
+            count: 0,
+        }
+    }
+
+    componentDidMount = () => {
+        setInterval(() => {
+            this.setState({count: this.state.count + 1})
+        }, 1000)
+    }
+
+    render = () => createElement("div", {}, [
+        createElement("p", {}, "Seconds:"),
+        createElement("p", {}, this.state.count)
+    ])
+
+}
+
+const counter = new Counter(document.querySelector("#counter"))
+
+counter.mount() // Must call once
+                </code>
+            </pre>
+        </div>
+    </div>
+
+    <div class="row">
+        <h1 class="mt-3 ml-4">Props example</h1>
+        <div class="col-6 pl-5 pt-5">
+            <div id="props"></div>
+            <div id="props-btn" class="mt-3"></div>
+        </div>
+        <div id="props-source" class="col-6">
+            <pre class="d-block">
+                <code class="language-js">
+// Browser env, everything exposed to one global var, or namespace
+const DS = DeStagnate,
+    {createElement} = DS                    
+
+class PropsDemo extends DS.default {
+
+    render = () => this.props.colors.map((color) => (
+        createElement(
+            "button",
+            {class: `btn btn-${color}`},
+            `${color} button`
+        )
+    ))
+
+}
+
+const propsDemo = new PropsDemo(
+    document.querySelector("#props"),
+    {colors: [
+        "primary",
+        "secondary",
+        "success",
+        "info",
+        "warning",
+        "danger",
+        "light",
+        "dark",
+    ]}
+)
+
+propsDemo.mount() // Must call once
+                </code>
+            </pre>
+            <pre class="d-none">
+                <code class="language-js">
+// Node env, import from node_modules, or use require
+import DeStagnate, {createElement} from "destagnate"
+
+class PropsDemo extends DeStagnate {
+
+    render = () => this.props.colors.map((color) => (
+        createElement(
+            "button",
+            {class: `btn btn-${color}`},
+            `${color} button`
+        )
+    ))
+
+}
+
+const propsDemo = new PropsDemo(
+    document.querySelector("#props"),
+    {colors: [
+        "primary",
+        "secondary",
+        "success",
+        "info",
+        "warning",
+        "danger",
+        "light",
+        "dark",
+    ]}
+)
+
+propsDemo.mount() // Must call once
                 </code>
             </pre>
         </div>
@@ -56,9 +168,10 @@ counter.mount() // Must call once
         <h1 class="mt-3 ml-4">Event listener example</h1>
         <div class="col-6 pl-5 pt-5">
             <div id="elistener"></div>
+            <div id="elistener-btn" class="mt-3"></div>
         </div>
-        <div class="col-6">
-            <pre>
+        <div id="elistener-source"class="col-6">
+            <pre class="d-block">
                 <code class="language-js">
 // Browser env, everything exposed to one global var, or namespace
 const DS = DeStagnate,
@@ -66,7 +179,7 @@ const DS = DeStagnate,
 
 class EventListener extends DS.default {
 
-    render = () => createChild("button", {
+    render = () => createElement("button", {
         class: "btn btn-primary",
         onClick: () => alert("Clicked!")
     }, "Click Me!")
@@ -78,7 +191,27 @@ const eListener = new EventListener(
 )
 
 eListener.mount() // Must call once
+                </code>
+            </pre>
+            <pre class="d-none">
+                <code class="language-js">
+// Node env, import from node_modules, or use require
+import DeStagnate, {createElement} from "destagnate"
 
+class EventListener extends DeStagnate {
+
+    render = () => createElement("button", {
+        class: "btn btn-primary",
+        onClick: () => alert("Clicked!")
+    }, "Click Me!")
+
+}
+
+const eListener = new EventListener(
+    document.querySelector("#elistener")
+)
+
+eListener.mount() // Must call once
                 </code>
             </pre>
         </div>
@@ -88,9 +221,10 @@ eListener.mount() // Must call once
         <h1 class="mt-3 ml-4">Calculator example</h1>
         <div class="col-6 pl-5 pt-5">
             <div id="calculator"></div>
+            <div id="calc-btn" class="mt-3"></div>
         </div>
-        <div class="col-6">
-            <pre>
+        <div id="calc-source" class="col-6">
+            <pre class="d-block">
                 <code class="language-js">
 // Browser env, everything exposed to one global var, or namespace
 const DS = DeStagnate,
@@ -98,8 +232,8 @@ const DS = DeStagnate,
 
 class Calculator extends DS.default {
 
-    constructor (props) {
-        super(props)
+    constructor (parent) {
+        super(parent)
 
         this.state = {
             calculation: "",
@@ -113,7 +247,7 @@ class Calculator extends DS.default {
      * calculaton
      * @returns {HTMLElement} col element
      */
-    _calcButton = (text, append) => createChild("div", {
+    _calcButton = (text, append) => createElement("div", {
         class: "col-3 calc-btn", // Bootstrap grid
         onClick: () => this.setState({
             calculation: this.state.calculation + (
@@ -130,10 +264,10 @@ class Calculator extends DS.default {
 
     /**
      * Calculator buttons for 3 numbered rows
-     * @type {Array.<HTMLElement>}
+     * @type {Array.&lt;HTMLElement&gt;}
      */
     _numBtns = [
-        createChild("div", {class: "calc-btns row"}, 
+        createElement("div", {class: "calc-btns row"}, 
             ["7", "8", "9", ["x", "*"]].map((val) => (
                 this._calcButton(
                     val instanceof Array ? val[0] : val,
@@ -141,7 +275,7 @@ class Calculator extends DS.default {
                 )
             ))
         ),
-        createChild("div", {class: "calc-btns row"}, 
+        createElement("div", {class: "calc-btns row"}, 
             ["4", "5", "6", "-"].map((val) => (
                 this._calcButton(
                     val instanceof Array ? val[0] : val,
@@ -149,7 +283,7 @@ class Calculator extends DS.default {
                 )
             ))
         ),
-        createChild("div", {class: "calc-btns row"}, 
+        createElement("div", {class: "calc-btns row"}, 
             ["1", "2", "3", "+"].map((val) => (
                 this._calcButton(
                     val instanceof Array ? val[0] : val,
@@ -163,20 +297,20 @@ class Calculator extends DS.default {
      * Calculator Display
      * @returns {HTMLElement} display
      */
-    _calcDisplay = () => createChild(
+    _calcDisplay = () => createElement(
         "div",
         {class: "calc-display"},
         this.state.calculation,
     )
 
-    render = () => createChild("div", {}, [
+    render = () => createElement("div", {}, [
         this._calcDisplay(),
-        createChild("div", {class: "calc-btns row"}, [
-            createChild("div", {
+        createElement("div", {class: "calc-btns row"}, [
+            createElement("div", {
                 class: "col-3 calc-btn clear",
                 onClick: () => this.setState({calculation: ""}),
             }, "C"), // Clear
-            createChild("div", {
+            createElement("div", {
                 class: "col-3 calc-btn",
                 onClick: () => this.setState({
                     calculation: this.state.calculation.slice(
@@ -189,10 +323,129 @@ class Calculator extends DS.default {
             this._calcButton("\u00f7", "/"),
         ]),
         ...this._numBtns,
-        createChild("div", {class: "calc-btns row"}, [
+        createElement("div", {class: "calc-btns row"}, [
             this._calcButton("0"),
             this._calcButton("."),
-            createChild("div", {
+            createElement("div", {
+                class: "col-6 calc-btn equals",
+                onClick: () => this.setState({
+                    calculation: this._evalCalc(),
+                }),
+            }, "="), // Equals
+        ]),
+    ])
+
+}
+
+const calculator = new Calculator(
+    document.querySelector("#calculator")
+)
+
+calculator.mount() // Must call once
+                </code>
+            </pre>
+            <pre class="d-none">
+                <code class="language-js">
+// Node env, import from node_modules, or use require
+import DeStagnate, {createElement} from "destagnate"
+
+class Calculator extends DeStagnate {
+
+    constructor (parent) {
+        super(parent)
+
+        this.state = {
+            calculation: "",
+        }
+    }
+
+    /**
+     * Create a calculator button
+     * @param {string} text - text of button
+     * @param {string | undefined} append - value to append to
+     * calculaton
+     * @returns {HTMLElement} col element
+     */
+    _calcButton = (text, append) => createElement("div", {
+        class: "col-3 calc-btn", // Bootstrap grid
+        onClick: () => this.setState({
+            calculation: this.state.calculation + (
+                append ? append : text
+            ),
+        }),
+    }, text)
+
+    /**
+     * Evaluate current claculation
+     * @returns {number} clculation
+     */
+    _evalCalc = () => eval(this.state.calculation)
+
+    /**
+     * Calculator buttons for 3 numbered rows
+     * @type {Array.&lt;HTMLElement&gt;}
+     */
+    _numBtns = [
+        createElement("div", {class: "calc-btns row"}, 
+            ["7", "8", "9", ["x", "*"]].map((val) => (
+                this._calcButton(
+                    val instanceof Array ? val[0] : val,
+                    val instanceof Array ? val[1] : val,
+                )
+            ))
+        ),
+        createElement("div", {class: "calc-btns row"}, 
+            ["4", "5", "6", "-"].map((val) => (
+                this._calcButton(
+                    val instanceof Array ? val[0] : val,
+                    val instanceof Array ? val[1] : val,
+                )
+            ))
+        ),
+        createElement("div", {class: "calc-btns row"}, 
+            ["1", "2", "3", "+"].map((val) => (
+                this._calcButton(
+                    val instanceof Array ? val[0] : val,
+                    val instanceof Array ? val[1] : val,
+                )
+            ))
+        ),
+    ]
+
+    /**
+     * Calculator Display
+     * @returns {HTMLElement} display
+     */
+    _calcDisplay = () => createElement(
+        "div",
+        {class: "calc-display"},
+        this.state.calculation,
+    )
+
+    render = () => createElement("div", {}, [
+        this._calcDisplay(),
+        createElement("div", {class: "calc-btns row"}, [
+            createElement("div", {
+                class: "col-3 calc-btn clear",
+                onClick: () => this.setState({calculation: ""}),
+            }, "C"), // Clear
+            createElement("div", {
+                class: "col-3 calc-btn",
+                onClick: () => this.setState({
+                    calculation: this.state.calculation.slice(
+                        0, this.state.calculation.length - 1,
+                    ),
+                }),
+            }, "\u2190"), // Backspace
+
+            this._calcButton("%"),
+            this._calcButton("\u00f7", "/"),
+        ]),
+        ...this._numBtns,
+        createElement("div", {class: "calc-btns row"}, [
+            this._calcButton("0"),
+            this._calcButton("."),
+            createElement("div", {
                 class: "col-6 calc-btn equals",
                 onClick: () => this.setState({
                     calculation: this._evalCalc(),
@@ -216,11 +469,14 @@ calculator.mount() // Must call once
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> <!-- Popper.js for bootstrap, not actually needed for functionality -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script> <!-- Bootstrap for styling, not actually needed for functionality -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/prism.min.js"></script> <!-- Prism JS for syntax hilighting code -->
 
-    <script src="./deStagnate.bundle.min.js"></script>
+    <!-- <script src="./deStagnate.bundle.min.js"></script> -->
+    <script src="../dist/deStagnate.bundle.min.js"></script>
     <script src="examples/counter.js"></script>
+    <script src="examples/props.js"></script>
     <script src="examples/eventListener.js"></script>
     <script src="examples/calculator.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

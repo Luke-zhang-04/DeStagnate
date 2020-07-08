@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.0.3
+ * @version 1.1.0
  * @exports Preset
  * @package
  */
@@ -12,7 +12,14 @@
 /**
  * Lifecycle member functions
  */
-export default class Preset {
+export default abstract class Preset {
+
+    /**
+     * Called when component catches error. Default behaviour is console.error
+     * @param {Error} error - error object with info
+     * @returns {void} void
+     */
+    public componentDidCatch = (error: Error): void => console.error(error)
 
     /**
      * What to call after component mounting
@@ -58,8 +65,9 @@ export default class Preset {
      * Rendering HTML, must be part of extended class
      * @public
      * @instance
-     * @returns {null | HTMLElement} if returns null error will be thrown
+     * @abstract
+     * @returns {null | HTMLElement | Array.<HTMLElement>} if returns null error will be thrown
      */
-    public render = (): null | HTMLElement => null
+    public abstract render = (): null | HTMLElement | HTMLElement[] => null
 
 }
