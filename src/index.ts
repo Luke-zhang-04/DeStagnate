@@ -69,10 +69,11 @@ export default abstract class DeStagnate
      * Sets state
      * @public
      * @instance
+     * @readonly
      * @param {State} obj - state to set
      * @returns {void} void
      */
-    public setState = (obj: State): void => {
+    public readonly setState = (obj: State): void => {
         this.componentWillUpdate()
         Object.assign(this.state, obj)
 
@@ -93,9 +94,10 @@ export default abstract class DeStagnate
      * Initial mounting to be manually called
      * @public
      * @instance
+     * @readonly
      * @returns {HTMLElement | error} - result of append child to parent element
      */
-    public mountComponent = (): HTMLElement | Error => {
+    public readonly mountComponent = (): HTMLElement | Error => {
         const component = this.render()
 
         this.componentWillMount()
@@ -116,29 +118,38 @@ export default abstract class DeStagnate
      * Initial mounting to be manually called
      * @public
      * @instance
+     * @readonly
      * @returns {HTMLElement} - result of append child to parent element
      */
-    public mount = this.mountComponent
+    public readonly mount = this.mountComponent
 
     /**
      * Unmounting to be manually called 
      * @public
      * @instance
+     * @readonly
      * @returns {void} - void
      */
-    public unmountComponent = (): void => {
+    public readonly unmountComponent = (): void => {
         this.componentWillUnmount()
-        
-        this.parent.remove()
+    
+        while (this.parent.firstChild) {
+            if (this.parent.lastChild) {
+                this.parent.removeChild(this.parent.lastChild)
+            } else {
+                break
+            }
+        }
     }
     
     /**
      * Unmounting to be manually called 
      * @public
      * @instance
+     * @readonly
      * @returns {void} - void
      */
-    public unmount = this.unmountComponent
+    public readonly unmount = this.unmountComponent
     /* eslint-enable max-len, @typescript-eslint/member-ordering */
 
 }
