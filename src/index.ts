@@ -65,7 +65,7 @@ export default abstract class DeStagnate
     ) {
         super()
         if (["body", "html"].includes(parent.tagName.toLowerCase())) {
-            console.warn(`WARNING! Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
+            throw new Error(`WARNING! Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
         }
 
         this.parent = parent
@@ -117,9 +117,7 @@ export default abstract class DeStagnate
             if (!component) {
                 const msg = "Expected render method to be included in component class, no render method found"
 
-                console.error(msg)
-
-                return Error(msg)
+                throw new Error(msg)
             }
             
             this.componentDidMount()
