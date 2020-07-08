@@ -69,7 +69,7 @@ watch() {
     fileChange1=""
 
     while [[ true ]]; do
-        fileChange2=`find src/ -type f -exec md5 {} \;`
+        fileChange2=$(find src/ -type f -exec md5 {} \;)
 
         if [[ "$fileChange1" != "$fileChange2" ]] ; then           
             build
@@ -80,7 +80,7 @@ watch() {
             printf "Waiting...\n"
         fi
 
-        sleep 15
+        sleep 10
     done
 }
 
