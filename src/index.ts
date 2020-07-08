@@ -21,28 +21,22 @@ import {default as _createElement} from "./createElement"
  * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @class
  * @namespace
+ * @abstract
  */
 export default abstract class DeStagnate
     <Props = Record<string, unknown>, State = Record<string, unknown>>
     extends Preset {
 
     /**
-     * Creates a child element to DeStagnate
+     * Creates a child element to DynamComponent
      * @public
      * @static
      * @param {string} tagName - name of HTML element
      * @param {undefined | Object.<string, string | number>} props - element properties
-     * @param {undefined | Array.<HTMLElement> | HTMLElement} children - child of element, or array of children
+     * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - child of element, or array of children
      * @returns {HTMLElement} html element
      */
     public static createElement = _createElement
-
-    /**
-     * Parent that this element if bound to
-     * @protected
-     * @instance
-     */
-    protected parent: HTMLElement
 
     /**
      * State of component. Works similar React State
@@ -51,6 +45,13 @@ export default abstract class DeStagnate
      * @instance
      */
     protected state: State = {} as State
+
+    /**
+     * Parent that this element if bound to
+     * @private
+     * @instance
+     */
+    private _parent: HTMLElement
 
     /**
      * Construct class component
@@ -68,7 +69,17 @@ export default abstract class DeStagnate
             throw new Error(`WARNING! Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
         }
 
-        this.parent = parent
+        this._parent = parent
+    }
+
+    /**
+     * Public getState getter as this.state itself is protected
+     * @public
+     * @instance
+     * @returns {State} component state
+     */
+    public get getState (): State {
+        return this.state
     }
 
     /**
@@ -84,15 +95,15 @@ export default abstract class DeStagnate
             this.componentWillUpdate()
             Object.assign(this.state, obj)
 
-            while (this.parent.firstChild) {
-                if (this.parent.lastChild) {
-                    this.parent.removeChild(this.parent.lastChild)
+            while (this._parent.firstChild) {
+                if (this._parent.lastChild) {
+                    this._parent.removeChild(this._parent.lastChild)
                 } else {
                     break
                 }
             }
 
-            this.parent.appendChild(this.render() as HTMLElement)
+            this._parent.appendChild(this.render() as HTMLElement)
             this.componentDidUpdate()
         } catch (err) {
             this.componentDidCatch(err)
@@ -122,7 +133,7 @@ export default abstract class DeStagnate
             
             this.componentDidMount()
 
-            return this.parent.appendChild(component as HTMLElement) as HTMLElement
+            return this._parent.appendChild(component as HTMLElement) as HTMLElement
         } catch (err) {
             this.componentDidCatch(err)
 
@@ -150,9 +161,9 @@ export default abstract class DeStagnate
         try {
             this.componentWillUnmount()
     
-            while (this.parent.firstChild) {
-                if (this.parent.lastChild) {
-                    this.parent.removeChild(this.parent.lastChild)
+            while (this._parent.firstChild) {
+                if (this._parent.lastChild) {
+                    this._parent.removeChild(this._parent.lastChild)
                 } else {
                     break
                 }

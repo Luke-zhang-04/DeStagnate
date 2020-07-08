@@ -160,7 +160,20 @@ public componentWillMount = () => void // Note that this function may return any
 public componentWillUnmount = () => void // Note that this function may return anything, but return void by default
 ```
 
-## Updating
+
+### Render
+This method is compulsory
+```ts
+/**
+ * Rendering HTML, must be part of extended class
+ * @public
+ * @instance
+ * @returns {null | HTMLElement} if returns null error will be thrown via console.error
+ */
+public render = () => null | HTMLElement
+```
+
+### Updating
 These methods are called on state mutation
 ```ts
 /**
@@ -180,16 +193,14 @@ public componentDidUpdate = (): void => undefined
 public componentWillUpdate = (): void => undefined
 ```
 
-### Render
-This method is compulsory
-```ts
+### Error catching
+```js
 /**
- * Rendering HTML, must be part of extended class
- * @public
- * @instance
- * @returns {null | HTMLElement} if returns null error will be thrown via console.error
+ * Called when component catches error. Default behaviour is console.error
+ * @param {Error} error - error object with info
+ * @returns {void} void
  */
-public render = () => null | HTMLElement
+public componentDidCatch = (error: Error) => void
 ```
 
 Created my free logo at [LogoMakr.com](https://my.logomakr.com/)

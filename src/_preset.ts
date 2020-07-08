@@ -12,7 +12,7 @@
 /**
  * Lifecycle member functions
  */
-export default class Preset {
+export default abstract class Preset {
 
     /**
      * Called when component catches error. Default behaviour is console.error
@@ -65,8 +65,9 @@ export default class Preset {
      * Rendering HTML, must be part of extended class
      * @public
      * @instance
+     * @abstract
      * @returns {null | HTMLElement} if returns null error will be thrown
      */
-    public render = (): null | HTMLElement => null
+    public abstract render = (): null | HTMLElement => null
 
 }
