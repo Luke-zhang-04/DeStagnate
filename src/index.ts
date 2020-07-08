@@ -131,13 +131,7 @@ export default abstract class DeStagnate
             this.componentWillUpdate()
             Object.assign(this.state, obj)
 
-            while (this._parent.firstChild) {
-                if (this._parent.lastChild) {
-                    this._parent.removeChild(this._parent.lastChild)
-                } else {
-                    break
-                }
-            }
+            this._removeChildren()
 
             const renderedContent = this.render()
 
@@ -212,13 +206,7 @@ export default abstract class DeStagnate
         try {
             this.componentWillUnmount()
     
-            while (this._parent.firstChild) {
-                if (this._parent.lastChild) {
-                    this._parent.removeChild(this._parent.lastChild)
-                } else {
-                    break
-                }
-            }
+            this._removeChildren()
         } catch (err) {
             this.componentDidCatch(err)
         }
@@ -234,6 +222,22 @@ export default abstract class DeStagnate
      */
     public readonly unmount = this.unmountComponent
     /* eslint-enable max-len, @typescript-eslint/member-ordering */
+
+    /**
+     * Removes children from this._parent
+     * @private
+     * @instance
+     * @return {void} void
+     */
+    private _removeChildren = (): void => {
+        while (this._parent.firstChild) {
+            if (this._parent.lastChild) {
+                this._parent.removeChild(this._parent.lastChild)
+            } else {
+                break
+            }
+        }
+    }
 
 }
 
