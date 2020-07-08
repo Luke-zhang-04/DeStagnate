@@ -6,8 +6,8 @@ const DS = DeStagnate,
 
 class Calculator extends DS.default {
 
-    constructor (props) {
-        super(props)
+    constructor (parent) {
+        super(parent)
 
         this.state = {
             calculation: "",

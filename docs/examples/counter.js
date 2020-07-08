@@ -4,8 +4,8 @@ const DS = DeStagnate,
 
 class Counter extends DS.default {
 
-    constructor (props) {
-        super(props)
+    constructor (parent) {
+        super(parent)
 
         this.state = {
             count: 0,
