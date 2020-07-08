@@ -53,7 +53,7 @@ export default abstract class DeStagnate
 
     /**
      * State of component. Works similar React State
-     * @type {Object.<string, unknown> | undefined}
+     * @type {undefined | Object.<string, unknown>}
      * @protected
      * @instance
      */
@@ -71,11 +71,11 @@ export default abstract class DeStagnate
      * @public
      * @constructor
      * @param {HTMLElement} parent - parent of this element
-     * @param {undefined | Object.<string, string | number>} props - element properties
+     * @param {undefined | Object.<string, string | number>} props - element properties; works like React Props
      */
     public constructor (
         parent: HTMLElement,
-        public props?: Props,
+        protected props?: Props | undefined,
     ) {
         super()
         if (["body", "html"].includes(parent.tagName.toLowerCase())) {
@@ -109,6 +109,16 @@ export default abstract class DeStagnate
     }
 
     /**
+     * Public getProps getter as this.props itself is protected
+     * @public
+     * @instance
+     * @returns {Props | undefined} component state
+     */
+    public get getProps (): Props | undefined {
+        return this.props
+    }
+
+    /**
      * Sets state
      * @public
      * @instance
@@ -129,7 +139,16 @@ export default abstract class DeStagnate
                 }
             }
 
-            this._parent.appendChild(this.render() as HTMLElement)
+            const renderedContent = this.render()
+
+            if (renderedContent instanceof Array) {
+                for (const element of (renderedContent as HTMLElement[])) {
+                    this._parent.appendChild(element)
+                }
+            } else {
+                this._parent.appendChild(renderedContent as HTMLElement)
+            }
+
             this.componentDidUpdate()
         } catch (err) {
             this.componentDidCatch(err)
@@ -144,22 +163,28 @@ export default abstract class DeStagnate
      * @public
      * @instance
      * @readonly
-     * @returns {HTMLElement | error} - result of append child to parent element
+     * @returns {HTMLElement | Array.<HTMLElement> | error} - result of append child to parent element
      */
-    public readonly mountComponent = (): HTMLElement | Error => {
+    public readonly mountComponent = (): HTMLElement | HTMLElement[] | Error => {
         try {
             const component = this.render()
 
             this.componentWillMount()
             if (!component) {
-                const msg = "Expected render method to be included in component class, no render method found"
+                const msg = "Expected render method to be included in component class, no render method found, or render returned an empty array"
 
                 throw new Error(msg)
             }
             
             this.componentDidMount()
 
-            return this._parent.appendChild(component as HTMLElement) as HTMLElement
+            if (component instanceof Array) {
+                return component.map((element) => (
+                    this._parent.appendChild(element)
+                ))
+            }
+
+            return this._parent.appendChild(component)
         } catch (err) {
             this.componentDidCatch(err)
 
@@ -212,4 +237,11 @@ export default abstract class DeStagnate
 
 }
 
+/**
+ * Creates a child element to DynamComponent
+ * @param {string} tagName - name of HTML element
+ * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
+ * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+ * @returns {HTMLElement} html element
+ */
 export const createElement = _createElement

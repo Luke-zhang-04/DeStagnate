@@ -118,6 +118,23 @@ createElement = <T extends keyof HTMLElementTagNameMap>(
 ) => HTMLElement
 ```
 
+## Props
+You can pass in props to your component so they can be accessed later
+See [this example](https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/examples/props.js) for help on using state
+```ts
+const myComponent = new MyComponent(
+    document.querySelector("#props"),
+    {
+        exampleArr: [
+        "example1",
+        "example1",
+        "example1",
+        ],
+        exampleProp: 2,
+    }
+)
+```
+
 ## Lifecycle Methods
 ### State
 ```ts
@@ -160,9 +177,9 @@ See [this example](https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/
  * @public
  * @instance
  * @readonly
- * @returns {HTMLElement | error} - result of append child to parent element
+ * @returns {HTMLElement | Array.<HTMLElement> | error} - result of append child to parent element
  */
-public readonly mountComponent = () => HTMLElement | Error
+public readonly mountComponent = () => HTMLElement | HTMLElement[] | Error
 public readonly mount = this.mountComponent
 
 /**
@@ -209,9 +226,9 @@ This method is compulsory
  * @public
  * @instance
  * @abstract
- * @returns {null | HTMLElement} if returns null error will be thrown
+ * @returns {null | HTMLElement | Array.<HTMLElement>} if returns null error will be thrown
  */
-public abstract render = () => null | HTMLElement
+public abstract render = (): null | HTMLElement | HTMLElement[] => null
 ```
 
 ### Updating
