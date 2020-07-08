@@ -1,6 +1,6 @@
 {
   "name": "dynamic-component-docs",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Examples for dynamic componnet",
   "main": "index.js",
   "dependencies": {
