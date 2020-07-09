@@ -10,19 +10,24 @@
 
 /* eslint-disable one-var */
 
-/**
- * All types the children parameter can be
- */
-type ChildrenType = HTMLElement[]
-    | HTMLElement
-    | string 
-    | string[] 
-    | number 
+type ChildrenFlatArrayType = HTMLElement[]
+    | string[]
     | number[]
     | (HTMLElement | string)[]
     | (HTMLElement | number)[]
     | (string | number)[]
     | (HTMLElement | string | number)[]
+
+type ChildrenArrayType = ChildrenFlatArrayType
+    | ChildrenArrayType[]
+
+/**
+ * All types the children parameter can be
+ */
+type ChildrenType = HTMLElement
+    | string 
+    | number 
+    | ChildrenArrayType
 
 /**
  * Binds children to element
@@ -56,6 +61,20 @@ const _bindProps = (
     }
 }
 
+const unpackChildren = (children: ChildrenArrayType): ChildrenFlatArrayType => {
+    const newChildren = []
+
+    for (const child of children) {
+        if (typeof(child) === "object" && child instanceof Array) {
+            newChildren.push(...unpackChildren(child))
+        } else {
+            newChildren.push(child)
+        }
+    }
+
+    return newChildren as ChildrenFlatArrayType
+}
+
 /**
  * Binds children to element
  * @package
@@ -72,6 +91,12 @@ const _bindChildren = (element: HTMLElement, children?: ChildrenType): void => {
                     typeof(child) === "number"
                 ) {
                     element.innerText = child.toString()
+                } else if (
+                    typeof (child) === "object" &&
+                    child instanceof Array
+                ) {
+                    unpackChildren(child)
+                        .forEach((_child) => _bindChildren(element, _child))
                 } else {
                     element.appendChild(child)
                 }
@@ -92,18 +117,35 @@ const _bindChildren = (element: HTMLElement, children?: ChildrenType): void => {
  * @param {string} tagName - name of HTML element
  * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
  * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+ * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
  * @returns {HTMLElement} html element
  */
 const createElement = <T extends keyof HTMLElementTagNameMap>(
     tagName: T,
     props?: {[key: string]: string | number},
     children?: ChildrenType,
+    ...childrenArgs: ChildrenArrayType
 ): HTMLElement => {
     const element = document.createElement(tagName)
 
+    console.log(children, childrenArgs)
+
     _bindProps(element, props)
 
-    _bindChildren(element, children)
+    let _children: ChildrenType | undefined = children
+
+    if (children && childrenArgs) {
+        if (typeof(children) === "object" && children instanceof Array) {
+            _children = [
+                ...unpackChildren(children),
+                ...unpackChildren(childrenArgs),
+            ]
+        } else {
+            _children = [children, ...unpackChildren(childrenArgs)]
+        }
+    }
+
+    _bindChildren(element, _children)
 
     return element
 }

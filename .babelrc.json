@@ -1,4 +1,5 @@
 {
     "presets": ["@babel/preset-env"],
+    "plugins": ["babel-plugin-loop-optimizer"],
     "ignore": ["./tests/test.js"]
 }
