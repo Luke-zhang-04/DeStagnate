@@ -128,8 +128,6 @@ const createElement = <T extends keyof HTMLElementTagNameMap>(
 ): HTMLElement => {
     const element = document.createElement(tagName)
 
-    console.log(children, childrenArgs)
-
     _bindProps(element, props)
 
     let _children: ChildrenType | undefined = children

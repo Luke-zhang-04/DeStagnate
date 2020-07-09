@@ -39,7 +39,7 @@ curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_
 ```
 
 ## Basic Use
-See [https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/examples](https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/examples) for example code
+See [https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/examples](https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/examples) and [https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/examples](https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/src) for example code
 ```js
 // browser env requires this
 const DS = DeStagnate,
