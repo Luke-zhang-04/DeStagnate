@@ -39,7 +39,7 @@ curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_
 ```
 
 ## Basic Use
-See [https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/examples](https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/examples) for example code
+See [https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/src](https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/src) for example code
 ```js
 // browser env requires this
 const DS = DeStagnate,
@@ -56,7 +56,11 @@ class Counter extends DS.defualt {
         this.state = {}
     }
 
-    render = () => createElement("div", {})
+    // Using SD.createElement()
+    render = () => DS.createElement("div", {})
+    
+    // Alternatively, you can use JSX (this requires the CLI, which comes with this package)
+    render = () => <div></div>
 
 }
 

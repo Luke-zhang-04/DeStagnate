@@ -5,11 +5,14 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.1.0
+ * @version 1.2.0
  */
 
 var __createBinding = void 0 && (void 0).__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
+  if (k2 === undefined) {
+    k2 = k;
+  }
+
   Object.defineProperty(o, k2, {
     enumerable: true,
     get: function get() {
@@ -17,7 +20,10 @@ var __createBinding = void 0 && (void 0).__createBinding || (Object.create ? fun
     }
   });
 } : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
+  if (k2 === undefined) {
+    k2 = k;
+  }
+
   o[k2] = m[k];
 });
 
@@ -31,10 +37,18 @@ var __setModuleDefault = void 0 && (void 0).__setModuleDefault || (Object.create
 });
 
 var __importStar = void 0 && (void 0).__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
+  if (mod && mod.__esModule) {
+    return mod;
+  }
+
   var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+
+  if (mod != null) {
+    for (var k in mod) {
+      if (k !== "default" && Object.hasOwnProperty.call(mod, k)) {
+        __createBinding(result, mod, k);
+      }
+    }
   }
 
   __setModuleDefault(result, mod);
@@ -44,7 +58,9 @@ var __importStar = void 0 && (void 0).__importStar || function (mod) {
 
 var __exportStar = void 0 && (void 0).__exportStar || function (m, exports) {
   for (var p in m) {
-    if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    if (p !== "default" && !exports.hasOwnProperty(p)) {
+      __createBinding(exports, m, p);
+    }
   }
 };
 

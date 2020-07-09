@@ -1,1 +1,2 @@
 *.js linguist-generated=true
+*.config.js linguist-generated=false
