@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.2.0
+ * @version 1.2.1
  */
 
 var __createBinding = void 0 && (void 0).__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -76,7 +76,7 @@ var lib_1 = __importStar(require("./lib"));
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.1.0
+ * @version 1.2.1
  * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @class
  * @namespace

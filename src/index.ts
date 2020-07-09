@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.2.0
+ * @version 1.2.1
  * @exports DeStagnate
  */
 import Preset from "./_preset"
@@ -16,7 +16,7 @@ import {default as _createElement} from "./createElement"
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.1.0
+ * @version 1.2.1
  * @exports DeStagnate
  * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @class
