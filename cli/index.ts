@@ -10,6 +10,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-var-requires, global-require */
 import * as Babel from "@babel/core"
 import * as fs from "fs"
+import * as pkg from "../package.json"
 import {default as compileTs} from "./compileTs"
 import {program} from "commander"
 import ts from "typescript"
@@ -23,8 +24,13 @@ export interface CLIConfig {
 }
 
 program
-    .option("-o, --out <file>", "output file; stdout by default", "stdout")
+    .option("-o, --out <file>", "output file stdout by default", "stdout")
     .option("-p --production", "production mode")
+    .on("--help", () => {
+        // eslint-disable-next-line
+        console.log("\nNote that an input of config file is always required. Your command structure therefore should look like\n\n\tnpx destagnate [input file or config file][options]]\n")
+    })
+    .version(pkg.version)
  
 program.parse(process.argv)
 
