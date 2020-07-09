@@ -24,7 +24,7 @@ export interface CLIConfig {
 
 program
     .option("-o, --out <file>", "output file; stdout by default", "stdout")
-    .option("-p --prod", "production mode")
+    .option("-p --production", "production mode")
  
 program.parse(process.argv)
 
@@ -58,7 +58,7 @@ const input = process.argv[2],
                 .replace(/React.createElement/gu, "DeStagnate.createElement")
                 .replace(/className: "/gu, "class: \"")
             
-            if (!config.prod) {
+            if (config.mode !== "production") {
                 // eslint-disable-next-line
                 code = `// WARNING: THIS CODE WAS COMPILED FOR DEVELOPMENT, AND IS NOT OPTIMISED FOR PRODUCTION. FOR PRODUCTION, USE THE --prod FLAG, OR ADD mode: production TO YOU CONFIG FILE\n\n${code}`
             }
@@ -110,13 +110,13 @@ if (input && !input.includes(".config.js")) {
             compile(code.outputText, {
                 entry: process.argv[2],
                 output: program.out,
-                mode: program.prod ? "production" : "development",
+                mode: program.production ? "production" : "development",
             })
         } else {
             compile(data, {
                 entry: process.argv[2],
                 output: program.out,
-                mode: program.prod ? "production" : "development",
+                mode: program.production ? "production" : "development",
             })
         }
     })
