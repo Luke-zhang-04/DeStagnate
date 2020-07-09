@@ -58,7 +58,7 @@ const input = process.argv[2],
                 .replace(/React.createElement/gu, "DeStagnate.createElement")
                 .replace(/className: "/gu, "class: \"")
             
-            if (!program.prod) {
+            if (!config.prod) {
                 // eslint-disable-next-line
                 code = `// WARNING: THIS CODE WAS COMPILED FOR DEVELOPMENT, AND IS NOT OPTIMISED FOR PRODUCTION. FOR PRODUCTION, USE THE --prod FLAG, OR ADD mode: production TO YOU CONFIG FILE\n\n${code}`
             }
