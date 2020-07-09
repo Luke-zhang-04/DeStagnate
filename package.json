@@ -39,7 +39,6 @@
     "@types/babel__core": "^7.1.9",
     "@types/node": "^14.0.20",
     "babel-plugin-loop-optimizer": "^1.4.1",
-    "commander": "^5.1.0",
-    "destagnate": "file:."
+    "commander": "^5.1.0"
   }
 }
