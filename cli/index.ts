@@ -9,6 +9,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */
 import * as Babel from "@babel/core"
 import * as fs from "fs"
+import {default as compileTs} from "./compile"
 import {program} from "commander"
 
 program
@@ -62,8 +63,15 @@ const [input, output] = [process.argv[2], program.out as string],
     }
 
 if (input) {
+
     fs.readFile(input, "utf8", (_, data) => {
-        compile(data)
+        if (input.includes(".ts") || input.includes(".tsx")) {
+            const code = compileTs(data)
+
+            compile(code.outputText)
+        } else {
+            compile(data)
+        }
     })
 } else {
     throw new Error("😰 No input file specified, exiting...")

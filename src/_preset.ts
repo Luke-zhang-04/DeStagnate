@@ -66,7 +66,7 @@ export default abstract class Preset {
      * @public
      * @instance
      * @abstract
-     * @returns {null | HTMLElement | Array.<HTMLElement>} if returns null error will be thrown
+     * @returns {null | HTMLElement | Array.<HTMLElement> | JSX.Element} if returns null error will be thrown
      */
     public abstract render = (): null | HTMLElement | HTMLElement[] => null
 
