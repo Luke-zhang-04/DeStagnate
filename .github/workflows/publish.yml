@@ -1,7 +1,9 @@
 name: Publish to package
 on:
-  push:
-    branches: [master]
+  # push:
+  #   branches: [master]
+  release:
+      types: [created, publish]
 
 jobs:
   publish:
