@@ -1,6 +1,6 @@
 {
   "name": "destagnate",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Make creating dynamic components within static sites easier",
   "main": "index.js",
   "bin": "cli/index.js",

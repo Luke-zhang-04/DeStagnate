@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.2.2
+ * @version 1.2.3
  * @exports DeStagnate
  */
 import Preset from "./_preset"
@@ -130,10 +130,10 @@ export default abstract class DeStagnate
         try {
             this.componentWillUpdate()
 
-            for (const key in Object.keys(obj)) {
+            for (const key of Object.keys(obj)) {
                 if (!Object.keys(this.state).includes(key)) {
                     // eslint-disable-next-line
-                    throw new Error("A new key should not be set with setState. Declare all state variables in constructor.")
+                    throw new Error(`A new key ${key} should not be set with setState, which has keys ${JSON.stringify(Object.keys(this.state))}. Declare all state variables in constructor.`)
                 }
             }
 
