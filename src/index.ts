@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.2.1
+ * @version 1.2.2
  * @exports DeStagnate
  */
 import Preset from "./_preset"
@@ -126,9 +126,17 @@ export default abstract class DeStagnate
      * @param {State} obj - state to set
      * @returns {void | Error} void
      */
-    public readonly setState = (obj: State): void | Error => {
+    public readonly setState = <T = Record<string, unknown>>(obj: T): void | Error => {
         try {
             this.componentWillUpdate()
+
+            for (const key in Object.keys(obj)) {
+                if (!Object.keys(this.state).includes(key)) {
+                    // eslint-disable-next-line
+                    throw new Error("A new key should not be set with setState. Declare all state variables in constructor.")
+                }
+            }
+
             Object.assign(this.state, obj)
 
             this._removeChildren()
