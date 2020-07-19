@@ -14,7 +14,7 @@ var __createBinding = void 0 && (void 0).__createBinding || (Object.create ? fun
   }
 
   Object.defineProperty(o, k2, {
-    enumerable: true,
+    enumerable: !0,
     get: function get() {
       return m[k];
     }
@@ -25,18 +25,16 @@ var __createBinding = void 0 && (void 0).__createBinding || (Object.create ? fun
   }
 
   o[k2] = m[k];
-});
-
-var __setModuleDefault = void 0 && (void 0).__setModuleDefault || (Object.create ? function (o, v) {
+}),
+    __setModuleDefault = void 0 && (void 0).__setModuleDefault || (Object.create ? function (o, v) {
   Object.defineProperty(o, "default", {
-    enumerable: true,
+    enumerable: !0,
     value: v
   });
 } : function (o, v) {
   o["default"] = v;
-});
-
-var __importStar = void 0 && (void 0).__importStar || function (mod) {
+}),
+    __importStar = void 0 && (void 0).__importStar || function (mod) {
   if (mod && mod.__esModule) {
     return mod;
   }
@@ -54,9 +52,8 @@ var __importStar = void 0 && (void 0).__importStar || function (mod) {
   __setModuleDefault(result, mod);
 
   return result;
-};
-
-var __exportStar = void 0 && (void 0).__exportStar || function (m, exports) {
+},
+    __exportStar = void 0 && (void 0).__exportStar || function (m, exports) {
   for (var p in m) {
     if (p !== "default" && !exports.hasOwnProperty(p)) {
       __createBinding(exports, m, p);
@@ -65,7 +62,7 @@ var __exportStar = void 0 && (void 0).__exportStar || function (m, exports) {
 };
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+  value: !0
 });
 exports.createElement = void 0;
 
@@ -84,14 +81,6 @@ var lib_1 = __importStar(require("./lib"));
 
 
 exports["default"] = lib_1["default"];
-/**
- * Creates a child element to DynamComponent
- * @param {string} tagName - name of HTML element
- * @param {undefined | Object.<string, string | number>} props - element properties
- * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - child of element, or array of children
- * @returns {HTMLElement} html element
- */
-
 exports.createElement = lib_1.createElement;
 
 __exportStar(require("./lib"), exports);
