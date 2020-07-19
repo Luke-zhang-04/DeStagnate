@@ -203,6 +203,8 @@ export default abstract class DeStagnate
         try {
             const component = this.render()
 
+            this._didSetInitialState = true
+
             this.componentWillMount()
             if (!component) {
                 const msg = "Expected render method to be included in component class, no render method found, or render returned an empty array"
