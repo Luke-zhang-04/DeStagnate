@@ -54,10 +54,12 @@ export default abstract class DeStagnate
     /**
      * State of component. Works similar React State
      * @type {undefined | Object.<string, unknown>}
-     * @protected
+     * @private
      * @instance
      */
-    protected state: State = {} as State
+    private _state: State = {} as State
+
+    private _didSetInitialState = false
 
     /**
      * Parent that this element if bound to
@@ -109,6 +111,36 @@ export default abstract class DeStagnate
     }
 
     /**
+     * Get component state
+     * @protected
+     * @instance
+     * @returns {State} component state
+     */
+    protected get state (): State {
+        return this._state
+    }
+
+    /**
+     * Sets component state
+     * 
+     * WARN: do not use this method to mutate the state directly
+     * @protected
+     * @instance
+     * @param {State} obj - state to set
+     */
+    protected set state (obj: State) {
+        if (this._didSetInitialState) {
+            this.componentDidCatch(
+                new Error("Do not mutate state directly. Use setState instead")
+            )
+            this.setState(obj)
+        } else {
+            this._state = obj
+            this._didSetInitialState = true
+        }
+    }
+
+    /**
      * Public getProps getter as this.props itself is protected
      * @public
      * @instance
@@ -123,21 +155,21 @@ export default abstract class DeStagnate
      * @public
      * @instance
      * @readonly
-     * @param {State} obj - state to set
+     * @param {Partial<State>} obj - state to set
      * @returns {void | Error} void
      */
-    public readonly setState = <T = Record<string, unknown>>(obj: T): void | Error => {
+    public readonly setState = <T = Partial<State>>(obj: T): void | Error => {
         try {
             this.componentWillUpdate()
 
             for (const key of Object.keys(obj)) {
                 if (!Object.keys(this.state).includes(key)) {
                     // eslint-disable-next-line
-                    throw new Error(`A new key ${key} should not be set with setState, which has keys ${JSON.stringify(Object.keys(this.state))}. Declare all state variables in constructor.`)
+                    throw new Error(`A new key (${key}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(this.state))}. Declare all state variables in constructor.`)
                 }
             }
 
-            Object.assign(this.state, obj)
+            Object.assign(this._state, obj)
 
             this._removeChildren()
 
