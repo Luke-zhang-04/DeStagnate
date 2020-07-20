@@ -21,7 +21,7 @@ import {
  * @param {string | null} namespaceURI - namespace uri
  * @param {string} tagName - name of HTML element
  * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
- * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+ * @param {undefined | Element | string | number | Array.<Element> | Array.<string> | Array.<number>} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
  * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
  * @returns {HTMLElement} html element
  */
