@@ -34,8 +34,8 @@ checks:
     enabled: true
 exclude_patterns:
   - "./docs"
-  - "./lib"
   - "./dist"
   - "./src/createElement.ts"
   - "./cli/*.js"
+  - "./src/*.js"
   
