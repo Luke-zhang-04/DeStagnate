@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.3.0
+ * @version 1.3.1
  * @exports createElement
  */
 
@@ -13,10 +13,12 @@
 export type ChildrenFlatArrayType = HTMLElement[]
     | string[]
     | number[]
-    | (HTMLElement | string)[]
-    | (HTMLElement | number)[]
+    | Element[]
+    | ((HTMLElement | Element) | string)[]
+    | ((HTMLElement | Element) | number)[]
     | (string | number)[]
-    | (HTMLElement | string | number)[]
+    | ((HTMLElement | Element) | string | number)[]
+    | (HTMLElement | Element)[]
 
 export type ChildrenArrayType = ChildrenFlatArrayType
     | ChildrenArrayType[]
@@ -28,6 +30,7 @@ export type ChildrenType = HTMLElement
     | string 
     | number 
     | ChildrenArrayType
+    | Element
 
 /**
  * Binds children to element
@@ -136,7 +139,7 @@ const createElement = <T extends keyof HTMLElementTagNameMap>(
     props?: {[key: string]: string | number},
     children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
-): HTMLElement => {
+): HTMLElementTagNameMap[T] => {
     const element = document.createElement(tagName)
 
     _bindProps(element, props)

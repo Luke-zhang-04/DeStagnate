@@ -8,3 +8,4 @@
 /src/serviceWorker.ts
 src/*.js
 cli/*.js
+./*.bundle.*.js
