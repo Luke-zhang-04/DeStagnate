@@ -2,8 +2,9 @@
   "name": "destagnate",
   "version": "1.3.0",
   "description": "Make creating dynamic components within static sites easier",
-  "main": "index.js",
+  "main": "src/",
   "bin": "cli/index.js",
+  "browser": "dist/deStagnate.bundle.min.js",
   "devDependencies": {
     "@babel/cli": "^7.10.4",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
@@ -44,5 +45,6 @@
     "@types/node": "^14.0.20",
     "babel-plugin-loop-optimizer": "^1.4.1",
     "commander": "^5.1.0"
+    ,"destagnate": "file:."
   }
 }

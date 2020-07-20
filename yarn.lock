@@ -1973,6 +1973,19 @@ des.js@^1.0.0:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
 
+"destagnate@file:.":
+  version "1.3.0"
+  dependencies:
+    "@babel/core" "^7.10.4"
+    "@babel/plugin-proposal-class-properties" "^7.10.4"
+    "@babel/plugin-transform-react-jsx" "^7.10.4"
+    "@babel/preset-env" "^7.10.4"
+    "@types/babel__core" "^7.1.9"
+    "@types/node" "^14.0.20"
+    babel-plugin-loop-optimizer "^1.4.1"
+    commander "^5.1.0"
+    destagnate "file:../../Library/Caches/Yarn/v6/npm-destagnate-1.3.0-56e1be7c-b7c9-4920-a79d-90dd862e5764-1595209865221/node_modules/destagnate"
+
 detect-file@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/detect-file/-/detect-file-1.0.0.tgz#f0d66d03672a825cb1b73bdb3fe62310c8e552b7"

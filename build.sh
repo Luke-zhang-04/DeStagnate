@@ -18,24 +18,9 @@ build() {
 
     wait
 
-    sed -i -e 's/src/lib/g' index.js
-    rm -rf index.js-e
-
-    printf "${Green}Moving ${Yellow}./src/*.js ${Purple}to ${Red}./build\n"
-    mkdir build
-    cd src
-    find . -name "*.js" -exec mv "{}" ../build \;
-    cd ..
-
-    # Convert to commonJs with Babel
-    printf "${BIYellow}Compiling${Yellow} index.js${Purple} in place with ${BIYellow}Babel${BIGreen}\n"
-    npx babel index.js -o index.js &
-
     # Run Webpack on ./build
-    printf "${BIBlue}Packing ${Yellow}./lib/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
-    npx webpack &
-
-    wait
+    printf "${BIBlue}Packing ${Yellow}./src/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
+    npx webpack
 
     # Copy bundle
     printf "${BIBlue}Copying ${Green}dist bundle${Purple}\n"
@@ -51,17 +36,8 @@ build() {
 
     wait
 
-    # Remove previous lib
-     printf "${BGreen}Cleaning up...${Purple}\n"
-    if [ -d "lib" ]; then
-        rm -r lib
-    fi
-
-    printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Green}./lib/${BIGreen}\n"
-    npx babel build --out-dir lib
-
-    printf "${BGreen}Cleaning up...${Purple}\n"
-    rm -r build
+    printf "${BICyan}Running ${BIYellow}Babel${Purple} in place on ${Green}./src/*.js${BIGreen}\n"
+    npx babel src/*.js --out-dir src
 }
 
 # Watches for file changes and executes build

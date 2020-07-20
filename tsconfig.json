@@ -67,5 +67,5 @@
     "forceConsistentCasingInFileNames": true, /* Disallow inconsistently-cased references to the same file. */
     "resolveJsonModule": true
   },
-  "include": ["index.ts", "src/*.ts", "cli/*.ts", "src/_preset.ts"]
+  "include": ["src/*.ts", "cli/*.ts"]
 }
