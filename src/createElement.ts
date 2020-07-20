@@ -4,13 +4,13 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.2.4
+ * @version 1.3.0
  * @exports createElement
  */
 
 /* eslint-disable one-var */
 
-type ChildrenFlatArrayType = HTMLElement[]
+export type ChildrenFlatArrayType = HTMLElement[]
     | string[]
     | number[]
     | (HTMLElement | string)[]
@@ -18,13 +18,13 @@ type ChildrenFlatArrayType = HTMLElement[]
     | (string | number)[]
     | (HTMLElement | string | number)[]
 
-type ChildrenArrayType = ChildrenFlatArrayType
+export type ChildrenArrayType = ChildrenFlatArrayType
     | ChildrenArrayType[]
 
 /**
  * All types the children parameter can be
  */
-type ChildrenType = HTMLElement
+export type ChildrenType = HTMLElement
     | string 
     | number 
     | ChildrenArrayType
@@ -32,19 +32,23 @@ type ChildrenType = HTMLElement
 /**
  * Binds children to element
  * @package
- * @param {HTMLElement} element - element to bind
+ * @param {Element} element - element to bind
  * @param {undefined | Object.<string, string | number>} props - props to bind with
+ * @param {boolean} ns - if namespace element
  * @returns {void} void
  */
-const _bindProps = (
-    element: HTMLElement,
+export const _bindProps = (
+    element: Element,
     props?: {[key: string]: unknown},
+    ns = false,
 ): void => {
     if (props) {
         for (const [key, val] of Object.entries(props)) {
-            if (typeof(val) === "string") {
+            if (typeof(val) === "string" || typeof(val) === "number") {
                 if (key === "innerHTML") {
                     element.innerHTML = val.toString()
+                } else if (ns) {
+                    element.setAttributeNS(null, key, val.toString())
                 } else {
                     element.setAttribute(key, val.toString())
                 }
@@ -56,17 +60,21 @@ const _bindProps = (
                         val as ()=> void
                     )
                 }
-            } 
+            } else {
+                console.warn(`WARN: Invalid prop type "${typeof(val)}" for key "${key}". Skipping prop.`)
+            }
         }
     }
 }
 
-const unpackChildren = (children: ChildrenArrayType): ChildrenFlatArrayType => {
+export const _unpackChildren = (
+    children: ChildrenArrayType,
+): ChildrenFlatArrayType => {
     const newChildren = []
 
     for (const child of children) {
         if (typeof(child) === "object" && child instanceof Array) {
-            newChildren.push(...unpackChildren(child))
+            newChildren.push(..._unpackChildren(child))
         } else {
             newChildren.push(child)
         }
@@ -78,11 +86,14 @@ const unpackChildren = (children: ChildrenArrayType): ChildrenFlatArrayType => {
 /**
  * Binds children to element
  * @package
- * @param {HTMLElement} element - element to bind
+ * @param {Element} element - element to bind
  * @param {undefined | ChildrenType} children - children to bind with
  * @returns {void} void
  */
-const _bindChildren = (element: HTMLElement, children?: ChildrenType): void => {
+export const _bindChildren = (
+    element: Element,
+    children?: ChildrenType,
+): void => {
     if (children || children === 0) {
         if (children instanceof Array) {
             for (const child of children) {
@@ -90,12 +101,12 @@ const _bindChildren = (element: HTMLElement, children?: ChildrenType): void => {
                     typeof(child) === "string" || 
                     typeof(child) === "number"
                 ) {
-                    element.innerText = child.toString()
+                    (element as HTMLElement).innerText = child.toString()
                 } else if (
                     typeof (child) === "object" &&
                     child instanceof Array
                 ) {
-                    unpackChildren(child)
+                    _unpackChildren(child)
                         .forEach((_child) => _bindChildren(element, _child))
                 } else {
                     element.appendChild(child)
@@ -105,7 +116,7 @@ const _bindChildren = (element: HTMLElement, children?: ChildrenType): void => {
             typeof(children) === "string" ||
             typeof(children) === "number"
         ) {
-            element.innerText = children.toString()
+            (element as HTMLElement).innerText = children.toString()
         } else {
             element.appendChild(children)
         }
@@ -135,11 +146,11 @@ const createElement = <T extends keyof HTMLElementTagNameMap>(
     if (children && childrenArgs) {
         if (typeof(children) === "object" && children instanceof Array) {
             _children = [
-                ...unpackChildren(children),
-                ...unpackChildren(childrenArgs),
+                ..._unpackChildren(children),
+                ..._unpackChildren(childrenArgs),
             ]
         } else {
-            _children = [children, ...unpackChildren(childrenArgs)]
+            _children = [children, ..._unpackChildren(childrenArgs)]
         }
     }
 

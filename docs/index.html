@@ -15,9 +15,17 @@
     <div class="p-4 bg-secondary">
         <h1>DeStagnate Examples</h1>
         <p>Here, you will find examples on how to use DeStagnate.</p>
+        <ul>
+            <li><a class="text-light" href="#counter-h">State example</a></li>
+            <li><a class="text-light" href="#props-h">Props example</a></li>
+            <li><a class="text-light" href="#elistener-h">Event listener example</a></li>
+            <li><a class="text-light" href="#calculator-h">Calculator example</a></li>
+            <li><a class="text-light" href="#svg-h">Namespaced element (SVG) example</a></li>
+        </ul>
     </div>
+
     
-    <div class="row">
+    <div class="row" id="counter-h">
         <h1 class="mt-3 ml-4">State example</h1>
         <p class="ml-4">This example was written with JSX, which needs to be transpiled into DeStagnate.createElement() with the help of our CLI</p>
         <div class="col-6 pl-5 pt-5">
@@ -95,7 +103,7 @@ counter.mount() // Must call once
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="props-h">
         <h1 class="mt-3 ml-4">Props example</h1>
         <div class="col-6 pl-5 pt-5">
             <div id="props"></div>
@@ -174,7 +182,7 @@ propsDemo.mount() // Must call once
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="elistener-h">
         <h1 class="mt-3 ml-4">Event listener example</h1>
         <p class="ml-4">This example was written partially with JSX, which needs to be transpiled into DeStagnate.createElement() with the help of our CLI</p>
         <div class="col-6 pl-5 pt-5">
@@ -228,7 +236,7 @@ eListener.mount() // Must call once
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="calculator-h">
         <h1 class="mt-3 ml-4">Calculator example</h1>
         <p class="ml-4">This example was written with JSX, which needs to be transpiled into DeStagnate.createElement() with the help of our CLI</p>
         <div class="col-6 pl-5 pt-5">
@@ -253,11 +261,11 @@ class Calculator extends DS.default {
     }
 
     /**
-        * Create a calculator button
-        * @param {string} text - text of button
-        * @param {string | undefined} append - value to append to calculaton
-        * @returns {HTMLElement} col element
-        */
+     * Create a calculator button
+     * @param {string} text - text of button
+     * @param {string | undefined} append - value to append to calculaton
+     * @returns {HTMLElement} col element
+     */
     _calcButton = (text, append) => createElement("div", {
         class: "col-3 calc-btn", // Bootstrap grid
         onClick: () => this.setState({
@@ -265,18 +273,16 @@ class Calculator extends DS.default {
         }),
     }, text)
 
-    /* eslint-disable no-eval */
     /**
-        * Evaluate current calculation
-        * @returns {number} calculation
-        */
+     * Evaluate current calculation
+     * @returns {number} calculation
+     */
     _evalCalc = () => eval(this.state.calculation)
-    /* eslint-disable no-eval */
 
     /**
-        * Calculator buttons for 3 numbered rows
-        * @type {Array.&lt;HTMLElement&gt;}
-        */
+     * Calculator buttons for 3 numbered rows
+     * @type {Array.&lt;HTMLElement&gt;}
+     */
     _numBtns = [
         &lt;div className="calc-btns row"&gt; 
             {["7", "8", "9", ["x", "*"]].map((val) => (
@@ -305,9 +311,9 @@ class Calculator extends DS.default {
     ]
 
     /**
-        * Calculator Display
-        * @returns {HTMLElement} display
-        */
+     * Calculator Display
+     * @returns {HTMLElement} display
+     */
     _calcDisplay = () => createElement(
         "div",
         {class: "calc-display"},
@@ -368,11 +374,11 @@ class Calculator extends DeStagnate {
     }
 
     /**
-        * Create a calculator button
-        * @param {string} text - text of button
-        * @param {string | undefined} append - value to append to calculaton
-        * @returns {HTMLElement} col element
-        */
+     * Create a calculator button
+     * @param {string} text - text of button
+     * @param {string | undefined} append - value to append to calculaton
+     * @returns {HTMLElement} col element
+     */
     _calcButton = (text, append) => createElement("div", {
         class: "col-3 calc-btn", // Bootstrap grid
         onClick: () => this.setState({
@@ -380,18 +386,16 @@ class Calculator extends DeStagnate {
         }),
     }, text)
 
-    /* eslint-disable no-eval */
     /**
-        * Evaluate current calculation
-        * @returns {number} calculation
-        */
+     * Evaluate current calculation
+     * @returns {number} calculation
+     */
     _evalCalc = () => eval(this.state.calculation)
-    /* eslint-disable no-eval */
 
     /**
-        * Calculator buttons for 3 numbered rows
-        * @type {Array.&lt;HTMLElement&gt;}
-        */
+     * Calculator buttons for 3 numbered rows
+     * @type {Array.&lt;HTMLElement&gt;}
+     */
     _numBtns = [
         &lt;div className="calc-btns row"&gt; 
             {["7", "8", "9", ["x", "*"]].map((val) => (
@@ -470,16 +474,150 @@ calculator.mount() // Must call once
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> <!-- Popper.js for bootstrap, not actually needed for functionality -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script> <!-- Bootstrap for styling, not actually needed for functionality -->
+    <div class="row" id="svg-h">
+        <h1 class="mt-3 ml-4">SVG/namespace example</h1>
+        <div class="col-6 pl-5 pt-5">
+            <div id="SVG"></div>
+            <div id="svg-btn" class="mt-3"></div>
+        </div>
+        <div id="svg-source" class="col-6">
+            <pre class="d-block">
+                <code class="language-js"> 
+// Browser env, everything exposed to one global var, or namespace
+const DS = DeStagnate,
+    {createElementNS} = DS
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/prism.min.js"></script> <!-- Prism JS for syntax hilighting code -->
+class SVG extends DS.default {
 
+    constructor (parent, props) {
+        super(parent, props)
+
+        this.state = {
+            xcord: 0,
+        }
+    }
+
+    direction = 2.5
+
+    componentDidMount = () => this.componentDidUpdate()
+
+    componentDidUpdate = () => {
+        if (this.state.xcord < 0 || this.state.xcord > this.props.width / 2) {
+            this.direction *= -1
+        }
+
+        setTimeout(
+            () => this.setState({xcord: this.state.xcord + this.direction}),
+            25,
+        )
+    }
+
+    render = () => createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg",
+        {
+            width: this.props.width * 2,
+            height: this.props.width,
+            viewBox: `0 0 ${this.props.width * 2} ${this.props.width}`,
+        },
+        createElementNS(
+            "http://www.w3.org/2000/svg",
+            "rect",
+            {
+                width: this.props.width,
+                height: this.props.width,
+                fill: this.direction > 0 ? "#0D6EFD" : "#28A745", /* eslint-disable id-length */
+                x: this.state.xcord, /* eslint-enable id-length */
+            },
+        ),
+    )
+
+}
+
+const svg = new SVG(document.querySelector("#SVG"), {width: 250})
+
+svg.mount() // Must call once
+                </code>
+            </pre>
+            <pre class="d-none">
+                <code class="language-js">
+// Node env, import from node_modules, or use require
+import DeStagnate, {createElementNS} from "destagnate"
+
+const DS = DeStagnate,
+    {createElementNS} = DS
+
+class SVG extends DS.default {
+
+    constructor (parent, props) {
+        super(parent, props)
+
+        this.state = {
+            xcord: 0,
+        }
+    }
+
+    direction = 2.5
+
+    componentDidMount = () => this.componentDidUpdate()
+
+    componentDidUpdate = () => {
+        if (this.state.xcord < 0 || this.state.xcord > this.props.width / 2) {
+            this.direction *= -1
+        }
+
+        setTimeout(
+            () => this.setState({xcord: this.state.xcord + this.direction}),
+            25,
+        )
+    }
+
+    render = () => createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg",
+        {
+            width: this.props.width * 2,
+            height: this.props.width,
+            viewBox: `0 0 ${this.props.width * 2} ${this.props.width}`,
+        },
+        createElementNS(
+            "http://www.w3.org/2000/svg",
+            "rect",
+            {
+                width: this.props.width,
+                height: this.props.width,
+                fill: this.direction > 0 ? "#0D6EFD" : "#28A745", /* eslint-disable id-length */
+                x: this.state.xcord, /* eslint-enable id-length */
+            },
+        ),
+    )
+
+}
+
+const svg = new SVG(document.querySelector("#SVG"), {width: 250})
+
+svg.mount() // Must call once
+                </code>
+            </pre>
+        </div>
+    </div>
+
+    <!-- Popper.js for bootstrap, not actually needed for functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap for styling, not actually needed for functionality -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script> 
+
+    <!-- Prism JS for syntax hilighting code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/prism.min.js"></script>
+
+    <!-- Source Code of Examples -->
     <script src="./deStagnate.bundle.min.js"></script>
     <script src="examples/counter.js"></script>
     <script src="src/props.js"></script>
     <script src="src/eventListener.js"></script>
     <script src="examples/calculator.js"></script>
+    <script src="src/svg.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

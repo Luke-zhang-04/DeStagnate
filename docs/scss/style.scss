@@ -7,6 +7,10 @@ body {
   color: $light;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 #calculator {
   .calc-display {
     background-color: $secondary;

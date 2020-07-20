@@ -4,20 +4,17 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.2.4
- * @exports DeStagnate
+ * @version 1.3.0
+ * @exports DeStagnate main destagnate class
+ * @file main file for destagnate
  */
+
 import Preset from "./_preset"
 import {default as _createElement} from "./createElement"
+import {default as _createElementNS} from "./createElementNS"
 
 /**
  * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.2.1
- * @exports DeStagnate
  * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @class
  * @namespace
@@ -28,7 +25,7 @@ export default abstract class DeStagnate
     extends Preset {
 
     /**
-     * Creates a child element to DynamComponent
+     * Creates a child element to deStagnate
      * @public
      * @static
      * @readonly
@@ -40,7 +37,21 @@ export default abstract class DeStagnate
     public static readonly createElement = _createElement
 
     /**
-     * Creates a child element to DynamComponent
+     * Creates a child element to deStagnate
+     * @public
+     * @static
+     * @readonly
+     * @param {string | null} namespaceURI - namespace uri
+     * @param {string} tagName - name of HTML element
+     * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
+     * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+     * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
+     * @returns {HTMLElement} html element
+     */
+    public static readonly createElementNS = _createElementNS
+
+    /**
+     * Creates a child element to deStagnate
      * @public
      * @instance
      * @readonly
@@ -52,6 +63,20 @@ export default abstract class DeStagnate
     public readonly createElement = DeStagnate.createElement
 
     /**
+     * Creates a child element to deStagnate
+     * @public
+     * @instance
+     * @readonly
+     * @param {string | null} namespaceURI - namespace uri
+     * @param {string} tagName - name of HTML element
+     * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
+     * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+     * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
+     * @returns {HTMLElement} html element
+     */
+    public readonly createElementNS = DeStagnate.createElementNS
+
+    /**
      * State of component. Works similar React State
      * @type {undefined | Object.<string, unknown>}
      * @private
@@ -59,10 +84,17 @@ export default abstract class DeStagnate
      */
     private _state: State = {} as State
 
+    /**
+     * If initial state was set in initializer
+     * Do not throw error with direct state setting
+     * @type {boolean}
+     * @private
+     */
     private _didSetInitialState = false
 
     /**
      * Parent that this element if bound to
+     * @type {HTMLElement}
      * @private
      * @instance
      */
@@ -77,11 +109,11 @@ export default abstract class DeStagnate
      */
     public constructor (
         parent: HTMLElement,
-        protected props?: Props | undefined,
+        protected props?: Props,
     ) {
         super()
         if (["body", "html"].includes(parent.tagName.toLowerCase())) {
-            throw new Error(`WARNING! Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
+            console.warn(`WARNING! Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
         }
 
         this._parent = parent
@@ -122,7 +154,6 @@ export default abstract class DeStagnate
 
     /**
      * Sets component state
-     * 
      * WARN: do not use this method to mutate the state directly
      * @protected
      * @instance
@@ -165,15 +196,15 @@ export default abstract class DeStagnate
             for (const key of Object.keys(obj)) {
                 if (!Object.keys(this.state).includes(key)) {
                     // eslint-disable-next-line
-                    throw new Error(`A new key (${key}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(this.state))}. Declare all state variables in constructor.`)
+                    console.warn(`WARN: New key (${key}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(this.state))}. Declare all state variables in constructor as a best practice.`)
                 }
             }
 
+            this.getSnapshotBeforeUpdate(this.props as Props, this.state)
+
             Object.assign(this._state, obj)
 
-            this._removeChildren()
-
-            const renderedContent = this.render()
+            const renderedContent = this._execRender()
 
             if (renderedContent instanceof Array) {
                 for (const element of (renderedContent as HTMLElement[])) {
@@ -191,7 +222,7 @@ export default abstract class DeStagnate
         }
     }
 
-    /* eslint-disable max-len, @typescript-eslint/member-ordering */
+    /* eslint-disable max-len, @typescript-eslint/member-ordering, max-lines */
     /**
      * Initial mounting to be manually called
      * @public
@@ -206,6 +237,7 @@ export default abstract class DeStagnate
             this._didSetInitialState = true
 
             this.componentWillMount()
+
             if (!component) {
                 const msg = "Expected render method to be included in component class, no render method found, or render returned an empty array"
 
@@ -281,13 +313,34 @@ export default abstract class DeStagnate
         }
     }
 
+    /**
+     * Executes new render
+     * @returns {HTMLElement | Array.<HTMLElement> | null} rendered content
+     */
+    private _execRender = (): HTMLElement | HTMLElement[] | null => {
+        this._removeChildren()
+
+        return this.render()
+    }
+
 }
 
 /**
- * Creates a child element to DynamComponent
+ * Creates a child element to deStagnate
  * @param {string} tagName - name of HTML element
  * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
  * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
  * @returns {HTMLElement} html element
  */
 export const createElement = _createElement
+
+/**
+ * Creates a child element to deStagnate
+ * @param {string | null} namespaceURI - namespace uri
+ * @param {string} tagName - name of HTML element
+ * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
+ * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+ * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
+ * @returns {HTMLElement} html element
+ */
+export const createElementNS = _createElementNS

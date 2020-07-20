@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.2.4
+ * @version 1.3.0
  * @exports createElement
  */
 
@@ -17,9 +17,9 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.it
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { return _arrayLikeToArray(arr); } }
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) { o = it; } var i = 0, F = function () {}; return { s: F, n: function n() { if (i >= o.length) { return { done: !0 }; } return { done: !1, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = !0, didErr = !1, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = !0; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) { it["return"](); } } finally { if (didErr) { throw err; } } } }; }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) { o = it; } var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) { return { done: true }; } return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) { it["return"](); } } finally { if (didErr) { throw err; } } } }; }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function (obj) { return typeof obj; }; } else { _typeof = function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -29,45 +29,44 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) { return; } if (typeof
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) { len = arr.length; } for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) { break; } } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) { _i["return"](); } } finally { if (_d) { throw _e; } } } return _arr; }
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) { return; } var _arr = [], _n = !0, _d = !1, _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = !0) { _arr.push(_s.value); if (i && _arr.length === i) { break; } } } catch (err) { _d = !0; _e = err; } finally { try { if (!_n && _i["return"] != null) { _i["return"](); } } finally { if (_d) { throw _e; } } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) { return arr; } }
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+  value: !0
 });
-/**
- * Binds children to element
- * @package
- * @param {HTMLElement} element - element to bind
- * @param {undefined | Object.<string, string | number>} props - props to bind with
- * @returns {void} void
- */
+exports._bindChildren = exports._unpackChildren = exports._bindProps = void 0;
 
-var _bindProps = function _bindProps(element, props) {
+exports._bindProps = function (element, props) {
+  var ns = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : !1;
+
   if (props) {
     for (var _i = 0, _Object$entries = Object.entries(props); _i < _Object$entries.length; _i++) {
       var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
           key = _Object$entries$_i[0],
           val = _Object$entries$_i[1];
 
-      if (typeof val === "string") {
+      if (typeof val === "string" || typeof val === "number") {
         if (key === "innerHTML") {
           element.innerHTML = val.toString();
+        } else if (ns) {
+          element.setAttributeNS(null, key, val.toString());
         } else {
           element.setAttribute(key, val.toString());
         }
       } else if (key.slice(0, 2) === "on") {
-        // Works such as onClick, onAnimationEnd, etc.
         if (typeof val === "function") {
           element.addEventListener(key.slice(2).toLowerCase(), val);
         }
+      } else {
+        console.warn("WARN: Invalid prop type \"".concat(_typeof(val), "\" for key \"").concat(key, "\". Skipping prop."));
       }
     }
   }
 };
 
-var unpackChildren = function unpackChildren(children) {
+exports._unpackChildren = function (children) {
   var newChildren = [];
 
   var _iterator = _createForOfIteratorHelper(children),
@@ -78,7 +77,7 @@ var unpackChildren = function unpackChildren(children) {
       var child = _step.value;
 
       if (_typeof(child) === "object" && child instanceof Array) {
-        newChildren.push.apply(newChildren, _toConsumableArray(unpackChildren(child)));
+        newChildren.push.apply(newChildren, _toConsumableArray(exports._unpackChildren(child)));
       } else {
         newChildren.push(child);
       }
@@ -91,16 +90,8 @@ var unpackChildren = function unpackChildren(children) {
 
   return newChildren;
 };
-/**
- * Binds children to element
- * @package
- * @param {HTMLElement} element - element to bind
- * @param {undefined | ChildrenType} children - children to bind with
- * @returns {void} void
- */
 
-
-var _bindChildren = function _bindChildren(element, children) {
+exports._bindChildren = function (element, children) {
   if (children || children === 0) {
     if (children instanceof Array) {
       var _iterator2 = _createForOfIteratorHelper(children),
@@ -113,13 +104,9 @@ var _bindChildren = function _bindChildren(element, children) {
           if (typeof child === "string" || typeof child === "number") {
             element.innerText = child.toString();
           } else if (_typeof(child) === "object" && child instanceof Array) {
-            var _a = unpackChildren(child);
-
-            var _f = function _f(_child) {
-              return _bindChildren(element, _child);
-            };
-
-            for (var _i2 = 0; _i2 < _a.length; _i2++) {
+            for (var _a = exports._unpackChildren(child), _f = function (_child) {
+              return exports._bindChildren(element, _child);
+            }, _i2 = 0; _i2 < _a.length; _i2++) {
               _f(_a[_i2], _i2, _a);
             }
 
@@ -140,36 +127,25 @@ var _bindChildren = function _bindChildren(element, children) {
     }
   }
 };
-/**
- * Creates a child element to DynamComponent
- * @param {string} tagName - name of HTML element
- * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
- * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
- * @returns {HTMLElement} html element
- */
 
-
-var createElement = function createElement(tagName, props, children) {
+var createElement = function (tagName, props, children) {
   var element = document.createElement(tagName);
 
-  _bindProps(element, props);
+  exports._bindProps(element, props);
 
-  var _children = children;
-
-  for (var _len = arguments.length, childrenArgs = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
+  for (var _children = children, _len = arguments.length, childrenArgs = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
     childrenArgs[_key - 3] = arguments[_key];
   }
 
   if (children && childrenArgs) {
     if (_typeof(children) === "object" && children instanceof Array) {
-      _children = [].concat(_toConsumableArray(unpackChildren(children)), _toConsumableArray(unpackChildren(childrenArgs)));
+      _children = [].concat(_toConsumableArray(exports._unpackChildren(children)), _toConsumableArray(exports._unpackChildren(childrenArgs)));
     } else {
-      _children = [children].concat(_toConsumableArray(unpackChildren(childrenArgs)));
+      _children = [children].concat(_toConsumableArray(exports._unpackChildren(childrenArgs)));
     }
   }
 
-  _bindChildren(element, _children);
+  exports._bindChildren(element, _children);
 
   return element;
 };

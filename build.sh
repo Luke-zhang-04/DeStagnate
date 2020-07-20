@@ -18,24 +18,9 @@ build() {
 
     wait
 
-    sed -i -e 's/src/lib/g' index.js
-    rm -rf index.js-e
-
-    printf "${Green}Moving ${Yellow}./src/*.js ${Purple}to ${Red}./build\n"
-    mkdir build
-    cd src
-    find . -name "*.js" -exec mv "{}" ../build \;
-    cd ..
-
-    # Convert to commonJs with Babel
-    printf "${BIYellow}Compiling${Yellow} index.js${Purple} in place with ${BIYellow}Babel${BIGreen}\n"
-    npx babel index.js -o index.js &
-
     # Run Webpack on ./build
-    printf "${BIBlue}Packing ${Yellow}./lib/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
-    npx webpack &
-
-    wait
+    printf "${BIBlue}Packing ${Yellow}./src/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
+    npx webpack
 
     # Copy bundle
     printf "${BIBlue}Copying ${Green}dist bundle${Purple}\n"
@@ -43,7 +28,7 @@ build() {
 
     # Minify copy of bundle
     printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./dist/deStagnate.bundle.min.js/${Purple} and ${Blue}minifying${Purple}\n"
-    npx babel ./dist/deStagnate.bundle.min.js -o ./dist/deStagnate.bundle.min.js --minified --compact true --no-comments -s inline &
+    npx babel ./dist/deStagnate.bundle.min.js -o ./dist/deStagnate.bundle.min.js --minified --compact true --no-comments &
 
     # Run babel on bundle
     printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./dist/deStagnate.bundle.min.js/${Purple}\n"
@@ -51,17 +36,18 @@ build() {
 
     wait
 
-    # Remove previous lib
-     printf "${BGreen}Cleaning up...${Purple}\n"
-    if [ -d "lib" ]; then
-        rm -r lib
-    fi
+    echo "/* Destagnate | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
-    printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Green}./lib/${BIGreen}\n"
-    npx babel build --out-dir lib
+$(cat ./dist/deStagnate.bundle.js)" > ./dist/deStagnate.bundle.js &
 
-    printf "${BGreen}Cleaning up...${Purple}\n"
-    rm -r build
+    echo "/* Destagnate | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+
+$(cat ./dist/deStagnate.bundle.min.js)" > ./dist/deStagnate.bundle.min.js &
+
+    printf "${BICyan}Running ${BIYellow}Babel${Purple} in place on ${Green}./src/*.js${BIGreen}\n" 
+    npx babel src/*.js --out-dir src &
+
+    wait
 }
 
 # Watches for file changes and executes build
