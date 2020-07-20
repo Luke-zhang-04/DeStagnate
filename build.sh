@@ -28,7 +28,7 @@ build() {
 
     # Minify copy of bundle
     printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./dist/deStagnate.bundle.min.js/${Purple} and ${Blue}minifying${Purple}\n"
-    npx babel ./dist/deStagnate.bundle.min.js -o ./dist/deStagnate.bundle.min.js --minified --compact true --no-comments -s inline &
+    npx babel ./dist/deStagnate.bundle.min.js -o ./dist/deStagnate.bundle.min.js --minified --compact true --no-comments &
 
     # Run babel on bundle
     printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./dist/deStagnate.bundle.min.js/${Purple}\n"
@@ -36,8 +36,18 @@ build() {
 
     wait
 
-    printf "${BICyan}Running ${BIYellow}Babel${Purple} in place on ${Green}./src/*.js${BIGreen}\n"
-    npx babel src/*.js --out-dir src
+    echo "/* Destagnate | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+
+$(cat ./dist/deStagnate.bundle.js)" > ./dist/deStagnate.bundle.js &
+
+    echo "/* Destagnate | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+
+$(cat ./dist/deStagnate.bundle.min.js)" > ./dist/deStagnate.bundle.min.js &
+
+    printf "${BICyan}Running ${BIYellow}Babel${Purple} in place on ${Green}./src/*.js${BIGreen}\n" 
+    npx babel src/*.js --out-dir src &
+
+    wait
 }
 
 # Watches for file changes and executes build

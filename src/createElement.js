@@ -17,9 +17,9 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.it
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { return _arrayLikeToArray(arr); } }
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function (obj) { return typeof obj; }; } else { _typeof = function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) { o = it; } var i = 0, F = function () {}; return { s: F, n: function n() { if (i >= o.length) { return { done: !0 }; } return { done: !1, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = !0, didErr = !1, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = !0; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) { it["return"](); } } finally { if (didErr) { throw err; } } } }; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function (obj) { return typeof obj; }; } else { _typeof = function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -36,17 +36,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) { return arr; } }
 Object.defineProperty(exports, "__esModule", {
   value: !0
 });
+exports._bindChildren = exports._unpackChildren = exports._bindProps = void 0;
 
-var _bindProps = function (element, props) {
+exports._bindProps = function (element, props) {
+  var ns = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : !1;
+
   if (props) {
     for (var _i = 0, _Object$entries = Object.entries(props); _i < _Object$entries.length; _i++) {
       var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
           key = _Object$entries$_i[0],
           val = _Object$entries$_i[1];
 
-      if (typeof val === "string") {
+      if (typeof val === "string" || typeof val === "number") {
         if (key === "innerHTML") {
           element.innerHTML = val.toString();
+        } else if (ns) {
+          element.setAttributeNS(null, key, val.toString());
         } else {
           element.setAttribute(key, val.toString());
         }
@@ -54,23 +59,17 @@ var _bindProps = function (element, props) {
         if (typeof val === "function") {
           element.addEventListener(key.slice(2).toLowerCase(), val);
         }
+      } else {
+        console.warn("WARN: Invalid prop type \"".concat(_typeof(val), "\" for key \"").concat(key, "\". Skipping prop."));
       }
     }
   }
-},
-    unpackChildren = function (_unpackChildren) {
-  function unpackChildren() {
-    return _unpackChildren.apply(this, arguments);
-  }
+};
 
-  unpackChildren.toString = function () {
-    return _unpackChildren.toString();
-  };
+exports._unpackChildren = function (children) {
+  var newChildren = [];
 
-  return unpackChildren;
-}(function (children) {
-  var newChildren = [],
-      _iterator = _createForOfIteratorHelper(children),
+  var _iterator = _createForOfIteratorHelper(children),
       _step;
 
   try {
@@ -78,7 +77,7 @@ var _bindProps = function (element, props) {
       var child = _step.value;
 
       if (_typeof(child) === "object" && child instanceof Array) {
-        newChildren.push.apply(newChildren, _toConsumableArray(unpackChildren(child)));
+        newChildren.push.apply(newChildren, _toConsumableArray(exports._unpackChildren(child)));
       } else {
         newChildren.push(child);
       }
@@ -90,18 +89,9 @@ var _bindProps = function (element, props) {
   }
 
   return newChildren;
-}),
-    _bindChildren = function (_bindChildren2) {
-  function _bindChildren() {
-    return _bindChildren2.apply(this, arguments);
-  }
+};
 
-  _bindChildren.toString = function () {
-    return _bindChildren2.toString();
-  };
-
-  return _bindChildren;
-}(function (element, children) {
+exports._bindChildren = function (element, children) {
   if (children || children === 0) {
     if (children instanceof Array) {
       var _iterator2 = _createForOfIteratorHelper(children),
@@ -114,8 +104,8 @@ var _bindProps = function (element, props) {
           if (typeof child === "string" || typeof child === "number") {
             element.innerText = child.toString();
           } else if (_typeof(child) === "object" && child instanceof Array) {
-            for (var _a = unpackChildren(child), _f = function (_child) {
-              return _bindChildren(element, _child);
+            for (var _a = exports._unpackChildren(child), _f = function (_child) {
+              return exports._bindChildren(element, _child);
             }, _i2 = 0; _i2 < _a.length; _i2++) {
               _f(_a[_i2], _i2, _a);
             }
@@ -136,11 +126,12 @@ var _bindProps = function (element, props) {
       element.appendChild(children);
     }
   }
-}),
-    createElement = function (tagName, props, children) {
+};
+
+var createElement = function (tagName, props, children) {
   var element = document.createElement(tagName);
 
-  _bindProps(element, props);
+  exports._bindProps(element, props);
 
   for (var _children = children, _len = arguments.length, childrenArgs = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
     childrenArgs[_key - 3] = arguments[_key];
@@ -148,13 +139,13 @@ var _bindProps = function (element, props) {
 
   if (children && childrenArgs) {
     if (_typeof(children) === "object" && children instanceof Array) {
-      _children = [].concat(_toConsumableArray(unpackChildren(children)), _toConsumableArray(unpackChildren(childrenArgs)));
+      _children = [].concat(_toConsumableArray(exports._unpackChildren(children)), _toConsumableArray(exports._unpackChildren(childrenArgs)));
     } else {
-      _children = [children].concat(_toConsumableArray(unpackChildren(childrenArgs)));
+      _children = [children].concat(_toConsumableArray(exports._unpackChildren(childrenArgs)));
     }
   }
 
-  _bindChildren(element, _children);
+  exports._bindChildren(element, _children);
 
   return element;
 };

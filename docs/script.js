@@ -73,3 +73,10 @@ const calc = new SourceCode(
 )
 
 calc.mount() // Must call once
+
+const svgSrc = new SourceCode(
+    document.querySelector("#svg-btn"),
+    {source: document.getElementById("svg-source")},
+)
+
+svgSrc.mount() // Must call once

@@ -47,10 +47,11 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: !0
 });
-exports.createElement = void 0;
+exports.createElementNS = exports.createElement = void 0;
 
 var _preset_1 = __importDefault(require("./_preset")),
-    createElement_1 = __importDefault(require("./createElement"));
+    createElement_1 = __importDefault(require("./createElement")),
+    createElementNS_1 = __importDefault(require("./createElementNS"));
 
 var DeStagnate = function (_preset_1$default) {
   _inherits(DeStagnate, _preset_1$default);
@@ -65,6 +66,7 @@ var DeStagnate = function (_preset_1$default) {
     _this = _super.call(this);
     _this.props = props;
     _this.createElement = DeStagnate.createElement;
+    _this.createElementNS = DeStagnate.createElementNS;
     _this._state = {};
     _this._didSetInitialState = !1;
 
@@ -218,4 +220,6 @@ var DeStagnate = function (_preset_1$default) {
 
 exports["default"] = DeStagnate;
 DeStagnate.createElement = createElement_1["default"];
+DeStagnate.createElementNS = createElementNS_1["default"];
 exports.createElement = createElement_1["default"];
+exports.createElementNS = createElementNS_1["default"];
