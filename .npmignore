@@ -125,15 +125,16 @@ typings/
 .vscode
 
 .github
+assets
 docs
+wiki
 .babelrc.json
+.codeclimate.yml
 .eslintignore
 .eslintrc.json
+.gitattributes
+.gitmodules
 *.sh
 makefile
 tsconfig.json
 webpack.config.js
-assets
-.codeclimate.yml
-wiki
-
