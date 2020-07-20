@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.3.0
+ * @version 1.3.1
  */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-var-requires, global-require */
 import * as Babel from "@babel/core"
@@ -94,7 +94,10 @@ const input = process.argv[2],
                 fs.readFile(file.entry, "utf8", (_, data) => {
                     let code = data
 
-                    if (file.entry.includes(".ts") || file.entry.includes(".tsx")) {
+                    if (
+                        file.entry.includes(".ts") ||
+                        file.entry.includes(".tsx")
+                    ) {
                         code = compileTs(code).outputText
                     }
 
