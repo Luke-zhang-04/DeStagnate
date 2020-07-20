@@ -25,16 +25,13 @@ import {
  * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
  * @returns {HTMLElement} html element
  */
-export const createElementNS = <
-    K extends keyof SVGElementTagNameMap | "http://www.w3.org/1999/xhtml" | "http://www.w3.org/2000/svg" | null,
-    T extends keyof SVGElementEventMap,
->(
-        namespaceURI: K,
-        tagName: T,
-        props?: {[key: string]: string | number},
-        children?: ChildrenType,
-        ...childrenArgs: ChildrenArrayType
-    ): Element => {
+export const createElementNS = (
+    namespaceURI: keyof SVGElementTagNameMap | "http://www.w3.org/1999/xhtml" | "http://www.w3.org/2000/svg" | null,
+    tagName: keyof SVGElementEventMap | string,
+    props?: {[key: string]: string | number},
+    children?: ChildrenType,
+    ...childrenArgs: ChildrenArrayType
+): Element => {
     const element = document.createElementNS(namespaceURI, tagName)
 
     _bindProps(element, props, true)

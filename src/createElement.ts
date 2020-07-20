@@ -13,10 +13,12 @@
 export type ChildrenFlatArrayType = HTMLElement[]
     | string[]
     | number[]
-    | (HTMLElement | string)[]
-    | (HTMLElement | number)[]
+    | Element[]
+    | ((HTMLElement | Element) | string)[]
+    | ((HTMLElement | Element) | number)[]
     | (string | number)[]
-    | (HTMLElement | string | number)[]
+    | ((HTMLElement | Element) | string | number)[]
+    | (HTMLElement | Element)[]
 
 export type ChildrenArrayType = ChildrenFlatArrayType
     | ChildrenArrayType[]
@@ -28,6 +30,7 @@ export type ChildrenType = HTMLElement
     | string 
     | number 
     | ChildrenArrayType
+    | Element
 
 /**
  * Binds children to element
@@ -136,7 +139,7 @@ const createElement = <T extends keyof HTMLElementTagNameMap>(
     props?: {[key: string]: string | number},
     children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
-): HTMLElement => {
+): HTMLElementTagNameMap[T] => {
     const element = document.createElement(tagName)
 
     _bindProps(element, props)
