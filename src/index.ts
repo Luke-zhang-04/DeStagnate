@@ -14,12 +14,6 @@ import {default as _createElement} from "./createElement"
 
 /**
  * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.2.1
- * @exports DeStagnate
  * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @class
  * @namespace
@@ -65,6 +59,7 @@ export default abstract class DeStagnate
      * If initial state was set in initializer
      * Do not throw error with direct state setting
      * @type {boolean}
+     * @private
      */
     private _didSetInitialState = false
 
@@ -289,6 +284,8 @@ export default abstract class DeStagnate
         }
     }
 
+    /* eslint-disable max-lines */
+
     /**
      * Executes new render
      * @returns {HTMLElement | Array.<HTMLElement> | null} rendered content
@@ -309,4 +306,3 @@ export default abstract class DeStagnate
  * @returns {HTMLElement} html element
  */
 export const createElement = _createElement
-/* eslint-disable max-lines */
