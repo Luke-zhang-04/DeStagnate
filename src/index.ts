@@ -13,6 +13,8 @@ import Preset from "./_preset"
 import {default as _createElement} from "./createElement"
 import {default as _createElementNS} from "./createElementNS"
 
+type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
+
 /**
  * DeStagnate
  * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -230,7 +232,7 @@ export default abstract class DeStagnate
      * @readonly
      * @returns {HTMLElement | Array.<HTMLElement> | error} - result of append child to parent element
      */
-    public readonly mountComponent = (): HTMLElement | HTMLElement[] | Error => {
+    public readonly mountComponent = (): HTMLElement | HTMLElement[] | Element | Element[] | Error => {
         try {
             const component = this.render()
 
@@ -246,8 +248,8 @@ export default abstract class DeStagnate
             
             this.componentDidMount()
 
-            if (component instanceof Array) {
-                return component.map((element) => (
+            if (typeof(component) === "object" && component instanceof Array) {
+                return (component as Element[]).map((element) => (
                     this._parent.appendChild(element)
                 ))
             }
@@ -317,7 +319,7 @@ export default abstract class DeStagnate
      * Executes new render
      * @returns {HTMLElement | Array.<HTMLElement> | null} rendered content
      */
-    private _execRender = (): HTMLElement | HTMLElement[] | null => {
+    private _execRender = (): RenderType => {
         this._removeChildren()
 
         return this.render()

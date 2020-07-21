@@ -9,6 +9,8 @@
  * @package
  */
 
+type RenderType = null | HTMLElement | HTMLElement[] | Element | Element[]
+
 /**
  * Lifecycle member functions
  */
@@ -68,6 +70,6 @@ export default abstract class Preset {
      * @abstract
      * @returns {null | HTMLElement | Array.<HTMLElement> | Element | Array.<Element>} if returns null error will be thrown
      */
-    public abstract render = (): null | HTMLElement | HTMLElement[] | Element | Element[] => null
+    public abstract render = (): RenderType => null
 
 }

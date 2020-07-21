@@ -133,7 +133,7 @@ var DeStagnate = function (_preset_1$default) {
 
         _this.componentDidMount();
 
-        if (component instanceof Array) {
+        if (_typeof(component) === "object" && component instanceof Array) {
           for (var _a = component, _f = function (element) {
             return _this._parent.appendChild(element);
           }, _r = [], _i2 = 0; _i2 < _a.length; _i2++) {
