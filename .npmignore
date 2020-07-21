@@ -138,3 +138,4 @@ wiki
 makefile
 tsconfig.json
 webpack.config.js
+cli/*.ts

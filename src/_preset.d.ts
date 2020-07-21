@@ -8,61 +8,52 @@
  * @exports Preset
  * @package
  */
-
-type RenderType = null | HTMLElement | HTMLElement[] | Element | Element[]
-
+declare type RenderType = null | HTMLElement | HTMLElement[] | Element | Element[];
 /**
  * Lifecycle member functions
  */
 export default abstract class Preset {
-
     /**
      * Called when component catches error. Default behaviour is console.error
      * @param {Error} error - error object with info
      * @returns {void} void
      */
-    public componentDidCatch = (error: Error): void => console.error(error)
-
+    componentDidCatch: (error: Error) => void;
     /**
      * What to call after component mounting
      * @public
      * @instance
      * @returns {void} void
      */
-    public componentDidMount = (): void => undefined
-
+    componentDidMount: () => void;
     /**
      * What to call after component update (state mutation)
      * @public
      * @instance
      * @returns {void} void
      */
-    public componentDidUpdate = (): void => undefined
-
+    componentDidUpdate: () => void;
     /**
      * What to call before component mounting
      * @public
      * @instance
      * @returns {void} void
      */
-    public componentWillMount = (): void => undefined
-
+    componentWillMount: () => void;
     /**
      * What to call before component unmounting
      * @public
      * @instance
      * @returns {void} void
      */
-    public componentWillUnmount = (): void => undefined
-
+    componentWillUnmount: () => void;
     /**
      * What to call before component update (state mutation)
      * @public
      * @instance
      * @returns {void} void
      */
-    public componentWillUpdate = (): void => undefined
-
+    componentWillUpdate: () => void;
     /**
      * Rendering HTML, must be part of extended class
      * @public
@@ -70,6 +61,6 @@ export default abstract class Preset {
      * @abstract
      * @returns {null | HTMLElement | Array.<HTMLElement> | Element | Array.<Element>} if returns null error will be thrown
      */
-    public abstract render = (): RenderType => null
-
+    abstract render: () => RenderType;
 }
+export {};
