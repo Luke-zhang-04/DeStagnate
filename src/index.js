@@ -201,7 +201,8 @@ var DeStagnate = function (_preset_1$default) {
     },
     set: function set(obj) {
       if (this._didSetInitialState) {
-        this.componentDidCatch(new Error("Do not mutate state directly. Use setState instead"));
+        this.componentDidCatch(new Error("Do not mutate state directly. Use setState instead."));
+        console.warn("DeStagnate protects you from mutating the entire state object. Avoid mutating state directly");
         this.setState(obj);
       } else {
         this._state = obj;

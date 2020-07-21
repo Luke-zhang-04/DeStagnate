@@ -164,8 +164,10 @@ export default abstract class DeStagnate
     protected set state (obj: State) {
         if (this._didSetInitialState) {
             this.componentDidCatch(
-                new Error("Do not mutate state directly. Use setState instead")
+                new Error("Do not mutate state directly. Use setState instead.")
             )
+            // eslint-disable-next-line
+            console.warn("DeStagnate protects you from mutating the entire state object. Avoid mutating state directly")
             this.setState(obj)
         } else {
             this._state = obj
