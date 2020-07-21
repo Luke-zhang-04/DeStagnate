@@ -39,11 +39,11 @@ build() {
 
     wait
 
-    echo "/* Destagnate v1.4.0 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+    echo "/* Destagnate v1.4.1 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
 $(cat ./dist/deStagnate.bundle.js)" > ./dist/deStagnate.bundle.js &
 
-    echo "/* Destagnate v1.4.0 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+    echo "/* Destagnate v1.4.1 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
 $(cat ./dist/deStagnate.bundle.min.js)" > ./dist/deStagnate.bundle.min.js &
 
