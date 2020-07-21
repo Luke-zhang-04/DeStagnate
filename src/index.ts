@@ -13,6 +13,8 @@ import Preset from "./_preset"
 import {default as _createElement} from "./createElement"
 import {default as _createElementNS} from "./createElementNS"
 
+type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
+
 /**
  * DeStagnate
  * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -162,8 +164,10 @@ export default abstract class DeStagnate
     protected set state (obj: State) {
         if (this._didSetInitialState) {
             this.componentDidCatch(
-                new Error("Do not mutate state directly. Use setState instead")
+                new Error("Do not mutate state directly. Use setState instead.")
             )
+            // eslint-disable-next-line
+            console.warn("DeStagnate protects you from mutating the entire state object. Avoid mutating state directly")
             this.setState(obj)
         } else {
             this._state = obj
@@ -189,7 +193,7 @@ export default abstract class DeStagnate
      * @param {Partial<State>} obj - state to set
      * @returns {void | Error} void
      */
-    public readonly setState = <T = Partial<State>>(obj: T): void | Error => {
+    public readonly setState = (obj: Partial<State>): void | Error => {
         try {
             this.componentWillUpdate()
 
@@ -206,12 +210,15 @@ export default abstract class DeStagnate
 
             const renderedContent = this._execRender()
 
-            if (renderedContent instanceof Array) {
-                for (const element of (renderedContent as HTMLElement[])) {
+            if (
+                typeof(renderedContent) === "object" &&
+                renderedContent instanceof Array
+            ) {
+                for (const element of renderedContent) {
                     this._parent.appendChild(element)
                 }
-            } else {
-                this._parent.appendChild(renderedContent as HTMLElement)
+            } else if (renderedContent) {
+                this._parent.appendChild(renderedContent)
             }
 
             this.componentDidUpdate()
@@ -230,7 +237,7 @@ export default abstract class DeStagnate
      * @readonly
      * @returns {HTMLElement | Array.<HTMLElement> | error} - result of append child to parent element
      */
-    public readonly mountComponent = (): HTMLElement | HTMLElement[] | Error => {
+    public readonly mountComponent = (): HTMLElement | HTMLElement[] | Element | Element[] | Error => {
         try {
             const component = this.render()
 
@@ -246,8 +253,8 @@ export default abstract class DeStagnate
             
             this.componentDidMount()
 
-            if (component instanceof Array) {
-                return component.map((element) => (
+            if (typeof(component) === "object" && component instanceof Array) {
+                return (component as Element[]).map((element) => (
                     this._parent.appendChild(element)
                 ))
             }
@@ -317,7 +324,7 @@ export default abstract class DeStagnate
      * Executes new render
      * @returns {HTMLElement | Array.<HTMLElement> | null} rendered content
      */
-    private _execRender = (): HTMLElement | HTMLElement[] | null => {
+    private _execRender = (): RenderType => {
         this._removeChildren()
 
         return this.render()
