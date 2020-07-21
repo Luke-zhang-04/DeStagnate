@@ -2,8 +2,8 @@
   "name": "destagnate",
   "version": "1.4.0",
   "description": "Make creating dynamic components within static sites easier",
-  "main": "src/index.js",
-  "types": "src/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "bin": "cli/index.js",
   "browser": "dist/deStagnate.bundle.min.js",
   "devDependencies": {
@@ -22,9 +22,9 @@
     "webpack-cli": "^3.3.12"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "bash build.sh",
-    "start": "bash build.sh --watch"
+    "start": "bash build.sh --watch",
+    "prepublish": "yarn build"
   },
   "repository": {
     "type": "git",

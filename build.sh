@@ -14,12 +14,15 @@ build() {
 
     # Compile typescript
     printf "${BIYellow}Compiling ${BIBlue}./src/${Purple} with ${BIBlue}TypeScript\n"
-    npx tsc -p . &
+    npx tsc -p tsconfig.json &
+    npx tsc -p tsconfig.cli.json &
 
     wait
 
+    rm -rf cli/package.json
+
     # Run Webpack on ./build
-    printf "${BIBlue}Packing ${Yellow}./src/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
+    printf "${BIBlue}Packing ${Yellow}./lib/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
     npx webpack
 
     # Copy bundle
@@ -48,9 +51,6 @@ $(cat ./dist/deStagnate.bundle.min.js)" > ./dist/deStagnate.bundle.min.js &
     printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
     echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js
 
-    printf "${BICyan}Running ${BIYellow}Babel${Purple} in place on ${Green}./src/*.js${BIGreen}\n" 
-    npx babel src/*.js --out-dir src &
-
     wait
 }
 
@@ -59,7 +59,7 @@ watch() {
     fileChange1=""
 
     while [[ true ]]; do
-        fileChange2=$(find src/ -type f -exec md5 {} \;)
+        fileChange2=$(find lib/ -type f -exec md5 {} \;)
 
         if [[ "$fileChange1" != "$fileChange2" ]] ; then           
             build

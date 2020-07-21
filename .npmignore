@@ -126,7 +126,9 @@ typings/
 
 .github
 assets
+cli/*.ts
 docs
+src/
 wiki
 .babelrc.json
 .codeclimate.yml
@@ -135,7 +137,8 @@ wiki
 .gitattributes
 .gitmodules
 *.sh
+*.config.js
 makefile
 tsconfig.json
-webpack.config.js
-cli/*.ts
+tsconfig.cli.json
+yarn.lock
