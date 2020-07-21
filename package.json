@@ -6,6 +6,10 @@
   "types": "lib/index.d.ts",
   "bin": "cli/index.js",
   "browser": "dist/deStagnate.bundle.min.js",
+  "directories": {
+    "lib": "./lib",
+    "bin": "./cli"
+  },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
@@ -32,7 +36,10 @@
     "url": "git+https://github.com/Luke-zhang-04/DeStagnate.git"
   },
   "keywords": [],
-  "author": "Luke Zhang",
+  "author": {
+    "name" : "Luke Zhang",
+    "url" : "https://luke-zhang-04.github.io"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Luke-zhang-04/DeStagnate/issues"
