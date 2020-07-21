@@ -24,7 +24,8 @@
   "scripts": {
     "build": "bash build.sh",
     "start": "bash build.sh --watch",
-    "prepublish": "yarn build"
+    "prepublishOnly": "yarn build",
+    "lint": "make lint"
   },
   "repository": {
     "type": "git",

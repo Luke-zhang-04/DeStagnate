@@ -74,7 +74,7 @@ export const _unpackChildren = (
     children: ChildrenArrayType,
 ): ChildrenFlatArrayType => {
     const newChildren = []
-
+    
     for (const child of children) {
         if (typeof(child) === "object" && child instanceof Array) {
             newChildren.push(..._unpackChildren(child))
