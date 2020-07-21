@@ -26,7 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.3.1
+ * @version 1.3.2
  */
 const typescript_1 = __importStar(require("typescript"));
 const compile = (code, config) => {
