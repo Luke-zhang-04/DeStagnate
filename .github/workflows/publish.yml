@@ -17,7 +17,9 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
 
     - name: install deps
-      run: yarn install --frozen-lockfile --production
+      run: yarn install --frozen-lockfile
+
+    - run: yarn add sass -D
 
     - name: publish to NPM
       run: yarn publish --access public
