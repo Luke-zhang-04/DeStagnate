@@ -115,6 +115,8 @@ typings/
 
 # production
 /build
+/lib
+cli/*.js
 
 # misc
 .DS_Store

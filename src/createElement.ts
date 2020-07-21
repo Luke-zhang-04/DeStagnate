@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.3.2
+ * @version 1.4.0
  * @exports createElement
  */
 
@@ -74,7 +74,7 @@ export const _unpackChildren = (
     children: ChildrenArrayType,
 ): ChildrenFlatArrayType => {
     const newChildren = []
-
+    
     for (const child of children) {
         if (typeof(child) === "object" && child instanceof Array) {
             newChildren.push(..._unpackChildren(child))

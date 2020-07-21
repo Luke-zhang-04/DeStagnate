@@ -9,3 +9,5 @@
 src/*.js
 cli/*.js
 ./*.bundle.*.js
+./lib/*
+docs/
