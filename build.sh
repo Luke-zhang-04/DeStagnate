@@ -44,6 +44,10 @@ $(cat ./dist/deStagnate.bundle.js)" > ./dist/deStagnate.bundle.js &
 
 $(cat ./dist/deStagnate.bundle.min.js)" > ./dist/deStagnate.bundle.min.js &
 
+    # Copy bundle
+    printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
+    echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js
+
     printf "${BICyan}Running ${BIYellow}Babel${Purple} in place on ${Green}./src/*.js${BIGreen}\n" 
     npx babel src/*.js --out-dir src &
 
