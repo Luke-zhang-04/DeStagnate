@@ -193,7 +193,7 @@ export default abstract class DeStagnate
      * @param {Partial<State>} obj - state to set
      * @returns {void | Error} void
      */
-    public readonly setState = <T = Partial<State>>(obj: T): void | Error => {
+    public readonly setState = (obj: Partial<State>): void | Error => {
         try {
             this.componentWillUpdate()
 
@@ -210,12 +210,15 @@ export default abstract class DeStagnate
 
             const renderedContent = this._execRender()
 
-            if (renderedContent instanceof Array) {
-                for (const element of (renderedContent as HTMLElement[])) {
+            if (
+                typeof(renderedContent) === "object" &&
+                renderedContent instanceof Array
+            ) {
+                for (const element of renderedContent) {
                     this._parent.appendChild(element)
                 }
-            } else {
-                this._parent.appendChild(renderedContent as HTMLElement)
+            } else if (renderedContent) {
+                this._parent.appendChild(renderedContent)
             }
 
             this.componentDidUpdate()
