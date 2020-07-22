@@ -25,13 +25,9 @@ build() {
     printf "${BIBlue}Packing ${Yellow}./lib/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
     npx webpack
 
-    # Copy bundle
-    printf "${BIBlue}Copying ${Green}dist bundle${Purple}\n"
-    cp ./dist/deStagnate.bundle.js ./dist/deStagnate.bundle.min.js
-
     # Minify copy of bundle
     printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./dist/deStagnate.bundle.min.js/${Purple} and ${Blue}minifying${Purple}\n"
-    npx babel ./dist/deStagnate.bundle.min.js -o ./dist/deStagnate.bundle.min.js --minified --compact true --no-comments &
+    npx babel ./dist/deStagnate.bundle.min.js -o ./dist/deStagnate.bundle.min.js --no-comments --no-babelrc --config-file ./.babelrc.min.js &
 
     # Run babel on bundle
     printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./dist/deStagnate.bundle.min.js/${Purple}\n"
@@ -39,19 +35,45 @@ build() {
 
     wait
 
-    echo "/* Destagnate v1.4.3 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+    # Copy bundle
+    printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
+    echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js &
+
+    # Format development dist
+    printf "${BIPurple}Formatting ${Red}dist ${Green}bundle\n"
+    npx eslint ./dist/deStagnate.bundle.js --fix --env browser --rule "{\"no-var\": \"off\", \"prefer-arrow/prefer-arrow-functions\": \"off\", \"camelcase\": \"off\", \"id-length\": \"off\"}" > out.log &
+
+    wait
+
+    node build.js ./dist/deStagnate.bundle.js
+
+    echo "/* Destagnate v1.4.4 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
 $(cat ./dist/deStagnate.bundle.js)" > ./dist/deStagnate.bundle.js &
 
-    echo "/* Destagnate v1.4.3 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+    echo "/* Destagnate v1.4.4 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
 $(cat ./dist/deStagnate.bundle.min.js)" > ./dist/deStagnate.bundle.min.js &
 
-    # Copy bundle
-    printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
-    echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js
+    wait
+
+    printf "${BIPurple}Formatting ${BIGreen}lib\n"
+    for d in ./lib/* ; do
+        if [[ ${d##*.} != "map" ]]; then
+            npx eslint "$d" --no-ignore --fix --env browser --rule "{\"no-var\": \"off\", \"prefer-arrow/prefer-arrow-functions\": \"off\", \"camelcase\": \"off\", \"id-length\": \"off\", \"no-useless-constructor\": \"off\", \"@typescript-eslint/no-useless-constructor\": \"off\"}" >> out.log &
+        fi
+    done
 
     wait
+
+    for d in ./lib/* ; do
+        if [[ ${d##*.} != "map" ]]; then
+            node build.js "$d"
+        fi
+    done
+
+    wait
+
 }
 
 # Watches for file changes and executes build

@@ -1,3 +1,11 @@
-*.js linguist-generated=true
-destagnate.config.js linguist-generated=false
-*.d.ts linguist-generated=true
+# Distribution is generated
+./dist/*.js linguist-generated=true
+
+# Enforce Unix newlines
+* text=auto eol=lf
+
+# Remove config files
+*.config.js linguist-detectable=false
+
+# Remove babel files
+.babelrc.* linguist-detectable=false

@@ -136,6 +136,7 @@ wiki
 .eslintrc.json
 .gitattributes
 .gitmodules
+build.js
 *.sh
 *.config.js
 makefile
