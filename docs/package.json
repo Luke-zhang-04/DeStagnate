@@ -1,6 +1,6 @@
 {
   "name": "destagnate-docs",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Examples for dynamic componnet",
   "main": "index.js",
   "dependencies": {
