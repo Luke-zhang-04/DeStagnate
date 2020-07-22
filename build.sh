@@ -25,13 +25,9 @@ build() {
     printf "${BIBlue}Packing ${Yellow}./lib/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
     npx webpack
 
-    # Copy bundle
-    printf "${BIBlue}Copying ${Green}dist bundle${Purple}\n"
-    cp ./dist/deStagnate.bundle.js ./dist/deStagnate.bundle.min.js
-
     # Minify copy of bundle
     printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./dist/deStagnate.bundle.min.js/${Purple} and ${Blue}minifying${Purple}\n"
-    npx babel ./dist/deStagnate.bundle.min.js -o ./dist/deStagnate.bundle.min.js --minified --compact true --no-comments &
+    npx babel ./dist/deStagnate.bundle.min.js -o ./dist/deStagnate.bundle.min.js --no-comments --no-babelrc --config-file ./.babelrc.min.js &
 
     # Run babel on bundle
     printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./dist/deStagnate.bundle.min.js/${Purple}\n"
@@ -39,11 +35,11 @@ build() {
 
     wait
 
-    echo "/* Destagnate v1.4.3 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+    echo "/* Destagnate v1.4.4 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
 $(cat ./dist/deStagnate.bundle.js)" > ./dist/deStagnate.bundle.js &
 
-    echo "/* Destagnate v1.4.3 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+    echo "/* Destagnate v1.4.4 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
 $(cat ./dist/deStagnate.bundle.min.js)" > ./dist/deStagnate.bundle.min.js &
 
