@@ -245,7 +245,7 @@ export default abstract class DeStagnate
 
             this.componentWillMount()
 
-            if (!component) {
+            if (component === null) {
                 const msg = "Expected render method to be included in component class, no render method found, or render returned an empty array"
 
                 throw new Error(msg)
