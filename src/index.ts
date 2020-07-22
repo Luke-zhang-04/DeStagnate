@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.4.1
+ * @version 1.4.2
  * @exports DeStagnate main destagnate class
  * @file main file for destagnate
  */
@@ -245,7 +245,7 @@ export default abstract class DeStagnate
 
             this.componentWillMount()
 
-            if (!component) {
+            if (component === null) {
                 const msg = "Expected render method to be included in component class, no render method found, or render returned an empty array"
 
                 throw new Error(msg)
