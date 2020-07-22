@@ -130,7 +130,8 @@ cli/*.ts
 docs
 src/
 wiki
-.babelrc.json
+.babelrc.js
+.babelrc.min.js
 .codeclimate.yml
 .eslintignore
 .eslintrc.json
