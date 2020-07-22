@@ -2,5 +2,5 @@
 
 module.exports = {
     presets: ["@babel/preset-env"],
-    shouldPrintComment: (val) => /@/.test(val),
+    shouldPrintComment: (val) => /@/.test(val) && !(/eslint/.test(val)),
 }
