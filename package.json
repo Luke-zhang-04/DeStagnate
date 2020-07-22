@@ -5,10 +5,12 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "bin": "cli/index.js",
-  "browser": "dist/deStagnate.bundle.min.js",
   "directories": {
     "lib": "./lib",
-    "bin": "./cli"
+    "bin": "./cli",
+    "browser": "./dist",
+    "example": "./docs/src",
+    "doc": "./wiki"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
@@ -35,7 +37,7 @@
     "type": "git",
     "url": "git+https://github.com/Luke-zhang-04/DeStagnate.git"
   },
-  "keywords": [],
+  "keywords": ["dynamic", "component", "web"],
   "author": {
     "name" : "Luke Zhang",
     "url" : "https://luke-zhang-04.github.io"
@@ -52,7 +54,6 @@
     "@babel/preset-env": "^7.10.4",
     "@types/babel__core": "^7.1.9",
     "@types/node": "^14.0.20",
-    "babel-plugin-loop-optimizer": "^1.4.3",
     "commander": "^5.1.0"
   }
 }

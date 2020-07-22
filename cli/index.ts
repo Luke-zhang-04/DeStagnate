@@ -39,25 +39,20 @@ const input = process.argv[2],
 
     compile = (fileData: string, config: CLIConfig): void => {
         const plugins = [
-            "@babel/plugin-transform-react-jsx",
-            "@babel/plugin-proposal-class-properties",
-        ]
-
-        if (config.mode === "production") {
-            plugins.push("babel-plugin-loop-optimizer")
-        }
-
-        const res = Babel.transform(
-            fileData,
-            {
-                plugins,
-                presets: ["@babel/preset-env"],
-                minified: (config.mode === "production"),
-                compact: (config.mode === "production"),
-                comments: !(config.mode === "production"),
-                sourceMaps: "inline",
-            }
-        )
+                "@babel/plugin-transform-react-jsx",
+                "@babel/plugin-proposal-class-properties",
+            ],
+            res = Babel.transform(
+                fileData,
+                {
+                    plugins,
+                    presets: ["@babel/preset-env"],
+                    minified: (config.mode === "production"),
+                    compact: (config.mode === "production"),
+                    comments: !(config.mode === "production"),
+                    sourceMaps: "inline",
+                }
+            )
         
         if (res && res.code) {
             let code = res.code
