@@ -1,4 +1,4 @@
-/* Destagnate v1.4.4 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+/* Destagnate v1.4.5 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
 
 
@@ -118,7 +118,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.4.4
+         * @version 1.4.5
          * @exports DeStagnate main destagnate class
          * @file main file for destagnate
          */
@@ -574,7 +574,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.4.4
+         * @version 1.4.5
          * @exports Preset
          * @package
          */
@@ -672,7 +672,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.4.4
+         * @version 1.4.5
          * @exports createElement
          */
         var __values = this && this.__values || function (o) {
@@ -928,7 +928,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.4.4
+         * @version 1.4.5
          * @exports createElementNS
          */
         var __read = this && this.__read || function (o, n) {
