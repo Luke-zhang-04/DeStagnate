@@ -6,3 +6,6 @@
 
 # Remove config files
 *.config.js linguist-detectable=false
+
+# Remove babel files
+.babelrc.* linguist-detectable=false
