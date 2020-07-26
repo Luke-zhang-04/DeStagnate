@@ -1,4 +1,4 @@
-/* Destagnate v1.4.5 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+/* Destagnate v1.5.0 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
     
 "use strict";
 
@@ -119,7 +119,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.4.5
+         * @version 1.5.0
          * @exports DeStagnate main destagnate class
          * @file main file for destagnate
          */
@@ -607,7 +607,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.4.5
+         * @version 1.5.0
          * @exports Preset
          * @package
          */
@@ -705,7 +705,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.4.5
+         * @version 1.5.0
          * @exports createDSComponent add nested component for DeStagnate components
          */
         Object.defineProperty(exports, "__esModule", {
@@ -740,7 +740,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.4.5
+         * @version 1.5.0
          * @exports createElement function for DOM manipulation
          */
         var __values = this && this.__values || function (o) {
@@ -996,7 +996,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.4.5
+         * @version 1.5.0
          * @exports createElementNS createElement for namespaced elements
          */
         var __read = this && this.__read || function (o, n) {
