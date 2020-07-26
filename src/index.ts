@@ -10,6 +10,7 @@
  */
 
 import Preset from "./_preset"
+import {default as _createDSComponent} from "./createDSComponent"
 import {default as _createElement} from "./createElement"
 import {default as _createElementNS} from "./createElementNS"
 
@@ -25,6 +26,18 @@ type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
 export default abstract class DeStagnate
     <Props = Record<string, unknown>, State = Record<string, unknown>>
     extends Preset {
+
+
+    /**
+     * Creates nested DeStagnate component
+     * @public
+     * @static
+     * @readonly
+     * @param {DeStagnateConstructor} Component - DeStagnate component
+     * @param {Object<string, unknown>} props - props of component
+     * @returns {HTMLDivElement} parent of component
+     */
+    public static readonly createDSComponent = _createDSComponent
 
     /**
      * Creates a child element to deStagnate
@@ -51,6 +64,17 @@ export default abstract class DeStagnate
      * @returns {HTMLElement} html element
      */
     public static readonly createElementNS = _createElementNS
+
+    /**
+     * Creates nested DeStagnate component
+     * @public
+     * @instance
+     * @readonly
+     * @param {DeStagnateConstructor} Component - DeStagnate component
+     * @param {Object<string, unknown>} props - props of component
+     * @returns {HTMLDivElement} parent of component
+     */
+    public readonly createDSComponent = DeStagnate.createDSComponent
 
     /**
      * Creates a child element to deStagnate
@@ -331,6 +355,14 @@ export default abstract class DeStagnate
     }
 
 }
+
+/**
+ * Creates nested DeStagnate component
+ * @param {DeStagnateConstructor} Component - DeStagnate component
+ * @param {Object<string, unknown>} props - props of component
+ * @returns {HTMLDivElement} parent of component
+ */
+export const createDSComponent = _createDSComponent
 
 /**
  * Creates a child element to deStagnate

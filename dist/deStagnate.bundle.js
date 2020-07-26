@@ -1,5 +1,6 @@
 /* Destagnate v1.4.5 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
-
+    
+"use strict";
 
 
 function _typeof (obj) {
@@ -184,13 +185,15 @@ var DeStagnate = (function (modules) {
         Object.defineProperty(exports, "__esModule", {
             value: true
         })
-        exports.createElementNS = exports.createElement = void 0
+        exports.createElementNS = exports.createElement = exports.createDSComponent = void 0
 
         var _preset_1 = __importDefault(__webpack_require__(1)),
 
-            createElement_1 = __importDefault(__webpack_require__(2)),
+            createDSComponent_1 = __importDefault(__webpack_require__(2)),
 
-            createElementNS_1 = __importDefault(__webpack_require__(3)),
+            createElement_1 = __importDefault(__webpack_require__(3)),
+
+            createElementNS_1 = __importDefault(__webpack_require__(4)),
 
             /**
              * DeStagnate
@@ -216,6 +219,17 @@ var DeStagnate = (function (modules) {
           var _this = _super.call(this) || this
 
           _this.props = props
+
+          /**
+           * Creates nested DeStagnate component
+           * @public
+           * @instance
+           * @readonly
+           * @param {DeStagnateConstructor} Component - DeStagnate component
+           * @param {Object<string, unknown>} props - props of component
+           * @returns {HTMLDivElement} parent of component
+           */
+          _this.createDSComponent = DeStagnate.createDSComponent
 
           /**
            * Creates a child element to deStagnate
@@ -516,6 +530,17 @@ var DeStagnate = (function (modules) {
       })
 
       /**
+       * Creates nested DeStagnate component
+       * @public
+       * @static
+       * @readonly
+       * @param {DeStagnateConstructor} Component - DeStagnate component
+       * @param {Object<string, unknown>} props - props of component
+       * @returns {HTMLDivElement} parent of component
+       */
+      DeStagnate.createDSComponent = createDSComponent_1.default
+
+      /**
        * Creates a child element to deStagnate
        * @public
        * @static
@@ -545,6 +570,14 @@ var DeStagnate = (function (modules) {
   }(_preset_1.default))
 
         exports.default = DeStagnate
+
+        /**
+         * Creates nested DeStagnate component
+         * @param {DeStagnateConstructor} Component - DeStagnate component
+         * @param {Object<string, unknown>} props - props of component
+         * @returns {HTMLDivElement} parent of component
+         */
+        exports.createDSComponent = createDSComponent_1.default
 
         /**
          * Creates a child element to deStagnate
@@ -673,7 +706,42 @@ var DeStagnate = (function (modules) {
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
          * @version 1.4.5
-         * @exports createElement
+         * @exports createDSComponent add nested component for DeStagnate components
+         */
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        })
+
+        /**
+         * Creates nested DeStagnate component
+         * @param {DeStagnateConstructor} Component - DeStagnate component
+         * @param {Object<string, unknown>} props - props of component
+         * @returns {HTMLDivElement} parent of component
+         */
+        var createDSComponent = function createDSComponent (Component, props) {
+            var element = document.createElement("div")
+
+            element.classList.add("DeStagnate-component-parent")
+
+            var _component = new Component(element, props)
+
+            _component.mount()
+
+            return element
+        }
+
+        exports.default = createDSComponent
+    }, function (module, exports, __webpack_require__) {
+
+
+        /**
+         * DeStagnate
+         * A simple, ReactJS inspired library to create dynamic components within static sites easier
+         * @copyright Copyright (C) 2020 Luke Zhang
+         * @author Luke Zhang luke-zhang-04.github.io
+         * @license MIT
+         * @version 1.4.5
+         * @exports createElement function for DOM manipulation
          */
         var __values = this && this.__values || function (o) {
                 var s = typeof Symbol === "function" && Symbol.iterator,
@@ -929,7 +997,7 @@ var DeStagnate = (function (modules) {
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
          * @version 1.4.5
-         * @exports createElementNS
+         * @exports createElementNS createElement for namespaced elements
          */
         var __read = this && this.__read || function (o, n) {
                 var m = typeof Symbol === "function" && o[Symbol.iterator]
@@ -978,7 +1046,7 @@ var DeStagnate = (function (modules) {
         })
         exports.createElementNS = void 0
 
-        var createElement_1 = __webpack_require__(2)
+        var createElement_1 = __webpack_require__(3)
 
         /**
          * Creates a child element to deStagnate
@@ -1019,4 +1087,4 @@ var DeStagnate = (function (modules) {
     }
 ]))
 
-// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVFbGVtZW50TlMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztpQkFBQSxVQUFBLE9BQUEsRUFBQTs7OztBQVFHLFFBQUEsZ0JBQUEsQ0FBQSxRQUFBLENBQUEsRUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBa0JBLEc7O0FBTUMsRUFBQSxtQkFBQSxDQUFBLENBQUEsR0FBQSxVQUFBLE9BQUEsRUFBa0M7QUFBbEMsUUFBQSxPQUFBLE1BQUEsS0FBQSxXQUFBLElBQWtDLE1BQUEsQ0FBQSxXQUFsQyxFQUFrQzs7OztBQUU1Qjs7QUFFTixJQUFBLE1BQUEsQ0FBQSxjQUFBLENBQVcsT0FBWCxFQUFvQixZQUFwQixFQUFnQztBQUFBLE1BQUEsS0FBQSxFQUFBO0FBQUEsS0FBaEM7QUFFSSxHQU5KOztBQWdCSyxFQUFBLG1CQUFBLENBQUEsQ0FBQSxHQUFBLFVBQUEsS0FBQSxFQUFBLElBQUEsRUFBQTtBQUNKLFFBQUEsSUFBQSxHQUFBLENBQUEsRUFBQSxLQUFBLEdBQUEsbUJBQUEsQ0FBQSxLQUFBLENBQUE7QUFFRCxRQUFBLElBQUEsR0FBQSxDQUFBLEVBQUEsT0FBQSxLQUFBO0FBRU8sUUFBQSxJQUFPLEdBQUEsQ0FBUCxJQUFPLFFBQUEsS0FBQSxNQUFBLFFBQVAsSUFBTyxLQUFQLElBQU8sS0FBQSxDQUFBLFVBQVAsRUFBTyxPQUFBLEtBQUE7QUFDakIsUUFBQSxFQUFBLEdBQUEsTUFBQSxDQUFBLE1BQUEsQ0FBQSxJQUFBLENBQUE7O0FBRUQsSUFBQSxtQkFBZSxDQUFBLENBQWYsQ0FBZSxFQUFmOzs7Ozs7Ozs7Ozs7R0FSUzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Q0FoRFQsQzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7RUFBQSxDIiwiZmlsZSI6ImRlU3RhZ25hdGUuYnVuZGxlLmpzIn0=
+// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVFbGVtZW50TlMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztpQkFBQSxVQUFBLE9BQUEsRUFBQTs7OztBQVFHLFFBQUEsZ0JBQUEsQ0FBQSxRQUFBLENBQUEsRUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBa0JBLEc7O0FBTUMsRUFBQSxtQkFBQSxDQUFBLENBQUEsR0FBQSxVQUFBLE9BQUEsRUFBa0M7QUFBbEMsUUFBQSxPQUFBLE1BQUEsS0FBQSxXQUFBLElBQWtDLE1BQUEsQ0FBQSxXQUFsQyxFQUFrQzs7OztBQUU1Qjs7QUFFTixJQUFBLE1BQUEsQ0FBQSxjQUFBLENBQVcsT0FBWCxFQUFvQixZQUFwQixFQUFnQztBQUFBLE1BQUEsS0FBQSxFQUFBO0FBQUEsS0FBaEM7QUFFSSxHQU5KOztBQWdCSyxFQUFBLG1CQUFBLENBQUEsQ0FBQSxHQUFBLFVBQUEsS0FBQSxFQUFBLElBQUEsRUFBQTtBQUNKLFFBQUEsSUFBQSxHQUFBLENBQUEsRUFBQSxLQUFBLEdBQUEsbUJBQUEsQ0FBQSxLQUFBLENBQUE7QUFFRCxRQUFBLElBQUEsR0FBQSxDQUFBLEVBQUEsT0FBQSxLQUFBO0FBRU8sUUFBQSxJQUFPLEdBQUEsQ0FBUCxJQUFPLFFBQUEsS0FBQSxNQUFBLFFBQVAsSUFBTyxLQUFQLElBQU8sS0FBQSxDQUFBLFVBQVAsRUFBTyxPQUFBLEtBQUE7QUFDakIsUUFBQSxFQUFBLEdBQUEsTUFBQSxDQUFBLE1BQUEsQ0FBQSxJQUFBLENBQUE7O0FBRUQsSUFBQSxtQkFBZSxDQUFBLENBQWYsQ0FBZSxFQUFmOzs7Ozs7Ozs7Ozs7R0FSUzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Q0FoRFQsQzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7RUFBQSxDIiwiZmlsZSI6ImRlU3RhZ25hdGUuYnVuZGxlLmpzIn0=

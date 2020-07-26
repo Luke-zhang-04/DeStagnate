@@ -5,7 +5,7 @@
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
  * @version 1.4.5
- * @exports createElement
+ * @exports createElement function for DOM manipulation
  */
 
 /* eslint-disable one-var */

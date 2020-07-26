@@ -48,7 +48,8 @@ build() {
     node build.js ./dist/deStagnate.bundle.js
 
     echo "/* Destagnate v1.4.5 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
-
+    
+\"use strict\";
 $(cat ./dist/deStagnate.bundle.js)" > ./dist/deStagnate.bundle.js &
 
     echo "/* Destagnate v1.4.5 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
