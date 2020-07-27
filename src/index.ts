@@ -13,6 +13,7 @@ import Preset from "./_preset"
 import {default as _createDSComponent} from "./createDSComponent"
 import {default as _createElement} from "./createElement"
 import {default as _createElementNS} from "./createElementNS"
+import {default as _createRef} from "./createRef"
 
 type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
 
@@ -66,6 +67,15 @@ export default abstract class DeStagnate
     public static readonly createElementNS = _createElementNS
 
     /**
+     * Creates a reference for a nested component
+     * @public
+     * @static
+     * @readonly
+     * @returns {Object<string, undefined>} empty ref object
+     */
+    public static readonly createRef = _createRef
+
+    /**
      * Creates nested DeStagnate component
      * @public
      * @instance
@@ -101,6 +111,15 @@ export default abstract class DeStagnate
      * @returns {HTMLElement} html element
      */
     public readonly createElementNS = DeStagnate.createElementNS
+
+    /**
+     * Creates a reference for a nested component
+     * @public
+     * @instance
+     * @readonly
+     * @returns {Object<string, undefined>} empty ref object
+     */
+    public readonly createRef = DeStagnate.createRef
 
     /**
      * State of component. Works similar React State
@@ -383,3 +402,10 @@ export const createElement = _createElement
  * @returns {HTMLElement} html element
  */
 export const createElementNS = _createElementNS
+
+
+/**
+ * Creates a reference for a nested component
+ * @returns {Object<string, undefined>} empty ref object
+ */
+export const createRef = _createRef

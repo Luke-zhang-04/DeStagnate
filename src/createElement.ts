@@ -10,15 +10,11 @@
 
 /* eslint-disable one-var */
 
-export type ChildrenFlatArrayType = HTMLElement[]
-    | string[]
-    | number[]
-    | Element[]
-    | ((HTMLElement | Element) | string)[]
-    | ((HTMLElement | Element) | number)[]
-    | (string | number)[]
-    | ((HTMLElement | Element) | string | number)[]
-    | (HTMLElement | Element)[]
+export type ChildrenFlatArrayType = (HTMLElement
+    | Element
+    | number
+    | string
+)[]
 
 export type ChildrenArrayType = ChildrenFlatArrayType
     | ChildrenArrayType[]
@@ -31,6 +27,8 @@ export type ChildrenType = HTMLElement
     | number 
     | ChildrenArrayType
     | Element
+
+type EventFunc = (e: Event)=> void
 
 /**
  * Binds children to element
@@ -60,7 +58,7 @@ export const _bindProps = (
                     element.addEventListener(
                         key.slice(2)
                             .toLowerCase() as keyof HTMLElementEventMap,
-                        val as ()=> void
+                        val as EventFunc
                     )
                 }
             } else {
@@ -136,7 +134,7 @@ export const _bindChildren = (
  */
 const createElement = <T extends keyof HTMLElementTagNameMap>(
     tagName: T,
-    props?: {[key: string]: string | number},
+    props?: {[key: string]: string | number | EventFunc},
     children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
 ): HTMLElementTagNameMap[T] => {

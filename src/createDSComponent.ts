@@ -9,6 +9,7 @@
  */
 
 import DeStagnate from "."
+import {Ref} from "./createRef"
 
 type DeStagnateConstructor<Props, State> = new (
     parent: HTMLElement,
@@ -20,14 +21,16 @@ type DeStagnateConstructor<Props, State> = new (
  * Creates nested DeStagnate component
  * @param {DeStagnateConstructor} Component - DeStagnate component
  * @param {Object<string, unknown>} props - props of component
+ * @param {Object<string, undefined | DeStagnate>} ref - ref object
  * @returns {HTMLDivElement} parent of component
  */
 const createDSComponent = <
     Props = Record<string, unknown>,
-    State = Record<string, unknown>
+    State = Record<string, unknown>,
     >(
         Component: DeStagnateConstructor<Props, State>,
         props?: Props,
+        ref?: Ref<DeStagnate<Props, State>>,
     ): HTMLDivElement => {
     const element = document.createElement("div")
 
@@ -36,6 +39,10 @@ const createDSComponent = <
     const _component = new Component(element, props)
 
     _component.mount()
+
+    if (ref) {
+        ref.current = _component
+    }
 
     return element
 }
