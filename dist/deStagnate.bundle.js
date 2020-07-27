@@ -880,6 +880,8 @@ var DeStagnate = (function (modules) {
                             if (typeof val === "function") {
                                 element.addEventListener(key.slice(2).toLowerCase(), val)
                             }
+                        } else if (key === "ref" && _typeof(val) === "object" && "current" in val) {
+                            val.current = element
                         } else {
                             console.warn(`WARN: Invalid prop type "${_typeof(val)}" for key "${key}". Skipping prop.`)
                         }
@@ -1128,7 +1130,7 @@ var DeStagnate = (function (modules) {
          */
         var createRef = function createRef () {
             return {
-                current: undefined
+                current: null
             }
         }
 
@@ -1140,4 +1142,4 @@ var DeStagnate = (function (modules) {
     }
 ]))
 
-// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVSZWYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQW1CTSxXQUFZLG1CQUFaLENBQTJDLFFBQTNDLEVBQTJDO0FBSWpELFFBQUEsZ0JBQUEsQ0FBQSxRQUFBLENBQUEsRUFBQTs7OztBQUlBLFFBQUEsTUFBZSxHQUFBLGdCQUFTLENBQUEsUUFBQSxDQUFULEdBQVM7aUJBQUE7Y0FBQTs7QUFBQSxLQUF4QiIsImZpbGUiOiJkZVN0YWduYXRlLmJ1bmRsZS5qcyJ9
+// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVSZWYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQW1CTSxXQUFZLG1CQUFaLENBQXlELFFBQXpELEVBQXlEO0FBSS9ELFFBQUEsZ0JBQUEsQ0FBQSxRQUFBLENBQUEsRUFBQTs7OztBQUlBLFFBQUEsTUFBZSxHQUFBLGdCQUFTLENBQUEsUUFBQSxDQUFULEdBQVM7aUJBQUE7Y0FBQTs7QUFBQSxLQUF4QiIsImZpbGUiOiJkZVN0YWduYXRlLmJ1bmRsZS5qcyJ9

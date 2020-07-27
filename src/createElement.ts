@@ -8,6 +8,8 @@
  * @exports createElement function for DOM manipulation
  */
 
+import {Ref} from "./createRef"
+
 /* eslint-disable one-var */
 
 export type ChildrenFlatArrayType = (HTMLElement
@@ -40,7 +42,7 @@ type EventFunc = (e: Event)=> void
  */
 export const _bindProps = (
     element: Element,
-    props?: {[key: string]: unknown},
+    props?: {[key: string]: string | number | Element | Ref | EventFunc},
     ns = false,
 ): void => {
     if (props) {
@@ -58,9 +60,15 @@ export const _bindProps = (
                     element.addEventListener(
                         key.slice(2)
                             .toLowerCase() as keyof HTMLElementEventMap,
-                        val as EventFunc
+                        val
                     )
                 }
+            } else if (
+                key === "ref" &&
+                typeof(val) === "object" &&
+                "current" in val
+            ) {
+                (val as Ref<Element>).current = element
             } else {
                 console.warn(`WARN: Invalid prop type "${typeof(val)}" for key "${key}". Skipping prop.`)
             }
@@ -134,7 +142,7 @@ export const _bindChildren = (
  */
 const createElement = <T extends keyof HTMLElementTagNameMap>(
     tagName: T,
-    props?: {[key: string]: string | number | EventFunc},
+    props?: {[key: string]: string | number | Element | Ref | EventFunc},
     children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
 ): HTMLElementTagNameMap[T] => {

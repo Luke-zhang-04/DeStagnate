@@ -9,16 +9,16 @@
  */
 type DeStagnate = import(".").default
  
-export interface Ref<T = DeStagnate> {
-    current?: T,
+export interface Ref<T = DeStagnate | HTMLElement> {
+    current: T | null,
 }
 
 /**
  * Creates a reference for a nested component
  * @returns {Object<string, undefined>} empty ref object
  */
-const createRef = <T = DeStagnate>(): Ref<T> => ({
-    current: undefined
+const createRef = <T = DeStagnate | HTMLElement>(): Ref<T> => ({
+    current: null,
 })
 
 /**
