@@ -47,43 +47,50 @@ class SourceCode extends DS.default {
 }
 
 const stateSource = new SourceCode(
-    document.querySelector("#state-btn"),
+    document.getElementById("state-btn"),
     {source: document.getElementById("state-source")},
 )
 
 stateSource.mount() // Must call once
 
 const propsSource = new SourceCode(
-    document.querySelector("#props-btn"),
+    document.getElementById("props-btn"),
     {source: document.getElementById("props-source")},
 )
 
 propsSource.mount() // Must call once
 
 const elistener = new SourceCode(
-    document.querySelector("#elistener-btn"),
+    document.getElementById("elistener-btn"),
     {source: document.getElementById("elistener-source")},
 )
 
 elistener.mount() // Must call once
 
 const calc = new SourceCode(
-    document.querySelector("#calc-btn"),
+    document.getElementById("calc-btn"),
     {source: document.getElementById("calc-source")},
 )
 
 calc.mount() // Must call once
 
 const svgSrc = new SourceCode(
-    document.querySelector("#svg-btn"),
+    document.getElementById("svg-btn"),
     {source: document.getElementById("svg-source")},
 )
 
 svgSrc.mount() // Must call once
 
 const tictactoe = new SourceCode(
-    document.querySelector("#nested-btn"),
+    document.getElementById("nested-btn"),
     {source: document.getElementById("nested-source")},
 )
 
 tictactoe.mount() // Must call once
+
+const ref = new SourceCode(
+    document.getElementById("ref-btn"),
+    {source: document.getElementById("ref-source")}
+)
+
+ref.mount()

@@ -5,12 +5,16 @@ const DS = DeStagnate,
 */
 
 // Const declarations since these variables are globally defined
+// @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
 declare type DS = typeof import("../../lib")
+// @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
 declare const DS: DS
-declare const {createElement}: DS
+// @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
+declare const {createElement, createRef}: DS
 
 // Declare previously undeclared variables
-const {createDSComponent, createRef} = DS
+// @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
+const {createDSComponent} = DS
 
 // Current player
 let currentPlayer: "x" | "o" = "x"

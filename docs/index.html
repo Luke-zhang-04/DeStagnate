@@ -13,30 +13,31 @@
 </head>
 <body>
   <div class="p-4 bg-secondary">
-  <h1>DeStagnate Examples</h1>
-  <p>Here, you will find examples on how to use DeStagnate.</p>
-  <ul>
-    <li><a class="text-light" href="#counter-h">State example</a></li>
-    <li><a class="text-light" href="#props-h">Props example</a></li>
-    <li><a class="text-light" href="#elistener-h">Event listener example</a></li>
-    <li><a class="text-light" href="#calculator-h">Calculator example</a></li>
-    <li><a class="text-light" href="#svg-h">Namespaced element (SVG) example</a></li>
-    <li><a class="text-light" href="#nested-h">TicTacToe (nested component) example</a></li>
-  </ul>
+    <h1>DeStagnate Examples</h1>
+    <p>Here, you will find examples on how to use DeStagnate.</p>
+    <ul>
+      <li><a class="text-light" href="#counter-h">State example</a></li>
+      <li><a class="text-light" href="#props-h">Props example</a></li>
+      <li><a class="text-light" href="#elistener-h">Event listener example</a></li>
+      <li><a class="text-light" href="#ref-h">Ref example</a></li>
+      <li><a class="text-light" href="#calculator-h">Calculator example</a></li>
+      <li><a class="text-light" href="#svg-h">Namespaced element (SVG) example</a></li>
+      <li><a class="text-light" href="#nested-h">TicTacToe (nested component) example</a></li>
+    </ul>
   </div>
 
   
   <div class="row" id="counter-h">
-  <h1 class="mt-3 ml-4">State example</h1>
-  <p class="ml-4">This example was written with JSX, which needs to be transpiled into DeStagnate.createElement() with the help of our CLI</p>
-  <a class="ml-4" href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/counter.js" target="_blank" rel="noopener noreferrer">Source Code</a>
-  <div class="col-6 pl-5 pt-5">
-    <div id="counter"></div>
-    <div id="state-btn"></div>
-  </div>
-  <div id="state-source" class="col-6">
-    <pre class="d-block">
-    <code class="language-jsx">
+    <h1 class="mt-3 ml-4">State example</h1>
+    <p class="ml-4">This example was written with JSX, which needs to be transpiled into DeStagnate.createElement() with the help of our CLI</p>
+    <a class="ml-4" href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/counter.js" target="_blank" rel="noopener noreferrer">Source Code</a>
+    <div class="col-6 pl-5 pt-5">
+      <div id="counter"></div>
+      <div id="state-btn"></div>
+    </div>
+    <div id="state-source" class="col-6">
+      <pre class="d-block">
+        <code class="language-jsx">
 // Browser env, everything exposed to one global var, or namespace
 const DS = DeStagnate,
   {createElement} = DS
@@ -67,10 +68,10 @@ class Counter extends DS.default {
 const counter = new Counter(document.querySelector("#counter"))
 
 counter.mount() // Must call once
-    </code>
-    </pre>
-    <pre class="d-none">
-    <code class="language-jsx">
+        </code>
+      </pre>
+      <pre class="d-none">
+        <code class="language-jsx">
 // Node env, import from node_modules, or use require
 import DeStagnate, {createElement} from "destagnate"
 
@@ -100,21 +101,21 @@ class Counter extends DeStagnate {
 const counter = new Counter(document.querySelector("#counter"))
 
 counter.mount() // Must call once
-    </code>
-    </pre>
-  </div>
+        </code>
+      </pre>
+    </div>
   </div>
 
   <div class="row" id="props-h">
-  <h1 class="mt-3 ml-4">Props example</h1>
-  <a class="ml-4" href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/props.js" target="_blank" rel="noopener noreferrer">Source Code</a>
-  <div class="col-6 pl-5 pt-5">
-    <div id="props"></div>
-    <div id="props-btn" class="mt-3"></div>
-  </div>
-  <div id="props-source" class="col-6">
-    <pre class="d-block">
-    <code class="language-js">
+    <h1 class="mt-3 ml-4">Props example</h1>
+    <a class="ml-4" href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/props.js" target="_blank" rel="noopener noreferrer">Source Code</a>
+    <div class="col-6 pl-5 pt-5">
+      <div id="props"></div>
+      <div id="props-btn" class="mt-3"></div>
+    </div>
+    <div id="props-source" class="col-6">
+      <pre class="d-block">
+        <code class="language-js">
 // Browser env, everything exposed to one global var, or namespace
 const DS = DeStagnate,
   {createElement} = DS                    
@@ -148,10 +149,10 @@ const propsDemo = new PropsDemo(
 )
 
 propsDemo.mount() // Must call once
-    </code>
-    </pre>
-    <pre class="d-none">
-    <code class="language-js">
+        </code>
+      </pre>
+      <pre class="d-none">
+        <code class="language-js">
 // Node env, import from node_modules, or use require
 import DeStagnate, {createElement} from "destagnate"
 
@@ -184,22 +185,22 @@ const propsDemo = new PropsDemo(
 )
 
 propsDemo.mount() // Must call once
-    </code>
-    </pre>
-  </div>
+        </code>
+      </pre>
+    </div>
   </div>
 
   <div class="row" id="elistener-h">
-  <h1 class="mt-3 ml-4">Event listener example</h1>
-  <p class="ml-4">This example was written partially with JSX, which needs to be transpiled into DeStagnate.createElement() with the help of our CLI</p>
-  <a class="ml-4" href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/eventListener.js" target="_blank" rel="noopener noreferrer">Source Code</a>
-  <div class="col-6 pl-5 pt-5">
-    <div id="elistener"></div>
-    <div id="elistener-btn" class="mt-3"></div>
-  </div>
-  <div id="elistener-source"class="col-6">
-    <pre class="d-block">
-    <code class="language-js">
+    <h1 class="mt-3 ml-4">Event listener example</h1>
+    <p class="ml-4">This example was written partially with JSX, which needs to be transpiled into DeStagnate.createElement() with the help of our CLI</p>
+    <a class="ml-4" href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/eventListener.js" target="_blank" rel="noopener noreferrer">Source Code</a>
+    <div class="col-6 pl-5 pt-5">
+      <div id="elistener"></div>
+      <div id="elistener-btn" class="mt-3"></div>
+    </div>
+    <div id="elistener-source"class="col-6">
+      <pre class="d-block">
+        <code class="language-js">
 // Browser env, everything exposed to one global var, or namespace
 const DS = DeStagnate,
   {createElement} = DS
@@ -220,10 +221,10 @@ const eListener = new EventListener(
 )
 
 eListener.mount() // Must call once
-    </code>
-    </pre>
-    <pre class="d-none">
-    <code class="language-js">
+        </code>
+      </pre>
+      <pre class="d-none">
+        <code class="language-js">
 // Node env, import from node_modules, or use require
 import DeStagnate, {createElement} from "destagnate"
 
@@ -244,22 +245,167 @@ const eListener = new EventListener(
 )
 
 eListener.mount() // Must call once
-    </code>
-    </pre>
+        </code>
+      </pre>
   </div>
   </div>
 
-  <div class="row" id="calculator-h">
-  <h1 class="mt-3 ml-4">Calculator example</h1>
-  <p class="ml-4">This example was written with JSX, which needs to be transpiled into DeStagnate.createElement() with the help of our CLI</p>
-  <a class="ml-4" href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/calculator.js" target="_blank" rel="noopener noreferrer">Source Code</a>
-  <div class="col-6 pl-5 pt-5">
-    <div id="calculator"></div>
-    <div id="calc-btn" class="mt-3"></div>
+  <div class="row" id="ref-h">
+    <h1 class="mt-3 ml-4">Ref example</h1>
+    <p class="ml-4">This example was written with TypeScript, which needs to be compiled with out TypeScript or the CLI (which uses TSC)</p>
+    <a class="ml-4" href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/ref.ts" target="_blank" rel="noopener noreferrer">Source Code</a>
+    <div class="col-6 pl-5 pt-5">
+      <div id="ref"></div>
+      <div id="ref-btn"></div>
+    </div>
+    <div id="ref-source" class="col-6">
+      <pre class="d-block">
+        <code class="language-ts">
+// Typescript declarations
+declare type DeStagnate = typeof import("destagnate")
+declare const DeStagnate: DeStagnate
+
+// Browser env, everything exposed to one global var, or namespace
+const DS = DeStagnate,
+  {
+    createElement,
+    createRef,
+  } = DS
+
+class RefExample extends DS.default {
+
+  private _inputGroupPrepend = (): HTMLElement => createElement(
+    "div",
+    {class: "input-group-prepend"},
+    createElement(
+      "span",
+      {class: "input-group-text",},
+      "Input"
+    )
+  )
+
+  private _formRef = createRef&lt;HTMLInputElement&gt;()
+
+  private _getInputValues = () => {
+    const val = this._formRef.current?.value
+
+    alert(`INPUT VALUE: "${val}"`)
+  }
+
+  public render = (): HTMLElement[] => [
+    createElement(
+      "div",
+      {class: "input-group"},
+      this._inputGroupPrepend(),
+      createElement(
+        "input",
+        {
+            type: "text",
+            class: "form-control mb-3",
+            placeholder: "Insert text here",
+            ref: this._formRef,
+        }
+      )
+    ),
+    createElement(
+      "button",
+      {
+        class: "btn btn-light mb-3",
+        onClick: this._getInputValues
+      },
+      "Get input value"
+    )
+  ]
+
+}
+
+const refParent = document.getElementById("ref")
+
+if (refParent) {
+  const refComponent = new RefExample(refParent)
+
+  refComponent.mount()
+}  
+        </code>
+      </pre>
+      <pre class="d-none">
+        <code class="language-ts">
+// Node env, import from node_modules, or use require
+import DeStagnate, {
+  createElement,
+  createRef,
+} from "destagnate"
+
+class RefExample extends DeStagnate {
+
+  private _inputGroupPrepend = (): HTMLElement => createElement(
+    "div",
+    {class: "input-group-prepend"},
+    createElement(
+      "span",
+      {class: "input-group-text",},
+      "Input"
+    )
+  )
+
+  private _formRef = createRef&lt;HTMLInputElement&gt;()
+
+  private _getInputValues = () => {
+    const val = this._formRef.current?.value
+
+    alert(`INPUT VALUE: "${val}"`)
+  }
+
+  public render = (): HTMLElement[] => [
+    createElement(
+      "div",
+      {class: "input-group"},
+      this._inputGroupPrepend(),
+      createElement(
+        "input",
+        {
+            type: "text",
+            class: "form-control mb-3",
+            placeholder: "Insert text here",
+            ref: this._formRef,
+        }
+      )
+    ),
+    createElement(
+      "button",
+      {
+        class: "btn btn-light mb-3",
+        onClick: this._getInputValues
+      },
+      "Get input value"
+    )
+  ]
+
+}
+
+const refParent = document.getElementById("ref")
+
+if (refParent) {
+  const refComponent = new RefExample(refParent)
+
+  refComponent.mount()
+}
+        </code>
+      </pre>
+    </div>
   </div>
-  <div id="calc-source" class="col-6">
-    <pre class="d-block">
-    <code class="language-jsx">
+
+  <div class="row" id="calculator-h">
+    <h1 class="mt-3 ml-4">Calculator example</h1>
+    <p class="ml-4">This example was written with JSX, which needs to be transpiled into DeStagnate.createElement() with the help of our CLI</p>
+    <a class="ml-4" href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/calculator.js" target="_blank" rel="noopener noreferrer">Source Code</a>
+    <div class="col-6 pl-5 pt-5">
+      <div id="calculator"></div>
+      <div id="calc-btn" class="mt-3"></div>
+    </div>
+    <div id="calc-source" class="col-6">
+      <pre class="d-block">
+        <code class="language-jsx">
 // Browser env, everything exposed to one global var, or namespace
 const DS = DeStagnate,
   {createElement} = DS
@@ -402,10 +548,10 @@ const calculator = new Calculator(
 )
 
 calculator.mount() // Must call once 
-    </code>
-    </pre>
-    <pre class="d-none">
-    <code class="language-jsx">
+        </code>
+      </pre>
+      <pre class="d-none">
+        <code class="language-jsx">
 // Node env, import from node_modules, or use require
 import DeStagnate, {createElement} from "destagnate"
 
@@ -547,21 +693,21 @@ const calculator = new Calculator(
 )
 
 calculator.mount() // Must call once 
-    </code>
-    </pre>
+        </code>
+      </pre>
   </div>
   </div>
 
   <div class="row" id="svg-h">
-  <h1 class="mt-3 ml-4">SVG/namespace example</h1>
-  <a class="ml-4" href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/svg.js" target="_blank" rel="noopener noreferrer">Source Code</a>
-  <div class="col-6 pl-5 pt-5">
-    <div id="SVG"></div>
-    <div id="svg-btn" class="mt-3"></div>
-  </div>
-  <div id="svg-source" class="col-6">
-    <pre class="d-block">
-    <code class="language-js"> 
+    <h1 class="mt-3 ml-4">SVG/namespace example</h1>
+    <a class="ml-4" href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/svg.js" target="_blank" rel="noopener noreferrer">Source Code</a>
+    <div class="col-6 pl-5 pt-5">
+      <div id="SVG"></div>
+      <div id="svg-btn" class="mt-3"></div>
+    </div>
+    <div id="svg-source" class="col-6">
+      <pre class="d-block">
+        <code class="language-js"> 
 // Browser env, everything exposed to one global var, or namespace
 const DS = DeStagnate,
   {createElementNS} = DS
@@ -621,10 +767,10 @@ class SVG extends DS.default {
 const svg = new SVG(document.querySelector("#SVG"), {width: 250})
 
 svg.mount() // Must call once
-    </code>
-    </pre>
-    <pre class="d-none">
-    <code class="language-js">
+        </code>
+      </pre>
+      <pre class="d-none">
+        <code class="language-js">
 // Node env, import from node_modules, or use require
 import DeStagnate, {createElementNS} from "destagnate"
 
@@ -683,34 +829,33 @@ class SVG extends DeStagnate {
 const svg = new SVG(document.querySelector("#SVG"), {width: 250})
 
 svg.mount() // Must call once
-    </code>
-    </pre>
+        </code>
+      </pre>
   </div>
   </div>
 
   <div class="row" id="nested-h">
-  <h1 class="mt-3 ml-4">TicTacToe (nested components) example</h1>
-  <p class="ml-4">This example was written with TypeScript, which needs to be compiled with out TypeScript or the CLI (which uses TSC)</p>
-  <a class="ml-4" href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/tictactoe.ts" target="_blank" rel="noopener noreferrer">Source Code</a>
-  <div class="col-6 pl-5 pt-5">
-    <div class="btn btn-danger" id="nested-reset-btn">Reset</div>
-    <div id="nested"></div>
-    <div id="nested-btn"></div>
-  </div>
-  <div id="nested-source" class="col-6">
-    <pre class="d-block">
-    <code class="language-ts">
-// Const declarations since these variables are globally defined
-declare type DS = typeof import("destagnate")
-declare const DS: DS
-declare const {createElement}: DS
+    <h1 class="mt-3 ml-4">TicTacToe (nested components) example</h1>
+    <p class="ml-4">This example was written with TypeScript, which needs to be compiled with out TypeScript or the CLI (which uses TSC)</p>
+    <a class="ml-4" href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/tictactoe.ts" target="_blank" rel="noopener noreferrer">Source Code</a>
+    <div class="col-6 pl-5 pt-5">
+      <div class="btn btn-danger" id="nested-reset-btn">Reset</div>
+      <div id="nested" class="my-3"></div>
+      <div id="nested-btn"></div>
+    </div>
+    <div id="nested-source" class="col-6">
+      <pre class="d-block">
+        <code class="language-ts">
+// Typescript declarations
+declare type DeStagnate = typeof import("destagnate")
+declare const DeStagnate: DeStagnate
 
 // Browser env, everything exposed to one global var, or namespace
 const DS = DeStagnate,
   {
     createDSComponent,
-    createElementNS,
     createRef,
+    createElement,
   } = DS
 
 // Current player
@@ -867,14 +1012,14 @@ const mountTicTacToe = (): void => {
 }
 
 mountTicTacToe()
-    </code>
-    </pre>
-    <pre class="d-none">
-    <code class="language-ts">
+        </code>
+      </pre>
+      <pre class="d-none">
+        <code class="language-ts">
 // Node env, import from node_modules, or use require
 import DeStagnate, {
   createDSComponent,
-  createElementNS,
+  createElement,
   createRef,
 } from "destagnate"
 
@@ -1032,9 +1177,9 @@ const mountTicTacToe = (): void => {
 }
 
 mountTicTacToe()
-    </code>
-    </pre>
-  </div>
+        </code>
+      </pre>
+    </div>
   </div>
 
   <!-- Popper.js for bootstrap, not actually needed for functionality -->
@@ -1052,6 +1197,7 @@ mountTicTacToe()
   <script src="compiled/counter.js"></script>
   <script src="src/props.js"></script>
   <script src="src/eventListener.js"></script>
+  <script src="compiled/ref.js"></script>
   <script src="compiled/calculator.js"></script>
   <script src="src/svg.js"></script>
   <script src="compiled/tictactoe.js"></script>
