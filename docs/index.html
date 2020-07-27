@@ -207,13 +207,38 @@ const DS = DeStagnate,
 
 class EventListener extends DS.default {
 
-  render = () => createElement(
-    "button", {
-      class: "btn btn-primary",
-      onClick: () => alert("Clicked!")
-    },
-    "Click Me!",
-  )
+  constructor (parent) {
+    super(parent)
+
+    this.state = {
+      color: "primary",
+    }
+  }
+
+  onClick = () => { // This applies to the whole component
+    const colors = [
+      "primary",
+      "secondary",
+      "success",
+      "info",
+      "warning",
+      "danger",
+      "light",
+      "dark",
+    ].filter((val) => this.state.color !== val)
+
+    this.setState({
+      color: colors[Math.floor(Math.random() * colors.length)]
+    })
+  }
+
+  render = () => createElement("button", {
+    class: `btn btn-${this.state.color}`,
+
+    // This applies to only this button
+    onClick: () => alert("Clicked!")
+  }, "Click Me!")
+
 }
 
 const eListener = new EventListener(
@@ -230,13 +255,37 @@ import DeStagnate, {createElement} from "destagnate"
 
 class EventListener extends DeStagnate {
 
-  render = () => createElement(
-    "button", {
-      class: "btn btn-primary",
-      onClick: () => alert("Clicked!")
-    },
-    "Click Me!",
-  )
+  constructor (parent) {
+    super(parent)
+
+    this.state = {
+      color: "primary",
+    }
+  }
+
+  onClick = () => { // This applies to the whole component
+    const colors = [
+      "primary",
+      "secondary",
+      "success",
+      "info",
+      "warning",
+      "danger",
+      "light",
+      "dark",
+    ].filter((val) => this.state.color !== val)
+
+    this.setState({
+      color: colors[Math.floor(Math.random() * colors.length)]
+    })
+  }
+
+  render = () => createElement("button", {
+    class: `btn btn-${this.state.color}`,
+
+    // This applies to only this button
+    onClick: () => alert("Clicked!")
+  }, "Click Me!")
 
 }
 

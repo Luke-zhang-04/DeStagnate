@@ -295,14 +295,16 @@ export default abstract class DeStagnate
 
                 throw new Error(msg)
             }
-            
-            this.componentDidMount()
 
             if (typeof(component) === "object" && component instanceof Array) {
                 return (component as Element[]).map((element) => (
                     this._parent.appendChild(element)
                 ))
             }
+
+            this.bindEventListeners(this._parent)
+
+            this.componentDidMount()
 
             return this._parent.appendChild(component)
         } catch (err) {
@@ -331,6 +333,8 @@ export default abstract class DeStagnate
     public readonly unmountComponent = (): void => {
         try {
             this.componentWillUnmount()
+
+            this.unbindEventListeners(this._parent)
     
             this._removeChildren()
         } catch (err) {

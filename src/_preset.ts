@@ -11,10 +11,12 @@
 
 type RenderType = null | HTMLElement | HTMLElement[] | Element | Element[]
 
+import Events from "./_events"
+
 /**
  * Lifecycle member functions
  */
-export default abstract class Preset {
+export default abstract class Preset extends Events {
 
     /**
      * Called when component catches error. Default behaviour is console.error
