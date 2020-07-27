@@ -1,5 +1,5 @@
 /* Destagnate v1.5.0 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
-    
+
 "use strict";
 
 
@@ -185,7 +185,7 @@ var DeStagnate = (function (modules) {
         Object.defineProperty(exports, "__esModule", {
             value: true
         })
-        exports.createElementNS = exports.createElement = exports.createDSComponent = void 0
+        exports.createRef = exports.createElementNS = exports.createElement = exports.createDSComponent = void 0
 
         var _preset_1 = __importDefault(__webpack_require__(1)),
 
@@ -194,6 +194,8 @@ var DeStagnate = (function (modules) {
             createElement_1 = __importDefault(__webpack_require__(3)),
 
             createElementNS_1 = __importDefault(__webpack_require__(4)),
+
+            createRef_1 = __importDefault(__webpack_require__(5)),
 
             /**
              * DeStagnate
@@ -256,6 +258,15 @@ var DeStagnate = (function (modules) {
            * @returns {HTMLElement} html element
            */
           _this.createElementNS = DeStagnate.createElementNS
+
+          /**
+           * Creates a reference for a nested component
+           * @public
+           * @instance
+           * @readonly
+           * @returns {Object<string, undefined>} empty ref object
+           */
+          _this.createRef = DeStagnate.createRef
 
           /**
            * State of component. Works similar React State
@@ -565,6 +576,15 @@ var DeStagnate = (function (modules) {
        * @returns {HTMLElement} html element
        */
       DeStagnate.createElementNS = createElementNS_1.default
+
+      /**
+       * Creates a reference for a nested component
+       * @public
+       * @static
+       * @readonly
+       * @returns {Object<string, undefined>} empty ref object
+       */
+      DeStagnate.createRef = createRef_1.default
       
       return DeStagnate
   }(_preset_1.default))
@@ -598,6 +618,12 @@ var DeStagnate = (function (modules) {
          * @returns {HTMLElement} html element
          */
         exports.createElementNS = createElementNS_1.default
+
+        /**
+         * Creates a reference for a nested component
+         * @returns {Object<string, undefined>} empty ref object
+         */
+        exports.createRef = createRef_1.default
     }, function (module, exports, __webpack_require__) {
 
 
@@ -716,9 +742,10 @@ var DeStagnate = (function (modules) {
          * Creates nested DeStagnate component
          * @param {DeStagnateConstructor} Component - DeStagnate component
          * @param {Object<string, unknown>} props - props of component
+         * @param {Object<string, undefined | DeStagnate>} ref - ref object
          * @returns {HTMLDivElement} parent of component
          */
-        var createDSComponent = function createDSComponent (Component, props) {
+        var createDSComponent = function createDSComponent (Component, props, ref) {
             var element = document.createElement("div")
 
             element.classList.add("DeStagnate-component-parent")
@@ -726,6 +753,10 @@ var DeStagnate = (function (modules) {
             var _component = new Component(element, props)
 
             _component.mount()
+
+            if (ref) {
+                ref.current = _component
+            }
 
             return element
         }
@@ -1084,7 +1115,29 @@ var DeStagnate = (function (modules) {
         }
 
         exports.default = exports.createElementNS
+    }, function (module, exports, __webpack_require__) {
+        
+
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        })
+
+        /**
+         * Creates a reference for a nested component
+         * @returns {Object<string, undefined>} empty ref object
+         */
+        var createRef = function createRef () {
+            return {
+                current: undefined
+            }
+        }
+
+        /**
+         * Creates a reference for a nested component
+         * @returns {Object<string, undefined>} empty ref object
+         */
+        exports.default = createRef
     }
 ]))
 
-// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVFbGVtZW50TlMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztpQkFBQSxVQUFBLE9BQUEsRUFBQTs7OztBQVFHLFFBQUEsZ0JBQUEsQ0FBQSxRQUFBLENBQUEsRUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBa0JBLEc7O0FBTUMsRUFBQSxtQkFBQSxDQUFBLENBQUEsR0FBQSxVQUFBLE9BQUEsRUFBa0M7QUFBbEMsUUFBQSxPQUFBLE1BQUEsS0FBQSxXQUFBLElBQWtDLE1BQUEsQ0FBQSxXQUFsQyxFQUFrQzs7OztBQUU1Qjs7QUFFTixJQUFBLE1BQUEsQ0FBQSxjQUFBLENBQVcsT0FBWCxFQUFvQixZQUFwQixFQUFnQztBQUFBLE1BQUEsS0FBQSxFQUFBO0FBQUEsS0FBaEM7QUFFSSxHQU5KOztBQWdCSyxFQUFBLG1CQUFBLENBQUEsQ0FBQSxHQUFBLFVBQUEsS0FBQSxFQUFBLElBQUEsRUFBQTtBQUNKLFFBQUEsSUFBQSxHQUFBLENBQUEsRUFBQSxLQUFBLEdBQUEsbUJBQUEsQ0FBQSxLQUFBLENBQUE7QUFFRCxRQUFBLElBQUEsR0FBQSxDQUFBLEVBQUEsT0FBQSxLQUFBO0FBRU8sUUFBQSxJQUFPLEdBQUEsQ0FBUCxJQUFPLFFBQUEsS0FBQSxNQUFBLFFBQVAsSUFBTyxLQUFQLElBQU8sS0FBQSxDQUFBLFVBQVAsRUFBTyxPQUFBLEtBQUE7QUFDakIsUUFBQSxFQUFBLEdBQUEsTUFBQSxDQUFBLE1BQUEsQ0FBQSxJQUFBLENBQUE7O0FBRUQsSUFBQSxtQkFBZSxDQUFBLENBQWYsQ0FBZSxFQUFmOzs7Ozs7Ozs7Ozs7R0FSUzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Q0FoRFQsQzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7RUFBQSxDIiwiZmlsZSI6ImRlU3RhZ25hdGUuYnVuZGxlLmpzIn0=
+// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVSZWYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQW1CTSxXQUFZLG1CQUFaLENBQTJDLFFBQTNDLEVBQTJDO0FBSWpELFFBQUEsZ0JBQUEsQ0FBQSxRQUFBLENBQUEsRUFBQTs7OztBQUlBLFFBQUEsTUFBZSxHQUFBLGdCQUFTLENBQUEsUUFBQSxDQUFULEdBQVM7aUJBQUE7Y0FBQTs7QUFBQSxLQUF4QiIsImZpbGUiOiJkZVN0YWduYXRlLmJ1bmRsZS5qcyJ9

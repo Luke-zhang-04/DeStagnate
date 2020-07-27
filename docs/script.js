@@ -80,3 +80,10 @@ const svgSrc = new SourceCode(
 )
 
 svgSrc.mount() // Must call once
+
+const tictactoe = new SourceCode(
+    document.querySelector("#nested-btn"),
+    {source: document.getElementById("nested-source")},
+)
+
+tictactoe.mount() // Must call once
