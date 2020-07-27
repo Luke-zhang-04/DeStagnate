@@ -44,22 +44,22 @@ const DS = DeStagnate,
 class Counter extends DS.default {
 
   constructor (parent) {
-  super(parent)
+    super(parent)
 
-  this.state = {
-    count: 0,
-  }
+    this.state = {
+      count: 0,
+    }
   }
 
   componentDidMount = () => {
-  setInterval(() => {
-    this.setState({count: this.state.count + 1})
-  }, 1000)
+    setInterval(() => {
+      this.setState({count: this.state.count + 1})
+    }, 1000)
   }
 
   render = () => &lt;div&gt;
-  &lt;p&gt;Seconds:&lt;/p&gt;
-  &lt;p&gt;{this.state.count}&lt;/p&gt;
+    &lt;p&gt;Seconds:&lt;/p&gt;
+    &lt;p&gt;{this.state.count}&lt;/p&gt;
   &lt;/div&gt;
 
 }
@@ -77,22 +77,22 @@ import DeStagnate, {createElement} from "destagnate"
 class Counter extends DeStagnate {
 
   constructor (parent) {
-  super(parent)
+    super(parent)
 
-  this.state = {
-    count: 0,
-  }
+    this.state = {
+      count: 0,
+    }
   }
 
   componentDidMount = () => {
-  setInterval(() => {
-    this.setState({count: this.state.count + 1})
-  }, 1000)
+    setInterval(() => {
+      this.setState({count: this.state.count + 1})
+    }, 1000)
   }
 
   render = () => &lt;div&gt;
-  &lt;p&gt;Seconds:&lt;/p&gt;
-  &lt;p&gt;{this.state.count}&lt;/p&gt;
+    &lt;p&gt;Seconds:&lt;/p&gt;
+    &lt;p&gt;{this.state.count}&lt;/p&gt;
   &lt;/div&gt;
 
 }
@@ -122,27 +122,29 @@ const DS = DeStagnate,
 class PropsDemo extends DS.default {
 
   render = () => this.props.colors.map((color) => (
-  createElement(
-    "button",
-    {class: `btn btn-${color}`},
-    `${color} button`
-  )
+    createElement(
+      "button",
+      {class: `btn btn-${color}`},
+      `${color} button`
+    )
   ))
 
 }
 
 const propsDemo = new PropsDemo(
   document.querySelector("#props"),
-  {colors: [
-  "primary",
-  "secondary",
-  "success",
-  "info",
-  "warning",
-  "danger",
-  "light",
-  "dark",
-  ]}
+  {
+    colors: [
+      "primary",
+      "secondary",
+      "success",
+      "info",
+      "warning",
+      "danger",
+      "light",
+      "dark",
+    ],
+  },
 )
 
 propsDemo.mount() // Must call once
@@ -156,27 +158,29 @@ import DeStagnate, {createElement} from "destagnate"
 class PropsDemo extends DeStagnate {
 
   render = () => this.props.colors.map((color) => (
-  createElement(
-    "button",
-    {class: `btn btn-${color}`},
-    `${color} button`
-  )
+    createElement(
+      "button",
+      {class: `btn btn-${color}`},
+      `${color} button`
+    )
   ))
 
 }
 
 const propsDemo = new PropsDemo(
   document.querySelector("#props"),
-  {colors: [
-  "primary",
-  "secondary",
-  "success",
-  "info",
-  "warning",
-  "danger",
-  "light",
-  "dark",
-  ]}
+  {
+    colors: [
+      "primary",
+      "secondary",
+      "success",
+      "info",
+      "warning",
+      "danger",
+      "light",
+      "dark",
+    ],
+  },
 )
 
 propsDemo.mount() // Must call once
@@ -202,11 +206,13 @@ const DS = DeStagnate,
 
 class EventListener extends DS.default {
 
-  render = () => createElement("button", {
-  class: "btn btn-primary",
-  onClick: () => alert("Clicked!")
-  }, "Click Me!")
-
+  render = () => createElement(
+    "button", {
+      class: "btn btn-primary",
+      onClick: () => alert("Clicked!")
+    },
+    "Click Me!",
+  )
 }
 
 const eListener = new EventListener(
@@ -223,10 +229,13 @@ import DeStagnate, {createElement} from "destagnate"
 
 class EventListener extends DeStagnate {
 
-  render = () => createElement("button", {
-  class: "btn btn-primary",
-  onClick: () => alert("Clicked!")
-  }, "Click Me!")
+  render = () => createElement(
+    "button", {
+      class: "btn btn-primary",
+      onClick: () => alert("Clicked!")
+    },
+    "Click Me!",
+  )
 
 }
 
@@ -258,28 +267,39 @@ const DS = DeStagnate,
 class Calculator extends DS.default {
 
   constructor (parent) {
-  super(parent)
+    super(parent)
 
-  this.state = {
-    calculation: "",
-  }
+    this.state = {
+      calculation: "",
+    }
   }
 
   /**
-   * Create a calculator button
+   * Appends new values to calculation
    * @param {string} text - text of button
    * @param {string | undefined} append - value to append to
-   * calculaton
-   * @returns {HTMLElement} col element
+   * calculation
+   * @returns {Object.&lt;string, string&gt;} new state
    */
-  _calcButton = (text, append) => createElement("div", {
-  class: "col-3 calc-btn", // Bootstrap grid
-  onClick: () => this.setState({
-    calculation: this.state.calculation + (
-    append ? append : text
-    ),
-  }),
-  }, text)
+  _appendState = (text, append) => ({
+    calculation: this.state.calculation + (append ? append : text),
+  })
+ 
+ /**
+  * Create a calculator button
+  * @param {string} text - text of button
+  * @param {string | undefined} append - value to append to
+  * calculaton
+  * @returns {HTMLElement} col element
+  */
+  _calcButton = (text, append) => createElement(
+    "div",
+    {
+      class: "col-3 calc-btn", // Bootstrap grid
+      onClick: () => this.setState(this._appendState(text, append)),
+    },
+    text,
+  )
 
   /**
    * Evaluate current calculation
@@ -292,30 +312,30 @@ class Calculator extends DS.default {
    * @type {Array.&lt;HTMLElement&gt;}
    */
   _numBtns = [
-  &lt;div className="calc-btns row"&gt; 
-    {["7", "8", "9", ["x", "*"]].map((val) => (
-    this._calcButton(
-      val instanceof Array ? val[0] : val,
-      val instanceof Array ? val[1] : val,
-    )
-    ))}
-  &lt;/div&gt;,
-  &lt;div className="calc-btns row"&gt; 
-    {["4", "5", "6", "-"].map((val) => (
-    this._calcButton(
-      val instanceof Array ? val[0] : val,
-      val instanceof Array ? val[1] : val,
-    )
-    ))}
-  &lt;/div&gt;,
-  &lt;div className="calc-btns row"&gt; 
-    {["1", "2", "3", "+"].map((val) => (
-    this._calcButton(
-      val instanceof Array ? val[0] : val,
-      val instanceof Array ? val[1] : val,
-    )
-    ))}
-  &lt;/div&gt;,
+    &lt;div className="calc-btns row"&gt; 
+      {["7", "8", "9", ["x", "*"]].map((val) => (
+        this._calcButton(
+          val instanceof Array ? val[0] : val,
+          val instanceof Array ? val[1] : val,
+        )
+      ))}
+    &lt;/div&gt;,
+    &lt;div className="calc-btns row"&gt; 
+      {["4", "5", "6", "-"].map((val) => (
+        this._calcButton(
+          val instanceof Array ? val[0] : val,
+          val instanceof Array ? val[1] : val,
+        )
+      ))}
+    &lt;/div&gt;,
+    &lt;div className="calc-btns row"&gt; 
+      {["1", "2", "3", "+"].map((val) => (
+        this._calcButton(
+          val instanceof Array ? val[0] : val,
+          val instanceof Array ? val[1] : val,
+        )
+      ))}
+    &lt;/div&gt;,
   ]
 
   /**
@@ -323,42 +343,56 @@ class Calculator extends DS.default {
    * @returns {HTMLElement} display
    */
   _calcDisplay = () => createElement(
-  "div",
-  {class: "calc-display"},
-  this.state.calculation,
+    "div",
+    {class: "calc-display"},
+    this.state.calculation,
   )
 
   render = () => (
-  &lt;div&gt;
-    {this._calcDisplay()}
-    &lt;div className="calc-btns row"&gt;
-    &lt;div
-      className="col-3 calc-btn clear"
-      onClick={() => this.setState({calculation: ""})}
-    &gt;C&lt;/div&gt;
-    {createElement("div", {
-      class: "col-3 calc-btn",
-      onClick: () => this.setState({
-      calculation: this.state.calculation.slice(
-        0, this.state.calculation.length - 1,
-      ),
-      }),
-    }, "\u2190")}
-    {this._calcButton("%")}
-    {this._calcButton("\u00f7", "/")}
+    &lt;div&gt;
+      {this._calcDisplay()}
+      &lt;div className="calc-btns row"&gt;
+        &lt;div
+          className="col-3 calc-btn clear"
+          onClick={() => this.setState({calculation: ""})}
+        &gt;C&lt;/div&gt;
+        {createElement(
+          "div",
+          {
+            class: "col-3 calc-btn",
+            onClick: () => this.setState({
+              calculation: this.state.calculation.slice(
+                0, this.state.calculation.length - 1,
+              ),
+            }),
+          },
+          "\u2190"
+        )}
+        {this._calcButton("%")}
+        {this._calcButton("\u00f7", "/")}
+      &lt;/div&gt;
+      {this._numBtns.map((btn) => btn)}
+      {createElement(
+        "div",
+        {
+          class: "calc-btns row"
+        },
+        [
+          this._calcButton("0"),
+          this._calcButton("."),
+          createElement(
+            "div",
+            {
+              class: "col-6 calc-btn equals",
+              onClick: () => this.setState({
+                calculation: this._evalCalc(),
+              }),
+            },
+            "=" // Equals
+          ),
+        ]
+      )}
     &lt;/div&gt;
-    {this._numBtns.map((btn) => btn)}
-    {createElement("div", {class: "calc-btns row"}, [
-    this._calcButton("0"),
-    this._calcButton("."),
-    createElement("div", {
-      class: "col-6 calc-btn equals",
-      onClick: () => this.setState({
-      calculation: this._evalCalc(),
-      }),
-    }, "="), // Equals
-    ])}
-  &lt;/div&gt;
   )
 
 }
@@ -378,28 +412,39 @@ import DeStagnate, {createElement} from "destagnate"
 class Calculator extends DeStagnate {
 
   constructor (parent) {
-  super(parent)
+    super(parent)
 
-  this.state = {
-    calculation: "",
-  }
+    this.state = {
+      calculation: "",
+    }
   }
 
   /**
-   * Create a calculator button
+   * Appends new values to calculation
    * @param {string} text - text of button
    * @param {string | undefined} append - value to append to
-   * calculaton
-   * @returns {HTMLElement} col element
+   * calculation
+   * @returns {Object.&lt;string, string&gt;} new state
    */
-  _calcButton = (text, append) => createElement("div", {
-  class: "col-3 calc-btn", // Bootstrap grid
-  onClick: () => this.setState({
-    calculation: this.state.calculation + (
-    append ? append : text
-    ),
-  }),
-  }, text)
+  _appendState = (text, append) => ({
+    calculation: this.state.calculation + (append ? append : text),
+  })
+ 
+ /**
+  * Create a calculator button
+  * @param {string} text - text of button
+  * @param {string | undefined} append - value to append to
+  * calculaton
+  * @returns {HTMLElement} col element
+  */
+  _calcButton = (text, append) => createElement(
+    "div",
+    {
+      class: "col-3 calc-btn", // Bootstrap grid
+      onClick: () => this.setState(this._appendState(text, append)),
+    },
+    text,
+  )
 
   /**
    * Evaluate current calculation
@@ -412,73 +457,87 @@ class Calculator extends DeStagnate {
    * @type {Array.&lt;HTMLElement&gt;}
    */
   _numBtns = [
-  &lt;div className="calc-btns row"&gt; 
-    {["7", "8", "9", ["x", "*"]].map((val) => (
-    this._calcButton(
-      val instanceof Array ? val[0] : val,
-      val instanceof Array ? val[1] : val,
-    )
-    ))}
-  &lt;/div&gt;,
-  &lt;div className="calc-btns row"&gt; 
-    {["4", "5", "6", "-"].map((val) => (
-    this._calcButton(
-      val instanceof Array ? val[0] : val,
-      val instanceof Array ? val[1] : val,
-    )
-    ))}
-  &lt;/div&gt;,
-  &lt;div className="calc-btns row"&gt; 
-    {["1", "2", "3", "+"].map((val) => (
-    this._calcButton(
-      val instanceof Array ? val[0] : val,
-      val instanceof Array ? val[1] : val,
-    )
-    ))}
-  &lt;/div&gt;,
+    &lt;div className="calc-btns row"&gt; 
+      {["7", "8", "9", ["x", "*"]].map((val) => (
+        this._calcButton(
+          val instanceof Array ? val[0] : val,
+          val instanceof Array ? val[1] : val,
+        )
+      ))}
+    &lt;/div&gt;,
+    &lt;div className="calc-btns row"&gt; 
+      {["4", "5", "6", "-"].map((val) => (
+        this._calcButton(
+          val instanceof Array ? val[0] : val,
+          val instanceof Array ? val[1] : val,
+        )
+      ))}
+    &lt;/div&gt;,
+    &lt;div className="calc-btns row"&gt; 
+      {["1", "2", "3", "+"].map((val) => (
+        this._calcButton(
+          val instanceof Array ? val[0] : val,
+          val instanceof Array ? val[1] : val,
+        )
+      ))}
+    &lt;/div&gt;,
   ]
 
   /**
-  * Calculator Display
-  * @returns {HTMLElement} display
-  */
+   * Calculator Display
+   * @returns {HTMLElement} display
+   */
   _calcDisplay = () => createElement(
-  "div",
-  {class: "calc-display"},
-  this.state.calculation,
+    "div",
+    {class: "calc-display"},
+    this.state.calculation,
   )
 
   render = () => (
-  &lt;div&gt;
-    {this._calcDisplay()}
-    &lt;div className="calc-btns row"&gt;
-    &lt;div
-      className="col-3 calc-btn clear"
-      onClick={() => this.setState({calculation: ""})}
-    &gt;C&lt;/div&gt;
-    {createElement("div", {
-      class: "col-3 calc-btn",
-      onClick: () => this.setState({
-      calculation: this.state.calculation.slice(
-        0, this.state.calculation.length - 1,
-      ),
-      }),
-    }, "\u2190")}
-    {this._calcButton("%")}
-    {this._calcButton("\u00f7", "/")}
+    &lt;div&gt;
+      {this._calcDisplay()}
+      &lt;div className="calc-btns row"&gt;
+        &lt;div
+          className="col-3 calc-btn clear"
+          onClick={() => this.setState({calculation: ""})}
+        &gt;C&lt;/div&gt;
+        {createElement(
+          "div",
+          {
+            class: "col-3 calc-btn",
+            onClick: () => this.setState({
+              calculation: this.state.calculation.slice(
+                0, this.state.calculation.length - 1,
+              ),
+            }),
+          },
+          "\u2190"
+        )}
+        {this._calcButton("%")}
+        {this._calcButton("\u00f7", "/")}
+      &lt;/div&gt;
+      {this._numBtns.map((btn) => btn)}
+      {createElement(
+        "div",
+        {
+          class: "calc-btns row"
+        },
+        [
+          this._calcButton("0"),
+          this._calcButton("."),
+          createElement(
+            "div",
+            {
+              class: "col-6 calc-btn equals",
+              onClick: () => this.setState({
+                calculation: this._evalCalc(),
+              }),
+            },
+            "=" // Equals
+          ),
+        ]
+      )}
     &lt;/div&gt;
-    {this._numBtns.map((btn) => btn)}
-    {createElement("div", {class: "calc-btns row"}, [
-    this._calcButton("0"),
-    this._calcButton("."),
-    createElement("div", {
-      class: "col-6 calc-btn equals",
-      onClick: () => this.setState({
-      calculation: this._evalCalc(),
-      }),
-    }, "="), // Equals
-    ])}
-  &lt;/div&gt;
   )
 
 }
@@ -510,11 +569,11 @@ const DS = DeStagnate,
 class SVG extends DS.default {
 
   constructor (parent, props) {
-  super(parent, props)
+    super(parent, props)
 
-  this.state = {
-    xcord: 0,
-  }
+    this.state = {
+      xcord: 0,
+    }
   }
 
   direction = 2.5
@@ -522,39 +581,39 @@ class SVG extends DS.default {
   componentDidMount = () => this.componentDidUpdate()
 
   componentDidUpdate = () => {
-  if (
-    this.state.xcord < 0 ||
-    this.state.xcord > this.props.width / 2
-  ) {
-    this.direction *= -1
-  }
+    if (
+      this.state.xcord < 0 ||
+      this.state.xcord > this.props.width / 2
+    ) {
+      this.direction *= -1
+    }
 
-  setTimeout(
-    () => this.setState({
-    xcord: this.state.xcord + this.direction,
-    }),
-    25,
-  )
+    setTimeout(
+      () => this.setState({
+        xcord: this.state.xcord + this.direction,
+      }),
+      25,
+    )
   }
 
   render = () => createElementNS(
-  "http://www.w3.org/2000/svg",
-  "svg",
-  {
-    width: this.props.width * 2,
-    height: this.props.width,
-    viewBox: `0 0 ${this.props.width * 2} ${this.props.width}`,
-  },
-  createElementNS(
     "http://www.w3.org/2000/svg",
-    "rect",
+    "svg",
     {
-    width: this.props.width,
-    height: this.props.width,
-    fill: this.direction > 0 ? "#0D6EFD" : "#28A745",
-    x: this.state.xcord,
+      width: this.props.width * 2,
+      height: this.props.width,
+      viewBox: `0 0 ${this.props.width * 2} ${this.props.width}`,
     },
-  ),
+    createElementNS(
+      "http://www.w3.org/2000/svg",
+      "rect",
+      {
+        width: this.props.width,
+        height: this.props.width,
+        fill: this.direction > 0 ? "#0D6EFD" : "#28A745",
+        x: this.state.xcord,
+      },
+    ),
   )
 
 }
@@ -569,17 +628,14 @@ svg.mount() // Must call once
 // Node env, import from node_modules, or use require
 import DeStagnate, {createElementNS} from "destagnate"
 
-const DS = DeStagnate,
-  {createElementNS} = DS
-
-class SVG extends DS.default {
+class SVG extends DeStagnate {
 
   constructor (parent, props) {
-  super(parent, props)
+    super(parent, props)
 
-  this.state = {
-    xcord: 0,
-  }
+    this.state = {
+      xcord: 0,
+    }
   }
 
   direction = 2.5
@@ -587,39 +643,39 @@ class SVG extends DS.default {
   componentDidMount = () => this.componentDidUpdate()
 
   componentDidUpdate = () => {
-  if (
-    this.state.xcord < 0 ||
-    this.state.xcord > this.props.width / 2
-  ) {
-    this.direction *= -1
-  }
+    if (
+      this.state.xcord < 0 ||
+      this.state.xcord > this.props.width / 2
+    ) {
+      this.direction *= -1
+    }
 
-  setTimeout(
-    () => this.setState({
-    xcord: this.state.xcord + this.direction,
-    }),
-    25,
-  )
+    setTimeout(
+      () => this.setState({
+        xcord: this.state.xcord + this.direction,
+      }),
+      25,
+    )
   }
 
   render = () => createElementNS(
-  "http://www.w3.org/2000/svg",
-  "svg",
-  {
-    width: this.props.width * 2,
-    height: this.props.width,
-    viewBox: `0 0 ${this.props.width * 2} ${this.props.width}`,
-  },
-  createElementNS(
     "http://www.w3.org/2000/svg",
-    "rect",
+    "svg",
     {
-    width: this.props.width,
-    height: this.props.width,
-    fill: this.direction > 0 ? "#0D6EFD" : "#28A745",
-    x: this.state.xcord,
+      width: this.props.width * 2,
+      height: this.props.width,
+      viewBox: `0 0 ${this.props.width * 2} ${this.props.width}`,
     },
-  ),
+    createElementNS(
+      "http://www.w3.org/2000/svg",
+      "rect",
+      {
+        width: this.props.width,
+        height: this.props.width,
+        fill: this.direction > 0 ? "#0D6EFD" : "#28A745",
+        x: this.state.xcord,
+      },
+    ),
   )
 
 }
@@ -830,7 +886,7 @@ interface SquareState {
   clicked: "" | "x" | "o",
 }
 
-class TicTacToe extends DS.default {
+class TicTacToe extends DeStagnate {
 
   private _squares = [ // Refs, simillar to React refs
     [createRef&lt;Square&gt;(), createRef&lt;Square&gt;(), createRef&lt;Square&gt;()],
