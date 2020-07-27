@@ -4,17 +4,19 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.4.5
+ * @version 1.5.0
  * @exports Preset
  * @package
  */
 
 type RenderType = null | HTMLElement | HTMLElement[] | Element | Element[]
 
+import Events from "./_events"
+
 /**
  * Lifecycle member functions
  */
-export default abstract class Preset {
+export default abstract class Preset extends Events {
 
     /**
      * Called when component catches error. Default behaviour is console.error

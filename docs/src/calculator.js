@@ -15,17 +15,31 @@ class Calculator extends DS.default {
     }
 
     /**
+     * Appends new values to calculation
+     * @param {string} text - text of button
+     * @param {string | undefined} append - value to append to
+     * calculation
+     * @returns {Object.<string, string>} new state
+     */
+    _appendState = (text, append) => ({
+        calculation: this.state.calculation + (append ? append : text),
+    })
+    
+    /**
      * Create a calculator button
      * @param {string} text - text of button
-     * @param {string | undefined} append - value to append to calculaton
+     * @param {string | undefined} append - value to append to
+     * calculaton
      * @returns {HTMLElement} col element
      */
-    _calcButton = (text, append) => createElement("div", {
-        class: "col-3 calc-btn", // Bootstrap grid
-        onClick: () => this.setState({
-            calculation: this.state.calculation + (append ? append : text),
-        }),
-    }, text)
+    _calcButton = (text, append) => createElement(
+        "div",
+        {
+            class: "col-3 calc-btn", // Bootstrap grid
+            onClick: () => this.setState(this._appendState(text, append)),
+        },
+        text,
+    )
 
     /* eslint-disable no-eval */
     /**

@@ -1,5 +1,6 @@
-/* Destagnate v1.4.5 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+/* Destagnate v1.5.0 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
+"use strict";
 
 
 function _typeof (obj) {
@@ -118,7 +119,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.4.5
+         * @version 1.5.0
          * @exports DeStagnate main destagnate class
          * @file main file for destagnate
          */
@@ -184,13 +185,17 @@ var DeStagnate = (function (modules) {
         Object.defineProperty(exports, "__esModule", {
             value: true
         })
-        exports.createElementNS = exports.createElement = void 0
+        exports.createRef = exports.createElementNS = exports.createElement = exports.createDSComponent = void 0
 
         var _preset_1 = __importDefault(__webpack_require__(1)),
 
-            createElement_1 = __importDefault(__webpack_require__(2)),
+            createDSComponent_1 = __importDefault(__webpack_require__(3)),
 
-            createElementNS_1 = __importDefault(__webpack_require__(3)),
+            createElement_1 = __importDefault(__webpack_require__(4)),
+
+            createElementNS_1 = __importDefault(__webpack_require__(5)),
+
+            createRef_1 = __importDefault(__webpack_require__(6)),
 
             /**
              * DeStagnate
@@ -218,13 +223,25 @@ var DeStagnate = (function (modules) {
           _this.props = props
 
           /**
-           * Creates a child element to deStagnate
+           * Creates nested DeStagnate component
+           * @public
+           * @instance
+           * @readonly
+           * @param {DeStagnateConstructor} Component - DeStagnate component
+           * @param {Object<string, unknown>} props - props of component
+           * @returns {HTMLDivElement} parent of component
+           */
+          _this.createDSComponent = DeStagnate.createDSComponent
+
+          /**
+           * Creates a child element to DynamComponent
            * @public
            * @instance
            * @readonly
            * @param {string} tagName - name of HTML element
-           * @param {undefined | Object.<string, string | number>} props - element properties
-           * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - child of element, or array of children
+           * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+           * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+           * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
            * @returns {HTMLElement} html element
            */
           _this.createElement = DeStagnate.createElement
@@ -242,6 +259,15 @@ var DeStagnate = (function (modules) {
            * @returns {HTMLElement} html element
            */
           _this.createElementNS = DeStagnate.createElementNS
+
+          /**
+           * Creates a reference for a nested component
+           * @public
+           * @instance
+           * @readonly
+           * @returns {Object<string, null>} empty ref object
+           */
+          _this.createRef = DeStagnate.createRef
 
           /**
            * State of component. Works similar React State
@@ -370,11 +396,13 @@ var DeStagnate = (function (modules) {
                       throw new Error(msg)
                   }
 
-                  _this.componentDidMount()
-
                   if (_typeof(component) === "object" && component instanceof Array) {
                       return component.map((element) => _this._parent.appendChild(element))
                   }
+
+                  _this.bindEventListeners(_this._parent)
+
+                  _this.componentDidMount()
 
                   return _this._parent.appendChild(component)
               } catch (err) {
@@ -403,6 +431,8 @@ var DeStagnate = (function (modules) {
           _this.unmountComponent = function () {
               try {
                   _this.componentWillUnmount()
+
+                  _this.unbindEventListeners(_this._parent)
 
                   _this._removeChildren()
               } catch (err) {
@@ -516,13 +546,25 @@ var DeStagnate = (function (modules) {
       })
 
       /**
-       * Creates a child element to deStagnate
+       * Creates nested DeStagnate component
+       * @public
+       * @static
+       * @readonly
+       * @param {DeStagnateConstructor} Component - DeStagnate component
+       * @param {Object<string, unknown>} props - props of component
+       * @returns {HTMLDivElement} parent of component
+       */
+      DeStagnate.createDSComponent = createDSComponent_1.default
+
+      /**
+       * Creates a child element to DynamComponent
        * @public
        * @static
        * @readonly
        * @param {string} tagName - name of HTML element
-       * @param {undefined | Object.<string, string | number>} props - element properties
-       * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - child of element, or array of children
+       * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+       * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+       * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
        * @returns {HTMLElement} html element
        */
       DeStagnate.createElement = createElement_1.default
@@ -540,11 +582,28 @@ var DeStagnate = (function (modules) {
        * @returns {HTMLElement} html element
        */
       DeStagnate.createElementNS = createElementNS_1.default
+
+      /**
+       * Creates a reference for a nested component
+       * @public
+       * @static
+       * @readonly
+       * @returns {Object<string, null>} empty ref object
+       */
+      DeStagnate.createRef = createRef_1.default
       
       return DeStagnate
   }(_preset_1.default))
 
         exports.default = DeStagnate
+
+        /**
+         * Creates nested DeStagnate component
+         * @param {DeStagnateConstructor} Component - DeStagnate component
+         * @param {Object<string, unknown>} props - props of component
+         * @returns {HTMLDivElement} parent of component
+         */
+        exports.createDSComponent = createDSComponent_1.default
 
         /**
          * Creates a child element to deStagnate
@@ -556,15 +615,20 @@ var DeStagnate = (function (modules) {
         exports.createElement = createElement_1.default
 
         /**
-         * Creates a child element to deStagnate
-         * @param {string | null} namespaceURI - namespace uri
+         * Creates a child element to DynamComponent
          * @param {string} tagName - name of HTML element
-         * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
-         * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-         * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
+         * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+         * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+         * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
          * @returns {HTMLElement} html element
          */
         exports.createElementNS = createElementNS_1.default
+
+        /**
+         * Creates a reference for a nested component
+         * @returns {Object<string, undefined>} empty ref object
+         */
+        exports.createRef = createRef_1.default
     }, function (module, exports, __webpack_require__) {
 
 
@@ -574,26 +638,65 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.4.5
+         * @version 1.5.0
          * @exports Preset
          * @package
          */
+        var __extends = this && this.__extends || (function () {
+                var _extendStatics2 = function extendStatics (d, b) {
+                    _extendStatics2 = Object.setPrototypeOf || {
+                        __proto__: []
+                    } instanceof Array && function (d, b) {
+                        d.__proto__ = b
+                    } || function (d, b) {
+                        for (var p in b) {
+                            if (b.hasOwnProperty(p)) {
+                                d[p] = b[p] 
+                            }
+                        }
+                    }
+
+                    return _extendStatics2(d, b)
+                }
+
+                return function (d, b) {
+                    _extendStatics2(d, b)
+
+                    function __ () {
+                        this.constructor = d
+                    }
+
+                    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __())
+                }
+            }()),
+
+            __importDefault = this && this.__importDefault || function (mod) {
+                return mod && mod.__esModule ? mod : {
+                    default: mod
+                }
+            }
+
         Object.defineProperty(exports, "__esModule", {
             value: true
         })
 
-        var Preset =
+        var _events_1 = __importDefault(__webpack_require__(2)),
+
+            Preset =
 
   /** @class */
-  (function () {
+  (function (_super) {
+      __extends(Preset, _super)
+
       function Preset () {
+          var _this = _super !== null && _super.apply(this, arguments) || this
 
           /**
            * Called when component catches error. Default behaviour is console.error
            * @param {Error} error - error object with info
            * @returns {void} void
            */
-          this.componentDidCatch = function (error) {
+          _this.componentDidCatch = function (error) {
               return console.error(error)
           }
 
@@ -603,7 +706,7 @@ var DeStagnate = (function (modules) {
            * @instance
            * @returns {void} void
            */
-          this.componentDidMount = function () {
+          _this.componentDidMount = function () {
               return undefined
           }
 
@@ -613,7 +716,7 @@ var DeStagnate = (function (modules) {
            * @instance
            * @returns {void} void
            */
-          this.componentDidUpdate = function () {
+          _this.componentDidUpdate = function () {
               return undefined
           }
 
@@ -623,7 +726,7 @@ var DeStagnate = (function (modules) {
            * @instance
            * @returns {void} void
            */
-          this.componentWillMount = function () {
+          _this.componentWillMount = function () {
               return undefined
           }
 
@@ -633,7 +736,7 @@ var DeStagnate = (function (modules) {
            * @instance
            * @returns {void} void
            */
-          this.componentWillUnmount = function () {
+          _this.componentWillUnmount = function () {
               return undefined
           }
 
@@ -643,7 +746,7 @@ var DeStagnate = (function (modules) {
            * @instance
            * @returns {void} void
            */
-          this.componentWillUpdate = function () {
+          _this.componentWillUpdate = function () {
               return undefined
           }
 
@@ -654,13 +757,15 @@ var DeStagnate = (function (modules) {
            * @abstract
            * @returns {null | HTMLElement | Array.<HTMLElement> | Element | Array.<Element>} if returns null error will be thrown
            */
-          this.render = function () {
+          _this.render = function () {
               return null
           }
+
+          return _this
       }
 
       return Preset
-  }())
+  }(_events_1.default))
 
         exports.default = Preset
     }, function (module, exports, __webpack_require__) {
@@ -672,8 +777,375 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.4.5
-         * @exports createElement
+         * @version 1.5.0
+         * @exports Events
+         * @package
+         */
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        })
+
+        var Events =
+
+  /** @class */
+  (function () {
+      function Events () {
+          var _this = this
+
+          /**
+           * Binds event listeners event
+           * Do not call manually
+           * @protected
+           * @instance
+           * @pacakge
+           * @param {HTMLElement} element - element to bind listeners to
+           * @returns {void} void;
+           */
+          this.bindEventListeners = function (element) {
+              var el = element.addEventListener
+
+              console.log("BINDING")
+
+              _this._focusListeners(el)
+
+              _this._animationListeners(el)
+
+              _this._transitionListeners(el)
+
+              _this._mouseListeners(el)
+          }
+
+          /**
+           * Binds event listeners event
+           * Do not call manually
+           * @protected
+           * @instance
+           * @pacakge
+           * @param {HTMLElement} element - element to bind listeners to
+           * @returns {void} void;
+           */
+          this.unbindEventListeners = function (element) {
+              var el = element.removeEventListener
+
+              _this._focusListeners(el)
+
+              _this._animationListeners(el)
+
+              _this._transitionListeners(el)
+
+              _this._mouseListeners(el)
+          }
+
+          /**
+           * Focus event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onFocus = function () {
+              return undefined
+          }
+
+          /**
+           * Blur event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onBlur = function () {
+              return undefined
+          }
+
+          /**
+           * Focus in event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onFocusIn = function () {
+              return undefined
+          }
+
+          /**
+           * Focus out event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onFocusOut = function () {
+              return undefined
+          }
+
+          /**
+           * Animation start event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onAnimationStart = function () {
+              return undefined
+          }
+
+          /**
+           * Animation cancel event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onAnimationCancel = function () {
+              return undefined
+          }
+
+          /**
+           * Animation end event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onAnimationEnd = function () {
+              return undefined
+          }
+
+          /**
+           * Animation iteration event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onAnimationIteration = function () {
+              return undefined
+          }
+
+          /**
+           * Transition start event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onTransitionStart = function () {
+              return undefined
+          }
+
+          /**
+           * Transition cancel event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onTransitionCancel = function () {
+              return undefined
+          }
+
+          /**
+           * Transition end event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onTransitionEnd = function () {
+              return undefined
+          }
+
+          /**
+           * Transition run event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onTransitionRun = function () {
+              return undefined
+          }
+
+          /**
+           * Auxillary click event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onAuxClick = function () {
+              return undefined
+          }
+
+          /**
+           * Click event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onClick = function () {
+              return undefined
+          }
+
+          /**
+           * Double click event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onDblClick = function () {
+              return undefined
+          }
+
+          /**
+           * Mousedown event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onMouseDown = function () {
+              return undefined
+          }
+
+          /**
+           * Mouse enter event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onMouseEnter = function () {
+              return undefined
+          }
+
+          /**
+           * Mouse leave event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onMouseLeave = function () {
+              return undefined
+          }
+
+          /**
+           * Mouse move event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onMouseMove = function () {
+              return undefined
+          }
+
+          /**
+           * Mouseover event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onMouseOver = function () {
+              return undefined
+          }
+
+          /**
+           * Mouseout event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onMouseOut = function () {
+              return undefined
+          }
+
+          /**
+           * Mouseup event
+           * @protected
+           * @instance
+           * @returns {void}
+           */
+          this.onMouseUp = function () {
+              return undefined
+          }
+
+          this._focusListeners = function (el) {
+              el("focus", _this.onFocus)
+              el("blur", _this.onBlur)
+              el("focusin", _this.onFocusIn)
+              el("focusout", _this.onFocusOut)
+          }
+
+          this._animationListeners = function (el) {
+              el("animationstart", _this.onAnimationStart)
+              el("animationcancel", _this.onAnimationCancel)
+              el("animationend", _this.onAnimationEnd)
+              el("animationiteration", _this.onAnimationIteration)
+          }
+
+          this._transitionListeners = function (el) {
+              el("transitionstart", _this.onTransitionStart)
+              el("transitioncancel", _this.onTransitionCancel)
+              el("transitionend", _this.onTransitionEnd)
+              el("transitionrun", _this.onTransitionRun)
+          }
+
+          this._mouseListeners = function (el) {
+              el("auxclick", _this.onAuxClick)
+              el("click", _this.onClick)
+              el("dblclick", _this.onDblClick)
+              el("mousedown", _this.onMouseDown)
+              el("mouseenter", _this.onMouseEnter)
+              el("mouseleave", _this.onMouseLeave)
+              el("mousemove", _this.onMouseMove)
+              el("mouseover", _this.onMouseOver)
+              el("mouseout", _this.onMouseOut)
+              el("mouseup", _this.onMouseUp)
+          }
+      }
+
+      return Events
+  }())
+
+        exports.default = Events
+    }, function (module, exports, __webpack_require__) {
+
+
+        /**
+         * DeStagnate
+         * A simple, ReactJS inspired library to create dynamic components within static sites easier
+         * @copyright Copyright (C) 2020 Luke Zhang
+         * @author Luke Zhang luke-zhang-04.github.io
+         * @license MIT
+         * @version 1.5.0
+         * @exports createDSComponent add nested component for DeStagnate components
+         */
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        })
+
+        /**
+         * Creates nested DeStagnate component
+         * @param {DeStagnateConstructor} Component - DeStagnate component
+         * @param {Object<string, unknown>} props - props of component
+         * @param {Object<string, undefined | DeStagnate>} ref - ref object
+         * @returns {HTMLDivElement} parent of component
+         */
+        var createDSComponent = function createDSComponent (Component, props, ref) {
+            var element = document.createElement("div")
+
+            element.classList.add("DeStagnate-component-parent")
+
+            var _component = new Component(element, props)
+
+            _component.mount()
+
+            if (ref) {
+                ref.current = _component
+            }
+
+            return element
+        }
+
+        exports.default = createDSComponent
+    }, function (module, exports, __webpack_require__) {
+
+
+        /**
+         * DeStagnate
+         * A simple, ReactJS inspired library to create dynamic components within static sites easier
+         * @copyright Copyright (C) 2020 Luke Zhang
+         * @author Luke Zhang luke-zhang-04.github.io
+         * @license MIT
+         * @version 1.5.0
+         * @exports createElement function for DOM manipulation
          */
         var __values = this && this.__values || function (o) {
                 var s = typeof Symbol === "function" && Symbol.iterator,
@@ -781,6 +1253,8 @@ var DeStagnate = (function (modules) {
                             if (typeof val === "function") {
                                 element.addEventListener(key.slice(2).toLowerCase(), val)
                             }
+                        } else if (key === "ref" && _typeof(val) === "object" && "current" in val) {
+                            val.current = element
                         } else {
                             console.warn(`WARN: Invalid prop type "${_typeof(val)}" for key "${key}". Skipping prop.`)
                         }
@@ -887,9 +1361,9 @@ var DeStagnate = (function (modules) {
         /**
          * Creates a child element to DynamComponent
          * @param {string} tagName - name of HTML element
-         * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
-         * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-         * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
+         * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+         * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+         * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
          * @returns {HTMLElement} html element
          */
         var createElement = function createElement (tagName, props, children) {
@@ -928,8 +1402,8 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.4.5
-         * @exports createElementNS
+         * @version 1.5.0
+         * @exports createElementNS createElement for namespaced elements
          */
         var __read = this && this.__read || function (o, n) {
                 var m = typeof Symbol === "function" && o[Symbol.iterator]
@@ -978,7 +1452,7 @@ var DeStagnate = (function (modules) {
         })
         exports.createElementNS = void 0
 
-        var createElement_1 = __webpack_require__(2)
+        var createElement_1 = __webpack_require__(4)
 
         /**
          * Creates a child element to deStagnate
@@ -1016,7 +1490,29 @@ var DeStagnate = (function (modules) {
         }
 
         exports.default = exports.createElementNS
+    }, function (module, exports, __webpack_require__) {
+        
+
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        })
+
+        /**
+         * Creates a reference for a nested component
+         * @returns {Object<string, null>} empty ref object
+         */
+        var createRef = function createRef () {
+            return {
+                current: null
+            }
+        }
+
+        /**
+         * Creates a reference for a nested component
+         * @returns {Object<string, null>} empty ref object
+         */
+        exports.default = createRef
     }
 ]))
 
-// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVFbGVtZW50TlMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztpQkFBQSxVQUFBLE9BQUEsRUFBQTs7OztBQVFHLFFBQUEsZ0JBQUEsQ0FBQSxRQUFBLENBQUEsRUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBa0JBLEc7O0FBTUMsRUFBQSxtQkFBQSxDQUFBLENBQUEsR0FBQSxVQUFBLE9BQUEsRUFBa0M7QUFBbEMsUUFBQSxPQUFBLE1BQUEsS0FBQSxXQUFBLElBQWtDLE1BQUEsQ0FBQSxXQUFsQyxFQUFrQzs7OztBQUU1Qjs7QUFFTixJQUFBLE1BQUEsQ0FBQSxjQUFBLENBQVcsT0FBWCxFQUFvQixZQUFwQixFQUFnQztBQUFBLE1BQUEsS0FBQSxFQUFBO0FBQUEsS0FBaEM7QUFFSSxHQU5KOztBQWdCSyxFQUFBLG1CQUFBLENBQUEsQ0FBQSxHQUFBLFVBQUEsS0FBQSxFQUFBLElBQUEsRUFBQTtBQUNKLFFBQUEsSUFBQSxHQUFBLENBQUEsRUFBQSxLQUFBLEdBQUEsbUJBQUEsQ0FBQSxLQUFBLENBQUE7QUFFRCxRQUFBLElBQUEsR0FBQSxDQUFBLEVBQUEsT0FBQSxLQUFBO0FBRU8sUUFBQSxJQUFPLEdBQUEsQ0FBUCxJQUFPLFFBQUEsS0FBQSxNQUFBLFFBQVAsSUFBTyxLQUFQLElBQU8sS0FBQSxDQUFBLFVBQVAsRUFBTyxPQUFBLEtBQUE7QUFDakIsUUFBQSxFQUFBLEdBQUEsTUFBQSxDQUFBLE1BQUEsQ0FBQSxJQUFBLENBQUE7O0FBRUQsSUFBQSxtQkFBZSxDQUFBLENBQWYsQ0FBZSxFQUFmOzs7Ozs7Ozs7Ozs7R0FSUzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Q0FoRFQsQzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7RUFBQSxDIiwiZmlsZSI6ImRlU3RhZ25hdGUuYnVuZGxlLmpzIn0=
+// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVSZWYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQW1CTSxXQUFZLG1CQUFaLENBQXlELFFBQXpELEVBQXlEO0FBSS9ELFFBQUEsZ0JBQUEsQ0FBQSxRQUFBLENBQUEsRUFBQTs7OztBQUlBLFFBQUEsTUFBZSxHQUFBLGdCQUFTLENBQUEsUUFBQSxDQUFULEdBQVM7aUJBQUE7Y0FBQTs7QUFBQSxLQUF4QiIsImZpbGUiOiJkZVN0YWduYXRlLmJ1bmRsZS5qcyJ9

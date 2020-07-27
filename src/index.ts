@@ -4,14 +4,16 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.4.5
+ * @version 1.5.0
  * @exports DeStagnate main destagnate class
  * @file main file for destagnate
  */
 
 import Preset from "./_preset"
+import {default as _createDSComponent} from "./createDSComponent"
 import {default as _createElement} from "./createElement"
 import {default as _createElementNS} from "./createElementNS"
+import {default as _createRef} from "./createRef"
 
 type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
 
@@ -26,14 +28,27 @@ export default abstract class DeStagnate
     <Props = Record<string, unknown>, State = Record<string, unknown>>
     extends Preset {
 
+
     /**
-     * Creates a child element to deStagnate
+     * Creates nested DeStagnate component
+     * @public
+     * @static
+     * @readonly
+     * @param {DeStagnateConstructor} Component - DeStagnate component
+     * @param {Object<string, unknown>} props - props of component
+     * @returns {HTMLDivElement} parent of component
+     */
+    public static readonly createDSComponent = _createDSComponent
+
+    /**
+     * Creates a child element to DynamComponent
      * @public
      * @static
      * @readonly
      * @param {string} tagName - name of HTML element
-     * @param {undefined | Object.<string, string | number>} props - element properties
-     * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - child of element, or array of children
+     * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+     * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+     * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
      * @returns {HTMLElement} html element
      */
     public static readonly createElement = _createElement
@@ -53,13 +68,34 @@ export default abstract class DeStagnate
     public static readonly createElementNS = _createElementNS
 
     /**
-     * Creates a child element to deStagnate
+     * Creates a reference for a nested component
+     * @public
+     * @static
+     * @readonly
+     * @returns {Object<string, null>} empty ref object
+     */
+    public static readonly createRef = _createRef
+
+    /**
+     * Creates nested DeStagnate component
+     * @public
+     * @instance
+     * @readonly
+     * @param {DeStagnateConstructor} Component - DeStagnate component
+     * @param {Object<string, unknown>} props - props of component
+     * @returns {HTMLDivElement} parent of component
+     */
+    public readonly createDSComponent = DeStagnate.createDSComponent
+
+    /**
+     * Creates a child element to DynamComponent
      * @public
      * @instance
      * @readonly
      * @param {string} tagName - name of HTML element
-     * @param {undefined | Object.<string, string | number>} props - element properties
-     * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - child of element, or array of children
+     * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+     * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+     * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
      * @returns {HTMLElement} html element
      */
     public readonly createElement = DeStagnate.createElement
@@ -77,6 +113,15 @@ export default abstract class DeStagnate
      * @returns {HTMLElement} html element
      */
     public readonly createElementNS = DeStagnate.createElementNS
+
+    /**
+     * Creates a reference for a nested component
+     * @public
+     * @instance
+     * @readonly
+     * @returns {Object<string, null>} empty ref object
+     */
+    public readonly createRef = DeStagnate.createRef
 
     /**
      * State of component. Works similar React State
@@ -250,14 +295,16 @@ export default abstract class DeStagnate
 
                 throw new Error(msg)
             }
-            
-            this.componentDidMount()
 
             if (typeof(component) === "object" && component instanceof Array) {
                 return (component as Element[]).map((element) => (
                     this._parent.appendChild(element)
                 ))
             }
+
+            this.bindEventListeners(this._parent)
+
+            this.componentDidMount()
 
             return this._parent.appendChild(component)
         } catch (err) {
@@ -286,6 +333,8 @@ export default abstract class DeStagnate
     public readonly unmountComponent = (): void => {
         try {
             this.componentWillUnmount()
+
+            this.unbindEventListeners(this._parent)
     
             this._removeChildren()
         } catch (err) {
@@ -333,6 +382,14 @@ export default abstract class DeStagnate
 }
 
 /**
+ * Creates nested DeStagnate component
+ * @param {DeStagnateConstructor} Component - DeStagnate component
+ * @param {Object<string, unknown>} props - props of component
+ * @returns {HTMLDivElement} parent of component
+ */
+export const createDSComponent = _createDSComponent
+
+/**
  * Creates a child element to deStagnate
  * @param {string} tagName - name of HTML element
  * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
@@ -342,12 +399,18 @@ export default abstract class DeStagnate
 export const createElement = _createElement
 
 /**
- * Creates a child element to deStagnate
- * @param {string | null} namespaceURI - namespace uri
+ * Creates a child element to DynamComponent
  * @param {string} tagName - name of HTML element
- * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
- * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
+ * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+ * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+ * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
  * @returns {HTMLElement} html element
  */
 export const createElementNS = _createElementNS
+
+
+/**
+ * Creates a reference for a nested component
+ * @returns {Object<string, undefined>} empty ref object
+ */
+export const createRef = _createRef

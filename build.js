@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.4.5
+ * @version 1.5.0
  */
 
 // Replaces comments with exessive newlines with one newline

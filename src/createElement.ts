@@ -4,21 +4,19 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.4.5
- * @exports createElement
+ * @version 1.5.0
+ * @exports createElement function for DOM manipulation
  */
+
+import {Ref} from "./createRef"
 
 /* eslint-disable one-var */
 
-export type ChildrenFlatArrayType = HTMLElement[]
-    | string[]
-    | number[]
-    | Element[]
-    | ((HTMLElement | Element) | string)[]
-    | ((HTMLElement | Element) | number)[]
-    | (string | number)[]
-    | ((HTMLElement | Element) | string | number)[]
-    | (HTMLElement | Element)[]
+export type ChildrenFlatArrayType = (HTMLElement
+    | Element
+    | number
+    | string
+)[]
 
 export type ChildrenArrayType = ChildrenFlatArrayType
     | ChildrenArrayType[]
@@ -32,6 +30,8 @@ export type ChildrenType = HTMLElement
     | ChildrenArrayType
     | Element
 
+type EventFunc = (e: Event)=> void
+
 /**
  * Binds children to element
  * @package
@@ -42,7 +42,7 @@ export type ChildrenType = HTMLElement
  */
 export const _bindProps = (
     element: Element,
-    props?: {[key: string]: unknown},
+    props?: {[key: string]: string | number | Element | Ref | EventFunc},
     ns = false,
 ): void => {
     if (props) {
@@ -60,9 +60,15 @@ export const _bindProps = (
                     element.addEventListener(
                         key.slice(2)
                             .toLowerCase() as keyof HTMLElementEventMap,
-                        val as ()=> void
+                        val
                     )
                 }
+            } else if (
+                key === "ref" &&
+                typeof(val) === "object" &&
+                "current" in val
+            ) {
+                (val as Ref<Element>).current = element
             } else {
                 console.warn(`WARN: Invalid prop type "${typeof(val)}" for key "${key}". Skipping prop.`)
             }
@@ -129,14 +135,14 @@ export const _bindChildren = (
 /**
  * Creates a child element to DynamComponent
  * @param {string} tagName - name of HTML element
- * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
- * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
+ * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+ * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+ * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
  * @returns {HTMLElement} html element
  */
 const createElement = <T extends keyof HTMLElementTagNameMap>(
     tagName: T,
-    props?: {[key: string]: string | number},
+    props?: {[key: string]: string | number | Element | Ref | EventFunc},
     children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
 ): HTMLElementTagNameMap[T] => {

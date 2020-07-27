@@ -35,10 +35,6 @@ build() {
 
     wait
 
-    # Copy bundle
-    printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
-    echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js &
-
     # Format development dist
     printf "${BIPurple}Formatting ${Red}dist ${Green}bundle\n"
     npx eslint ./dist/deStagnate.bundle.js --fix --env browser --rule "{\"no-var\": \"off\", \"prefer-arrow/prefer-arrow-functions\": \"off\", \"camelcase\": \"off\", \"id-length\": \"off\"}" > out.log &
@@ -47,11 +43,12 @@ build() {
 
     node build.js ./dist/deStagnate.bundle.js
 
-    echo "/* Destagnate v1.4.5 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+    echo "/* Destagnate v1.5.0 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
+\"use strict\";
 $(cat ./dist/deStagnate.bundle.js)" > ./dist/deStagnate.bundle.js &
 
-    echo "/* Destagnate v1.4.5 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+    echo "/* Destagnate v1.5.0 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
 $(cat ./dist/deStagnate.bundle.min.js)" > ./dist/deStagnate.bundle.min.js &
 
@@ -71,6 +68,10 @@ $(cat ./dist/deStagnate.bundle.min.js)" > ./dist/deStagnate.bundle.min.js &
             node build.js "$d"
         fi
     done
+
+    # Copy bundle
+    printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
+    echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js &
 
     wait
 
