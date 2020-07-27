@@ -41,13 +41,14 @@ export default abstract class DeStagnate
     public static readonly createDSComponent = _createDSComponent
 
     /**
-     * Creates a child element to deStagnate
+     * Creates a child element to DynamComponent
      * @public
      * @static
      * @readonly
      * @param {string} tagName - name of HTML element
-     * @param {undefined | Object.<string, string | number>} props - element properties
-     * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - child of element, or array of children
+     * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+     * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+     * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
      * @returns {HTMLElement} html element
      */
     public static readonly createElement = _createElement
@@ -71,7 +72,7 @@ export default abstract class DeStagnate
      * @public
      * @static
      * @readonly
-     * @returns {Object<string, undefined>} empty ref object
+     * @returns {Object<string, null>} empty ref object
      */
     public static readonly createRef = _createRef
 
@@ -87,13 +88,14 @@ export default abstract class DeStagnate
     public readonly createDSComponent = DeStagnate.createDSComponent
 
     /**
-     * Creates a child element to deStagnate
+     * Creates a child element to DynamComponent
      * @public
      * @instance
      * @readonly
      * @param {string} tagName - name of HTML element
-     * @param {undefined | Object.<string, string | number>} props - element properties
-     * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - child of element, or array of children
+     * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+     * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+     * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
      * @returns {HTMLElement} html element
      */
     public readonly createElement = DeStagnate.createElement
@@ -117,7 +119,7 @@ export default abstract class DeStagnate
      * @public
      * @instance
      * @readonly
-     * @returns {Object<string, undefined>} empty ref object
+     * @returns {Object<string, null>} empty ref object
      */
     public readonly createRef = DeStagnate.createRef
 
@@ -393,12 +395,11 @@ export const createDSComponent = _createDSComponent
 export const createElement = _createElement
 
 /**
- * Creates a child element to deStagnate
- * @param {string | null} namespaceURI - namespace uri
+ * Creates a child element to DynamComponent
  * @param {string} tagName - name of HTML element
- * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
- * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
+ * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+ * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+ * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
  * @returns {HTMLElement} html element
  */
 export const createElementNS = _createElementNS

@@ -135,9 +135,9 @@ export const _bindChildren = (
 /**
  * Creates a child element to DynamComponent
  * @param {string} tagName - name of HTML element
- * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
- * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
+ * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+ * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+ * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
  * @returns {HTMLElement} html element
  */
 const createElement = <T extends keyof HTMLElementTagNameMap>(
