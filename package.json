@@ -38,10 +38,14 @@
     "type": "git",
     "url": "git+https://github.com/Luke-zhang-04/DeStagnate.git"
   },
-  "keywords": ["dynamic", "component", "web"],
+  "keywords": [
+    "dynamic",
+    "component",
+    "web"
+  ],
   "author": {
-    "name" : "Luke Zhang",
-    "url" : "https://luke-zhang-04.github.io"
+    "name": "Luke Zhang",
+    "url": "https://luke-zhang-04.github.io"
   },
   "license": "MIT",
   "bugs": {
