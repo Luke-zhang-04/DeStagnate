@@ -38,4 +38,5 @@ exclude_patterns:
   - "./src/createElement.ts"
   - "./cli/*.js"
   - "./src/*.js"
+  - "*.config.js"
   

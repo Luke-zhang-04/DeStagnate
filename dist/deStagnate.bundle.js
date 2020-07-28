@@ -1,4 +1,4 @@
-/* Destagnate v1.5.0 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+/* Destagnate v1.5.1 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
 "use strict";
 
@@ -119,7 +119,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.5.0
+         * @version 1.5.1
          * @exports DeStagnate main destagnate class
          * @file main file for destagnate
          */
@@ -638,7 +638,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.5.0
+         * @version 1.5.1
          * @exports Preset
          * @package
          */
@@ -781,6 +781,65 @@ var DeStagnate = (function (modules) {
          * @exports Events
          * @package
          */
+        var __values = this && this.__values || function (o) {
+                var s = typeof Symbol === "function" && Symbol.iterator,
+                    m = s && o[s],
+                    i = 0
+
+                if (m) {
+                    return m.call(o) 
+                }
+                if (o && typeof o.length === "number") {
+                    return {
+                        next: function next () {
+                            if (o && i >= o.length) {
+                                o = void 0 
+                            }
+                            
+                            return {
+                                value: o && o[i++],
+                                done: !o
+                            }
+                        }
+                    } 
+                }
+                throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.")
+            },
+
+            __read = this && this.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator]
+
+                if (!m) {
+                    return o 
+                }
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value)
+                    }
+                } catch (error) {
+                    e = {
+                        error
+                    }
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i.return)) {
+                            m.call(i) 
+                        }
+                    } finally {
+                        if (e) {
+                            throw e.error 
+                        }
+                    }
+                }
+
+                return ar
+            }
+
         Object.defineProperty(exports, "__esModule", {
             value: true
         })
@@ -802,17 +861,7 @@ var DeStagnate = (function (modules) {
            * @returns {void} void;
            */
           this.bindEventListeners = function (element) {
-              var el = element.addEventListener
-
-              console.log("BINDING")
-
-              _this._focusListeners(el)
-
-              _this._animationListeners(el)
-
-              _this._transitionListeners(el)
-
-              _this._mouseListeners(el)
+              _this._eventListener(element.addEventListener)
           }
 
           /**
@@ -825,15 +874,7 @@ var DeStagnate = (function (modules) {
            * @returns {void} void;
            */
           this.unbindEventListeners = function (element) {
-              var el = element.removeEventListener
-
-              _this._focusListeners(el)
-
-              _this._animationListeners(el)
-
-              _this._transitionListeners(el)
-
-              _this._mouseListeners(el)
+              _this._eventListener(element.removeEventListener)
           }
 
           /**
@@ -1056,38 +1097,59 @@ var DeStagnate = (function (modules) {
               return undefined
           }
 
-          this._focusListeners = function (el) {
-              el("focus", _this.onFocus)
-              el("blur", _this.onBlur)
-              el("focusin", _this.onFocusIn)
-              el("focusout", _this.onFocusOut)
+          this._eventListener = function (el) {
+              var e_1, _a
+
+              try {
+                  for (var _b = __values(Object.entries(_this._events())), _c = _b.next(); !_c.done; _c = _b.next()) {
+                      var _d = __read(_c.value, 2),
+                          event_1 = _d[0],
+                          callback = _d[1]
+
+                      el(event_1, callback)
+                  }
+              } catch (e_1_1) {
+                  e_1 = {
+                      error: e_1_1
+                  }
+              } finally {
+                  try {
+                      if (_c && !_c.done && (_a = _b.return)) {
+                          _a.call(_b) 
+                      }
+                  } finally {
+                      if (e_1) {
+                          throw e_1.error 
+                      }
+                  }
+              }
           }
 
-          this._animationListeners = function (el) {
-              el("animationstart", _this.onAnimationStart)
-              el("animationcancel", _this.onAnimationCancel)
-              el("animationend", _this.onAnimationEnd)
-              el("animationiteration", _this.onAnimationIteration)
-          }
-
-          this._transitionListeners = function (el) {
-              el("transitionstart", _this.onTransitionStart)
-              el("transitioncancel", _this.onTransitionCancel)
-              el("transitionend", _this.onTransitionEnd)
-              el("transitionrun", _this.onTransitionRun)
-          }
-
-          this._mouseListeners = function (el) {
-              el("auxclick", _this.onAuxClick)
-              el("click", _this.onClick)
-              el("dblclick", _this.onDblClick)
-              el("mousedown", _this.onMouseDown)
-              el("mouseenter", _this.onMouseEnter)
-              el("mouseleave", _this.onMouseLeave)
-              el("mousemove", _this.onMouseMove)
-              el("mouseover", _this.onMouseOver)
-              el("mouseout", _this.onMouseOut)
-              el("mouseup", _this.onMouseUp)
+          this._events = function () {
+              return {
+                  focus: _this.onFocus,
+                  blur: _this.onBlur,
+                  focusin: _this.onFocusIn,
+                  focusout: _this.onFocusOut,
+                  animationstart: _this.onAnimationStart,
+                  animationcancel: _this.onAnimationCancel,
+                  animationend: _this.onAnimationEnd,
+                  animationiteration: _this.onAnimationIteration,
+                  transitionstart: _this.onTransitionStart,
+                  transitioncancel: _this.onTransitionCancel,
+                  transitionend: _this.onTransitionEnd,
+                  transitionrun: _this.onTransitionRun,
+                  auxclick: _this.onAuxClick,
+                  click: _this.onClick,
+                  dblclick: _this.onDblClick,
+                  mousedown: _this.onMouseDown,
+                  mouseenter: _this.onMouseEnter,
+                  mouseleave: _this.onMouseLeave,
+                  mousemove: _this.onMouseMove,
+                  mouseover: _this.onMouseOver,
+                  mouseout: _this.onMouseOut,
+                  mouseup: _this.onMouseUp
+              }
           }
       }
 
@@ -1104,7 +1166,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.5.0
+         * @version 1.5.1
          * @exports createDSComponent add nested component for DeStagnate components
          */
         Object.defineProperty(exports, "__esModule", {
@@ -1144,7 +1206,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.5.0
+         * @version 1.5.1
          * @exports createElement function for DOM manipulation
          */
         var __values = this && this.__values || function (o) {
@@ -1402,7 +1464,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.5.0
+         * @version 1.5.1
          * @exports createElementNS createElement for namespaced elements
          */
         var __read = this && this.__read || function (o, n) {

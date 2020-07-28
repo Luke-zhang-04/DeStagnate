@@ -1,24 +1,19 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const calculator = {
-        entry: "./docs/src/calculator.js",
-        output: "docs/compiled/calculator.js",
-        mode: "development",
-    },
-    counter = {
-        entry: "./docs/src/counter.js",
-        output: "docs/compiled/counter.js",
-        mode: "development",
-    },
-    nest = {
-        entry: "./docs/src/tictactoe.ts",
-        output: "docs/compiled/tictactoe.js",
-        mode: "development"
-    },
-    ref = {
-        entry: "./docs/src/ref.ts",
-        output: "docs/compiled/ref.js",
-        mode: "development"
+const paths = ["calculator", "counter", "tictactoe.ts", "ref.ts"]
+
+module.exports = paths.map((val) => {
+    if (val.includes(".ts")) {
+        return {
+            entry: `./docs/src/${val}`,
+            output: `./docs/compiled/${val.replace(".ts", "")}.js`,
+            mode: "development",
+        }
     }
 
-module.exports = [calculator, counter, nest, ref]
+    return {
+        entry: `./docs/src/${val}.js`,
+        output: `./docs/compiled/${val}.js`,
+        mode: "development",
+    }
+})

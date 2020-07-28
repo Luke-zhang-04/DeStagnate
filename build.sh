@@ -43,12 +43,12 @@ build() {
 
     node build.js ./dist/deStagnate.bundle.js
 
-    echo "/* Destagnate v1.5.0 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+    echo "/* Destagnate v1.5.1 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
 \"use strict\";
 $(cat ./dist/deStagnate.bundle.js)" > ./dist/deStagnate.bundle.js &
 
-    echo "/* Destagnate v1.5.0 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+    echo "/* Destagnate v1.5.1 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
 $(cat ./dist/deStagnate.bundle.min.js)" > ./dist/deStagnate.bundle.min.js &
 
@@ -77,6 +77,32 @@ $(cat ./dist/deStagnate.bundle.min.js)" > ./dist/deStagnate.bundle.min.js &
 
 }
 
+buildDev() {
+    # Compile sass for docs (not really necessary)
+    printf "${BIYellow}Compiling ${Red}./docs/scss/ ${Purple}to ${BIBlue}./docs/css/ ${Purple}with ${BIRed}SASS${Purple}\n"
+    printf "\t${BIYellow}Compiling ${Red}./docs/scss/style.scss ${Purple}to ${BIBlue}./docs/css/styles.css ${Purple}with ${BIRed}SASS${Purple}\n"
+    sass docs/scss/style.scss docs/styles.css --style compressed &
+
+    # Compile typescript
+    printf "${BIYellow}Compiling ${BIBlue}./src/${Purple} with ${BIBlue}TypeScript\n"
+    npx tsc -p tsconfig.json &
+    npx tsc -p tsconfig.cli.json &
+
+    wait
+
+    rm -rf cli/package.json
+
+    # Run Webpack on ./build
+    printf "${BIBlue}Packing ${Yellow}./lib/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
+    npx webpack
+
+    # Copy bundle
+    printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
+    echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js &
+
+    wait
+}
+
 # Watches for file changes and executes build
 watch() {
     fileChange1=""
@@ -85,7 +111,7 @@ watch() {
         fileChange2=$(find lib/ -type f -exec md5 {} \;)
 
         if [[ "$fileChange1" != "$fileChange2" ]] ; then           
-            build
+            buildDev
             clear
             printf "Compiled successfully!\n\n"
 
@@ -99,6 +125,8 @@ watch() {
 
 if [[ "$1" == "--watch" ]]; then
     watch
+elif [[ "$1" == "-d" ]]||[[ "$1" == "--dev" ]]; then
+    buildDev
 else
     build
 fi
