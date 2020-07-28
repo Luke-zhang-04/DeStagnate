@@ -4,16 +4,38 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.5.1
+ * @version 1.5.0
  * @exports Events
  * @package
  */
 
-type El = (
-    type: string,
-    listener: EventListenerOrEventListenerObject,
-    options?: boolean | AddEventListenerOptions,
-)=> void
+interface EventsList {
+    focus: EventListenerOrEventListenerObject,
+    blur: EventListenerOrEventListenerObject,
+    focusin: EventListenerOrEventListenerObject,
+    focusout: EventListenerOrEventListenerObject,
+
+    animationstart: EventListenerOrEventListenerObject,
+    animationcancel: EventListenerOrEventListenerObject,
+    animationend: EventListenerOrEventListenerObject,
+    animationiteration: EventListenerOrEventListenerObject,
+
+    transitionstart: EventListenerOrEventListenerObject,
+    transitioncancel: EventListenerOrEventListenerObject,
+    transitionend: EventListenerOrEventListenerObject,
+    transitionrun: EventListenerOrEventListenerObject,
+
+    auxclick: EventListenerOrEventListenerObject,
+    click: EventListenerOrEventListenerObject,
+    dblclick: EventListenerOrEventListenerObject,
+    mousedown: EventListenerOrEventListenerObject,
+    mouseenter: EventListenerOrEventListenerObject,
+    mouseleave: EventListenerOrEventListenerObject,
+    mousemove: EventListenerOrEventListenerObject,
+    mouseover: EventListenerOrEventListenerObject,
+    mouseout: EventListenerOrEventListenerObject,
+    mouseup: EventListenerOrEventListenerObject,
+}
 
 export default class Events {
 
@@ -27,14 +49,9 @@ export default class Events {
      * @returns {void} void;
      */
     protected bindEventListeners = (element: HTMLElement): void => {
-        const el = element.addEventListener
-
-        console.log("BINDING")
-
-        this._focusListeners(el)
-        this._animationListeners(el)
-        this._transitionListeners(el)
-        this._mouseListeners(el)
+        for (const [event, callback] of Object.entries(this._events())) {
+            element.addEventListener(event, callback)
+        }
     }
 
     /**
@@ -47,12 +64,9 @@ export default class Events {
      * @returns {void} void;
      */
     protected unbindEventListeners = (element: HTMLElement): void => {
-        const el = element.removeEventListener
-
-        this._focusListeners(el)
-        this._animationListeners(el)
-        this._transitionListeners(el)
-        this._mouseListeners(el)
+        for (const [event, callback] of Object.entries(this._events())) {
+            element.removeEventListener(event, callback)
+        }
     }
 
     /**
@@ -233,38 +247,32 @@ export default class Events {
      */
     protected onMouseUp = (): void => undefined
 
-    private _focusListeners = (el: El): void => {
-        el("focus", this.onFocus)
-        el("blur", this.onBlur)
-        el("focusin", this.onFocusIn)
-        el("focusout", this.onFocusOut)
-    }
+    private _events = (): EventsList => ({
+        focus: this.onFocus,
+        blur: this.onBlur,
+        focusin: this.onFocusIn,
+        focusout: this.onFocusOut,
 
-    private _animationListeners = (el: El): void => {
-        el("animationstart", this.onAnimationStart)
-        el("animationcancel", this.onAnimationCancel)
-        el("animationend", this.onAnimationEnd)
-        el("animationiteration", this.onAnimationIteration)
-    }
+        animationstart: this.onAnimationStart,
+        animationcancel: this.onAnimationCancel,
+        animationend: this.onAnimationEnd,
+        animationiteration: this.onAnimationIteration,
 
-    private _transitionListeners = (el: El): void => {
-        el("transitionstart", this.onTransitionStart)
-        el("transitioncancel", this.onTransitionCancel)
-        el("transitionend", this.onTransitionEnd)
-        el("transitionrun", this.onTransitionRun)
-    }
+        transitionstart: this.onTransitionStart,
+        transitioncancel: this.onTransitionCancel,
+        transitionend: this.onTransitionEnd,
+        transitionrun: this.onTransitionRun,
 
-    private _mouseListeners = (el: El): void => {
-        el("auxclick", this.onAuxClick)
-        el("click", this.onClick)
-        el("dblclick", this.onDblClick)
-        el("mousedown", this.onMouseDown)
-        el("mouseenter", this.onMouseEnter)
-        el("mouseleave", this.onMouseLeave)
-        el("mousemove", this.onMouseMove)
-        el("mouseover", this.onMouseOver)
-        el("mouseout", this.onMouseOut)
-        el("mouseup", this.onMouseUp)
-    }
+        auxclick: this.onAuxClick,
+        click: this.onClick,
+        dblclick: this.onDblClick,
+        mousedown: this.onMouseDown,
+        mouseenter: this.onMouseEnter,
+        mouseleave: this.onMouseLeave,
+        mousemove: this.onMouseMove,
+        mouseover: this.onMouseOver,
+        mouseout: this.onMouseOut,
+        mouseup: this.onMouseUp,
+    })
 
 }
