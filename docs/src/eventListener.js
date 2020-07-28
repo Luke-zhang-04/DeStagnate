@@ -14,7 +14,7 @@ class EventListener extends DS.default {
         }
     }
 
-    onClick = (event) => {
+    onClick = () => {
         const colors = [
             "primary",
             "secondary",
