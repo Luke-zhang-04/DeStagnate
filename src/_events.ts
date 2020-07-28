@@ -9,6 +9,12 @@
  * @package
  */
 
+type El = (
+    type: string,
+    listener: EventListenerOrEventListenerObject,
+    options?: boolean | AddEventListenerOptions,
+)=> void
+
 interface EventsList {
     focus: EventListenerOrEventListenerObject,
     blur: EventListenerOrEventListenerObject,
@@ -49,9 +55,7 @@ export default class Events {
      * @returns {void} void;
      */
     protected bindEventListeners = (element: HTMLElement): void => {
-        for (const [event, callback] of Object.entries(this._events())) {
-            element.addEventListener(event, callback)
-        }
+        this._eventListener(element.addEventListener)
     }
 
     /**
@@ -64,9 +68,7 @@ export default class Events {
      * @returns {void} void;
      */
     protected unbindEventListeners = (element: HTMLElement): void => {
-        for (const [event, callback] of Object.entries(this._events())) {
-            element.removeEventListener(event, callback)
-        }
+        this._eventListener(element.removeEventListener)
     }
 
     /**
@@ -246,6 +248,12 @@ export default class Events {
      * @returns {void}
      */
     protected onMouseUp = (): void => undefined
+
+    private _eventListener = (el: El): void => {
+        for (const [event, callback] of Object.entries(this._events())) {
+            el(event, callback)
+        }
+    }
 
     private _events = (): EventsList => ({
         focus: this.onFocus,

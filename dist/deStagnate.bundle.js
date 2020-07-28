@@ -861,31 +861,7 @@ var DeStagnate = (function (modules) {
            * @returns {void} void;
            */
           this.bindEventListeners = function (element) {
-              var e_1, _a
-
-              try {
-                  for (var _b = __values(Object.entries(_this._events())), _c = _b.next(); !_c.done; _c = _b.next()) {
-                      var _d = __read(_c.value, 2),
-                          event_1 = _d[0],
-                          callback = _d[1]
-
-                      element.addEventListener(event_1, callback)
-                  }
-              } catch (e_1_1) {
-                  e_1 = {
-                      error: e_1_1
-                  }
-              } finally {
-                  try {
-                      if (_c && !_c.done && (_a = _b.return)) {
-                          _a.call(_b) 
-                      }
-                  } finally {
-                      if (e_1) {
-                          throw e_1.error 
-                      }
-                  }
-              }
+              _this._eventListener(element.addEventListener)
           }
 
           /**
@@ -898,31 +874,7 @@ var DeStagnate = (function (modules) {
            * @returns {void} void;
            */
           this.unbindEventListeners = function (element) {
-              var e_2, _a
-
-              try {
-                  for (var _b = __values(Object.entries(_this._events())), _c = _b.next(); !_c.done; _c = _b.next()) {
-                      var _d = __read(_c.value, 2),
-                          event_2 = _d[0],
-                          callback = _d[1]
-
-                      element.removeEventListener(event_2, callback)
-                  }
-              } catch (e_2_1) {
-                  e_2 = {
-                      error: e_2_1
-                  }
-              } finally {
-                  try {
-                      if (_c && !_c.done && (_a = _b.return)) {
-                          _a.call(_b) 
-                      }
-                  } finally {
-                      if (e_2) {
-                          throw e_2.error 
-                      }
-                  }
-              }
+              _this._eventListener(element.removeEventListener)
           }
 
           /**
@@ -1143,6 +1095,34 @@ var DeStagnate = (function (modules) {
            */
           this.onMouseUp = function () {
               return undefined
+          }
+
+          this._eventListener = function (el) {
+              var e_1, _a
+
+              try {
+                  for (var _b = __values(Object.entries(_this._events())), _c = _b.next(); !_c.done; _c = _b.next()) {
+                      var _d = __read(_c.value, 2),
+                          event_1 = _d[0],
+                          callback = _d[1]
+
+                      el(event_1, callback)
+                  }
+              } catch (e_1_1) {
+                  e_1 = {
+                      error: e_1_1
+                  }
+              } finally {
+                  try {
+                      if (_c && !_c.done && (_a = _b.return)) {
+                          _a.call(_b) 
+                      }
+                  } finally {
+                      if (e_1) {
+                          throw e_1.error 
+                      }
+                  }
+              }
           }
 
           this._events = function () {
