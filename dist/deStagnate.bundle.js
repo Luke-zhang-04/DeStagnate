@@ -396,13 +396,13 @@ var DeStagnate = (function (modules) {
                       throw new Error(msg)
                   }
 
-                  if (_typeof(component) === "object" && component instanceof Array) {
-                      return component.map((element) => _this._parent.appendChild(element))
-                  }
-
                   _this.bindEventListeners(_this._parent)
 
                   _this.componentDidMount()
+
+                  if (_typeof(component) === "object" && component instanceof Array) {
+                      return component.map((element) => _this._parent.appendChild(element))
+                  }
 
                   return _this._parent.appendChild(component)
               } catch (err) {

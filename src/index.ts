@@ -296,15 +296,15 @@ export default abstract class DeStagnate
                 throw new Error(msg)
             }
 
+            this.bindEventListeners(this._parent)
+
+            this.componentDidMount()
+
             if (typeof(component) === "object" && component instanceof Array) {
                 return (component as Element[]).map((element) => (
                     this._parent.appendChild(element)
                 ))
             }
-
-            this.bindEventListeners(this._parent)
-
-            this.componentDidMount()
 
             return this._parent.appendChild(component)
         } catch (err) {
