@@ -5,9 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 # [1.5.3] - 2020-07-30
+- version to 1.5.3 337ab833b3a74d1c56e1ea901efe5379cef364f4
+
 ### Added
 - add CHANGELOG 24a1c3a8e5eb81d818c984feca38f831c6a6893f
 - add CDN details to wiki ddb19abd8c8b060f3fdf833909dfe7c7ccb816a2
+- added new license headers dd70665a088b12f20d7d82f1060a388453b4e8ab
 
 ### Changed
 - update README with CDN 72920082e448c0faf3e0e1865f1709a5b1ed8c05
