@@ -316,7 +316,7 @@ var DeStagnate = (function (modules) {
                           var key = _d.value
 
                           if (!Object.keys(_this.state).includes(key)) {
-                              console.warn(`WARN: New key (${key}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(_this.state))}. Declare all state variables in constructor as a best practice.`)
+                              console.warn(`WARN: New key (${key}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(_this.state))}. Declare all state variables in constructor as a best practice. Did you misspell a key?`)
                           }
                       }
                   } catch (e_1_1) {

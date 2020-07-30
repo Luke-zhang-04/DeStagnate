@@ -13,6 +13,7 @@ type RenderType = null | HTMLElement | HTMLElement[] | Element | Element[]
 
 import Events from "./_events"
 
+/* istanbul ignore next */
 /**
  * Lifecycle member functions
  */
