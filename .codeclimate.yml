@@ -37,6 +37,6 @@ exclude_patterns:
   - "./dist"
   - "./src/createElement.ts"
   - "./cli/*.js"
-  - "./src/*.js"
   - "*.config.js"
+  - "./tests"
   
