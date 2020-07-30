@@ -476,7 +476,7 @@ var DeStagnate = (function (modules) {
           }
 
           if (["body", "html"].includes(parent.tagName.toLowerCase())) {
-              console.warn(`WARNING! Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
+              console.warn(`WARN: Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
           }
 
           _this._parent = parent
@@ -777,7 +777,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.5.0
+         * @version 1.5.1
          * @exports Events
          * @package
          */

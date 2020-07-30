@@ -160,7 +160,7 @@ export default abstract class DeStagnate
     ) {
         super()
         if (["body", "html"].includes(parent.tagName.toLowerCase())) {
-            console.warn(`WARNING! Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
+            console.warn(`WARN: Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
         }
 
         this._parent = parent
@@ -267,7 +267,7 @@ export default abstract class DeStagnate
             }
 
             this.componentDidUpdate()
-        } catch (err) {
+        } catch (err) /* istanbul ignore next */ {
             this.componentDidCatch(err)
 
             return err as Error
@@ -307,7 +307,7 @@ export default abstract class DeStagnate
             }
 
             return this._parent.appendChild(component)
-        } catch (err) {
+        } catch (err) /* istanbul ignore next */ {
             this.componentDidCatch(err)
 
             return err as Error
@@ -337,7 +337,7 @@ export default abstract class DeStagnate
             this.unbindEventListeners(this._parent)
     
             this._removeChildren()
-        } catch (err) {
+        } catch (err) /* istanbul ignore next */ {
             this.componentDidCatch(err)
         }
 
