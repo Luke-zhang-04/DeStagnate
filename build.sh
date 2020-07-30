@@ -55,16 +55,30 @@ build() {
 
     wait
 
-    echo "/* Destagnate v1.5.2 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+    echo "/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.5.3
+ */
 
 \"use strict\";
 $(cat ./dist/deStagnate.bundle.js)" > ./dist/deStagnate.bundle.js &
 
-    echo "/* Destagnate v1.5.2 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+    echo "/* Destagnate v1.5.3 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
 
 $(cat ./dist/deStagnate.bundle.min.js)" > ./dist/deStagnate.bundle.min.js &
 
-echo "/* Destagnate v1.5.2 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+echo "/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.5.3
+ */
 
 $(cat ./tests/deStagnate.bundle.js)" > ./tests/deStagnate.bundle.js &
 

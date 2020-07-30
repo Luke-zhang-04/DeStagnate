@@ -1,4 +1,11 @@
-/* Destagnate v1.5.2 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.5.3
+ */
 
 "use strict";
 
@@ -119,7 +126,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.5.2
+         * @version 1.5.3
          * @exports DeStagnate main destagnate class
          * @file main file for destagnate
          */
@@ -635,10 +642,11 @@ var DeStagnate = (function (modules) {
         /**
          * DeStagnate
          * A simple, ReactJS inspired library to create dynamic components within static sites easier
-         * @copyright Copyright (C) 2020 Luke Zhang
-         * @author Luke Zhang luke-zhang-04.github.io
-         * @license MIT
-         * @version 1.5.2
+         *
+         * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
+         * MIT License
+         *
+         * @version 1.5.3
          * @exports Preset
          * @package
          */
@@ -774,10 +782,11 @@ var DeStagnate = (function (modules) {
         /**
          * DeStagnate
          * A simple, ReactJS inspired library to create dynamic components within static sites easier
-         * @copyright Copyright (C) 2020 Luke Zhang
-         * @author Luke Zhang luke-zhang-04.github.io
-         * @license MIT
-         * @version 1.5.2
+         *
+         * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
+         * MIT License
+         *
+         * @version 1.5.3
          * @exports Events
          * @package
          */
@@ -1163,10 +1172,11 @@ var DeStagnate = (function (modules) {
         /**
          * DeStagnate
          * A simple, ReactJS inspired library to create dynamic components within static sites easier
-         * @copyright Copyright (C) 2020 Luke Zhang
-         * @author Luke Zhang luke-zhang-04.github.io
-         * @license MIT
-         * @version 1.5.2
+         *
+         * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
+         * MIT License
+         *
+         * @version 1.5.3
          * @exports createDSComponent add nested component for DeStagnate components
          */
         Object.defineProperty(exports, "__esModule", {
@@ -1203,10 +1213,11 @@ var DeStagnate = (function (modules) {
         /**
          * DeStagnate
          * A simple, ReactJS inspired library to create dynamic components within static sites easier
-         * @copyright Copyright (C) 2020 Luke Zhang
-         * @author Luke Zhang luke-zhang-04.github.io
-         * @license MIT
-         * @version 1.5.2
+         *
+         * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
+         * MIT License
+         *
+         * @version 1.5.3
          * @exports createElement function for DOM manipulation
          */
         var __values = this && this.__values || function (o) {
@@ -1461,10 +1472,11 @@ var DeStagnate = (function (modules) {
         /**
          * DeStagnate
          * A simple, ReactJS inspired library to create dynamic components within static sites easier
-         * @copyright Copyright (C) 2020 Luke Zhang
-         * @author Luke Zhang luke-zhang-04.github.io
-         * @license MIT
-         * @version 1.5.2
+         *
+         * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
+         * MIT License
+         *
+         * @version 1.5.3
          * @exports createElementNS createElement for namespaced elements
          */
         var __read = this && this.__read || function (o, n) {
@@ -1577,4 +1589,4 @@ var DeStagnate = (function (modules) {
     }
 ]))
 
-// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVSZWYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQW1CTSxXQUFZLG1CQUFaLENBQXlELFFBQXpELEVBQXlEO0FBSS9ELFFBQUEsZ0JBQUEsQ0FBQSxRQUFBLENBQUEsRUFBQTs7OztBQUlBLFFBQUEsTUFBZSxHQUFBLGdCQUFTLENBQUEsUUFBQSxDQUFULEdBQVM7aUJBQUE7Y0FBQTs7QUFBQSxLQUF4QiIsImZpbGUiOiJkZVN0YWduYXRlLmJ1bmRsZS5qcyJ9
+// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVSZWYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQW9CTSxXQUFZLG1CQUFaLENBQXlELFFBQXpELEVBQXlEO0FBSS9ELFFBQUEsZ0JBQUEsQ0FBQSxRQUFBLENBQUEsRUFBQTs7OztBQUlBLFFBQUEsTUFBZSxHQUFBLGdCQUFTLENBQUEsUUFBQSxDQUFULEdBQVM7aUJBQUE7Y0FBQTs7QUFBQSxLQUF4QiIsImZpbGUiOiJkZVN0YWduYXRlLmJ1bmRsZS5qcyJ9
