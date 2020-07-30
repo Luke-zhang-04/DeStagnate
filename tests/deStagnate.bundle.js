@@ -1,4 +1,11 @@
-/* Destagnate v1.5.2 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.5.3
+ */
 
  /* eslint-disable */
 const niceTry = require("nice-try")
@@ -293,7 +300,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.5.2
+             * @version 1.5.3
              * @exports DeStagnate main destagnate class
              * @file main file for destagnate
              */
@@ -827,7 +834,7 @@ module.exports =
              * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
              * MIT License
              *
-             * @version 1.5.2
+             * @version 1.5.3
              * @exports Preset
              * @package
              */
@@ -976,7 +983,7 @@ module.exports =
              * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
              * MIT License
              *
-             * @version 1.5.2
+             * @version 1.5.3
              * @exports Events
              * @package
              */
@@ -1372,7 +1379,7 @@ module.exports =
              * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
              * MIT License
              *
-             * @version 1.5.2
+             * @version 1.5.3
              * @exports createDSComponent add nested component for DeStagnate components
              */
             Object.defineProperty(exports, "__esModule", {
@@ -1419,7 +1426,7 @@ module.exports =
              * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
              * MIT License
              *
-             * @version 1.5.2
+             * @version 1.5.3
              * @exports createElement function for DOM manipulation
              */
             var __values = this && this.__values || function (o) /* istanbul ignore next */  {
@@ -1685,7 +1692,7 @@ module.exports =
              * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
              * MIT License
              *
-             * @version 1.5.2
+             * @version 1.5.3
              * @exports createElementNS createElement for namespaced elements
              */
             var __read = this && this.__read || function (o, n) /* istanbul ignore next */ {

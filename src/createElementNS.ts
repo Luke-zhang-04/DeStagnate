@@ -5,7 +5,7 @@
  * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io 
  * MIT License
  * 
- * @version 1.5.2
+ * @version 1.5.3
  * @exports createElementNS createElement for namespaced elements
  */
 

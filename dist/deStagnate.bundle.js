@@ -1,4 +1,11 @@
-/* Destagnate v1.5.2 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.5.3
+ */
 
 "use strict";
 
@@ -119,7 +126,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.5.2
+         * @version 1.5.3
          * @exports DeStagnate main destagnate class
          * @file main file for destagnate
          */
@@ -639,7 +646,7 @@ var DeStagnate = (function (modules) {
          * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
          * MIT License
          *
-         * @version 1.5.2
+         * @version 1.5.3
          * @exports Preset
          * @package
          */
@@ -779,7 +786,7 @@ var DeStagnate = (function (modules) {
          * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
          * MIT License
          *
-         * @version 1.5.2
+         * @version 1.5.3
          * @exports Events
          * @package
          */
@@ -1169,7 +1176,7 @@ var DeStagnate = (function (modules) {
          * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
          * MIT License
          *
-         * @version 1.5.2
+         * @version 1.5.3
          * @exports createDSComponent add nested component for DeStagnate components
          */
         Object.defineProperty(exports, "__esModule", {
@@ -1210,7 +1217,7 @@ var DeStagnate = (function (modules) {
          * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
          * MIT License
          *
-         * @version 1.5.2
+         * @version 1.5.3
          * @exports createElement function for DOM manipulation
          */
         var __values = this && this.__values || function (o) {
@@ -1469,7 +1476,7 @@ var DeStagnate = (function (modules) {
          * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
          * MIT License
          *
-         * @version 1.5.2
+         * @version 1.5.3
          * @exports createElementNS createElement for namespaced elements
          */
         var __read = this && this.__read || function (o, n) {
