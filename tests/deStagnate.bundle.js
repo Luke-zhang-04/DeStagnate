@@ -823,9 +823,10 @@ module.exports =
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
-             * @copyright Copyright (C) 2020 Luke Zhang
-             * @author Luke Zhang luke-zhang-04.github.io
-             * @license MIT
+             *
+             * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
+             * MIT License
+             *
              * @version 1.5.2
              * @exports Preset
              * @package
@@ -971,9 +972,10 @@ module.exports =
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
-             * @copyright Copyright (C) 2020 Luke Zhang
-             * @author Luke Zhang luke-zhang-04.github.io
-             * @license MIT
+             *
+             * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
+             * MIT License
+             *
              * @version 1.5.2
              * @exports Events
              * @package
@@ -1366,9 +1368,10 @@ module.exports =
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
-             * @copyright Copyright (C) 2020 Luke Zhang
-             * @author Luke Zhang luke-zhang-04.github.io
-             * @license MIT
+             *
+             * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
+             * MIT License
+             *
              * @version 1.5.2
              * @exports createDSComponent add nested component for DeStagnate components
              */
@@ -1412,9 +1415,10 @@ module.exports =
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
-             * @copyright Copyright (C) 2020 Luke Zhang
-             * @author Luke Zhang luke-zhang-04.github.io
-             * @license MIT
+             *
+             * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
+             * MIT License
+             *
              * @version 1.5.2
              * @exports createElement function for DOM manipulation
              */
@@ -1677,9 +1681,10 @@ module.exports =
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
-             * @copyright Copyright (C) 2020 Luke Zhang
-             * @author Luke Zhang luke-zhang-04.github.io
-             * @license MIT
+             *
+             * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
+             * MIT License
+             *
              * @version 1.5.2
              * @exports createElementNS createElement for namespaced elements
              */
@@ -1803,7 +1808,7 @@ module.exports =
         /** ****/
     ]))
 
-// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVSZWYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7O0FBZUE7QUFBQTs7Ozs7O0FBR0c7QUFBQTs7QUFDSDs7QUFBTSxXQUFZLG1CQUFaLENBQXlELFFBQXpELEVBQXlEO0FBQzNEOztBQUQwRDtBQUU1RDs7QUFFRjtBQUFBLFFBQUEsZ0JBQUEsQ0FBQSxRQUFBLENBQUEsRUFBQTs7Ozs7QUFHRztBQUFBOztBQUNIOzs7QUFBQSxRQUFBLE1BQWUsR0FBQSxnQkFBUyxDQUFBLFFBQUEsQ0FBVCxHQUFTOztpQkFBQTs7O2NBQUE7Ozs7OztBQUFBLEtBQXhCIiwiZmlsZSI6ImRlU3RhZ25hdGUuYnVuZGxlLmpzIn0=
+// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVSZWYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7O0FBZ0JBO0FBQUE7Ozs7OztBQUdHO0FBQUE7O0FBQ0g7O0FBQU0sV0FBWSxtQkFBWixDQUF5RCxRQUF6RCxFQUF5RDtBQUMzRDs7QUFEMEQ7QUFFNUQ7O0FBRUY7QUFBQSxRQUFBLGdCQUFBLENBQUEsUUFBQSxDQUFBLEVBQUE7Ozs7O0FBR0c7QUFBQTs7QUFDSDs7O0FBQUEsUUFBQSxNQUFlLEdBQUEsZ0JBQVMsQ0FBQSxRQUFBLENBQVQsR0FBUzs7aUJBQUE7OztjQUFBOzs7Ozs7QUFBQSxLQUF4QiIsImZpbGUiOiJkZVN0YWduYXRlLmJ1bmRsZS5qcyJ9
 
 
 module.exports.setDocument = (_doc) => {
