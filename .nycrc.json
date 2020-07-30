@@ -1,0 +1,5 @@
+{
+    "exclude": ["dist", "tests/index.js", "tests/cases"],
+    "include": ["tests/deStagnate.bundle.js"],
+    "reporter": ["clover", "text"]
+}

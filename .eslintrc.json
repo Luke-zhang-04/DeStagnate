@@ -32,6 +32,7 @@
         "@typescript-eslint/comma-spacing": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-member-accessibility": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/func-call-spacing": "off",
         "@typescript-eslint/keyword-spacing": "off",
         "@typescript-eslint/lines-between-class-members": "off",
@@ -49,6 +50,7 @@
         "@typescript-eslint/no-unsafe-return": "off",
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars-experimental": "off",
+        "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/prefer-for-of": "off",
         "@typescript-eslint/quotes": "off",
         "@typescript-eslint/semi": "off",
@@ -413,6 +415,15 @@
             "files": ["./public/js/*", "./src/index.js"],
             "env": {
                 "browser": true
+            }
+        },
+        {
+            "files": ["./tests/**"],
+            "env": {
+                "mocha": true
+            },
+            "rules": {
+                "global-require": "off"
             }
         }
     ]

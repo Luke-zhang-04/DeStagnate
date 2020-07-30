@@ -9,3 +9,7 @@
 
 # Remove babel files
 .babelrc.* linguist-detectable=false
+
+# Ignore some test files
+*.bundle.js linguist-generated=true
+./tests/cases/ linguist-detectable=false

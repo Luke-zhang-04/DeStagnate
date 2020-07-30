@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.5.1
+ * @version 1.5.2
  * @exports DeStagnate main destagnate class
  * @file main file for destagnate
  */
@@ -160,7 +160,7 @@ export default abstract class DeStagnate
     ) {
         super()
         if (["body", "html"].includes(parent.tagName.toLowerCase())) {
-            console.warn(`WARNING! Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
+            console.warn(`WARN: Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
         }
 
         this._parent = parent
@@ -245,7 +245,7 @@ export default abstract class DeStagnate
             for (const key of Object.keys(obj)) {
                 if (!Object.keys(this.state).includes(key)) {
                     // eslint-disable-next-line
-                    console.warn(`WARN: New key (${key}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(this.state))}. Declare all state variables in constructor as a best practice.`)
+                    console.warn(`WARN: New key (${key}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(this.state))}. Declare all state variables in constructor as a best practice. Did you misspell a key?`)
                 }
             }
 
@@ -267,7 +267,7 @@ export default abstract class DeStagnate
             }
 
             this.componentDidUpdate()
-        } catch (err) {
+        } catch (err) /* istanbul ignore next */ {
             this.componentDidCatch(err)
 
             return err as Error
@@ -296,18 +296,18 @@ export default abstract class DeStagnate
                 throw new Error(msg)
             }
 
+            this.bindEventListeners(this._parent)
+
+            this.componentDidMount()
+
             if (typeof(component) === "object" && component instanceof Array) {
                 return (component as Element[]).map((element) => (
                     this._parent.appendChild(element)
                 ))
             }
 
-            this.bindEventListeners(this._parent)
-
-            this.componentDidMount()
-
             return this._parent.appendChild(component)
-        } catch (err) {
+        } catch (err) /* istanbul ignore next */ {
             this.componentDidCatch(err)
 
             return err as Error
@@ -337,7 +337,7 @@ export default abstract class DeStagnate
             this.unbindEventListeners(this._parent)
     
             this._removeChildren()
-        } catch (err) {
+        } catch (err) /* istanbul ignore next */ {
             this.componentDidCatch(err)
         }
 

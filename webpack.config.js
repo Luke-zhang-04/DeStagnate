@@ -20,6 +20,16 @@ const prod = {
             libraryTarget: "var",
         },
         mode: "none",
+    },
+    test = {
+        entry: "./lib/index.js",
+        output: {
+            path: path.resolve(__dirname, "tests"),
+            filename: "deStagnate.bundle.js",
+            library: "DeStagnate",
+            libraryTarget: "commonjs2",
+        },
+        mode: "none",
     }
 
-module.exports = [prod, dev]
+module.exports = [prod, dev, test]

@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.5.0
+ * @version 1.5.2
  * @exports Events
  * @package
  */
@@ -43,6 +43,7 @@ interface EventsList {
     mouseup: EventListenerOrEventListenerObject,
 }
 
+/* istanbul ignore next */
 export default class Events {
 
     /**
