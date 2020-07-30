@@ -34,11 +34,30 @@ npm i destagnate --save
 yarn add destagnate
 ```
 
-Through curl to download a bundle for browser usage
-```bash
-curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.min.js -O js/destagnate.bundle.min.js # Download minified file (recommended)
+Through curl to download a bundle for browser usage<br/>
+<small>Not all versions available through this method. See [https://github.com/luke-zhang-04/destagnate/releases](https://github.com/luke-zhang-04/destagnate/releases) for available releases</small>
 
-curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.js -O js/destagnate.bundle.js # Download not minfiied file (not recommended for production)
+```bash
+# Prodution
+curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.min.js -O destagnate.bundle.min.js
+
+# Development
+curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.js -O destagnate.bundle.js
+
+# Latest
+curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v1.5.2/destagnate.bundle.js -O destagnate.bundle.js
+```
+
+With a CDN
+```html
+<!-- Production -->
+<script src="https://unpkg.com/destagnate@version/dist/deStagnate.bundle.min.js"></script>
+
+<!-- Development -->
+<script src="https://unpkg.com/destagnate@version/dist/deStagnate.bundle.js"></script>
+
+<!-- Latest -->
+<script src="https://unpkg.com/destagnate@1.5.2/dist/deStagnate.bundle.min.js"></script>
 ```
 
 ## Basic Use
