@@ -3,7 +3,7 @@
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @copyright Copyright (C) 2020 Luke Zhang
  * @license MIT
- * @version 1.5.1
+ * @version 1.5.2
  * Main test suite for destagnate
  */
 
