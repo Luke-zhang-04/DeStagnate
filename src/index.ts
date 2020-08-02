@@ -9,6 +9,7 @@
  * @file main file for destagnate
  * @preserve
  */
+/* eslint-disable max-lines */
 
 import Preset from "./_preset"
 import {default as _createDSComponent} from "./createDSComponent"
@@ -125,6 +126,12 @@ export default abstract class DeStagnate
     public readonly createRef = DeStagnate.createRef
 
     /**
+     * If strict mode should be used. True by default
+     * @type {boolean}
+     */
+    private _strict = true
+
+    /**
      * State of component. Works similar React State
      * @type {undefined | Object.<string, unknown>}
      * @private
@@ -154,14 +161,20 @@ export default abstract class DeStagnate
      * @constructor
      * @param {HTMLElement} parent - parent of this element
      * @param {undefined | Object.<string, string | number>} props - element properties; works like React Props
+     * @param {boolean} shouldSkipParentCheck - warn or throw error if parent element already has children
      */
     public constructor (
         parent: HTMLElement,
         protected props?: Props,
+        shouldSkipParentCheck = false,
     ) {
         super()
-        if (["body", "html"].includes(parent.tagName.toLowerCase())) {
-            console.warn(`WARN: Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
+        if (
+            parent.childElementCount > 0 &&
+            !shouldSkipParentCheck &&
+            this._strict
+        ) {
+            this.componentDidCatch(new Error(`ERR: Avoid using this ${parent.tagName.toLowerCase()} as element parent, as all elements within this ${parent.tagName.toLowerCase()} will be removed on re-render. To disable this, pass in true as a third parameter`))
         }
 
         this._parent = parent
@@ -179,6 +192,22 @@ export default abstract class DeStagnate
         prevProps: Props,
         prevState: State
     ): [Props, State] => [prevProps, prevState]
+
+    /**
+     * Turn on strict mode
+     * @returns {void} void
+     */
+    public useStrict = (): void => {
+        this._strict = true
+    }
+
+    /**
+     * Turn off strict mode
+     * @returns {void} void
+     */
+    public disableStrict = (): void => {
+        this._strict = false
+    }
 
     /**
      * Public getState getter as this.state itself is protected
@@ -208,7 +237,7 @@ export default abstract class DeStagnate
      * @param {State} obj - state to set
      */
     protected set state (obj: State) {
-        if (this._didSetInitialState) {
+        if (this._didSetInitialState && this._strict) {
             this.componentDidCatch(
                 new Error("Do not mutate state directly. Use setState instead.")
             )
@@ -243,11 +272,8 @@ export default abstract class DeStagnate
         try {
             this.componentWillUpdate()
 
-            for (const key of Object.keys(obj)) {
-                if (!Object.keys(this.state).includes(key)) {
-                    // eslint-disable-next-line
-                    console.warn(`WARN: New key (${key}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(this.state))}. Declare all state variables in constructor as a best practice. Did you misspell a key?`)
-                }
+            if (this._strict) {
+                this._checkKeys(obj)
             }
 
             this.getSnapshotBeforeUpdate(
@@ -278,7 +304,7 @@ export default abstract class DeStagnate
         }
     }
 
-    /* eslint-disable max-len, @typescript-eslint/member-ordering, max-lines */
+    /* eslint-disable @typescript-eslint/member-ordering, max-len */
     /**
      * Initial mounting to be manually called
      * @public
@@ -381,6 +407,20 @@ export default abstract class DeStagnate
         this._removeChildren()
 
         return this.render()
+    }
+
+    /**
+     * Checks new state assignment to make sure no new keys are assigned
+     * @param {Partial<State>} obj - new state
+     * @returns {void} void
+     */
+    private _checkKeys = (obj: Partial<State>): void => {
+        for (const key of Object.keys(obj)) {
+            if (!Object.keys(this.state).includes(key)) {
+                // eslint-disable-next-line
+                console.warn(`WARN: New key (${key}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(this.state))}. Declare all state variables in constructor as a best practice. Did you misspell a key?`)
+            }
+        }
     }
 
 }

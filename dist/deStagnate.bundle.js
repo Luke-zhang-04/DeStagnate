@@ -242,8 +242,13 @@ var DeStagnate = (function (modules) {
        * @constructor
        * @param {HTMLElement} parent - parent of this element
        * @param {undefined | Object.<string, string | number>} props - element properties; works like React Props
+       * @param {boolean} shouldSkipParentCheck - warn or throw error if parent element already has children
        */
-      function DeStagnate (parent, props) {
+      function DeStagnate (parent, props, shouldSkipParentCheck) {
+          if (shouldSkipParentCheck === void 0) {
+              shouldSkipParentCheck = false
+          }
+
           var _this = _super.call(this) || this
 
           _this.props = props
@@ -296,6 +301,12 @@ var DeStagnate = (function (modules) {
           _this.createRef = DeStagnate.createRef
 
           /**
+           * If strict mode should be used. True by default
+           * @type {boolean}
+           */
+          _this._strict = true
+
+          /**
            * State of component. Works similar React State
            * @type {undefined | Object.<string, unknown>}
            * @private
@@ -324,6 +335,22 @@ var DeStagnate = (function (modules) {
           }
 
           /**
+           * Turn on strict mode
+           * @returns {void} void
+           */
+          _this.useStrict = function () {
+              _this._strict = true
+          }
+
+          /**
+           * Turn off strict mode
+           * @returns {void} void
+           */
+          _this.disableStrict = function () {
+              _this._strict = false
+          }
+
+          /**
            * Sets state
            * @public
            * @instance
@@ -332,33 +359,13 @@ var DeStagnate = (function (modules) {
            * @returns {void | Error} void
            */
           _this.setState = function (obj) {
-              var e_1, _a, e_2, _b
+              var e_1, _a
 
               try {
                   _this.componentWillUpdate()
 
-                  try {
-                      for (var _c = __values(Object.keys(obj)), _d = _c.next(); !_d.done; _d = _c.next()) {
-                          var key = _d.value
-
-                          if (!Object.keys(_this.state).includes(key)) {
-                              console.warn(`WARN: New key (${key}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(_this.state))}. Declare all state variables in constructor as a best practice. Did you misspell a key?`)
-                          }
-                      }
-                  } catch (e_1_1) {
-                      e_1 = {
-                          error: e_1_1
-                      }
-                  } finally {
-                      try {
-                          if (_d && !_d.done && (_a = _c.return)) {
-                              _a.call(_c) 
-                          }
-                      } finally {
-                          if (e_1) {
-                              throw e_1.error 
-                          }
-                      }
+                  if (_this._strict) {
+                      _this._checkKeys(obj)
                   }
 
                   _this.getSnapshotBeforeUpdate({..._this.props}, {..._this.state})
@@ -374,18 +381,18 @@ var DeStagnate = (function (modules) {
 
                               _this._parent.appendChild(element)
                           }
-                      } catch (e_2_1) {
-                          e_2 = {
-                              error: e_2_1
+                      } catch (e_1_1) {
+                          e_1 = {
+                              error: e_1_1
                           }
                       } finally {
                           try {
-                              if (renderedContent_1_1 && !renderedContent_1_1.done && (_b = renderedContent_1.return)) {
-                                  _b.call(renderedContent_1) 
+                              if (renderedContent_1_1 && !renderedContent_1_1.done && (_a = renderedContent_1.return)) {
+                                  _a.call(renderedContent_1) 
                               }
                           } finally {
-                              if (e_2) {
-                                  throw e_2.error 
+                              if (e_1) {
+                                  throw e_1.error 
                               }
                           }
                       }
@@ -501,8 +508,41 @@ var DeStagnate = (function (modules) {
               return _this.render()
           }
 
-          if (["body", "html"].includes(parent.tagName.toLowerCase())) {
-              console.warn(`WARN: Avoid using ${parent.tagName.toLowerCase()} as element parent, as all elements within ${parent.tagName.toLowerCase()} will be removed on re-render`)
+          /**
+           * Checks new state assignment to make sure no new keys are assigned
+           * @param {Partial<State>} obj - new state
+           * @returns {void} void
+           */
+          _this._checkKeys = function (obj) {
+              var e_2, _a
+
+              try {
+                  for (var _b = __values(Object.keys(obj)), _c = _b.next(); !_c.done; _c = _b.next()) {
+                      var key = _c.value
+
+                      if (!Object.keys(_this.state).includes(key)) {
+                          console.warn(`WARN: New key (${key}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(_this.state))}. Declare all state variables in constructor as a best practice. Did you misspell a key?`)
+                      }
+                  }
+              } catch (e_2_1) {
+                  e_2 = {
+                      error: e_2_1
+                  }
+              } finally {
+                  try {
+                      if (_c && !_c.done && (_a = _b.return)) {
+                          _a.call(_b) 
+                      }
+                  } finally {
+                      if (e_2) {
+                          throw e_2.error 
+                      }
+                  }
+              }
+          }
+
+          if (parent.childElementCount > 0 && !shouldSkipParentCheck && _this._strict) {
+              _this.componentDidCatch(new Error(`ERR: Avoid using this ${parent.tagName.toLowerCase()} as element parent, as all elements within this ${parent.tagName.toLowerCase()} will be removed on re-render. To disable this, pass in true as a third parameter`))
           }
 
           _this._parent = parent
@@ -544,7 +584,7 @@ var DeStagnate = (function (modules) {
            * @param {State} obj - state to set
            */
           set: function set (obj) {
-              if (this._didSetInitialState) {
+              if (this._didSetInitialState && this._strict) {
                   this.componentDidCatch(new Error("Do not mutate state directly. Use setState instead."))
                   console.warn("DeStagnate protects you from mutating the entire state object. Avoid mutating state directly")
                   this.setState(obj)
