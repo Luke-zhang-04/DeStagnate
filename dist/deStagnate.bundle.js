@@ -371,8 +371,7 @@ var DeStagnate = (function (modules) {
                   _this.getSnapshotBeforeUpdate({..._this.props}, {..._this.state})
 
                   Object.assign(_this._state, obj)
-
-                  var renderedContent = _this._execRender()
+                  var renderedContent = _this.shouldComponentUpdate() ? _this._execRender() : undefined
 
                   if (_typeof(renderedContent) === "object" && renderedContent instanceof Array) {
                       try {
@@ -400,7 +399,9 @@ var DeStagnate = (function (modules) {
                       _this._parent.appendChild(renderedContent)
                   }
 
-                  _this.componentDidUpdate()
+                  if (renderedContent) {
+                      _this.componentDidUpdate()
+                  }
               } catch (err) {
                   _this.componentDidCatch(err)
 
@@ -815,6 +816,14 @@ var DeStagnate = (function (modules) {
            */
           _this.componentWillUpdate = function () {
               return undefined
+          }
+
+          /**
+           * Called before component is updated
+           * @returns {boolean} whether or not component should update/re-render
+           */
+          _this.shouldComponentUpdate = function () {
+              return true
           }
 
           /**

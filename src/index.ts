@@ -283,7 +283,9 @@ export default abstract class DeStagnate
 
             Object.assign(this._state, obj)
 
-            const renderedContent = this._execRender()
+            const renderedContent = this.shouldComponentUpdate()
+                ? this._execRender()
+                : undefined
 
             if (
                 typeof(renderedContent) === "object" &&
@@ -296,7 +298,9 @@ export default abstract class DeStagnate
                 this._parent.appendChild(renderedContent)
             }
 
-            this.componentDidUpdate()
+            if (renderedContent) {
+                this.componentDidUpdate()
+            }
         } catch (err) /* istanbul ignore next */ {
             this.componentDidCatch(err)
 

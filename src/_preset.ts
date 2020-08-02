@@ -68,6 +68,12 @@ export default abstract class Preset extends Events {
     public componentWillUpdate = (): void => undefined
 
     /**
+     * Called before component is updated
+     * @returns {boolean} whether or not component should update/re-render
+     */
+    public shouldComponentUpdate = (): boolean => true
+
+    /**
      * Rendering HTML, must be part of extended class
      * @public
      * @instance
