@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.5.3
+ * @version 1.6.0
  */
 
  /* eslint-disable */
@@ -300,7 +300,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.5.3
+             * @version 1.6.0
              * @exports DeStagnate main destagnate class
              * @file main file for destagnate
              * @preserve
@@ -853,7 +853,7 @@ module.exports =
              * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
              * MIT License
              *
-             * @version 1.5.3
+             * @version 1.6.0
              * @exports Preset
              * @package
              */
@@ -1002,7 +1002,7 @@ module.exports =
              * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
              * MIT License
              *
-             * @version 1.5.3
+             * @version 1.6.0
              * @exports Events
              * @package
              */
@@ -1398,7 +1398,7 @@ module.exports =
              * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
              * MIT License
              *
-             * @version 1.5.3
+             * @version 1.6.0
              * @exports createDSComponent add nested component for DeStagnate components
              */
             Object.defineProperty(exports, "__esModule", {
@@ -1445,7 +1445,7 @@ module.exports =
              * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
              * MIT License
              *
-             * @version 1.5.3
+             * @version 1.6.0
              * @exports createElement function for DOM manipulation
              */
             var __values = this && this.__values || function (o) /* istanbul ignore next */  {
@@ -1711,7 +1711,7 @@ module.exports =
              * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
              * MIT License
              *
-             * @version 1.5.3
+             * @version 1.6.0
              * @exports createElementNS createElement for namespaced elements
              */
             var __read = this && this.__read || function (o, n) /* istanbul ignore next */ {
