@@ -7,6 +7,7 @@
  * @version 1.5.3
  * @exports DeStagnate main destagnate class
  * @file main file for destagnate
+ * @preserve
  */
 
 import Preset from "./_preset"
@@ -249,7 +250,10 @@ export default abstract class DeStagnate
                 }
             }
 
-            this.getSnapshotBeforeUpdate(this.props as Props, this.state)
+            this.getSnapshotBeforeUpdate(
+                {...this.props} as Props,
+                {...this.state},
+            )
 
             Object.assign(this._state, obj)
 

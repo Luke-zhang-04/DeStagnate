@@ -303,6 +303,7 @@ module.exports =
              * @version 1.5.3
              * @exports DeStagnate main destagnate class
              * @file main file for destagnate
+             * @preserve
              */
             var __extends = this && this.__extends || (function () /* istanbul ignore next */  {
                     var _extendStatics = function extendStatics (d, b) {
@@ -331,6 +332,24 @@ module.exports =
                         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __())
                     }
                 }()),
+
+                __assign = this && this.__assign || function () {
+                    __assign = Object.assign || function (t) {
+                        for (var s, i = 1, n = arguments.length; i < n; i++) {
+                            s = arguments[i]
+
+                            for (var p in s) {
+                                if (Object.prototype.hasOwnProperty.call(s, p)) {
+                                    t[p] = s[p] 
+                                }
+                            }
+                        }
+
+                        return t
+                    }
+
+                    return __assign.apply(this, arguments)
+                },
 
                 __values = this && this.__values || function (o) /* istanbul ignore next */  {
                     var s = typeof Symbol === "function" && Symbol.iterator,
@@ -517,7 +536,7 @@ module.exports =
                       }
                   }
 
-                  _this.getSnapshotBeforeUpdate(_this.props, _this.state)
+                  _this.getSnapshotBeforeUpdate({..._this.props}, {..._this.state})
 
                   Object.assign(_this._state, obj)
 
