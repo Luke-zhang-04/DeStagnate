@@ -1,10 +1,9 @@
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * 
- * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io 
- * MIT License
- * 
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
  * @version 1.6.0
  * @exports Preset
  * @package

@@ -10,7 +10,8 @@
     "bin": "./cli",
     "browser": "./dist",
     "example": "./docs/src",
-    "doc": "./wiki"
+    "doc": "./wiki",
+    "test": "./tests"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
@@ -34,6 +35,7 @@
   },
   "scripts": {
     "build": "bash build.sh",
+    "build:dev": "bash build.sh --dev",
     "start": "bash build.sh --watch",
     "prepublishOnly": "yarn build",
     "lint": "make lint",

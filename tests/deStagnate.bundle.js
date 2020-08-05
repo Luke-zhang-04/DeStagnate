@@ -17,15 +17,265 @@ niceTry(() => {
 
 
 
-function _typeof (obj) /* istanbul ignore next */ {
+function _toConsumableArray (arr) /* istanbul ignore next */ {
+    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread() 
+}
+
+function _nonIterableSpread () /* istanbul ignore next */ {
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.") 
+}
+
+function _iterableToArray (iter) /* istanbul ignore next */ {
+    if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) {
+        return Array.from(iter) 
+    } 
+}
+
+function _arrayWithoutHoles (arr) /* istanbul ignore next */ {
+    if (Array.isArray(arr)) {
+        return _arrayLikeToArray(arr) 
+    } 
+}
+
+function _slicedToArray (arr, i) /* istanbul ignore next */ {
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest() 
+}
+
+function _nonIterableRest () /* istanbul ignore next */ {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.") 
+}
+
+function _iterableToArrayLimit (arr, i) /* istanbul ignore next */ {
+    if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) {
+        return 
+    } var _arr = [], 
+        _n = true, 
+        _d = false, 
+        _e = undefined 
+
+    try {
+        for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+            _arr.push(_s.value); if (i && _arr.length === i) {
+                break 
+            } 
+        } 
+    } catch (err) {
+        _d = true; _e = err 
+    } finally /* istanbul ignore next */ {
+        try {
+            if (!_n && _i.return != null) {
+                _i.return() 
+            } 
+        } finally /* istanbul ignore next */ {
+            if (_d) {
+                throw _e 
+            } 
+        } 
+    } 
+
+    return _arr 
+}
+
+function _arrayWithHoles (arr) /* istanbul ignore next */ {
+    if (Array.isArray(arr)) {
+        return arr 
+    } 
+}
+
+function _createForOfIteratorHelper (o, allowArrayLike) /* istanbul ignore next */ {
+    var it 
+
+    if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
+        if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+            if (it) {
+                o = it 
+            } var i = 0, 
+                F = function F () {} 
+
+            return {s: F,
+                n: function n () {
+                    if (i >= o.length) {
+                        return {done: true} 
+                    } 
+
+                    return {done: false,
+                        value: o[i++]} 
+                },
+                e: function e (_e2) {
+                    throw _e2 
+                },
+                f: F} 
+        } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.") 
+    } var normalCompletion = true, 
+        didErr = false, 
+        err 
+
+    return {s: function s () {
+        it = o[Symbol.iterator]() 
+    },
+    n: function n () {
+        var step = it.next() 
+
+        normalCompletion = step.done 
+
+        return step 
+    },
+    e: function e (_e3) {
+        didErr = true; err = _e3 
+    },
+    f: function f () {
+        try {
+            if (!normalCompletion && it.return != null) {
+                it.return() 
+            } 
+        } finally /* istanbul ignore next */ {
+            if (didErr) {
+                throw err 
+            } 
+        } 
+    }} 
+}
+
+function _unsupportedIterableToArray (o, minLen) /* istanbul ignore next */ {
+    if (!o) {
+        return 
+    } if (typeof o === "string") {
+        return _arrayLikeToArray(o, minLen) 
+    } var n = Object.prototype.toString.call(o).slice(8, -1) 
+
+    if (n === "Object" && o.constructor) {
+        n = o.constructor.name 
+    } if (n === "Map" || n === "Set") {
+        return Array.from(o) 
+    } if (n === "Arguments" || (/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/).test(n)) {
+        return _arrayLikeToArray(o, minLen) 
+    } 
+}
+
+function _arrayLikeToArray (arr, len) /* istanbul ignore next */ {
+    if (len == null || len > arr.length) {
+        len = arr.length 
+    } for (var i = 0, arr2 = new Array(len); i < len; i++) {
+        arr2[i] = arr[i] 
+    } 
+
+    return arr2 
+}
+
+function _classCallCheck (instance, Constructor) /* istanbul ignore next */ {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function") 
+    } 
+}
+
+function _defineProperties (target, props) /* istanbul ignore next */ {
+    for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i] 
+
+        descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) {
+            descriptor.writable = true 
+        } Object.defineProperty(target, descriptor.key, descriptor) 
+    } 
+}
+
+function _createClass (Constructor, protoProps, staticProps) /* istanbul ignore next */ {
+    if (protoProps) {
+        _defineProperties(Constructor.prototype, protoProps) 
+    } if (staticProps) {
+        _defineProperties(Constructor, staticProps) 
+    } 
+
+    return Constructor 
+}
+
+function _inherits (subClass, superClass) /* istanbul ignore next */ {
+    if (typeof superClass !== "function" && superClass !== null) {
+        throw new TypeError("Super expression must either be null or a function") 
+    } subClass.prototype = Object.create(superClass && superClass.prototype, {constructor: {value: subClass,
+        writable: true,
+        configurable: true}}); if (superClass) {
+        _setPrototypeOf(subClass, superClass) 
+    } 
+}
+
+function _setPrototypeOf (o, p) /* istanbul ignore next */ {
+    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf (o, p) /* istanbul ignore next */ {
+        o.__proto__ = p 
+
+        return o 
+    } 
+
+    return _setPrototypeOf(o, p) 
+}
+
+function _createSuper (Derived) /* istanbul ignore next */ {
+    var hasNativeReflectConstruct = _isNativeReflectConstruct() 
+
+    return function _createSuperInternal () /* istanbul ignore next */ {
+        var Super = _getPrototypeOf(Derived), 
+            result 
+
+        if (hasNativeReflectConstruct) {
+            var NewTarget = _getPrototypeOf(this).constructor 
+
+            result = Reflect.construct(Super, arguments, NewTarget) 
+        } else {
+            result = Super.apply(this, arguments) 
+        } 
+
+        return _possibleConstructorReturn(this, result) 
+    } 
+}
+
+function _possibleConstructorReturn (self, call) /* istanbul ignore next */ {
+    if (call && (_typeof(call) === "object" || typeof call === "function")) {
+        return call 
+    } 
+
+    return _assertThisInitialized(self) 
+}
+
+function _assertThisInitialized (self) /* istanbul ignore next */ {
+    if (self === void 0) {
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called") 
+    } 
+
+    return self 
+}
+
+function _isNativeReflectConstruct () /* istanbul ignore next */ {
+    if (typeof Reflect === "undefined" || !Reflect.construct) {
+        return false 
+    } if (Reflect.construct.sham) {
+        return false 
+    } if (typeof Proxy === "function") {
+        return true 
+    } try {
+        Date.prototype.toString.call(Reflect.construct(Date, [], () => {})) 
+
+        return true 
+    } catch (e) {
+        return false 
+    } 
+}
+
+function _getPrototypeOf (o) /* istanbul ignore next */ {
+    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf (o) /* istanbul ignore next */ {
+        return o.__proto__ || Object.getPrototypeOf(o) 
+    } 
+
+    return _getPrototypeOf(o) 
+}
+
+function _typeof (obj) /* istanbul ignore next */ /* istanbul ignore next */ {
     "@babel/helpers - typeof"
 
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-        _typeof = function _typeof (obj) /* istanbul ignore next */ {
+        _typeof = function _typeof (obj) /* istanbul ignore next */ /* istanbul ignore next */ {
             return typeof obj 
         } 
     } else {
-        _typeof = function _typeof (obj) /* istanbul ignore next */ {
+        _typeof = function _typeof (obj) /* istanbul ignore next */ /* istanbul ignore next */ {
             return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj 
         } 
     } 
@@ -306,82 +556,11 @@ module.exports =
              * @preserve
              */
             /* eslint-disable max-lines */
-            var __extends = this && this.__extends || (function () /* istanbul ignore next */  {
-                    var _extendStatics = function extendStatics (d, b) {
-                        _extendStatics = Object.setPrototypeOf || {
-                            __proto__: []
-                        } instanceof Array && function (d, b) {
-                            d.__proto__ = b
-                        } || function (d, b) {
-                            for (var p in b) {
-                                if (b.hasOwnProperty(p)) {
-                                    d[p] = b[p] 
-                                }
-                            }
-                        }
-
-                        return _extendStatics(d, b)
-                    }
-
-                    return function (d, b) {
-                        _extendStatics(d, b)
-
-                        function __ () {
-                            this.constructor = d
-                        }
-
-                        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __())
-                    }
-                }()),
-
-                __assign = this && this.__assign || function () {
-                    __assign = Object.assign || function (t) {
-                        for (var s, i = 1, n = arguments.length; i < n; i++) {
-                            s = arguments[i]
-
-                            for (var p in s) {
-                                if (Object.prototype.hasOwnProperty.call(s, p)) {
-                                    t[p] = s[p] 
-                                }
-                            }
-                        }
-
-                        return t
-                    }
-
-                    return __assign.apply(this, arguments)
-                },
-
-                __values = this && this.__values || function (o) /* istanbul ignore next */  {
-                    var s = typeof Symbol === "function" && Symbol.iterator,
-                        m = s && o[s],
-                        i = 0
-
-                    if (m) {
-                        return m.call(o) 
-                    }
-                    if (o && typeof o.length === "number") {
-                        return {
-                            next: function next () {
-                                if (o && i >= o.length) {
-                                    o = void 0 
-                                }
-                                
-                                return {
-                                    value: o && o[i++],
-                                    done: !o
-                                }
-                            }
-                        } 
-                    }
-                    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.")
-                },
-
-                __importDefault = this && this.__importDefault || function (mod) /* istanbul ignore next */  {
-                    return mod && mod.__esModule ? mod : {
-                        default: mod
-                    }
+            var __importDefault = this && this.__importDefault || function (mod) /* istanbul ignore next */  {
+                return mod && mod.__esModule ? mod : {
+                    default: mod
                 }
+            }
 
             Object.defineProperty(exports, "__esModule", {
                 value: true
@@ -405,447 +584,417 @@ module.exports =
                  * @namespace
                  * @abstract
                  */
-                DeStagnate =
+                DeStagnate = /* #__PURE__*/(function (_preset_1$default) {
+                    _inherits(DeStagnate, _preset_1$default)
 
-  /** @class */
-  (function (_super) {
-      __extends(DeStagnate, _super)
+                    var _super = _createSuper(DeStagnate)
 
-      /**
-       * Construct class component
-       * @public
-       * @constructor
-       * @param {HTMLElement} parent - parent of this element
-       * @param {undefined | Object.<string, string | number>} props - element properties; works like React Props
-       * @param {boolean} shouldSkipParentCheck - warn or throw error if parent element already has children
-       */
-      function DeStagnate (parent, props, shouldSkipParentCheck) {
-          if (shouldSkipParentCheck === void 0) {
-              shouldSkipParentCheck = false
-          }
+                    /**
+                     * Construct class component
+                     * @public
+                     * @constructor
+                     * @param {HTMLElement} parent - parent of this element
+                     * @param {undefined | Object.<string, string | number>} props - element properties; works like React Props
+                     * @param {boolean} shouldSkipParentCheck - warn or throw error if parent element already has children
+                     */
+                    function DeStagnate (parent, props) {
+                        var _this,
 
-          var _this = _super.call(this) || this
+                            shouldSkipParentCheck = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false
 
-          _this.props = props
+                        _classCallCheck(this, DeStagnate)
 
-          /**
-           * Creates nested DeStagnate component
-           * @public
-           * @instance
-           * @readonly
-           * @param {DeStagnateConstructor} Component - DeStagnate component
-           * @param {Object<string, unknown>} props - props of component
-           * @returns {HTMLDivElement} parent of component
-           */
-          _this.createDSComponent = DeStagnate.createDSComponent
+                        _this = _super.call(this)
+                        _this.props = props
 
-          /**
-           * Creates a child element to DynamComponent
-           * @public
-           * @instance
-           * @readonly
-           * @param {string} tagName - name of HTML element
-           * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
-           * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-           * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
-           * @returns {HTMLElement} html element
-           */
-          _this.createElement = DeStagnate.createElement
+                        /**
+                         * Creates nested DeStagnate component
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @param {DeStagnateConstructor} Component - DeStagnate component
+                         * @param {Object<string, unknown>} props - props of component
+                         * @returns {HTMLDivElement} parent of component
+                         */
+                        _this.createDSComponent = DeStagnate.createDSComponent
 
-          /**
-           * Creates a child element to deStagnate
-           * @public
-           * @instance
-           * @readonly
-           * @param {string | null} namespaceURI - namespace uri
-           * @param {string} tagName - name of HTML element
-           * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
-           * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-           * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
-           * @returns {HTMLElement} html element
-           */
-          _this.createElementNS = DeStagnate.createElementNS
+                        /**
+                         * Creates a child element to DynamComponent
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @param {string} tagName - name of HTML element
+                         * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+                         * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+                         * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
+                         * @returns {HTMLElement} html element
+                         */
+                        _this.createElement = DeStagnate.createElement
 
-          /**
-           * Creates a reference for a nested component
-           * @public
-           * @instance
-           * @readonly
-           * @returns {Object<string, null>} empty ref object
-           */
-          _this.createRef = DeStagnate.createRef
+                        /**
+                         * Creates a child element to deStagnate
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @param {string | null} namespaceURI - namespace uri
+                         * @param {string} tagName - name of HTML element
+                         * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
+                         * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+                         * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
+                         * @returns {HTMLElement} html element
+                         */
+                        _this.createElementNS = DeStagnate.createElementNS
 
-          /**
-           * If strict mode should be used. True by default
-           * @type {boolean}
-           */
-          _this._strict = true
+                        /**
+                         * Creates a reference for a nested component
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @returns {Object<string, null>} empty ref object
+                         */
+                        _this.createRef = DeStagnate.createRef
 
-          /**
-           * State of component. Works similar React State
-           * @type {undefined | Object.<string, unknown>}
-           * @private
-           * @instance
-           */
-          _this._state = {}
+                        /**
+                         * If strict mode should be used. True by default
+                         * @type {boolean}
+                         */
+                        _this._strict = true
 
-          /**
-           * If initial state was set in initializer
-           * Do not throw error with direct state setting
-           * @type {boolean}
-           * @private
-           */
-          _this._didSetInitialState = false
+                        /**
+                         * State of component. Works similar React State
+                         * @type {undefined | Object.<string, unknown>}
+                         * @private
+                         * @instance
+                         */
+                        _this._state = {}
 
-          /**
-           * What to call before component update (state mutation)
-           * @public
-           * @instance
-           * @param {Props} prevProps - previous props
-           * @param {State} prevState - previous state
-           * @returns {void} void
-           */
-          _this.getSnapshotBeforeUpdate = function (prevProps, prevState) {
-              return [prevProps, prevState]
-          }
+                        /**
+                         * If initial state was set in initializer
+                         * Do not throw error with direct state setting
+                         * @type {boolean}
+                         * @private
+                         */
+                        _this._didSetInitialState = false
 
-          /**
-           * Turn on strict mode
-           * @returns {void} void
-           */
-          _this.useStrict = function () {
-              _this._strict = true
-          }
+                        /**
+                         * What to call before component update (state mutation)
+                         * @public
+                         * @instance
+                         * @param {Props} prevProps - previous props
+                         * @param {State} prevState - previous state
+                         * @returns {void} void
+                         */
+                        _this.getSnapshotBeforeUpdate = function (prevProps, prevState) {
+                            return [prevProps, prevState]
+                        }
 
-          /**
-           * Turn off strict mode
-           * @returns {void} void
-           */
-          _this.disableStrict = function () {
-              _this._strict = false
-          }
+                        /**
+                         * Turn on strict mode
+                         * @returns {void} void
+                         */
+                        _this.useStrict = function () {
+                            _this._strict = true
+                        }
 
-          /**
-           * Sets state
-           * @public
-           * @instance
-           * @readonly
-           * @param {Partial<State>} obj - state to set
-           * @returns {void | Error} void
-           */
-          _this.setState = function (obj) {
-              var e_1, _a
+                        /**
+                         * Turn off strict mode
+                         * @returns {void} void
+                         */
+                        _this.disableStrict = function () {
+                            _this._strict = false
+                        }
 
-              try {
-                  _this.componentWillUpdate()
+                        /**
+                         * Sets state
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @param {Partial<State>} obj - state to set
+                         * @returns {void | Error} void
+                         */
+                        _this.setState = function (obj) {
+                            try {
+                                _this.componentWillUpdate()
 
-                  if (_this._strict) {
-                      _this._checkKeys(obj)
-                  }
+                                if (_this._strict) {
+                                    _this._checkKeys(obj)
+                                }
 
-                  _this.getSnapshotBeforeUpdate({..._this.props}, {..._this.state})
+                                _this.getSnapshotBeforeUpdate({..._this.props}, {..._this.state})
 
-                  Object.assign(_this._state, obj)
-                  var renderedContent = _this.shouldComponentUpdate() ? _this._execRender() : undefined
+                                Object.assign(_this._state, obj)
+                                var renderedContent = _this.shouldComponentUpdate() ? _this._execRender() : undefined
 
-                  if (_typeof(renderedContent) === "object" && renderedContent instanceof Array) {
-                      try {
-                          for (var renderedContent_1 = __values(renderedContent), renderedContent_1_1 = renderedContent_1.next(); !renderedContent_1_1.done; renderedContent_1_1 = renderedContent_1.next()) {
-                              var element = renderedContent_1_1.value
+                                if (_typeof(renderedContent) === "object" && renderedContent instanceof Array) {
+                                    var _iterator = _createForOfIteratorHelper(renderedContent),
+                                        _step
 
-                              _this._parent.appendChild(element)
-                          }
-                      } catch (e_1_1) /* istanbul ignore next */ {
-                          e_1 = {
-                              error: e_1_1
-                          }
-                      } finally /* istanbul ignore next */ {
-                          try {
-                              if (renderedContent_1_1 && !renderedContent_1_1.done && (_a = renderedContent_1.return)) {
-                                  _a.call(renderedContent_1) 
-                              }
-                          } finally /* istanbul ignore next */ {
-                              if (e_1) {
-                                  throw e_1.error 
-                              }
-                          }
-                      }
-                  } else if (renderedContent) {
-                      _this._parent.appendChild(renderedContent)
-                  }
+                                    try {
+                                        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                                            var element = _step.value
 
-                  if (renderedContent) {
-                      _this.componentDidUpdate()
-                  }
-              } catch (err)
-              /* istanbul ignore next */
-              {
-                  _this.componentDidCatch(err)
+                                            _this._parent.appendChild(element)
+                                        }
+                                    } catch (err) {
+                                        _iterator.e(err)
+                                    } finally /* istanbul ignore next */ {
+                                        _iterator.f()
+                                    }
+                                } else if (renderedContent) {
+                                    _this._parent.appendChild(renderedContent)
+                                }
 
-                  return err
-              }
-          }
-          /* eslint-disable @typescript-eslint/member-ordering, max-len */
-          /**
-           * Initial mounting to be manually called
-           * @public
-           * @instance
-           * @readonly
-           * @returns {HTMLElement | Array.<HTMLElement> | error} - result of append child to parent element
-           */
-          _this.mountComponent = function () {
-              try {
-                  var component = _this.render()
+                                if (renderedContent) {
+                                    _this.componentDidUpdate()
+                                }
+                            } catch (err)
+                            /* istanbul ignore next */
+                            {
+                                _this.componentDidCatch(err)
 
-                  _this._didSetInitialState = true
+                                return err
+                            }
+                        }
+                        /* eslint-disable @typescript-eslint/member-ordering, max-len */
+                        /**
+                         * Initial mounting to be manually called
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @returns {HTMLElement | Array.<HTMLElement> | error} - result of append child to parent element
+                         */
+                        _this.mountComponent = function () {
+                            try {
+                                var component = _this.render()
 
-                  _this.componentWillMount()
+                                _this._didSetInitialState = true
 
-                  if (component === null) {
-                      var msg = "Expected render method to be included in component class, no render method found, or render returned an empty array"
+                                _this.componentWillMount()
 
-                      throw new Error(msg)
-                  }
+                                if (component === null) {
+                                    var msg = "Expected render method to be included in component class, no render method found, or render returned an empty array"
 
-                  _this.bindEventListeners(_this._parent)
+                                    throw new Error(msg)
+                                }
 
-                  _this.componentDidMount()
+                                _this.bindEventListeners(_this._parent)
 
-                  if (_typeof(component) === "object" && component instanceof Array) {
-                      return component.map((element) => _this._parent.appendChild(element))
-                  }
+                                _this.componentDidMount()
 
-                  return _this._parent.appendChild(component)
-              } catch (err)
-              /* istanbul ignore next */
-              {
-                  _this.componentDidCatch(err)
+                                if (_typeof(component) === "object" && component instanceof Array) {
+                                    return component.map((element) => _this._parent.appendChild(element))
+                                }
 
-                  return err
-              }
-          }
+                                return _this._parent.appendChild(component)
+                            } catch (err)
+                            /* istanbul ignore next */
+                            {
+                                _this.componentDidCatch(err)
 
-          /**
-           * Initial mounting to be manually called
-           * @public
-           * @instance
-           * @readonly
-           * @returns {HTMLElement} - result of append child to parent element
-           */
-          _this.mount = _this.mountComponent
+                                return err
+                            }
+                        }
 
-          /**
-           * Unmounting to be manually called
-           * @public
-           * @instance
-           * @readonly
-           * @returns {void} - void
-           */
-          _this.unmountComponent = function () {
-              try {
-                  _this.componentWillUnmount()
+                        /**
+                         * Initial mounting to be manually called
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @returns {HTMLElement} - result of append child to parent element
+                         */
+                        _this.mount = _this.mountComponent
 
-                  _this.unbindEventListeners(_this._parent)
+                        /**
+                         * Unmounting to be manually called
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @returns {void} - void
+                         */
+                        _this.unmountComponent = function () {
+                            try {
+                                _this.componentWillUnmount()
 
-                  _this._removeChildren()
-              } catch (err)
-              /* istanbul ignore next */
-              {
-                  _this.componentDidCatch(err)
-              }
-          }
+                                _this.unbindEventListeners(_this._parent)
 
-          /**
-           * Unmounting to be manually called
-           * @public
-           * @instance
-           * @readonly
-           * @returns {void} - void
-           */
-          _this.unmount = _this.unmountComponent
-          /* eslint-enable max-len, @typescript-eslint/member-ordering */
-          /**
-           * Removes children from this._parent
-           * @private
-           * @instance
-           * @return {void} void
-           */
-          _this._removeChildren = function () {
-              while (_this._parent.firstChild) {
-                  if (_this._parent.lastChild) {
-                      _this._parent.removeChild(_this._parent.lastChild)
-                  } else {
-                      break
-                  }
-              }
-          }
+                                _this._removeChildren()
+                            } catch (err)
+                            /* istanbul ignore next */
+                            {
+                                _this.componentDidCatch(err)
+                            }
+                        }
 
-          /**
-           * Executes new render
-           * @returns {HTMLElement | Array.<HTMLElement> | null} rendered content
-           */
-          _this._execRender = function () {
-              _this._removeChildren()
+                        /**
+                         * Unmounting to be manually called
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @returns {void} - void
+                         */
+                        _this.unmount = _this.unmountComponent
+                        /* eslint-enable max-len, @typescript-eslint/member-ordering */
+                        /**
+                         * Removes children from this._parent
+                         * @private
+                         * @instance
+                         * @return {void} void
+                         */
+                        _this._removeChildren = function () {
+                            while (_this._parent.firstChild) {
+                                if (_this._parent.lastChild) {
+                                    _this._parent.removeChild(_this._parent.lastChild)
+                                } else {
+                                    break
+                                }
+                            }
+                        }
 
-              return _this.render()
-          }
+                        /**
+                         * Executes new render
+                         * @returns {HTMLElement | Array.<HTMLElement> | null} rendered content
+                         */
+                        _this._execRender = function () {
+                            _this._removeChildren()
 
-          /**
-           * Checks new state assignment to make sure no new keys are assigned
-           * @param {Partial<State>} obj - new state
-           * @returns {void} void
-           */
-          _this._checkKeys = function (obj) {
-              var e_2, _a
+                            return _this.render()
+                        }
 
-              try {
-                  for (var _b = __values(Object.keys(obj)), _c = _b.next(); !_c.done; _c = _b.next()) {
-                      var key = _c.value
+                        /**
+                         * Checks new state assignment to make sure no new keys are assigned
+                         * @param {Partial<State>} obj - new state
+                         * @returns {void} void
+                         */
+                        _this._checkKeys = function (obj) {
+                            for (var _i = 0, _Object$keys = Object.keys(obj); _i < _Object$keys.length; _i++) {
+                                var key = _Object$keys[_i]
 
-                      if (!Object.keys(_this.state).includes(key)) {
-                          // eslint-disable-next-line
-              console.warn("WARN: New key (" + key + ") should not be set with setState, which has keys " + JSON.stringify(Object.keys(_this.state)) + ". Declare all state variables in constructor as a best practice. Did you misspell a key?");
-                      }
-                  }
-              } catch (e_2_1) /* istanbul ignore next */ {
-                  e_2 = {
-                      error: e_2_1
-                  }
-              } finally /* istanbul ignore next */ {
-                  try {
-                      if (_c && !_c.done && (_a = _b.return)) {
-                          _a.call(_b) 
-                      }
-                  } finally /* istanbul ignore next */ {
-                      if (e_2) {
-                          throw e_2.error 
-                      }
-                  }
-              }
-          }
+                                if (!Object.keys(_this.state).includes(key)) {
+                                // eslint-disable-next-line
+            console.warn("WARN: New key (".concat(key, ") should not be set with setState, which has keys ").concat(JSON.stringify(Object.keys(_this.state)), ". Declare all state variables in constructor as a best practice. Did you misspell a key?"));
+                                }
+                            }
+                        }
 
-          if (parent.childElementCount > 0 && !shouldSkipParentCheck && _this._strict) {
-              _this.componentDidCatch(new Error(`ERR: Avoid using this ${parent.tagName.toLowerCase()} as element parent, as all elements within this ${parent.tagName.toLowerCase()} will be removed on re-render. To disable this, pass in true as a third parameter`))
-          }
+                        if (parent.childElementCount > 0 && !shouldSkipParentCheck && _this._strict) {
+                            _this.componentDidCatch(new Error("ERR: Avoid using this ".concat(parent.tagName.toLowerCase(), " as element parent, as all elements within this ").concat(parent.tagName.toLowerCase(), " will be removed on re-render. To disable this, pass in true as a third parameter")))
+                        }
 
-          _this._parent = parent
-          
-          return _this
-      }
+                        _this._parent = parent
+                        
+                        return _this
+                    }
 
-      Object.defineProperty(DeStagnate.prototype, "getState", {
+                    /**
+                     * Public getState getter as this.state itself is protected
+                     * @public
+                     * @instance
+                     * @returns {State} component state
+                     */
+                    _createClass(DeStagnate, [
+                        {
+                            key: "getState",
+                            get: function get () {
+                                return this.state
+                            }
 
-          /**
-           * Public getState getter as this.state itself is protected
-           * @public
-           * @instance
-           * @returns {State} component state
-           */
-          get: function get () {
-              return this.state
-          },
-          enumerable: false,
-          configurable: true
-      })
-      Object.defineProperty(DeStagnate.prototype, "state", {
+                            /**
+                             * Get component state
+                             * @protected
+                             * @instance
+                             * @returns {State} component state
+                             */
+                        }, {
+                            key: "state",
+                            get: function get () {
+                                return this._state
+                            },
 
-          /**
-           * Get component state
-           * @protected
-           * @instance
-           * @returns {State} component state
-           */
-          get: function get () {
-              return this._state
-          },
+                            /**
+                             * Sets component state
+                             * WARN: do not use this method to mutate the state directly
+                             * @protected
+                             * @instance
+                             * @param {State} obj - state to set
+                             */
+                    
+                            set: function set (obj) {
+                                if (this._didSetInitialState && this._strict) {
+                                    this.componentDidCatch(new Error("Do not mutate state directly. Use setState instead.")) // eslint-disable-next-line
 
-          /**
-           * Sets component state
-           * WARN: do not use this method to mutate the state directly
-           * @protected
-           * @instance
-           * @param {State} obj - state to set
-           */
-          set: function set (obj) {
-              if (this._didSetInitialState && this._strict) {
-                  this.componentDidCatch(new Error("Do not mutate state directly. Use setState instead.")) // eslint-disable-next-line
+                                    console.warn("DeStagnate protects you from mutating the entire state object. Avoid mutating state directly")
+                                    this.setState(obj)
+                                } else {
+                                    this._state = obj
+                                    this._didSetInitialState = true
+                                }
+                            }
 
-                  console.warn("DeStagnate protects you from mutating the entire state object. Avoid mutating state directly")
-                  this.setState(obj)
-              } else {
-                  this._state = obj
-                  this._didSetInitialState = true
-              }
-          },
-          enumerable: false,
-          configurable: true
-      })
-      Object.defineProperty(DeStagnate.prototype, "getProps", {
+                            /**
+                             * Public getProps getter as this.props itself is protected
+                             * @public
+                             * @instance
+                             * @returns {Props | undefined} component state
+                             */
+                        }, {
+                            key: "getProps",
+                            get: function get () {
+                                return this.props
+                            }
+                        }
+                    ])
 
-          /**
-           * Public getProps getter as this.props itself is protected
-           * @public
-           * @instance
-           * @returns {Props | undefined} component state
-           */
-          get: function get () {
-              return this.props
-          },
-          enumerable: false,
-          configurable: true
-      })
-
-      /**
-       * Creates nested DeStagnate component
-       * @public
-       * @static
-       * @readonly
-       * @param {DeStagnateConstructor} Component - DeStagnate component
-       * @param {Object<string, unknown>} props - props of component
-       * @returns {HTMLDivElement} parent of component
-       */
-      DeStagnate.createDSComponent = createDSComponent_1.default
-
-      /**
-       * Creates a child element to DynamComponent
-       * @public
-       * @static
-       * @readonly
-       * @param {string} tagName - name of HTML element
-       * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
-       * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-       * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
-       * @returns {HTMLElement} html element
-       */
-      DeStagnate.createElement = createElement_1.default
-
-      /**
-       * Creates a child element to deStagnate
-       * @public
-       * @static
-       * @readonly
-       * @param {string | null} namespaceURI - namespace uri
-       * @param {string} tagName - name of HTML element
-       * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
-       * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-       * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
-       * @returns {HTMLElement} html element
-       */
-      DeStagnate.createElementNS = createElementNS_1.default
-
-      /**
-       * Creates a reference for a nested component
-       * @public
-       * @static
-       * @readonly
-       * @returns {Object<string, null>} empty ref object
-       */
-      DeStagnate.createRef = createRef_1.default
-      
-      return DeStagnate
-  }(_preset_1.default))
+                    return DeStagnate
+                }(_preset_1.default))
 
             exports.default = DeStagnate
+
+            /**
+             * Creates nested DeStagnate component
+             * @public
+             * @static
+             * @readonly
+             * @param {DeStagnateConstructor} Component - DeStagnate component
+             * @param {Object<string, unknown>} props - props of component
+             * @returns {HTMLDivElement} parent of component
+             */
+            DeStagnate.createDSComponent = createDSComponent_1.default
+
+            /**
+             * Creates a child element to DynamComponent
+             * @public
+             * @static
+             * @readonly
+             * @param {string} tagName - name of HTML element
+             * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+             * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+             * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
+             * @returns {HTMLElement} html element
+             */
+            DeStagnate.createElement = createElement_1.default
+
+            /**
+             * Creates a child element to deStagnate
+             * @public
+             * @static
+             * @readonly
+             * @param {string | null} namespaceURI - namespace uri
+             * @param {string} tagName - name of HTML element
+             * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
+             * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+             * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
+             * @returns {HTMLElement} html element
+             */
+            DeStagnate.createElementNS = createElementNS_1.default
+
+            /**
+             * Creates a reference for a nested component
+             * @public
+             * @static
+             * @readonly
+             * @returns {Object<string, null>} empty ref object
+             */
+            DeStagnate.createRef = createRef_1.default
 
             /**
              * Creates nested DeStagnate component
@@ -891,47 +1040,18 @@ module.exports =
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
-             *
-             * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
-             * MIT License
-             *
+             * @copyright Copyright (C) 2020 Luke Zhang
+             * @author Luke Zhang luke-zhang-04.github.io
+             * @license MIT
              * @version 1.6.0
              * @exports Preset
              * @package
              */
-            var __extends = this && this.__extends || (function () /* istanbul ignore next */  {
-                    var _extendStatics2 = function extendStatics (d, b) {
-                        _extendStatics2 = Object.setPrototypeOf || {
-                            __proto__: []
-                        } instanceof Array && function (d, b) {
-                            d.__proto__ = b
-                        } || function (d, b) {
-                            for (var p in b) {
-                                if (b.hasOwnProperty(p)) {
-                                    d[p] = b[p] 
-                                }
-                            }
-                        }
-
-                        return _extendStatics2(d, b)
-                    }
-
-                    return function (d, b) {
-                        _extendStatics2(d, b)
-
-                        function __ () {
-                            this.constructor = d
-                        }
-
-                        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __())
-                    }
-                }()),
-
-                __importDefault = this && this.__importDefault || function (mod) /* istanbul ignore next */  {
-                    return mod && mod.__esModule ? mod : {
-                        default: mod
-                    }
+            var __importDefault = this && this.__importDefault || function (mod) /* istanbul ignore next */  {
+                return mod && mod.__esModule ? mod : {
+                    default: mod
                 }
+            }
 
             Object.defineProperty(exports, "__esModule", {
                 value: true
@@ -942,98 +1062,101 @@ module.exports =
                 /**
                  * Lifecycle member functions
                  */
-                Preset =
+                Preset = /* #__PURE__*/(function (_events_1$default) {
+                    _inherits(Preset, _events_1$default)
 
-  /** @class */
-  (function (_super) {
-      __extends(Preset, _super)
+                    var _super2 = _createSuper(Preset)
 
-      function Preset () {
-          var _this = _super !== null && _super.apply(this, arguments) || this
+                    function Preset () {
+                        var _this2
 
-          /**
-           * Called when component catches error. Default behaviour is console.error
-           * @param {Error} error - error object with info
-           * @returns {void} void
-           */
-          _this.componentDidCatch = function (error) {
-              return console.error(error)
-          }
+                        _classCallCheck(this, Preset)
 
-          /**
-           * What to call after component mounting
-           * @public
-           * @instance
-           * @returns {void} void
-           */
-          _this.componentDidMount = function () {
-              return undefined
-          }
+                        _this2 = _super2.apply(this, arguments)
 
-          /**
-           * What to call after component update (state mutation)
-           * @public
-           * @instance
-           * @returns {void} void
-           */
-          _this.componentDidUpdate = function () {
-              return undefined
-          }
+                        /**
+                         * Called when component catches error. Default behaviour is console.error
+                         * @param {Error} error - error object with info
+                         * @returns {void} void
+                         */
+                        _this2.componentDidCatch = function (error) {
+                            return console.error(error)
+                        }
 
-          /**
-           * What to call before component mounting
-           * @public
-           * @instance
-           * @returns {void} void
-           */
-          _this.componentWillMount = function () {
-              return undefined
-          }
+                        /**
+                         * What to call after component mounting
+                         * @public
+                         * @instance
+                         * @returns {void} void
+                         */
+                        _this2.componentDidMount = function () {
+                            return undefined
+                        }
 
-          /**
-           * What to call before component unmounting
-           * @public
-           * @instance
-           * @returns {void} void
-           */
-          _this.componentWillUnmount = function () {
-              return undefined
-          }
+                        /**
+                         * What to call after component update (state mutation)
+                         * @public
+                         * @instance
+                         * @returns {void} void
+                         */
+                        _this2.componentDidUpdate = function () {
+                            return undefined
+                        }
 
-          /**
-           * What to call before component update (state mutation)
-           * @public
-           * @instance
-           * @returns {void} void
-           */
-          _this.componentWillUpdate = function () {
-              return undefined
-          }
+                        /**
+                         * What to call before component mounting
+                         * @public
+                         * @instance
+                         * @returns {void} void
+                         */
+                        _this2.componentWillMount = function () {
+                            return undefined
+                        }
 
-          /**
-           * Called before component is updated
-           * @returns {boolean} whether or not component should update/re-render
-           */
-          _this.shouldComponentUpdate = function () {
-              return true
-          }
+                        /**
+                         * What to call before component unmounting
+                         * @public
+                         * @instance
+                         * @returns {void} void
+                         */
+                        _this2.componentWillUnmount = function () {
+                            return undefined
+                        }
 
-          /**
-           * Rendering HTML, must be part of extended class
-           * @public
-           * @instance
-           * @abstract
-           * @returns {null | HTMLElement | Array.<HTMLElement> | Element | Array.<Element>} if returns null error will be thrown
-           */
-          _this.render = function () {
-              return null
-          }
+                        /**
+                         * What to call before component update (state mutation)
+                         * @public
+                         * @instance
+                         * @returns {void} void
+                         */
+                        _this2.componentWillUpdate = function () {
+                            return undefined
+                        }
 
-          return _this
-      }
+                        /**
+                         * Called before component is updated
+                         * @returns {boolean} whether or not component should update/re-render
+                         */
+                        _this2.shouldComponentUpdate = function () {
+                            return true
+                        }
 
-      return Preset
-  }(_events_1.default))
+                        /**
+                         * Rendering HTML, must be part of extended class
+                         * @public
+                         * @instance
+                         * @abstract
+                         * @returns {null | HTMLElement | Array.<HTMLElement> | Element | Array.<Element>} if returns null error will be thrown
+                         */
+                        _this2.render = function () {
+                            return null
+                        }
+
+                        return _this2
+                    }
+
+                    return Preset
+                }(_events_1.default))
 
             exports.default = Preset
 
@@ -1048,388 +1171,305 @@ module.exports =
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
-             *
-             * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
-             * MIT License
-             *
+             * @copyright Copyright (C) 2020 Luke Zhang
+             * @author Luke Zhang luke-zhang-04.github.io
+             * @license MIT
              * @version 1.6.0
              * @exports Events
              * @package
              */
-            var __values = this && this.__values || function (o) /* istanbul ignore next */  {
-                    var s = typeof Symbol === "function" && Symbol.iterator,
-                        m = s && o[s],
-                        i = 0
-
-                    if (m) {
-                        return m.call(o) 
-                    }
-                    if (o && typeof o.length === "number") {
-                        return {
-                            next: function next () {
-                                if (o && i >= o.length) {
-                                    o = void 0 
-                                }
-                                
-                                return {
-                                    value: o && o[i++],
-                                    done: !o
-                                }
-                            }
-                        } 
-                    }
-                    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.")
-                },
-
-                __read = this && this.__read || function (o, n) /* istanbul ignore next */ {
-                    var m = typeof Symbol === "function" && o[Symbol.iterator]
-
-                    if (!m) {
-                        return o 
-                    }
-                    var i = m.call(o),
-                        r,
-                        ar = [],
-                        e
-
-                    try {
-                        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
-                            ar.push(r.value)
-                        }
-                    } catch (error) {
-                        e = {
-                            error
-                        }
-                    } finally /* istanbul ignore next */ {
-                        try {
-                            if (r && !r.done && (m = i.return)) {
-                                m.call(i) 
-                            }
-                        } finally /* istanbul ignore next */ {
-                            if (e) {
-                                throw e.error 
-                            }
-                        }
-                    }
-
-                    return ar
-                }
-
             Object.defineProperty(exports, "__esModule", {
                 value: true
             })
             /* istanbul ignore next */
-            var Events =
+            var Events = function Events () {
+                var _this3 = this
 
-  /** @class */
-  (function () {
-      function Events () {
-          var _this = this
+                _classCallCheck(this, Events)
 
-          /**
-           * Binds event listeners event
-           * Do not call manually
-           * @protected
-           * @instance
-           * @pacakge
-           * @param {HTMLElement} element - element to bind listeners to
-           * @returns {void} void;
-           */
-          this.bindEventListeners = function (element) {
-              _this._eventListener(element.addEventListener)
-          }
+                /**
+                 * Binds event listeners event
+                 * Do not call manually
+                 * @protected
+                 * @instance
+                 * @pacakge
+                 * @param {HTMLElement} element - element to bind listeners to
+                 * @returns {void} void;
+                 */
+                this.bindEventListeners = function (element) {
+                    _this3._eventListener(element.addEventListener)
+                }
 
-          /**
-           * Binds event listeners event
-           * Do not call manually
-           * @protected
-           * @instance
-           * @pacakge
-           * @param {HTMLElement} element - element to bind listeners to
-           * @returns {void} void;
-           */
-          this.unbindEventListeners = function (element) {
-              _this._eventListener(element.removeEventListener)
-          }
+                /**
+                 * Binds event listeners event
+                 * Do not call manually
+                 * @protected
+                 * @instance
+                 * @pacakge
+                 * @param {HTMLElement} element - element to bind listeners to
+                 * @returns {void} void;
+                 */
+                this.unbindEventListeners = function (element) {
+                    _this3._eventListener(element.removeEventListener)
+                }
 
-          /**
-           * Focus event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onFocus = function () {
-              return undefined
-          }
+                /**
+                 * Focus event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onFocus = function () {
+                    return undefined
+                }
 
-          /**
-           * Blur event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onBlur = function () {
-              return undefined
-          }
+                /**
+                 * Blur event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onBlur = function () {
+                    return undefined
+                }
 
-          /**
-           * Focus in event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onFocusIn = function () {
-              return undefined
-          }
+                /**
+                 * Focus in event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onFocusIn = function () {
+                    return undefined
+                }
 
-          /**
-           * Focus out event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onFocusOut = function () {
-              return undefined
-          }
+                /**
+                 * Focus out event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onFocusOut = function () {
+                    return undefined
+                }
 
-          /**
-           * Animation start event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onAnimationStart = function () {
-              return undefined
-          }
+                /**
+                 * Animation start event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onAnimationStart = function () {
+                    return undefined
+                }
 
-          /**
-           * Animation cancel event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onAnimationCancel = function () {
-              return undefined
-          }
+                /**
+                 * Animation cancel event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onAnimationCancel = function () {
+                    return undefined
+                }
 
-          /**
-           * Animation end event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onAnimationEnd = function () {
-              return undefined
-          }
+                /**
+                 * Animation end event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onAnimationEnd = function () {
+                    return undefined
+                }
 
-          /**
-           * Animation iteration event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onAnimationIteration = function () {
-              return undefined
-          }
+                /**
+                 * Animation iteration event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onAnimationIteration = function () {
+                    return undefined
+                }
 
-          /**
-           * Transition start event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onTransitionStart = function () {
-              return undefined
-          }
+                /**
+                 * Transition start event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onTransitionStart = function () {
+                    return undefined
+                }
 
-          /**
-           * Transition cancel event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onTransitionCancel = function () {
-              return undefined
-          }
+                /**
+                 * Transition cancel event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onTransitionCancel = function () {
+                    return undefined
+                }
 
-          /**
-           * Transition end event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onTransitionEnd = function () {
-              return undefined
-          }
+                /**
+                 * Transition end event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onTransitionEnd = function () {
+                    return undefined
+                }
 
-          /**
-           * Transition run event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onTransitionRun = function () {
-              return undefined
-          }
+                /**
+                 * Transition run event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onTransitionRun = function () {
+                    return undefined
+                }
 
-          /**
-           * Auxillary click event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onAuxClick = function () {
-              return undefined
-          }
+                /**
+                 * Auxillary click event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onAuxClick = function () {
+                    return undefined
+                }
 
-          /**
-           * Click event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onClick = function () {
-              return undefined
-          }
+                /**
+                 * Click event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onClick = function () {
+                    return undefined
+                }
 
-          /**
-           * Double click event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onDblClick = function () {
-              return undefined
-          }
+                /**
+                 * Double click event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onDblClick = function () {
+                    return undefined
+                }
 
-          /**
-           * Mousedown event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onMouseDown = function () {
-              return undefined
-          }
+                /**
+                 * Mousedown event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onMouseDown = function () {
+                    return undefined
+                }
 
-          /**
-           * Mouse enter event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onMouseEnter = function () {
-              return undefined
-          }
+                /**
+                 * Mouse enter event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onMouseEnter = function () {
+                    return undefined
+                }
 
-          /**
-           * Mouse leave event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onMouseLeave = function () {
-              return undefined
-          }
+                /**
+                 * Mouse leave event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onMouseLeave = function () {
+                    return undefined
+                }
 
-          /**
-           * Mouse move event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onMouseMove = function () {
-              return undefined
-          }
+                /**
+                 * Mouse move event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onMouseMove = function () {
+                    return undefined
+                }
 
-          /**
-           * Mouseover event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onMouseOver = function () {
-              return undefined
-          }
+                /**
+                 * Mouseover event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onMouseOver = function () {
+                    return undefined
+                }
 
-          /**
-           * Mouseout event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onMouseOut = function () {
-              return undefined
-          }
+                /**
+                 * Mouseout event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onMouseOut = function () {
+                    return undefined
+                }
 
-          /**
-           * Mouseup event
-           * @protected
-           * @instance
-           * @returns {void}
-           */
-          this.onMouseUp = function () {
-              return undefined
-          }
+                /**
+                 * Mouseup event
+                 * @protected
+                 * @instance
+                 * @returns {void}
+                 */
+                this.onMouseUp = function () {
+                    return undefined
+                }
 
-          this._eventListener = function (el) {
-              var e_1, _a
+                this._eventListener = function (el) {
+                    for (var _i2 = 0, _Object$entries = Object.entries(_this3._events()); _i2 < _Object$entries.length; _i2++) {
+                        var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
+                            event = _Object$entries$_i[0],
+                            callback = _Object$entries$_i[1]
 
-              try {
-                  for (var _b = __values(Object.entries(_this._events())), _c = _b.next(); !_c.done; _c = _b.next()) {
-                      var _d = __read(_c.value, 2),
-                          event_1 = _d[0],
-                          callback = _d[1]
+                        el(event, callback)
+                    }
+                }
 
-                      el(event_1, callback)
-                  }
-              } catch (e_1_1) /* istanbul ignore next */ {
-                  e_1 = {
-                      error: e_1_1
-                  }
-              } finally /* istanbul ignore next */ {
-                  try {
-                      if (_c && !_c.done && (_a = _b.return)) {
-                          _a.call(_b) 
-                      }
-                  } finally /* istanbul ignore next */ {
-                      if (e_1) {
-                          throw e_1.error 
-                      }
-                  }
-              }
-          }
-
-          this._events = function () {
-              return {
-                  focus: _this.onFocus,
-                  blur: _this.onBlur,
-                  focusin: _this.onFocusIn,
-                  focusout: _this.onFocusOut,
-                  animationstart: _this.onAnimationStart,
-                  animationcancel: _this.onAnimationCancel,
-                  animationend: _this.onAnimationEnd,
-                  animationiteration: _this.onAnimationIteration,
-                  transitionstart: _this.onTransitionStart,
-                  transitioncancel: _this.onTransitionCancel,
-                  transitionend: _this.onTransitionEnd,
-                  transitionrun: _this.onTransitionRun,
-                  auxclick: _this.onAuxClick,
-                  click: _this.onClick,
-                  dblclick: _this.onDblClick,
-                  mousedown: _this.onMouseDown,
-                  mouseenter: _this.onMouseEnter,
-                  mouseleave: _this.onMouseLeave,
-                  mousemove: _this.onMouseMove,
-                  mouseover: _this.onMouseOver,
-                  mouseout: _this.onMouseOut,
-                  mouseup: _this.onMouseUp
-              }
-          }
-      }
-
-      return Events
-  }())
+                this._events = function () {
+                    return {
+                        focus: _this3.onFocus,
+                        blur: _this3.onBlur,
+                        focusin: _this3.onFocusIn,
+                        focusout: _this3.onFocusOut,
+                        animationstart: _this3.onAnimationStart,
+                        animationcancel: _this3.onAnimationCancel,
+                        animationend: _this3.onAnimationEnd,
+                        animationiteration: _this3.onAnimationIteration,
+                        transitionstart: _this3.onTransitionStart,
+                        transitioncancel: _this3.onTransitionCancel,
+                        transitionend: _this3.onTransitionEnd,
+                        transitionrun: _this3.onTransitionRun,
+                        auxclick: _this3.onAuxClick,
+                        click: _this3.onClick,
+                        dblclick: _this3.onDblClick,
+                        mousedown: _this3.onMouseDown,
+                        mouseenter: _this3.onMouseEnter,
+                        mouseleave: _this3.onMouseLeave,
+                        mousemove: _this3.onMouseMove,
+                        mouseover: _this3.onMouseOver,
+                        mouseout: _this3.onMouseOut,
+                        mouseup: _this3.onMouseUp
+                    }
+                }
+            }
 
             exports.default = Events
 
@@ -1444,10 +1484,9 @@ module.exports =
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
-             *
-             * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
-             * MIT License
-             *
+             * @copyright Copyright (C) 2020 Luke Zhang
+             * @author Luke Zhang luke-zhang-04.github.io
+             * @license MIT
              * @version 1.6.0
              * @exports createDSComponent add nested component for DeStagnate components
              */
@@ -1491,80 +1530,12 @@ module.exports =
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
-             *
-             * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
-             * MIT License
-             *
+             * @copyright Copyright (C) 2020 Luke Zhang
+             * @author Luke Zhang luke-zhang-04.github.io
+             * @license MIT
              * @version 1.6.0
              * @exports createElement function for DOM manipulation
              */
-            var __values = this && this.__values || function (o) /* istanbul ignore next */  {
-                    var s = typeof Symbol === "function" && Symbol.iterator,
-                        m = s && o[s],
-                        i = 0
-
-                    if (m) {
-                        return m.call(o) 
-                    }
-                    if (o && typeof o.length === "number") {
-                        return {
-                            next: function next () {
-                                if (o && i >= o.length) {
-                                    o = void 0 
-                                }
-                                
-                                return {
-                                    value: o && o[i++],
-                                    done: !o
-                                }
-                            }
-                        } 
-                    }
-                    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.")
-                },
-
-                __read = this && this.__read || function (o, n) /* istanbul ignore next */ {
-                    var m = typeof Symbol === "function" && o[Symbol.iterator]
-
-                    if (!m) {
-                        return o 
-                    }
-                    var i = m.call(o),
-                        r,
-                        ar = [],
-                        e
-
-                    try {
-                        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
-                            ar.push(r.value)
-                        }
-                    } catch (error) {
-                        e = {
-                            error
-                        }
-                    } finally /* istanbul ignore next */ {
-                        try {
-                            if (r && !r.done && (m = i.return)) {
-                                m.call(i) 
-                            }
-                        } finally /* istanbul ignore next */ {
-                            if (e) {
-                                throw e.error 
-                            }
-                        }
-                    }
-
-                    return ar
-                },
-
-                __spread = this && this.__spread || function () {
-                    for (var ar = [], i = 0; i < arguments.length; i++) {
-                        ar = ar.concat(__read(arguments[i]))
-                    }
-
-                    return ar
-                }
-
             Object.defineProperty(exports, "__esModule", {
                 value: true
             })
@@ -1578,86 +1549,57 @@ module.exports =
              * @param {boolean} ns - if namespace element
              * @returns {void} void
              */
-            exports._bindProps = function (element, props, ns) {
-                var e_1, _a
-
-                if (ns === void 0) {
-                    ns = false
-                }
+            exports._bindProps = function (element, props) {
+                var ns = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false
 
                 if (props) {
-                    try {
-                        for (var _b = __values(Object.entries(props)), _c = _b.next(); !_c.done; _c = _b.next()) {
-                            var _d = __read(_c.value, 2),
-                                key = _d[0],
-                                val = _d[1]
+                    for (var _i3 = 0, _Object$entries2 = Object.entries(props); _i3 < _Object$entries2.length; _i3++) {
+                        var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i3], 2),
+                            key = _Object$entries2$_i[0],
+                            val = _Object$entries2$_i[1]
 
-                            if (typeof val === "string" || typeof val === "number") {
-                                if (key === "innerHTML") {
-                                    element.innerHTML = val.toString()
-                                } else if (ns) {
-                                    element.setAttributeNS(null, key, val.toString())
-                                } else {
-                                    element.setAttribute(key, val.toString())
-                                }
-                            } else if (key.slice(0, 2) === "on") {
-                                // Works such as onClick, onAnimationEnd, etc.
-                                if (typeof val === "function") {
-                                    element.addEventListener(key.slice(2).toLowerCase(), val)
-                                }
-                            } else if (key === "ref" && _typeof(val) === "object" && "current" in val) {
-                                val.current = element
+                        if (typeof val === "string" || typeof val === "number") {
+                            if (key === "innerHTML") {
+                                element.innerHTML = val.toString()
+                            } else if (ns) {
+                                element.setAttributeNS(null, key, val.toString())
                             } else {
-                                console.warn(`WARN: Invalid prop type "${_typeof(val)}" for key "${key}". Skipping prop.`)
+                                element.setAttribute(key, val.toString())
                             }
-                        }
-                    } catch (e_1_1) /* istanbul ignore next */ {
-                        e_1 = {
-                            error: e_1_1
-                        }
-                    } finally /* istanbul ignore next */ {
-                        try {
-                            if (_c && !_c.done && (_a = _b.return)) {
-                                _a.call(_b) 
+                        } else if (key.slice(0, 2) === "on") {
+                            // Works such as onClick, onAnimationEnd, etc.
+                            if (typeof val === "function") {
+                                element.addEventListener(key.slice(2).toLowerCase(), val)
                             }
-                        } finally /* istanbul ignore next */ {
-                            if (e_1) {
-                                throw e_1.error 
-                            }
+                        } else if (key === "ref" && _typeof(val) === "object" && "current" in val) {
+                            val.current = element
+                        } else {
+                            console.warn("WARN: Invalid prop type \"".concat(_typeof(val), "\" for key \"").concat(key, "\". Skipping prop."))
                         }
                     }
                 }
             }
 
             exports._unpackChildren = function (children) {
-                var e_2, _a,
+                var newChildren = [],
 
-                    newChildren = []
+                    _iterator2 = _createForOfIteratorHelper(children),
+                    _step2
 
                 try {
-                    for (var children_1 = __values(children), children_1_1 = children_1.next(); !children_1_1.done; children_1_1 = children_1.next()) {
-                        var child = children_1_1.value
+                    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                        var child = _step2.value
 
                         if (_typeof(child) === "object" && child instanceof Array) {
-                            newChildren.push.apply(newChildren, __spread(exports._unpackChildren(child)))
+                            newChildren.push.apply(newChildren, _toConsumableArray(exports._unpackChildren(child)))
                         } else {
                             newChildren.push(child)
                         }
                     }
-                } catch (e_2_1) /* istanbul ignore next */ {
-                    e_2 = {
-                        error: e_2_1
-                    }
+                } catch (err) {
+                    _iterator2.e(err)
                 } finally /* istanbul ignore next */ {
-                    try {
-                        if (children_1_1 && !children_1_1.done && (_a = children_1.return)) {
-                            _a.call(children_1) 
-                        }
-                    } finally /* istanbul ignore next */ {
-                        if (e_2) {
-                            throw e_2.error 
-                        }
-                    }
+                    _iterator2.f()
                 }
 
                 return newChildren
@@ -1671,13 +1613,14 @@ module.exports =
              * @returns {void} void
              */
             exports._bindChildren = function (element, children) {
-                var e_3, _a
-
                 if (children || children === 0) {
                     if (children instanceof Array) {
+                        var _iterator3 = _createForOfIteratorHelper(children),
+                            _step3
+
                         try {
-                            for (var children_2 = __values(children), children_2_1 = children_2.next(); !children_2_1.done; children_2_1 = children_2.next()) {
-                                var child = children_2_1.value
+                            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                                var child = _step3.value
 
                                 if (typeof child === "string" || typeof child === "number") {
                                     element.innerHTML = child.toString()
@@ -1687,20 +1630,10 @@ module.exports =
                                     element.appendChild(child)
                                 }
                             }
-                        } catch (e_3_1) /* istanbul ignore next */ {
-                            e_3 = {
-                                error: e_3_1
-                            }
+                        } catch (err) {
+                            _iterator3.e(err)
                         } finally /* istanbul ignore next */ {
-                            try {
-                                if (children_2_1 && !children_2_1.done && (_a = children_2.return)) {
-                                    _a.call(children_2) 
-                                }
-                            } finally /* istanbul ignore next */ {
-                                if (e_3) {
-                                    throw e_3.error 
-                                }
-                            }
+                            _iterator3.f()
                         }
                     } else if (typeof children === "string" || typeof children === "number") {
                         element.innerHTML = children.toString()
@@ -1719,23 +1652,21 @@ module.exports =
              * @returns {HTMLElement} html element
              */
             var createElement = function createElement (tagName, props, children) {
-                var childrenArgs = []
-
-                for (var _i = 3; _i < arguments.length; _i++) {
-                    childrenArgs[_i - 3] = arguments[_i]
-                }
-
                 var element = doc.createElement(tagName)
 
                 exports._bindProps(element, props)
 
                 var _children = children
 
+                for (var _len = arguments.length, childrenArgs = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
+                    childrenArgs[_key - 3] = arguments[_key]
+                }
+
                 if (children && childrenArgs) {
                     if (_typeof(children) === "object" && children instanceof Array) {
-                        _children = __spread(exports._unpackChildren(children), exports._unpackChildren(childrenArgs))
+                        _children = [].concat(_toConsumableArray(exports._unpackChildren(children)), _toConsumableArray(exports._unpackChildren(childrenArgs)))
                     } else {
-                        _children = __spread([children], exports._unpackChildren(childrenArgs))
+                        _children = [children].concat(_toConsumableArray(exports._unpackChildren(childrenArgs)))
                     }
                 }
 
@@ -1757,55 +1688,12 @@ module.exports =
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
-             *
-             * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io
-             * MIT License
-             *
+             * @copyright Copyright (C) 2020 Luke Zhang
+             * @author Luke Zhang luke-zhang-04.github.io
+             * @license MIT
              * @version 1.6.0
              * @exports createElementNS createElement for namespaced elements
              */
-            var __read = this && this.__read || function (o, n) /* istanbul ignore next */ {
-                    var m = typeof Symbol === "function" && o[Symbol.iterator]
-
-                    if (!m) {
-                        return o 
-                    }
-                    var i = m.call(o),
-                        r,
-                        ar = [],
-                        e
-
-                    try {
-                        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
-                            ar.push(r.value)
-                        }
-                    } catch (error) {
-                        e = {
-                            error
-                        }
-                    } finally /* istanbul ignore next */ {
-                        try {
-                            if (r && !r.done && (m = i.return)) {
-                                m.call(i) 
-                            }
-                        } finally /* istanbul ignore next */ {
-                            if (e) {
-                                throw e.error 
-                            }
-                        }
-                    }
-
-                    return ar
-                },
-
-                __spread = this && this.__spread || function () {
-                    for (var ar = [], i = 0; i < arguments.length; i++) {
-                        ar = ar.concat(__read(arguments[i]))
-                    }
-
-                    return ar
-                }
-
             Object.defineProperty(exports, "__esModule", {
                 value: true
             })
@@ -1823,23 +1711,21 @@ module.exports =
              * @returns {HTMLElement} html element
              */
             exports.createElementNS = function (namespaceURI, tagName, props, children) {
-                var childrenArgs = []
-
-                for (var _i = 4; _i < arguments.length; _i++) {
-                    childrenArgs[_i - 4] = arguments[_i]
-                }
-
                 var element = doc.createElementNS(namespaceURI, tagName)
 
                 createElement_1._bindProps(element, props, true)
 
                 var _children = children
 
+                for (var _len2 = arguments.length, childrenArgs = new Array(_len2 > 4 ? _len2 - 4 : 0), _key2 = 4; _key2 < _len2; _key2++) {
+                    childrenArgs[_key2 - 4] = arguments[_key2]
+                }
+
                 if (children && childrenArgs) {
                     if (_typeof(children) === "object" && children instanceof Array) {
-                        _children = __spread(createElement_1._unpackChildren(children), createElement_1._unpackChildren(childrenArgs))
+                        _children = [].concat(_toConsumableArray(createElement_1._unpackChildren(children)), _toConsumableArray(createElement_1._unpackChildren(childrenArgs)))
                     } else {
-                        _children = __spread([children], createElement_1._unpackChildren(childrenArgs))
+                        _children = [children].concat(_toConsumableArray(createElement_1._unpackChildren(childrenArgs)))
                     }
                 }
 
@@ -1884,7 +1770,7 @@ module.exports =
         /** ****/
     ]))
 
-// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVSZWYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7O0FBZ0JBO0FBQUE7Ozs7OztBQUdHO0FBQUE7O0FBQ0g7O0FBQU0sV0FBWSxtQkFBWixDQUF5RCxRQUF6RCxFQUF5RDtBQUMzRDs7QUFEMEQ7QUFFNUQ7O0FBRUY7QUFBQSxRQUFBLGdCQUFBLENBQUEsUUFBQSxDQUFBLEVBQUE7Ozs7O0FBR0c7QUFBQTs7QUFDSDs7O0FBQUEsUUFBQSxNQUFlLEdBQUEsZ0JBQVMsQ0FBQSxRQUFBLENBQVQsR0FBUzs7aUJBQUE7OztjQUFBOzs7Ozs7QUFBQSxLQUF4QiIsImZpbGUiOiJkZVN0YWduYXRlLmJ1bmRsZS5qcyJ9
+// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVSZWYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBZUE7QUFBQTs7Ozs7O0FBR0c7QUFBQTs7QUFDSDs7QUFBTSxXQUFZLG1CQUFaLENBQXlELFFBQXpELEVBQXlEO0FBQzNEOztBQUNIO0FBQUM7O0FBRUY7QUFBQSxRQUFBLGdCQUFBLENBQUEsUUFBQSxDQUFBLEVBQUE7Ozs7O0FBR0c7QUFBQTs7QUFDSDs7O0FBQUEsUUFBQSxNQUFlLEdBQUEsZ0JBQVMsQ0FBQSxRQUFBLENBQVQsR0FBUzs7aUJBQUE7OztjQUFBOzs7Ozs7QUFBQSxLQUF4QiIsImZpbGUiOiJkZVN0YWduYXRlLmJ1bmRsZS5qcyJ9
 
 
 module.exports.setDocument = (_doc) => {

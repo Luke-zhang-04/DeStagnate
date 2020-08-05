@@ -63,6 +63,18 @@ const documentAlias = (data) => {
         .addIstanbulIgnore(/function _typeof \(obj\)/gu)
         .fmt()
 
+    const split = formattedData.split("\n")
+
+    for (const [num, line] of split.entries()) {
+        if (line.includes("function _")) {
+            split[num] = `${line.replace(/\{/gu, "")}${ist} {`
+        } else if (line.includes("modules")) {
+            break
+        }
+    }
+
+    formattedData = split.join("\n")
+
     formattedData = ` /* eslint-disable */
 const niceTry = require("nice-try")
 let doc
