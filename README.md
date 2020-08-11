@@ -63,12 +63,12 @@ With a CDN
 ## Basic Use
 See [https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/src](https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/src) for example code
 ```js
-// browser env requires this
-const DS = DeStagnate,
-    {createElement} = DS
+// Browser env requires this
+const DS = DeStagnate
 
-// node env requires this
+// Node env requires this
 import * as DS from "destagnate"
+const DS = require("destagnate")
 
 class Counter extends DS.defualt {
 
@@ -78,9 +78,11 @@ class Counter extends DS.defualt {
         this.state = {}
     }
 
-    // Using SD.createElement()
-    render = () => DS.createElement("div", {})
-    
+    // Using DS.createElement() - all options available below
+    render = () => DS.createElement("div")
+    render = () => Counter.createElement("div")
+    render = () => this.createElement("div")
+
     // Alternatively, you can use JSX (this requires the CLI, which comes with this package)
     render = () => <div></div>
 
