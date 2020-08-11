@@ -141,6 +141,13 @@ export default abstract class Preset extends Events {
     public componentDidUpdate = (): void => undefined
 
     /**
+     * Called when component catches a warning. Default behaviour is console.warn
+     * @param {string} msg - warning message
+     * @returns {void} void
+     */
+    public componentDidWarn = (msg: string): void => console.warn(msg)
+
+    /**
      * What to call before component mounting
      * @public
      * @instance

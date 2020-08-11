@@ -495,6 +495,10 @@ var DeStagnate = (function (modules) {
                         try {
                             _this.componentWillUpdate()
 
+                            if (_this._parent === undefined) {
+                                throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.")
+                            }
+
                             if (_this._strict) {
                                 _this._checkKeys(obj)
                             }
@@ -538,10 +542,19 @@ var DeStagnate = (function (modules) {
                      * @public
                      * @instance
                      * @readonly
+                     * @param {HTMLElement | undefined} parent - parent element to mount with; optional
                      * @returns {HTMLElement | Array.<HTMLElement> | error} - result of append child to parent element
                      */
-                    _this.mountComponent = function () {
+                    _this.mountComponent = function (parent) {
                         try {
+                            if (_this._parent === undefined) {
+                                throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.")
+                            }
+
+                            if (parent !== undefined) {
+                                _this.parent = parent
+                            }
+
                             var component = _this.render()
 
                             _this._didSetInitialState = true
@@ -588,6 +601,12 @@ var DeStagnate = (function (modules) {
                      */
                     _this.unmountComponent = function () {
                         try {
+                            if (_this._parent === undefined) {
+                                _this.componentDidWarn("No parent was set. Component unmounted from nothing.")
+
+                                return
+                            }
+
                             _this.componentWillUnmount()
 
                             _this.unbindEventListeners(_this._parent)
@@ -614,6 +633,10 @@ var DeStagnate = (function (modules) {
                      * @return {void} void
                      */
                     _this._removeChildren = function () {
+                        if (_this._parent === undefined) {
+                            throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.")
+                        }
+
                         while (_this._parent.firstChild) {
                             if (_this._parent.lastChild) {
                                 _this._parent.removeChild(_this._parent.lastChild)
@@ -643,12 +666,12 @@ var DeStagnate = (function (modules) {
                             var key = _Object$keys[_i]
 
                             if (!Object.keys(_this.state).includes(key)) {
-                                console.warn("WARN: New key (".concat(key, ") should not be set with setState, which has keys ").concat(JSON.stringify(Object.keys(_this.state)), ". Declare all state variables in constructor as a best practice. Did you misspell a key?"))
+                                _this.componentDidWarn("WARN: New key (".concat(key, ") should not be set with setState, which has keys ").concat(JSON.stringify(Object.keys(_this.state)), ". Declare all state variables in constructor as a best practice. Did you misspell a key?"))
                             }
                         }
                     }
 
-                    if (parent.childElementCount > 0 && !shouldSkipParentCheck && _this._strict) {
+                    if (parent && parent.childElementCount > 0 && !shouldSkipParentCheck && _this._strict) {
                         _this.componentDidCatch(new Error("ERR: Avoid using this ".concat(parent.tagName.toLowerCase(), " as element parent, as all elements within this ").concat(parent.tagName.toLowerCase(), " will be removed on re-render. To disable this, pass in true as a third parameter")))
                     }
 
@@ -693,7 +716,7 @@ var DeStagnate = (function (modules) {
                         set: function set (obj) {
                             if (this._didSetInitialState && this._strict) {
                                 this.componentDidCatch(new Error("Do not mutate state directly. Use setState instead."))
-                                console.warn("DeStagnate protects you from mutating the entire state object. Avoid mutating state directly")
+                                this.componentDidWarn("DeStagnate protects you from mutating the entire state object. Avoid mutating state directly")
                                 this.setState(obj)
                             } else {
                                 this._state = obj
@@ -711,6 +734,30 @@ var DeStagnate = (function (modules) {
                         key: "getProps",
                         get: function get () {
                             return this.props
+                        }
+
+                        /**
+                         * Set the parent of this component
+                         * @param {HTMLElement | undefined} element - parent element
+                         * @returns {void} void;
+                         */
+                    }, {
+                        key: "parent",
+                        set: function set (element) {
+                            if (element && element.childElementCount > 0 && this._strict) {
+                                this.componentDidWarn("WARN: Avoid using this ".concat(element.tagName.toLowerCase(), " as element parent, as all elements within this ").concat(element.tagName.toLowerCase(), " will be removed on re-render. If this was intentional, turn strict off before setting parent."))
+                            }
+
+                            this._parent = element
+                        },
+
+                        /**
+                         * Get the parent element of this component
+                         * @returns {HTMLElement | undefined} parent
+                         */
+                
+                        get: function get () {
+                            return this._parent
                         }
                     }
                 ])
@@ -871,6 +918,15 @@ var DeStagnate = (function (modules) {
                      */
                     _this2.componentDidUpdate = function () {
                         return undefined
+                    }
+
+                    /**
+                     * Called when component catches a warning. Default behaviour is console.warn
+                     * @param {string} msg - warning message
+                     * @returns {void} void
+                     */
+                    _this2.componentDidWarn = function (msg) {
+                        return console.warn(msg)
                     }
 
                     /**
