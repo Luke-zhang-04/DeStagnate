@@ -45,7 +45,7 @@ type EventFunc = (e: Event)=> void
  */
 export const _bindProps = (
     element: Element,
-    props?: {[key: string]: string | number | Element | Ref | EventFunc},
+    props?: {[key: string]: string | number | Element | Ref | EventFunc} | null,
     ns = false,
 ): void => {
     if (props) {
@@ -146,7 +146,7 @@ export const _bindChildren = (
  */
 const createElement = <T extends keyof HTMLElementTagNameMap>(
     tagName: T,
-    props?: {[key: string]: string | number | Element | Ref | EventFunc},
+    props?: {[key: string]: string | number | Element | Ref | EventFunc} | null,
     children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
 ): HTMLElementTagNameMap[T] => {
