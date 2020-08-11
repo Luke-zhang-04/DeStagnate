@@ -47,7 +47,7 @@ build() {
 
     wait
 
-    eslintConfig="{'no-var': 'off', 'prefer-arrow/prefer-arrow-functions': 'off', 'camelcase': 'off', 'id-length': 'off', 'no-use-before-define': 'off', 'max-len': 'off', 'require-jsdoc': 'off', 'vars-on-top': 'off', 'valid-jsdoc': 'off'}"
+    eslintConfig="{'no-var': 'off', 'prefer-arrow/prefer-arrow-functions': 'off', 'camelcase': 'off', 'id-length': 'off', 'no-use-before-define': 'off', 'max-len': 'off', 'require-jsdoc': 'off', 'vars-on-top': 'off', 'valid-jsdoc': 'off', 'semi': ['error', 'always']}"
 
     # Format development dist
     printf "${BIPurple}Formatting ${Red}dist ${Green}bundle\n"
