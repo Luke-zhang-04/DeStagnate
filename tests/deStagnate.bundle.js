@@ -13,277 +13,279 @@
  /* eslint-disable */
 const niceTry = require("nice-try")
 let doc
+let _window
 
-niceTry(() => {
+niceTry(() => /* istanbul ignore next */ {
     doc = document
+    _window = window
 })
 
 
 
 function _toConsumableArray (arr) /* istanbul ignore next */ {
-    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread() 
+    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); 
 }
 
 function _nonIterableSpread () /* istanbul ignore next */ {
-    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.") 
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); 
 }
 
 function _iterableToArray (iter) /* istanbul ignore next */ {
     if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) {
-        return Array.from(iter) 
+        return Array.from(iter); 
     } 
 }
 
 function _arrayWithoutHoles (arr) /* istanbul ignore next */ {
     if (Array.isArray(arr)) {
-        return _arrayLikeToArray(arr) 
+        return _arrayLikeToArray(arr); 
     } 
 }
 
 function _slicedToArray (arr, i) /* istanbul ignore next */ {
-    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest() 
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); 
 }
 
 function _nonIterableRest () /* istanbul ignore next */ {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.") 
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); 
 }
 
 function _iterableToArrayLimit (arr, i) /* istanbul ignore next */ {
     if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) {
-        return 
+        return; 
     } var _arr = [], 
         _n = true, 
         _d = false, 
-        _e = undefined 
+        _e = undefined; 
 
     try {
         for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
             _arr.push(_s.value); if (i && _arr.length === i) {
-                break 
+                break; 
             } 
         } 
-    } catch (err) {
-        _d = true; _e = err 
+    } catch (err) /* istanbul ignore next */ {
+        _d = true; _e = err; 
     } finally /* istanbul ignore next */ {
         try {
             if (!_n && _i.return != null) {
-                _i.return() 
+                _i.return(); 
             } 
         } finally /* istanbul ignore next */ {
             if (_d) {
-                throw _e 
+                throw _e; 
             } 
         } 
     } 
 
-    return _arr 
+    return _arr; 
 }
 
 function _arrayWithHoles (arr) /* istanbul ignore next */ {
     if (Array.isArray(arr)) {
-        return arr 
+        return arr; 
     } 
 }
 
 function _createForOfIteratorHelper (o, allowArrayLike) /* istanbul ignore next */ {
-    var it 
+    var it; 
 
     if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
         if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
             if (it) {
-                o = it 
+                o = it; 
             } var i = 0, 
-                F = function F () {} 
+                F = function F () {}; 
 
             return {s: F,
                 n: function n () {
                     if (i >= o.length) {
-                        return {done: true} 
+                        return {done: true}; 
                     } 
 
                     return {done: false,
-                        value: o[i++]} 
+                        value: o[i++]}; 
                 },
                 e: function e (_e2) {
-                    throw _e2 
+                    throw _e2; 
                 },
-                f: F} 
-        } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.") 
+                f: F}; 
+        } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); 
     } var normalCompletion = true, 
         didErr = false, 
-        err 
+        err; 
 
     return {s: function s () {
-        it = o[Symbol.iterator]() 
+        it = o[Symbol.iterator](); 
     },
     n: function n () {
-        var step = it.next() 
+        var step = it.next(); 
 
-        normalCompletion = step.done 
+        normalCompletion = step.done; 
 
-        return step 
+        return step; 
     },
     e: function e (_e3) {
-        didErr = true; err = _e3 
+        didErr = true; err = _e3; 
     },
     f: function f () {
         try {
             if (!normalCompletion && it.return != null) {
-                it.return() 
+                it.return(); 
             } 
         } finally /* istanbul ignore next */ {
             if (didErr) {
-                throw err 
+                throw err; 
             } 
         } 
-    }} 
+    }}; 
 }
 
 function _unsupportedIterableToArray (o, minLen) /* istanbul ignore next */ {
     if (!o) {
-        return 
+        return; 
     } if (typeof o === "string") {
-        return _arrayLikeToArray(o, minLen) 
-    } var n = Object.prototype.toString.call(o).slice(8, -1) 
+        return _arrayLikeToArray(o, minLen); 
+    } var n = Object.prototype.toString.call(o).slice(8, -1); 
 
     if (n === "Object" && o.constructor) {
-        n = o.constructor.name 
+        n = o.constructor.name; 
     } if (n === "Map" || n === "Set") {
-        return Array.from(o) 
+        return Array.from(o); 
     } if (n === "Arguments" || (/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/).test(n)) {
-        return _arrayLikeToArray(o, minLen) 
+        return _arrayLikeToArray(o, minLen); 
     } 
 }
 
 function _arrayLikeToArray (arr, len) /* istanbul ignore next */ {
     if (len == null || len > arr.length) {
-        len = arr.length 
+        len = arr.length; 
     } for (var i = 0, arr2 = new Array(len); i < len; i++) {
-        arr2[i] = arr[i] 
+        arr2[i] = arr[i]; 
     } 
 
-    return arr2 
+    return arr2; 
 }
 
 function _classCallCheck (instance, Constructor) /* istanbul ignore next */ {
     if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function") 
+        throw new TypeError("Cannot call a class as a function"); 
     } 
 }
 
 function _defineProperties (target, props) /* istanbul ignore next */ {
     for (var i = 0; i < props.length; i++) {
-        var descriptor = props[i] 
+        var descriptor = props[i]; 
 
         descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) {
-            descriptor.writable = true 
-        } Object.defineProperty(target, descriptor.key, descriptor) 
+            descriptor.writable = true; 
+        } Object.defineProperty(target, descriptor.key, descriptor); 
     } 
 }
 
 function _createClass (Constructor, protoProps, staticProps) /* istanbul ignore next */ {
     if (protoProps) {
-        _defineProperties(Constructor.prototype, protoProps) 
+        _defineProperties(Constructor.prototype, protoProps); 
     } if (staticProps) {
-        _defineProperties(Constructor, staticProps) 
+        _defineProperties(Constructor, staticProps); 
     } 
 
-    return Constructor 
+    return Constructor; 
 }
 
 function _inherits (subClass, superClass) /* istanbul ignore next */ {
     if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function") 
+        throw new TypeError("Super expression must either be null or a function"); 
     } subClass.prototype = Object.create(superClass && superClass.prototype, {constructor: {value: subClass,
         writable: true,
         configurable: true}}); if (superClass) {
-        _setPrototypeOf(subClass, superClass) 
+        _setPrototypeOf(subClass, superClass); 
     } 
 }
 
 function _setPrototypeOf (o, p) /* istanbul ignore next */ {
     _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf (o, p) /* istanbul ignore next */ {
-        o.__proto__ = p 
+        o.__proto__ = p; 
 
-        return o 
-    } 
+        return o; 
+    }; 
 
-    return _setPrototypeOf(o, p) 
+    return _setPrototypeOf(o, p); 
 }
 
 function _createSuper (Derived) /* istanbul ignore next */ {
-    var hasNativeReflectConstruct = _isNativeReflectConstruct() 
+    var hasNativeReflectConstruct = _isNativeReflectConstruct(); 
 
     return function _createSuperInternal () /* istanbul ignore next */ {
         var Super = _getPrototypeOf(Derived), 
-            result 
+            result; 
 
         if (hasNativeReflectConstruct) {
-            var NewTarget = _getPrototypeOf(this).constructor 
+            var NewTarget = _getPrototypeOf(this).constructor; 
 
-            result = Reflect.construct(Super, arguments, NewTarget) 
+            result = Reflect.construct(Super, arguments, NewTarget); 
         } else {
-            result = Super.apply(this, arguments) 
+            result = Super.apply(this, arguments); 
         } 
 
-        return _possibleConstructorReturn(this, result) 
-    } 
+        return _possibleConstructorReturn(this, result); 
+    }; 
 }
 
 function _possibleConstructorReturn (self, call) /* istanbul ignore next */ {
     if (call && (_typeof(call) === "object" || typeof call === "function")) {
-        return call 
+        return call; 
     } 
 
-    return _assertThisInitialized(self) 
+    return _assertThisInitialized(self); 
 }
 
 function _assertThisInitialized (self) /* istanbul ignore next */ {
     if (self === void 0) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called") 
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); 
     } 
 
-    return self 
+    return self; 
 }
 
 function _isNativeReflectConstruct () /* istanbul ignore next */ {
     if (typeof Reflect === "undefined" || !Reflect.construct) {
-        return false 
+        return false; 
     } if (Reflect.construct.sham) {
-        return false 
+        return false; 
     } if (typeof Proxy === "function") {
-        return true 
+        return true; 
     } try {
-        Date.prototype.toString.call(Reflect.construct(Date, [], () => {})) 
+        Date.prototype.toString.call(Reflect.construct(Date, [], () => {})); 
 
-        return true 
+        return true; 
     } catch (e) {
-        return false 
+        return false; 
     } 
 }
 
 function _getPrototypeOf (o) /* istanbul ignore next */ {
     _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf (o) /* istanbul ignore next */ {
-        return o.__proto__ || Object.getPrototypeOf(o) 
-    } 
+        return o.__proto__ || Object.getPrototypeOf(o); 
+    }; 
 
-    return _getPrototypeOf(o) 
+    return _getPrototypeOf(o); 
 }
 
 function _typeof (obj) /* istanbul ignore next */ /* istanbul ignore next */ {
-    "@babel/helpers - typeof"
+    "@babel/helpers - typeof";
 
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
         _typeof = function _typeof (obj) /* istanbul ignore next */ /* istanbul ignore next */ {
-            return typeof obj 
-        } 
+            return typeof obj; 
+        }; 
     } else {
         _typeof = function _typeof (obj) /* istanbul ignore next */ /* istanbul ignore next */ {
-            return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj 
-        } 
+            return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; 
+        }; 
     } 
 
-    return _typeof(obj) 
+    return _typeof(obj); 
 }
 
 module.exports =
@@ -296,7 +298,7 @@ module.exports =
     // The module cache
 
     /** ****/
-    var installedModules = {}
+    var installedModules = {};
 
     /** ****/
     /** ****/
@@ -313,7 +315,7 @@ module.exports =
         if (installedModules[moduleId]) {
 
             /** ****/
-            return installedModules[moduleId].exports
+            return installedModules[moduleId].exports;
 
             /** ****/
         }
@@ -334,28 +336,28 @@ module.exports =
             exports: {}
 
             /** ****/
-        }
+        };
 
         /** ****/
         /** ****/
         // Execute the module function
 
         /** ****/
-        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__)
+        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 
         /** ****/
         /** ****/
         // Flag the module as loaded
 
         /** ****/
-        module.l = true
+        module.l = true;
 
         /** ****/
         /** ****/
         // Return the exports of the module
 
         /** ****/
-        return module.exports
+        return module.exports;
 
     /** ****/
     }
@@ -366,14 +368,14 @@ module.exports =
     // Expose the modules object (__webpack_modules__)
 
     /** ****/
-    __webpack_require__.m = modules
+    __webpack_require__.m = modules;
 
     /** ****/
     /** ****/
     // Expose the module cache
 
     /** ****/
-    __webpack_require__.c = installedModules
+    __webpack_require__.c = installedModules;
 
     /** ****/
     /** ****/
@@ -389,13 +391,13 @@ module.exports =
             Object.defineProperty(exports, name, {
                 enumerable: true,
                 get: getter
-            })
+            });
 
             /** ****/
         }
 
         /** ****/
-    }
+    };
 
     /** ****/
     /** ****/
@@ -410,7 +412,7 @@ module.exports =
             /** ****/
             Object.defineProperty(exports, Symbol.toStringTag, {
                 value: "Module"
-            })
+            });
 
             /** ****/
         }
@@ -418,10 +420,10 @@ module.exports =
         /** ****/
         Object.defineProperty(exports, "__esModule", {
             value: true
-        })
+        });
 
     /** ****/
-    }
+    };
 
     /** ****/
     /** ****/
@@ -444,43 +446,43 @@ module.exports =
 
         /** ****/
         if (mode & 1) {
-            value = __webpack_require__(value) 
+            value = __webpack_require__(value); 
         }
 
         /** ****/
         if (mode & 8) {
-            return value 
+            return value; 
         }
 
         /** ****/
         if (mode & 4 && _typeof(value) === "object" && value && value.__esModule) {
-            return value 
+            return value; 
         }
 
         /** ****/
-        var ns = Object.create(null)
+        var ns = Object.create(null);
 
         /** ****/
-        __webpack_require__.r(ns)
+        __webpack_require__.r(ns);
 
         /** ****/
         Object.defineProperty(ns, "default", {
             enumerable: true,
             value
-        })
+        });
 
         /** ****/
         if (mode & 2 && typeof value !== "string") {
             for (var key in value) {
-                __webpack_require__.d(ns, key, ((key) => value[key]).bind(null, key))
+                __webpack_require__.d(ns, key, ((key) => value[key]).bind(null, key));
             } 
         }
 
         /** ****/
-        return ns
+        return ns;
 
     /** ****/
-    }
+    };
 
     /** ****/
     /** ****/
@@ -494,22 +496,22 @@ module.exports =
 
         /** ****/
             ? function getDefault () {
-                return module.default
+                return module.default;
             }
 
         /** ****/
             : function getModuleExports () {
-                return module
-            }
+                return module;
+            };
 
         /** ****/
-        __webpack_require__.d(getter, "a", getter)
+        __webpack_require__.d(getter, "a", getter);
 
         /** ****/
-        return getter
+        return getter;
 
     /** ****/
-    }
+    };
 
     /** ****/
     /** ****/
@@ -517,15 +519,15 @@ module.exports =
 
     /** ****/
     __webpack_require__.o = function (object, property) {
-        return Object.prototype.hasOwnProperty.call(object, property)
-    }
+        return Object.prototype.hasOwnProperty.call(object, property);
+    };
 
     /** ****/
     /** ****/
     // __webpack_public_path__
 
     /** ****/
-    __webpack_require__.p = ""
+    __webpack_require__.p = "";
 
     /** ****/
     /** ****/
@@ -533,7 +535,7 @@ module.exports =
     // Load entry module and return exports
 
     /** ****/
-    return __webpack_require__(__webpack_require__.s = 0)
+    return __webpack_require__(__webpack_require__.s = 0);
 
     /** ****/
 }(
@@ -562,13 +564,13 @@ module.exports =
             var __importDefault = this && this.__importDefault || function (mod) /* istanbul ignore next */  {
                 return mod && mod.__esModule ? mod : {
                     default: mod
-                }
-            }
+                };
+            };
 
             Object.defineProperty(exports, "__esModule", {
                 value: true
-            })
-            exports.createRef = exports.createElementNS = exports.createElement = exports.createDSComponent = void 0
+            });
+            exports.createRef = exports.createElementNS = exports.createElement = exports.createDSComponent = void 0;
 
             var _preset_1 = __importDefault(__webpack_require__(1)),
 
@@ -588,9 +590,9 @@ module.exports =
                  * @abstract
                  */
                 DeStagnate = /* #__PURE__*/(function (_preset_1$default) {
-                    _inherits(DeStagnate, _preset_1$default)
+                    _inherits(DeStagnate, _preset_1$default);
 
-                    var _super = _createSuper(DeStagnate)
+                    var _super = _createSuper(DeStagnate);
 
                     /**
                      * Construct class component
@@ -603,18 +605,20 @@ module.exports =
                     function DeStagnate (parent, props) {
                         var _this,
 
-                            shouldSkipParentCheck = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false
+                            shouldSkipParentCheck = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-                        _classCallCheck(this, DeStagnate)
+                        _classCallCheck(this, DeStagnate);
 
-                        _this = _super.call(this)
-                        _this.props = props
+                        _this = _super.call(this);
+                        _this.props = props;
 
                         /**
                          * If strict mode should be used. True by default
+                         * @private
+                         * @instance
                          * @type {boolean}
                          */
-                        _this._strict = true
+                        _this._strict = true;
 
                         /**
                          * State of component. Works similar React State
@@ -622,15 +626,24 @@ module.exports =
                          * @private
                          * @instance
                          */
-                        _this._state = {}
+                        _this._state = {};
 
                         /**
                          * If initial state was set in initializer
                          * Do not throw error with direct state setting
                          * @type {boolean}
                          * @private
+                         * @instance
                          */
-                        _this._didSetInitialState = false
+                        _this._didSetInitialState = false;
+
+                        /**
+                         * If component is mounted
+                         * @type {boolean}
+                         * @private
+                         * @instance
+                         */
+                        _this._didMount = false;
 
                         /**
                          * What to call before component update (state mutation)
@@ -641,24 +654,56 @@ module.exports =
                          * @returns {void} void
                          */
                         _this.getSnapshotBeforeUpdate = function (prevProps, prevState) {
-                            return [prevProps, prevState]
-                        }
+                            return [prevProps, prevState];
+                        };
 
                         /**
                          * Turn on strict mode
+                         * @public
+                         * @instance
                          * @returns {void} void
                          */
                         _this.useStrict = function () {
-                            _this._strict = true
-                        }
+                            _this._strict = true;
+                        };
 
                         /**
                          * Turn off strict mode
+                         * @public
+                         * @instance
                          * @returns {void} void
                          */
                         _this.disableStrict = function () {
-                            _this._strict = false
-                        }
+                            _this._strict = false;
+                        };
+
+                        /**
+                         * Forces a component to update
+                         * Follows the same component updating procedure as setState without modifying state
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @returns {void | Error} returns error if error is thrown
+                         */
+                        _this.forceUpdate = function () {
+                            try {
+                                _this.componentDidUpdate();
+
+                                if (_this._parent === undefined) /* istanbul ignore next */ {
+                                    throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.");
+                                }
+
+                                _this.getSnapshotBeforeUpdate({..._this.props}, {..._this.state});
+
+                                _this._update(_this._execRender());
+                            } catch (err) /* istanbul ignore next */
+                            /* istanbul ignore next */
+                            {
+                                _this.componentDidCatch(err);
+
+                                return err;
+                            }
+                        };
 
                         /**
                          * Sets state
@@ -670,51 +715,30 @@ module.exports =
                          */
                         _this.setState = function (obj) {
                             try {
-                                _this.componentWillUpdate()
+                                _this.componentWillUpdate();
 
-                                if (_this._parent === undefined) {
-                                    throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.")
+                                if (_this._parent === undefined) /* istanbul ignore next */ {
+                                    throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.");
                                 }
 
                                 if (_this._strict) {
-                                    _this._checkKeys(obj)
+                                    _this._checkKeys(obj);
                                 }
 
-                                _this.getSnapshotBeforeUpdate({..._this.props}, {..._this.state})
+                                _this.getSnapshotBeforeUpdate({..._this.props}, {..._this.state});
 
-                                Object.assign(_this._state, obj)
-                                var renderedContent = _this.shouldComponentUpdate() ? _this._execRender() : undefined
+                                Object.assign(_this._state, obj);
+                                var renderedContent = _this.shouldComponentUpdate() ? _this._execRender() : undefined;
 
-                                if (_typeof(renderedContent) === "object" && renderedContent instanceof Array) {
-                                    var _iterator = _createForOfIteratorHelper(renderedContent),
-                                        _step
-
-                                    try {
-                                        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                                            var element = _step.value
-
-                                            _this._parent.appendChild(element)
-                                        }
-                                    } catch (err) {
-                                        _iterator.e(err)
-                                    } finally /* istanbul ignore next */ {
-                                        _iterator.f()
-                                    }
-                                } else if (renderedContent) {
-                                    _this._parent.appendChild(renderedContent)
-                                }
-
-                                if (renderedContent) {
-                                    _this.componentDidUpdate()
-                                }
-                            } catch (err)
+                                _this._update(renderedContent);
+                            } catch (err) /* istanbul ignore next */
                             /* istanbul ignore next */
                             {
-                                _this.componentDidCatch(err)
+                                _this.componentDidCatch(err);
 
-                                return err
+                                return err;
                             }
-                        }
+                        };
                         /* eslint-disable @typescript-eslint/member-ordering, max-len */
                         /**
                          * Initial mounting to be manually called
@@ -726,43 +750,43 @@ module.exports =
                          */
                         _this.mountComponent = function (parent) {
                             try {
-                                if (_this._parent === undefined) {
-                                    throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.")
-                                }
-
                                 if (parent !== undefined) {
-                                    _this.parent = parent
+                                    _this.parent = parent;
                                 }
 
-                                var component = _this.render()
+                                if (_this._parent === undefined) /* istanbul ignore next */ {
+                                    throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.");
+                                }
 
-                                _this._didSetInitialState = true
+                                var component = _this.render();
 
-                                _this.componentWillMount()
+                                _this._didSetInitialState = true;
+
+                                _this.componentWillMount();
 
                                 if (component === null) {
-                                    var msg = "Expected render method to be included in component class, no render method found, or render returned an empty array"
-
-                                    throw new Error(msg)
+                                    throw new Error("Expected render method to be included in component class, no render method found, or render returned an empty array");
                                 }
 
-                                _this.bindEventListeners(_this._parent)
+                                _this.bindEventListeners(_this._parent);
 
-                                _this.componentDidMount()
+                                _this._didMount = true;
+
+                                _this.componentDidMount();
 
                                 if (_typeof(component) === "object" && component instanceof Array) {
-                                    return component.map((element) => _this._parent.appendChild(element))
+                                    return component.map((element) => _this._parent.appendChild(element));
                                 }
 
-                                return _this._parent.appendChild(component)
-                            } catch (err)
+                                return _this._parent.appendChild(component);
+                            } catch (err) /* istanbul ignore next */
                             /* istanbul ignore next */
                             {
-                                _this.componentDidCatch(err)
+                                _this.componentDidCatch(err);
 
-                                return err
+                                return err;
                             }
-                        }
+                        };
 
                         /**
                          * Initial mounting to be manually called
@@ -771,7 +795,7 @@ module.exports =
                          * @readonly
                          * @returns {HTMLElement} - result of append child to parent element
                          */
-                        _this.mount = _this.mountComponent
+                        _this.mount = _this.mountComponent;
 
                         /**
                          * Unmounting to be manually called
@@ -782,23 +806,25 @@ module.exports =
                          */
                         _this.unmountComponent = function () {
                             try {
-                                if (_this._parent === undefined) {
-                                    _this.componentDidWarn("No parent was set. Component unmounted from nothing.")
+                                if (_this._parent === undefined) /* istanbul ignore next */ {
+                                    _this.componentDidWarn("No parent was set. Component unmounted from nothing.");
 
-                                    return
+                                    return;
                                 }
 
-                                _this.componentWillUnmount()
+                                _this.componentWillUnmount();
 
-                                _this.unbindEventListeners(_this._parent)
+                                _this.unbindEventListeners(_this._parent);
 
-                                _this._removeChildren()
-                            } catch (err)
+                                _this._removeChildren();
+
+                                _this._didMount = false;
+                            } catch (err) /* istanbul ignore next */
                             /* istanbul ignore next */
                             {
-                                _this.componentDidCatch(err)
+                                _this.componentDidCatch(err);
                             }
-                        }
+                        };
 
                         /**
                          * Unmounting to be manually called
@@ -807,7 +833,7 @@ module.exports =
                          * @readonly
                          * @returns {void} - void
                          */
-                        _this.unmount = _this.unmountComponent
+                        _this.unmount = _this.unmountComponent;
                         /* eslint-enable max-len, @typescript-eslint/member-ordering */
                         /**
                          * Removes children from this._parent
@@ -816,113 +842,142 @@ module.exports =
                          * @return {void} void
                          */
                         _this._removeChildren = function () {
-                            if (_this._parent === undefined) {
-                                throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.")
+                            if (_this._parent === undefined) /* istanbul ignore next */ {
+                                throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.");
                             }
 
                             while (_this._parent.firstChild) {
                                 if (_this._parent.lastChild) {
-                                    _this._parent.removeChild(_this._parent.lastChild)
-                                } else {
-                                    break
+                                    _this._parent.removeChild(_this._parent.lastChild);
                                 }
                             }
-                        }
+                        };
 
                         /**
                          * Executes new render
+                         * @private
+                         * @instance
                          * @returns {HTMLElement | Array.<HTMLElement> | null} rendered content
                          */
                         _this._execRender = function () {
-                            _this._removeChildren()
+                            _this._removeChildren();
 
-                            return _this.render()
-                        }
+                            return _this.render();
+                        };
 
                         /**
                          * Checks new state assignment to make sure no new keys are assigned
+                         * @private
+                         * @instance
                          * @param {Partial<State>} obj - new state
                          * @returns {void} void
                          */
                         _this._checkKeys = function (obj) {
                             for (var _i = 0, _Object$keys = Object.keys(obj); _i < _Object$keys.length; _i++) {
-                                var key = _Object$keys[_i]
+                                var key = _Object$keys[_i];
 
                                 if (!Object.keys(_this.state).includes(key)) {
-                                // eslint-disable-next-line
+                                    // eslint-disable-next-line
             _this.componentDidWarn("WARN: New key (".concat(key, ") should not be set with setState, which has keys ").concat(JSON.stringify(Object.keys(_this.state)), ". Declare all state variables in constructor as a best practice. Did you misspell a key?"));
                                 }
                             }
-                        }
+                        };
+
+                        /**
+                         * Updates the component
+                         * @private
+                         * @instance
+                         * @param {RenderType} renderedContent - rendered content from executing the render function
+                         * @returns {void} void
+                         */
+                        _this._update = function (renderedContent) {
+                            if (_typeof(renderedContent) === "object" && renderedContent instanceof Array) {
+                                var _iterator = _createForOfIteratorHelper(renderedContent),
+                                    _step;
+
+                                try {
+                                    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                                        var element = _step.value;
+
+                                        _this._parent.appendChild(element);
+                                    }
+                                } catch (err) /* istanbul ignore next */ {
+                                    _iterator.e(err);
+                                } finally /* istanbul ignore next */ {
+                                    _iterator.f();
+                                }
+                            } else if (renderedContent) {
+                                _this._parent.appendChild(renderedContent);
+                            }
+
+                            if (renderedContent) {
+                                _this.componentDidUpdate();
+                            }
+                        };
 
                         if (parent && parent.childElementCount > 0 && !shouldSkipParentCheck && _this._strict) {
-                            _this.componentDidCatch(new Error("ERR: Avoid using this ".concat(parent.tagName.toLowerCase(), " as element parent, as all elements within this ").concat(parent.tagName.toLowerCase(), " will be removed on re-render. To disable this, pass in true as a third parameter")))
+                            _this.componentDidCatch(new Error("ERR: Avoid using this ".concat(parent.tagName.toLowerCase(), " as element parent, as all elements within this ").concat(parent.tagName.toLowerCase(), " will be removed on re-render. To disable this, pass in true as a third parameter")));
                         }
 
-                        _this._parent = parent
+                        _this._parent = parent;
                         
-                        return _this
+                        return _this;
                     }
 
                     /**
                      * Public getState getter as this.state itself is protected
                      * @public
-                     * @instance
                      * @returns {State} component state
                      */
                     _createClass(DeStagnate, [
                         {
                             key: "getState",
                             get: function get () {
-                                return this.state
+                                return this.state;
                             }
 
                             /**
                              * Get component state
                              * @protected
-                             * @instance
                              * @returns {State} component state
                              */
                         }, {
                             key: "state",
                             get: function get () {
-                                return this._state
-                            },
-
-                            /**
-                             * Sets component state
-                             * WARN: do not use this method to mutate the state directly
-                             * @protected
-                             * @instance
-                             * @param {State} obj - state to set
-                             */
-                    
+                                return this._state;
+                            }, /**
+       * Sets component state
+       * WARN: do not use this method to mutate the state directly
+       * @protected
+       * @param {State} obj - state to set
+       */
+      
                             set: function set (obj) {
                                 if (this._didSetInitialState && this._strict) {
-                                    this.componentDidCatch(new Error("Do not mutate state directly. Use setState instead.")) // eslint-disable-next-line
+                                    this.componentDidCatch(new Error("Do not mutate state directly. Use setState instead.")); // eslint-disable-next-line
 
-                                    this.componentDidWarn("DeStagnate protects you from mutating the entire state object. Avoid mutating state directly")
-                                    this.setState(obj)
+                                    this.componentDidWarn("DeStagnate protects you from mutating the entire state object. Avoid mutating state directly");
+                                    this.setState(obj);
                                 } else {
-                                    this._state = obj
-                                    this._didSetInitialState = true
+                                    this._state = obj;
+                                    this._didSetInitialState = true;
                                 }
                             }
 
                             /**
                              * Public getProps getter as this.props itself is protected
                              * @public
-                             * @instance
                              * @returns {Props | undefined} component state
                              */
                         }, {
                             key: "getProps",
                             get: function get () {
-                                return this.props
+                                return this.props;
                             }
 
                             /**
                              * Set the parent of this component
+                             * @public
                              * @param {HTMLElement | undefined} element - parent element
                              * @returns {void} void;
                              */
@@ -930,27 +985,37 @@ module.exports =
                             key: "parent",
                             set: function set (element) {
                                 if (element && element.childElementCount > 0 && this._strict) {
-                                    this.componentDidWarn("WARN: Avoid using this ".concat(element.tagName.toLowerCase(), " as element parent, as all elements within this ").concat(element.tagName.toLowerCase(), " will be removed on re-render. If this was intentional, turn strict off before setting parent."))
+                                    this.componentDidWarn("WARN: Avoid using this ".concat(element.tagName.toLowerCase(), " as element parent, as all elements within this ").concat(element.tagName.toLowerCase(), " will be removed on re-render. If this was intentional, turn strict off before setting parent."));
                                 }
 
-                                this._parent = element
-                            },
+                                this._parent = element;
+                            }, /**
+       * Get the parent element of this component
+       * @public
+       * @returns {HTMLElement | undefined} parent
+       */
+      
+                            get: function get () {
+                                return this._parent;
+                            }
 
                             /**
-                             * Get the parent element of this component
-                             * @returns {HTMLElement | undefined} parent
+                             * Get didMount value publicly
+                             * @public
+                             * @returns {boolean} if mounted
                              */
-                    
+                        }, {
+                            key: "didMount",
                             get: function get () {
-                                return this._parent
+                                return this._didMount;
                             }
                         }
-                    ])
+                    ]);
 
-                    return DeStagnate
-                }(_preset_1.default))
+                    return DeStagnate;
+                }(_preset_1.default));
 
-            exports.default = DeStagnate
+            exports.default = DeStagnate;
 
             /**
              * Creates nested DeStagnate component
@@ -958,7 +1023,7 @@ module.exports =
              * @param {Object<string, unknown>} props - props of component
              * @returns {HTMLDivElement} parent of component
              */
-            exports.createDSComponent = createDSComponent_1.default
+            exports.createDSComponent = createDSComponent_1.default;
 
             /**
              * Creates a child element to deStagnate
@@ -967,7 +1032,7 @@ module.exports =
              * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
              * @returns {HTMLElement} html element
              */
-            exports.createElement = createElement_1.default
+            exports.createElement = createElement_1.default;
 
             /**
              * Creates a child element to DynamComponent
@@ -977,13 +1042,13 @@ module.exports =
              * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
              * @returns {HTMLElement} html element
              */
-            exports.createElementNS = createElementNS_1.default
+            exports.createElementNS = createElementNS_1.default;
 
             /**
              * Creates a reference for a nested component
              * @returns {Object<string, undefined>} empty ref object
              */
-            exports.createRef = createRef_1.default
+            exports.createRef = createRef_1.default;
 
             /***/
         },
@@ -1006,12 +1071,12 @@ module.exports =
             var __importDefault = this && this.__importDefault || function (mod) /* istanbul ignore next */  {
                 return mod && mod.__esModule ? mod : {
                     default: mod
-                }
-            }
+                };
+            };
 
             Object.defineProperty(exports, "__esModule", {
                 value: true
-            })
+            });
 
             var _events_1 = __importDefault(__webpack_require__(2)),
 
@@ -1027,16 +1092,16 @@ module.exports =
                  * Lifecycle member functions
                  */
                 Preset = /* #__PURE__*/(function (_events_1$default) {
-                    _inherits(Preset, _events_1$default)
+                    _inherits(Preset, _events_1$default);
 
-                    var _super2 = _createSuper(Preset)
+                    var _super2 = _createSuper(Preset);
 
                     function Preset () {
-                        var _this2
+                        var _this2;
 
-                        _classCallCheck(this, Preset)
+                        _classCallCheck(this, Preset);
 
-                        _this2 = _super2.apply(this, arguments)
+                        _this2 = _super2.apply(this, arguments);
 
                         /**
                          * Creates nested DeStagnate component
@@ -1047,7 +1112,7 @@ module.exports =
                          * @param {Object<string, unknown>} props - props of component
                          * @returns {HTMLDivElement} parent of component
                          */
-                        _this2.createDSComponent = createDSComponent_1.default
+                        _this2.createDSComponent = createDSComponent_1.default;
 
                         /**
                          * Creates a child element to DynamComponent
@@ -1060,7 +1125,7 @@ module.exports =
                          * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
                          * @returns {HTMLElement} html element
                          */
-                        _this2.createElement = createElement_1.default
+                        _this2.createElement = createElement_1.default;
 
                         /**
                          * Creates a child element to deStagnate
@@ -1074,7 +1139,7 @@ module.exports =
                          * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
                          * @returns {HTMLElement} html element
                          */
-                        _this2.createElementNS = createElementNS_1.default
+                        _this2.createElementNS = createElementNS_1.default;
 
                         /**
                          * Creates a reference for a nested component
@@ -1083,7 +1148,7 @@ module.exports =
                          * @readonly
                          * @returns {Object<string, null>} empty ref object
                          */
-                        _this2.createRef = createRef_1.default
+                        _this2.createRef = createRef_1.default;
 
                         /**
                          * Called when component catches error. Default behaviour is console.error
@@ -1091,8 +1156,8 @@ module.exports =
                          * @returns {void} void
                          */
                         _this2.componentDidCatch = function (error) {
-                            return console.error(error)
-                        }
+                            return console.error(error);
+                        };
 
                         /**
                          * What to call after component mounting
@@ -1101,8 +1166,8 @@ module.exports =
                          * @returns {void} void
                          */
                         _this2.componentDidMount = function () {
-                            return undefined
-                        }
+                            return undefined;
+                        };
 
                         /**
                          * What to call after component update (state mutation)
@@ -1111,8 +1176,8 @@ module.exports =
                          * @returns {void} void
                          */
                         _this2.componentDidUpdate = function () {
-                            return undefined
-                        }
+                            return undefined;
+                        };
 
                         /**
                          * Called when component catches a warning. Default behaviour is console.warn
@@ -1120,8 +1185,8 @@ module.exports =
                          * @returns {void} void
                          */
                         _this2.componentDidWarn = function (msg) {
-                            return console.warn(msg)
-                        }
+                            return console.warn(msg);
+                        };
 
                         /**
                          * What to call before component mounting
@@ -1130,8 +1195,8 @@ module.exports =
                          * @returns {void} void
                          */
                         _this2.componentWillMount = function () {
-                            return undefined
-                        }
+                            return undefined;
+                        };
 
                         /**
                          * What to call before component unmounting
@@ -1140,8 +1205,8 @@ module.exports =
                          * @returns {void} void
                          */
                         _this2.componentWillUnmount = function () {
-                            return undefined
-                        }
+                            return undefined;
+                        };
 
                         /**
                          * What to call before component update (state mutation)
@@ -1150,16 +1215,16 @@ module.exports =
                          * @returns {void} void
                          */
                         _this2.componentWillUpdate = function () {
-                            return undefined
-                        }
+                            return undefined;
+                        };
 
                         /**
                          * Called before component is updated
                          * @returns {boolean} whether or not component should update/re-render
                          */
                         _this2.shouldComponentUpdate = function () {
-                            return true
-                        }
+                            return true;
+                        };
 
                         /**
                          * Rendering HTML, must be part of extended class
@@ -1169,16 +1234,16 @@ module.exports =
                          * @returns {null | HTMLElement | Array.<HTMLElement> | Element | Array.<Element>} if returns null error will be thrown
                          */
                         _this2.render = function () {
-                            return null
-                        }
+                            return null;
+                        };
 
-                        return _this2
+                        return _this2;
                     }
 
-                    return Preset
-                }(_events_1.default))
+                    return Preset;
+                }(_events_1.default));
 
-            exports.default = Preset
+            exports.default = Preset;
 
             /**
              * Creates nested DeStagnate component
@@ -1189,7 +1254,7 @@ module.exports =
              * @param {Object<string, unknown>} props - props of component
              * @returns {HTMLDivElement} parent of component
              */
-            Preset.createDSComponent = createDSComponent_1.default
+            Preset.createDSComponent = createDSComponent_1.default;
 
             /**
              * Creates a child element to DynamComponent
@@ -1202,7 +1267,7 @@ module.exports =
              * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
              * @returns {HTMLElement} html element
              */
-            Preset.createElement = createElement_1.default
+            Preset.createElement = createElement_1.default;
 
             /**
              * Creates a child element to deStagnate
@@ -1216,7 +1281,7 @@ module.exports =
              * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
              * @returns {HTMLElement} html element
              */
-            Preset.createElementNS = createElementNS_1.default
+            Preset.createElementNS = createElementNS_1.default;
 
             /**
              * Creates a reference for a nested component
@@ -1225,7 +1290,7 @@ module.exports =
              * @readonly
              * @returns {Object<string, null>} empty ref object
              */
-            Preset.createRef = createRef_1.default
+            Preset.createRef = createRef_1.default;
 
             /***/
         },
@@ -1247,12 +1312,12 @@ module.exports =
              */
             Object.defineProperty(exports, "__esModule", {
                 value: true
-            })
+            });
             /* istanbul ignore next */
             var Events = function Events () {
-                var _this3 = this
+                var _this3 = this;
 
-                _classCallCheck(this, Events)
+                _classCallCheck(this, Events);
 
                 /**
                  * Binds event listeners event
@@ -1264,8 +1329,8 @@ module.exports =
                  * @returns {void} void;
                  */
                 this.bindEventListeners = function (element) {
-                    _this3._eventListener(element.addEventListener)
-                }
+                    _this3._eventListener(element.addEventListener);
+                };
 
                 /**
                  * Binds event listeners event
@@ -1277,8 +1342,8 @@ module.exports =
                  * @returns {void} void;
                  */
                 this.unbindEventListeners = function (element) {
-                    _this3._eventListener(element.removeEventListener)
-                }
+                    _this3._eventListener(element.removeEventListener);
+                };
 
                 /**
                  * Focus event
@@ -1287,8 +1352,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onFocus = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Blur event
@@ -1297,8 +1362,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onBlur = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Focus in event
@@ -1307,8 +1372,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onFocusIn = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Focus out event
@@ -1317,8 +1382,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onFocusOut = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Animation start event
@@ -1327,8 +1392,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onAnimationStart = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Animation cancel event
@@ -1337,8 +1402,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onAnimationCancel = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Animation end event
@@ -1347,8 +1412,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onAnimationEnd = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Animation iteration event
@@ -1357,8 +1422,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onAnimationIteration = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Transition start event
@@ -1367,8 +1432,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onTransitionStart = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Transition cancel event
@@ -1377,8 +1442,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onTransitionCancel = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Transition end event
@@ -1387,8 +1452,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onTransitionEnd = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Transition run event
@@ -1397,8 +1462,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onTransitionRun = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Auxillary click event
@@ -1407,8 +1472,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onAuxClick = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Click event
@@ -1417,8 +1482,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onClick = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Double click event
@@ -1427,8 +1492,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onDblClick = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Mousedown event
@@ -1437,8 +1502,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onMouseDown = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Mouse enter event
@@ -1447,8 +1512,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onMouseEnter = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Mouse leave event
@@ -1457,8 +1522,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onMouseLeave = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Mouse move event
@@ -1467,8 +1532,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onMouseMove = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Mouseover event
@@ -1477,8 +1542,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onMouseOver = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Mouseout event
@@ -1487,8 +1552,8 @@ module.exports =
                  * @returns {void}
                  */
                 this.onMouseOut = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 /**
                  * Mouseup event
@@ -1497,18 +1562,18 @@ module.exports =
                  * @returns {void}
                  */
                 this.onMouseUp = function () {
-                    return undefined
-                }
+                    return undefined;
+                };
 
                 this._eventListener = function (el) {
                     for (var _i2 = 0, _Object$entries = Object.entries(_this3._events()); _i2 < _Object$entries.length; _i2++) {
                         var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
                             event = _Object$entries$_i[0],
-                            callback = _Object$entries$_i[1]
+                            callback = _Object$entries$_i[1];
 
-                        el(event, callback)
+                        el(event, callback);
                     }
-                }
+                };
 
                 this._events = function () {
                     return {
@@ -1534,11 +1599,11 @@ module.exports =
                         mouseover: _this3.onMouseOver,
                         mouseout: _this3.onMouseOut,
                         mouseup: _this3.onMouseUp
-                    }
-                }
-            }
+                    };
+                };
+            };
 
-            exports.default = Events
+            exports.default = Events;
 
             /***/
         },
@@ -1559,32 +1624,35 @@ module.exports =
              */
             Object.defineProperty(exports, "__esModule", {
                 value: true
-            })
+            });
             /* eslint-disable @typescript-eslint/naming-convention */
             /**
              * Creates nested DeStagnate component
+             * @deprecated do not use this function, since 1.6.0
+             * @see {@link https://github.com/Luke-zhang-04/DeStagnate/wiki/createDSComponent}
+             * @see {@link https://github.com/Luke-zhang-04/DeStagnate/wiki/nestedComponents}
              * @param {DeStagnateConstructor} Component - DeStagnate component
              * @param {Object<string, unknown>} props - props of component
              * @param {Object<string, undefined | DeStagnate>} ref - ref object
              * @returns {HTMLDivElement} parent of component
              */
             var createDSComponent = function createDSComponent (Component, props, ref) {
-                var element = doc.createElement("div")
+                var element = doc.createElement("div");
 
-                element.classList.add("DeStagnate-component-parent")
+                element.classList.add("DeStagnate-component-parent");
 
-                var _component = new Component(element, props)
+                var _component = new Component(element, props);
 
-                _component.mount()
+                _component.mount();
 
                 if (ref) {
-                    ref.current = _component
+                    ref.current = _component;
                 }
 
-                return element
-            }
+                return element;
+            };
 
-            exports.default = createDSComponent
+            exports.default = createDSComponent;
 
             /***/
         },
@@ -1603,10 +1671,18 @@ module.exports =
              * @version 1.6.0
              * @exports createElement function for DOM manipulation
              */
+            var __importDefault = this && this.__importDefault || function (mod) /* istanbul ignore next */  {
+                return mod && mod.__esModule ? mod : {
+                    default: mod
+                };
+            };
+
             Object.defineProperty(exports, "__esModule", {
                 value: true
-            })
-            exports._bindChildren = exports._unpackChildren = exports._bindProps = void 0
+            });
+            exports._bindChildren = exports._unpackChildren = exports._bindProps = void 0;
+
+            var _1 = __importDefault(__webpack_require__(0));
 
             /**
              * Binds children to element
@@ -1617,60 +1693,60 @@ module.exports =
              * @returns {void} void
              */
             exports._bindProps = function (element, props) {
-                var ns = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false
+                var ns = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
                 if (props) {
                     for (var _i3 = 0, _Object$entries2 = Object.entries(props); _i3 < _Object$entries2.length; _i3++) {
                         var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i3], 2),
                             key = _Object$entries2$_i[0],
-                            val = _Object$entries2$_i[1]
+                            val = _Object$entries2$_i[1];
 
                         if (typeof val === "string" || typeof val === "number") {
                             if (key === "innerHTML") {
-                                element.innerHTML = val.toString()
+                                element.innerHTML = val.toString();
                             } else if (ns) {
-                                element.setAttributeNS(null, key, val.toString())
+                                element.setAttributeNS(null, key, val.toString());
                             } else {
-                                element.setAttribute(key, val.toString())
+                                element.setAttribute(key, val.toString());
                             }
                         } else if (key.slice(0, 2) === "on") {
                             // Works such as onClick, onAnimationEnd, etc.
                             if (typeof val === "function") {
-                                element.addEventListener(key.slice(2).toLowerCase(), val)
+                                element.addEventListener(key.slice(2).toLowerCase(), val);
                             }
                         } else if (key === "ref" && _typeof(val) === "object" && "current" in val) {
-                            val.current = element
+                            val.current = element;
                         } else {
-                            console.warn("WARN: Invalid prop type \"".concat(_typeof(val), "\" for key \"").concat(key, "\". Skipping prop."))
+                            console.warn("WARN: Invalid prop type \"".concat(_typeof(val), "\" for key \"").concat(key, "\". Skipping prop."));
                         }
                     }
                 }
-            }
+            };
 
             exports._unpackChildren = function (children) {
                 var newChildren = [],
 
                     _iterator2 = _createForOfIteratorHelper(children),
-                    _step2
+                    _step2;
 
                 try {
                     for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                        var child = _step2.value
+                        var child = _step2.value;
 
                         if (_typeof(child) === "object" && child instanceof Array) {
-                            newChildren.push.apply(newChildren, _toConsumableArray(exports._unpackChildren(child)))
+                            newChildren.push.apply(newChildren, _toConsumableArray(exports._unpackChildren(child)));
                         } else {
-                            newChildren.push(child)
+                            newChildren.push(child);
                         }
                     }
-                } catch (err) {
-                    _iterator2.e(err)
+                } catch (err) /* istanbul ignore next */ {
+                    _iterator2.e(err);
                 } finally /* istanbul ignore next */ {
-                    _iterator2.f()
+                    _iterator2.f();
                 }
 
-                return newChildren
-            }
+                return newChildren;
+            };
 
             /**
              * Binds children to element
@@ -1680,35 +1756,43 @@ module.exports =
              * @returns {void} void
              */
             exports._bindChildren = function (element, children) {
-                if (children || children === 0) {
+                if (children !== null && children !== undefined) {
                     if (children instanceof Array) {
                         var _iterator3 = _createForOfIteratorHelper(children),
-                            _step3
+                            _step3;
 
                         try {
                             for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-                                var child = _step3.value
+                                var child = _step3.value;
 
-                                if (typeof child === "string" || typeof child === "number") {
-                                    element.innerHTML = child.toString()
-                                } else if (_typeof(child) === "object" && child instanceof Array) {
-                                    exports._unpackChildren(child).forEach((_child) => exports._bindChildren(element, _child))
-                                } else {
-                                    element.appendChild(child)
-                                }
+                                exports._bindChildren(element, child);
                             }
-                        } catch (err) {
-                            _iterator3.e(err)
+                        } catch (err) /* istanbul ignore next */ {
+                            _iterator3.e(err);
                         } finally /* istanbul ignore next */ {
-                            _iterator3.f()
+                            _iterator3.f();
                         }
                     } else if (typeof children === "string" || typeof children === "number") {
-                        element.innerHTML = children.toString()
+                        element.innerHTML = children.toString();
+                    } else if (children instanceof _1.default) {
+                        if (!children.didMount && element instanceof _window.HTMLElement) {
+                            children.mount(element);
+                            
+                            return;
+                        } else if (!(element instanceof _window.HTMLElement)) {
+                            throw new Error("Cannot use non-HTMLElement as component parent");
+                        }
+
+                        if (children.parent !== element) {
+                            children.parent = element;
+                        }
+
+                        children.forceUpdate();
                     } else {
-                        element.appendChild(children)
+                        element.appendChild(children);
                     }
                 }
-            }
+            };
 
             /**
              * Creates a child element to DynamComponent
@@ -1719,30 +1803,30 @@ module.exports =
              * @returns {HTMLElement} html element
              */
             var createElement = function createElement (tagName, props, children) {
-                var element = doc.createElement(tagName)
+                var element = doc.createElement(tagName);
 
-                exports._bindProps(element, props)
+                exports._bindProps(element, props);
 
-                var _children = children
+                var _children = children;
 
                 for (var _len = arguments.length, childrenArgs = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
-                    childrenArgs[_key - 3] = arguments[_key]
+                    childrenArgs[_key - 3] = arguments[_key];
                 }
 
                 if (children && childrenArgs) {
-                    if (_typeof(children) === "object" && children instanceof Array) {
-                        _children = [].concat(_toConsumableArray(exports._unpackChildren(children)), _toConsumableArray(exports._unpackChildren(childrenArgs)))
+                    if (children instanceof Array) {
+                        _children = [].concat(_toConsumableArray(exports._unpackChildren(children)), _toConsumableArray(exports._unpackChildren(childrenArgs)));
                     } else {
-                        _children = [children].concat(_toConsumableArray(exports._unpackChildren(childrenArgs)))
+                        _children = [children].concat(_toConsumableArray(exports._unpackChildren(childrenArgs)));
                     }
                 }
 
-                exports._bindChildren(element, _children)
+                exports._bindChildren(element, _children);
 
-                return element
-            }
+                return element;
+            };
 
-            exports.default = createElement
+            exports.default = createElement;
 
             /***/
         },
@@ -1763,10 +1847,10 @@ module.exports =
              */
             Object.defineProperty(exports, "__esModule", {
                 value: true
-            })
-            exports.createElementNS = void 0
+            });
+            exports.createElementNS = void 0;
 
-            var createElement_1 = __webpack_require__(4)
+            var createElement_1 = __webpack_require__(4);
 
             /**
              * Creates a child element to deStagnate
@@ -1778,30 +1862,30 @@ module.exports =
              * @returns {HTMLElement} html element
              */
             exports.createElementNS = function (namespaceURI, tagName, props, children) {
-                var element = doc.createElementNS(namespaceURI, tagName)
+                var element = doc.createElementNS(namespaceURI, tagName);
 
-                createElement_1._bindProps(element, props, true)
+                createElement_1._bindProps(element, props, true);
 
-                var _children = children
+                var _children = children;
 
                 for (var _len2 = arguments.length, childrenArgs = new Array(_len2 > 4 ? _len2 - 4 : 0), _key2 = 4; _key2 < _len2; _key2++) {
-                    childrenArgs[_key2 - 4] = arguments[_key2]
+                    childrenArgs[_key2 - 4] = arguments[_key2];
                 }
 
                 if (children && childrenArgs) {
                     if (_typeof(children) === "object" && children instanceof Array) {
-                        _children = [].concat(_toConsumableArray(createElement_1._unpackChildren(children)), _toConsumableArray(createElement_1._unpackChildren(childrenArgs)))
+                        _children = [].concat(_toConsumableArray(createElement_1._unpackChildren(children)), _toConsumableArray(createElement_1._unpackChildren(childrenArgs)));
                     } else {
-                        _children = [children].concat(_toConsumableArray(createElement_1._unpackChildren(childrenArgs)))
+                        _children = [children].concat(_toConsumableArray(createElement_1._unpackChildren(childrenArgs)));
                     }
                 }
 
-                createElement_1._bindChildren(element, _children)
+                createElement_1._bindChildren(element, _children);
 
-                return element
-            }
+                return element;
+            };
 
-            exports.default = exports.createElementNS
+            exports.default = exports.createElementNS;
 
             /***/
         },
@@ -1813,7 +1897,7 @@ module.exports =
 
             Object.defineProperty(exports, "__esModule", {
                 value: true
-            })
+            });
 
             /**
              * Creates a reference for a nested component
@@ -1822,22 +1906,26 @@ module.exports =
             var createRef = function createRef () {
                 return {
                     current: null
-                }
-            }
+                };
+            };
 
             /**
              * Creates a reference for a nested component
              * @returns {Object<string, null>} empty ref object
              */
-            exports.default = createRef
+            exports.default = createRef;
 
             /***/
         }
 
         /** ****/
-    ]))
+    ]));
 
 
 module.exports.setDocument = (_doc) => {
     doc = _doc
+}
+
+module.exports.setWindow = (__window) => {
+    _window = __window
 }

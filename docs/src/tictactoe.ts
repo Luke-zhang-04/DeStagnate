@@ -26,23 +26,21 @@ interface SquareState {
 
 class TicTacToe extends DS.default {
 
-    private _squares = [ // Refs, simillar to React refs
-        [createRef<Square>(), createRef<Square>(), createRef<Square>()],
-        [createRef<Square>(), createRef<Square>(), createRef<Square>()],
-        [createRef<Square>(), createRef<Square>(), createRef<Square>()],
+    private _squares = [ // A bunch of squares
+        [new Square(), new Square(), new Square()],
+        [new Square(), new Square(), new Square()],
+        [new Square(), new Square(), new Square()],
     ]
 
     private _checkForWinner = (): SquareState["clicked"] => {
         for (let i = 0; i < 3; i++) {
             const rows = [0, 1, 2].map((val) => this._squares[i][val]
-                .current
-                ?.getState
+                .getState
                 .clicked
             )
 
             const columns = [0, 1, 2].map((val) => this._squares[val][i]
-                .current
-                ?.getState
+                .getState
                 .clicked
             )
 
@@ -64,14 +62,14 @@ class TicTacToe extends DS.default {
 
         const diagonals = [
             [
-                this._squares[0][0].current?.getState.clicked,
-                this._squares[1][1].current?.getState.clicked,
-                this._squares[2][2].current?.getState.clicked,
+                this._squares[0][0].getState.clicked,
+                this._squares[1][1].getState.clicked,
+                this._squares[2][2].getState.clicked,
             ],
             [
-                this._squares[0][2].current?.getState.clicked,
-                this._squares[1][1].current?.getState.clicked,
-                this._squares[2][0].current?.getState.clicked,
+                this._squares[0][2].getState.clicked,
+                this._squares[1][1].getState.clicked,
+                this._squares[2][0].getState.clicked,
             ],
         ]
 
@@ -101,7 +99,6 @@ class TicTacToe extends DS.default {
                     onClick: () => {
                         // Current square
                         const square = this._squares[val][val2]
-                            .current
 
                         // Check if square isn't already clicked
                         if (square?.getState.clicked === "") {
@@ -120,11 +117,7 @@ class TicTacToe extends DS.default {
                         }
                     },
                 },
-                createDSComponent(
-                    Square,
-                    {},
-                    this._squares[val][val2],
-                )
+                this._squares[val][val2],
             ))
         ))
 
@@ -132,8 +125,8 @@ class TicTacToe extends DS.default {
 
 class Square extends DS.default<{}, SquareState> {
 
-    public constructor (parent: HTMLElement) {
-        super(parent)
+    public constructor () {
+        super()
 
         this.state = {
             clicked: "",

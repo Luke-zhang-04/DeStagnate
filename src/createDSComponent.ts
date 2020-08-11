@@ -19,6 +19,9 @@ type DeStagnateConstructor<Props, State> = new (
 /* eslint-disable @typescript-eslint/naming-convention */
 /**
  * Creates nested DeStagnate component
+ * @deprecated do not use this function, since 1.6.0
+ * @see {@link https://github.com/Luke-zhang-04/DeStagnate/wiki/createDSComponent}
+ * @see {@link https://github.com/Luke-zhang-04/DeStagnate/wiki/nestedComponents}
  * @param {DeStagnateConstructor} Component - DeStagnate component
  * @param {Object<string, unknown>} props - props of component
  * @param {Object<string, undefined | DeStagnate>} ref - ref object

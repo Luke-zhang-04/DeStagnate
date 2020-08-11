@@ -29,7 +29,16 @@ class NewString extends String {
 
     /* eslint-disable max-len */
     fmt = () => this.toString().replace(/document/gu, "doc")
+        .replace(/window/gu, "_window")
         .replace(/innerText/gu, "innerHTML")
+        .replace(
+            /if \(_this._parent === undefined\)/gu,
+            `if (_this._parent === undefined) ${ist}`,
+        )
+        .replace(
+            /catch \(err\)/gu,
+            `catch (err) ${ist}`,
+        )
         .replace(
             /__values = this && this.__values \|\| function \(o\)/gu,
             `__values = this && this.__values || function (o) ${ist} `,
@@ -78,16 +87,23 @@ const documentAlias = (data) => {
     formattedData = ` /* eslint-disable */
 const niceTry = require("nice-try")
 let doc
+let _window
 
-niceTry(() => {
+niceTry(() => ${ist} {
     doc = document
+    _window = window
 })
 
 ${formattedData}
 
 module.exports.setDocument = (_doc) => {
     doc = _doc
-}`
+}
+
+module.exports.setWindow = (__window) => {
+    _window = __window
+}
+`
 
     return formattedData
 }

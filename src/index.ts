@@ -32,6 +32,8 @@ export default abstract class DeStagnate
 
     /**
      * If strict mode should be used. True by default
+     * @private
+     * @instance
      * @type {boolean}
      */
     private _strict = true
@@ -49,6 +51,7 @@ export default abstract class DeStagnate
      * Do not throw error with direct state setting
      * @type {boolean}
      * @private
+     * @instance
      */
     private _didSetInitialState = false
 
@@ -59,6 +62,14 @@ export default abstract class DeStagnate
      * @instance
      */
     private _parent: HTMLElement | undefined
+
+    /**
+     * If component is mounted
+     * @type {boolean}
+     * @private
+     * @instance
+     */
+    private _didMount = false
 
     /**
      * Construct class component
@@ -101,6 +112,8 @@ export default abstract class DeStagnate
 
     /**
      * Turn on strict mode
+     * @public
+     * @instance
      * @returns {void} void
      */
     public useStrict = (): void => {
@@ -109,6 +122,8 @@ export default abstract class DeStagnate
 
     /**
      * Turn off strict mode
+     * @public
+     * @instance
      * @returns {void} void
      */
     public disableStrict = (): void => {
@@ -118,7 +133,6 @@ export default abstract class DeStagnate
     /**
      * Public getState getter as this.state itself is protected
      * @public
-     * @instance
      * @returns {State} component state
      */
     public get getState (): State {
@@ -128,7 +142,6 @@ export default abstract class DeStagnate
     /**
      * Get component state
      * @protected
-     * @instance
      * @returns {State} component state
      */
     protected get state (): State {
@@ -139,7 +152,6 @@ export default abstract class DeStagnate
      * Sets component state
      * WARN: do not use this method to mutate the state directly
      * @protected
-     * @instance
      * @param {State} obj - state to set
      */
     protected set state (obj: State) {
@@ -159,7 +171,6 @@ export default abstract class DeStagnate
     /**
      * Public getProps getter as this.props itself is protected
      * @public
-     * @instance
      * @returns {Props | undefined} component state
      */
     public get getProps (): Props | undefined {
@@ -168,6 +179,7 @@ export default abstract class DeStagnate
 
     /**
      * Set the parent of this component
+     * @public
      * @param {HTMLElement | undefined} element - parent element
      * @returns {void} void;
      */
@@ -185,10 +197,49 @@ export default abstract class DeStagnate
 
     /**
      * Get the parent element of this component
+     * @public
      * @returns {HTMLElement | undefined} parent
      */
     public get parent (): HTMLElement | undefined {
         return this._parent
+    }
+
+    /**
+     * Get didMount value publicly
+     * @public
+     * @returns {boolean} if mounted
+     */
+    public get didMount (): boolean {
+        return this._didMount
+    }
+
+    /**
+     * Forces a component to update
+     * Follows the same component updating procedure as setState without modifying state
+     * @public
+     * @instance
+     * @readonly
+     * @returns {void | Error} returns error if error is thrown
+     */
+    public readonly forceUpdate = (): void | Error => {
+        try {
+            this.componentDidUpdate()
+
+            if (this._parent === undefined) {
+                throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.")
+            }
+
+            this.getSnapshotBeforeUpdate(
+                {...this.props} as Props,
+                {...this.state},
+            )
+
+            this._update(this._execRender())
+        } catch (err) /* istanbul ignore next */ {
+            this.componentDidCatch(err)
+
+            return err as Error
+        }
     }
 
     /**
@@ -222,20 +273,7 @@ export default abstract class DeStagnate
                 ? this._execRender()
                 : undefined
 
-            if (
-                typeof(renderedContent) === "object" &&
-                renderedContent instanceof Array
-            ) {
-                for (const element of renderedContent) {
-                    this._parent.appendChild(element)
-                }
-            } else if (renderedContent) {
-                this._parent.appendChild(renderedContent)
-            }
-
-            if (renderedContent) {
-                this.componentDidUpdate()
-            }
+            this._update(renderedContent)
         } catch (err) /* istanbul ignore next */ {
             this.componentDidCatch(err)
 
@@ -254,12 +292,12 @@ export default abstract class DeStagnate
      */
     public readonly mountComponent = (parent?: HTMLElement): HTMLElement | HTMLElement[] | Element | Element[] | Error => {
         try {
-            if (this._parent === undefined) {
-                throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.")
-            }
-
             if (parent !== undefined) {
                 this.parent = parent
+            }
+
+            if (this._parent === undefined) {
+                throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.")
             }
 
             const component = this.render()
@@ -269,13 +307,12 @@ export default abstract class DeStagnate
             this.componentWillMount()
 
             if (component === null) {
-                const msg = "Expected render method to be included in component class, no render method found, or render returned an empty array"
-
-                throw new Error(msg)
+                throw new Error("Expected render method to be included in component class, no render method found, or render returned an empty array")
             }
 
             this.bindEventListeners(this._parent)
 
+            this._didMount = true
             this.componentDidMount()
 
             if (typeof(component) === "object" && component instanceof Array) {
@@ -321,6 +358,7 @@ export default abstract class DeStagnate
             this.unbindEventListeners(this._parent)
     
             this._removeChildren()
+            this._didMount = false
         } catch (err) /* istanbul ignore next */ {
             this.componentDidCatch(err)
         }
@@ -351,14 +389,14 @@ export default abstract class DeStagnate
         while (this._parent.firstChild) {
             if (this._parent.lastChild) {
                 this._parent.removeChild(this._parent.lastChild)
-            } else {
-                break
             }
         }
     }
 
     /**
      * Executes new render
+     * @private
+     * @instance
      * @returns {HTMLElement | Array.<HTMLElement> | null} rendered content
      */
     private _execRender = (): RenderType => {
@@ -369,6 +407,8 @@ export default abstract class DeStagnate
 
     /**
      * Checks new state assignment to make sure no new keys are assigned
+     * @private
+     * @instance
      * @param {Partial<State>} obj - new state
      * @returns {void} void
      */
@@ -378,6 +418,30 @@ export default abstract class DeStagnate
                 // eslint-disable-next-line
                 this.componentDidWarn(`WARN: New key (${key}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(this.state))}. Declare all state variables in constructor as a best practice. Did you misspell a key?`)
             }
+        }
+    }
+
+    /**
+     * Updates the component
+     * @private
+     * @instance
+     * @param {RenderType} renderedContent - rendered content from executing the render function
+     * @returns {void} void
+     */
+    private _update = (renderedContent?: RenderType): void => {
+        if (
+            typeof(renderedContent) === "object" &&
+            renderedContent instanceof Array
+        ) {
+            for (const element of renderedContent) {
+                this._parent!.appendChild(element)
+            }
+        } else if (renderedContent) {
+            this._parent!.appendChild(renderedContent)
+        }
+
+        if (renderedContent) {
+            this.componentDidUpdate()
         }
     }
 

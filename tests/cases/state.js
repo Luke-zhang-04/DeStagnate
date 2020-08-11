@@ -23,10 +23,18 @@ class State extends DeStagnate.default {
         }
     }
 
+    shouldthrow = true
+
+    didthrow = false
+
     componentDidCatch = (err) => {
         console.error("ERR: Do not mutate state directly. Use setState instead.")
 
-        throw new Error(err)
+        if (this.shouldthrow) {
+            throw new Error(err)
+        } else {
+            this.didthrow = true
+        }
     }
 
     render = () => createElement(
@@ -95,6 +103,43 @@ const checkNaN = (document) => {
             "",
             inner,
         )
+    },
+    invalidStateSetting = (state) => {
+        const tried = niceTry(() => {
+            state.state = state.getState
+
+            return true
+        })
+
+        assert.equal(
+            undefined,
+            tried,
+        )
+    },
+    nonStrictStateSet = (state) => {
+        const tried = niceTry(() => {
+            state.disableStrict()
+
+            state.state = state.getState
+
+            state.useStrict()
+
+            return true
+        })
+
+        assert.equal(
+            true,
+            tried
+        )
+    },
+    noThrow = (state) => {
+        state.shouldthrow = false
+        state.state = state.getState
+
+        assert.equal(
+            true,
+            state.didthrow
+        )
     }
 
 module.exports.test = (document) => {
@@ -112,16 +157,9 @@ module.exports.test = (document) => {
 
     it("Should return 1", () => unmountedComponent(document, state))
 
-    it("Should throw error and return undefined", () => {
-        const tried = niceTry(() => {
-            state.state = state.getState
+    it("Should throw error and return undefined", () => invalidStateSetting(state))
 
-            return true
-        })
+    it("Should not throw error", () => nonStrictStateSet(state))
 
-        assert.equal(
-            undefined,
-            tried,
-        )
-    })
+    it("Should return true", () => noThrow(state))
 }
