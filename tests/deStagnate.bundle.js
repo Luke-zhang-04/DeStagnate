@@ -5,7 +5,10 @@
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
  * @version 1.6.0
+ * @file DeStagnate development bundle
  */
+
+"use strict";
 
  /* eslint-disable */
 const niceTry = require("nice-try")
@@ -608,53 +611,6 @@ module.exports =
                         _this.props = props
 
                         /**
-                         * Creates nested DeStagnate component
-                         * @public
-                         * @instance
-                         * @readonly
-                         * @param {DeStagnateConstructor} Component - DeStagnate component
-                         * @param {Object<string, unknown>} props - props of component
-                         * @returns {HTMLDivElement} parent of component
-                         */
-                        _this.createDSComponent = DeStagnate.createDSComponent
-
-                        /**
-                         * Creates a child element to DynamComponent
-                         * @public
-                         * @instance
-                         * @readonly
-                         * @param {string} tagName - name of HTML element
-                         * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
-                         * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-                         * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
-                         * @returns {HTMLElement} html element
-                         */
-                        _this.createElement = DeStagnate.createElement
-
-                        /**
-                         * Creates a child element to deStagnate
-                         * @public
-                         * @instance
-                         * @readonly
-                         * @param {string | null} namespaceURI - namespace uri
-                         * @param {string} tagName - name of HTML element
-                         * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
-                         * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-                         * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
-                         * @returns {HTMLElement} html element
-                         */
-                        _this.createElementNS = DeStagnate.createElementNS
-
-                        /**
-                         * Creates a reference for a nested component
-                         * @public
-                         * @instance
-                         * @readonly
-                         * @returns {Object<string, null>} empty ref object
-                         */
-                        _this.createRef = DeStagnate.createRef
-
-                        /**
                          * If strict mode should be used. True by default
                          * @type {boolean}
                          */
@@ -951,53 +907,6 @@ module.exports =
 
             /**
              * Creates nested DeStagnate component
-             * @public
-             * @static
-             * @readonly
-             * @param {DeStagnateConstructor} Component - DeStagnate component
-             * @param {Object<string, unknown>} props - props of component
-             * @returns {HTMLDivElement} parent of component
-             */
-            DeStagnate.createDSComponent = createDSComponent_1.default
-
-            /**
-             * Creates a child element to DynamComponent
-             * @public
-             * @static
-             * @readonly
-             * @param {string} tagName - name of HTML element
-             * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
-             * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-             * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
-             * @returns {HTMLElement} html element
-             */
-            DeStagnate.createElement = createElement_1.default
-
-            /**
-             * Creates a child element to deStagnate
-             * @public
-             * @static
-             * @readonly
-             * @param {string | null} namespaceURI - namespace uri
-             * @param {string} tagName - name of HTML element
-             * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
-             * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-             * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
-             * @returns {HTMLElement} html element
-             */
-            DeStagnate.createElementNS = createElementNS_1.default
-
-            /**
-             * Creates a reference for a nested component
-             * @public
-             * @static
-             * @readonly
-             * @returns {Object<string, null>} empty ref object
-             */
-            DeStagnate.createRef = createRef_1.default
-
-            /**
-             * Creates nested DeStagnate component
              * @param {DeStagnateConstructor} Component - DeStagnate component
              * @param {Object<string, unknown>} props - props of component
              * @returns {HTMLDivElement} parent of component
@@ -1058,6 +967,14 @@ module.exports =
             })
 
             var _events_1 = __importDefault(__webpack_require__(2)),
+
+                createDSComponent_1 = __importDefault(__webpack_require__(3)),
+
+                createElement_1 = __importDefault(__webpack_require__(4)),
+
+                createElementNS_1 = __importDefault(__webpack_require__(5)),
+
+                createRef_1 = __importDefault(__webpack_require__(6)),
                 /* istanbul ignore next */
                 /**
                  * Lifecycle member functions
@@ -1073,6 +990,53 @@ module.exports =
                         _classCallCheck(this, Preset)
 
                         _this2 = _super2.apply(this, arguments)
+
+                        /**
+                         * Creates nested DeStagnate component
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @param {DeStagnateConstructor} Component - DeStagnate component
+                         * @param {Object<string, unknown>} props - props of component
+                         * @returns {HTMLDivElement} parent of component
+                         */
+                        _this2.createDSComponent = createDSComponent_1.default
+
+                        /**
+                         * Creates a child element to DynamComponent
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @param {string} tagName - name of HTML element
+                         * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+                         * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+                         * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
+                         * @returns {HTMLElement} html element
+                         */
+                        _this2.createElement = createElement_1.default
+
+                        /**
+                         * Creates a child element to deStagnate
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @param {string | null} namespaceURI - namespace uri
+                         * @param {string} tagName - name of HTML element
+                         * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
+                         * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+                         * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
+                         * @returns {HTMLElement} html element
+                         */
+                        _this2.createElementNS = createElementNS_1.default
+
+                        /**
+                         * Creates a reference for a nested component
+                         * @public
+                         * @instance
+                         * @readonly
+                         * @returns {Object<string, null>} empty ref object
+                         */
+                        _this2.createRef = createRef_1.default
 
                         /**
                          * Called when component catches error. Default behaviour is console.error
@@ -1159,6 +1123,53 @@ module.exports =
                 }(_events_1.default))
 
             exports.default = Preset
+
+            /**
+             * Creates nested DeStagnate component
+             * @public
+             * @static
+             * @readonly
+             * @param {DeStagnateConstructor} Component - DeStagnate component
+             * @param {Object<string, unknown>} props - props of component
+             * @returns {HTMLDivElement} parent of component
+             */
+            Preset.createDSComponent = createDSComponent_1.default
+
+            /**
+             * Creates a child element to DynamComponent
+             * @public
+             * @static
+             * @readonly
+             * @param {string} tagName - name of HTML element
+             * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+             * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+             * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
+             * @returns {HTMLElement} html element
+             */
+            Preset.createElement = createElement_1.default
+
+            /**
+             * Creates a child element to deStagnate
+             * @public
+             * @static
+             * @readonly
+             * @param {string | null} namespaceURI - namespace uri
+             * @param {string} tagName - name of HTML element
+             * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
+             * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+             * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
+             * @returns {HTMLElement} html element
+             */
+            Preset.createElementNS = createElementNS_1.default
+
+            /**
+             * Creates a reference for a nested component
+             * @public
+             * @static
+             * @readonly
+             * @returns {Object<string, null>} empty ref object
+             */
+            Preset.createRef = createRef_1.default
 
             /***/
         },
@@ -1769,8 +1780,6 @@ module.exports =
 
         /** ****/
     ]))
-
-// # sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jcmVhdGVSZWYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBZUE7QUFBQTs7Ozs7O0FBR0c7QUFBQTs7QUFDSDs7QUFBTSxXQUFZLG1CQUFaLENBQXlELFFBQXpELEVBQXlEO0FBQzNEOztBQUNIO0FBQUM7O0FBRUY7QUFBQSxRQUFBLGdCQUFBLENBQUEsUUFBQSxDQUFBLEVBQUE7Ozs7O0FBR0c7QUFBQTs7QUFDSDs7O0FBQUEsUUFBQSxNQUFlLEdBQUEsZ0JBQVMsQ0FBQSxRQUFBLENBQVQsR0FBUzs7aUJBQUE7OztjQUFBOzs7Ozs7QUFBQSxLQUF4QiIsImZpbGUiOiJkZVN0YWduYXRlLmJ1bmRsZS5qcyJ9
 
 
 module.exports.setDocument = (_doc) => {

@@ -30,6 +30,26 @@ const prod = {
             libraryTarget: "commonjs2",
         },
         mode: "none",
+    },
+    prodCjs = {
+        entry: "./lib/index.js",
+        output: {
+            path: path.resolve(__dirname, "dist"),
+            filename: "deStagnate.bundle.min.cjs",
+            library: "DeStagnate",
+            libraryTarget: "commonjs2",
+        },
+        mode: "production",
+    },
+    devCjs = {
+        entry: "./lib/index.js",
+        output: {
+            path: path.resolve(__dirname, "dist"),
+            filename: "deStagnate.bundle.cjs",
+            library: "DeStagnate",
+            libraryTarget: "commonjs2",
+        },
+        mode: "none",
     }
 
-module.exports = [prod, dev, test]
+module.exports = [prod, dev, test, prodCjs, devCjs]

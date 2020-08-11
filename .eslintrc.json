@@ -123,7 +123,7 @@
         "lines-between-class-members": "error",
         "max-classes-per-file": ["error", 3],
         "max-depth": "error",
-        "max-len": ["error", {"code": 81, "ignoreComments": true, "ignoreTemplateLiterals": true, "ignoreUrls": true}],
+        "max-len": ["error", {"code": 81, "ignoreStrings": true, "ignoreComments": true, "ignoreTemplateLiterals": true, "ignoreUrls": true}],
         "max-lines": "error",
         "max-lines-per-function": "error",
         "max-nested-callbacks": "error",

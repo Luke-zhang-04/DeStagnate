@@ -277,7 +277,7 @@ function _typeof (obj) {
     return _typeof(obj) 
 }
 
-var DeStagnate = (function (modules) {
+module.exports = (function (modules) {
     var installedModules = {}
 
     function __webpack_require__ (moduleId) {
@@ -382,6 +382,7 @@ var DeStagnate = (function (modules) {
          * @file main file for destagnate
          * @preserve
          */
+
         var __importDefault = this && this.__importDefault || function (mod) {
             return mod && mod.__esModule ? mod : {
                 default: mod
@@ -410,6 +411,8 @@ var DeStagnate = (function (modules) {
              * @namespace
              * @abstract
              */
+
+
             DeStagnate = (function (_preset_1$default) {
                 _inherits(DeStagnate, _preset_1$default)
 
@@ -437,6 +440,7 @@ var DeStagnate = (function (modules) {
                      * If strict mode should be used. True by default
                      * @type {boolean}
                      */
+
                     _this._strict = true
 
                     /**
@@ -445,6 +449,7 @@ var DeStagnate = (function (modules) {
                      * @private
                      * @instance
                      */
+
                     _this._state = {}
 
                     /**
@@ -453,6 +458,7 @@ var DeStagnate = (function (modules) {
                      * @type {boolean}
                      * @private
                      */
+
                     _this._didSetInitialState = false
 
                     /**
@@ -463,6 +469,7 @@ var DeStagnate = (function (modules) {
                      * @param {State} prevState - previous state
                      * @returns {void} void
                      */
+
                     _this.getSnapshotBeforeUpdate = function (prevProps, prevState) {
                         return [prevProps, prevState]
                     }
@@ -471,6 +478,8 @@ var DeStagnate = (function (modules) {
                      * Turn on strict mode
                      * @returns {void} void
                      */
+
+
                     _this.useStrict = function () {
                         _this._strict = true
                     }
@@ -479,6 +488,8 @@ var DeStagnate = (function (modules) {
                      * Turn off strict mode
                      * @returns {void} void
                      */
+
+
                     _this.disableStrict = function () {
                         _this._strict = false
                     }
@@ -491,6 +502,8 @@ var DeStagnate = (function (modules) {
                      * @param {Partial<State>} obj - state to set
                      * @returns {void | Error} void
                      */
+
+
                     _this.setState = function (obj) {
                         try {
                             _this.componentWillUpdate()
@@ -540,6 +553,8 @@ var DeStagnate = (function (modules) {
                      * @readonly
                      * @returns {HTMLElement | Array.<HTMLElement> | error} - result of append child to parent element
                      */
+
+
                     _this.mountComponent = function () {
                         try {
                             var component = _this.render()
@@ -577,6 +592,8 @@ var DeStagnate = (function (modules) {
                      * @readonly
                      * @returns {HTMLElement} - result of append child to parent element
                      */
+
+
                     _this.mount = _this.mountComponent
 
                     /**
@@ -586,6 +603,7 @@ var DeStagnate = (function (modules) {
                      * @readonly
                      * @returns {void} - void
                      */
+
                     _this.unmountComponent = function () {
                         try {
                             _this.componentWillUnmount()
@@ -605,6 +623,8 @@ var DeStagnate = (function (modules) {
                      * @readonly
                      * @returns {void} - void
                      */
+
+
                     _this.unmount = _this.unmountComponent
 
                     /**
@@ -613,6 +633,7 @@ var DeStagnate = (function (modules) {
                      * @instance
                      * @return {void} void
                      */
+
                     _this._removeChildren = function () {
                         while (_this._parent.firstChild) {
                             if (_this._parent.lastChild) {
@@ -627,6 +648,8 @@ var DeStagnate = (function (modules) {
                      * Executes new render
                      * @returns {HTMLElement | Array.<HTMLElement> | null} rendered content
                      */
+
+
                     _this._execRender = function () {
                         _this._removeChildren()
 
@@ -638,6 +661,8 @@ var DeStagnate = (function (modules) {
                      * @param {Partial<State>} obj - new state
                      * @returns {void} void
                      */
+
+
                     _this._checkKeys = function (obj) {
                         for (var _i = 0, _Object$keys = Object.keys(obj); _i < _Object$keys.length; _i++) {
                             var key = _Object$keys[_i]
@@ -663,6 +688,8 @@ var DeStagnate = (function (modules) {
                  * @instance
                  * @returns {State} component state
                  */
+
+
                 _createClass(DeStagnate, [
                     {
                         key: "getState",
@@ -676,6 +703,7 @@ var DeStagnate = (function (modules) {
                          * @instance
                          * @returns {State} component state
                          */
+
                     }, {
                         key: "state",
                         get: function get () {
@@ -707,6 +735,7 @@ var DeStagnate = (function (modules) {
                          * @instance
                          * @returns {Props | undefined} component state
                          */
+
                     }, {
                         key: "getProps",
                         get: function get () {
@@ -726,6 +755,7 @@ var DeStagnate = (function (modules) {
          * @param {Object<string, unknown>} props - props of component
          * @returns {HTMLDivElement} parent of component
          */
+
         exports.createDSComponent = createDSComponent_1.default
 
         /**
@@ -735,6 +765,7 @@ var DeStagnate = (function (modules) {
          * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
          * @returns {HTMLElement} html element
          */
+
         exports.createElement = createElement_1.default
 
         /**
@@ -745,12 +776,14 @@ var DeStagnate = (function (modules) {
          * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
          * @returns {HTMLElement} html element
          */
+
         exports.createElementNS = createElementNS_1.default
 
         /**
          * Creates a reference for a nested component
          * @returns {Object<string, undefined>} empty ref object
          */
+
         exports.createRef = createRef_1.default
     }, function (module, exports, __webpack_require__) {
 
@@ -765,6 +798,7 @@ var DeStagnate = (function (modules) {
          * @exports Preset
          * @package
          */
+
         var __importDefault = this && this.__importDefault || function (mod) {
             return mod && mod.__esModule ? mod : {
                 default: mod
@@ -806,6 +840,7 @@ var DeStagnate = (function (modules) {
                      * @param {Object<string, unknown>} props - props of component
                      * @returns {HTMLDivElement} parent of component
                      */
+
                     _this2.createDSComponent = createDSComponent_1.default
 
                     /**
@@ -819,6 +854,7 @@ var DeStagnate = (function (modules) {
                      * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
                      * @returns {HTMLElement} html element
                      */
+
                     _this2.createElement = createElement_1.default
 
                     /**
@@ -833,6 +869,7 @@ var DeStagnate = (function (modules) {
                      * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
                      * @returns {HTMLElement} html element
                      */
+
                     _this2.createElementNS = createElementNS_1.default
 
                     /**
@@ -842,6 +879,7 @@ var DeStagnate = (function (modules) {
                      * @readonly
                      * @returns {Object<string, null>} empty ref object
                      */
+
                     _this2.createRef = createRef_1.default
 
                     /**
@@ -849,6 +887,7 @@ var DeStagnate = (function (modules) {
                      * @param {Error} error - error object with info
                      * @returns {void} void
                      */
+
                     _this2.componentDidCatch = function (error) {
                         return console.error(error)
                     }
@@ -859,6 +898,8 @@ var DeStagnate = (function (modules) {
                      * @instance
                      * @returns {void} void
                      */
+
+
                     _this2.componentDidMount = function () {
                         return undefined
                     }
@@ -869,6 +910,8 @@ var DeStagnate = (function (modules) {
                      * @instance
                      * @returns {void} void
                      */
+
+
                     _this2.componentDidUpdate = function () {
                         return undefined
                     }
@@ -879,6 +922,8 @@ var DeStagnate = (function (modules) {
                      * @instance
                      * @returns {void} void
                      */
+
+
                     _this2.componentWillMount = function () {
                         return undefined
                     }
@@ -889,6 +934,8 @@ var DeStagnate = (function (modules) {
                      * @instance
                      * @returns {void} void
                      */
+
+
                     _this2.componentWillUnmount = function () {
                         return undefined
                     }
@@ -899,6 +946,8 @@ var DeStagnate = (function (modules) {
                      * @instance
                      * @returns {void} void
                      */
+
+
                     _this2.componentWillUpdate = function () {
                         return undefined
                     }
@@ -907,6 +956,8 @@ var DeStagnate = (function (modules) {
                      * Called before component is updated
                      * @returns {boolean} whether or not component should update/re-render
                      */
+
+
                     _this2.shouldComponentUpdate = function () {
                         return true
                     }
@@ -918,6 +969,8 @@ var DeStagnate = (function (modules) {
                      * @abstract
                      * @returns {null | HTMLElement | Array.<HTMLElement> | Element | Array.<Element>} if returns null error will be thrown
                      */
+
+
                     _this2.render = function () {
                         return null
                     }
@@ -939,6 +992,7 @@ var DeStagnate = (function (modules) {
          * @param {Object<string, unknown>} props - props of component
          * @returns {HTMLDivElement} parent of component
          */
+
         Preset.createDSComponent = createDSComponent_1.default
 
         /**
@@ -952,6 +1006,7 @@ var DeStagnate = (function (modules) {
          * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
          * @returns {HTMLElement} html element
          */
+
         Preset.createElement = createElement_1.default
 
         /**
@@ -966,6 +1021,7 @@ var DeStagnate = (function (modules) {
          * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
          * @returns {HTMLElement} html element
          */
+
         Preset.createElementNS = createElementNS_1.default
 
         /**
@@ -975,6 +1031,7 @@ var DeStagnate = (function (modules) {
          * @readonly
          * @returns {Object<string, null>} empty ref object
          */
+
         Preset.createRef = createRef_1.default
     }, function (module, exports, __webpack_require__) {
 
@@ -989,6 +1046,7 @@ var DeStagnate = (function (modules) {
          * @exports Events
          * @package
          */
+
         Object.defineProperty(exports, "__esModule", {
             value: true
         })
@@ -1020,6 +1078,8 @@ var DeStagnate = (function (modules) {
              * @param {HTMLElement} element - element to bind listeners to
              * @returns {void} void;
              */
+
+
             this.unbindEventListeners = function (element) {
                 _this3._eventListener(element.removeEventListener)
             }
@@ -1030,6 +1090,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onFocus = function () {
                 return undefined
             }
@@ -1040,6 +1102,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onBlur = function () {
                 return undefined
             }
@@ -1050,6 +1114,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onFocusIn = function () {
                 return undefined
             }
@@ -1060,6 +1126,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onFocusOut = function () {
                 return undefined
             }
@@ -1070,6 +1138,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onAnimationStart = function () {
                 return undefined
             }
@@ -1080,6 +1150,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onAnimationCancel = function () {
                 return undefined
             }
@@ -1090,6 +1162,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onAnimationEnd = function () {
                 return undefined
             }
@@ -1100,6 +1174,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onAnimationIteration = function () {
                 return undefined
             }
@@ -1110,6 +1186,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onTransitionStart = function () {
                 return undefined
             }
@@ -1120,6 +1198,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onTransitionCancel = function () {
                 return undefined
             }
@@ -1130,6 +1210,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onTransitionEnd = function () {
                 return undefined
             }
@@ -1140,6 +1222,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onTransitionRun = function () {
                 return undefined
             }
@@ -1150,6 +1234,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onAuxClick = function () {
                 return undefined
             }
@@ -1160,6 +1246,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onClick = function () {
                 return undefined
             }
@@ -1170,6 +1258,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onDblClick = function () {
                 return undefined
             }
@@ -1180,6 +1270,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onMouseDown = function () {
                 return undefined
             }
@@ -1190,6 +1282,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onMouseEnter = function () {
                 return undefined
             }
@@ -1200,6 +1294,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onMouseLeave = function () {
                 return undefined
             }
@@ -1210,6 +1306,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onMouseMove = function () {
                 return undefined
             }
@@ -1220,6 +1318,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onMouseOver = function () {
                 return undefined
             }
@@ -1230,6 +1330,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onMouseOut = function () {
                 return undefined
             }
@@ -1240,6 +1342,8 @@ var DeStagnate = (function (modules) {
              * @instance
              * @returns {void}
              */
+
+
             this.onMouseUp = function () {
                 return undefined
             }
@@ -1295,6 +1399,7 @@ var DeStagnate = (function (modules) {
          * @version 1.6.0
          * @exports createDSComponent add nested component for DeStagnate components
          */
+
         Object.defineProperty(exports, "__esModule", {
             value: true
         })
@@ -1306,6 +1411,7 @@ var DeStagnate = (function (modules) {
          * @param {Object<string, undefined | DeStagnate>} ref - ref object
          * @returns {HTMLDivElement} parent of component
          */
+
         var createDSComponent = function createDSComponent (Component, props, ref) {
             var element = document.createElement("div")
 
@@ -1335,6 +1441,7 @@ var DeStagnate = (function (modules) {
          * @version 1.6.0
          * @exports createElement function for DOM manipulation
          */
+
         Object.defineProperty(exports, "__esModule", {
             value: true
         })
@@ -1348,6 +1455,7 @@ var DeStagnate = (function (modules) {
          * @param {boolean} ns - if namespace element
          * @returns {void} void
          */
+
         exports._bindProps = function (element, props) {
             var ns = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false
 
@@ -1410,6 +1518,8 @@ var DeStagnate = (function (modules) {
          * @param {undefined | ChildrenType} children - children to bind with
          * @returns {void} void
          */
+
+
         exports._bindChildren = function (element, children) {
             if (children || children === 0) {
                 if (children instanceof Array) {
@@ -1449,6 +1559,8 @@ var DeStagnate = (function (modules) {
          * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
          * @returns {HTMLElement} html element
          */
+
+
         var createElement = function createElement (tagName, props, children) {
             var element = document.createElement(tagName)
 
@@ -1486,6 +1598,7 @@ var DeStagnate = (function (modules) {
          * @version 1.6.0
          * @exports createElementNS createElement for namespaced elements
          */
+
         Object.defineProperty(exports, "__esModule", {
             value: true
         })
@@ -1502,6 +1615,8 @@ var DeStagnate = (function (modules) {
          * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
          * @returns {HTMLElement} html element
          */
+
+
         exports.createElementNS = function (namespaceURI, tagName, props, children) {
             var element = document.createElementNS(namespaceURI, tagName)
 
@@ -1538,6 +1653,7 @@ var DeStagnate = (function (modules) {
          * Creates a reference for a nested component
          * @returns {Object<string, null>} empty ref object
          */
+
         var createRef = function createRef () {
             return {
                 current: null
@@ -1548,6 +1664,8 @@ var DeStagnate = (function (modules) {
          * Creates a reference for a nested component
          * @returns {Object<string, null>} empty ref object
          */
+
+
         exports.default = createRef
     }
 ]))

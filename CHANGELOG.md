@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - typescript compiles to ES6 instead of ES5 [e7d579cb66af589e1a8be24f29a057affc3db1cb](https://github.com/Luke-zhang-04/DeStagnate/commit/e7d579cb66af589e1a8be24f29a057affc3db1cb)
+- move createComponent and related methods to preset [8419f12280222a1903e60d97ec3b72007a557301](https://github.com/Luke-zhang-04/DeStagnate/commit/8419f12280222a1903e60d97ec3b72007a557301)
 
 ### Fixed
 - fix: getSnapshotBeforeUpdate copies objects [846650e8e0e75fea42cd28a3d167958df65c0f2d](https://github.com/Luke-zhang-04/DeStagnate/commit/846650e8e0e75fea42cd28a3d167958df65c0f2d)
