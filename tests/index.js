@@ -20,7 +20,7 @@ const jsdom = require("jsdom"),
     nestedComponents = require("./cases/nestedComponents").test
 
 const {JSDOM} = jsdom,
-    html = fs.readFileSync(`${process.cwd()}/docs/index.html`, "utf-8"),
+    html = fs.readFileSync(`${process.cwd()}/tests/test.html`, "utf-8"),
     dom = new JSDOM(html, {runScripts: "outside-only"}),
     {document} = dom.window
 

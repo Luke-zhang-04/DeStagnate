@@ -46,7 +46,7 @@ module.exports.test = (document, window) => {
     DeStagnate.setDocument(document)
     DeStagnate.setWindow(window)
 
-    const nestedComponent = new ComponentB(document.body)
+    const nestedComponent = new ComponentB(document.getElementById("nest"))
 
     nestedComponent.mount()
 
@@ -60,7 +60,7 @@ module.exports.test = (document, window) => {
     context("Changing state of nested component", () => {
         it("Should equal A", () => {
             assert.strictEqual(
-                document.querySelector(".ComponentB .ComponentA").innerHTML,
+                document.querySelector("#nest .ComponentB .ComponentA").innerHTML,
                 "A"
             )
         })
@@ -69,7 +69,7 @@ module.exports.test = (document, window) => {
             nestedComponent.updateNestedComponent()
 
             assert.strictEqual(
-                document.querySelector(".ComponentB .ComponentA").innerHTML,
+                document.querySelector("#nest .ComponentB .ComponentA").innerHTML,
                 "B"
             )
         })
@@ -79,7 +79,7 @@ module.exports.test = (document, window) => {
             nestedComponent.forceUpdate()
 
             assert.strictEqual(
-                document.querySelector(".ComponentB .ComponentA").innerHTML,
+                document.querySelector("#nest .ComponentB .ComponentA").innerHTML,
                 "C"
             )
         })
