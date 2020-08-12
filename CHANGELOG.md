@@ -8,13 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - version to 1.6.0 [2d5d20d6b5fe686d17cab0(ba717a1434cbb10df][https://github.com/Luke-zhang-04/DeStagnate/commit/2d5d20d6b5fe686d17cab03ba717a1434cbb10df)
 
 ### Added
-- feat: add nested components compatibility as child of createElement [663111fcb603766342b1628bcbb404a681f6528c](https://github.com/Luke-zhang-04/DeStagnate/commit663111fcb603766342b1628bcbb404a681f6528c)
+- feat: export DeStagnate as Component as well as default [86fa29942d86d4b4ee50da5ea047ab8b2ed44543](https://github.com/Luke-zhang-04/DeStagnate/commit/86fa29942d86d4b4ee50da5ea047ab8b2ed44543)
+- feat: add nested components compatibility as child of createElement [663111fcb603766342b1628bcbb404a681f6528c](https://github.com/Luke-zhang-04/DeStagnate/commit/663111fcb603766342b1628bcbb404a681f6528c)
 - add componentDidWarn and ability to modify parent [ccce17e594b19dc9604a3e4e75bebcf2c7441b2f](https://github.com/Luke-zhang-04/DeStagnate/commit/ccce17e594b19dc9604a3e4e75bebcf2c7441b2f)
 - add commonjs bundle, remove eslint formatting [0b970f82a10e7755acc366872fc305ef2ae79330](https://github.com/Luke-zhang-04/DeStagnate/commit/0b970f82a10e7755acc366872fc305ef2ae79330)
 - feat: add shouldComponentUpdate method [71674440bdc22897393299503f16af54e13287a2](https://github.com/Luke-zhang-04/DeStagnate/commit/71674440bdc22897393299503f16af54e13287a2)
 - feat: allow disabling of strict mode [1147411887b9704a267f8e9fb1bbb766b90b707a](https://github.com/Luke-zhang-04/DeStagnate/commit/1147411887b9704a267f8e9fb1bbb766b90b707a)
 
 ### Changed
+- revamp site [290ca88e31c4441b7c55fffe25f6ad438478fc05](https://github.com/Luke-zhang-04/DeStagnate/commit/290ca88e31c4441b7c55fffe25f6ad438478fc05)
+- update tests with seperate HTML file [0e65e47471587c682637ce198bf83afbcb9991e9](https://github.com/Luke-zhang-04/DeStagnate/commit/0e65e47471587c682637ce198bf83afbcb9991e9)
+- allow props to be null type in Typescript [98adc80f5e08946fbc2a7dd28041996ae4c23d98](https://github.com/Luke-zhang-04/DeStagnate/commit/98adc80f5e08946fbc2a7dd28041996ae4c23d98)
+- Update minimal example [668f8c7277d0a586cd59a25cff387d069433e5c7](https://github.com/Luke-zhang-04/DeStagnate/commit/668f8c7277d0a586cd59a25cff387d069433e5c7)
 - add semicolons to eslint format rules (for dist bundles) [f0de084cc3d84144188be3be0abd0b4c384878ca](https://github.com/Luke-zhang-04/DeStagnate/commit/f0de084cc3d84144188be3be0abd0b4c384878ca)
 - add new logo [1d63cb1ea4520fc862d473704b239a1428e1f9bd](https://github.com/Luke-zhang-04/DeStagnate/commit/1d63cb1ea4520fc862d473704b239a1428e1f9bd)
 - typescript compiles to ES6 instead of ES5 [e7d579cb66af589e1a8be24f29a057affc3db1cb](https://github.com/Luke-zhang-04/DeStagnate/commit/e7d579cb66af589e1a8be24f29a057affc3db1cb)
