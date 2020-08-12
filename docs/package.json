@@ -1,12 +1,17 @@
 {
   "name": "destagnate-docs",
-  "version": "1.5.3",
+  "version": "1.6.0",
   "description": "Examples for dynamic componnet",
   "main": "index.js",
   "dependencies": {
     "bootstrap": "^5.0.0-alpha1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "sass": "^1.26.10"
+  },
+  "scripts": {
+    "sass": "sass scss:css --style compressed || npx sass scss:css --style compressed"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Luke-zhang-04/dynamic-component.git"

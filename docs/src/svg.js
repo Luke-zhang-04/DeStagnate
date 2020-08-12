@@ -1,11 +1,9 @@
 /* eslint-disable multiline-comment-style, no-undef, no-magic-numbers */
-/* Already declared
-const DS = DeStagnate,
-    {createElement} = DS
-*/
-const {createElementNS} = DS
 
-class SVG extends DS.default {
+const DS = DeStagnate,
+    {createElement, createElementNS} = DS
+
+class SVG extends DS.Component {
 
     constructor (parent, props) {
         super(parent, props)
@@ -20,13 +18,13 @@ class SVG extends DS.default {
     componentDidMount = () => this.componentDidUpdate()
 
     componentDidUpdate = () => {
-        if (this.state.xcord < 0 || this.state.xcord > this.props.width / 2) {
+        if (this.state.xcord < 0 || this.state.xcord > this.props.width) {
             this.direction *= -1
         }
 
         setTimeout(
             () => this.setState({xcord: this.state.xcord + this.direction}),
-            25,
+            10,
         )
     }
 

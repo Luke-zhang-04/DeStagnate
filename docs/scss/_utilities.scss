@@ -1,0 +1,31 @@
+/*!
+ * Destagnate v1.6.0 
+ * Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io 
+ * MIT License
+ */
+@import "variables";
+@import "./../node_modules/bootstrap/scss/utilities";
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "border-radius": (
+      property: border-radius,
+      responsive: true,
+      class: br,
+      values: $spacers,
+    ),
+    "width": (
+      property: width,
+      class: w,
+      responsive: true,
+      values: (
+        25: 25%,
+        50: 50%,
+        75: 75%,
+        100: 100%,
+        auto: auto,
+      ),
+    ),
+  ),
+);

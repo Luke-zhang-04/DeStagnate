@@ -31,21 +31,30 @@ build() {
 
     # Run babel on bundle
     printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./dist/deStagnate.bundle.js/${Purple}\n"
-    npx babel ./dist/deStagnate.bundle.js -o ./dist/deStagnate.bundle.js -s inline &
+    npx babel ./dist/deStagnate.bundle.js -o ./dist/deStagnate.bundle.js -s false &
 
-    wait
+    # Minify copy of commonjs bundle
+    printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./dist/deStagnate.bundle.min.cjs/${Purple} and ${Blue}minifying${Purple}\n"
+    npx babel ./dist/deStagnate.bundle.min.cjs -o ./dist/deStagnate.bundle.min.cjs --no-comments --no-babelrc --config-file ./.babelrc.min.js &
+
+    # Run babel on commonjs bundle
+    printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./dist/deStagnate.bundle.cjs/${Purple}\n"
+    npx babel ./dist/deStagnate.bundle.cjs -o ./dist/deStagnate.bundle.cjs -s false &
 
     # Run babel on testing bundle
     printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./tests/deStagnate.bundle.js/${Purple}\n"
-    npx babel ./tests/deStagnate.bundle.js -o ./tests/deStagnate.bundle.js -s inline --no-babelrc --config-file ./.babelrc.testing.js &
+    npx babel ./tests/deStagnate.bundle.js -o ./tests/deStagnate.bundle.js -s false --no-babelrc --config-file ./.babelrc.testing.js &
 
     wait
 
+    eslintConfig="{'no-var': 'off', 'prefer-arrow/prefer-arrow-functions': 'off', 'camelcase': 'off', 'id-length': 'off', 'no-use-before-define': 'off', 'max-len': 'off', 'require-jsdoc': 'off', 'vars-on-top': 'off', 'valid-jsdoc': 'off', 'semi': ['error', 'always']}"
+
     # Format development dist
     printf "${BIPurple}Formatting ${Red}dist ${Green}bundle\n"
-    npx eslint ./dist/deStagnate.bundle.js --fix --env browser --rule "{\"no-var\": \"off\", \"prefer-arrow/prefer-arrow-functions\": \"off\", \"camelcase\": \"off\", \"id-length\": \"off\"}" > out.log &
+    npx eslint ./dist/deStagnate.bundle.js --fix --env browser --rule "$eslintConfig" > out.log &
+    npx eslint ./dist/deStagnate.bundle.cjs --fix --env browser --rule "$eslintConfig" > out.log &
 
-    npx eslint ./tests/deStagnate.bundle.js --fix --env browser --rule "{\"no-var\": \"off\", \"prefer-arrow/prefer-arrow-functions\": \"off\", \"camelcase\": \"off\", \"id-length\": \"off\"}" > out.log &
+    npx eslint ./tests/deStagnate.bundle.js --fix --env browser --rule "$eslintConfig" > out.log &
 
     wait
 
@@ -54,52 +63,51 @@ build() {
     node build.js ./tests/deStagnate.bundle.js &
 
     wait
-
-    echo "/**
+    
+    header="/**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.5.3
+ * @version 1.6.0
+ * @file DeStagnate development bundle
  */
 
-\"use strict\";
+\"use strict\";"
+
+    minHeader="/**
+ * Destagnate v1.6.0 
+ * @copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io 
+ * @license MIT
+ * @file DeStagnate production bundle
+ */
+"
+
+    echo "$header
 $(cat ./dist/deStagnate.bundle.js)" > ./dist/deStagnate.bundle.js &
 
-    echo "/* Destagnate v1.5.3 | Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io | MIT License */
-
+    echo "$minHeader
 $(cat ./dist/deStagnate.bundle.min.js)" > ./dist/deStagnate.bundle.min.js &
 
-echo "/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.5.3
- */
+    echo "$header
+$(cat ./dist/deStagnate.bundle.cjs)" > ./dist/deStagnate.bundle.cjs &
+
+    echo "$minHeader
+$(cat ./dist/deStagnate.bundle.min.cjs)" > ./dist/deStagnate.bundle.min.cjs &
+
+echo "$header
 
 $(cat ./tests/deStagnate.bundle.js)" > ./tests/deStagnate.bundle.js &
 
     wait
 
-    # printf "${BIPurple}Formatting ${BIGreen}lib\n"
-    # for d in ./lib/* ; do
-    #     if [[ ${d##*.} != "map" ]]; then
-    #         npx eslint "$d" --no-ignore --fix --env browser --rule "{\"no-var\": \"off\", \"prefer-arrow/prefer-arrow-functions\": \"off\", \"camelcase\": \"off\", \"id-length\": \"off\", \"no-useless-constructor\": \"off\", \"@typescript-eslint/no-useless-constructor\": \"off\"}" >> out.log &
-    #     fi
-    # done
+    for d in ./lib/* ; do
+        if [[ ${d##*.} != "map" ]]; then
+            node build.js "$d" &
+        fi
+    done
 
-    # wait
-
-    # for d in ./lib/* ; do
-    #     if [[ ${d##*.} != "map" ]]; then
-    #         node build.js "$d"
-    #     fi
-    # done
-
-    # Copy bundle
     printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
     echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js &
 

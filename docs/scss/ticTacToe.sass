@@ -1,0 +1,33 @@
+/*!
+ * Destagnate v1.6.0 
+ * Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io 
+ * MIT License
+ */
+
+@use "variables"
+
+#nested
+  .row
+    border-bottom: solid 0.25rem variables.$dark
+    width: 30vw
+    height: 10vw
+
+    &:nth-child(3)
+      border-bottom: none
+
+    .col-4
+      border-right: solid 0.25rem variables.$dark
+      cursor: pointer
+      background-color: variables.$light
+      color: variables.$dark
+      transition: background-color 0.2s ease
+
+      .tictactoe-square
+        text-align: center
+        font-size: 6vw
+
+      &:nth-child(3)
+        border-right: none
+
+      &:hover
+        background-color: mix(variables.$light, variables.$dark, 70%)

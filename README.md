@@ -45,7 +45,7 @@ curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_
 curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.js -O destagnate.bundle.js
 
 # Latest
-curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v1.5.3/destagnate.bundle.js -O destagnate.bundle.js
+curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v1.6.0/destagnate.bundle.js -O destagnate.bundle.js
 ```
 
 With a CDN
@@ -57,20 +57,20 @@ With a CDN
 <script src="https://unpkg.com/destagnate@version/dist/deStagnate.bundle.js"></script>
 
 <!-- Latest -->
-<script src="https://unpkg.com/destagnate@1.5.3/dist/deStagnate.bundle.min.js"></script>
+<script src="https://unpkg.com/destagnate@1.6.0/dist/deStagnate.bundle.min.js"></script>
 ```
 
 ## Basic Use
 See [https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/src](https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/src) for example code
 ```js
-// browser env requires this
-const DS = DeStagnate,
-    {createElement} = DS
+// Browser env requires this
+const DS = DeStagnate
 
-// node env requires this
+// Node env requires this
 import * as DS from "destagnate"
+const DS = require("destagnate")
 
-class Counter extends DS.defualt {
+class Counter extends DS.Component {
 
     constructor (parent) {
         super(parent)
@@ -78,9 +78,11 @@ class Counter extends DS.defualt {
         this.state = {}
     }
 
-    // Using SD.createElement()
-    render = () => DS.createElement("div", {})
-    
+    // Using DS.createElement() - all options available below
+    render = () => DS.createElement("div")
+    render = () => Counter.createElement("div")
+    render = () => this.createElement("div")
+
     // Alternatively, you can use JSX (this requires the CLI, which comes with this package)
     render = () => <div></div>
 

@@ -1,22 +1,16 @@
 /* eslint-disable multiline-comment-style, no-undef, no-magic-numbers */
-/* Already declared
-const DS = DeStagnate,
-    {createElement, createRef} = DS,
-*/
 
 // Const declarations since these variables are globally defined
 // @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
-declare type DS = typeof import("../../lib")
+declare type DeStagnate = typeof import("../../lib")
 // @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
-declare const DS: DS
+declare const DeStagnate: DeStagnate
 // @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
-declare const {createElement, createRef}: DS
+const DS = DeStagnate,
+    // @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
+    {createElement, createRef} = DS
 
-// Declare previously undeclared variables
-// @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
-const {createRef} = DS
-
-class RefExample extends DS.default {
+class RefExample extends DS.Component {
 
     private _inputGroupPrepend = (): HTMLElement => createElement(
         "div",

@@ -1,15 +1,15 @@
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * 
- * Copyright (C) 2020 Luke Zhang luke-zhang-04.github.io 
- * MIT License
- * 
- * @version 1.5.3
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.6.0
  * @exports createElement function for DOM manipulation
  */
 
-import {Ref} from "./createRef"
+import DeStagnate from "."
+import type {Ref} from "./createRef"
 
 /* eslint-disable one-var */
 
@@ -17,6 +17,7 @@ export type ChildrenFlatArrayType = (HTMLElement
     | Element
     | number
     | string
+    | DeStagnate<unknown, unknown>
 )[]
 
 export type ChildrenArrayType = ChildrenFlatArrayType
@@ -30,6 +31,7 @@ export type ChildrenType = HTMLElement
     | number 
     | ChildrenArrayType
     | Element
+    | DeStagnate<unknown, unknown>
 
 type EventFunc = (e: Event)=> void
 
@@ -43,7 +45,7 @@ type EventFunc = (e: Event)=> void
  */
 export const _bindProps = (
     element: Element,
-    props?: {[key: string]: string | number | Element | Ref | EventFunc},
+    props?: {[key: string]: string | number | Element | Ref | EventFunc} | null,
     ns = false,
 ): void => {
     if (props) {
@@ -104,29 +106,30 @@ export const _bindChildren = (
     element: Element,
     children?: ChildrenType,
 ): void => {
-    if (children || children === 0) {
+    if (children !== null && children !== undefined) {
         if (children instanceof Array) {
             for (const child of children) {
-                if (
-                    typeof(child) === "string" || 
-                    typeof(child) === "number"
-                ) {
-                    (element as HTMLElement).innerText = child.toString()
-                } else if (
-                    typeof (child) === "object" &&
-                    child instanceof Array
-                ) {
-                    _unpackChildren(child)
-                        .forEach((_child) => _bindChildren(element, _child))
-                } else {
-                    element.appendChild(child)
-                }
+                _bindChildren(element, child)
             }
         } else if (
             typeof(children) === "string" ||
             typeof(children) === "number"
         ) {
             (element as HTMLElement).innerText = children.toString()
+        } else if (children instanceof DeStagnate) {
+            if (!children.didMount && element instanceof window.HTMLElement) {
+                children.mount(element)
+                
+                return
+            } else if (!(element instanceof window.HTMLElement)) {
+                throw new Error("Cannot use non-HTMLElement as component parent")
+            }
+
+            if (children.parent !== element) {
+                children.parent = element
+            }
+
+            children.forceUpdate()
         } else {
             element.appendChild(children)
         }
@@ -143,7 +146,7 @@ export const _bindChildren = (
  */
 const createElement = <T extends keyof HTMLElementTagNameMap>(
     tagName: T,
-    props?: {[key: string]: string | number | Element | Ref | EventFunc},
+    props?: {[key: string]: string | number | Element | Ref | EventFunc} | null,
     children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
 ): HTMLElementTagNameMap[T] => {
@@ -154,7 +157,7 @@ const createElement = <T extends keyof HTMLElementTagNameMap>(
     let _children: ChildrenType | undefined = children
 
     if (children && childrenArgs) {
-        if (typeof(children) === "object" && children instanceof Array) {
+        if (children instanceof Array) {
             _children = [
                 ..._unpackChildren(children),
                 ..._unpackChildren(childrenArgs),

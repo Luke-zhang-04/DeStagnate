@@ -1,10 +1,8 @@
 /* eslint-disable multiline-comment-style, no-undef, no-magic-numbers */
-/* Already declared
 const DS = DeStagnate,
     {createElement} = DS
-*/
 
-class EventListener extends DS.default {
+class EventListener extends DS.Component {
 
     constructor (parent) {
         super(parent)

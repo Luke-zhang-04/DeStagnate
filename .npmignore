@@ -132,11 +132,13 @@ src/
 wiki
 .babelrc.js
 .babelrc.min.js
+.babelrc.testing.js
 .codeclimate.yml
 .eslintignore
 .eslintrc.json
 .gitattributes
 .gitmodules
+.nycrc.json
 build.js
 *.sh
 *.config.js

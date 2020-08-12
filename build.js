@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.5.3
+ * @version 1.6.0
  */
 
 // Replaces comments with exessive newlines with one newline
@@ -29,7 +29,16 @@ class NewString extends String {
 
     /* eslint-disable max-len */
     fmt = () => this.toString().replace(/document/gu, "doc")
+        .replace(/window/gu, "_window")
         .replace(/innerText/gu, "innerHTML")
+        .replace(
+            /if \(_this._parent === undefined\)/gu,
+            `if (_this._parent === undefined) ${ist}`,
+        )
+        .replace(
+            /catch \(err\)/gu,
+            `catch (err) ${ist}`,
+        )
         .replace(
             /__values = this && this.__values \|\| function \(o\)/gu,
             `__values = this && this.__values || function (o) ${ist} `,
@@ -63,19 +72,38 @@ const documentAlias = (data) => {
         .addIstanbulIgnore(/function _typeof \(obj\)/gu)
         .fmt()
 
+    const split = formattedData.split("\n")
+
+    for (const [num, line] of split.entries()) {
+        if (line.includes("function _")) {
+            split[num] = `${line.replace(/\{/gu, "")}${ist} {`
+        } else if (line.includes("modules")) {
+            break
+        }
+    }
+
+    formattedData = split.join("\n")
+
     formattedData = ` /* eslint-disable */
 const niceTry = require("nice-try")
 let doc
+let _window
 
-niceTry(() => {
+niceTry(() => ${ist} {
     doc = document
+    _window = window
 })
 
 ${formattedData}
 
 module.exports.setDocument = (_doc) => {
     doc = _doc
-}`
+}
+
+module.exports.setWindow = (__window) => {
+    _window = __window
+}
+`
 
     return formattedData
 }
