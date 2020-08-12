@@ -1,0 +1,43 @@
+/*!
+ * Destagnate v1.6.0 
+ * Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io 
+ * MIT License
+ */
+
+@use "variables"
+  
+#calculator
+  .calc-display
+    background-color: variables.$secondary
+    height: 7.5rem
+    width: 100%
+    padding: 2.5rem
+    font-size: 2rem
+    text-align: right
+
+  .calc-btns
+    margin: 0
+
+    .calc-btn
+      padding: 1rem
+      cursor: pointer
+      background-color: variables.$primary
+      text-align: center
+      transition: background-color 0.25s ease
+
+      &:hover
+        background-color: mix(variables.$primary, white, 70%)
+
+      &.equals
+        background-color: variables.$info
+        transition: background-color 0.25s ease
+
+        &:hover
+          background-color: mix(variables.$info, white, 70%)
+
+      &.clear
+        background-color: variables.$danger
+        transition: background-color 0.25s ease
+
+        &:hover
+          background-color: mix(variables.$danger, white, 70%)

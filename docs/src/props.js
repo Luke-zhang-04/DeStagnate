@@ -1,10 +1,8 @@
 /* eslint-disable multiline-comment-style, no-undef, no-magic-numbers */
-/* Already declared
 const DS = DeStagnate,
     {createElement} = DS
-*/
 
-class PropsDemo extends DS.default {
+class PropsDemo extends DS.Component {
 
     render = () => this.props.colors.map((color) => (
         createElement(

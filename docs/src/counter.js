@@ -2,7 +2,7 @@
 const DS = DeStagnate,
     {createElement} = DS
 
-class Counter extends DS.default {
+class Counter extends DS.Component {
 
     constructor (parent) {
         super(parent)

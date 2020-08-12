@@ -1,0 +1,9 @@
+/*!
+ * Destagnate v1.6.0 
+ * Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io 
+ * MIT License
+ *//*!
+* Destagnate v1.6.0 
+* Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io 
+* MIT License
+*/@keyframes fade-in-down{from{opacity:0;transform:translateY(-5rem)}50%{opacity:1}to{opacity:1;transform:translateY(0)}}#info-containers{transform:translateY(-3rem)}#info-containers .col-lg-4{animation:fade-in-down .75s ease-out}@media(max-width: 768px){#info-containers{transform:translateY(-1.5rem)}}/*# sourceMappingURL=home.css.map */

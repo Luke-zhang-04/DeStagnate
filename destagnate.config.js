@@ -2,18 +2,25 @@
 
 const paths = ["calculator", "counter", "tictactoe.ts", "ref.ts"]
 
-module.exports = paths.map((val) => {
-    if (val.includes(".ts")) {
+module.exports = [
+    ...paths.map((val) => {
+        if (val.includes(".ts")) {
+            return {
+                entry: `./docs/src/${val}`,
+                output: `./docs/compiled/${val.replace(".ts", "")}.js`,
+                mode: "development",
+            }
+        }
+    
         return {
-            entry: `./docs/src/${val}`,
-            output: `./docs/compiled/${val.replace(".ts", "")}.js`,
+            entry: `./docs/src/${val}.js`,
+            output: `./docs/compiled/${val}.js`,
             mode: "development",
         }
-    }
-
-    return {
-        entry: `./docs/src/${val}.js`,
-        output: `./docs/compiled/${val}.js`,
-        mode: "development",
-    }
-})
+    }),
+    {
+        entry: "./docs/script.ts",
+        output: "./docs/script.js",
+        mode: "production",
+    },
+]
