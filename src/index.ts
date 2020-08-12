@@ -480,3 +480,14 @@ export const createElementNS = _createElementNS
  * @returns {Object<string, undefined>} empty ref object
  */
 export const createRef = _createRef
+
+/* eslint-disable @typescript-eslint/naming-convention */
+
+/**
+ * DeStagnate
+ * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @class
+ * @namespace
+ * @abstract
+ */
+export const Component = DeStagnate

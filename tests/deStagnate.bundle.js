@@ -570,7 +570,7 @@ module.exports =
             Object.defineProperty(exports, "__esModule", {
                 value: true
             });
-            exports.createRef = exports.createElementNS = exports.createElement = exports.createDSComponent = void 0;
+            exports.Component = exports.createRef = exports.createElementNS = exports.createElement = exports.createDSComponent = void 0;
 
             var _preset_1 = __importDefault(__webpack_require__(1)),
 
@@ -1049,6 +1049,15 @@ module.exports =
              * @returns {Object<string, undefined>} empty ref object
              */
             exports.createRef = createRef_1.default;
+            /* eslint-disable @typescript-eslint/naming-convention */
+            /**
+             * DeStagnate
+             * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
+             * @class
+             * @namespace
+             * @abstract
+             */
+            exports.Component = DeStagnate;
 
             /***/
         },

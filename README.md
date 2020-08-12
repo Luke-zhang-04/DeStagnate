@@ -70,7 +70,7 @@ const DS = DeStagnate
 import * as DS from "destagnate"
 const DS = require("destagnate")
 
-class Counter extends DS.defualt {
+class Counter extends DS.Component {
 
     constructor (parent) {
         super(parent)
