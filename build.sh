@@ -65,14 +65,14 @@ build() {
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.6.0
+ * @version 1.6.1
  * @file DeStagnate development bundle
  */
 
 \"use strict\";"
 
     minHeader="/**
- * Destagnate v1.6.0 
+ * Destagnate v1.6.1 
  * @copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io 
  * @license MIT
  * @file DeStagnate production bundle

@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.6.0
+ * @version 1.6.1
  * @file DeStagnate development bundle
  */
 
@@ -555,7 +555,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.6.0
+             * @version 1.6.1
              * @exports DeStagnate main destagnate class
              * @file main file for destagnate
              * @preserve
@@ -1073,7 +1073,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.6.0
+             * @version 1.6.1
              * @exports Preset
              * @package
              */
@@ -1315,7 +1315,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.6.0
+             * @version 1.6.1
              * @exports Events
              * @package
              */
@@ -1628,7 +1628,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.6.0
+             * @version 1.6.1
              * @exports createDSComponent add nested component for DeStagnate components
              */
             Object.defineProperty(exports, "__esModule", {
@@ -1637,7 +1637,7 @@ module.exports =
             /* eslint-disable @typescript-eslint/naming-convention */
             /**
              * Creates nested DeStagnate component
-             * @deprecated do not use this function, since 1.6.0
+             * @deprecated do not use this function, since 1.6.1
              * @see {@link https://github.com/Luke-zhang-04/DeStagnate/wiki/createDSComponent}
              * @see {@link https://github.com/Luke-zhang-04/DeStagnate/wiki/nestedComponents}
              * @param {DeStagnateConstructor} Component - DeStagnate component
@@ -1677,7 +1677,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.6.0
+             * @version 1.6.1
              * @exports createElement function for DOM manipulation
              */
             var __importDefault = this && this.__importDefault || function (mod) /* istanbul ignore next */  {
@@ -1851,7 +1851,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.6.0
+             * @version 1.6.1
              * @exports createElementNS createElement for namespaced elements
              */
             Object.defineProperty(exports, "__esModule", {
