@@ -7,11 +7,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get lo
 
 # Build script
 build() {
-    # Compile sass for docs (not really necessary)
-    printf "${BIYellow}Compiling ${Red}./docs/scss/ ${Purple}to ${BIBlue}./docs/css/ ${Purple}with ${BIRed}SASS${Purple}\n"
-    printf "\t${BIYellow}Compiling ${Red}./docs/scss/style.scss ${Purple}to ${BIBlue}./docs/css/styles.css ${Purple}with ${BIRed}SASS${Purple}\n"
-    sass docs/scss/style.scss docs/styles.css --style compressed &
-
     # Compile typescript
     printf "${BIYellow}Compiling ${BIBlue}./src/${Purple} with ${BIBlue}TypeScript\n"
     npx tsc -p tsconfig.json &
@@ -116,11 +111,6 @@ $(cat ./tests/deStagnate.bundle.js)" > ./tests/deStagnate.bundle.js &
 }
 
 buildDev() {
-    # Compile sass for docs (not really necessary)
-    printf "${BIYellow}Compiling ${Red}./docs/scss/ ${Purple}to ${BIBlue}./docs/css/ ${Purple}with ${BIRed}SASS${Purple}\n"
-    printf "\t${BIYellow}Compiling ${Red}./docs/scss/style.scss ${Purple}to ${BIBlue}./docs/css/styles.css ${Purple}with ${BIRed}SASS${Purple}\n"
-    sass docs/scss/style.scss docs/styles.css --style compressed &
-
     # Compile typescript
     printf "${BIYellow}Compiling ${BIBlue}./src/${Purple} with ${BIBlue}TypeScript\n"
     npx tsc -p tsconfig.json &
