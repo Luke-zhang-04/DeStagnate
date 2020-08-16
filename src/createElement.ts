@@ -11,13 +11,13 @@
 import DeStagnate from "."
 import type {Ref} from "./createRef"
 
-/* eslint-disable one-var */
+/* eslint-disable one-var, @typescript-eslint/no-explicit-any */
 
 export type ChildrenFlatArrayType = (HTMLElement
     | Element
     | number
     | string
-    | DeStagnate<unknown, unknown>
+    | DeStagnate<any, any>
 )[]
 
 export type ChildrenArrayType = ChildrenFlatArrayType
@@ -31,7 +31,7 @@ export type ChildrenType = HTMLElement
     | number 
     | ChildrenArrayType
     | Element
-    | DeStagnate<unknown, unknown>
+    | DeStagnate<any, any>
 
 type EventFunc = (e: Event)=> void
 
