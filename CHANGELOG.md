@@ -4,7 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.6.0]
+
+## [1.6.1] - 08-16-2020
+- version to 1.6.1 [fac75ea85c4e890676721ea8fd3818f5489362be](https://github.com/Luke-zhang-04/DeStagnate/commit/fac75ea85c4e890676721ea8fd3818f5489362be)
+
+### Fixed
+- fix: DeStangate generics changed to any instead of unknown [6c6c51a215d4162734b1ea91817f454f3f3fbaec](https://github.com/Luke-zhang-04/DeStagnate/commit/6c6c51a215d4162734b1ea91817f454f3f3fbaec)
+
+## [1.6.0] - 08-12-2020
 - version to 1.6.0 [2d5d20d6b5fe686d17cab0(ba717a1434cbb10df][https://github.com/Luke-zhang-04/DeStagnate/commit/2d5d20d6b5fe686d17cab03ba717a1434cbb10df)
 
 ### Added
