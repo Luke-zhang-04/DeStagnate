@@ -45,7 +45,7 @@ curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_
 curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.js -O destagnate.bundle.js
 
 # Latest
-curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v1.6.1/destagnate.bundle.js -O destagnate.bundle.js
+curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v1.7.0/destagnate.bundle.js -O destagnate.bundle.js
 ```
 
 With a CDN
@@ -57,7 +57,7 @@ With a CDN
 <script src="https://unpkg.com/destagnate@version/dist/deStagnate.bundle.js"></script>
 
 <!-- Latest -->
-<script src="https://unpkg.com/destagnate@1.6.1/dist/deStagnate.bundle.min.js"></script>
+<script src="https://unpkg.com/destagnate@1.7.0/dist/deStagnate.bundle.min.js"></script>
 ```
 
 ## Basic Use

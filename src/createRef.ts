@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.6.1
+ * @version 1.7.0
  * @exports createRef create a reference to a nested component
  */
 type DeStagnate = import(".").default
