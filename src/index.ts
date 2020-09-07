@@ -11,11 +11,11 @@
  */
 /* eslint-disable max-lines */
 
+import {Ref as _Ref, default as _createRef} from "./createRef"
 import Preset from "./_preset"
-import {default as _createDSComponent} from "./createDSComponent"
-import {default as _createElement} from "./createElement"
-import {default as _createElementNS} from "./createElementNS"
-import {default as _createRef} from "./createRef"
+import _createDSComponent from "./createDSComponent"
+import _createElement from "./createElement"
+import _createElementNS from "./createElementNS"
 
 type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
 
@@ -491,3 +491,5 @@ export const createRef = _createRef
  * @abstract
  */
 export const Component = DeStagnate
+
+export type Ref = _Ref
