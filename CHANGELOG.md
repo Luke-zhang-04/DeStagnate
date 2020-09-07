@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## Unreleased
+
+### Added
+- export Ref interface from index.ts 6a2535a [#26](https://github.com/Luke-zhang-04/DeStagnate/pull/26)
+
+
 ## [1.6.1] - 08-16-2020
 - version to 1.6.1 [fac75ea85c4e890676721ea8fd3818f5489362be](https://github.com/Luke-zhang-04/DeStagnate/commit/fac75ea85c4e890676721ea8fd3818f5489362be)
 
