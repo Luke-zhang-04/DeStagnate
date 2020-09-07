@@ -393,15 +393,15 @@ var DeStagnate = (function (modules) {
         });
         exports.Component = exports.createRef = exports.createElementNS = exports.createElement = exports.createDSComponent = void 0;
 
-        var _preset_1 = __importDefault(__webpack_require__(1)),
+        var createRef_1 = __importDefault(__webpack_require__(1)),
 
-            createDSComponent_1 = __importDefault(__webpack_require__(3)),
+            _preset_1 = __importDefault(__webpack_require__(2)),
 
-            createElement_1 = __importDefault(__webpack_require__(4)),
+            createDSComponent_1 = __importDefault(__webpack_require__(4)),
 
-            createElementNS_1 = __importDefault(__webpack_require__(5)),
+            createElement_1 = __importDefault(__webpack_require__(5)),
 
-            createRef_1 = __importDefault(__webpack_require__(6)),
+            createElementNS_1 = __importDefault(__webpack_require__(6)),
 
             /**
              * DeStagnate
@@ -870,6 +870,28 @@ var DeStagnate = (function (modules) {
          */
         exports.Component = DeStagnate;
     }, function (module, exports, __webpack_require__) {
+        
+
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+
+        /**
+         * Creates a reference for a nested component
+         * @returns {Object<string, null>} empty ref object
+         */
+        var createRef = function createRef () {
+            return {
+                current: null
+            };
+        };
+
+        /**
+         * Creates a reference for a nested component
+         * @returns {Object<string, null>} empty ref object
+         */
+        exports.default = createRef;
+    }, function (module, exports, __webpack_require__) {
 
 
         /**
@@ -892,15 +914,15 @@ var DeStagnate = (function (modules) {
             value: true
         });
 
-        var _events_1 = __importDefault(__webpack_require__(2)),
+        var _events_1 = __importDefault(__webpack_require__(3)),
 
-            createDSComponent_1 = __importDefault(__webpack_require__(3)),
+            createDSComponent_1 = __importDefault(__webpack_require__(4)),
 
-            createElement_1 = __importDefault(__webpack_require__(4)),
+            createElement_1 = __importDefault(__webpack_require__(5)),
 
-            createElementNS_1 = __importDefault(__webpack_require__(5)),
+            createElementNS_1 = __importDefault(__webpack_require__(6)),
 
-            createRef_1 = __importDefault(__webpack_require__(6)),
+            createRef_1 = __importDefault(__webpack_require__(1)),
 
             Preset = (function (_events_1$default) {
                 _inherits(Preset, _events_1$default);
@@ -1636,7 +1658,7 @@ var DeStagnate = (function (modules) {
         });
         exports.createElementNS = void 0;
 
-        var createElement_1 = __webpack_require__(4);
+        var createElement_1 = __webpack_require__(5);
 
         /**
          * Creates a child element to deStagnate
@@ -1672,27 +1694,5 @@ var DeStagnate = (function (modules) {
         };
 
         exports.default = exports.createElementNS;
-    }, function (module, exports, __webpack_require__) {
-        
-
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-
-        /**
-         * Creates a reference for a nested component
-         * @returns {Object<string, null>} empty ref object
-         */
-        var createRef = function createRef () {
-            return {
-                current: null
-            };
-        };
-
-        /**
-         * Creates a reference for a nested component
-         * @returns {Object<string, null>} empty ref object
-         */
-        exports.default = createRef;
     }
 ]));
