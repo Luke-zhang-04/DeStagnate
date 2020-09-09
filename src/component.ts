@@ -280,10 +280,13 @@ export default abstract class DeStagnate
      * @instance
      * @readonly
      * @param parent - parent element to mount with; optional
+     * @param shouldBindEvents - if event listeners shoud be bound `true` by default
+     * Increases performance if turned off
      * @returns - result of append child to parent element
      */
     public readonly mountComponent = (
-        parent?: HTMLElement
+        parent?: HTMLElement,
+        shouldBindEvents = true,
     ): HTMLElement | HTMLElement[] | Element | Element[] | Error => {
         try {
             if (parent !== undefined) {
@@ -304,7 +307,9 @@ export default abstract class DeStagnate
                 throw new Error("Expected render method to be included in component class, no render method found, or render returned an empty array")
             }
 
-            this.bindEventListeners(this._parent)
+            if (shouldBindEvents) {
+                this.bindEventListeners(this._parent)
+            }
 
             this._didMount = true
             this.componentDidMount()
