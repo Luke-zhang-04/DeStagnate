@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "jsx": "react",
+        "jsxFactory": "DeStagnate.createElement",
+        "allowJs": true,
+        "checkJs": false,
+        "outDir": "./docs/lib",
+        "target": "ES5",
+        "declaration": false,
+    },
+    "include": ["docs/src/", "docs/*.ts", "docs/*.tsx"]
+}

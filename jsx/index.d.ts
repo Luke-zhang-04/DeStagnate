@@ -1,4 +1,5 @@
-import {ChildrenType, EventFunc} from "../lib/createElement"
+import type {ChildrenType, EventFunc} from "../lib/_createElementTools"
+import type {Ref} from "../lib"
 
 type DeStagnateElementType = undefined
     | string
@@ -7,10 +8,14 @@ type DeStagnateElementType = undefined
     | EventFunc
     | ChildrenType
     | JSX.Element
+    | Ref
+
+
 
 interface DeStagnateElement {
     [key: string]: DeStagnateElementType,
     children?: ChildrenType | JSX.Element,
+    ref?: Ref
 }
 
 /* eslint-disable @typescript-eslint/no-namespace */

@@ -1,8 +1,6 @@
-/* eslint-disable multiline-comment-style, no-undef, no-magic-numbers */
-const DS = DeStagnate,
-    {createElement} = DS
+import DeStagnate, {createElement} from "destagnate"
 
-class PropsDemo extends DS.Component {
+class PropsDemo extends DeStagnate {
 
     render = () => this.props.colors.map((color) => (
         createElement(

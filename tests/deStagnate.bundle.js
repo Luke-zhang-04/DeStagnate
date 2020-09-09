@@ -21,253 +21,253 @@ niceTry(() => /* istanbul ignore next */ {
 
 
 function _toConsumableArray (arr) /* istanbul ignore next */ {
-    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); 
+    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 }
 
 function _nonIterableSpread () /* istanbul ignore next */ {
-    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); 
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
 function _iterableToArray (iter) /* istanbul ignore next */ {
     if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) {
-        return Array.from(iter); 
-    } 
+        return Array.from(iter);
+    }
 }
 
 function _arrayWithoutHoles (arr) /* istanbul ignore next */ {
     if (Array.isArray(arr)) {
-        return _arrayLikeToArray(arr); 
-    } 
+        return _arrayLikeToArray(arr);
+    }
 }
 
 function _slicedToArray (arr, i) /* istanbul ignore next */ {
-    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); 
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
 
 function _nonIterableRest () /* istanbul ignore next */ {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); 
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
 function _iterableToArrayLimit (arr, i) /* istanbul ignore next */ {
     if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) {
-        return; 
-    } var _arr = [], 
-        _n = true, 
-        _d = false, 
-        _e = undefined; 
+        return;
+    } var _arr = [],
+        _n = true,
+        _d = false,
+        _e = undefined;
 
     try {
         for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
             _arr.push(_s.value); if (i && _arr.length === i) {
-                break; 
-            } 
-        } 
+                break;
+            }
+        }
     } catch (err) /* istanbul ignore next */ {
-        _d = true; _e = err; 
+        _d = true; _e = err;
     } finally /* istanbul ignore next */ {
         try {
             if (!_n && _i.return != null) {
-                _i.return(); 
-            } 
+                _i.return();
+            }
         } finally /* istanbul ignore next */ {
             if (_d) {
-                throw _e; 
-            } 
-        } 
-    } 
+                throw _e;
+            }
+        }
+    }
 
-    return _arr; 
+    return _arr;
 }
 
 function _arrayWithHoles (arr) /* istanbul ignore next */ {
     if (Array.isArray(arr)) {
-        return arr; 
-    } 
+        return arr;
+    }
 }
 
 function _createForOfIteratorHelper (o, allowArrayLike) /* istanbul ignore next */ {
-    var it; 
+    var it;
 
     if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
         if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
             if (it) {
-                o = it; 
-            } var i = 0, 
-                F = function F () {}; 
+                o = it;
+            } var i = 0,
+                F = function F () {};
 
             return {s: F,
                 n: function n () {
                     if (i >= o.length) {
-                        return {done: true}; 
-                    } 
+                        return {done: true};
+                    }
 
                     return {done: false,
-                        value: o[i++]}; 
+                        value: o[i++]};
                 },
                 e: function e (_e2) {
-                    throw _e2; 
+                    throw _e2;
                 },
-                f: F}; 
-        } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); 
-    } var normalCompletion = true, 
-        didErr = false, 
-        err; 
+                f: F};
+        } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+    } var normalCompletion = true,
+        didErr = false,
+        err;
 
     return {s: function s () {
-        it = o[Symbol.iterator](); 
+        it = o[Symbol.iterator]();
     },
     n: function n () {
-        var step = it.next(); 
+        var step = it.next();
 
-        normalCompletion = step.done; 
+        normalCompletion = step.done;
 
-        return step; 
+        return step;
     },
     e: function e (_e3) {
-        didErr = true; err = _e3; 
+        didErr = true; err = _e3;
     },
     f: function f () {
         try {
             if (!normalCompletion && it.return != null) {
-                it.return(); 
-            } 
+                it.return();
+            }
         } finally /* istanbul ignore next */ {
             if (didErr) {
-                throw err; 
-            } 
-        } 
-    }}; 
+                throw err;
+            }
+        }
+    }};
 }
 
 function _unsupportedIterableToArray (o, minLen) /* istanbul ignore next */ {
     if (!o) {
-        return; 
+        return;
     } if (typeof o === "string") {
-        return _arrayLikeToArray(o, minLen); 
-    } var n = Object.prototype.toString.call(o).slice(8, -1); 
+        return _arrayLikeToArray(o, minLen);
+    } var n = Object.prototype.toString.call(o).slice(8, -1);
 
     if (n === "Object" && o.constructor) {
-        n = o.constructor.name; 
+        n = o.constructor.name;
     } if (n === "Map" || n === "Set") {
-        return Array.from(o); 
+        return Array.from(o);
     } if (n === "Arguments" || (/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/).test(n)) {
-        return _arrayLikeToArray(o, minLen); 
-    } 
+        return _arrayLikeToArray(o, minLen);
+    }
 }
 
 function _arrayLikeToArray (arr, len) /* istanbul ignore next */ {
     if (len == null || len > arr.length) {
-        len = arr.length; 
+        len = arr.length;
     } for (var i = 0, arr2 = new Array(len); i < len; i++) {
-        arr2[i] = arr[i]; 
-    } 
+        arr2[i] = arr[i];
+    }
 
-    return arr2; 
+    return arr2;
 }
 
 function _classCallCheck (instance, Constructor) /* istanbul ignore next */ {
     if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function"); 
-    } 
+        throw new TypeError("Cannot call a class as a function");
+    }
 }
 
 function _defineProperties (target, props) /* istanbul ignore next */ {
     for (var i = 0; i < props.length; i++) {
-        var descriptor = props[i]; 
+        var descriptor = props[i];
 
         descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) {
-            descriptor.writable = true; 
-        } Object.defineProperty(target, descriptor.key, descriptor); 
-    } 
+            descriptor.writable = true;
+        } Object.defineProperty(target, descriptor.key, descriptor);
+    }
 }
 
 function _createClass (Constructor, protoProps, staticProps) /* istanbul ignore next */ {
     if (protoProps) {
-        _defineProperties(Constructor.prototype, protoProps); 
+        _defineProperties(Constructor.prototype, protoProps);
     } if (staticProps) {
-        _defineProperties(Constructor, staticProps); 
-    } 
+        _defineProperties(Constructor, staticProps);
+    }
 
-    return Constructor; 
+    return Constructor;
 }
 
 function _inherits (subClass, superClass) /* istanbul ignore next */ {
     if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function"); 
+        throw new TypeError("Super expression must either be null or a function");
     } subClass.prototype = Object.create(superClass && superClass.prototype, {constructor: {value: subClass,
         writable: true,
         configurable: true}}); if (superClass) {
-        _setPrototypeOf(subClass, superClass); 
-    } 
+        _setPrototypeOf(subClass, superClass);
+    }
 }
 
 function _setPrototypeOf (o, p) /* istanbul ignore next */ {
     _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf (o, p) /* istanbul ignore next */ {
-        o.__proto__ = p; 
+        o.__proto__ = p;
 
-        return o; 
-    }; 
+        return o;
+    };
 
-    return _setPrototypeOf(o, p); 
+    return _setPrototypeOf(o, p);
 }
 
 function _createSuper (Derived) /* istanbul ignore next */ {
-    var hasNativeReflectConstruct = _isNativeReflectConstruct(); 
+    var hasNativeReflectConstruct = _isNativeReflectConstruct();
 
     return function _createSuperInternal () /* istanbul ignore next */ {
-        var Super = _getPrototypeOf(Derived), 
-            result; 
+        var Super = _getPrototypeOf(Derived),
+            result;
 
         if (hasNativeReflectConstruct) {
-            var NewTarget = _getPrototypeOf(this).constructor; 
+            var NewTarget = _getPrototypeOf(this).constructor;
 
-            result = Reflect.construct(Super, arguments, NewTarget); 
+            result = Reflect.construct(Super, arguments, NewTarget);
         } else {
-            result = Super.apply(this, arguments); 
-        } 
+            result = Super.apply(this, arguments);
+        }
 
-        return _possibleConstructorReturn(this, result); 
-    }; 
+        return _possibleConstructorReturn(this, result);
+    };
 }
 
 function _possibleConstructorReturn (self, call) /* istanbul ignore next */ {
     if (call && (_typeof(call) === "object" || typeof call === "function")) {
-        return call; 
-    } 
+        return call;
+    }
 
-    return _assertThisInitialized(self); 
+    return _assertThisInitialized(self);
 }
 
 function _assertThisInitialized (self) /* istanbul ignore next */ {
     if (self === void 0) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); 
-    } 
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
 
-    return self; 
+    return self;
 }
 
 function _isNativeReflectConstruct () /* istanbul ignore next */ {
     if (typeof Reflect === "undefined" || !Reflect.construct) {
-        return false; 
+        return false;
     } if (Reflect.construct.sham) {
-        return false; 
+        return false;
     } if (typeof Proxy === "function") {
-        return true; 
+        return true;
     } try {
-        Date.prototype.toString.call(Reflect.construct(Date, [], () => {})); 
+        Date.prototype.toString.call(Reflect.construct(Date, [], () => {}));
 
-        return true; 
+        return true;
     } catch (e) {
-        return false; 
-    } 
+        return false;
+    }
 }
 
 function _getPrototypeOf (o) /* istanbul ignore next */ {
     _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf (o) /* istanbul ignore next */ {
-        return o.__proto__ || Object.getPrototypeOf(o); 
-    }; 
+        return o.__proto__ || Object.getPrototypeOf(o);
+    };
 
-    return _getPrototypeOf(o); 
+    return _getPrototypeOf(o);
 }
 
 function _typeof (obj) /* istanbul ignore next */ /* istanbul ignore next */ {
@@ -275,15 +275,15 @@ function _typeof (obj) /* istanbul ignore next */ /* istanbul ignore next */ {
 
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
         _typeof = function _typeof (obj) /* istanbul ignore next */ /* istanbul ignore next */ {
-            return typeof obj; 
-        }; 
+            return typeof obj;
+        };
     } else {
         _typeof = function _typeof (obj) /* istanbul ignore next */ /* istanbul ignore next */ {
-            return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; 
-        }; 
-    } 
+            return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+        };
+    }
 
-    return _typeof(obj); 
+    return _typeof(obj);
 }
 
 module.exports =
@@ -444,17 +444,17 @@ module.exports =
 
         /** ****/
         if (mode & 1) {
-            value = __webpack_require__(value); 
+            value = __webpack_require__(value);
         }
 
         /** ****/
         if (mode & 8) {
-            return value; 
+            return value;
         }
 
         /** ****/
         if (mode & 4 && _typeof(value) === "object" && value && value.__esModule) {
-            return value; 
+            return value;
         }
 
         /** ****/
@@ -473,7 +473,7 @@ module.exports =
         if (mode & 2 && typeof value !== "string") {
             for (var key in value) {
                 __webpack_require__.d(ns, key, ((key) => value[key]).bind(null, key));
-            } 
+            }
         }
 
         /** ****/
@@ -601,7 +601,7 @@ module.exports =
             exports.createElement = createElement_1.default;
 
             /**
-             * Creates a child element to DynamComponent
+             * Creates an HTML Element
              * @param tagName - name of HTML element
              * @param props - element properties, such as class, innerHTML, id, style, etc
              * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
@@ -640,7 +640,7 @@ module.exports =
         /* 1 */
         /***/
         function (module, exports, __webpack_require__) {
-            
+
 
             Object.defineProperty(exports, "__esModule", {
                 value: true
@@ -1037,7 +1037,7 @@ module.exports =
                         }
 
                         _this._parent = parent;
-                        
+
                         return _this;
                     }
 
@@ -1068,7 +1068,7 @@ module.exports =
        * @protected
        * @param obj - state to set
        */
-      
+
                             set: function set (obj) {
                                 if (this._didSetInitialState && this._strict) {
                                     this.componentDidCatch(new Error("Do not mutate state directly. Use setState instead.")); // eslint-disable-next-line
@@ -1111,7 +1111,7 @@ module.exports =
        * @public
        * @returns parent
        */
-      
+
                             get: function get () {
                                 return this._parent;
                             }
@@ -1537,7 +1537,7 @@ module.exports =
                     this.createDSComponent = createDSComponent_1.default;
 
                     /**
-                     * Creates a child element to DynamComponent
+                     * Creates an HTML Element
                      * @public
                      * @instance
                      * @readonly
@@ -1674,7 +1674,7 @@ module.exports =
             Preset.createDSComponent = createDSComponent_1.default;
 
             /**
-             * Creates a child element to DynamComponent
+             * Creates an HTML Element
              * @public
              * @static
              * @readonly
@@ -1786,7 +1786,7 @@ module.exports =
             var _createElementTools_1 = __webpack_require__(7);
 
             /**
-             * Creates a child element to DynamComponent
+             * Creates an HTML Element
              * @param tagName - name of HTML element
              * @param props - element properties, such as class, innerHTML, id, style, etc
              * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
@@ -1942,7 +1942,7 @@ module.exports =
                     } else if (children instanceof _1.default) {
                         if (!children.didMount && element instanceof _window.HTMLElement) {
                             children.mount(element);
-                            
+
                             return;
                         } else if (!(element instanceof _window.HTMLElement)) {
                             throw new Error("Cannot use non-HTMLElement as component parent");

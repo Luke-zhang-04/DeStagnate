@@ -38,7 +38,7 @@ export const createDSComponent = _createDSComponent
 export const createElement = _createElement
 
 /**
- * Creates a child element to DynamComponent
+ * Creates an HTML Element
  * @param tagName - name of HTML element
  * @param props - element properties, such as class, innerHTML, id, style, etc
  * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children

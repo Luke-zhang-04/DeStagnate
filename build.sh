@@ -8,15 +8,20 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get lo
 # Build script
 build() {
     chmod +x build.mjs
-    rm -rf ./lib
 
     # Compile typescript
     printf "${BIYellow}Compiling ${BIBlue}./src/${Purple} with ${BIBlue}TypeScript\n"
-    npx tsc -p tsconfig.json
+    npx tsc -p tsconfig.json &
+    npx tsc -p tsconfig.docs.json &
+
+    wait
 
     # Run Webpack on ./build
     printf "${BIBlue}Packing ${Yellow}./lib/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
-    npx webpack
+    npx webpack &
+    npx webpack --config webpack.docs.config.js &
+
+    wait
 
     # Minify copy of bundle
     printf "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./dist/deStagnate.bundle.min.js/${Purple} and ${Blue}minifying${Purple}\n"
@@ -100,9 +105,6 @@ $(cat ./tests/deStagnate.bundle.js)" > ./tests/deStagnate.bundle.js &
         fi
     done
 
-    printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
-    echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js &
-
     ./build.mjs jsxRef &
 
     wait
@@ -111,19 +113,18 @@ $(cat ./tests/deStagnate.bundle.js)" > ./tests/deStagnate.bundle.js &
 
 buildDev() {
     chmod +x build.mjs
-    rm -rf ./lib
 
     # Compile typescript
     printf "${BIYellow}Compiling ${BIBlue}./src/${Purple} with ${BIBlue}TypeScript\n"
-    npx tsc -p tsconfig.json 
+    npx tsc -p tsconfig.json &
+    npx tsc -p tsconfig.docs.json --target ES6 &
+
+    wait
 
     # Run Webpack on ./build
     printf "${BIBlue}Packing ${Yellow}./lib/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
-    npx webpack
-
-    # Copy bundle
-    printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
-    echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js &
+    npx webpack &
+    npx webpack --config webpack.docs.config.js --mode none &
 
     ./build.mjs jsxRef &
 
@@ -154,6 +155,12 @@ if [[ "$1" == "--watch" ]]; then
     watch
 elif [[ "$1" == "-d" ]]||[[ "$1" == "--dev" ]]; then
     buildDev
+elif [[ "$1" == "--docs" ]]; then
+    npx tsc -p tsconfig.docs.json --target ES6
+    cd docs || return
+    yarn sass
+    cd .. || return
+    npx webpack --config webpack.docs.config.js --mode none
 else
     build
 fi
