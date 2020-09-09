@@ -34,7 +34,7 @@ export default abstract class Preset {
     public static readonly createDSComponent = _createDSComponent
 
     /**
-     * Creates a child element to DynamComponent
+     * Creates an HTML Element
      * @public
      * @static
      * @readonly
@@ -81,7 +81,7 @@ export default abstract class Preset {
     public readonly createDSComponent = _createDSComponent
 
     /**
-     * Creates a child element to DynamComponent
+     * Creates an HTML Element
      * @public
      * @instance
      * @readonly

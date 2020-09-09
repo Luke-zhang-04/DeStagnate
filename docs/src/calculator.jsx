@@ -1,8 +1,6 @@
-/* eslint-disable multiline-comment-style, no-undef, no-magic-numbers, max-len */
-const DS = DeStagnate,
-    {createElement} = DS
+import DeStagnate, {createElement} from "destagnate"
 
-class Calculator extends DS.Component {
+class Calculator extends DeStagnate {
 
     constructor (parent) {
         super(parent)
@@ -52,7 +50,7 @@ class Calculator extends DS.Component {
      * @type {Array.<HTMLElement>}
      */
     _numBtns = [
-        <div className="calc-btns row"> 
+        <div class="calc-btns row"> 
             {["7", "8", "9", ["x", "*"]].map((val) => (
                 this._calcButton(
                     val instanceof Array ? val[0] : val,
@@ -60,7 +58,7 @@ class Calculator extends DS.Component {
                 )
             ))}
         </div>,
-        <div className="calc-btns row"> 
+        <div class="calc-btns row"> 
             {["4", "5", "6", "-"].map((val) => (
                 this._calcButton(
                     val instanceof Array ? val[0] : val,
@@ -68,7 +66,7 @@ class Calculator extends DS.Component {
                 )
             ))}
         </div>,
-        <div className="calc-btns row"> 
+        <div class="calc-btns row"> 
             {["1", "2", "3", "+"].map((val) => (
                 this._calcButton(
                     val instanceof Array ? val[0] : val,
@@ -91,9 +89,9 @@ class Calculator extends DS.Component {
     render = () => (
         <div>
             {this._calcDisplay()}
-            <div className="calc-btns row">
+            <div class="calc-btns row">
                 <div
-                    className="col-3 calc-btn clear"
+                    class="col-3 calc-btn clear"
                     onClick={() => this.setState({calculation: ""})}
                 >C</div>
                 {createElement("div", {

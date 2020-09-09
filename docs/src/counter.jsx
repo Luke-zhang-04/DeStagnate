@@ -1,8 +1,6 @@
-/* eslint-disable multiline-comment-style, no-undef */
-const DS = DeStagnate,
-    {createElement} = DS
+import * as DeStagnate from "destagnate"
 
-class Counter extends DS.Component {
+class Counter extends DeStagnate.Component {
 
     constructor (parent) {
         super(parent)

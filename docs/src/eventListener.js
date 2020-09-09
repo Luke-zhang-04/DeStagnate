@@ -1,8 +1,6 @@
-/* eslint-disable multiline-comment-style, no-undef, no-magic-numbers */
-const DS = DeStagnate,
-    {createElement} = DS
+import DeStagnate, {createElement} from "destagnate"
 
-class EventListener extends DS.Component {
+class EventListener extends DeStagnate {
 
     constructor (parent) {
         super(parent)

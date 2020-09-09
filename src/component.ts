@@ -445,3 +445,7 @@ export default abstract class DeStagnate
     }
 
 }
+
+export abstract class Component
+    <Props = Record<string, unknown>, State = Record<string, unknown>>
+    extends DeStagnate<Props, State> {}

@@ -7,6 +7,9 @@
  * @version 1.7.0
  * @exports createElement function for DOM manipulation without DeStagnate class or Refs
  */
+// Commented this out to make tsc happy
+// eslint-disable-next-line
+// <reference types="../jsx" />
 
 /* eslint-disable one-var, @typescript-eslint/no-explicit-any */
 
@@ -23,8 +26,8 @@ type ChildrenArrayType = ChildrenFlatArrayType
  * All types the children parameter can be
  */
 type ChildrenType = HTMLElement
-    | string 
-    | number 
+    | string
+    | number
     | ChildrenArrayType
     | Element
 
@@ -38,7 +41,7 @@ type EventFunc = (e: Event)=> void
  * @param ns - if namespace element
  * @returns void
  */
-export const _bindProps = (
+const _bindProps = (
     element: Element,
     props?: {[key: string]: string | number | Element | EventFunc} | null,
     ns = false,
@@ -68,11 +71,11 @@ export const _bindProps = (
     }
 }
 
-export const _unpackChildren = (
+const _unpackChildren = (
     children: ChildrenArrayType,
 ): ChildrenFlatArrayType => {
     const newChildren = []
-    
+
     for (const child of children) {
         if (typeof(child) === "object" && child instanceof Array) {
             newChildren.push(..._unpackChildren(child))
@@ -91,7 +94,7 @@ export const _unpackChildren = (
  * @param children - children to bind with
  * @returns void
  */
-export const _bindChildren = (
+const _bindChildren = (
     element: Element,
     children?: ChildrenType,
 ): void => {
@@ -112,14 +115,14 @@ export const _bindChildren = (
 }
 
 /**
- * Creates a child element to DynamComponent
+ * Creates an HTML Element
  * @param tagName - name of HTML element
  * @param props - element properties, such as class, innerHTML, id, style, etc
  * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
  * @param childrenArgs - rest parameter of children
  * @returns element
  */
-const createElement = <T extends keyof HTMLElementTagNameMap>(
+export const createElement = <T extends keyof HTMLElementTagNameMap>(
     tagName: T,
     props?: {[key: string]: string | number | Element | EventFunc} | null,
     children?: ChildrenType,
