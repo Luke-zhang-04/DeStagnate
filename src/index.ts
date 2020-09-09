@@ -9,8 +9,9 @@
  * @file main file for destagnate
  * @preserve
  */
+// Commented this out to make tsc happy
 // eslint-disable-next-line
-/// <reference types="../jsx" />
+// <reference types="../jsx" />
 
 /* eslint-disable max-lines */
 import {Ref as _Ref, default as _createRef} from "./createRef"

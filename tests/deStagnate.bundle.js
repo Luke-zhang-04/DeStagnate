@@ -558,8 +558,9 @@ module.exports =
              * @file main file for destagnate
              * @preserve
              */
+            // Commented this out to make tsc happy
             // eslint-disable-next-line
-  /// <reference types="../jsx" />
+  // <reference types="../jsx" />
 
             var __importDefault = this && this.__importDefault || function (mod) /* istanbul ignore next */  {
                 return mod && mod.__esModule ? mod : {
@@ -580,7 +581,7 @@ module.exports =
 
                 createElement_1 = __importDefault(__webpack_require__(6)),
 
-                createElementNS_1 = __importDefault(__webpack_require__(7));
+                createElementNS_1 = __importDefault(__webpack_require__(8));
 
             /**
              * Creates nested DeStagnate component
@@ -644,12 +645,13 @@ module.exports =
             Object.defineProperty(exports, "__esModule", {
                 value: true
             });
+            exports.createRef = void 0;
 
             /**
              * Creates a reference for a nested component
              * @returns empty ref object
              */
-            var createRef = function createRef () {
+            exports.createRef = function () {
                 return {
                     current: null
                 };
@@ -659,7 +661,7 @@ module.exports =
              * Creates a reference for a nested component
              * @returns empty ref object
              */
-            exports.default = createRef;
+            exports.default = exports.createRef;
 
             /***/
         },
@@ -690,6 +692,7 @@ module.exports =
             Object.defineProperty(exports, "__esModule", {
                 value: true
             });
+            exports.Component = void 0;
 
             var _events_1 = __importDefault(__webpack_require__(3)),
 
@@ -1131,6 +1134,22 @@ module.exports =
 
             exports.default = DeStagnate;
 
+            var Component = /* #__PURE__*/(function (_DeStagnate) {
+                _inherits(Component, _DeStagnate);
+
+                var _super2 = _createSuper(Component);
+
+                function Component () {
+                    _classCallCheck(this, Component);
+
+                    return _super2.apply(this, arguments);
+                }
+
+                return Component;
+            }(DeStagnate));
+
+            exports.Component = Component;
+
             /***/
         },
 
@@ -1164,14 +1183,14 @@ module.exports =
                 Events = /* #__PURE__*/(function (_base_1$default) {
                     _inherits(Events, _base_1$default);
 
-                    var _super2 = _createSuper(Events);
+                    var _super3 = _createSuper(Events);
 
                     function Events () {
                         var _this2;
 
                         _classCallCheck(this, Events);
 
-                        _this2 = _super2.apply(this, arguments);
+                        _this2 = _super3.apply(this, arguments);
 
                         /**
                          * Binds event listeners event
@@ -1496,7 +1515,7 @@ module.exports =
 
                 createElement_1 = __importDefault(__webpack_require__(6)),
 
-                createElementNS_1 = __importDefault(__webpack_require__(7)),
+                createElementNS_1 = __importDefault(__webpack_require__(8)),
 
                 createRef_1 = __importDefault(__webpack_require__(1)),
                 /* istanbul ignore next */
@@ -1755,6 +1774,68 @@ module.exports =
              * @version 1.7.0
              * @exports createElement function for DOM manipulation
              */
+            // Commented this out to make tsc happy
+            // eslint-disable-next-line
+  // <reference types="../jsx" />
+
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports.createElement = void 0;
+
+            var _createElementTools_1 = __webpack_require__(7);
+
+            /**
+             * Creates a child element to DynamComponent
+             * @param tagName - name of HTML element
+             * @param props - element properties, such as class, innerHTML, id, style, etc
+             * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+             * @param childrenArgs - rest parameter of children
+             * @returns element
+             */
+            exports.createElement = function (tagName, props, children) {
+                var element = doc.createElement(tagName);
+
+                _createElementTools_1.bindProps(element, props);
+
+                var _children = children;
+
+                for (var _len = arguments.length, childrenArgs = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
+                    childrenArgs[_key - 3] = arguments[_key];
+                }
+
+                if (children && childrenArgs) {
+                    if (children instanceof Array) {
+                        _children = [].concat(_toConsumableArray(_createElementTools_1.unpackChildren(children)), _toConsumableArray(_createElementTools_1.unpackChildren(childrenArgs)));
+                    } else {
+                        _children = [children].concat(_toConsumableArray(_createElementTools_1.unpackChildren(childrenArgs)));
+                    }
+                }
+
+                _createElementTools_1.bindChildren(element, _children);
+
+                return element;
+            };
+
+            exports.default = exports.createElement;
+
+            /***/
+        },
+
+        /* 7 */
+        /***/
+        function (module, exports, __webpack_require__) {
+
+
+            /**
+             * DeStagnate
+             * A simple, ReactJS inspired library to create dynamic components within static sites easier
+             * @copyright Copyright (C) 2020 Luke Zhang
+             * @author Luke Zhang luke-zhang-04.github.io
+             * @license MIT
+             * @version 1.7.0
+             * @file share functions and types for createElement and it's variants
+             */
             var __importDefault = this && this.__importDefault || function (mod) /* istanbul ignore next */  {
                 return mod && mod.__esModule ? mod : {
                     default: mod
@@ -1764,7 +1845,7 @@ module.exports =
             Object.defineProperty(exports, "__esModule", {
                 value: true
             });
-            exports._bindChildren = exports._unpackChildren = exports._bindProps = void 0;
+            exports.bindChildren = exports.unpackChildren = exports.bindProps = void 0;
 
             var _1 = __importDefault(__webpack_require__(0));
 
@@ -1776,7 +1857,7 @@ module.exports =
              * @param ns - if namespace element
              * @returns void
              */
-            exports._bindProps = function (element, props) {
+            exports.bindProps = function (element, props) {
                 var ns = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
                 if (props) {
@@ -1807,7 +1888,7 @@ module.exports =
                 }
             };
 
-            exports._unpackChildren = function (children) {
+            exports.unpackChildren = function (children) {
                 var newChildren = [],
 
                     _iterator2 = _createForOfIteratorHelper(children),
@@ -1818,7 +1899,7 @@ module.exports =
                         var child = _step2.value;
 
                         if (_typeof(child) === "object" && child instanceof Array) {
-                            newChildren.push.apply(newChildren, _toConsumableArray(exports._unpackChildren(child)));
+                            newChildren.push.apply(newChildren, _toConsumableArray(exports.unpackChildren(child)));
                         } else {
                             newChildren.push(child);
                         }
@@ -1839,7 +1920,7 @@ module.exports =
              * @param children - children to bind with
              * @returns void
              */
-            exports._bindChildren = function (element, children) {
+            exports.bindChildren = function (element, children) {
                 if (children !== null && children !== undefined) {
                     if (children instanceof Array) {
                         var _iterator3 = _createForOfIteratorHelper(children),
@@ -1849,7 +1930,7 @@ module.exports =
                             for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
                                 var child = _step3.value;
 
-                                exports._bindChildren(element, child);
+                                exports.bindChildren(element, child);
                             }
                         } catch (err) /* istanbul ignore next */ {
                             _iterator3.e(err);
@@ -1878,44 +1959,10 @@ module.exports =
                 }
             };
 
-            /**
-             * Creates a child element to DynamComponent
-             * @param tagName - name of HTML element
-             * @param props - element properties, such as class, innerHTML, id, style, etc
-             * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-             * @param childrenArgs - rest parameter of children
-             * @returns element
-             */
-            var createElement = function createElement (tagName, props, children) {
-                var element = doc.createElement(tagName);
-
-                exports._bindProps(element, props);
-
-                var _children = children;
-
-                for (var _len = arguments.length, childrenArgs = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
-                    childrenArgs[_key - 3] = arguments[_key];
-                }
-
-                if (children && childrenArgs) {
-                    if (children instanceof Array) {
-                        _children = [].concat(_toConsumableArray(exports._unpackChildren(children)), _toConsumableArray(exports._unpackChildren(childrenArgs)));
-                    } else {
-                        _children = [children].concat(_toConsumableArray(exports._unpackChildren(childrenArgs)));
-                    }
-                }
-
-                exports._bindChildren(element, _children);
-
-                return element;
-            };
-
-            exports.default = createElement;
-
             /***/
         },
 
-        /* 7 */
+        /* 8 */
         /***/
         function (module, exports, __webpack_require__) {
 
@@ -1934,7 +1981,7 @@ module.exports =
             });
             exports.createElementNS = void 0;
 
-            var createElement_1 = __webpack_require__(6);
+            var _createElementTools_1 = __webpack_require__(7);
 
             /**
              * Creates a child element to deStagnate
@@ -1948,7 +1995,7 @@ module.exports =
             exports.createElementNS = function (namespaceURI, tagName, props, children) {
                 var element = doc.createElementNS(namespaceURI, tagName);
 
-                createElement_1._bindProps(element, props, true);
+                _createElementTools_1.bindProps(element, props, true);
 
                 var _children = children;
 
@@ -1958,13 +2005,13 @@ module.exports =
 
                 if (children && childrenArgs) {
                     if (_typeof(children) === "object" && children instanceof Array) {
-                        _children = [].concat(_toConsumableArray(createElement_1._unpackChildren(children)), _toConsumableArray(createElement_1._unpackChildren(childrenArgs)));
+                        _children = [].concat(_toConsumableArray(_createElementTools_1.unpackChildren(children)), _toConsumableArray(_createElementTools_1.unpackChildren(childrenArgs)));
                     } else {
-                        _children = [children].concat(_toConsumableArray(createElement_1._unpackChildren(childrenArgs)));
+                        _children = [children].concat(_toConsumableArray(_createElementTools_1.unpackChildren(childrenArgs)));
                     }
                 }
 
-                createElement_1._bindChildren(element, _children);
+                _createElementTools_1.bindChildren(element, _children);
 
                 return element;
             };

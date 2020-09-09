@@ -11,10 +11,10 @@
 import {
     ChildrenArrayType,
     ChildrenType,
-    _bindChildren,
-    _bindProps,
-    _unpackChildren
-} from "./createElement"
+    bindChildren as _bindChildren,
+    bindProps as _bindProps,
+    unpackChildren as _unpackChildren
+} from "./_createElementTools"
 
 /**
  * Creates a child element to deStagnate

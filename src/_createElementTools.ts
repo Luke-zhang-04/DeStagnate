@@ -5,33 +5,35 @@
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
  * @version 1.7.0
- * @exports createElement function for DOM manipulation without DeStagnate class or Refs
+ * @file share functions and types for createElement and it's variants
  */
-// Commented this out to make tsc happy
-// eslint-disable-next-line
-// <reference types="../jsx" />
+
+import DeStagnate from "."
+import type {Ref} from "./createRef"
 
 /* eslint-disable one-var, @typescript-eslint/no-explicit-any */
 
-type ChildrenFlatArrayType = (HTMLElement
+export type ChildrenFlatArrayType = (HTMLElement
     | Element
     | number
     | string
+    | DeStagnate<any, any>
 )[]
 
-type ChildrenArrayType = ChildrenFlatArrayType
+export type ChildrenArrayType = ChildrenFlatArrayType
     | ChildrenArrayType[]
 
 /**
  * All types the children parameter can be
  */
-type ChildrenType = HTMLElement
+export type ChildrenType = HTMLElement
     | string 
     | number 
     | ChildrenArrayType
     | Element
+    | DeStagnate<any, any>
 
-type EventFunc = (e: Event)=> void
+export type EventFunc = (e: Event)=> void
 
 /**
  * Binds children to element
@@ -41,9 +43,9 @@ type EventFunc = (e: Event)=> void
  * @param ns - if namespace element
  * @returns void
  */
-const _bindProps = (
+export const bindProps = (
     element: Element,
-    props?: {[key: string]: string | number | Element | EventFunc} | null,
+    props?: {[key: string]: string | number | Element | Ref | EventFunc} | null,
     ns = false,
 ): void => {
     if (props) {
@@ -64,6 +66,12 @@ const _bindProps = (
                         val
                     )
                 }
+            } else if (
+                key === "ref" &&
+                typeof(val) === "object" &&
+                "current" in val
+            ) {
+                (val as Ref<Element>).current = element
             } else {
                 console.warn(`WARN: Invalid prop type "${typeof(val)}" for key "${key}". Skipping prop.`)
             }
@@ -71,14 +79,14 @@ const _bindProps = (
     }
 }
 
-const _unpackChildren = (
+export const unpackChildren = (
     children: ChildrenArrayType,
 ): ChildrenFlatArrayType => {
     const newChildren = []
     
     for (const child of children) {
         if (typeof(child) === "object" && child instanceof Array) {
-            newChildren.push(..._unpackChildren(child))
+            newChildren.push(...unpackChildren(child))
         } else {
             newChildren.push(child)
         }
@@ -94,60 +102,36 @@ const _unpackChildren = (
  * @param children - children to bind with
  * @returns void
  */
-const _bindChildren = (
+export const bindChildren = (
     element: Element,
     children?: ChildrenType,
 ): void => {
     if (children !== null && children !== undefined) {
         if (children instanceof Array) {
             for (const child of children) {
-                _bindChildren(element, child)
+                bindChildren(element, child)
             }
         } else if (
             typeof(children) === "string" ||
             typeof(children) === "number"
         ) {
             (element as HTMLElement).innerText = children.toString()
+        } else if (children instanceof DeStagnate) {
+            if (!children.didMount && element instanceof window.HTMLElement) {
+                children.mount(element)
+                
+                return
+            } else if (!(element instanceof window.HTMLElement)) {
+                throw new Error("Cannot use non-HTMLElement as component parent")
+            }
+
+            if (children.parent !== element) {
+                children.parent = element
+            }
+
+            children.forceUpdate()
         } else {
             element.appendChild(children)
         }
     }
 }
-
-/**
- * Creates a child element to DynamComponent
- * @param tagName - name of HTML element
- * @param props - element properties, such as class, innerHTML, id, style, etc
- * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - rest parameter of children
- * @returns element
- */
-export const createElement = <T extends keyof HTMLElementTagNameMap>(
-    tagName: T,
-    props?: {[key: string]: string | number | Element | EventFunc} | null,
-    children?: ChildrenType,
-    ...childrenArgs: ChildrenArrayType
-): HTMLElementTagNameMap[T] => {
-    const element = document.createElement(tagName)
-
-    _bindProps(element, props)
-
-    let _children: ChildrenType | undefined = children
-
-    if (children && childrenArgs) {
-        if (children instanceof Array) {
-            _children = [
-                ..._unpackChildren(children),
-                ..._unpackChildren(childrenArgs),
-            ]
-        } else {
-            _children = [children, ..._unpackChildren(childrenArgs)]
-        }
-    }
-
-    _bindChildren(element, _children)
-
-    return element
-}
-
-export default createElement
