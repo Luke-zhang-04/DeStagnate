@@ -83,7 +83,7 @@ class Counter extends DS.Component {
     render = () => Counter.createElement("div")
     render = () => this.createElement("div")
 
-    // Alternatively, you can use JSX (this requires the CLI, which comes with this package)
+    // Alternatively, you can use JSX. You will need a tranpiler, though
     render = () => <div></div>
 
 }
