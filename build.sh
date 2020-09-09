@@ -7,14 +7,12 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get lo
 
 # Build script
 build() {
+    chmod +x build.mjs
+    rm -rf ./lib
+
     # Compile typescript
     printf "${BIYellow}Compiling ${BIBlue}./src/${Purple} with ${BIBlue}TypeScript\n"
-    npx tsc -p tsconfig.json &
-    npx tsc -p tsconfig.cli.json &
-
-    wait
-
-    rm -rf cli/package.json
+    npx tsc -p tsconfig.json
 
     # Run Webpack on ./build
     printf "${BIBlue}Packing ${Yellow}./lib/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
@@ -48,14 +46,13 @@ build() {
     printf "${BIPurple}Formatting ${Red}dist ${Green}bundle\n"
     npx eslint ./dist/deStagnate.bundle.js --fix --env browser --rule "$eslintConfig" > out.log &
     npx eslint ./dist/deStagnate.bundle.cjs --fix --env browser --rule "$eslintConfig" > out.log &
-
     npx eslint ./tests/deStagnate.bundle.js --fix --env browser --rule "$eslintConfig" > out.log &
 
     wait
 
-    node build.js ./dist/deStagnate.bundle.js &
+    ./build.mjs ./dist/deStagnate.bundle.js &
 
-    node build.js ./tests/deStagnate.bundle.js &
+    ./build.mjs ./tests/deStagnate.bundle.js &
 
     wait
     
@@ -65,14 +62,14 @@ build() {
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.6.1
+ * @version 1.7.0
  * @file DeStagnate development bundle
  */
 
 \"use strict\";"
 
     minHeader="/**
- * Destagnate v1.6.1 
+ * Destagnate v1.7.0 
  * @copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io 
  * @license MIT
  * @file DeStagnate production bundle
@@ -99,26 +96,26 @@ $(cat ./tests/deStagnate.bundle.js)" > ./tests/deStagnate.bundle.js &
 
     for d in ./lib/* ; do
         if [[ ${d##*.} != "map" ]]; then
-            node build.js "$d" &
+            ./build.mjs "$d" &
         fi
     done
 
     printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
     echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js &
 
+    ./build.mjs jsxRef &
+
     wait
 
 }
 
 buildDev() {
+    chmod +x build.mjs
+    rm -rf ./lib
+
     # Compile typescript
     printf "${BIYellow}Compiling ${BIBlue}./src/${Purple} with ${BIBlue}TypeScript\n"
-    npx tsc -p tsconfig.json &
-    npx tsc -p tsconfig.cli.json &
-
-    wait
-
-    rm -rf cli/package.json
+    npx tsc -p tsconfig.json 
 
     # Run Webpack on ./build
     printf "${BIBlue}Packing ${Yellow}./lib/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
@@ -128,6 +125,8 @@ buildDev() {
     printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
     echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js &
 
+    ./build.mjs jsxRef &
+
     wait
 }
 
@@ -135,7 +134,7 @@ buildDev() {
 watch() {
     fileChange1=""
 
-    while [[ true ]]; do
+    while true; do
         fileChange2=$(find lib/ -type f -exec md5 {} \;)
 
         if [[ "$fileChange1" != "$fileChange2" ]] ; then           

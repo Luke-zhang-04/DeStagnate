@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.6.1
+ * @version 1.7.0
  * @file DeStagnate development bundle
  */
 
@@ -377,7 +377,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.6.1
+         * @version 1.7.0
          * @exports DeStagnate main destagnate class
          * @file main file for destagnate
          * @preserve
@@ -395,13 +395,111 @@ var DeStagnate = (function (modules) {
 
         var createRef_1 = __importDefault(__webpack_require__(1)),
 
-            _preset_1 = __importDefault(__webpack_require__(2)),
+            component_1 = __importDefault(__webpack_require__(2)),
 
-            createDSComponent_1 = __importDefault(__webpack_require__(4)),
+            createDSComponent_1 = __importDefault(__webpack_require__(5)),
 
-            createElement_1 = __importDefault(__webpack_require__(5)),
+            createElement_1 = __importDefault(__webpack_require__(6)),
 
-            createElementNS_1 = __importDefault(__webpack_require__(6)),
+            createElementNS_1 = __importDefault(__webpack_require__(7));
+
+        /**
+         * Creates nested DeStagnate component
+         * @param {DeStagnateConstructor} Component - DeStagnate component
+         * @param {Object<string, unknown>} props - props of component
+         * @returns {HTMLDivElement} parent of component
+         */
+        exports.createDSComponent = createDSComponent_1.default;
+
+        /**
+         * Creates a child element to deStagnate
+         * @param {string} tagName - name of HTML element
+         * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
+         * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+         * @returns {HTMLElement} html element
+         */
+        exports.createElement = createElement_1.default;
+
+        /**
+         * Creates a child element to DynamComponent
+         * @param {string} tagName - name of HTML element
+         * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
+         * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+         * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
+         * @returns {HTMLElement} html element
+         */
+        exports.createElementNS = createElementNS_1.default;
+
+        /**
+         * Creates a reference for a nested component
+         * @returns {Object<string, undefined>} empty ref object
+         */
+        exports.createRef = createRef_1.default;
+
+        /**
+         * DeStagnate
+         * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
+         * @class
+         * @namespace
+         * @abstract
+         */
+        exports.Component = component_1.default;
+
+        /**
+         * DeStagnate
+         * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
+         * @class
+         * @namespace
+         * @abstract
+         */
+        exports.default = component_1.default;
+    }, function (module, exports, __webpack_require__) {
+        
+
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+
+        /**
+         * Creates a reference for a nested component
+         * @returns {Object<string, null>} empty ref object
+         */
+        var createRef = function createRef () {
+            return {
+                current: null
+            };
+        };
+
+        /**
+         * Creates a reference for a nested component
+         * @returns {Object<string, null>} empty ref object
+         */
+        exports.default = createRef;
+    }, function (module, exports, __webpack_require__) {
+
+
+        /**
+         * DeStagnate
+         * A simple, ReactJS inspired library to create dynamic components within static sites easier
+         * @copyright Copyright (C) 2020 Luke Zhang
+         * @author Luke Zhang luke-zhang-04.github.io
+         * @license MIT
+         * @version 1.7.0
+         * @exports DeStagnate main destagnate class
+         * @file DeStagnate component class
+         * @preserve
+         */
+        var __importDefault = this && this.__importDefault || function (mod) {
+            return mod && mod.__esModule ? mod : {
+                default: mod
+            };
+        };
+
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+
+        var _preset_1 = __importDefault(__webpack_require__(3)),
 
             /**
              * DeStagnate
@@ -827,70 +925,6 @@ var DeStagnate = (function (modules) {
             }(_preset_1.default));
 
         exports.default = DeStagnate;
-
-        /**
-         * Creates nested DeStagnate component
-         * @param {DeStagnateConstructor} Component - DeStagnate component
-         * @param {Object<string, unknown>} props - props of component
-         * @returns {HTMLDivElement} parent of component
-         */
-        exports.createDSComponent = createDSComponent_1.default;
-
-        /**
-         * Creates a child element to deStagnate
-         * @param {string} tagName - name of HTML element
-         * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
-         * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-         * @returns {HTMLElement} html element
-         */
-        exports.createElement = createElement_1.default;
-
-        /**
-         * Creates a child element to DynamComponent
-         * @param {string} tagName - name of HTML element
-         * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
-         * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-         * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
-         * @returns {HTMLElement} html element
-         */
-        exports.createElementNS = createElementNS_1.default;
-
-        /**
-         * Creates a reference for a nested component
-         * @returns {Object<string, undefined>} empty ref object
-         */
-        exports.createRef = createRef_1.default;
-
-        /**
-         * DeStagnate
-         * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
-         * @class
-         * @namespace
-         * @abstract
-         */
-        exports.Component = DeStagnate;
-    }, function (module, exports, __webpack_require__) {
-        
-
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-
-        /**
-         * Creates a reference for a nested component
-         * @returns {Object<string, null>} empty ref object
-         */
-        var createRef = function createRef () {
-            return {
-                current: null
-            };
-        };
-
-        /**
-         * Creates a reference for a nested component
-         * @returns {Object<string, null>} empty ref object
-         */
-        exports.default = createRef;
     }, function (module, exports, __webpack_require__) {
 
 
@@ -900,7 +934,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.6.1
+         * @version 1.7.0
          * @exports Preset
          * @package
          */
@@ -914,13 +948,13 @@ var DeStagnate = (function (modules) {
             value: true
         });
 
-        var _events_1 = __importDefault(__webpack_require__(3)),
+        var _events_1 = __importDefault(__webpack_require__(4)),
 
-            createDSComponent_1 = __importDefault(__webpack_require__(4)),
+            createDSComponent_1 = __importDefault(__webpack_require__(5)),
 
-            createElement_1 = __importDefault(__webpack_require__(5)),
+            createElement_1 = __importDefault(__webpack_require__(6)),
 
-            createElementNS_1 = __importDefault(__webpack_require__(6)),
+            createElementNS_1 = __importDefault(__webpack_require__(7)),
 
             createRef_1 = __importDefault(__webpack_require__(1)),
 
@@ -1133,7 +1167,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.6.1
+         * @version 1.7.0
          * @exports Events
          * @package
          */
@@ -1440,7 +1474,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.6.1
+         * @version 1.7.0
          * @exports createDSComponent add nested component for DeStagnate components
          */
         Object.defineProperty(exports, "__esModule", {
@@ -1483,7 +1517,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.6.1
+         * @version 1.7.0
          * @exports createElement function for DOM manipulation
          */
         var __importDefault = this && this.__importDefault || function (mod) {
@@ -1650,7 +1684,7 @@ var DeStagnate = (function (modules) {
          * @copyright Copyright (C) 2020 Luke Zhang
          * @author Luke Zhang luke-zhang-04.github.io
          * @license MIT
-         * @version 1.6.1
+         * @version 1.7.0
          * @exports createElementNS createElement for namespaced elements
          */
         Object.defineProperty(exports, "__esModule", {
@@ -1658,7 +1692,7 @@ var DeStagnate = (function (modules) {
         });
         exports.createElementNS = void 0;
 
-        var createElement_1 = __webpack_require__(5);
+        var createElement_1 = __webpack_require__(6);
 
         /**
          * Creates a child element to deStagnate

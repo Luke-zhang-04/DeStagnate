@@ -1,6 +1,6 @@
 {
   "name": "destagnate",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "Make creating dynamic components within static sites easier",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -15,7 +15,6 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
-    "@types/babel__core": "^7.1.9",
     "@types/node": "^14.0.20",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
     "@typescript-eslint/parser": "^3.6.0",
@@ -61,12 +60,5 @@
   "bugs": {
     "url": "https://github.com/Luke-zhang-04/DeStagnate/issues"
   },
-  "homepage": "https://luke-zhang-04.github.io/DeStagnate/",
-  "dependencies": {
-    "@babel/core": "^7.10.4",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/plugin-transform-react-jsx": "^7.10.4",
-    "@babel/preset-env": "^7.10.4",
-    "commander": "^5.1.0"
-  }
+  "homepage": "https://luke-zhang-04.github.io/DeStagnate/"
 }

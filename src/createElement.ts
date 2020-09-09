@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.6.1
+ * @version 1.7.0
  * @exports createElement function for DOM manipulation
  */
 
@@ -33,7 +33,7 @@ export type ChildrenType = HTMLElement
     | Element
     | DeStagnate<any, any>
 
-type EventFunc = (e: Event)=> void
+export type EventFunc = (e: Event)=> void
 
 /**
  * Binds children to element
