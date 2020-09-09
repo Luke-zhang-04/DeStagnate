@@ -33,7 +33,7 @@ export type ChildrenType = HTMLElement
     | Element
     | DeStagnate<any, any>
 
-type EventFunc = (e: Event)=> void
+export type EventFunc = (e: Event)=> void
 
 /**
  * Binds children to element

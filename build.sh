@@ -7,6 +7,9 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get lo
 
 # Build script
 build() {
+    chmod +x build.mjs
+    rm -rf ./lib
+
     # Compile typescript
     printf "${BIYellow}Compiling ${BIBlue}./src/${Purple} with ${BIBlue}TypeScript\n"
     npx tsc -p tsconfig.json &
@@ -48,14 +51,13 @@ build() {
     printf "${BIPurple}Formatting ${Red}dist ${Green}bundle\n"
     npx eslint ./dist/deStagnate.bundle.js --fix --env browser --rule "$eslintConfig" > out.log &
     npx eslint ./dist/deStagnate.bundle.cjs --fix --env browser --rule "$eslintConfig" > out.log &
-
     npx eslint ./tests/deStagnate.bundle.js --fix --env browser --rule "$eslintConfig" > out.log &
 
     wait
 
-    node build.js ./dist/deStagnate.bundle.js &
+    ./build.mjs ./dist/deStagnate.bundle.js &
 
-    node build.js ./tests/deStagnate.bundle.js &
+    ./build.mjs ./tests/deStagnate.bundle.js &
 
     wait
     
@@ -99,18 +101,23 @@ $(cat ./tests/deStagnate.bundle.js)" > ./tests/deStagnate.bundle.js &
 
     for d in ./lib/* ; do
         if [[ ${d##*.} != "map" ]]; then
-            node build.js "$d" &
+            ./build.mjs "$d" &
         fi
     done
 
     printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
     echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js &
 
+    ./build.mjs jsxRef &
+
     wait
 
 }
 
 buildDev() {
+    chmod +x build.mjs
+    rm -rf ./lib
+
     # Compile typescript
     printf "${BIYellow}Compiling ${BIBlue}./src/${Purple} with ${BIBlue}TypeScript\n"
     npx tsc -p tsconfig.json &
@@ -127,6 +134,8 @@ buildDev() {
     # Copy bundle
     printf "${BIBlue}Copying ${Green}dist bundle min${Purple} to ${Blue}docs\n"
     echo "$(cat ./dist/deStagnate.bundle.min.js)" > ./docs/deStagnate.bundle.min.js &
+
+    ./build.mjs jsxRef &
 
     wait
 }
