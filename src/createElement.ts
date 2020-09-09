@@ -38,10 +38,10 @@ export type EventFunc = (e: Event)=> void
 /**
  * Binds children to element
  * @package
- * @param {Element} element - element to bind
- * @param {undefined | Object.<string, string | number>} props - props to bind with
- * @param {boolean} ns - if namespace element
- * @returns {void} void
+ * @param element - element to bind
+ * @param props - props to bind with
+ * @param ns - if namespace element
+ * @returns void
  */
 export const _bindProps = (
     element: Element,
@@ -98,9 +98,9 @@ export const _unpackChildren = (
 /**
  * Binds children to element
  * @package
- * @param {Element} element - element to bind
- * @param {undefined | ChildrenType} children - children to bind with
- * @returns {void} void
+ * @param element - element to bind
+ * @param children - children to bind with
+ * @returns void
  */
 export const _bindChildren = (
     element: Element,
@@ -138,11 +138,11 @@ export const _bindChildren = (
 
 /**
  * Creates a child element to DynamComponent
- * @param {string} tagName - name of HTML element
- * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
- * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
- * @returns {HTMLElement} html element
+ * @param tagName - name of HTML element
+ * @param props - element properties, such as class, innerHTML, id, style, etc
+ * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+ * @param childrenArgs - rest parameter of children
+ * @returns element
  */
 const createElement = <T extends keyof HTMLElementTagNameMap>(
     tagName: T,

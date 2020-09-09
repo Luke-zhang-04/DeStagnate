@@ -21,35 +21,35 @@ import _createElementNS from "./createElementNS"
 
 /**
  * Creates nested DeStagnate component
- * @param {DeStagnateConstructor} Component - DeStagnate component
- * @param {Object<string, unknown>} props - props of component
- * @returns {HTMLDivElement} parent of component
+ * @param Component - DeStagnate component
+ * @param props - props of component
+ * @returns parent of component
  */
 export const createDSComponent = _createDSComponent
 
 /**
  * Creates a child element to deStagnate
- * @param {string} tagName - name of HTML element
- * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
- * @param {undefined | Array.<HTMLElement> | HTMLElement | Array.<string> | string | Array.<number> | number} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @returns {HTMLElement} html element
+ * @param tagName - name of HTML element
+ * @param props - element properties, such as class, innerHTML, id, style, etc
+ * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+ * @returns html element
  */
 export const createElement = _createElement
 
 /**
  * Creates a child element to DynamComponent
- * @param {string} tagName - name of HTML element
- * @param {undefined | Object.<string, string | number | Element | Ref | Function>} props - element properties, such as class, innerHTML, id, style, etc
- * @param {undefined | number | string | HTMLElement | Element | Array.<number | string | HTMLElement | Element>} children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
- * @param {...(number | string | HTMLElement | Element)} childrenArgs - rest parameter of children
- * @returns {HTMLElement} html element
+ * @param tagName - name of HTML element
+ * @param props - element properties, such as class, innerHTML, id, style, etc
+ * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+ * @param childrenArgs - rest parameter of children
+ * @returns html element
  */
 export const createElementNS = _createElementNS
 
 
 /**
  * Creates a reference for a nested component
- * @returns {Object<string, undefined>} empty ref object
+ * @returns empty ref object
  */
 export const createRef = _createRef
 

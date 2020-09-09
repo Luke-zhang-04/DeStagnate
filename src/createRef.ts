@@ -15,7 +15,7 @@ export interface Ref<T = DeStagnate | HTMLElement> {
 
 /**
  * Creates a reference for a nested component
- * @returns {Object<string, null>} empty ref object
+ * @returns empty ref object
  */
 const createRef = <T = DeStagnate | HTMLElement>(): Ref<T> => ({
     current: null,
@@ -23,6 +23,6 @@ const createRef = <T = DeStagnate | HTMLElement>(): Ref<T> => ({
 
 /**
  * Creates a reference for a nested component
- * @returns {Object<string, null>} empty ref object
+ * @returns empty ref object
  */
 export default createRef

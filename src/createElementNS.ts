@@ -18,12 +18,12 @@ import {
 
 /**
  * Creates a child element to deStagnate
- * @param {string | null} namespaceURI - namespace uri
- * @param {string} tagName - name of HTML element
- * @param {undefined | Object.<string, string | number>} props - element properties, such as class, innerHTML, id, style, etc
- * @param {undefined | Element | string | number | Array.<Element> | Array.<string> | Array.<number>} children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param {...(HTMLElement | string | number)} childrenArgs - rest parameter of children
- * @returns {HTMLElement} html element
+ * @param namespaceURI - namespace uri
+ * @param tagName - name of HTML element
+ * @param props - element properties, such as class, innerHTML, id, style, etc
+ * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+ * @param childrenArgs - rest parameter of children
+ * @returns html element
  */
 export const createElementNS = (
     namespaceURI: keyof SVGElementTagNameMap | "http://www.w3.org/1999/xhtml" | "http://www.w3.org/2000/svg" | null,
