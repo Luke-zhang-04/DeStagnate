@@ -685,11 +685,15 @@ module.exports = (function (modules) {
                      * @instance
                      * @readonly
                      * @param parent - parent element to mount with; optional
+                     * @param shouldBindEvents - if event listeners shoud be bound `true` by default
+                     * Increases performance if turned off
                      * @returns - result of append child to parent element
                      */
 
 
                     _this.mountComponent = function (parent) {
+                        var shouldBindEvents = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
                         try {
                             if (parent !== undefined) {
                                 _this.parent = parent;
@@ -709,7 +713,9 @@ module.exports = (function (modules) {
                                 throw new Error("Expected render method to be included in component class, no render method found, or render returned an empty array");
                             }
 
-                            _this.bindEventListeners(_this._parent);
+                            if (shouldBindEvents) {
+                                _this.bindEventListeners(_this._parent);
+                            }
 
                             _this._didMount = true;
 
