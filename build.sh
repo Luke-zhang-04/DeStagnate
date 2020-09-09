@@ -12,12 +12,7 @@ build() {
 
     # Compile typescript
     printf "${BIYellow}Compiling ${BIBlue}./src/${Purple} with ${BIBlue}TypeScript\n"
-    npx tsc -p tsconfig.json &
-    npx tsc -p tsconfig.cli.json &
-
-    wait
-
-    rm -rf cli/package.json
+    npx tsc -p tsconfig.json
 
     # Run Webpack on ./build
     printf "${BIBlue}Packing ${Yellow}./lib/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
@@ -120,12 +115,7 @@ buildDev() {
 
     # Compile typescript
     printf "${BIYellow}Compiling ${BIBlue}./src/${Purple} with ${BIBlue}TypeScript\n"
-    npx tsc -p tsconfig.json &
-    npx tsc -p tsconfig.cli.json &
-
-    wait
-
-    rm -rf cli/package.json
+    npx tsc -p tsconfig.json 
 
     # Run Webpack on ./build
     printf "${BIBlue}Packing ${Yellow}./lib/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
@@ -144,7 +134,7 @@ buildDev() {
 watch() {
     fileChange1=""
 
-    while [[ true ]]; do
+    while true; do
         fileChange2=$(find lib/ -type f -exec md5 {} \;)
 
         if [[ "$fileChange1" != "$fileChange2" ]] ; then           

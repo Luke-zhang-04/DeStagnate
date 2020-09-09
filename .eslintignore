@@ -7,7 +7,6 @@
 **/*.d.ts
 /src/serviceWorker.ts
 src/*.js
-cli/*.js
 ./*.bundle.*.js
 ./lib/*
 docs/

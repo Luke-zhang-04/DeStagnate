@@ -126,7 +126,6 @@ typings/
 
 .github
 assets
-cli/*.ts
 docs
 src/
 wiki
