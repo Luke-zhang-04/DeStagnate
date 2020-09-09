@@ -11,7 +11,7 @@
  */
 /* eslint-disable max-lines */
 
-import Preset from "./_preset"
+import Base from "./_events"
 
 type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
 
@@ -24,13 +24,12 @@ type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
  */
 export default abstract class DeStagnate
     <Props = Record<string, unknown>, State = Record<string, unknown>>
-    extends Preset {
+    extends Base {
 
     /**
      * If strict mode should be used. True by default
      * @private
      * @instance
-     * @type {boolean}
      */
     private _strict = true
 
@@ -45,7 +44,6 @@ export default abstract class DeStagnate
     /**
      * If initial state was set in initializer
      * Do not throw error with direct state setting
-     * @type {boolean}
      * @private
      * @instance
      */
@@ -53,7 +51,6 @@ export default abstract class DeStagnate
 
     /**
      * Parent that this element if bound to
-     * @type {HTMLElement}
      * @private
      * @instance
      */
@@ -61,7 +58,6 @@ export default abstract class DeStagnate
 
     /**
      * If component is mounted
-     * @type {boolean}
      * @private
      * @instance
      */
@@ -71,9 +67,9 @@ export default abstract class DeStagnate
      * Construct class component
      * @public
      * @constructor
-     * @param {HTMLElement} parent - parent of this element
-     * @param {undefined | Object.<string, string | number>} props - element properties; works like React Props
-     * @param {boolean} shouldSkipParentCheck - warn or throw error if parent element already has children
+     * @param parent - parent of this element
+     * @param props - element properties; works like React Props
+     * @param shouldSkipParentCheck - warn or throw error if parent element already has children
      */
     public constructor (
         parent?: HTMLElement,
@@ -98,8 +94,8 @@ export default abstract class DeStagnate
      * @public
      * @instance
      * @param {Props} prevProps - previous props
-     * @param {State} prevState - previous state
-     * @returns {void} void
+     * @param prevState - previous state
+     * @returns void
      */
     public getSnapshotBeforeUpdate = (
         prevProps: Props,
@@ -110,7 +106,7 @@ export default abstract class DeStagnate
      * Turn on strict mode
      * @public
      * @instance
-     * @returns {void} void
+     * @returns void
      */
     public useStrict = (): void => {
         this._strict = true
@@ -120,7 +116,7 @@ export default abstract class DeStagnate
      * Turn off strict mode
      * @public
      * @instance
-     * @returns {void} void
+     * @returns void
      */
     public disableStrict = (): void => {
         this._strict = false
@@ -129,7 +125,7 @@ export default abstract class DeStagnate
     /**
      * Public getState getter as this.state itself is protected
      * @public
-     * @returns {State} component state
+     * @returns component state
      */
     public get getState (): State {
         return this.state
@@ -138,7 +134,7 @@ export default abstract class DeStagnate
     /**
      * Get component state
      * @protected
-     * @returns {State} component state
+     * @returns component state
      */
     protected get state (): State {
         return this._state
@@ -148,7 +144,7 @@ export default abstract class DeStagnate
      * Sets component state
      * WARN: do not use this method to mutate the state directly
      * @protected
-     * @param {State} obj - state to set
+     * @param obj - state to set
      */
     protected set state (obj: State) {
         if (this._didSetInitialState && this._strict) {
@@ -167,7 +163,7 @@ export default abstract class DeStagnate
     /**
      * Public getProps getter as this.props itself is protected
      * @public
-     * @returns {Props | undefined} component state
+     * @returns component props
      */
     public get getProps (): Props | undefined {
         return this.props
@@ -176,8 +172,8 @@ export default abstract class DeStagnate
     /**
      * Set the parent of this component
      * @public
-     * @param {HTMLElement | undefined} element - parent element
-     * @returns {void} void;
+     * @param element - parent element
+     * @returns void
      */
     public set parent (element: HTMLElement | undefined) {
         if (
@@ -194,7 +190,7 @@ export default abstract class DeStagnate
     /**
      * Get the parent element of this component
      * @public
-     * @returns {HTMLElement | undefined} parent
+     * @returns parent
      */
     public get parent (): HTMLElement | undefined {
         return this._parent
@@ -203,7 +199,7 @@ export default abstract class DeStagnate
     /**
      * Get didMount value publicly
      * @public
-     * @returns {boolean} if mounted
+     * @returns if mounted
      */
     public get didMount (): boolean {
         return this._didMount
@@ -215,7 +211,7 @@ export default abstract class DeStagnate
      * @public
      * @instance
      * @readonly
-     * @returns {void | Error} returns error if error is thrown
+     * @returns returns error if error is thrown
      */
     public readonly forceUpdate = (): void | Error => {
         try {
@@ -243,8 +239,8 @@ export default abstract class DeStagnate
      * @public
      * @instance
      * @readonly
-     * @param {Partial<State>} obj - state to set
-     * @returns {void | Error} void
+     * @param obj - state to set
+     * @returns void
      */
     public readonly setState = (obj: Partial<State>): void | Error => {
         try {
@@ -283,10 +279,15 @@ export default abstract class DeStagnate
      * @public
      * @instance
      * @readonly
-     * @param {HTMLElement | undefined} parent - parent element to mount with; optional
-     * @returns {HTMLElement | Array.<HTMLElement> | error} - result of append child to parent element
+     * @param parent - parent element to mount with; optional
+     * @param shouldBindEvents - if event listeners shoud be bound `true` by default
+     * Increases performance if turned off
+     * @returns - result of append child to parent element
      */
-    public readonly mountComponent = (parent?: HTMLElement): HTMLElement | HTMLElement[] | Element | Element[] | Error => {
+    public readonly mountComponent = (
+        parent?: HTMLElement,
+        shouldBindEvents = true,
+    ): HTMLElement | HTMLElement[] | Element | Element[] | Error => {
         try {
             if (parent !== undefined) {
                 this.parent = parent
@@ -306,7 +307,9 @@ export default abstract class DeStagnate
                 throw new Error("Expected render method to be included in component class, no render method found, or render returned an empty array")
             }
 
-            this.bindEventListeners(this._parent)
+            if (shouldBindEvents) {
+                this.bindEventListeners(this._parent)
+            }
 
             this._didMount = true
             this.componentDidMount()
@@ -330,7 +333,7 @@ export default abstract class DeStagnate
      * @public
      * @instance
      * @readonly
-     * @returns {HTMLElement} - result of append child to parent element
+     * @returns - result of append child to parent element
      */
     public readonly mount = this.mountComponent
 
@@ -339,7 +342,7 @@ export default abstract class DeStagnate
      * @public
      * @instance
      * @readonly
-     * @returns {void} - void
+     * @returns - void
      */
     public readonly unmountComponent = (): void => {
         try {
@@ -366,7 +369,7 @@ export default abstract class DeStagnate
      * @public
      * @instance
      * @readonly
-     * @returns {void} - void
+     * @returns - void
      */
     public readonly unmount = this.unmountComponent
     /* eslint-enable max-len, @typescript-eslint/member-ordering */
@@ -375,7 +378,7 @@ export default abstract class DeStagnate
      * Removes children from this._parent
      * @private
      * @instance
-     * @return {void} void
+     * @return void
      */
     private _removeChildren = (): void => {
         if (this._parent === undefined) {
@@ -393,7 +396,7 @@ export default abstract class DeStagnate
      * Executes new render
      * @private
      * @instance
-     * @returns {HTMLElement | Array.<HTMLElement> | null} rendered content
+     * @returns rendered content
      */
     private _execRender = (): RenderType => {
         this._removeChildren()
@@ -405,8 +408,8 @@ export default abstract class DeStagnate
      * Checks new state assignment to make sure no new keys are assigned
      * @private
      * @instance
-     * @param {Partial<State>} obj - new state
-     * @returns {void} void
+     * @param obj - new state
+     * @returns void
      */
     private _checkKeys = (obj: Partial<State>): void => {
         for (const key of Object.keys(obj)) {
@@ -421,8 +424,8 @@ export default abstract class DeStagnate
      * Updates the component
      * @private
      * @instance
-     * @param {RenderType} renderedContent - rendered content from executing the render function
-     * @returns {void} void
+     * @param renderedContent - rendered content from executing the render function
+     * @returns void
      */
     private _update = (renderedContent?: RenderType): void => {
         if (

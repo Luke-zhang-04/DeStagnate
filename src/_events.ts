@@ -9,6 +9,8 @@
  * @package
  */
 
+import BaseComponent from "./_base"
+
 type El = (
     type: string,
     listener: EventListenerOrEventListenerObject,
@@ -44,7 +46,7 @@ interface EventsList {
 }
 
 /* istanbul ignore next */
-export default class Events {
+export default abstract class Events extends BaseComponent {
 
     /**
      * Binds event listeners event
@@ -52,8 +54,8 @@ export default class Events {
      * @protected
      * @instance
      * @pacakge
-     * @param {HTMLElement} element - element to bind listeners to
-     * @returns {void} void;
+     * @param element - element to bind listeners to
+     * @returns void
      */
     protected bindEventListeners = (element: HTMLElement): void => {
         this._eventListener(element.addEventListener)
@@ -65,8 +67,8 @@ export default class Events {
      * @protected
      * @instance
      * @pacakge
-     * @param {HTMLElement} element - element to bind listeners to
-     * @returns {void} void;
+     * @param element - element to bind listeners to
+     * @returns void
      */
     protected unbindEventListeners = (element: HTMLElement): void => {
         this._eventListener(element.removeEventListener)
@@ -76,7 +78,7 @@ export default class Events {
      * Focus event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onFocus = (): void => undefined
 
@@ -84,7 +86,7 @@ export default class Events {
      * Blur event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onBlur = (): void => undefined
 
@@ -92,7 +94,7 @@ export default class Events {
      * Focus in event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onFocusIn = (): void => undefined
 
@@ -100,7 +102,7 @@ export default class Events {
      * Focus out event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onFocusOut = (): void => undefined
 
@@ -108,7 +110,7 @@ export default class Events {
      * Animation start event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onAnimationStart = (): void => undefined
 
@@ -116,7 +118,7 @@ export default class Events {
      * Animation cancel event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onAnimationCancel = (): void => undefined
 
@@ -124,7 +126,7 @@ export default class Events {
      * Animation end event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onAnimationEnd = (): void => undefined
 
@@ -132,7 +134,7 @@ export default class Events {
      * Animation iteration event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onAnimationIteration = (): void => undefined
 
@@ -141,7 +143,7 @@ export default class Events {
      * Transition start event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onTransitionStart = (): void => undefined
 
@@ -149,7 +151,7 @@ export default class Events {
      * Transition cancel event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onTransitionCancel = (): void => undefined
 
@@ -157,7 +159,7 @@ export default class Events {
      * Transition end event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onTransitionEnd = (): void => undefined
 
@@ -165,7 +167,7 @@ export default class Events {
      * Transition run event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onTransitionRun = (): void => undefined
     
@@ -174,7 +176,7 @@ export default class Events {
      * Auxillary click event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onAuxClick = (): void => undefined
 
@@ -182,7 +184,7 @@ export default class Events {
      * Click event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onClick = (): void => undefined
 
@@ -190,7 +192,7 @@ export default class Events {
      * Double click event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onDblClick = (): void => undefined
 
@@ -198,7 +200,7 @@ export default class Events {
      * Mousedown event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onMouseDown = (): void => undefined
 
@@ -206,7 +208,7 @@ export default class Events {
      * Mouse enter event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onMouseEnter = (): void => undefined
 
@@ -214,7 +216,7 @@ export default class Events {
      * Mouse leave event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onMouseLeave = (): void => undefined
 
@@ -222,7 +224,7 @@ export default class Events {
      * Mouse move event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onMouseMove = (): void => undefined
 
@@ -230,7 +232,7 @@ export default class Events {
      * Mouseover event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onMouseOver = (): void => undefined
 
@@ -238,7 +240,7 @@ export default class Events {
      * Mouseout event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onMouseOut = (): void => undefined
 
@@ -246,7 +248,7 @@ export default class Events {
      * Mouseup event
      * @protected
      * @instance
-     * @returns {void}
+     * @returns
      */
     protected onMouseUp = (): void => undefined
 
