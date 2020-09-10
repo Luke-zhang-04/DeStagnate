@@ -8,8 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Added
-- export Ref interface from index.ts 6a2535a [#26](https://github.com/Luke-zhang-04/DeStagnate/pull/26)
+- export Ref interface from index.ts [#26](https://github.com/Luke-zhang-04/DeStagnate/pull/26)
 - feat: JSX Typings [#28](https://github.com/Luke-zhang-04/DeStagnate/pull/28)
+
+### Changed
+- Decreased bundle size by replacing long error messages with references to the documentation site [#33](https://github.com/Luke-zhang-04/DeStagnate/pull/33)
 
 ### Removed
 - depreciate CLI [d174590](https://github.com/Luke-zhang-04/DeStagnate/commit/d174590)
