@@ -10,6 +10,7 @@
 
 import DeStagnate from "."
 import type {Ref} from "./createRef"
+import url from "./_url"
 
 /* eslint-disable one-var, @typescript-eslint/no-explicit-any */
 
@@ -27,8 +28,8 @@ export type ChildrenArrayType = ChildrenFlatArrayType
  * All types the children parameter can be
  */
 export type ChildrenType = HTMLElement
-    | string 
-    | number 
+    | string
+    | number
     | ChildrenArrayType
     | Element
     | DeStagnate<any, any>
@@ -73,7 +74,7 @@ export const bindProps = (
             ) {
                 (val as Ref<Element>).current = element
             } else {
-                console.warn(`WARN: Invalid prop type "${typeof(val)}" for key "${key}". Skipping prop.`)
+                console.warn(`WARN: Code 7. See ${url}. Params: ${typeof(val)}, ${key}`)
             }
         }
     }
@@ -83,7 +84,7 @@ export const unpackChildren = (
     children: ChildrenArrayType,
 ): ChildrenFlatArrayType => {
     const newChildren = []
-    
+
     for (const child of children) {
         if (typeof(child) === "object" && child instanceof Array) {
             newChildren.push(...unpackChildren(child))
@@ -119,10 +120,10 @@ export const bindChildren = (
         } else if (children instanceof DeStagnate) {
             if (!children.didMount && element instanceof window.HTMLElement) {
                 children.mount(element)
-                
+
                 return
             } else if (!(element instanceof window.HTMLElement)) {
-                throw new Error("Cannot use non-HTMLElement as component parent")
+                throw new Error(`ERROR: code 8. See ${url}`)
             }
 
             if (children.parent !== element) {

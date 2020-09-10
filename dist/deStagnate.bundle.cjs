@@ -12,253 +12,253 @@
 
 
 function _toConsumableArray (arr) {
-    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); 
 }
 
 function _nonIterableSpread () {
-    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); 
 }
 
 function _iterableToArray (iter) {
     if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) {
-        return Array.from(iter);
-    }
+        return Array.from(iter); 
+    } 
 }
 
 function _arrayWithoutHoles (arr) {
     if (Array.isArray(arr)) {
-        return _arrayLikeToArray(arr);
-    }
+        return _arrayLikeToArray(arr); 
+    } 
 }
 
 function _slicedToArray (arr, i) {
-    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); 
 }
 
 function _nonIterableRest () {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); 
 }
 
 function _iterableToArrayLimit (arr, i) {
     if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) {
-        return;
-    } var _arr = [],
-        _n = true,
-        _d = false,
-        _e = undefined;
+        return; 
+    } var _arr = [], 
+        _n = true, 
+        _d = false, 
+        _e = undefined; 
 
     try {
         for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
             _arr.push(_s.value); if (i && _arr.length === i) {
-                break;
-            }
-        }
+                break; 
+            } 
+        } 
     } catch (err) {
-        _d = true; _e = err;
+        _d = true; _e = err; 
     } finally {
         try {
             if (!_n && _i.return != null) {
-                _i.return();
-            }
+                _i.return(); 
+            } 
         } finally {
             if (_d) {
-                throw _e;
-            }
-        }
-    }
+                throw _e; 
+            } 
+        } 
+    } 
 
-    return _arr;
+    return _arr; 
 }
 
 function _arrayWithHoles (arr) {
     if (Array.isArray(arr)) {
-        return arr;
-    }
+        return arr; 
+    } 
 }
 
 function _createForOfIteratorHelper (o, allowArrayLike) {
-    var it;
+    var it; 
 
     if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
         if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
             if (it) {
-                o = it;
-            } var i = 0,
-                F = function F () {};
+                o = it; 
+            } var i = 0, 
+                F = function F () {}; 
 
             return {s: F,
                 n: function n () {
                     if (i >= o.length) {
-                        return {done: true};
-                    }
+                        return {done: true}; 
+                    } 
 
                     return {done: false,
-                        value: o[i++]};
+                        value: o[i++]}; 
                 },
                 e: function e (_e2) {
-                    throw _e2;
+                    throw _e2; 
                 },
-                f: F};
-        } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-    } var normalCompletion = true,
-        didErr = false,
-        err;
+                f: F}; 
+        } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); 
+    } var normalCompletion = true, 
+        didErr = false, 
+        err; 
 
     return {s: function s () {
-        it = o[Symbol.iterator]();
+        it = o[Symbol.iterator](); 
     },
     n: function n () {
-        var step = it.next();
+        var step = it.next(); 
 
-        normalCompletion = step.done;
+        normalCompletion = step.done; 
 
-        return step;
+        return step; 
     },
     e: function e (_e3) {
-        didErr = true; err = _e3;
+        didErr = true; err = _e3; 
     },
     f: function f () {
         try {
             if (!normalCompletion && it.return != null) {
-                it.return();
-            }
+                it.return(); 
+            } 
         } finally {
             if (didErr) {
-                throw err;
-            }
-        }
-    }};
+                throw err; 
+            } 
+        } 
+    }}; 
 }
 
 function _unsupportedIterableToArray (o, minLen) {
     if (!o) {
-        return;
+        return; 
     } if (typeof o === "string") {
-        return _arrayLikeToArray(o, minLen);
-    } var n = Object.prototype.toString.call(o).slice(8, -1);
+        return _arrayLikeToArray(o, minLen); 
+    } var n = Object.prototype.toString.call(o).slice(8, -1); 
 
     if (n === "Object" && o.constructor) {
-        n = o.constructor.name;
+        n = o.constructor.name; 
     } if (n === "Map" || n === "Set") {
-        return Array.from(o);
+        return Array.from(o); 
     } if (n === "Arguments" || (/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/).test(n)) {
-        return _arrayLikeToArray(o, minLen);
-    }
+        return _arrayLikeToArray(o, minLen); 
+    } 
 }
 
 function _arrayLikeToArray (arr, len) {
     if (len == null || len > arr.length) {
-        len = arr.length;
+        len = arr.length; 
     } for (var i = 0, arr2 = new Array(len); i < len; i++) {
-        arr2[i] = arr[i];
-    }
+        arr2[i] = arr[i]; 
+    } 
 
-    return arr2;
+    return arr2; 
 }
 
 function _classCallCheck (instance, Constructor) {
     if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
+        throw new TypeError("Cannot call a class as a function"); 
+    } 
 }
 
 function _defineProperties (target, props) {
     for (var i = 0; i < props.length; i++) {
-        var descriptor = props[i];
+        var descriptor = props[i]; 
 
         descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) {
-            descriptor.writable = true;
-        } Object.defineProperty(target, descriptor.key, descriptor);
-    }
+            descriptor.writable = true; 
+        } Object.defineProperty(target, descriptor.key, descriptor); 
+    } 
 }
 
 function _createClass (Constructor, protoProps, staticProps) {
     if (protoProps) {
-        _defineProperties(Constructor.prototype, protoProps);
+        _defineProperties(Constructor.prototype, protoProps); 
     } if (staticProps) {
-        _defineProperties(Constructor, staticProps);
-    }
+        _defineProperties(Constructor, staticProps); 
+    } 
 
-    return Constructor;
+    return Constructor; 
 }
 
 function _inherits (subClass, superClass) {
     if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function");
+        throw new TypeError("Super expression must either be null or a function"); 
     } subClass.prototype = Object.create(superClass && superClass.prototype, {constructor: {value: subClass,
         writable: true,
         configurable: true}}); if (superClass) {
-        _setPrototypeOf(subClass, superClass);
-    }
+        _setPrototypeOf(subClass, superClass); 
+    } 
 }
 
 function _setPrototypeOf (o, p) {
     _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf (o, p) {
-        o.__proto__ = p;
+        o.__proto__ = p; 
 
-        return o;
-    };
+        return o; 
+    }; 
 
-    return _setPrototypeOf(o, p);
+    return _setPrototypeOf(o, p); 
 }
 
 function _createSuper (Derived) {
-    var hasNativeReflectConstruct = _isNativeReflectConstruct();
+    var hasNativeReflectConstruct = _isNativeReflectConstruct(); 
 
     return function _createSuperInternal () {
-        var Super = _getPrototypeOf(Derived),
-            result;
+        var Super = _getPrototypeOf(Derived), 
+            result; 
 
         if (hasNativeReflectConstruct) {
-            var NewTarget = _getPrototypeOf(this).constructor;
+            var NewTarget = _getPrototypeOf(this).constructor; 
 
-            result = Reflect.construct(Super, arguments, NewTarget);
+            result = Reflect.construct(Super, arguments, NewTarget); 
         } else {
-            result = Super.apply(this, arguments);
-        }
+            result = Super.apply(this, arguments); 
+        } 
 
-        return _possibleConstructorReturn(this, result);
-    };
+        return _possibleConstructorReturn(this, result); 
+    }; 
 }
 
 function _possibleConstructorReturn (self, call) {
     if (call && (_typeof(call) === "object" || typeof call === "function")) {
-        return call;
-    }
+        return call; 
+    } 
 
-    return _assertThisInitialized(self);
+    return _assertThisInitialized(self); 
 }
 
 function _assertThisInitialized (self) {
     if (self === void 0) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); 
+    } 
 
-    return self;
+    return self; 
 }
 
 function _isNativeReflectConstruct () {
     if (typeof Reflect === "undefined" || !Reflect.construct) {
-        return false;
+        return false; 
     } if (Reflect.construct.sham) {
-        return false;
+        return false; 
     } if (typeof Proxy === "function") {
-        return true;
+        return true; 
     } try {
-        Date.prototype.toString.call(Reflect.construct(Date, [], () => {}));
+        Date.prototype.toString.call(Reflect.construct(Date, [], () => {})); 
 
-        return true;
+        return true; 
     } catch (e) {
-        return false;
-    }
+        return false; 
+    } 
 }
 
 function _getPrototypeOf (o) {
     _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf (o) {
-        return o.__proto__ || Object.getPrototypeOf(o);
-    };
+        return o.__proto__ || Object.getPrototypeOf(o); 
+    }; 
 
-    return _getPrototypeOf(o);
+    return _getPrototypeOf(o); 
 }
 
 function _typeof (obj) {
@@ -266,15 +266,15 @@ function _typeof (obj) {
 
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
         _typeof = function _typeof (obj) {
-            return typeof obj;
-        };
+            return typeof obj; 
+        }; 
     } else {
         _typeof = function _typeof (obj) {
-            return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-        };
-    }
+            return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; 
+        }; 
+    } 
 
-    return _typeof(obj);
+    return _typeof(obj); 
 }
 
 module.exports = (function (modules) {
@@ -293,7 +293,7 @@ module.exports = (function (modules) {
 
         modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
         module.l = true;
-
+        
         return module.exports;
     }
 
@@ -323,13 +323,13 @@ module.exports = (function (modules) {
 
     __webpack_require__.t = function (value, mode) {
         if (mode & 1) {
-            value = __webpack_require__(value);
+            value = __webpack_require__(value); 
         }
         if (mode & 8) {
-            return value;
+            return value; 
         }
         if (mode & 4 && _typeof(value) === "object" && value && value.__esModule) {
-            return value;
+            return value; 
         }
         var ns = Object.create(null);
 
@@ -342,9 +342,9 @@ module.exports = (function (modules) {
         if (mode & 2 && typeof value !== "string") {
             for (var key in value) {
                 __webpack_require__.d(ns, key, ((key) => value[key]).bind(null, key));
-            }
+            } 
         }
-
+        
         return ns;
     };
 
@@ -365,7 +365,7 @@ module.exports = (function (modules) {
     };
 
     __webpack_require__.p = "";
-
+    
     return __webpack_require__(__webpack_require__.s = 0);
 }([
     function (module, exports, __webpack_require__) {
@@ -402,7 +402,7 @@ module.exports = (function (modules) {
 
             createElement_1 = __importDefault(__webpack_require__(6)),
 
-            createElementNS_1 = __importDefault(__webpack_require__(8));
+            createElementNS_1 = __importDefault(__webpack_require__(9));
 
         /**
          * Creates nested DeStagnate component
@@ -462,7 +462,7 @@ module.exports = (function (modules) {
 
         exports.default = component_1.default;
     }, function (module, exports, __webpack_require__) {
-
+        
 
         Object.defineProperty(exports, "__esModule", {
             value: true
@@ -514,6 +514,8 @@ module.exports = (function (modules) {
         exports.Component = void 0;
 
         var _events_1 = __importDefault(__webpack_require__(3)),
+
+            _url_1 = __importDefault(__webpack_require__(8)),
 
             /**
              * DeStagnate
@@ -633,7 +635,7 @@ module.exports = (function (modules) {
                             _this.componentDidUpdate();
 
                             if (_this._parent === undefined) {
-                                throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.");
+                                throw new Error("ERROR: code 3. See ".concat(_url_1.default, "."));
                             }
 
                             _this.getSnapshotBeforeUpdate({..._this.props}, {..._this.state});
@@ -661,7 +663,7 @@ module.exports = (function (modules) {
                             _this.componentWillUpdate();
 
                             if (_this._parent === undefined) {
-                                throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.");
+                                throw new Error("ERROR: code 3. See ".concat(_url_1.default, "."));
                             }
 
                             if (_this._strict) {
@@ -702,7 +704,7 @@ module.exports = (function (modules) {
                             }
 
                             if (_this._parent === undefined) {
-                                throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.");
+                                throw new Error("ERROR: code 3. See ".concat(_url_1.default, "."));
                             }
 
                             var component = _this.render();
@@ -712,7 +714,7 @@ module.exports = (function (modules) {
                             _this.componentWillMount();
 
                             if (component === null) {
-                                throw new Error("Expected render method to be included in component class, no render method found, or render returned an empty array");
+                                throw new Error("ERROR: code 5. See ".concat(_url_1.default, "."));
                             }
 
                             if (shouldBindEvents) {
@@ -757,7 +759,7 @@ module.exports = (function (modules) {
                     _this.unmountComponent = function () {
                         try {
                             if (_this._parent === undefined) {
-                                _this.componentDidWarn("No parent was set. Component unmounted from nothing.");
+                                _this.componentDidWarn("WARN: code 4. See ".concat(_url_1.default, "."));
 
                                 return;
                             }
@@ -794,7 +796,7 @@ module.exports = (function (modules) {
 
                     _this._removeChildren = function () {
                         if (_this._parent === undefined) {
-                            throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.");
+                            throw new Error("ERROR: code 3. See ".concat(_url_1.default, "."));
                         }
 
                         while (_this._parent.firstChild) {
@@ -832,7 +834,8 @@ module.exports = (function (modules) {
                             var key = _Object$keys[_i];
 
                             if (!Object.keys(_this.state).includes(key)) {
-                                _this.componentDidWarn("WARN: New key (".concat(key, ") should not be set with setState, which has keys ").concat(JSON.stringify(Object.keys(_this.state)), ". Declare all state variables in constructor as a best practice. Did you misspell a key?"));
+                                _this.componentDidWarn("WARN: code 6. See ".concat(_url_1.default, ". Params: ").concat(key, ", ")
+                                    .concat(JSON.stringify(Object.keys(_this.state)), "."));
                             }
                         }
                     };
@@ -872,11 +875,11 @@ module.exports = (function (modules) {
                     };
 
                     if (parent && parent.childElementCount > 0 && !shouldSkipParentCheck && _this._strict) {
-                        _this.componentDidCatch(new Error("ERR: Avoid using this ".concat(parent.tagName.toLowerCase(), " as element parent, as all elements within this ").concat(parent.tagName.toLowerCase(), " will be removed on re-render. To disable this, pass in true as a third parameter")));
+                        _this.componentDidCatch(new Error("ERROR: code 1. See ".concat(_url_1.default, ". Params: ").concat(parent.tagName.toLowerCase())));
                     }
 
                     _this._parent = parent;
-
+                    
                     return _this;
                 }
 
@@ -910,11 +913,11 @@ module.exports = (function (modules) {
        * @protected
        * @param obj - state to set
        */
-
+      
                         set: function set (obj) {
                             if (this._didSetInitialState && this._strict) {
-                                this.componentDidCatch(new Error("Do not mutate state directly. Use setState instead."));
-                                this.componentDidWarn("DeStagnate protects you from mutating the entire state object. Avoid mutating state directly");
+                                this.componentDidCatch(new Error("ERROR: code 2. See ".concat(_url_1.default, ".")));
+                                this.componentDidWarn("ERROR: code 2. See ".concat(_url_1.default, "."));
                                 this.setState(obj);
                             } else {
                                 this._state = obj;
@@ -945,7 +948,7 @@ module.exports = (function (modules) {
                         key: "parent",
                         set: function set (element) {
                             if (element && element.childElementCount > 0 && this._strict) {
-                                this.componentDidWarn("WARN: Avoid using this ".concat(element.tagName.toLowerCase(), " as element parent, as all elements within this ").concat(element.tagName.toLowerCase(), " will be removed on re-render. If this was intentional, turn strict off before setting parent."));
+                                this.componentDidCatch(new Error("ERROR: code 1. See ".concat(_url_1.default, ". Params: ").concat(element.tagName.toLowerCase())));
                             }
 
                             this._parent = element;
@@ -954,7 +957,7 @@ module.exports = (function (modules) {
        * @public
        * @returns parent
        */
-
+      
                         get: function get () {
                             return this._parent;
                         }
@@ -1396,7 +1399,7 @@ module.exports = (function (modules) {
 
             createElement_1 = __importDefault(__webpack_require__(6)),
 
-            createElementNS_1 = __importDefault(__webpack_require__(8)),
+            createElementNS_1 = __importDefault(__webpack_require__(9)),
 
             createRef_1 = __importDefault(__webpack_require__(1)),
 
@@ -1733,7 +1736,9 @@ module.exports = (function (modules) {
         });
         exports.bindChildren = exports.unpackChildren = exports.bindProps = void 0;
 
-        var _1 = __importDefault(__webpack_require__(0));
+        var _1 = __importDefault(__webpack_require__(0)),
+
+            _url_1 = __importDefault(__webpack_require__(8));
 
         /**
          * Binds children to element
@@ -1769,7 +1774,8 @@ module.exports = (function (modules) {
                     } else if (key === "ref" && _typeof(val) === "object" && "current" in val) {
                         val.current = element;
                     } else {
-                        console.warn("WARN: Invalid prop type \"".concat(_typeof(val), "\" for key \"").concat(key, "\". Skipping prop."));
+                        console.warn("WARN: Code 7. See ".concat(_url_1.default, ". Params: ").concat(_typeof(val), ", ")
+                            .concat(key));
                     }
                 }
             }
@@ -1831,10 +1837,10 @@ module.exports = (function (modules) {
                 } else if (children instanceof _1.default) {
                     if (!children.didMount && element instanceof window.HTMLElement) {
                         children.mount(element);
-
+                        
                         return;
                     } else if (!(element instanceof window.HTMLElement)) {
-                        throw new Error("Cannot use non-HTMLElement as component parent");
+                        throw new Error("ERROR: code 8. See ".concat(_url_1.default));
                     }
 
                     if (children.parent !== element) {
@@ -1847,6 +1853,25 @@ module.exports = (function (modules) {
                 }
             }
         };
+    }, function (module, exports, __webpack_require__) {
+
+
+        /**
+         * DeStagnate
+         * A simple, ReactJS inspired library to create dynamic components within static sites easier
+         * @copyright Copyright (C) 2020 Luke Zhang
+         * @author Luke Zhang luke-zhang-04.github.io
+         * @license MIT
+         * @version 1.7.0
+         * @file share functions and types for createElement and it's variants
+         */
+
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.url = void 0;
+        exports.url = "https://luke-zhang-04.github.io/DeStagnate/error-codes";
+        exports.default = exports.url;
     }, function (module, exports, __webpack_require__) {
 
 
