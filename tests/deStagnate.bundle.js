@@ -577,11 +577,11 @@ module.exports =
 
                 component_1 = __importDefault(__webpack_require__(2)),
 
-                createDSComponent_1 = __importDefault(__webpack_require__(5)),
+                createDSComponent_1 = __importDefault(__webpack_require__(6)),
 
-                createElement_1 = __importDefault(__webpack_require__(6)),
+                createElement_1 = __importDefault(__webpack_require__(7)),
 
-                createElementNS_1 = __importDefault(__webpack_require__(9));
+                createElementNS_1 = __importDefault(__webpack_require__(10));
 
             /**
              * Creates nested DeStagnate component
@@ -696,7 +696,7 @@ module.exports =
 
             var _events_1 = __importDefault(__webpack_require__(3)),
 
-                _url_1 = __importDefault(__webpack_require__(8)),
+                _url_1 = __importDefault(__webpack_require__(9)),
 
                 /**
                  * DeStagnate
@@ -1174,7 +1174,9 @@ module.exports =
                 value: true
             });
 
-            var _base_1 = __importDefault(__webpack_require__(4)),
+            var _eventstools_1 = __importDefault(__webpack_require__(4)),
+
+                _base_1 = __importDefault(__webpack_require__(5)),
                 /* istanbul ignore next */
                 Events = /* #__PURE__*/(function (_base_1$default) {
                     _inherits(Events, _base_1$default);
@@ -1187,6 +1189,182 @@ module.exports =
                         _classCallCheck(this, Events);
 
                         _this2 = _super3.apply(this, arguments);
+
+                        /**
+                         * Focus event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onFocus = undefined;
+
+                        /**
+                         * Blur event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onBlur = undefined;
+
+                        /**
+                         * Focus in event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onFocusIn = undefined;
+
+                        /**
+                         * Focus out event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onFocusOut = undefined;
+
+                        /**
+                         * Animation start event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onAnimationStart = undefined;
+
+                        /**
+                         * Animation cancel event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onAnimationCancel = undefined;
+
+                        /**
+                         * Animation end event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onAnimationEnd = undefined;
+
+                        /**
+                         * Animation iteration event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onAnimationIteration = undefined;
+
+                        /**
+                         * Transition start event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onTransitionStart = undefined;
+
+                        /**
+                         * Transition cancel event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onTransitionCancel = undefined;
+
+                        /**
+                         * Transition end event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onTransitionEnd = undefined;
+
+                        /**
+                         * Transition run event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onTransitionRun = undefined;
+
+                        /**
+                         * Auxillary click event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onAuxClick = undefined;
+
+                        /**
+                         * Click event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onClick = undefined;
+
+                        /**
+                         * Double click event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onDblClick = undefined;
+
+                        /**
+                         * Mousedown event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onMouseDown = undefined;
+
+                        /**
+                         * Mouse enter event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onMouseEnter = undefined;
+
+                        /**
+                         * Mouse leave event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onMouseLeave = undefined;
+
+                        /**
+                         * Mouse move event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onMouseMove = undefined;
+
+                        /**
+                         * Mouseover event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onMouseOver = undefined;
+
+                        /**
+                         * Mouseout event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onMouseOut = undefined;
+
+                        /**
+                         * Mouseup event
+                         * @protected
+                         * @instance
+                         * @returns
+                         */
+                        _this2.onMouseUp = undefined;
 
                         /**
                          * Binds event listeners event
@@ -1214,233 +1392,24 @@ module.exports =
                             _this2._eventListener(element.removeEventListener);
                         };
 
-                        /**
-                         * Focus event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onFocus = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Blur event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onBlur = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Focus in event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onFocusIn = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Focus out event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onFocusOut = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Animation start event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onAnimationStart = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Animation cancel event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onAnimationCancel = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Animation end event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onAnimationEnd = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Animation iteration event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onAnimationIteration = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Transition start event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onTransitionStart = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Transition cancel event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onTransitionCancel = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Transition end event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onTransitionEnd = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Transition run event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onTransitionRun = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Auxillary click event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onAuxClick = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Click event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onClick = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Double click event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onDblClick = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Mousedown event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onMouseDown = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Mouse enter event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onMouseEnter = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Mouse leave event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onMouseLeave = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Mouse move event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onMouseMove = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Mouseover event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onMouseOver = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Mouseout event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onMouseOut = function () {
-                            return undefined;
-                        };
-
-                        /**
-                         * Mouseup event
-                         * @protected
-                         * @instance
-                         * @returns
-                         */
-                        _this2.onMouseUp = function () {
-                            return undefined;
-                        };
-
                         _this2._eventListener = function (eventListener) {
-                            for (var _i2 = 0, _Object$entries = Object.entries(_this2._events()); _i2 < _Object$entries.length; _i2++) {
-                                var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
-                                    event = _Object$entries$_i[0],
-                                    callback = _Object$entries$_i[1];
+                            var _iterator2 = _createForOfIteratorHelper(_eventstools_1.default(_this2._events())),
+                                _step2;
 
-                                eventListener(event, callback);
+                            try {
+                                for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                                    var _step2$value = _slicedToArray(_step2.value, 2),
+                                        event = _step2$value[0],
+                                        callback = _step2$value[1];
+
+                                    if (callback !== undefined) {
+                                        eventListener(event, callback);
+                                    }
+                                }
+                            } catch (err) /* istanbul ignore next */ {
+                                _iterator2.e(err);
+                            } finally /* istanbul ignore next */ {
+                                _iterator2.f();
                             }
                         };
 
@@ -1494,6 +1463,42 @@ module.exports =
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
              * @version 1.7.0
+             * @package
+             */
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports.eventsList = void 0;
+
+            exports.eventsList = function (events) {
+                var res = [];
+
+                for (var _i2 = 0, _Object$keys2 = Object.keys(events); _i2 < _Object$keys2.length; _i2++) {
+                    var key = _Object$keys2[_i2];
+
+                    res.push([key, events[key]]);
+                }
+
+                return res;
+            };
+
+            exports.default = exports.eventsList;
+
+            /***/
+        },
+
+        /* 5 */
+        /***/
+        function (module, exports, __webpack_require__) {
+
+
+            /**
+             * DeStagnate
+             * A simple, ReactJS inspired library to create dynamic components within static sites easier
+             * @copyright Copyright (C) 2020 Luke Zhang
+             * @author Luke Zhang luke-zhang-04.github.io
+             * @license MIT
+             * @version 1.7.0
              * @exports Preset - base for a component
              * @package
              */
@@ -1507,11 +1512,11 @@ module.exports =
                 value: true
             });
 
-            var createDSComponent_1 = __importDefault(__webpack_require__(5)),
+            var createDSComponent_1 = __importDefault(__webpack_require__(6)),
 
-                createElement_1 = __importDefault(__webpack_require__(6)),
+                createElement_1 = __importDefault(__webpack_require__(7)),
 
-                createElementNS_1 = __importDefault(__webpack_require__(9)),
+                createElementNS_1 = __importDefault(__webpack_require__(10)),
 
                 createRef_1 = __importDefault(__webpack_require__(1)),
                 /* istanbul ignore next */
@@ -1708,7 +1713,7 @@ module.exports =
             /***/
         },
 
-        /* 5 */
+        /* 6 */
         /***/
         function (module, exports, __webpack_require__) {
 
@@ -1756,7 +1761,7 @@ module.exports =
             /***/
         },
 
-        /* 6 */
+        /* 7 */
         /***/
         function (module, exports, __webpack_require__) {
 
@@ -1779,7 +1784,7 @@ module.exports =
             });
             exports.createElement = void 0;
 
-            var _createElementTools_1 = __webpack_require__(7);
+            var _createElementTools_1 = __webpack_require__(8);
 
             /**
              * Creates an HTML Element
@@ -1818,7 +1823,7 @@ module.exports =
             /***/
         },
 
-        /* 7 */
+        /* 8 */
         /***/
         function (module, exports, __webpack_require__) {
 
@@ -1845,7 +1850,7 @@ module.exports =
 
             var _1 = __importDefault(__webpack_require__(0)),
 
-                _url_1 = __importDefault(__webpack_require__(8));
+                _url_1 = __importDefault(__webpack_require__(9));
 
             /**
              * Binds children to element
@@ -1859,10 +1864,10 @@ module.exports =
                 var ns = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
                 if (props) {
-                    for (var _i3 = 0, _Object$entries2 = Object.entries(props); _i3 < _Object$entries2.length; _i3++) {
-                        var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i3], 2),
-                            key = _Object$entries2$_i[0],
-                            val = _Object$entries2$_i[1];
+                    for (var _i3 = 0, _Object$entries = Object.entries(props); _i3 < _Object$entries.length; _i3++) {
+                        var _Object$entries$_i = _slicedToArray(_Object$entries[_i3], 2),
+                            key = _Object$entries$_i[0],
+                            val = _Object$entries$_i[1];
 
                         if (typeof val === "string" || typeof val === "number") {
                             if (key === "innerHTML") {
@@ -1890,12 +1895,12 @@ module.exports =
             exports.unpackChildren = function (children) {
                 var newChildren = [],
 
-                    _iterator2 = _createForOfIteratorHelper(children),
-                    _step2;
+                    _iterator3 = _createForOfIteratorHelper(children),
+                    _step3;
 
                 try {
-                    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                        var child = _step2.value;
+                    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                        var child = _step3.value;
 
                         if (_typeof(child) === "object" && child instanceof Array) {
                             newChildren.push.apply(newChildren, _toConsumableArray(exports.unpackChildren(child)));
@@ -1904,9 +1909,9 @@ module.exports =
                         }
                     }
                 } catch (err) /* istanbul ignore next */ {
-                    _iterator2.e(err);
+                    _iterator3.e(err);
                 } finally /* istanbul ignore next */ {
-                    _iterator2.f();
+                    _iterator3.f();
                 }
 
                 return newChildren;
@@ -1922,19 +1927,19 @@ module.exports =
             exports.bindChildren = function (element, children) {
                 if (children !== null && children !== undefined) {
                     if (children instanceof Array) {
-                        var _iterator3 = _createForOfIteratorHelper(children),
-                            _step3;
+                        var _iterator4 = _createForOfIteratorHelper(children),
+                            _step4;
 
                         try {
-                            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-                                var child = _step3.value;
+                            for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+                                var child = _step4.value;
 
                                 exports.bindChildren(element, child);
                             }
                         } catch (err) /* istanbul ignore next */ {
-                            _iterator3.e(err);
+                            _iterator4.e(err);
                         } finally /* istanbul ignore next */ {
-                            _iterator3.f();
+                            _iterator4.f();
                         }
                     } else if (typeof children === "string" || typeof children === "number") {
                         element.innerHTML = children.toString();
@@ -1961,7 +1966,7 @@ module.exports =
             /***/
         },
 
-        /* 8 */
+        /* 9 */
         /***/
         function (module, exports, __webpack_require__) {
 
@@ -1985,7 +1990,7 @@ module.exports =
             /***/
         },
 
-        /* 9 */
+        /* 10 */
         /***/
         function (module, exports, __webpack_require__) {
 
@@ -2004,7 +2009,7 @@ module.exports =
             });
             exports.createElementNS = void 0;
 
-            var _createElementTools_1 = __webpack_require__(7);
+            var _createElementTools_1 = __webpack_require__(8);
 
             /**
              * Creates a child element to deStagnate
