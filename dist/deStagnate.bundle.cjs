@@ -689,15 +689,11 @@ module.exports = (function (modules) {
                      * @instance
                      * @readonly
                      * @param parent - parent element to mount with; optional
-                     * @param shouldBindEvents - if event listeners shoud be bound `true` by default
-                     * Increases performance if turned off
                      * @returns - result of append child to parent element
                      */
 
 
                     _this.mountComponent = function (parent) {
-                        var shouldBindEvents = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-
                         try {
                             if (parent !== undefined) {
                                 _this.parent = parent;
@@ -717,9 +713,7 @@ module.exports = (function (modules) {
                                 throw new Error("ERROR: code 5. See ".concat(_url_1.default, "."));
                             }
 
-                            if (shouldBindEvents) {
-                                _this.bindEventListeners(_this._parent);
-                            }
+                            _this.bindEventListeners(_this._parent);
 
                             _this._didMount = true;
 
@@ -1327,13 +1321,13 @@ module.exports = (function (modules) {
                         return undefined;
                     };
 
-                    _this2._eventListener = function (el) {
+                    _this2._eventListener = function (eventListener) {
                         for (var _i2 = 0, _Object$entries = Object.entries(_this2._events()); _i2 < _Object$entries.length; _i2++) {
                             var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
                                 event = _Object$entries$_i[0],
                                 callback = _Object$entries$_i[1];
 
-                            el(event, callback);
+                            eventListener(event, callback);
                         }
                     };
 

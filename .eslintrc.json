@@ -373,7 +373,7 @@
 
                 "no-dupe-class-members": "off",
                 "@typescript-eslint/no-dupe-class-members": ["error"],
-                
+
                 "@typescript-eslint/no-extra-non-null-assertion": "error",
                 "@typescript-eslint/no-non-null-assertion": "off",
 

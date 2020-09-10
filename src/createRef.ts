@@ -8,7 +8,7 @@
  * @exports createRef create a reference to a nested component
  */
 type DeStagnate = import(".").default
- 
+
 export interface Ref<T = DeStagnate | HTMLElement> {
     current: T | null,
 }

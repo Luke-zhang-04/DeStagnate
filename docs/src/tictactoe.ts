@@ -131,7 +131,7 @@ const mountTicTacToe = (): void => {
     if (tictactoeParent) {
         const tictactoe = new TicTacToe(tictactoeParent),
             resetBtn = document.getElementById("nested-reset-btn")
-    
+
         if (resetBtn) {
             resetBtn.addEventListener("click", () => {
                 tictactoe.unmount()
@@ -139,7 +139,7 @@ const mountTicTacToe = (): void => {
                 mountTicTacToe()
             })
         }
-    
+
         tictactoe.mount()
     }
 }

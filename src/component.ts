@@ -281,13 +281,10 @@ export default abstract class DeStagnate
      * @instance
      * @readonly
      * @param parent - parent element to mount with; optional
-     * @param shouldBindEvents - if event listeners shoud be bound `true` by default
-     * Increases performance if turned off
      * @returns - result of append child to parent element
      */
     public readonly mountComponent = (
-        parent?: HTMLElement,
-        shouldBindEvents = true,
+        parent?: HTMLElement
     ): HTMLElement | HTMLElement[] | Element | Element[] | Error => {
         try {
             if (parent !== undefined) {
@@ -308,9 +305,7 @@ export default abstract class DeStagnate
                 throw new Error(`ERROR: code 5. See ${url}.`)
             }
 
-            if (shouldBindEvents) {
-                this.bindEventListeners(this._parent)
-            }
+            this.bindEventListeners(this._parent)
 
             this._didMount = true
             this.componentDidMount()

@@ -123,7 +123,7 @@ if (process.argv.includes("jsxRef")) {
         }
 
         const formattedIndex = index.replace("*/", "*/\n/// <reference types=\"../jsx\" />\n")
-        
+
         await writeFile(`./lib/${file}`, formattedIndex)
     }
 

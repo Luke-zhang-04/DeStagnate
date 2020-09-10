@@ -22,7 +22,7 @@ class ComponentA extends DeStagnate.default {
         }
     }
 
-    render = () => createElement("div", {class: "ComponentA"}, 
+    render = () => createElement("div", {class: "ComponentA"},
         this.state.value
     )
 
@@ -64,7 +64,7 @@ module.exports.test = (document, window) => {
                 "A"
             )
         })
-    
+
         it("Should equal B", () => {
             nestedComponent.updateNestedComponent()
 
@@ -73,7 +73,7 @@ module.exports.test = (document, window) => {
                 "B"
             )
         })
-    
+
         it("Should equal C", () => {
             nestedComponent.updateNestedComponent("C")
             nestedComponent.forceUpdate()

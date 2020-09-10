@@ -11,7 +11,7 @@
 
 import BaseComponent from "./_base"
 
-type El = (
+type E = (
     type: string,
     listener: EventListenerOrEventListenerObject,
     options?: boolean | AddEventListenerOptions,
@@ -170,7 +170,7 @@ export default abstract class Events extends BaseComponent {
      * @returns
      */
     protected onTransitionRun = (): void => undefined
-    
+
 
     /**
      * Auxillary click event
@@ -252,9 +252,9 @@ export default abstract class Events extends BaseComponent {
      */
     protected onMouseUp = (): void => undefined
 
-    private _eventListener = (el: El): void => {
+    private _eventListener = (eventListener: E): void => {
         for (const [event, callback] of Object.entries(this._events())) {
-            el(event, callback)
+            eventListener(event, callback)
         }
     }
 
