@@ -60,7 +60,7 @@ build() {
     ./build.mjs ./tests/deStagnate.bundle.js &
 
     wait
-    
+
     header="/**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -74,8 +74,8 @@ build() {
 \"use strict\";"
 
     minHeader="/**
- * Destagnate v1.7.0 
- * @copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io 
+ * Destagnate v1.7.0
+ * @copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io
  * @license MIT
  * @file DeStagnate production bundle
  */
@@ -138,7 +138,7 @@ watch() {
     while true; do
         fileChange2=$(find lib/ -type f -exec md5 {} \;)
 
-        if [[ "$fileChange1" != "$fileChange2" ]] ; then           
+        if [[ "$fileChange1" != "$fileChange2" ]] ; then
             buildDev
             clear
             printf "Compiled successfully!\n\n"
@@ -160,7 +160,11 @@ elif [[ "$1" == "--docs" ]]; then
     cd docs || return
     yarn sass
     cd .. || return
-    npx webpack --config webpack.docs.config.js --mode none
+
+    npx webpack --config webpack.docs.config.js --mode none &
+    npx typedoc &
+
+    wait
 else
     build
 fi

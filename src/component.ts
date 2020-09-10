@@ -12,6 +12,7 @@
 /* eslint-disable max-lines */
 
 import Base from "./_events"
+import url from "./_url"
 
 type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
 
@@ -83,7 +84,7 @@ export default abstract class DeStagnate
             !shouldSkipParentCheck &&
             this._strict
         ) {
-            this.componentDidCatch(new Error(`ERR: Avoid using this ${parent.tagName.toLowerCase()} as element parent, as all elements within this ${parent.tagName.toLowerCase()} will be removed on re-render. To disable this, pass in true as a third parameter`))
+            this.componentDidCatch(new Error(`ERROR: code 1. See ${url}. Params: ${parent.tagName.toLowerCase()}`))
         }
 
         this._parent = parent
@@ -149,10 +150,10 @@ export default abstract class DeStagnate
     protected set state (obj: State) {
         if (this._didSetInitialState && this._strict) {
             this.componentDidCatch(
-                new Error("Do not mutate state directly. Use setState instead.")
+                new Error(`ERROR: code 2. See ${url}.`)
             )
             // eslint-disable-next-line
-            this.componentDidWarn("DeStagnate protects you from mutating the entire state object. Avoid mutating state directly")
+            this.componentDidWarn(`ERROR: code 2. See ${url}.`)
             this.setState(obj)
         } else {
             this._state = obj
@@ -181,7 +182,7 @@ export default abstract class DeStagnate
             element.childElementCount > 0 &&
             this._strict
         ) {
-            this.componentDidWarn(`WARN: Avoid using this ${element.tagName.toLowerCase()} as element parent, as all elements within this ${element.tagName.toLowerCase()} will be removed on re-render. If this was intentional, turn strict off before setting parent.`)
+            this.componentDidCatch(new Error(`ERROR: code 1. See ${url}. Params: ${element.tagName.toLowerCase()}`))
         }
 
         this._parent = element
@@ -218,7 +219,7 @@ export default abstract class DeStagnate
             this.componentDidUpdate()
 
             if (this._parent === undefined) {
-                throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.")
+                throw new Error(`ERROR: code 3. See ${url}.`)
             }
 
             this.getSnapshotBeforeUpdate(
@@ -247,7 +248,7 @@ export default abstract class DeStagnate
             this.componentWillUpdate()
 
             if (this._parent === undefined) {
-                throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.")
+                throw new Error(`ERROR: code 3. See ${url}.`)
             }
 
             if (this._strict) {
@@ -294,7 +295,7 @@ export default abstract class DeStagnate
             }
 
             if (this._parent === undefined) {
-                throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.")
+                throw new Error(`ERROR: code 3. See ${url}.`)
             }
 
             const component = this.render()
@@ -304,7 +305,7 @@ export default abstract class DeStagnate
             this.componentWillMount()
 
             if (component === null) {
-                throw new Error("Expected render method to be included in component class, no render method found, or render returned an empty array")
+                throw new Error(`ERROR: code 5. See ${url}.`)
             }
 
             if (shouldBindEvents) {
@@ -327,7 +328,7 @@ export default abstract class DeStagnate
             return err as Error
         }
     }
-    
+
     /**
      * Initial mounting to be manually called
      * @public
@@ -338,7 +339,7 @@ export default abstract class DeStagnate
     public readonly mount = this.mountComponent
 
     /**
-     * Unmounting to be manually called 
+     * Unmounting to be manually called
      * @public
      * @instance
      * @readonly
@@ -347,7 +348,7 @@ export default abstract class DeStagnate
     public readonly unmountComponent = (): void => {
         try {
             if (this._parent === undefined) {
-                this.componentDidWarn("No parent was set. Component unmounted from nothing.")
+                this.componentDidWarn(`WARN: code 4. See ${url}.`)
 
                 return
             }
@@ -355,7 +356,7 @@ export default abstract class DeStagnate
             this.componentWillUnmount()
 
             this.unbindEventListeners(this._parent)
-    
+
             this._removeChildren()
             this._didMount = false
         } catch (err) /* istanbul ignore next */ {
@@ -363,9 +364,9 @@ export default abstract class DeStagnate
         }
 
     }
-    
+
     /**
-     * Unmounting to be manually called 
+     * Unmounting to be manually called
      * @public
      * @instance
      * @readonly
@@ -382,7 +383,7 @@ export default abstract class DeStagnate
      */
     private _removeChildren = (): void => {
         if (this._parent === undefined) {
-            throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.")
+            throw new Error(`ERROR: code 3. See ${url}.`)
         }
 
         while (this._parent.firstChild) {
@@ -415,7 +416,7 @@ export default abstract class DeStagnate
         for (const key of Object.keys(obj)) {
             if (!Object.keys(this.state).includes(key)) {
                 // eslint-disable-next-line
-                this.componentDidWarn(`WARN: New key (${key}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(this.state))}. Declare all state variables in constructor as a best practice. Did you misspell a key?`)
+                this.componentDidWarn(`WARN: code 6. See ${url}. Params: ${key}, ${JSON.stringify(Object.keys(this.state))}.`)
             }
         }
     }

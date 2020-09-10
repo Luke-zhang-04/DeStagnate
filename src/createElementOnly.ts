@@ -11,6 +11,8 @@
 // eslint-disable-next-line
 // <reference types="../jsx" />
 
+import url from "./_url"
+
 /* eslint-disable one-var, @typescript-eslint/no-explicit-any */
 
 type ChildrenFlatArrayType = (HTMLElement
@@ -65,7 +67,7 @@ const _bindProps = (
                     )
                 }
             } else {
-                console.warn(`WARN: Invalid prop type "${typeof(val)}" for key "${key}". Skipping prop.`)
+                console.warn(`WARN: Code 7. See ${url}. Params: ${typeof(val)}, ${key}`)
             }
         }
     }

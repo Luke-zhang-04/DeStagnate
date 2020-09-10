@@ -9,5 +9,6 @@ module.exports = [
     ["ticTacToe.html", "TicTacToe example"],
     ["ticTacToe.html", "Nested component example"],
     ["using-jsx.html", "Using JSX"],
-    ["docs/", "Documentation"]
+    ["docs/", "Documentation"],
+    ["error-codes.html", "Errors Reference"],
 ]
