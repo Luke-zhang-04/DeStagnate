@@ -20,7 +20,7 @@ class Calculator extends DeStagnate {
     _appendState = (text, append) => ({
         calculation: this.state.calculation + (append ? append : text),
     })
-    
+
     /**
      * Create a calculator button
      * @param {string} text - text of button
@@ -50,7 +50,7 @@ class Calculator extends DeStagnate {
      * @type {Array.<HTMLElement>}
      */
     _numBtns = [
-        <div class="calc-btns row"> 
+        <div class="calc-btns row">
             {["7", "8", "9", ["x", "*"]].map((val) => (
                 this._calcButton(
                     val instanceof Array ? val[0] : val,
@@ -58,7 +58,7 @@ class Calculator extends DeStagnate {
                 )
             ))}
         </div>,
-        <div class="calc-btns row"> 
+        <div class="calc-btns row">
             {["4", "5", "6", "-"].map((val) => (
                 this._calcButton(
                     val instanceof Array ? val[0] : val,
@@ -66,7 +66,7 @@ class Calculator extends DeStagnate {
                 )
             ))}
         </div>,
-        <div class="calc-btns row"> 
+        <div class="calc-btns row">
             {["1", "2", "3", "+"].map((val) => (
                 this._calcButton(
                     val instanceof Array ? val[0] : val,

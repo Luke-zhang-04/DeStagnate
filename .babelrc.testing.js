@@ -2,5 +2,5 @@
 
 module.exports = {
     presets: ["@babel/preset-env"],
-    shouldPrintComment: (val) => true,
+    shouldPrintComment: () => true,
 }

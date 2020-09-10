@@ -8,6 +8,7 @@
         "outDir": "./docs/lib",
         "target": "ES5",
         "declaration": false,
+        "noEmitOnError": false,
     },
     "include": ["docs/src/", "docs/*.ts", "docs/*.tsx"]
 }

@@ -10,3 +10,4 @@ src/*.js
 ./*.bundle.*.js
 ./lib/*
 docs/
+dist/

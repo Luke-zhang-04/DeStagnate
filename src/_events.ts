@@ -9,44 +9,190 @@
  * @package
  */
 
+import objectEntries, {EventListener, EventMember, EventsList} from "./_eventstools"
 import BaseComponent from "./_base"
 
-type El = (
-    type: string,
-    listener: EventListenerOrEventListenerObject,
-    options?: boolean | AddEventListenerOptions,
-)=> void
-
-interface EventsList {
-    focus: EventListenerOrEventListenerObject,
-    blur: EventListenerOrEventListenerObject,
-    focusin: EventListenerOrEventListenerObject,
-    focusout: EventListenerOrEventListenerObject,
-
-    animationstart: EventListenerOrEventListenerObject,
-    animationcancel: EventListenerOrEventListenerObject,
-    animationend: EventListenerOrEventListenerObject,
-    animationiteration: EventListenerOrEventListenerObject,
-
-    transitionstart: EventListenerOrEventListenerObject,
-    transitioncancel: EventListenerOrEventListenerObject,
-    transitionend: EventListenerOrEventListenerObject,
-    transitionrun: EventListenerOrEventListenerObject,
-
-    auxclick: EventListenerOrEventListenerObject,
-    click: EventListenerOrEventListenerObject,
-    dblclick: EventListenerOrEventListenerObject,
-    mousedown: EventListenerOrEventListenerObject,
-    mouseenter: EventListenerOrEventListenerObject,
-    mouseleave: EventListenerOrEventListenerObject,
-    mousemove: EventListenerOrEventListenerObject,
-    mouseover: EventListenerOrEventListenerObject,
-    mouseout: EventListenerOrEventListenerObject,
-    mouseup: EventListenerOrEventListenerObject,
-}
 
 /* istanbul ignore next */
 export default abstract class Events extends BaseComponent {
+
+    /**
+     * Focus event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onFocus: EventMember = undefined
+
+    /**
+     * Blur event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onBlur: EventMember = undefined
+
+    /**
+     * Focus in event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onFocusIn: EventMember = undefined
+
+    /**
+     * Focus out event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onFocusOut: EventMember = undefined
+
+    /**
+     * Animation start event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onAnimationStart: EventMember = undefined
+
+    /**
+     * Animation cancel event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onAnimationCancel: EventMember = undefined
+
+    /**
+     * Animation end event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onAnimationEnd: EventMember = undefined
+
+    /**
+     * Animation iteration event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onAnimationIteration: EventMember = undefined
+
+
+    /**
+     * Transition start event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onTransitionStart: EventMember = undefined
+
+    /**
+     * Transition cancel event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onTransitionCancel: EventMember = undefined
+
+    /**
+     * Transition end event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onTransitionEnd: EventMember = undefined
+
+    /**
+     * Transition run event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onTransitionRun: EventMember = undefined
+
+
+    /**
+     * Auxillary click event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onAuxClick: EventMember = undefined
+
+    /**
+     * Click event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onClick: EventMember = undefined
+
+    /**
+     * Double click event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onDblClick: EventMember = undefined
+
+    /**
+     * Mousedown event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onMouseDown: EventMember = undefined
+
+    /**
+     * Mouse enter event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onMouseEnter: EventMember = undefined
+
+    /**
+     * Mouse leave event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onMouseLeave: EventMember = undefined
+
+    /**
+     * Mouse move event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onMouseMove: EventMember = undefined
+
+    /**
+     * Mouseover event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onMouseOver: EventMember = undefined
+
+    /**
+     * Mouseout event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onMouseOut: EventMember = undefined
+
+    /**
+     * Mouseup event
+     * @protected
+     * @instance
+     * @returns
+     */
+    protected onMouseUp: EventMember = undefined
 
     /**
      * Binds event listeners event
@@ -74,187 +220,11 @@ export default abstract class Events extends BaseComponent {
         this._eventListener(element.removeEventListener)
     }
 
-    /**
-     * Focus event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onFocus = (): void => undefined
-
-    /**
-     * Blur event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onBlur = (): void => undefined
-
-    /**
-     * Focus in event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onFocusIn = (): void => undefined
-
-    /**
-     * Focus out event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onFocusOut = (): void => undefined
-
-    /**
-     * Animation start event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onAnimationStart = (): void => undefined
-
-    /**
-     * Animation cancel event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onAnimationCancel = (): void => undefined
-
-    /**
-     * Animation end event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onAnimationEnd = (): void => undefined
-
-    /**
-     * Animation iteration event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onAnimationIteration = (): void => undefined
-
-
-    /**
-     * Transition start event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onTransitionStart = (): void => undefined
-
-    /**
-     * Transition cancel event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onTransitionCancel = (): void => undefined
-
-    /**
-     * Transition end event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onTransitionEnd = (): void => undefined
-
-    /**
-     * Transition run event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onTransitionRun = (): void => undefined
-    
-
-    /**
-     * Auxillary click event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onAuxClick = (): void => undefined
-
-    /**
-     * Click event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onClick = (): void => undefined
-
-    /**
-     * Double click event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onDblClick = (): void => undefined
-
-    /**
-     * Mousedown event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onMouseDown = (): void => undefined
-
-    /**
-     * Mouse enter event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onMouseEnter = (): void => undefined
-
-    /**
-     * Mouse leave event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onMouseLeave = (): void => undefined
-
-    /**
-     * Mouse move event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onMouseMove = (): void => undefined
-
-    /**
-     * Mouseover event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onMouseOver = (): void => undefined
-
-    /**
-     * Mouseout event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onMouseOut = (): void => undefined
-
-    /**
-     * Mouseup event
-     * @protected
-     * @instance
-     * @returns
-     */
-    protected onMouseUp = (): void => undefined
-
-    private _eventListener = (el: El): void => {
-        for (const [event, callback] of Object.entries(this._events())) {
-            el(event, callback)
+    private _eventListener = (eventListener: EventListener): void => {
+        for (const [event, callback] of objectEntries(this._events())) {
+            if (callback !== undefined) {
+                eventListener(event, callback)
+            }
         }
     }
 

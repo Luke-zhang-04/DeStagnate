@@ -8,10 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Added
-- export Ref interface from index.ts [#26](https://github.com/Luke-zhang-04/DeStagnate/pull/26)
+- add es6 bundles [230a5c6](https://github.com/Luke-zhang-04/DeStagnate/commit/230a5c6)
 - feat: JSX Typings [#28](https://github.com/Luke-zhang-04/DeStagnate/pull/28)
+- export Ref interface from index.ts [#26](https://github.com/Luke-zhang-04/DeStagnate/pull/26)
 
 ### Changed
+- feat: only bind necessary event listeners [#34](https://github.com/Luke-zhang-04/DeStagnate/pull/34)
 - Decreased bundle size by replacing long error messages with references to the documentation site [#33](https://github.com/Luke-zhang-04/DeStagnate/pull/33)
 
 ### Removed
