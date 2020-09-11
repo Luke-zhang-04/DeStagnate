@@ -17,7 +17,8 @@ const jsdom = require("jsdom"),
     elementCreating = require("./cases/createElement").test,
     elistener = require("./cases/eventListener.js").test,
     noRender = require("./cases/noRender.js").test,
-    nestedComponents = require("./cases/nestedComponents").test
+    nestedComponents = require("./cases/nestedComponents").test,
+    functionComponents = require("./cases/functionComponent").test
 
 const {JSDOM} = jsdom,
     html = fs.readFileSync(`${process.cwd()}/tests/test.html`, "utf-8"),
@@ -33,3 +34,4 @@ describe("CreateElement", () => elementCreating(document))
 describe("Event listener", () => elistener(document, dom.window))
 describe("No Render", () => noRender(document))
 describe("Nested components", () => nestedComponents(document, dom.window))
+describe("Function components", () => functionComponents(document))

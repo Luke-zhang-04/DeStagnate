@@ -36,13 +36,13 @@ module.exports.test = (document, window) => {
     })
 
     it("Should have called event listener", () => {
-        assert.equal(
+        assert.strictEqual(
             false,
             document.getElementById("_EVENTLISTENERTEST").dispatchEvent(event),
         )
     })
 
     it("Event listener should have fired", () => {
-        assert.equal(true, clicked)
+        assert.strictEqual(true, clicked)
     })
 }
