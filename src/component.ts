@@ -11,8 +11,8 @@
  */
 /* eslint-disable max-lines */
 
-import Base from "./_events"
-import url from "./_url"
+import Base from "./private/_events"
+import url from "./private/_url"
 
 type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
 

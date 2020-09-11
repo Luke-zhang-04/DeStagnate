@@ -73,6 +73,7 @@ build() {
 
     wait
 
+    printf "${BICyan}Running ${Yellow}build.mjs${BICyan} on ${Red}dist ${Green}bundles\n"
     ./build.mjs ./dist/deStagnate.bundle.js &
     ./build.mjs ./dist/deStagnate.bundle.cjs &
     ./build.mjs ./dist/es6/deStagnate.bundle.js &
@@ -81,6 +82,7 @@ build() {
 
     wait
 
+    printf "${BICyan}Adding ${White}license headers${BICyan} to ${Red}dist ${Green}bundles\n"
     header="/**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -90,8 +92,7 @@ build() {
  * @version 1.7.0
  * @file DeStagnate development bundle
  */
-
-\"use strict\";"
+"
 
     minHeader="/**
  * Destagnate v1.7.0
@@ -131,13 +132,16 @@ $(cat ./tests/deStagnate.bundle.js)" > ./tests/deStagnate.bundle.js &
 
     wait
 
+    printf "${BICyan}Running ${Yellow}build.mjs${BICyan} on ${Red}lib\n"
     for d in ./lib/* ; do
-        if [[ ${d##*.} != "map" ]]; then
-            ./build.mjs "$d" &
+        if [[ -d ${d} ]]; then
+            for f in "$d/"* ; do
+                ./build.mjs "$f"
+            done
+        else
+            ./build.mjs "$d"
         fi
     done
-
-    ./build.mjs jsxRef &
 
     wait
 
@@ -157,8 +161,6 @@ buildDev() {
     printf "${BIBlue}Packing ${Yellow}./lib/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
     npx webpack &
     npx webpack --config webpack.docs.config.js --mode none &
-
-    ./build.mjs jsxRef &
 
     wait
 }

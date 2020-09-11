@@ -14,7 +14,7 @@ import {
     bindChildren as _bindChildren,
     bindProps as _bindProps,
     unpackChildren as _unpackChildren
-} from "./_createElementTools"
+} from "./private/_createElementUtils"
 
 /**
  * Creates a child element to deStagnate
@@ -22,7 +22,7 @@ import {
  * @param tagName - name of HTML element
  * @param props - element properties, such as class, innerHTML, id, style, etc
  * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - rest parameter of children
+ * @param childrenRest - rest parameter of children
  * @returns html element
  */
 export const createElementNS = (
@@ -30,7 +30,7 @@ export const createElementNS = (
     tagName: keyof SVGElementEventMap | string,
     props?: {[key: string]: string | number},
     children?: ChildrenType,
-    ...childrenArgs: ChildrenArrayType
+    ...childrenRest: ChildrenArrayType
 ): Element => {
     const element = document.createElementNS(namespaceURI, tagName)
 
@@ -38,14 +38,14 @@ export const createElementNS = (
 
     let _children: ChildrenType | undefined = children
 
-    if (children && childrenArgs) {
+    if (children && childrenRest) {
         if (typeof(children) === "object" && children instanceof Array) {
             _children = [
                 ..._unpackChildren(children),
-                ..._unpackChildren(childrenArgs),
+                ..._unpackChildren(childrenRest),
             ]
         } else {
-            _children = [children, ..._unpackChildren(childrenArgs)]
+            _children = [children, ..._unpackChildren(childrenRest)]
         }
     }
 

@@ -7,9 +7,8 @@
  * @version 1.7.0
  * @exports createElement function for DOM manipulation
  */
-// Commented this out to make tsc happy
 // eslint-disable-next-line
-// <reference types="../jsx" />
+/// <reference path="./jsx.ts" />
 
 import {
     ChildrenArrayType,
@@ -18,8 +17,13 @@ import {
     bindChildren as _bindChildren,
     bindProps as _bindProps,
     unpackChildren as _unpackChildren
-} from "./_createElementTools"
+} from "./private/_createElementUtils"
+import type JSX from "./jsx"
 import type {Ref} from "./createRef"
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
+
+type PropsType = {[key: string]: string | number | Element | Ref | EventFunc}
+    | null
 
 /**
  * Creates an HTML Element
@@ -29,16 +33,54 @@ import type {Ref} from "./createRef"
  * @param childrenArgs - rest parameter of children
  * @returns element
  */
-export const createElement = <T extends keyof HTMLElementTagNameMap>(
-    tagName: T,
-    props?: {[key: string]: string | number | Element | Ref | EventFunc} | null,
+export function createElement<T extends keyof HTMLElementTagNameMap> (
+    tagNameOrComponent: T,
+    props?: PropsType,
     children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
-): HTMLElementTagNameMap[T] => {
-    const element = document.createElement(tagName)
+): HTMLElementTagNameMap[T]
 
-    _bindProps(element, props)
+/**
+ * Creates an HTML Element
+ * @param component - function component
+ * @param props - props of function component
+ * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+ * @param childrenArgs - rest parameter of children
+ * @returns element
+ */
+export function createElement<
+    Props extends Record<string, unknown>,
+    Returns extends HTMLElement | JSX.Element,
+    Children extends ChildrenType | ChildrenArrayType,
+> (
+    tagNameOrComponent: (props?: Props, children?: Children)=> Returns,
+    props?: Props,
+    children?: ChildrenType,
+    ...childrenArgs: ChildrenArrayType
+): Returns
 
+/**
+ *
+ * @param tagNameOrComponent - name of HTML element or function component
+ * @param props - props of element or component
+ * 1. If `tagNameOrComponent` is tagname, props are element properties, such as class, innerHTML, id, style, etc
+ * 2. If `tagNameOrComponent` is a function, props are that functions parameters
+ * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+ * @param childrenArgs - rest parameter for children
+ * @returns element
+ */
+export function createElement<
+    T extends string | Record<string, unknown>,
+    Returns = void,
+> (
+    tagNameOrComponent: T | ((
+        props?: T,
+        children?: ChildrenType,
+    )=> Returns),
+    props?: PropsType | T,
+    children?: ChildrenType,
+    ...childrenArgs: ChildrenArrayType
+): HTMLElement | Returns | Error {
     let _children: ChildrenType | undefined = children
 
     if (children && childrenArgs) {
@@ -52,9 +94,19 @@ export const createElement = <T extends keyof HTMLElementTagNameMap>(
         }
     }
 
-    _bindChildren(element, _children)
+    if (typeof(tagNameOrComponent) === "string") {
+        const element = document.createElement(tagNameOrComponent)
 
-    return element
+        _bindProps(element, props as PropsType)
+
+        _bindChildren(element, _children)
+
+        return element
+    } else if (typeof(tagNameOrComponent) === "function") {
+        return tagNameOrComponent(props as T, _children)
+    }
+
+    return Error("tagNameOrComponent is of invalid type.")
 }
 
 export default createElement

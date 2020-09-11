@@ -9,7 +9,7 @@
  * @package
  */
 
-import objectEntries, {EventListener, EventMember, EventsList} from "./_eventstools"
+import objectEntries, {EventListener, EventMember, EventsList} from "./_eventsUtils"
 import BaseComponent from "./_base"
 
 

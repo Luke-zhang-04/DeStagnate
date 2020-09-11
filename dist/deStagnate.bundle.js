@@ -9,7 +9,6 @@
  */
 
 "use strict";
-"use strict";
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -188,7 +187,7 @@ var DeStagnate = function (modules) {
    * @param tagName - name of HTML element
    * @param props - element properties, such as class, innerHTML, id, style, etc
    * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-   * @param childrenArgs - rest parameter of children
+   * @param childrenRest - rest parameter of children
    * @returns html element
    */
   exports.createElementNS = createElementNS_1["default"];
@@ -699,7 +698,7 @@ var DeStagnate = function (modules) {
     value: true
   });
 
-  var _eventstools_1 = __importDefault(__webpack_require__(4));
+  var _eventsUtils_1 = __importDefault(__webpack_require__(4));
 
   var _base_1 = __importDefault(__webpack_require__(5));
 
@@ -894,7 +893,7 @@ var DeStagnate = function (modules) {
       };
 
       _this2._eventListener = function (eventListener) {
-        var _iterator2 = _createForOfIteratorHelper(_eventstools_1["default"](_this2._events())),
+        var _iterator2 = _createForOfIteratorHelper(_eventsUtils_1["default"](_this2._events())),
             _step2;
 
         try {
@@ -1027,7 +1026,7 @@ var DeStagnate = function (modules) {
      * @param tagName - name of HTML element
      * @param props - element properties, such as class, innerHTML, id, style, etc
      * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-     * @param childrenArgs - rest parameter of children
+     * @param childrenRest - rest parameter of children
      * @returns html element
      */
     this.createElement = createElement_1["default"];
@@ -1040,7 +1039,7 @@ var DeStagnate = function (modules) {
      * @param tagName - name of HTML element
      * @param props - element properties, such as class, innerHTML, id, style, etc
      * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-     * @param childrenArgs - rest parameter of children
+     * @param childrenRest - rest parameter of children
      * @returns html element
      */
     this.createElementNS = createElementNS_1["default"];
@@ -1151,7 +1150,7 @@ var DeStagnate = function (modules) {
    * @param tagName - name of HTML element
    * @param props - element properties, such as class, innerHTML, id, style, etc
    * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-   * @param childrenArgs - rest parameter of children
+   * @param childrenRest - rest parameter of children
    * @returns html element
    */
   Preset.createElement = createElement_1["default"];
@@ -1164,7 +1163,7 @@ var DeStagnate = function (modules) {
    * @param tagName - name of HTML element
    * @param props - element properties, such as class, innerHTML, id, style, etc
    * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-   * @param childrenArgs - rest parameter of children
+   * @param childrenRest - rest parameter of children
    * @returns html element
    */
   Preset.createElementNS = createElementNS_1["default"];
@@ -1231,20 +1230,18 @@ var DeStagnate = function (modules) {
   });
   exports.createElement = void 0;
 
-  var _createElementTools_1 = __webpack_require__(8);
+  var _createElementUtils_1 = __webpack_require__(8);
   /**
-   * Creates an HTML Element
-   * @param tagName - name of HTML element
-   * @param props - element properties, such as class, innerHTML, id, style, etc
+   *
+   * @param tagNameOrComponent - name of HTML element or function component
+   * @param props - props of element or component
+   * 1. If `tagNameOrComponent` is tagname, props are element properties, such as class, innerHTML, id, style, etc
+   * 2. If `tagNameOrComponent` is a function, props are that functions parameters
    * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-   * @param childrenArgs - rest parameter of children
+   * @param childrenArgs - rest parameter for children
    * @returns element
    */
-  exports.createElement = function (tagName, props, children) {
-    var element = document.createElement(tagName);
-
-    _createElementTools_1.bindProps(element, props);
-
+  function createElement(tagNameOrComponent, props, children) {
     var _children = children;
 
     for (var _len = arguments.length, childrenArgs = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
@@ -1253,18 +1250,29 @@ var DeStagnate = function (modules) {
 
     if (children && childrenArgs) {
       if (children instanceof Array) {
-        _children = [].concat(_toConsumableArray(_createElementTools_1.unpackChildren(children)), _toConsumableArray(_createElementTools_1.unpackChildren(childrenArgs)));
+        _children = [].concat(_toConsumableArray(_createElementUtils_1.unpackChildren(children)), _toConsumableArray(_createElementUtils_1.unpackChildren(childrenArgs)));
       } else {
-        _children = [children].concat(_toConsumableArray(_createElementTools_1.unpackChildren(childrenArgs)));
+        _children = [children].concat(_toConsumableArray(_createElementUtils_1.unpackChildren(childrenArgs)));
       }
     }
 
-    _createElementTools_1.bindChildren(element, _children);
+    if (typeof tagNameOrComponent === "string") {
+      var element = document.createElement(tagNameOrComponent);
 
-    return element;
-  };
+      _createElementUtils_1.bindProps(element, props);
 
-  exports["default"] = exports.createElement;
+      _createElementUtils_1.bindChildren(element, _children);
+
+      return element;
+    } else if (typeof tagNameOrComponent === "function") {
+      return tagNameOrComponent(props, _children);
+    }
+
+    return Error("tagNameOrComponent is of invalid type.");
+  }
+
+  exports.createElement = createElement;
+  exports["default"] = createElement;
 }, function (module, exports, __webpack_require__) {
   "use strict";
   /**
@@ -1287,7 +1295,7 @@ var DeStagnate = function (modules) {
   });
   exports.bindChildren = exports.unpackChildren = exports.bindProps = void 0;
 
-  var _1 = __importDefault(__webpack_require__(0));
+  var __1 = __importDefault(__webpack_require__(0));
 
   var _url_1 = __importDefault(__webpack_require__(9));
   /**
@@ -1377,7 +1385,7 @@ var DeStagnate = function (modules) {
         }
       } else if (typeof children === "string" || typeof children === "number") {
         element.innerText = children.toString();
-      } else if (children instanceof _1["default"]) {
+      } else if (children instanceof __1["default"]) {
         if (!children.didMount && element instanceof window.HTMLElement) {
           children.mount(element);
           return;
@@ -1428,36 +1436,36 @@ var DeStagnate = function (modules) {
   });
   exports.createElementNS = void 0;
 
-  var _createElementTools_1 = __webpack_require__(8);
+  var _createElementUtils_1 = __webpack_require__(8);
   /**
    * Creates a child element to deStagnate
    * @param namespaceURI - namespace uri
    * @param tagName - name of HTML element
    * @param props - element properties, such as class, innerHTML, id, style, etc
    * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-   * @param childrenArgs - rest parameter of children
+   * @param childrenRest - rest parameter of children
    * @returns html element
    */
   exports.createElementNS = function (namespaceURI, tagName, props, children) {
     var element = document.createElementNS(namespaceURI, tagName);
 
-    _createElementTools_1.bindProps(element, props, true);
+    _createElementUtils_1.bindProps(element, props, true);
 
     var _children = children;
 
-    for (var _len2 = arguments.length, childrenArgs = new Array(_len2 > 4 ? _len2 - 4 : 0), _key2 = 4; _key2 < _len2; _key2++) {
-      childrenArgs[_key2 - 4] = arguments[_key2];
+    for (var _len2 = arguments.length, childrenRest = new Array(_len2 > 4 ? _len2 - 4 : 0), _key2 = 4; _key2 < _len2; _key2++) {
+      childrenRest[_key2 - 4] = arguments[_key2];
     }
 
-    if (children && childrenArgs) {
+    if (children && childrenRest) {
       if (_typeof(children) === "object" && children instanceof Array) {
-        _children = [].concat(_toConsumableArray(_createElementTools_1.unpackChildren(children)), _toConsumableArray(_createElementTools_1.unpackChildren(childrenArgs)));
+        _children = [].concat(_toConsumableArray(_createElementUtils_1.unpackChildren(children)), _toConsumableArray(_createElementUtils_1.unpackChildren(childrenRest)));
       } else {
-        _children = [children].concat(_toConsumableArray(_createElementTools_1.unpackChildren(childrenArgs)));
+        _children = [children].concat(_toConsumableArray(_createElementUtils_1.unpackChildren(childrenRest)));
       }
     }
 
-    _createElementTools_1.bindChildren(element, _children);
+    _createElementUtils_1.bindChildren(element, _children);
 
     return element;
   };

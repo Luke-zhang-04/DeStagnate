@@ -1,8 +1,8 @@
-import DeStagnate, {createRef} from "destagnate"
+import DeStagnate, {createRef} from "../../lib"
 
 class RefExample extends DeStagnate {
 
-    private _inputGroupPrepend = (): HTMLElement => <div class="input-group-prepend">
+    private static _inputGroupPrepend = (): JSX.Element => <div class="input-group-prepend">
         <span class="input-group-text">
             Input
         </span>
@@ -18,7 +18,7 @@ class RefExample extends DeStagnate {
 
     public render = (): HTMLElement[] => [
         <div class="input-group">
-            {this._inputGroupPrepend()}
+            <RefExample._inputGroupPrepend/>
             <input
                 type="text"
                 class="form-control mb-3"
