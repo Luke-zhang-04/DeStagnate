@@ -53,7 +53,7 @@ module.exports.test = (document) => {
     nsElement.mount()
 
     it("Should have a tagname of svg", () => {
-        assert.equal(
+        assert.strictEqual(
             "svg",
             document.querySelector("#SVG svg").tagName,
         )

@@ -8,8 +8,8 @@
  * @file share functions and types for createElement and it's variants
  */
 
-import DeStagnate from "."
-import type {Ref} from "./createRef"
+import DeStagnate from ".."
+import type {Ref} from "../createRef"
 import url from "./_url"
 
 /* eslint-disable one-var, @typescript-eslint/no-explicit-any */

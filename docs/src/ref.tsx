@@ -1,24 +1,18 @@
-import DeStagnate, {createRef} from "destagnate"
+import DeStagnate, {createRef} from "../../lib"
 
 class RefExample extends DeStagnate {
 
-    private _inputGroupPrepend = (): HTMLElement => <div class="input-group-prepend">
+    private _formRef = createRef<HTMLInputElement>()
+
+    private static _inputGroupPrepend = (): JSX.Element => <div class="input-group-prepend">
         <span class="input-group-text">
             Input
         </span>
     </div>
 
-    private _formRef = createRef<HTMLInputElement>()
-
-    private _getInputValues = () => {
-        const val = this._formRef.current?.value
-
-        alert(`INPUT VALUE: "${val}"`)
-    }
-
     public render = (): HTMLElement[] => [
         <div class="input-group">
-            {this._inputGroupPrepend()}
+            <RefExample._inputGroupPrepend/>
             <input
                 type="text"
                 class="form-control mb-3"
@@ -31,6 +25,12 @@ class RefExample extends DeStagnate {
             onClick={this._getInputValues}
         >See Input Value</button>
     ]
+
+    private _getInputValues = (): void => {
+        const val = this._formRef.current?.value
+
+        alert(`INPUT VALUE: "${val}"`)
+    }
 
 }
 

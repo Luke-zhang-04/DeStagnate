@@ -66,7 +66,7 @@ const checkNaN = (document) => {
             .getElementsByTagName("p")[1]
             .innerHTML
 
-        assert.equal(
+        assert.strictEqual(
             false,
             isNaN(Number(val)),
         )
@@ -78,7 +78,7 @@ const checkNaN = (document) => {
             .getElementsByTagName("p")[1]
             .innerHTML
 
-        assert.equal(
+        assert.strictEqual(
             1,
             Number(val),
         )
@@ -89,7 +89,7 @@ const checkNaN = (document) => {
             warn: true,
         })
 
-        assert.equal(
+        assert.strictEqual(
             2,
             state.getState.count,
         )
@@ -99,7 +99,7 @@ const checkNaN = (document) => {
 
         const inner = document.getElementById("counter").innerHTML
 
-        assert.equal(
+        assert.strictEqual(
             "",
             inner,
         )
@@ -111,7 +111,7 @@ const checkNaN = (document) => {
             return true
         })
 
-        assert.equal(
+        assert.strictEqual(
             undefined,
             tried,
         )
@@ -127,7 +127,7 @@ const checkNaN = (document) => {
             return true
         })
 
-        assert.equal(
+        assert.strictEqual(
             true,
             tried
         )
@@ -136,7 +136,7 @@ const checkNaN = (document) => {
         state.shouldthrow = false
         state.state = state.getState
 
-        assert.equal(
+        assert.strictEqual(
             true,
             state.didthrow
         )

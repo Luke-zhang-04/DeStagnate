@@ -111,27 +111,8 @@ const documentAlias = (data) => {
 
             resolve()
         })
-    })
-
-if (process.argv.includes("jsxRef")) {
-    /* eslint-disable no-await-in-loop */
-    for (const file of ["index.d.ts", "createElement.d.ts", "createElementOnly.d.ts"]) {
-        const index = await readFile(`./lib/${file}`)
-
-        if (typeof(index) !== "string") {
-            throw new Error(index)
-        }
-
-        const formattedIndex = index.replace("*/", "*/\n/// <reference types=\"../jsx\" />\n")
-
-        await writeFile(`./lib/${file}`, formattedIndex)
-    }
-
-    // eslint-disable-next-line
-    process.exit(0)
-}
-
-const data = await readFile(process.argv[2])
+    }),
+    data = await readFile(process.argv[2])
 
 if (typeof(data) !== "string") {
     throw new Error(data)

@@ -12,24 +12,18 @@ const DeStagnate = require("../deStagnate.bundle"),
 
 const {createElement} = DeStagnate
 
-class COMPONENTNAMECLASS extends DeStagnate.default {
-
-    render = () => createElement(
-    )
-
-}
-
 module.exports.test = (document) => {
     DeStagnate.setDocument(document)
 
-    const COMPONENTNAME = new COMPONENTNAMECLASS(document.getElementById("COMPONENTNAME"))
+    const myComponent = ({text}) => createElement("p", {id: "FCTest"}, text)
 
-    COMPONENTNAME.mount()
+    document.body.appendChild(createElement(myComponent, {text: "Testing function component"}))
 
-    it("", () => {
+    it("Should equal \"Testing function component\"", () => {
         assert.strictEqual(
-            true,
-            true,
+            "Testing function component",
+            document.querySelector("#FCTest").innerHTML,
         )
     })
+
 }

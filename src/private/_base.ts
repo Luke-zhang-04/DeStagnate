@@ -9,10 +9,10 @@
  * @package
  */
 
-import {default as _createDSComponent} from "./createDSComponent"
-import {default as _createElement} from "./createElement"
-import {default as _createElementNS} from "./createElementNS"
-import {default as _createRef} from "./createRef"
+import {default as _createDSComponent} from "../createDSComponent"
+import {default as _createElement} from "../createElement"
+import {default as _createElementNS} from "../createElementNS"
+import {default as _createRef} from "../createRef"
 
 type RenderType = null | HTMLElement | HTMLElement[] | Element | Element[]
 
@@ -41,7 +41,7 @@ export default abstract class Preset {
      * @param tagName - name of HTML element
      * @param props - element properties, such as class, innerHTML, id, style, etc
      * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-     * @param childrenArgs - rest parameter of children
+     * @param childrenRest - rest parameter of children
      * @returns html element
      */
     public static readonly createElement = _createElement
@@ -55,7 +55,7 @@ export default abstract class Preset {
      * @param tagName - name of HTML element
      * @param props - element properties, such as class, innerHTML, id, style, etc
      * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-     * @param childrenArgs - rest parameter of children
+     * @param childrenRest - rest parameter of children
      * @returns html element
      */
     public static readonly createElementNS = _createElementNS
@@ -88,7 +88,7 @@ export default abstract class Preset {
      * @param tagName - name of HTML element
      * @param props - element properties, such as class, innerHTML, id, style, etc
      * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-     * @param childrenArgs - rest parameter of children
+     * @param childrenRest - rest parameter of children
      * @returns html element
      */
     public readonly createElement = _createElement
@@ -102,7 +102,7 @@ export default abstract class Preset {
      * @param tagName - name of HTML element
      * @param props - element properties, such as class, innerHTML, id, style, etc
      * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-     * @param childrenArgs - rest parameter of children
+     * @param childrenRest - rest parameter of children
      * @returns html element
      */
     public readonly createElementNS = _createElementNS

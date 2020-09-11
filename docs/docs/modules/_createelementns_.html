@@ -86,13 +86,13 @@
 					<a name="createelementns" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> create<wbr>ElementNS</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>ElementNS<span class="tsd-signature-symbol">(</span>namespaceURI<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof SVGElementTagNameMap</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"http://www.w3.org/1999/xhtml"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"http://www.w3.org/2000/svg"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, tagName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof SVGElementEventMap</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, props<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span>, children<span class="tsd-signature-symbol">?: </span><a href="_createelementonly_.html#childrentype" class="tsd-signature-type">ChildrenType</a>, <span class="tsd-signature-symbol">...</span>childrenArgs<span class="tsd-signature-symbol">: </span><a href="_createelementonly_.html#childrenarraytype" class="tsd-signature-type">ChildrenArrayType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>ElementNS<span class="tsd-signature-symbol">(</span>namespaceURI<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof SVGElementTagNameMap</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"http://www.w3.org/1999/xhtml"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"http://www.w3.org/2000/svg"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, tagName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof SVGElementEventMap</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, props<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span>, children<span class="tsd-signature-symbol">?: </span><a href="_private__createelementutils_.html#childrentype" class="tsd-signature-type">ChildrenType</a>, <span class="tsd-signature-symbol">...</span>childrenRest<span class="tsd-signature-symbol">: </span><a href="_private__createelementutils_.html#childrenarraytype" class="tsd-signature-type">ChildrenArrayType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/428a988/src/createElementNS.ts#L28">createElementNS.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/16c7426/src/createElementNS.ts#L28">src/createElementNS.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -127,7 +127,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> children: <a href="_createelementonly_.html#childrentype" class="tsd-signature-type">ChildrenType</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> children: <a href="_private__createelementutils_.html#childrentype" class="tsd-signature-type">ChildrenType</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children</p>
@@ -135,7 +135,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>childrenArgs: <a href="_createelementonly_.html#childrenarraytype" class="tsd-signature-type">ChildrenArrayType</a></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>childrenRest: <a href="_private__createelementutils_.html#childrenarraytype" class="tsd-signature-type">ChildrenArrayType</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>rest parameter of children</p>
@@ -176,6 +176,24 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="_index_.html">&quot;index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_jsx_.html">&quot;jsx&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_private__base_.html">&quot;private/_<wbr>base&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_private__createelementutils_.html">&quot;private/_<wbr>create<wbr>Element<wbr>Utils&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_private__events_.html">&quot;private/_<wbr>events&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_private__eventsutils_.html">&quot;private/_<wbr>events<wbr>Utils&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_private__url_.html">&quot;private/_<wbr>url&quot;</a>
 					</li>
 				</ul>
 			</nav>

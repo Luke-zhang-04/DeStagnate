@@ -1,70 +1,152 @@
-!function(t,e){if("object"==typeof exports&&"object"==typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var n=e();for(var i in n)("object"==typeof exports?exports:t)[i]=n[i]}}(window,(function(){return function(t){var e={};function n(i){if(e[i])return e[i].exports;var o=e[i]={i:i,l:!1,exports:{}};return t[i].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=t,n.c=e,n.d=function(t,e,i){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:i})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var i=Object.create(null);if(n.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(i,o,function(e){return t[e]}.bind(null,o));return i},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=5)}([function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.7.0
- * @exports createElement function for DOM manipulation
- */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e._bindChildren=e._unpackChildren=e._bindProps=void 0;const o=i(n(1));e._bindProps=(t,e,n=!1)=>{if(e)for(const[i,o]of Object.entries(e))"string"==typeof o||"number"==typeof o?"innerHTML"===i?t.innerHTML=o.toString():n?t.setAttributeNS(null,i,o.toString()):t.setAttribute(i,o.toString()):"on"===i.slice(0,2)?"function"==typeof o&&t.addEventListener(i.slice(2).toLowerCase(),o):"ref"===i&&"object"==typeof o&&"current"in o?o.current=t:console.warn(`WARN: Invalid prop type "${typeof o}" for key "${i}". Skipping prop.`)},e._unpackChildren=t=>{const n=[];for(const i of t)"object"==typeof i&&i instanceof Array?n.push(...e._unpackChildren(i)):n.push(i);return n},e._bindChildren=(t,n)=>{if(null!=n)if(n instanceof Array)for(const i of n)e._bindChildren(t,i);else if("string"==typeof n||"number"==typeof n)t.innerText=n.toString();else if(n instanceof o.default){if(!n.didMount&&t instanceof window.HTMLElement)return void n.mount(t);if(!(t instanceof window.HTMLElement))throw new Error("Cannot use non-HTMLElement as component parent");n.parent!==t&&(n.parent=t),n.forceUpdate()}else t.appendChild(n)};e.default=(t,n,i,...o)=>{const r=document.createElement(t);e._bindProps(r,n);let s=i;return i&&o&&(s=i instanceof Array?[...e._unpackChildren(i),...e._unpackChildren(o)]:[i,...e._unpackChildren(o)]),e._bindChildren(r,s),r}},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.7.0
- * @exports DeStagnate main destagnate class
- * @file main file for destagnate
- * @preserve
- */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e.Component=e.createRef=e.createElementNS=e.createElement=e.createDSComponent=void 0;const o=i(n(2)),r=i(n(6)),s=i(n(3)),a=i(n(0)),u=i(n(4));e.createDSComponent=s.default,e.createElement=a.default,e.createElementNS=u.default,e.createRef=o.default,e.Component=r.default,e.default=r.default},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});e.default=()=>({current:null})},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.7.0
- * @exports createDSComponent add nested component for DeStagnate components
- */Object.defineProperty(e,"__esModule",{value:!0});e.default=(t,e,n)=>{const i=document.createElement("div");i.classList.add("DeStagnate-component-parent");const o=new t(i,e);return o.mount(),n&&(n.current=o),i}},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.7.0
- * @exports createElementNS createElement for namespaced elements
- */Object.defineProperty(e,"__esModule",{value:!0}),e.createElementNS=void 0;const i=n(0);e.createElementNS=(t,e,n,o,...r)=>{const s=document.createElementNS(t,e);i._bindProps(s,n,!0);let a=o;return o&&r&&(a="object"==typeof o&&o instanceof Array?[...i._unpackChildren(o),...i._unpackChildren(r)]:[o,...i._unpackChildren(r)]),i._bindChildren(s,a),s},e.default=e.createElementNS},function(t,e,n){"use strict";var i,o=this&&this.__extends||(i=function(t,e){return(i=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n])})(t,e)},function(t,e){function n(){this.constructor=t}i(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)}),r=this&&this.__createBinding||(Object.create?function(t,e,n,i){void 0===i&&(i=n),Object.defineProperty(t,i,{enumerable:!0,get:function(){return e[n]}})}:function(t,e,n,i){void 0===i&&(i=n),t[i]=e[n]}),s=this&&this.__setModuleDefault||(Object.create?function(t,e){Object.defineProperty(t,"default",{enumerable:!0,value:e})}:function(t,e){t.default=e}),a=this&&this.__importStar||function(t){if(t&&t.__esModule)return t;var e={};if(null!=t)for(var n in t)"default"!==n&&Object.prototype.hasOwnProperty.call(t,n)&&r(e,t,n);return s(e,t),e};Object.defineProperty(e,"__esModule",{value:!0});var u=a(n(1)),c=function(t){function e(){var e=null!==t&&t.apply(this,arguments)||this;return e._inputGroupPrepend=function(){return u.default.createElement("div",{class:"input-group-prepend"},u.default.createElement("span",{class:"input-group-text"},"Input"))},e._formRef=u.createRef(),e._getInputValues=function(){var t,n=null===(t=e._formRef.current)||void 0===t?void 0:t.value;alert('INPUT VALUE: "'+n+'"')},e.render=function(){return[u.default.createElement("div",{class:"input-group"},e._inputGroupPrepend(),u.default.createElement("input",{type:"text",class:"form-control mb-3",placeholder:"Insert text here",ref:e._formRef})),u.default.createElement("button",{class:"btn btn-light mb-3",onClick:e._getInputValues},"See Input Value")]},e}return o(e,t),e}(u.default),d=document.getElementById("ref");d&&new c(d).mount()},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.7.0
- * @exports DeStagnate main destagnate class
- * @file DeStagnate component class
- * @preserve
- */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0});const o=i(n(7));class r extends o.default{constructor(t,e,n=!1){super(),this.props=e,this._strict=!0,this._state={},this._didSetInitialState=!1,this._didMount=!1,this.getSnapshotBeforeUpdate=(t,e)=>[t,e],this.useStrict=()=>{this._strict=!0},this.disableStrict=()=>{this._strict=!1},this.forceUpdate=()=>{try{if(this.componentDidUpdate(),void 0===this._parent)throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.");this.getSnapshotBeforeUpdate(Object.assign({},this.props),Object.assign({},this.state)),this._update(this._execRender())}catch(t){return this.componentDidCatch(t),t}},this.setState=t=>{try{if(this.componentWillUpdate(),void 0===this._parent)throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.");this._strict&&this._checkKeys(t),this.getSnapshotBeforeUpdate(Object.assign({},this.props),Object.assign({},this.state)),Object.assign(this._state,t);const e=this.shouldComponentUpdate()?this._execRender():void 0;this._update(e)}catch(t){return this.componentDidCatch(t),t}},this.mountComponent=(t,e=!0)=>{try{if(void 0!==t&&(this.parent=t),void 0===this._parent)throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.");const n=this.render();if(this._didSetInitialState=!0,this.componentWillMount(),null===n)throw new Error("Expected render method to be included in component class, no render method found, or render returned an empty array");return e&&this.bindEventListeners(this._parent),this._didMount=!0,this.componentDidMount(),"object"==typeof n&&n instanceof Array?n.map(t=>this._parent.appendChild(t)):this._parent.appendChild(n)}catch(t){return this.componentDidCatch(t),t}},this.mount=this.mountComponent,this.unmountComponent=()=>{try{if(void 0===this._parent)return void this.componentDidWarn("No parent was set. Component unmounted from nothing.");this.componentWillUnmount(),this.unbindEventListeners(this._parent),this._removeChildren(),this._didMount=!1}catch(t){this.componentDidCatch(t)}},this.unmount=this.unmountComponent,this._removeChildren=()=>{if(void 0===this._parent)throw new Error("Parent is not defined. Set parent with the parent setter or set it during mounting.");for(;this._parent.firstChild;)this._parent.lastChild&&this._parent.removeChild(this._parent.lastChild)},this._execRender=()=>(this._removeChildren(),this.render()),this._checkKeys=t=>{for(const e of Object.keys(t))Object.keys(this.state).includes(e)||this.componentDidWarn(`WARN: New key (${e}) should not be set with setState, which has keys ${JSON.stringify(Object.keys(this.state))}. Declare all state variables in constructor as a best practice. Did you misspell a key?`)},this._update=t=>{if("object"==typeof t&&t instanceof Array)for(const e of t)this._parent.appendChild(e);else t&&this._parent.appendChild(t);t&&this.componentDidUpdate()},t&&t.childElementCount>0&&!n&&this._strict&&this.componentDidCatch(new Error(`ERR: Avoid using this ${t.tagName.toLowerCase()} as element parent, as all elements within this ${t.tagName.toLowerCase()} will be removed on re-render. To disable this, pass in true as a third parameter`)),this._parent=t}get getState(){return this.state}get state(){return this._state}set state(t){this._didSetInitialState&&this._strict?(this.componentDidCatch(new Error("Do not mutate state directly. Use setState instead.")),this.componentDidWarn("DeStagnate protects you from mutating the entire state object. Avoid mutating state directly"),this.setState(t)):(this._state=t,this._didSetInitialState=!0)}get getProps(){return this.props}set parent(t){t&&t.childElementCount>0&&this._strict&&this.componentDidWarn(`WARN: Avoid using this ${t.tagName.toLowerCase()} as element parent, as all elements within this ${t.tagName.toLowerCase()} will be removed on re-render. If this was intentional, turn strict off before setting parent.`),this._parent=t}get parent(){return this._parent}get didMount(){return this._didMount}}e.default=r},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.7.0
- * @exports Events
- * @package
- */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0});const o=i(n(8));class r extends o.default{constructor(){super(...arguments),this.bindEventListeners=t=>{this._eventListener(t.addEventListener)},this.unbindEventListeners=t=>{this._eventListener(t.removeEventListener)},this.onFocus=()=>{},this.onBlur=()=>{},this.onFocusIn=()=>{},this.onFocusOut=()=>{},this.onAnimationStart=()=>{},this.onAnimationCancel=()=>{},this.onAnimationEnd=()=>{},this.onAnimationIteration=()=>{},this.onTransitionStart=()=>{},this.onTransitionCancel=()=>{},this.onTransitionEnd=()=>{},this.onTransitionRun=()=>{},this.onAuxClick=()=>{},this.onClick=()=>{},this.onDblClick=()=>{},this.onMouseDown=()=>{},this.onMouseEnter=()=>{},this.onMouseLeave=()=>{},this.onMouseMove=()=>{},this.onMouseOver=()=>{},this.onMouseOut=()=>{},this.onMouseUp=()=>{},this._eventListener=t=>{for(const[e,n]of Object.entries(this._events()))t(e,n)},this._events=()=>({focus:this.onFocus,blur:this.onBlur,focusin:this.onFocusIn,focusout:this.onFocusOut,animationstart:this.onAnimationStart,animationcancel:this.onAnimationCancel,animationend:this.onAnimationEnd,animationiteration:this.onAnimationIteration,transitionstart:this.onTransitionStart,transitioncancel:this.onTransitionCancel,transitionend:this.onTransitionEnd,transitionrun:this.onTransitionRun,auxclick:this.onAuxClick,click:this.onClick,dblclick:this.onDblClick,mousedown:this.onMouseDown,mouseenter:this.onMouseEnter,mouseleave:this.onMouseLeave,mousemove:this.onMouseMove,mouseover:this.onMouseOver,mouseout:this.onMouseOut,mouseup:this.onMouseUp})}}e.default=r},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.7.0
- * @exports Preset - base for a component
- * @package
- */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0});const o=i(n(3)),r=i(n(0)),s=i(n(4)),a=i(n(2));class u{constructor(){this.createDSComponent=o.default,this.createElement=r.default,this.createElementNS=s.default,this.createRef=a.default,this.componentDidCatch=t=>console.error(t),this.componentDidMount=()=>{},this.componentDidUpdate=()=>{},this.componentDidWarn=t=>console.warn(t),this.componentWillMount=()=>{},this.componentWillUnmount=()=>{},this.componentWillUpdate=()=>{},this.shouldComponentUpdate=()=>!0,this.render=()=>null}}e.default=u,u.createDSComponent=o.default,u.createElement=r.default,u.createElementNS=s.default,u.createRef=a.default}])}));
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const lib_1 = __importStar(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../lib'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
+class RefExample extends lib_1.default {
+    constructor() {
+        super(...arguments);
+        this._formRef = lib_1.createRef();
+        this._getInputValues = () => {
+            var _a;
+            const val = (_a = this._formRef.current) === null || _a === void 0 ? void 0 : _a.value;
+            alert(`INPUT VALUE: "${val}"`);
+        };
+        this.render = () => [
+            lib_1.default.createElement("div", { class: "input-group" },
+                lib_1.default.createElement(RefExample._inputGroupPrepend, null),
+                lib_1.default.createElement("input", { type: "text", class: "form-control mb-3", placeholder: "Insert text here", ref: this._formRef })),
+            lib_1.default.createElement("button", { class: "btn btn-light mb-3", onClick: this._getInputValues }, "See Input Value")
+        ];
+    }
+}
+RefExample._inputGroupPrepend = () => lib_1.default.createElement("div", { class: "input-group-prepend" },
+    lib_1.default.createElement("span", { class: "input-group-text" }, "Input"));
+const refParent = document.getElementById("ref");
+if (refParent) {
+    const refComponent = new RefExample(refParent);
+    refComponent.mount();
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicmVmLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL3JlZi50c3giXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsaURBQStDO0FBRS9DLE1BQU0sVUFBVyxTQUFRLGFBQVU7SUFBbkM7O1FBUVksYUFBUSxHQUFHLGVBQVMsRUFBb0IsQ0FBQTtRQUV4QyxvQkFBZSxHQUFHLEdBQUcsRUFBRTs7WUFDM0IsTUFBTSxHQUFHLFNBQUcsSUFBSSxDQUFDLFFBQVEsQ0FBQyxPQUFPLDBDQUFFLEtBQUssQ0FBQTtZQUV4QyxLQUFLLENBQUMsaUJBQWlCLEdBQUcsR0FBRyxDQUFDLENBQUE7UUFDbEMsQ0FBQyxDQUFBO1FBRU0sV0FBTSxHQUFHLEdBQWtCLEVBQUUsQ0FBQztZQUNqQyxxQ0FBSyxLQUFLLEVBQUMsYUFBYTtnQkFDcEIsNEJBQUMsVUFBVSxDQUFDLGtCQUFrQixPQUFFO2dCQUNoQyx1Q0FDSSxJQUFJLEVBQUMsTUFBTSxFQUNYLEtBQUssRUFBQyxtQkFBbUIsRUFDekIsV0FBVyxFQUFDLGtCQUFrQixFQUM5QixHQUFHLEVBQUUsSUFBSSxDQUFDLFFBQVEsR0FDYixDQUNQO1lBQ04sd0NBQ0ksS0FBSyxFQUFDLG9CQUFvQixFQUMxQixPQUFPLEVBQUUsSUFBSSxDQUFDLGVBQWUsc0JBQ1I7U0FDNUIsQ0FBQTtJQUVMLENBQUM7O0FBOUJrQiw2QkFBa0IsR0FBRyxHQUFnQixFQUFFLENBQUMscUNBQUssS0FBSyxFQUFDLHFCQUFxQjtJQUNuRixzQ0FBTSxLQUFLLEVBQUMsa0JBQWtCLFlBRXZCLENBQ0wsQ0FBQTtBQTRCVixNQUFNLFNBQVMsR0FBRyxRQUFRLENBQUMsY0FBYyxDQUFDLEtBQUssQ0FBQyxDQUFBO0FBRWhELElBQUksU0FBUyxFQUFFO0lBQ1gsTUFBTSxZQUFZLEdBQUcsSUFBSSxVQUFVLENBQUMsU0FBUyxDQUFDLENBQUE7SUFFOUMsWUFBWSxDQUFDLEtBQUssRUFBRSxDQUFBO0NBQ3ZCIn0=
+
+/***/ })
+/******/ ]);
+});

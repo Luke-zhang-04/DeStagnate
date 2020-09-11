@@ -1,5 +1,15 @@
-import type {ChildrenType, EventFunc} from "../lib/_createElementTools"
-import type {Ref} from "../lib"
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports JSX - importable JSX namespace
+ */
+
+import type {ChildrenType, EventFunc} from "./private/_createElementUtils"
+import type {Ref} from "."
 
 type DeStagnateElementType = undefined
     | string
@@ -10,12 +20,10 @@ type DeStagnateElementType = undefined
     | JSX.Element
     | Ref
 
-
-
 interface DeStagnateElement {
     [key: string]: DeStagnateElementType,
     children?: ChildrenType | JSX.Element,
-    ref?: Ref
+    ref?: Ref,
 }
 
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -146,7 +154,10 @@ declare global {
             wbr: DeStagnateElement,
         }
 
+        // eslint-disable-next-line
         interface Element extends HTMLElement {}
     }
 
 }
+
+export default JSX

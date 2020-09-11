@@ -9,6 +9,8 @@
         "target": "ES5",
         "declaration": false,
         "noEmitOnError": false,
+        "skipLibCheck": true,
     },
-    "include": ["docs/src/", "docs/*.ts", "docs/*.tsx"]
+    "include": ["docs/src/", "docs/*.ts", "docs/*.tsx"],
+    "exclude": ["./src/", "./lib"]
 }

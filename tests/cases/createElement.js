@@ -31,7 +31,7 @@ module.exports.test = (document) => {
     document.body.appendChild(element)
 
     it("Should have class bg-dark", () => {
-        assert.equal(
+        assert.strictEqual(
             "bg-dark",
             document.getElementById("_ELEMENTTEST")
                 .querySelector("div")

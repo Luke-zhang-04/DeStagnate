@@ -52,21 +52,21 @@ module.exports.test = (document) => {
     ref.mount()
 
     it("Should have an ID of _REFTEST", () => {
-        assert.equal(
+        assert.strictEqual(
             "_REFTEST",
             ref.testRef.current.id,
         )
     })
 
     it("Should have an ID of _REFTEST2", () => {
-        assert.equal(
+        assert.strictEqual(
             "_REFTEST2",
             ref.testRef2.current.testRef.current.id,
         )
     })
 
     it("Should be instanceof Ref2", () => {
-        assert.equal(
+        assert.strictEqual(
             true,
             ref.testRef2.current instanceof Ref2,
         )

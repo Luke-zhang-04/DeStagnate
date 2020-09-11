@@ -35,7 +35,7 @@ module.exports.test = (document) => {
     })
 
     it("Should return undefined", () => {
-        assert.equal(
+        assert.strictEqual(
             undefined,
             noRender,
         )

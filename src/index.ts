@@ -9,9 +9,8 @@
  * @file main file for destagnate
  * @preserve
  */
-// Commented this out to make tsc happy
 // eslint-disable-next-line
-// <reference types="../jsx" />
+/// <reference path="./jsx.ts" />
 
 /* eslint-disable max-lines */
 import {Ref as _Ref, default as _createRef} from "./createRef"
@@ -42,7 +41,7 @@ export const createElement = _createElement
  * @param tagName - name of HTML element
  * @param props - element properties, such as class, innerHTML, id, style, etc
  * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
- * @param childrenArgs - rest parameter of children
+ * @param childrenRest - rest parameter of children
  * @returns html element
  */
 export const createElementNS = _createElementNS

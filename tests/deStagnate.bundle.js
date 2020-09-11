@@ -8,7 +8,6 @@
  * @file DeStagnate development bundle
  */
 
-"use strict";
 
  /* eslint-disable */
 const niceTry = require("nice-try")
@@ -558,9 +557,8 @@ module.exports =
              * @file main file for destagnate
              * @preserve
              */
-            // Commented this out to make tsc happy
             // eslint-disable-next-line
-  // <reference types="../jsx" />
+  /// <reference path="./jsx.ts" />
 
             var __importDefault = this && this.__importDefault || function (mod) /* istanbul ignore next */  {
                 return mod && mod.__esModule ? mod : {
@@ -605,7 +603,7 @@ module.exports =
              * @param tagName - name of HTML element
              * @param props - element properties, such as class, innerHTML, id, style, etc
              * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-             * @param childrenArgs - rest parameter of children
+             * @param childrenRest - rest parameter of children
              * @returns html element
              */
             exports.createElementNS = createElementNS_1.default;
@@ -1174,7 +1172,7 @@ module.exports =
                 value: true
             });
 
-            var _eventstools_1 = __importDefault(__webpack_require__(4)),
+            var _eventsUtils_1 = __importDefault(__webpack_require__(4)),
 
                 _base_1 = __importDefault(__webpack_require__(5)),
                 /* istanbul ignore next */
@@ -1393,7 +1391,7 @@ module.exports =
                         };
 
                         _this2._eventListener = function (eventListener) {
-                            var _iterator2 = _createForOfIteratorHelper(_eventstools_1.default(_this2._events())),
+                            var _iterator2 = _createForOfIteratorHelper(_eventsUtils_1.default(_this2._events())),
                                 _step2;
 
                             try {
@@ -1545,7 +1543,7 @@ module.exports =
                      * @param tagName - name of HTML element
                      * @param props - element properties, such as class, innerHTML, id, style, etc
                      * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-                     * @param childrenArgs - rest parameter of children
+                     * @param childrenRest - rest parameter of children
                      * @returns html element
                      */
                     this.createElement = createElement_1.default;
@@ -1559,7 +1557,7 @@ module.exports =
                      * @param tagName - name of HTML element
                      * @param props - element properties, such as class, innerHTML, id, style, etc
                      * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-                     * @param childrenArgs - rest parameter of children
+                     * @param childrenRest - rest parameter of children
                      * @returns html element
                      */
                     this.createElementNS = createElementNS_1.default;
@@ -1682,7 +1680,7 @@ module.exports =
              * @param tagName - name of HTML element
              * @param props - element properties, such as class, innerHTML, id, style, etc
              * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-             * @param childrenArgs - rest parameter of children
+             * @param childrenRest - rest parameter of children
              * @returns html element
              */
             Preset.createElement = createElement_1.default;
@@ -1696,7 +1694,7 @@ module.exports =
              * @param tagName - name of HTML element
              * @param props - element properties, such as class, innerHTML, id, style, etc
              * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-             * @param childrenArgs - rest parameter of children
+             * @param childrenRest - rest parameter of children
              * @returns html element
              */
             Preset.createElementNS = createElementNS_1.default;
@@ -1775,30 +1773,27 @@ module.exports =
              * @version 1.7.0
              * @exports createElement function for DOM manipulation
              */
-            // Commented this out to make tsc happy
             // eslint-disable-next-line
-  // <reference types="../jsx" />
+  /// <reference path="./jsx.ts" />
 
             Object.defineProperty(exports, "__esModule", {
                 value: true
             });
             exports.createElement = void 0;
 
-            var _createElementTools_1 = __webpack_require__(8);
+            var _createElementUtils_1 = __webpack_require__(8);
 
             /**
-             * Creates an HTML Element
-             * @param tagName - name of HTML element
-             * @param props - element properties, such as class, innerHTML, id, style, etc
+             *
+             * @param tagNameOrComponent - name of HTML element or function component
+             * @param props - props of element or component
+             * 1. If `tagNameOrComponent` is tagname, props are element properties, such as class, innerHTML, id, style, etc
+             * 2. If `tagNameOrComponent` is a function, props are that functions parameters
              * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-             * @param childrenArgs - rest parameter of children
+             * @param childrenArgs - rest parameter for children
              * @returns element
              */
-            exports.createElement = function (tagName, props, children) {
-                var element = doc.createElement(tagName);
-
-                _createElementTools_1.bindProps(element, props);
-
+            function createElement (tagNameOrComponent, props, children) {
                 var _children = children;
 
                 for (var _len = arguments.length, childrenArgs = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
@@ -1807,18 +1802,29 @@ module.exports =
 
                 if (children && childrenArgs) {
                     if (children instanceof Array) {
-                        _children = [].concat(_toConsumableArray(_createElementTools_1.unpackChildren(children)), _toConsumableArray(_createElementTools_1.unpackChildren(childrenArgs)));
+                        _children = [].concat(_toConsumableArray(_createElementUtils_1.unpackChildren(children)), _toConsumableArray(_createElementUtils_1.unpackChildren(childrenArgs)));
                     } else {
-                        _children = [children].concat(_toConsumableArray(_createElementTools_1.unpackChildren(childrenArgs)));
+                        _children = [children].concat(_toConsumableArray(_createElementUtils_1.unpackChildren(childrenArgs)));
                     }
                 }
 
-                _createElementTools_1.bindChildren(element, _children);
+                if (typeof tagNameOrComponent === "string") {
+                    var element = doc.createElement(tagNameOrComponent);
 
-                return element;
-            };
+                    _createElementUtils_1.bindProps(element, props);
 
-            exports.default = exports.createElement;
+                    _createElementUtils_1.bindChildren(element, _children);
+
+                    return element;
+                } else if (typeof tagNameOrComponent === "function") {
+                    return tagNameOrComponent(props, _children);
+                }
+
+                return Error("tagNameOrComponent is of invalid type.");
+            }
+
+            exports.createElement = createElement;
+            exports.default = createElement;
 
             /***/
         },
@@ -1848,7 +1854,7 @@ module.exports =
             });
             exports.bindChildren = exports.unpackChildren = exports.bindProps = void 0;
 
-            var _1 = __importDefault(__webpack_require__(0)),
+            var __1 = __importDefault(__webpack_require__(0)),
 
                 _url_1 = __importDefault(__webpack_require__(9));
 
@@ -1943,7 +1949,7 @@ module.exports =
                         }
                     } else if (typeof children === "string" || typeof children === "number") {
                         element.innerHTML = children.toString();
-                    } else if (children instanceof _1.default) {
+                    } else if (children instanceof __1.default) {
                         if (!children.didMount && element instanceof _window.HTMLElement) {
                             children.mount(element);
                             
@@ -2009,7 +2015,7 @@ module.exports =
             });
             exports.createElementNS = void 0;
 
-            var _createElementTools_1 = __webpack_require__(8);
+            var _createElementUtils_1 = __webpack_require__(8);
 
             /**
              * Creates a child element to deStagnate
@@ -2017,29 +2023,29 @@ module.exports =
              * @param tagName - name of HTML element
              * @param props - element properties, such as class, innerHTML, id, style, etc
              * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-             * @param childrenArgs - rest parameter of children
+             * @param childrenRest - rest parameter of children
              * @returns html element
              */
             exports.createElementNS = function (namespaceURI, tagName, props, children) {
                 var element = doc.createElementNS(namespaceURI, tagName);
 
-                _createElementTools_1.bindProps(element, props, true);
+                _createElementUtils_1.bindProps(element, props, true);
 
                 var _children = children;
 
-                for (var _len2 = arguments.length, childrenArgs = new Array(_len2 > 4 ? _len2 - 4 : 0), _key2 = 4; _key2 < _len2; _key2++) {
-                    childrenArgs[_key2 - 4] = arguments[_key2];
+                for (var _len2 = arguments.length, childrenRest = new Array(_len2 > 4 ? _len2 - 4 : 0), _key2 = 4; _key2 < _len2; _key2++) {
+                    childrenRest[_key2 - 4] = arguments[_key2];
                 }
 
-                if (children && childrenArgs) {
+                if (children && childrenRest) {
                     if (_typeof(children) === "object" && children instanceof Array) {
-                        _children = [].concat(_toConsumableArray(_createElementTools_1.unpackChildren(children)), _toConsumableArray(_createElementTools_1.unpackChildren(childrenArgs)));
+                        _children = [].concat(_toConsumableArray(_createElementUtils_1.unpackChildren(children)), _toConsumableArray(_createElementUtils_1.unpackChildren(childrenRest)));
                     } else {
-                        _children = [children].concat(_toConsumableArray(_createElementTools_1.unpackChildren(childrenArgs)));
+                        _children = [children].concat(_toConsumableArray(_createElementUtils_1.unpackChildren(childrenRest)));
                     }
                 }
 
-                _createElementTools_1.bindChildren(element, _children);
+                _createElementUtils_1.bindChildren(element, _children);
 
                 return element;
             };
