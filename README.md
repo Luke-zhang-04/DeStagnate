@@ -34,18 +34,21 @@ npm i destagnate --save
 yarn add destagnate
 ```
 
-Through curl to download a bundle for browser usage<br/>
+Through `curl` or `wget` to download a bundle for browser usage<br/>
 <small>Not all versions available through this method. See [https://github.com/luke-zhang-04/destagnate/releases](https://github.com/luke-zhang-04/destagnate/releases) for available releases</small>
 
 ```bash
 # Prodution
 curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.min.js -O destagnate.bundle.min.js
+wget https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.min.js
 
 # Development
 curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.js -O destagnate.bundle.js
+wget https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.js
 
 # Latest
 curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v1.7.0/destagnate.bundle.js -O destagnate.bundle.js
+wget https://github.com/Luke-zhang-04/destagnate/releases/download/v1.7.0/destagnate.bundle.js
 ```
 
 With a CDN
