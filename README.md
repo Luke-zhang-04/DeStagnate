@@ -35,20 +35,19 @@ yarn add destagnate
 ```
 
 Through `curl` or `wget` to download a bundle for browser usage<br/>
-<small>Not all versions available through this method. See [https://github.com/luke-zhang-04/destagnate/releases](https://github.com/luke-zhang-04/destagnate/releases) for available releases</small>
 
 ```bash
 # Prodution
-curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.min.js -O destagnate.bundle.min.js
-wget https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.min.js
+curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.min.js > deStagnate.bundle.js
+wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.min.js
 
 # Development
-curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.js -O destagnate.bundle.js
-wget https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.js
+curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.js > deStagnate.bundle.min.js
+wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.js
 
 # Latest
-curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v1.7.0/destagnate.bundle.js -O destagnate.bundle.js
-wget https://github.com/Luke-zhang-04/destagnate/releases/download/v1.7.0/destagnate.bundle.js
+curl -L https://unpkg.com/destagnate@1.7.0/dist/deStagnate.bundle.min.js > deStagnate.bundle.min.js
+wget https://unpkg.com/destagnate@1.7.0/dist/deStagnate.bundle.min.js
 ```
 
 With a CDN
