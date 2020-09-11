@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+  DeStagnate Docs
+  Copyright (C) 2020 Luke Zhang | luke-zhang-04.github.io | MIT License
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeStagnate Examples | Calculator</title>
+    <link rel="stylesheet" href="css/calculator.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-tomorrow.min.css"/>
+    <link rel="icon" href="favicon.ico"/>
+<body>
+    <div id="nav"></div>
+    <script async src="compiled/nav.js"></script>
+
+    <div class="container py-5">
+        <h1>Using JSX</h1>
+        <p>If you're using JSX, you'll need a transpiler. Either TypeScript, or a Babel with a Plugin will work.</p>
+
+        <h2>TypeScript</h2>
+        <p>Transpiling with the TypeScript Compiler (TSC) will work for both JavaScript and TypeScript.</p>
+
+        <h3>Steps</h3>
+        <ol>
+            <li>Install TypeScript (if you haven't already)</li>
+            <pre class="d-block">
+                <code class="language-bash">
+# npm
+npm i typescript -D
+
+# yarn
+yarn add typescript -D
+                </code>
+            </pre>
+            <li>Create and configure your tsconfig file</li>
+            <pre class="d-block">
+                <code class="language-json">
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "jsxFactory": "DeStagnate.createElement",
+    },
+    "include": ["myFile.tsx"]
+}
+                </code>
+            </pre>
+            <li>Include DeStagnate in your files that use JSX (if you haven't already)</li>
+            <pre class="d-block">
+                <code class="language-tsx">
+import DeStagnate from "destagnate" // Include this, even if linters say it's never used
+
+document.getElementById("id")?.appendChild(
+    &lt;div&gt;&lt;/div&gt;
+)
+                </code>
+            </pre>
+            <li>Compile</li>
+            <pre class="d-block">
+                <code class="language-bash">
+npx tsc
+                </code>
+            </pre>
+        </ol>
+
+        <h2>Babel</h2>
+        <p>Transpiling with Babel requires a plugin and will only work with JavaScript by default.</p>
+
+        <h3>Steps</h3>
+        <ol>
+            <li>Install Babel and plugins</li>
+            <pre class="d-block">
+                <code class="language-bash">
+# npm
+npm i @babel/core @babel/cli @babel/plugin-transform-react-jsx -D
+
+# yarn
+yarn add @babel/core @babel/cli @babel/plugin-transform-react-jsx -D
+                </code>
+            </pre>
+
+            <li>Create and configure your .babelrc file</li>
+            <pre class="d-block">
+                <code class="language-js">
+module.exports = {
+    "plugins": [
+        [
+            "@babel/plugin-transform-react-jsx",
+            {
+                "pragma": "DeStagnate.createElement"
+            }
+        ]
+    ]
+}
+                </code>
+            </pre>
+
+            <li>Include DeStagnate in your files that use JSX (if you haven't already)</li>
+            <pre class="d-block">
+                <code class="language-jsx">
+import DeStagnate from "destagnate" // Include this, even if linters say it's never used
+
+document.getElementById("id")?.appendChild(
+    &lt;div&gt;&lt;/div&gt;
+)
+                </code>
+            </pre>
+
+            <li>Compile</li>
+            <pre class="d-block">
+                <code class="language-bash">
+npx babel myfile.tsx -o myfile.js
+                </code>
+            </pre>
+        </ol>
+    </div>
+
+
+    <footer></footer>
+    <script async src="compiled/footer.js"></script>
+
+    <!-- Popper.js for bootstrap, not actually needed for functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap for styling, not actually needed for functionality -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+
+    <!-- Prism JS for syntax hilighting code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

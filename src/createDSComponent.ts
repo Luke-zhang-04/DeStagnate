@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.6.1
+ * @version 1.7.0
  * @exports createDSComponent add nested component for DeStagnate components
  */
 
@@ -20,12 +20,11 @@ type DeStagnateConstructor<Props, State> = new (
 /**
  * Creates nested DeStagnate component
  * @deprecated do not use this function, since 1.6.1
- * @see {@link https://github.com/Luke-zhang-04/DeStagnate/wiki/createDSComponent}
- * @see {@link https://github.com/Luke-zhang-04/DeStagnate/wiki/nestedComponents}
- * @param {DeStagnateConstructor} Component - DeStagnate component
- * @param {Object<string, unknown>} props - props of component
- * @param {Object<string, undefined | DeStagnate>} ref - ref object
- * @returns {HTMLDivElement} parent of component
+ * This only exists to adhere to semver
+ * @param Component - DeStagnate component
+ * @param props - props of component
+ * @param ref - ref object
+ * @returns parent of component
  */
 const createDSComponent = <
     Props = Record<string, unknown>,

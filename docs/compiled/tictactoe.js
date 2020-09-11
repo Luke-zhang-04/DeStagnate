@@ -1,169 +1,97 @@
-// WARNING: THIS CODE WAS COMPILED FOR DEVELOPMENT, AND IS NOT OPTIMISED FOR PRODUCTION. FOR PRODUCTION, USE THE --prod FLAG, OR ADD mode: production TO YOU CONFIG FILE
-
-"use strict";
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-/* eslint-disable multiline-comment-style, no-undef, no-magic-numbers */
-// @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
-var DS = DeStagnate,
-    createElement = DS.createElement; // Current player
-
-var currentPlayer = "x";
-
-var TicTacToe = /*#__PURE__*/function (_DS$Component) {
-  _inherits(TicTacToe, _DS$Component);
-
-  var _super = _createSuper(TicTacToe);
-
-  function TicTacToe() {
-    var _this;
-
-    _classCallCheck(this, TicTacToe);
-
-    _this = _super.apply(this, arguments);
-    _this._squares = [[new Square(), new Square(), new Square()], [new Square(), new Square(), new Square()], [new Square(), new Square(), new Square()]];
-
-    _this._checkForWinner = function () {
-      var _loop = function _loop(i) {
-        var rows = [0, 1, 2].map(function (val) {
-          return _this._squares[i][val].getState.clicked;
-        });
-        var columns = [0, 1, 2].map(function (val) {
-          return _this._squares[val][i].getState.clicked;
-        });
-
-        if (rows[0] === rows[1] && rows[1] === rows[2] && rows[0]) {
-          return {
-            v: rows[0]
-          };
-        } else if (columns[0] === columns[1] && columns[1] === columns[2] && columns[0]) {
-          return {
-            v: columns[0]
-          };
-        }
-      };
-
-      for (var i = 0; i < 3; i++) {
-        var _ret = _loop(i);
-
-        if (_typeof(_ret) === "object") return _ret.v;
-      }
-
-      var diagonals = [[_this._squares[0][0].getState.clicked, _this._squares[1][1].getState.clicked, _this._squares[2][2].getState.clicked], [_this._squares[0][2].getState.clicked, _this._squares[1][1].getState.clicked, _this._squares[2][0].getState.clicked]];
-
-      for (var _i = 0, _diagonals = diagonals; _i < _diagonals.length; _i++) {
-        var diagonal = _diagonals[_i];
-
-        if (diagonal[0] === diagonal[1] && diagonal[1] === diagonal[2] && diagonal[0]) {
-          return diagonal[0];
-        }
-      }
-
-      return "";
-    };
-
-    _this.render = function () {
-      return [0, 1, 2] // Create 3 rows
-      .map(function (val) {
-        return createElement("div", {
-          "class": "row"
-        }, // Create 3 columns
-        [0, 1, 2].map(function (val2) {
-          return createElement("div", {
-            "class": "col-4",
-            onClick: function onClick() {
-              // Current square
-              var square = _this._squares[val][val2]; // Check if square isn't already clicked
-
-              if ((square === null || square === void 0 ? void 0 : square.getState.clicked) === "") {
-                square === null || square === void 0 ? void 0 : square.setState({
-                  clicked: currentPlayer
-                });
-              } // Change current player
-
-
-              if (currentPlayer === "x") {
-                currentPlayer = "o";
-              } else {
-                currentPlayer = "x";
-              }
-
-              if (_this._checkForWinner()) {
-                alert("Player ".concat(_this._checkForWinner(), " has won the game!"));
-              }
-            }
-          }, _this._squares[val][val2]);
-        }));
-      });
-    };
-
-    return _this;
-  }
-
-  return TicTacToe;
-}(DS.Component);
-
-var Square = /*#__PURE__*/function (_DS$Component2) {
-  _inherits(Square, _DS$Component2);
-
-  var _super2 = _createSuper(Square);
-
-  function Square() {
-    var _this2;
-
-    _classCallCheck(this, Square);
-
-    _this2 = _super2.call(this);
-
-    _this2.render = function () {
-      return createElement("div", {
-        "class": "tictactoe-square"
-      }, _this2.state.clicked);
-    };
-
-    _this2.state = {
-      clicked: ""
-    };
-    return _this2;
-  }
-
-  return Square;
-}(DS.Component);
-
-var tictactoeParent = document.getElementById("nested");
-
-var mountTicTacToe = function mountTicTacToe() {
-  if (tictactoeParent) {
-    var tictactoe = new TicTacToe(tictactoeParent),
-        resetBtn = document.getElementById("nested-reset-btn");
-
-    if (resetBtn) {
-      resetBtn.addEventListener("click", function () {
-        tictactoe.unmount();
-        mountTicTacToe();
-      });
-    }
-
-    tictactoe.mount();
-  }
-};
-
-mountTicTacToe();
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVua25vd24iXSwibmFtZXMiOlsiRFMiLCJEZVN0YWduYXRlIiwiY3JlYXRlRWxlbWVudCIsImN1cnJlbnRQbGF5ZXIiLCJUaWNUYWNUb2UiLCJhcmd1bWVudHMiLCJfc3F1YXJlcyIsIlNxdWFyZSIsIl9jaGVja0Zvcldpbm5lciIsImkiLCJyb3dzIiwibWFwIiwidmFsIiwiZ2V0U3RhdGUiLCJjbGlja2VkIiwiY29sdW1ucyIsImRpYWdvbmFscyIsImRpYWdvbmFsIiwicmVuZGVyIiwidmFsMiIsIm9uQ2xpY2siLCJzcXVhcmUiLCJzZXRTdGF0ZSIsImFsZXJ0IiwiQ29tcG9uZW50Iiwic3RhdGUiLCJ0aWN0YWN0b2VQYXJlbnQiLCJkb2N1bWVudCIsImdldEVsZW1lbnRCeUlkIiwibW91bnRUaWNUYWNUb2UiLCJ0aWN0YWN0b2UiLCJyZXNldEJ0biIsImFkZEV2ZW50TGlzdGVuZXIiLCJ1bm1vdW50IiwibW91bnQiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUE7QUFDQTtBQUNNLElBQUFBLEVBQUUsR0FBR0MsVUFBTDtBQUFBLElBRUpDLGFBRkksR0FFY0YsRUFGZCxDQUVKRSxhQUZJLEMsQ0FHTjs7QUFDQSxJQUFJQyxhQUFhLEdBQUcsR0FBcEI7O0lBQ01DLFM7Ozs7O0FBQ0YsdUJBQWM7QUFBQTs7QUFBQTs7QUFDViwrQkFBU0MsU0FBVDtBQUNBLFVBQUtDLFFBQUwsR0FBZ0IsQ0FDWixDQUFDLElBQUlDLE1BQUosRUFBRCxFQUFlLElBQUlBLE1BQUosRUFBZixFQUE2QixJQUFJQSxNQUFKLEVBQTdCLENBRFksRUFFWixDQUFDLElBQUlBLE1BQUosRUFBRCxFQUFlLElBQUlBLE1BQUosRUFBZixFQUE2QixJQUFJQSxNQUFKLEVBQTdCLENBRlksRUFHWixDQUFDLElBQUlBLE1BQUosRUFBRCxFQUFlLElBQUlBLE1BQUosRUFBZixFQUE2QixJQUFJQSxNQUFKLEVBQTdCLENBSFksQ0FBaEI7O0FBS0EsVUFBS0MsZUFBTCxHQUF1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QUFPLEVBQUU7QUFEQSxLQUFiO0FBSFU7QUFNYjs7O0VBUGdCZCxFQUFFLENBQUN3QixTOztBQVN4QixJQUFNRSxlQUFlLEdBQUdDLFFBQVEsQ0FBQ0MsY0FBVCxDQUF3QixRQUF4QixDQUF4Qjs7QUFDQSxJQUFNQyxjQUFjLEdBQUcsU0FBakJBLGNBQWlCLEdBQU07QUFDekIsTUFBSUgsZUFBSixFQUFxQjtBQUNqQixRQUFNSSxTQUFTLEdBQUcsSUFBSTFCLFNBQUosQ0FBY3NCLGVBQWQsQ0FBbEI7QUFBQSxRQUFrREssUUFBUSxHQUFHSixRQUFRLENBQUNDLGNBQVQsQ0FBd0Isa0JBQXhCLENBQTdEOztBQUNBLFFBQUlHLFFBQUosRUFBYztBQUNWQSxNQUFBQSxRQUFRLENBQUNDLGdCQUFULENBQTBCLE9BQTFCLEVBQW1DLFlBQU07QUFDckNGLFFBQUFBLFNBQVMsQ0FBQ0csT0FBVjtBQUNBSixRQUFBQSxjQUFjO0FBQ2pCLE9BSEQ7QUFJSDs7QUFDREMsSUFBQUEsU0FBUyxDQUFDSSxLQUFWO0FBQ0g7QUFDSixDQVhEOztBQVlBTCxjQUFjIiwic291cmNlc0NvbnRlbnQiOlsiLyogZXNsaW50LWRpc2FibGUgbXVsdGlsaW5lLWNvbW1lbnQtc3R5bGUsIG5vLXVuZGVmLCBuby1tYWdpYy1udW1iZXJzICovXG4vLyBAdHMtaWdub3JlIGlnbm9yZXMgdHMoMjQ1MSk6IENhbm5vdCByZWRlY2xhcmUgYmxvY2stc2NvcGVkIHZhcmlhYmxlXG5jb25zdCBEUyA9IERlU3RhZ25hdGUsIFxuLy8gQHRzLWlnbm9yZSBpZ25vcmVzIHRzKDI0NTEpOiBDYW5ub3QgcmVkZWNsYXJlIGJsb2NrLXNjb3BlZCB2YXJpYWJsZVxueyBjcmVhdGVFbGVtZW50IH0gPSBEUztcbi8vIEN1cnJlbnQgcGxheWVyXG5sZXQgY3VycmVudFBsYXllciA9IFwieFwiO1xuY2xhc3MgVGljVGFjVG9lIGV4dGVuZHMgRFMuQ29tcG9uZW50IHtcbiAgICBjb25zdHJ1Y3RvcigpIHtcbiAgICAgICAgc3VwZXIoLi4uYXJndW1lbnRzKTtcbiAgICAgICAgdGhpcy5fc3F1YXJlcyA9IFtcbiAgICAgICAgICAgIFtuZXcgU3F1YXJlKCksIG5ldyBTcXVhcmUoKSwgbmV3IFNxdWFyZSgpXSxcbiAgICAgICAgICAgIFtuZXcgU3F1YXJlKCksIG5ldyBTcXVhcmUoKSwgbmV3IFNxdWFyZSgpXSxcbiAgICAgICAgICAgIFtuZXcgU3F1YXJlKCksIG5ldyBTcXVhcmUoKSwgbmV3IFNxdWFyZSgpXSxcbiAgICAgICAgXTtcbiAgICAgICAgdGhpcy5fY2hlY2tGb3JXaW5uZXIgPSAoKSA9PiB7XG4gICAgICAgICAgICBmb3IgKGxldCBpID0gMDsgaSA8IDM7IGkrKykge1xuICAgICAgICAgICAgICAgIGNvbnN0IHJvd3MgPSBbMCwgMSwgMl0ubWFwKCh2YWwpID0+IHRoaXMuX3NxdWFyZXNbaV1bdmFsXVxuICAgICAgICAgICAgICAgICAgICAuZ2V0U3RhdGVcbiAgICAgICAgICAgICAgICAgICAgLmNsaWNrZWQpO1xuICAgICAgICAgICAgICAgIGNvbnN0IGNvbHVtbnMgPSBbMCwgMSwgMl0ubWFwKCh2YWwpID0+IHRoaXMuX3NxdWFyZXNbdmFsXVtpXVxuICAgICAgICAgICAgICAgICAgICAuZ2V0U3RhdGVcbiAgICAgICAgICAgICAgICAgICAgLmNsaWNrZWQpO1xuICAgICAgICAgICAgICAgIGlmIChyb3dzWzBdID09PSByb3dzWzFdICYmXG4gICAgICAgICAgICAgICAgICAgIHJvd3NbMV0gPT09IHJvd3NbMl0gJiZcbiAgICAgICAgICAgICAgICAgICAgcm93c1swXSkge1xuICAgICAgICAgICAgICAgICAgICByZXR1cm4gcm93c1swXTtcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgZWxzZSBpZiAoY29sdW1uc1swXSA9PT0gY29sdW1uc1sxXSAmJlxuICAgICAgICAgICAgICAgICAgICBjb2x1bW5zWzFdID09PSBjb2x1bW5zWzJdICYmXG4gICAgICAgICAgICAgICAgICAgIGNvbHVtbnNbMF0pIHtcbiAgICAgICAgICAgICAgICAgICAgcmV0dXJuIGNvbHVtbnNbMF07XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgfVxuICAgICAgICAgICAgY29uc3QgZGlhZ29uYWxzID0gW1xuICAgICAgICAgICAgICAgIFtcbiAgICAgICAgICAgICAgICAgICAgdGhpcy5fc3F1YXJlc1swXVswXS5nZXRTdGF0ZS5jbGlja2VkLFxuICAgICAgICAgICAgICAgICAgICB0aGlzLl9zcXVhcmVzWzFdWzFdLmdldFN0YXRlLmNsaWNrZWQsXG4gICAgICAgICAgICAgICAgICAgIHRoaXMuX3NxdWFyZXNbMl1bMl0uZ2V0U3RhdGUuY2xpY2tlZCxcbiAgICAgICAgICAgICAgICBdLFxuICAgICAgICAgICAgICAgIFtcbiAgICAgICAgICAgICAgICAgICAgdGhpcy5fc3F1YXJlc1swXVsyXS5nZXRTdGF0ZS5jbGlja2VkLFxuICAgICAgICAgICAgICAgICAgICB0aGlzLl9zcXVhcmVzWzFdWzFdLmdldFN0YXRlLmNsaWNrZWQsXG4gICAgICAgICAgICAgICAgICAgIHRoaXMuX3NxdWFyZXNbMl1bMF0uZ2V0U3RhdGUuY2xpY2tlZCxcbiAgICAgICAgICAgICAgICBdLFxuICAgICAgICAgICAgXTtcbiAgICAgICAgICAgIGZvciAoY29uc3QgZGlhZ29uYWwgb2YgZGlhZ29uYWxzKSB7XG4gICAgICAgICAgICAgICAgaWYgKGRpYWdvbmFsWzBdID09PSBkaWFnb25hbFsxXSAmJlxuICAgICAgICAgICAgICAgICAgICBkaWFnb25hbFsxXSA9PT0gZGlhZ29uYWxbMl0gJiZcbiAgICAgICAgICAgICAgICAgICAgZGlhZ29uYWxbMF0pIHtcbiAgICAgICAgICAgICAgICAgICAgcmV0dXJuIGRpYWdvbmFsWzBdO1xuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIHJldHVybiBcIlwiO1xuICAgICAgICB9O1xuICAgICAgICB0aGlzLnJlbmRlciA9ICgpID0+IFswLCAxLCAyXVxuICAgICAgICAgICAgLy8gQ3JlYXRlIDMgcm93c1xuICAgICAgICAgICAgLm1hcCgodmFsKSA9PiBjcmVhdGVFbGVtZW50KFwiZGl2XCIsIHsgY2xhc3M6IFwicm93XCIgfSwgXG4gICAgICAgIC8vIENyZWF0ZSAzIGNvbHVtbnNcbiAgICAgICAgWzAsIDEsIDJdLm1hcCgodmFsMikgPT4gY3JlYXRlRWxlbWVudChcImRpdlwiLCB7XG4gICAgICAgICAgICBjbGFzczogXCJjb2wtNFwiLFxuICAgICAgICAgICAgb25DbGljazogKCkgPT4ge1xuICAgICAgICAgICAgICAgIC8vIEN1cnJlbnQgc3F1YXJlXG4gICAgICAgICAgICAgICAgY29uc3Qgc3F1YXJlID0gdGhpcy5fc3F1YXJlc1t2YWxdW3ZhbDJdO1xuICAgICAgICAgICAgICAgIC8vIENoZWNrIGlmIHNxdWFyZSBpc24ndCBhbHJlYWR5IGNsaWNrZWRcbiAgICAgICAgICAgICAgICBpZiAoc3F1YXJlPy5nZXRTdGF0ZS5jbGlja2VkID09PSBcIlwiKSB7XG4gICAgICAgICAgICAgICAgICAgIHNxdWFyZT8uc2V0U3RhdGUoeyBjbGlja2VkOiBjdXJyZW50UGxheWVyIH0pO1xuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAvLyBDaGFuZ2UgY3VycmVudCBwbGF5ZXJcbiAgICAgICAgICAgICAgICBpZiAoY3VycmVudFBsYXllciA9PT0gXCJ4XCIpIHtcbiAgICAgICAgICAgICAgICAgICAgY3VycmVudFBsYXllciA9IFwib1wiO1xuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICBlbHNlIHtcbiAgICAgICAgICAgICAgICAgICAgY3VycmVudFBsYXllciA9IFwieFwiO1xuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICBpZiAodGhpcy5fY2hlY2tGb3JXaW5uZXIoKSkge1xuICAgICAgICAgICAgICAgICAgICBhbGVydChgUGxheWVyICR7dGhpcy5fY2hlY2tGb3JXaW5uZXIoKX0gaGFzIHdvbiB0aGUgZ2FtZSFgKTtcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICB9LFxuICAgICAgICB9LCB0aGlzLl9zcXVhcmVzW3ZhbF1bdmFsMl0pKSkpO1xuICAgIH1cbn1cbmNsYXNzIFNxdWFyZSBleHRlbmRzIERTLkNvbXBvbmVudCB7XG4gICAgY29uc3RydWN0b3IoKSB7XG4gICAgICAgIHN1cGVyKCk7XG4gICAgICAgIHRoaXMucmVuZGVyID0gKCkgPT4gY3JlYXRlRWxlbWVudChcImRpdlwiLCB7IGNsYXNzOiBcInRpY3RhY3RvZS1zcXVhcmVcIiwgfSwgdGhpcy5zdGF0ZS5jbGlja2VkKTtcbiAgICAgICAgdGhpcy5zdGF0ZSA9IHtcbiAgICAgICAgICAgIGNsaWNrZWQ6IFwiXCIsXG4gICAgICAgIH07XG4gICAgfVxufVxuY29uc3QgdGljdGFjdG9lUGFyZW50ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJuZXN0ZWRcIik7XG5jb25zdCBtb3VudFRpY1RhY1RvZSA9ICgpID0+IHtcbiAgICBpZiAodGljdGFjdG9lUGFyZW50KSB7XG4gICAgICAgIGNvbnN0IHRpY3RhY3RvZSA9IG5ldyBUaWNUYWNUb2UodGljdGFjdG9lUGFyZW50KSwgcmVzZXRCdG4gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcIm5lc3RlZC1yZXNldC1idG5cIik7XG4gICAgICAgIGlmIChyZXNldEJ0bikge1xuICAgICAgICAgICAgcmVzZXRCdG4uYWRkRXZlbnRMaXN0ZW5lcihcImNsaWNrXCIsICgpID0+IHtcbiAgICAgICAgICAgICAgICB0aWN0YWN0b2UudW5tb3VudCgpO1xuICAgICAgICAgICAgICAgIG1vdW50VGljVGFjVG9lKCk7XG4gICAgICAgICAgICB9KTtcbiAgICAgICAgfVxuICAgICAgICB0aWN0YWN0b2UubW91bnQoKTtcbiAgICB9XG59O1xubW91bnRUaWNUYWNUb2UoKTtcbiJdfQ==
+!function(t,e){if("object"==typeof exports&&"object"==typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var n=e();for(var i in n)("object"==typeof exports?exports:t)[i]=n[i]}}(window,(function(){return function(t){var e={};function n(i){if(e[i])return e[i].exports;var o=e[i]={i:i,l:!1,exports:{}};return t[i].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=t,n.c=e,n.d=function(t,e,i){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:i})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var i=Object.create(null);if(n.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(i,o,function(e){return t[e]}.bind(null,o));return i},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=7)}([function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports DeStagnate main destagnate class
+ * @file main file for destagnate
+ * @preserve
+ */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e.Component=e.createRef=e.createElementNS=e.createElement=e.createDSComponent=void 0;const o=i(n(1)),r=i(n(8)),s=i(n(2)),a=i(n(3)),u=i(n(6));e.createDSComponent=s.default,e.createElement=a.default,e.createElementNS=u.default,e.createRef=o.default,e.Component=r.default,e.default=r.default},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.createRef=void 0,e.createRef=()=>({current:null}),e.default=e.createRef},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports createDSComponent add nested component for DeStagnate components
+ */Object.defineProperty(e,"__esModule",{value:!0});e.default=(t,e,n)=>{const i=document.createElement("div");i.classList.add("DeStagnate-component-parent");const o=new t(i,e);return o.mount(),n&&(n.current=o),i}},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports createElement function for DOM manipulation
+ */Object.defineProperty(e,"__esModule",{value:!0}),e.createElement=void 0;const i=n(4);function o(t,e,n,...o){let r=n;if(n&&o&&(r=n instanceof Array?[...i.unpackChildren(n),...i.unpackChildren(o)]:[n,...i.unpackChildren(o)]),"string"==typeof t){const n=document.createElement(t);return i.bindProps(n,e),i.bindChildren(n,r),n}return"function"==typeof t?t(e,r):Error("tagNameOrComponent is of invalid type.")}e.createElement=o,e.default=o},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @file share functions and types for createElement and it's variants
+ */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e.bindChildren=e.unpackChildren=e.bindProps=void 0;const o=i(n(0)),r=i(n(5));e.bindProps=(t,e,n=!1)=>{if(e)for(const[i,o]of Object.entries(e))"string"==typeof o||"number"==typeof o?"innerHTML"===i?t.innerHTML=o.toString():n?t.setAttributeNS(null,i,o.toString()):t.setAttribute(i,o.toString()):"on"===i.slice(0,2)?"function"==typeof o&&t.addEventListener(i.slice(2).toLowerCase(),o):"ref"===i&&"object"==typeof o&&"current"in o?o.current=t:console.warn(`WARN: Code 7. See ${r.default}. Params: ${typeof o}, ${i}`)},e.unpackChildren=t=>{const n=[];for(const i of t)"object"==typeof i&&i instanceof Array?n.push(...e.unpackChildren(i)):n.push(i);return n},e.bindChildren=(t,n)=>{if(null!=n)if(n instanceof Array)for(const i of n)e.bindChildren(t,i);else if("string"==typeof n||"number"==typeof n)t.innerText=n.toString();else if(n instanceof o.default){if(!n.didMount&&t instanceof window.HTMLElement)return void n.mount(t);if(!(t instanceof window.HTMLElement))throw new Error("ERROR: code 8. See "+r.default);n.parent!==t&&(n.parent=t),n.forceUpdate()}else t.appendChild(n)}},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @file share functions and types for createElement and it's variants
+ */Object.defineProperty(e,"__esModule",{value:!0}),e.url=void 0,e.url="https://luke-zhang-04.github.io/DeStagnate/error-codes",e.default=e.url},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports createElementNS createElement for namespaced elements
+ */Object.defineProperty(e,"__esModule",{value:!0}),e.createElementNS=void 0;const i=n(4);e.createElementNS=(t,e,n,o,...r)=>{const s=document.createElementNS(t,e);i.bindProps(s,n,!0);let a=o;return o&&r&&(a="object"==typeof o&&o instanceof Array?[...i.unpackChildren(o),...i.unpackChildren(r)]:[o,...i.unpackChildren(r)]),i.bindChildren(s,a),s},e.default=e.createElementNS},function(t,e,n){"use strict";var i,o=this&&this.__extends||(i=function(t,e){return(i=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n])})(t,e)},function(t,e){function n(){this.constructor=t}i(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)}),r=this&&this.__createBinding||(Object.create?function(t,e,n,i){void 0===i&&(i=n),Object.defineProperty(t,i,{enumerable:!0,get:function(){return e[n]}})}:function(t,e,n,i){void 0===i&&(i=n),t[i]=e[n]}),s=this&&this.__setModuleDefault||(Object.create?function(t,e){Object.defineProperty(t,"default",{enumerable:!0,value:e})}:function(t,e){t.default=e}),a=this&&this.__importStar||function(t){if(t&&t.__esModule)return t;var e={};if(null!=t)for(var n in t)"default"!==n&&Object.prototype.hasOwnProperty.call(t,n)&&r(e,t,n);return s(e,t),e},u=this&&this.__values||function(t){var e="function"==typeof Symbol&&Symbol.iterator,n=e&&t[e],i=0;if(n)return n.call(t);if(t&&"number"==typeof t.length)return{next:function(){return t&&i>=t.length&&(t=void 0),{value:t&&t[i++],done:!t}}};throw new TypeError(e?"Object is not iterable.":"Symbol.iterator is not defined.")};Object.defineProperty(e,"__esModule",{value:!0});var c=a(n(0)),d="x",l=function(t){function e(){var e=null!==t&&t.apply(this,arguments)||this;return e._squares=[[new h,new h,new h],[new h,new h,new h],[new h,new h,new h]],e._checkForWinner=function(){for(var t,n,i=function(t){var n=[0,1,2].map((function(n){return e._squares[t][n].getState.clicked})),i=[0,1,2].map((function(n){return e._squares[n][t].getState.clicked}));return n[0]===n[1]&&n[1]===n[2]&&n[0]?{value:n[0]}:i[0]===i[1]&&i[1]===i[2]&&i[0]?{value:i[0]}:void 0},o=0;o<3;o++){var r=i(o);if("object"==typeof r)return r.value}var s=[[e._squares[0][0].getState.clicked,e._squares[1][1].getState.clicked,e._squares[2][2].getState.clicked],[e._squares[0][2].getState.clicked,e._squares[1][1].getState.clicked,e._squares[2][0].getState.clicked]];try{for(var a=u(s),c=a.next();!c.done;c=a.next()){var d=c.value;if(d[0]===d[1]&&d[1]===d[2]&&d[0])return d[0]}}catch(e){t={error:e}}finally{try{c&&!c.done&&(n=a.return)&&n.call(a)}finally{if(t)throw t.error}}return""},e.render=function(){return[0,1,2].map((function(t){return c.createElement("div",{class:"row"},[0,1,2].map((function(n){return c.createElement("div",{class:"col-4",onClick:function(){var i=e._squares[t][n];""===(null==i?void 0:i.getState.clicked)&&(null==i||i.setState({clicked:d})),d="x"===d?"o":"x",e._checkForWinner()&&alert("Player "+e._checkForWinner()+" has won the game!")}},e._squares[t][n])})))}))},e}return o(e,t),e}(c.default),h=function(t){function e(){var e=t.call(this)||this;return e.render=function(){return c.createElement("div",{class:"tictactoe-square"},e.state.clicked)},e.state={clicked:""},e}return o(e,t),e}(c.default),f=document.getElementById("nested"),p=function(){if(f){var t=new l(f),e=document.getElementById("nested-reset-btn");e&&e.addEventListener("click",(function(){t.unmount(),p()})),t.mount()}};p()},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports DeStagnate main destagnate class
+ * @file DeStagnate component class
+ * @preserve
+ */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e.Component=void 0;const o=i(n(9)),r=i(n(5));class s extends o.default{constructor(t,e,n=!1){super(),this.props=e,this._strict=!0,this._state={},this._didSetInitialState=!1,this._didMount=!1,this.getSnapshotBeforeUpdate=(t,e)=>[t,e],this.useStrict=()=>{this._strict=!0},this.disableStrict=()=>{this._strict=!1},this.forceUpdate=()=>{try{if(this.componentDidUpdate(),void 0===this._parent)throw new Error(`ERROR: code 3. See ${r.default}.`);this.getSnapshotBeforeUpdate(Object.assign({},this.props),Object.assign({},this.state)),this._update(this._execRender())}catch(t){return this.componentDidCatch(t),t}},this.setState=t=>{try{if(this.componentWillUpdate(),void 0===this._parent)throw new Error(`ERROR: code 3. See ${r.default}.`);this._strict&&this._checkKeys(t),this.getSnapshotBeforeUpdate(Object.assign({},this.props),Object.assign({},this.state)),Object.assign(this._state,t);const e=this.shouldComponentUpdate()?this._execRender():void 0;this._update(e)}catch(t){return this.componentDidCatch(t),t}},this.mountComponent=t=>{try{if(void 0!==t&&(this.parent=t),void 0===this._parent)throw new Error(`ERROR: code 3. See ${r.default}.`);const e=this.render();if(this._didSetInitialState=!0,this.componentWillMount(),null===e)throw new Error(`ERROR: code 5. See ${r.default}.`);return this.bindEventListeners(this._parent),this._didMount=!0,this.componentDidMount(),"object"==typeof e&&e instanceof Array?e.map(t=>this._parent.appendChild(t)):this._parent.appendChild(e)}catch(t){return this.componentDidCatch(t),t}},this.mount=this.mountComponent,this.unmountComponent=()=>{try{if(void 0===this._parent)return void this.componentDidWarn(`WARN: code 4. See ${r.default}.`);this.componentWillUnmount(),this.unbindEventListeners(this._parent),this._removeChildren(),this._didMount=!1}catch(t){this.componentDidCatch(t)}},this.unmount=this.unmountComponent,this._removeChildren=()=>{if(void 0===this._parent)throw new Error(`ERROR: code 3. See ${r.default}.`);for(;this._parent.firstChild;)this._parent.lastChild&&this._parent.removeChild(this._parent.lastChild)},this._execRender=()=>(this._removeChildren(),this.render()),this._checkKeys=t=>{for(const e of Object.keys(t))Object.keys(this.state).includes(e)||this.componentDidWarn(`WARN: code 6. See ${r.default}. Params: ${e}, ${JSON.stringify(Object.keys(this.state))}.`)},this._update=t=>{if("object"==typeof t&&t instanceof Array)for(const e of t)this._parent.appendChild(e);else t&&this._parent.appendChild(t);t&&this.componentDidUpdate()},t&&t.childElementCount>0&&!n&&this._strict&&this.componentDidCatch(new Error(`ERROR: code 1. See ${r.default}. Params: ${t.tagName.toLowerCase()}`)),this._parent=t}get getState(){return this.state}get state(){return this._state}set state(t){this._didSetInitialState&&this._strict?(this.componentDidCatch(new Error(`ERROR: code 2. See ${r.default}.`)),this.componentDidWarn(`ERROR: code 2. See ${r.default}.`),this.setState(t)):(this._state=t,this._didSetInitialState=!0)}get getProps(){return this.props}set parent(t){t&&t.childElementCount>0&&this._strict&&this.componentDidCatch(new Error(`ERROR: code 1. See ${r.default}. Params: ${t.tagName.toLowerCase()}`)),this._parent=t}get parent(){return this._parent}get didMount(){return this._didMount}}e.default=s;e.Component=class extends s{}},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports Events
+ * @package
+ */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0});const o=i(n(10)),r=i(n(11));class s extends r.default{constructor(){super(...arguments),this.onFocus=void 0,this.onBlur=void 0,this.onFocusIn=void 0,this.onFocusOut=void 0,this.onAnimationStart=void 0,this.onAnimationCancel=void 0,this.onAnimationEnd=void 0,this.onAnimationIteration=void 0,this.onTransitionStart=void 0,this.onTransitionCancel=void 0,this.onTransitionEnd=void 0,this.onTransitionRun=void 0,this.onAuxClick=void 0,this.onClick=void 0,this.onDblClick=void 0,this.onMouseDown=void 0,this.onMouseEnter=void 0,this.onMouseLeave=void 0,this.onMouseMove=void 0,this.onMouseOver=void 0,this.onMouseOut=void 0,this.onMouseUp=void 0,this.bindEventListeners=t=>{this._eventListener(t.addEventListener)},this.unbindEventListeners=t=>{this._eventListener(t.removeEventListener)},this._eventListener=t=>{for(const[e,n]of o.default(this._events()))void 0!==n&&t(e,n)},this._events=()=>({focus:this.onFocus,blur:this.onBlur,focusin:this.onFocusIn,focusout:this.onFocusOut,animationstart:this.onAnimationStart,animationcancel:this.onAnimationCancel,animationend:this.onAnimationEnd,animationiteration:this.onAnimationIteration,transitionstart:this.onTransitionStart,transitioncancel:this.onTransitionCancel,transitionend:this.onTransitionEnd,transitionrun:this.onTransitionRun,auxclick:this.onAuxClick,click:this.onClick,dblclick:this.onDblClick,mousedown:this.onMouseDown,mouseenter:this.onMouseEnter,mouseleave:this.onMouseLeave,mousemove:this.onMouseMove,mouseover:this.onMouseOver,mouseout:this.onMouseOut,mouseup:this.onMouseUp})}}e.default=s},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @package
+ */Object.defineProperty(e,"__esModule",{value:!0}),e.eventsList=void 0,e.eventsList=t=>{const e=[];for(const n of Object.keys(t))e.push([n,t[n]]);return e},e.default=e.eventsList},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports Preset - base for a component
+ * @package
+ */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0});const o=i(n(2)),r=i(n(3)),s=i(n(6)),a=i(n(1));class u{constructor(){this.createDSComponent=o.default,this.createElement=r.default,this.createElementNS=s.default,this.createRef=a.default,this.componentDidCatch=t=>console.error(t),this.componentDidMount=()=>{},this.componentDidUpdate=()=>{},this.componentDidWarn=t=>console.warn(t),this.componentWillMount=()=>{},this.componentWillUnmount=()=>{},this.componentWillUpdate=()=>{},this.shouldComponentUpdate=()=>!0,this.render=()=>null}}e.default=u,u.createDSComponent=o.default,u.createElement=r.default,u.createElementNS=s.default,u.createRef=a.default}])}));

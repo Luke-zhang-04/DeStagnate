@@ -1,9 +1,6 @@
-/* eslint-disable multiline-comment-style, no-undef, no-magic-numbers */
+import DeStagnate, {createElementNS} from "destagnate"
 
-const DS = DeStagnate,
-    {createElement, createElementNS} = DS
-
-class SVG extends DS.Component {
+class SVG extends DeStagnate {
 
     constructor (parent, props) {
         super(parent, props)

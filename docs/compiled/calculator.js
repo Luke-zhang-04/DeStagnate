@@ -1,132 +1,97 @@
-// WARNING: THIS CODE WAS COMPILED FOR DEVELOPMENT, AND IS NOT OPTIMISED FOR PRODUCTION. FOR PRODUCTION, USE THE --prod FLAG, OR ADD mode: production TO YOU CONFIG FILE
-
-"use strict";
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-/* eslint-disable multiline-comment-style, no-undef, no-magic-numbers, max-len */
-var DS = DeStagnate,
-    createElement = DS.createElement;
-
-var Calculator = /*#__PURE__*/function (_DS$Component) {
-  _inherits(Calculator, _DS$Component);
-
-  var _super = _createSuper(Calculator);
-
-  function Calculator(parent) {
-    var _this;
-
-    _classCallCheck(this, Calculator);
-
-    _this = _super.call(this, parent);
-
-    _defineProperty(_assertThisInitialized(_this), "_appendState", function (text, append) {
-      return {
-        calculation: _this.state.calculation + (append ? append : text)
-      };
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "_calcButton", function (text, append) {
-      return createElement("div", {
-        "class": "col-3 calc-btn",
-        // Bootstrap grid
-        onClick: function onClick() {
-          return _this.setState(_this._appendState(text, append));
-        }
-      }, text);
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "_evalCalc", function () {
-      return eval(_this.state.calculation);
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "_numBtns", [/*#__PURE__*/DeStagnate.createElement("div", {
-      class: "calc-btns row"
-    }, ["7", "8", "9", ["x", "*"]].map(function (val) {
-      return _this._calcButton(val instanceof Array ? val[0] : val, val instanceof Array ? val[1] : val);
-    })), /*#__PURE__*/DeStagnate.createElement("div", {
-      class: "calc-btns row"
-    }, ["4", "5", "6", "-"].map(function (val) {
-      return _this._calcButton(val instanceof Array ? val[0] : val, val instanceof Array ? val[1] : val);
-    })), /*#__PURE__*/DeStagnate.createElement("div", {
-      class: "calc-btns row"
-    }, ["1", "2", "3", "+"].map(function (val) {
-      return _this._calcButton(val instanceof Array ? val[0] : val, val instanceof Array ? val[1] : val);
-    }))]);
-
-    _defineProperty(_assertThisInitialized(_this), "_calcDisplay", function () {
-      return createElement("div", {
-        "class": "calc-display"
-      }, _this.state.calculation);
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "render", function () {
-      return /*#__PURE__*/DeStagnate.createElement("div", null, _this._calcDisplay(), /*#__PURE__*/DeStagnate.createElement("div", {
-        class: "calc-btns row"
-      }, /*#__PURE__*/DeStagnate.createElement("div", {
-        class: "col-3 calc-btn clear",
-        onClick: function onClick() {
-          return _this.setState({
-            calculation: ""
-          });
-        }
-      }, "C"), createElement("div", {
-        "class": "col-3 calc-btn",
-        onClick: function onClick() {
-          return _this.setState({
-            calculation: _this.state.calculation.slice(0, _this.state.calculation.length - 1)
-          });
-        }
-      }, "\u2190"), _this._calcButton("%"), _this._calcButton("\xF7", "/")), _this._numBtns.map(function (btn) {
-        return btn;
-      }), createElement("div", {
-        "class": "calc-btns row"
-      }, [_this._calcButton("0"), _this._calcButton("."), createElement("div", {
-        "class": "col-6 calc-btn equals",
-        onClick: function onClick() {
-          return _this.setState({
-            calculation: _this._evalCalc()
-          });
-        }
-      }, "=") // Equals
-      ]));
-    });
-
-    _this.state = {
-      calculation: ""
-    };
-    return _this;
-  }
-  /**
-   * Appends new values to calculation
-   * @param {string} text - text of button
-   * @param {string | undefined} append - value to append to
-   * calculation
-   * @returns {Object.<string, string>} new state
-   */
-
-
-  return Calculator;
-}(DS.Component);
-
-var calculator = new Calculator(document.querySelector("#calculator"));
-calculator.mount(); // Must call once
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVua25vd24iXSwibmFtZXMiOlsiRFMiLCJEZVN0YWduYXRlIiwiY3JlYXRlRWxlbWVudCIsIkNhbGN1bGF0b3IiLCJwYXJlbnQiLCJ0ZXh0IiwiYXBwZW5kIiwiY2FsY3VsYXRpb24iLCJzdGF0ZSIsIm9uQ2xpY2siLCJzZXRTdGF0ZSIsIl9hcHBlbmRTdGF0ZSIsImV2YWwiLCJtYXAiLCJ2YWwiLCJfY2FsY0J1dHRvbiIsIkFycmF5IiwiX2NhbGNEaXNwbGF5Iiwic2xpY2UiLCJsZW5ndGgiLCJfbnVtQnRucyIsImJ0biIsIl9ldmFsQ2FsYyIsIkNvbXBvbmVudCIsImNhbGN1bGF0b3IiLCJkb2N1bWVudCIsInF1ZXJ5U2VsZWN0b3IiLCJtb3VudCJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBO0FBQ00sSUFBQUEsRUFBRSxHQUFHQyxVQUFMO0FBQUEsSUFDREMsYUFEQyxHQUNnQkYsRUFEaEIsQ0FDREUsYUFEQzs7SUFHQUMsVTs7Ozs7QUFFRixzQkFBYUMsTUFBYixFQUFxQjtBQUFBOztBQUFBOztBQUNqQiw4QkFBTUEsTUFBTjs7QUFEaUIsbUVBZU4sVUFBQ0MsSUFBRCxFQUFPQyxNQUFQO0FBQUEsYUFBbUI7QUFDOUJDLFFBQUFBLFdBQVcsRUFBRSxNQUFLQyxLQUFMLENBQVdELFdBQVgsSUFBMEJELE1BQU0sR0FBR0EsTUFBSCxHQUFZRCxJQUE1QztBQURpQixPQUFuQjtBQUFBLEtBZk07O0FBQUEsa0VBMEJQLFVBQUNBLElBQUQsRUFBT0MsTUFBUDtBQUFBLGFBQWtCSixhQUFhLENBQ3pDLEtBRHlDLEVBRXpDO0FBQ0ksaUJBQU8sZ0JBRFg7QUFDNkI7QUFDekJPLFFBQUFBLE9BQU8sRUFBRTtBQUFBLGlCQUFNLE1BQUtDLFFBQUwsQ0FBYyxNQUFLQyxZQUFMLENBQWtCTixJQUFsQixFQUF3QkMsTUFBeEIsQ0FBZCxDQUFOO0FBQUE7QUFGYixPQUZ5QyxFQU16Q0QsSUFOeUMsQ0FBL0I7QUFBQSxLQTFCTzs7QUFBQSxn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TCxDQUFpQixHQUFqQixDQUY0QyxFQUc1Q2IsYUFBYSxDQUFDLEtBQUQsRUFBUTtBQUNqQixpQkFBTyx1QkFEVTtBQUVqQk8sUUFBQUEsT0FBTyxFQUFFO0FBQUEsaUJBQU0sTUFBS0MsUUFBTCxDQUFjO0FBQUNILFlBQUFBLFdBQVcsRUFBRSxNQUFLZSxTQUFMO0FBQWQsV0FBZCxDQUFOO0FBQUE7QUFGUSxPQUFSLEVBR1YsR0FIVSxDQUgrQixDQU1uQztBQU5tQyxPQUFsQyxDQW5CbEIsQ0FESztBQUFBLEtBcEZZOztBQUdqQixVQUFLZCxLQUFMLEdBQWE7QUFDVEQsTUFBQUEsV0FBVyxFQUFFO0FBREosS0FBYjtBQUhpQjtBQU1wQjtBQUVEOzs7Ozs7Ozs7O0VBVnFCUCxFQUFFLENBQUN1QixTOztBQXVINUIsSUFBTUMsVUFBVSxHQUFHLElBQUlyQixVQUFKLENBQWVzQixRQUFRLENBQUNDLGFBQVQsQ0FBdUIsYUFBdkIsQ0FBZixDQUFuQjtBQUVBRixVQUFVLENBQUNHLEtBQVgsRyxDQUFtQiIsInNvdXJjZXNDb250ZW50IjpbIi8qIGVzbGludC1kaXNhYmxlIG11bHRpbGluZS1jb21tZW50LXN0eWxlLCBuby11bmRlZiwgbm8tbWFnaWMtbnVtYmVycywgbWF4LWxlbiAqL1xuY29uc3QgRFMgPSBEZVN0YWduYXRlLFxuICAgIHtjcmVhdGVFbGVtZW50fSA9IERTXG5cbmNsYXNzIENhbGN1bGF0b3IgZXh0ZW5kcyBEUy5Db21wb25lbnQge1xuXG4gICAgY29uc3RydWN0b3IgKHBhcmVudCkge1xuICAgICAgICBzdXBlcihwYXJlbnQpXG5cbiAgICAgICAgdGhpcy5zdGF0ZSA9IHtcbiAgICAgICAgICAgIGNhbGN1bGF0aW9uOiBcIlwiLFxuICAgICAgICB9XG4gICAgfVxuXG4gICAgLyoqXG4gICAgICogQXBwZW5kcyBuZXcgdmFsdWVzIHRvIGNhbGN1bGF0aW9uXG4gICAgICogQHBhcmFtIHtzdHJpbmd9IHRleHQgLSB0ZXh0IG9mIGJ1dHRvblxuICAgICAqIEBwYXJhbSB7c3RyaW5nIHwgdW5kZWZpbmVkfSBhcHBlbmQgLSB2YWx1ZSB0byBhcHBlbmQgdG9cbiAgICAgKiBjYWxjdWxhdGlvblxuICAgICAqIEByZXR1cm5zIHtPYmplY3QuPHN0cmluZywgc3RyaW5nPn0gbmV3IHN0YXRlXG4gICAgICovXG4gICAgX2FwcGVuZFN0YXRlID0gKHRleHQsIGFwcGVuZCkgPT4gKHtcbiAgICAgICAgY2FsY3VsYXRpb246IHRoaXMuc3RhdGUuY2FsY3VsYXRpb24gKyAoYXBwZW5kID8gYXBwZW5kIDogdGV4dCksXG4gICAgfSlcbiAgICBcbiAgICAvKipcbiAgICAgKiBDcmVhdGUgYSBjYWxjdWxhdG9yIGJ1dHRvblxuICAgICAqIEBwYXJhbSB7c3RyaW5nfSB0ZXh0IC0gdGV4dCBvZiBidXR0b25cbiAgICAgKiBAcGFyYW0ge3N0cmluZyB8IHVuZGVmaW5lZH0gYXBwZW5kIC0gdmFsdWUgdG8gYXBwZW5kIHRvXG4gICAgICogY2FsY3VsYXRvblxuICAgICAqIEByZXR1cm5zIHtIVE1MRWxlbWVudH0gY29sIGVsZW1lbnRcbiAgICAgKi9cbiAgICBfY2FsY0J1dHRvbiA9ICh0ZXh0LCBhcHBlbmQpID0+IGNyZWF0ZUVsZW1lbnQoXG4gICAgICAgIFwiZGl2XCIsXG4gICAgICAgIHtcbiAgICAgICAgICAgIGNsYXNzOiBcImNvbC0zIGNhbGMtYnRuXCIsIC8vIEJvb3RzdHJhcCBncmlkXG4gICAgICAgICAgICBvbkNsaWNrOiAoKSA9PiB0aGlzLnNldFN0YXRlKHRoaXMuX2FwcGVuZFN0YXRlKHRleHQsIGFwcGVuZCkpLFxuICAgICAgICB9LFxuICAgICAgICB0ZXh0LFxuICAgIClcblxuICAgIC8qIGVzbGludC1kaXNhYmxlIG5vLWV2YWwgKi9cbiAgICAvKipcbiAgICAgKiBFdmFsdWF0ZSBjdXJyZW50IGNhbGN1bGF0aW9uXG4gICAgICogQHJldHVybnMge251bWJlcn0gY2FsY3VsYXRpb25cbiAgICAgKi9cbiAgICBfZXZhbENhbGMgPSAoKSA9PiBldmFsKHRoaXMuc3RhdGUuY2FsY3VsYXRpb24pXG4gICAgLyogZXNsaW50LWRpc2FibGUgbm8tZXZhbCAqL1xuXG4gICAgLyoqXG4gICAgICogQ2FsY3VsYXRvciBidXR0b25zIGZvciAzIG51bWJlcmVkIHJvd3NcbiAgICAgKiBAdHlwZSB7QXJyYXkuPEhUTUxFbGVtZW50Pn1cbiAgICAgKi9cbiAgICBfbnVtQnRucyA9IFtcbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJjYWxjLWJ0bnMgcm93XCI+IFxuICAgICAgICAgICAge1tcIjdcIiwgXCI4XCIsIFwiOVwiLCBbXCJ4XCIsIFwiKlwiXV0ubWFwKCh2YWwpID0+IChcbiAgICAgICAgICAgICAgICB0aGlzLl9jYWxjQnV0dG9uKFxuICAgICAgICAgICAgICAgICAgICB2YWwgaW5zdGFuY2VvZiBBcnJheSA/IHZhbFswXSA6IHZhbCxcbiAgICAgICAgICAgICAgICAgICAgdmFsIGluc3RhbmNlb2YgQXJyYXkgPyB2YWxbMV0gOiB2YWwsXG4gICAgICAgICAgICAgICAgKVxuICAgICAgICAgICAgKSl9XG4gICAgICAgIDwvZGl2PixcbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJjYWxjLWJ0bnMgcm93XCI+IFxuICAgICAgICAgICAge1tcIjRcIiwgXCI1XCIsIFwiNlwiLCBcIi1cIl0ubWFwKCh2YWwpID0+IChcbiAgICAgICAgICAgICAgICB0aGlzLl9jYWxjQnV0dG9uKFxuICAgICAgICAgICAgICAgICAgICB2YWwgaW5zdGFuY2VvZiBBcnJheSA/IHZhbFswXSA6IHZhbCxcbiAgICAgICAgICAgICAgICAgICAgdmFsIGluc3RhbmNlb2YgQXJyYXkgPyB2YWxbMV0gOiB2YWwsXG4gICAgICAgICAgICAgICAgKVxuICAgICAgICAgICAgKSl9XG4gICAgICAgIDwvZGl2PixcbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJjYWxjLWJ0bnMgcm93XCI+IFxuICAgICAgICAgICAge1tcIjFcIiwgXCIyXCIsIFwiM1wiLCBcIitcIl0ubWFwKCh2YWwpID0+IChcbiAgICAgICAgICAgICAgICB0aGlzLl9jYWxjQnV0dG9uKFxuICAgICAgICAgICAgICAgICAgICB2YWwgaW5zdGFuY2VvZiBBcnJheSA/IHZhbFswXSA6IHZhbCxcbiAgICAgICAgICAgICAgICAgICAgdmFsIGluc3RhbmNlb2YgQXJyYXkgPyB2YWxbMV0gOiB2YWwsXG4gICAgICAgICAgICAgICAgKVxuICAgICAgICAgICAgKSl9XG4gICAgICAgIDwvZGl2PixcbiAgICBdXG5cbiAgICAvKipcbiAgICAgKiBDYWxjdWxhdG9yIERpc3BsYXlcbiAgICAgKiBAcmV0dXJucyB7SFRNTEVsZW1lbnR9IGRpc3BsYXlcbiAgICAgKi9cbiAgICBfY2FsY0Rpc3BsYXkgPSAoKSA9PiBjcmVhdGVFbGVtZW50KFxuICAgICAgICBcImRpdlwiLFxuICAgICAgICB7Y2xhc3M6IFwiY2FsYy1kaXNwbGF5XCJ9LFxuICAgICAgICB0aGlzLnN0YXRlLmNhbGN1bGF0aW9uLFxuICAgIClcblxuICAgIHJlbmRlciA9ICgpID0+IChcbiAgICAgICAgPGRpdj5cbiAgICAgICAgICAgIHt0aGlzLl9jYWxjRGlzcGxheSgpfVxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJjYWxjLWJ0bnMgcm93XCI+XG4gICAgICAgICAgICAgICAgPGRpdlxuICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJjb2wtMyBjYWxjLWJ0biBjbGVhclwiXG4gICAgICAgICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IHRoaXMuc2V0U3RhdGUoe2NhbGN1bGF0aW9uOiBcIlwifSl9XG4gICAgICAgICAgICAgICAgPkM8L2Rpdj5cbiAgICAgICAgICAgICAgICB7Y3JlYXRlRWxlbWVudChcImRpdlwiLCB7XG4gICAgICAgICAgICAgICAgICAgIGNsYXNzOiBcImNvbC0zIGNhbGMtYnRuXCIsXG4gICAgICAgICAgICAgICAgICAgIG9uQ2xpY2s6ICgpID0+IHRoaXMuc2V0U3RhdGUoe1xuICAgICAgICAgICAgICAgICAgICAgICAgY2FsY3VsYXRpb246IHRoaXMuc3RhdGUuY2FsY3VsYXRpb24uc2xpY2UoXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgMCwgdGhpcy5zdGF0ZS5jYWxjdWxhdGlvbi5sZW5ndGggLSAxLFxuICAgICAgICAgICAgICAgICAgICAgICAgKSxcbiAgICAgICAgICAgICAgICAgICAgfSksXG4gICAgICAgICAgICAgICAgfSwgXCJcXHUyMTkwXCIpfVxuICAgICAgICAgICAgICAgIHt0aGlzLl9jYWxjQnV0dG9uKFwiJVwiKX1cbiAgICAgICAgICAgICAgICB7dGhpcy5fY2FsY0J1dHRvbihcIlxcdTAwZjdcIiwgXCIvXCIpfVxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICB7dGhpcy5fbnVtQnRucy5tYXAoKGJ0bikgPT4gYnRuKX1cbiAgICAgICAgICAgIHtjcmVhdGVFbGVtZW50KFwiZGl2XCIsIHtjbGFzczogXCJjYWxjLWJ0bnMgcm93XCJ9LCBbXG4gICAgICAgICAgICAgICAgdGhpcy5fY2FsY0J1dHRvbihcIjBcIiksXG4gICAgICAgICAgICAgICAgdGhpcy5fY2FsY0J1dHRvbihcIi5cIiksXG4gICAgICAgICAgICAgICAgY3JlYXRlRWxlbWVudChcImRpdlwiLCB7XG4gICAgICAgICAgICAgICAgICAgIGNsYXNzOiBcImNvbC02IGNhbGMtYnRuIGVxdWFsc1wiLFxuICAgICAgICAgICAgICAgICAgICBvbkNsaWNrOiAoKSA9PiB0aGlzLnNldFN0YXRlKHtjYWxjdWxhdGlvbjogdGhpcy5fZXZhbENhbGMoKX0pLFxuICAgICAgICAgICAgICAgIH0sIFwiPVwiKSwgLy8gRXF1YWxzXG4gICAgICAgICAgICBdKX1cbiAgICAgICAgPC9kaXY+XG4gICAgKVxuXG59XG5cbmNvbnN0IGNhbGN1bGF0b3IgPSBuZXcgQ2FsY3VsYXRvcihkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiI2NhbGN1bGF0b3JcIikpXG5cbmNhbGN1bGF0b3IubW91bnQoKSAvLyBNdXN0IGNhbGwgb25jZVxuIl19
+!function(t,e){if("object"==typeof exports&&"object"==typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var n=e();for(var i in n)("object"==typeof exports?exports:t)[i]=n[i]}}(window,(function(){return function(t){var e={};function n(i){if(e[i])return e[i].exports;var o=e[i]={i:i,l:!1,exports:{}};return t[i].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=t,n.c=e,n.d=function(t,e,i){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:i})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var i=Object.create(null);if(n.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(i,o,function(e){return t[e]}.bind(null,o));return i},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=7)}([function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports DeStagnate main destagnate class
+ * @file main file for destagnate
+ * @preserve
+ */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e.Component=e.createRef=e.createElementNS=e.createElement=e.createDSComponent=void 0;const o=i(n(1)),s=i(n(8)),r=i(n(2)),a=i(n(3)),c=i(n(6));e.createDSComponent=r.default,e.createElement=a.default,e.createElementNS=c.default,e.createRef=o.default,e.Component=s.default,e.default=s.default},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.createRef=void 0,e.createRef=()=>({current:null}),e.default=e.createRef},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports createDSComponent add nested component for DeStagnate components
+ */Object.defineProperty(e,"__esModule",{value:!0});e.default=(t,e,n)=>{const i=document.createElement("div");i.classList.add("DeStagnate-component-parent");const o=new t(i,e);return o.mount(),n&&(n.current=o),i}},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports createElement function for DOM manipulation
+ */Object.defineProperty(e,"__esModule",{value:!0}),e.createElement=void 0;const i=n(4);function o(t,e,n,...o){let s=n;if(n&&o&&(s=n instanceof Array?[...i.unpackChildren(n),...i.unpackChildren(o)]:[n,...i.unpackChildren(o)]),"string"==typeof t){const n=document.createElement(t);return i.bindProps(n,e),i.bindChildren(n,s),n}return"function"==typeof t?t(e,s):Error("tagNameOrComponent is of invalid type.")}e.createElement=o,e.default=o},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @file share functions and types for createElement and it's variants
+ */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e.bindChildren=e.unpackChildren=e.bindProps=void 0;const o=i(n(0)),s=i(n(5));e.bindProps=(t,e,n=!1)=>{if(e)for(const[i,o]of Object.entries(e))"string"==typeof o||"number"==typeof o?"innerHTML"===i?t.innerHTML=o.toString():n?t.setAttributeNS(null,i,o.toString()):t.setAttribute(i,o.toString()):"on"===i.slice(0,2)?"function"==typeof o&&t.addEventListener(i.slice(2).toLowerCase(),o):"ref"===i&&"object"==typeof o&&"current"in o?o.current=t:console.warn(`WARN: Code 7. See ${s.default}. Params: ${typeof o}, ${i}`)},e.unpackChildren=t=>{const n=[];for(const i of t)"object"==typeof i&&i instanceof Array?n.push(...e.unpackChildren(i)):n.push(i);return n},e.bindChildren=(t,n)=>{if(null!=n)if(n instanceof Array)for(const i of n)e.bindChildren(t,i);else if("string"==typeof n||"number"==typeof n)t.innerText=n.toString();else if(n instanceof o.default){if(!n.didMount&&t instanceof window.HTMLElement)return void n.mount(t);if(!(t instanceof window.HTMLElement))throw new Error("ERROR: code 8. See "+s.default);n.parent!==t&&(n.parent=t),n.forceUpdate()}else t.appendChild(n)}},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @file share functions and types for createElement and it's variants
+ */Object.defineProperty(e,"__esModule",{value:!0}),e.url=void 0,e.url="https://luke-zhang-04.github.io/DeStagnate/error-codes",e.default=e.url},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports createElementNS createElement for namespaced elements
+ */Object.defineProperty(e,"__esModule",{value:!0}),e.createElementNS=void 0;const i=n(4);e.createElementNS=(t,e,n,o,...s)=>{const r=document.createElementNS(t,e);i.bindProps(r,n,!0);let a=o;return o&&s&&(a="object"==typeof o&&o instanceof Array?[...i.unpackChildren(o),...i.unpackChildren(s)]:[o,...i.unpackChildren(s)]),i.bindChildren(r,a),r},e.default=e.createElementNS},function(module,exports,__webpack_require__){"use strict";var __extends=this&&this.__extends||(extendStatics=function(t,e){return(extendStatics=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n])})(t,e)},function(t,e){function n(){this.constructor=t}extendStatics(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)}),extendStatics,__importDefault=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(exports,"__esModule",{value:!0});var destagnate_1=__importDefault(__webpack_require__(0)),Calculator=function(_super){function Calculator(parent){var _this=_super.call(this,parent)||this;return _this._appendState=function(t,e){return{calculation:_this.state.calculation+(e||t)}},_this._calcButton=function(t){var e=t.text,n=t.append;return destagnate_1.default.createElement("div",{class:"col-3 calc-btn",onClick:function(){return _this.setState(_this._appendState(e,n))}},e)},_this._evalCalc=function(){return eval(_this.state.calculation)},_this._numBtns=[destagnate_1.default.createElement("div",{class:"calc-btns row"},["7","8","9",["x","*"]].map((function(t){return destagnate_1.default.createElement(_this._calcButton,{text:t instanceof Array?t[0]:t,append:t instanceof Array?t[1]:t})}))),destagnate_1.default.createElement("div",{class:"calc-btns row"},["4","5","6","-"].map((function(t){return destagnate_1.default.createElement(_this._calcButton,{text:t instanceof Array?t[0]:t,append:t instanceof Array?t[1]:t})}))),destagnate_1.default.createElement("div",{class:"calc-btns row"},["1","2","3","+"].map((function(t){return destagnate_1.default.createElement(_this._calcButton,{text:t instanceof Array?t[0]:t,append:t instanceof Array?t[1]:t})})))],_this._calcDisplay=function(){return destagnate_1.default.createElement("div",{class:"calc-display"},_this.state.calculation)},_this.render=function(){return destagnate_1.default.createElement("div",null,destagnate_1.default.createElement(_this._calcDisplay,null),destagnate_1.default.createElement("div",{class:"calc-btns row"},destagnate_1.default.createElement("div",{class:"col-3 calc-btn clear",onClick:function(){return _this.setState({calculation:""})}},"C"),destagnate_1.default.createElement("div",{class:"col-3 calc-btn",onClick:function(){return _this.setState({calculation:_this.state.calculation.slice(0,_this.state.calculation.length-1)})}},"←"),destagnate_1.default.createElement(_this._calcButton,{text:"%"}),destagnate_1.default.createElement(_this._calcButton,{text:"÷",append:"/"})),_this._numBtns.map((function(t){return t})),destagnate_1.default.createElement("div",{class:"calc-btns row"},destagnate_1.default.createElement(_this._calcButton,{text:"0"}),destagnate_1.default.createElement(_this._calcButton,{text:"."}),destagnate_1.default.createElement("div",{class:"col-6 calc-btn equals",onClick:function(){return _this.setState({calculation:_this._evalCalc()})}})))},_this.state={calculation:""},_this}return __extends(Calculator,_super),Calculator}(destagnate_1.default),calculator=new Calculator(document.querySelector("#calculator"));calculator.mount()},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports DeStagnate main destagnate class
+ * @file DeStagnate component class
+ * @preserve
+ */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e.Component=void 0;const o=i(n(9)),s=i(n(5));class r extends o.default{constructor(t,e,n=!1){super(),this.props=e,this._strict=!0,this._state={},this._didSetInitialState=!1,this._didMount=!1,this.getSnapshotBeforeUpdate=(t,e)=>[t,e],this.useStrict=()=>{this._strict=!0},this.disableStrict=()=>{this._strict=!1},this.forceUpdate=()=>{try{if(this.componentDidUpdate(),void 0===this._parent)throw new Error(`ERROR: code 3. See ${s.default}.`);this.getSnapshotBeforeUpdate(Object.assign({},this.props),Object.assign({},this.state)),this._update(this._execRender())}catch(t){return this.componentDidCatch(t),t}},this.setState=t=>{try{if(this.componentWillUpdate(),void 0===this._parent)throw new Error(`ERROR: code 3. See ${s.default}.`);this._strict&&this._checkKeys(t),this.getSnapshotBeforeUpdate(Object.assign({},this.props),Object.assign({},this.state)),Object.assign(this._state,t);const e=this.shouldComponentUpdate()?this._execRender():void 0;this._update(e)}catch(t){return this.componentDidCatch(t),t}},this.mountComponent=t=>{try{if(void 0!==t&&(this.parent=t),void 0===this._parent)throw new Error(`ERROR: code 3. See ${s.default}.`);const e=this.render();if(this._didSetInitialState=!0,this.componentWillMount(),null===e)throw new Error(`ERROR: code 5. See ${s.default}.`);return this.bindEventListeners(this._parent),this._didMount=!0,this.componentDidMount(),"object"==typeof e&&e instanceof Array?e.map(t=>this._parent.appendChild(t)):this._parent.appendChild(e)}catch(t){return this.componentDidCatch(t),t}},this.mount=this.mountComponent,this.unmountComponent=()=>{try{if(void 0===this._parent)return void this.componentDidWarn(`WARN: code 4. See ${s.default}.`);this.componentWillUnmount(),this.unbindEventListeners(this._parent),this._removeChildren(),this._didMount=!1}catch(t){this.componentDidCatch(t)}},this.unmount=this.unmountComponent,this._removeChildren=()=>{if(void 0===this._parent)throw new Error(`ERROR: code 3. See ${s.default}.`);for(;this._parent.firstChild;)this._parent.lastChild&&this._parent.removeChild(this._parent.lastChild)},this._execRender=()=>(this._removeChildren(),this.render()),this._checkKeys=t=>{for(const e of Object.keys(t))Object.keys(this.state).includes(e)||this.componentDidWarn(`WARN: code 6. See ${s.default}. Params: ${e}, ${JSON.stringify(Object.keys(this.state))}.`)},this._update=t=>{if("object"==typeof t&&t instanceof Array)for(const e of t)this._parent.appendChild(e);else t&&this._parent.appendChild(t);t&&this.componentDidUpdate()},t&&t.childElementCount>0&&!n&&this._strict&&this.componentDidCatch(new Error(`ERROR: code 1. See ${s.default}. Params: ${t.tagName.toLowerCase()}`)),this._parent=t}get getState(){return this.state}get state(){return this._state}set state(t){this._didSetInitialState&&this._strict?(this.componentDidCatch(new Error(`ERROR: code 2. See ${s.default}.`)),this.componentDidWarn(`ERROR: code 2. See ${s.default}.`),this.setState(t)):(this._state=t,this._didSetInitialState=!0)}get getProps(){return this.props}set parent(t){t&&t.childElementCount>0&&this._strict&&this.componentDidCatch(new Error(`ERROR: code 1. See ${s.default}. Params: ${t.tagName.toLowerCase()}`)),this._parent=t}get parent(){return this._parent}get didMount(){return this._didMount}}e.default=r;e.Component=class extends r{}},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports Events
+ * @package
+ */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0});const o=i(n(10)),s=i(n(11));class r extends s.default{constructor(){super(...arguments),this.onFocus=void 0,this.onBlur=void 0,this.onFocusIn=void 0,this.onFocusOut=void 0,this.onAnimationStart=void 0,this.onAnimationCancel=void 0,this.onAnimationEnd=void 0,this.onAnimationIteration=void 0,this.onTransitionStart=void 0,this.onTransitionCancel=void 0,this.onTransitionEnd=void 0,this.onTransitionRun=void 0,this.onAuxClick=void 0,this.onClick=void 0,this.onDblClick=void 0,this.onMouseDown=void 0,this.onMouseEnter=void 0,this.onMouseLeave=void 0,this.onMouseMove=void 0,this.onMouseOver=void 0,this.onMouseOut=void 0,this.onMouseUp=void 0,this.bindEventListeners=t=>{this._eventListener(t.addEventListener)},this.unbindEventListeners=t=>{this._eventListener(t.removeEventListener)},this._eventListener=t=>{for(const[e,n]of o.default(this._events()))void 0!==n&&t(e,n)},this._events=()=>({focus:this.onFocus,blur:this.onBlur,focusin:this.onFocusIn,focusout:this.onFocusOut,animationstart:this.onAnimationStart,animationcancel:this.onAnimationCancel,animationend:this.onAnimationEnd,animationiteration:this.onAnimationIteration,transitionstart:this.onTransitionStart,transitioncancel:this.onTransitionCancel,transitionend:this.onTransitionEnd,transitionrun:this.onTransitionRun,auxclick:this.onAuxClick,click:this.onClick,dblclick:this.onDblClick,mousedown:this.onMouseDown,mouseenter:this.onMouseEnter,mouseleave:this.onMouseLeave,mousemove:this.onMouseMove,mouseover:this.onMouseOver,mouseout:this.onMouseOut,mouseup:this.onMouseUp})}}e.default=r},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @package
+ */Object.defineProperty(e,"__esModule",{value:!0}),e.eventsList=void 0,e.eventsList=t=>{const e=[];for(const n of Object.keys(t))e.push([n,t[n]]);return e},e.default=e.eventsList},function(t,e,n){"use strict";
+/**
+ * DeStagnate
+ * A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @copyright Copyright (C) 2020 Luke Zhang
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @license MIT
+ * @version 1.7.0
+ * @exports Preset - base for a component
+ * @package
+ */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0});const o=i(n(2)),s=i(n(3)),r=i(n(6)),a=i(n(1));class c{constructor(){this.createDSComponent=o.default,this.createElement=s.default,this.createElementNS=r.default,this.createRef=a.default,this.componentDidCatch=t=>console.error(t),this.componentDidMount=()=>{},this.componentDidUpdate=()=>{},this.componentDidWarn=t=>console.warn(t),this.componentWillMount=()=>{},this.componentWillUnmount=()=>{},this.componentWillUpdate=()=>{},this.shouldComponentUpdate=()=>!0,this.render=()=>null}}e.default=c,c.createDSComponent=o.default,c.createElement=s.default,c.createElementNS=r.default,c.createRef=a.default}])}));

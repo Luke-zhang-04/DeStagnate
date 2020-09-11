@@ -1,5 +1,5 @@
 <div align="center">
-    <img width="50%" src="assets/logo.svg" alt="logo">
+    <img width="50%" src="https://raw.githubusercontent.com/Luke-zhang-04/DeStagnate/4f32bdeefa0521b433261463a2481f75a4fc09f1/assets/logo.svg" alt="logo">
 </div>
 
 <p align="center">
@@ -34,18 +34,20 @@ npm i destagnate --save
 yarn add destagnate
 ```
 
-Through curl to download a bundle for browser usage<br/>
-<small>Not all versions available through this method. See [https://github.com/luke-zhang-04/destagnate/releases](https://github.com/luke-zhang-04/destagnate/releases) for available releases</small>
+Through `curl` or `wget` to download a bundle for browser usage<br/>
 
 ```bash
 # Prodution
-curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.min.js -O destagnate.bundle.min.js
+curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.min.js > deStagnate.bundle.js
+wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.min.js
 
 # Development
-curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v<VERSION_NAME>/destagnate.bundle.js -O destagnate.bundle.js
+curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.js > deStagnate.bundle.min.js
+wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.js
 
 # Latest
-curl -L https://github.com/Luke-zhang-04/destagnate/releases/download/v1.6.1/destagnate.bundle.js -O destagnate.bundle.js
+curl -L https://unpkg.com/destagnate@1.7.0/dist/deStagnate.bundle.min.js > deStagnate.bundle.min.js
+wget https://unpkg.com/destagnate@1.7.0/dist/deStagnate.bundle.min.js
 ```
 
 With a CDN
@@ -57,11 +59,11 @@ With a CDN
 <script src="https://unpkg.com/destagnate@version/dist/deStagnate.bundle.js"></script>
 
 <!-- Latest -->
-<script src="https://unpkg.com/destagnate@1.6.1/dist/deStagnate.bundle.min.js"></script>
+<script src="https://unpkg.com/destagnate@1.7.0/dist/deStagnate.bundle.min.js"></script>
 ```
 
 ## Basic Use
-See [https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/src](https://github.com/Luke-zhang-04/DeStagnate/tree/master/docs/src) for example code
+See [https://luke-zhang-04.github.io/DeStagnate/docs](https://luke-zhang-04.github.io/DeStagnate/docs) for example code and documentation.
 ```js
 // Browser env requires this
 const DS = DeStagnate
@@ -83,7 +85,7 @@ class Counter extends DS.Component {
     render = () => Counter.createElement("div")
     render = () => this.createElement("div")
 
-    // Alternatively, you can use JSX (this requires the CLI, which comes with this package)
+    // Alternatively, you can use JSX. You will need a tranpiler, though.
     render = () => <div></div>
 
 }
@@ -93,3 +95,48 @@ const counter = new Counter(document.querySelector("#parent"))
 
 counter.mount() // Must call once to mount the component
 ```
+
+## Using JSX
+If you're using JSX, you'll need a transpiler. Either TypeScript, or a Babel with a Plugin will work.
+
+### Typescript
+Consider the file `test.jsx` (or `test.tsx`)
+```tsx
+/**
+ * Importing DeStagnate is important
+ * 1. It provides the JSX type defs (only typescript)
+ * 2. It is needed when transpiled later
+ */
+import DeStagnate from "destagnate"
+
+DeStagnate.createElement("div", null, <div class="myClass">
+    <p>My Paragraph</p>
+</div>)
+
+```
+
+You can compile with this `tsconfig.json`
+```json
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "jsxFactory": "DeStagnate.createElement",
+    },
+}
+```
+
+You can also compile with this `.babelrc.json`
+```json
+{
+    "plugins": [
+        [
+            "@babel/plugin-transform-react-jsx",
+            {
+                "pragma": "DeStagnate.createElement"
+            }
+        ]
+    ]
+}
+```
+
+There are no fragments in DeStagnate. Use arrays instead.

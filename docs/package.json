@@ -1,10 +1,11 @@
 {
   "name": "destagnate-docs",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "Examples for dynamic componnet",
   "main": "index.js",
   "dependencies": {
-    "bootstrap": "^5.0.0-alpha1"
+    "bootstrap": "^5.0.0-alpha1",
+    "destagnate": "file:.."
   },
   "devDependencies": {
     "sass": "^1.26.10"

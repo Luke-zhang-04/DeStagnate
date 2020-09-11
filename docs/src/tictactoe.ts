@@ -1,14 +1,4 @@
-/* eslint-disable multiline-comment-style, no-undef, no-magic-numbers */
-
-// Const declarations since these variables are globally defined
-// @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
-declare type DeStagnate = typeof import("../../lib")
-// @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
-declare const DeStagnate: DeStagnate
-// @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
-const DS = DeStagnate,
-    // @ts-ignore ignores ts(2451): Cannot redeclare block-scoped variable
-    {createElement} = DS
+import DeStagnate, {createElement} from "destagnate"
 
 // Current player
 let currentPlayer: "x" | "o" = "x"
@@ -18,7 +8,7 @@ interface SquareState {
     clicked: "" | "x" | "o",
 }
 
-class TicTacToe extends DS.Component {
+class TicTacToe extends DeStagnate {
 
     private _squares = [ // A bunch of squares
         [new Square(), new Square(), new Square()],
@@ -117,7 +107,7 @@ class TicTacToe extends DS.Component {
 
 }
 
-class Square extends DS.Component<{}, SquareState> {
+class Square extends DeStagnate<{}, SquareState> {
 
     public constructor () {
         super()
@@ -141,7 +131,7 @@ const mountTicTacToe = (): void => {
     if (tictactoeParent) {
         const tictactoe = new TicTacToe(tictactoeParent),
             resetBtn = document.getElementById("nested-reset-btn")
-    
+
         if (resetBtn) {
             resetBtn.addEventListener("click", () => {
                 tictactoe.unmount()
@@ -149,7 +139,7 @@ const mountTicTacToe = (): void => {
                 mountTicTacToe()
             })
         }
-    
+
         tictactoe.mount()
     }
 }

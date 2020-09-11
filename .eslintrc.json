@@ -222,7 +222,7 @@
         "no-underscore-dangle": "off",
         "no-unmodified-loop-condition": "error",
         "no-unneeded-ternary": "error",
-        "no-unused-expressions": "error",
+        "no-unused-expressions": "off",
         "no-use-before-define": "error",
         "no-useless-backreference": "error",
         "no-useless-call": "error",
@@ -310,7 +310,7 @@
             "parserOptions": {
                 "ecmaVersion": 2020,
                 "sourceType": "module",
-                "project": ["./tsconfig.json", "./tsconfig.cli.json"]
+                "project": ["./tsconfig.json", "./tsconfig.docs.json"]
             },
             "rules": {
                 "@typescript-eslint/array-type": "error",
@@ -373,7 +373,7 @@
 
                 "no-dupe-class-members": "off",
                 "@typescript-eslint/no-dupe-class-members": ["error"],
-                
+
                 "@typescript-eslint/no-extra-non-null-assertion": "error",
                 "@typescript-eslint/no-non-null-assertion": "off",
 
@@ -409,11 +409,14 @@
 
                 "@typescript-eslint/type-annotation-spacing": ["error", { "before": false, "after": true }],
 
-                "@typescript-eslint/unified-signatures": "error"
+                "@typescript-eslint/unified-signatures": "error",
+
+                "require-jsdoc": "error",
+                "valid-jsdoc": "off"
             }
         },
         {
-            "files": ["./public/js/*", "./src/index.js"],
+            "files": ["./public/js/*", "./docs/src/*"],
             "env": {
                 "browser": true
             }

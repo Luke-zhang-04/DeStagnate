@@ -3,7 +3,7 @@
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @copyright Copyright (C) 2020 Luke Zhang
  * @license MIT
- * @version 1.6.1
+ * @version 1.7.0
  * Main test suite for destagnate
  */
 
@@ -27,7 +27,7 @@ module.exports.test = (document) => {
     COMPONENTNAME.mount()
 
     it("", () => {
-        assert.equal(
+        assert.strictEqual(
             true,
             true,
         )

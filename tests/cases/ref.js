@@ -3,7 +3,7 @@
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @copyright Copyright (C) 2020 Luke Zhang
  * @license MIT
- * @version 1.6.1
+ * @version 1.7.0
  * Main test suite for destagnate
  */
 
@@ -52,21 +52,21 @@ module.exports.test = (document) => {
     ref.mount()
 
     it("Should have an ID of _REFTEST", () => {
-        assert.equal(
+        assert.strictEqual(
             "_REFTEST",
             ref.testRef.current.id,
         )
     })
 
     it("Should have an ID of _REFTEST2", () => {
-        assert.equal(
+        assert.strictEqual(
             "_REFTEST2",
             ref.testRef2.current.testRef.current.id,
         )
     })
 
     it("Should be instanceof Ref2", () => {
-        assert.equal(
+        assert.strictEqual(
             true,
             ref.testRef2.current instanceof Ref2,
         )

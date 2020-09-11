@@ -3,7 +3,7 @@
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @copyright Copyright (C) 2020 Luke Zhang
  * @license MIT
- * @version 1.6.1
+ * @version 1.7.0
  * Main test suite for destagnate
  */
 
@@ -29,7 +29,7 @@ const btnPrimary = (document) => {
             .getElementsByTagName("button")[0]
             .classList
 
-        assert.equal(
+        assert.strictEqual(
             true,
             val.contains("btn-primary"),
         )
@@ -40,7 +40,7 @@ const btnPrimary = (document) => {
             val = _val[_val.length - 1]
                 .classList
 
-        assert.equal(
+        assert.strictEqual(
             true,
             val.contains("btn-dark"),
         )
@@ -49,7 +49,7 @@ const btnPrimary = (document) => {
         const val = document.getElementById("props")
             .getElementsByTagName("button")
 
-        assert.equal(
+        assert.strictEqual(
             8,
             val.length,
         )
@@ -83,12 +83,12 @@ module.exports.test = (document) => {
     it("Should not throw error", () => props.setState(props.getState))
 
     it("Should be an array with length of 8", () => {
-        assert.equal(
+        assert.strictEqual(
             true,
             props.getProps.colors instanceof Array
         )
 
-        assert.equal(
+        assert.strictEqual(
             8,
             props.getProps.colors.length
         )

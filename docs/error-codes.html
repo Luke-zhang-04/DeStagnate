@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+  DeStagnate Docs
+  Copyright (C) 2020 Luke Zhang | luke-zhang-04.github.io | MIT License
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeStagnate Examples | Event Listener</title>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-tomorrow.min.css"/>
+    <link rel="icon" href="favicon.ico"/>
+<body>
+    <div id="nav"></div>
+    <script async src="compiled/nav.js"></script>
+
+    <div class="container py-5">
+      <h1>Errors Reference</h1>
+      <p>In an effort to reduce bundle size, error messages have been moved here.</p>
+
+      <h2>Code 1</h2>
+      <p>Error code 1</p>
+      <small>1 Parameter: component parent (parent).</small>
+      <p class="d-inline">Raised in: <pre class="d-inline p-1"><code class="language-js">DeStagnate.Component</code></pre></p>
+      <p>"Avoid using this ${parent} as element parent, as all elements within this ${parent} will be removed on re-render. To disable this, pass in true as a third constructor parameter"</p>
+      <p class="d-inline">The parent you used has content inside of it, which will be overwritten when this component updates. To disable this error, pass in <pre class="d-inline p-1"><code class="language-js">true</code></pre> as the third parameter to the component constructor</p>
+
+      <h2>Code 2</h2>
+      <p>Error code 2</p>
+      <small>0 Parameters.</small>
+      <p class="d-inline">Raised in: <pre class="d-inline p-1"><code class="language-js">DeStagnate.Component</code></pre></p>
+      <p>"Do not mutate state directly. Use setState instead."</p>
+      <p class="d-inline">You likely mutated state by doing <pre class="d-inline p-1"><code class="language-js">this.state = {}</code></pre> somewhere that is not your constructor. Use the <pre class="d-inline p-1"><code class="language-js">this.setState({})</code></pre> method instead. To disable this, invoke <pre class="d-inline p-1"><code class="language-js">this.disableStrict()</code></pre>.</p>
+
+      <h2>Code 3</h2>
+      <p>Error code 3</p>
+      <small>0 Parameters.</small>
+      <p class="d-inline">Raised in: <pre class="d-inline p-1"><code class="language-js">DeStagnate.Component</code></pre></p>
+      <p>"Parent is not defined. Set parent with the parent setter or set it during mounting."</p>
+      <p class="d-inline">You have not defined a parent element for your component. Define a parent on instantiation (in the constructor), or when you call the <pre class="d-inline p-1"><code class="language-js">this.mount()</code></pre>method (pass as param).</p>
+
+      <h2>Code 4</h2>
+      <p>Warn code 4</p>
+      <small>0 Parameters.</small>
+      <p class="d-inline">Raised in: <pre class="d-inline p-1"><code class="language-js">DeStagnate.Component</code></pre></p>
+      <p>"No parent was set. Component unmounted from nothing."</p>
+      <p class="d-inline">Simillar to code 3, but is a warning. If you got code 4, you've unmounted a component that had no parent. Since no parent was necessary, no error is raised.</p>
+
+      <h2>Code 5</h2>
+      <p>Error code 5</p>
+      <small>0 Parameters.</small>
+      <p class="d-inline">Raised in: <pre class="d-inline p-1"><code class="language-js">DeStagnate.Component</code></pre></p>
+      <p>"Expected render method to be included in component class, no render method found, or render returned an empty array"</p>
+      <p class="d-inline">Your component class needs to implement the <pre class="d-inline p-1"><code class="language-js">this.render()</code></pre> method. If you're using TypeScript, you might get the message "Non-abstract class <pre class="d-inline p-1"><code class="language-js">myComponent</code></pre> does not implement inherited abstract member <pre class="d-inline p-1"><code class="language-js">render</code></pre> from class <pre class="d-inline p-1"><code class="language-ts">DeStagnate&lt;Record&lt;string, unknown&gt;, Record&lt;string, unknown&gt;&gt;.</code></pre>"</p>
+
+      <h2>Code 6</h2>
+      <p>Warning code 6</p>
+      <small>2 Parameters. newKey: new key passed in through setState, and existingKeys: already existing keys in state.</small>
+      <p class="d-inline">Raised in: <pre class="d-inline p-1"><code class="language-js">DeStagnate.Component</code></pre></p>
+      <p>"New key ${newKey} should not be set with setState, which has keys ${existingKeys}. Declare all state variables in constructor as a best practice. Did you misspell a key?"</p>
+      <p class="d-inline">When you called <pre class="d-inline p-1"><code class="language-ts">this.setState()</code></pre>, you added a key to state that did not exist before. For best pracices, every key of your state should've been declared in your <pre class="d-inline p-1"><code class="language-ts">constructor</code></pre>. There is also a good chance you misspelled a key. To supress this warning, invoke <pre class="d-inline p-1"><code class="language-js">this.disableStrict()</code></pre>.</p>
+
+      <h2>Code 7</h2>
+      <p>Warning code 7</p>
+      <small>2 Parameters: keyType: type of key from props, and keyName: name of key from props.</small>
+      <p class="d-inline">Raised in: <pre class="d-inline p-1"><code class="language-js">DeStagnate.createElement</code></pre>, and other simillar functions.</p>
+      <p>"Type of key ${keyType} for ${keyName} does not fit in as a valid prop type, and will me skipped.</p>
+      <p>When you called createElement, some of your props weren't of a compatible type, and fell through.</p>
+
+      <h2>Code 8</h2>
+      <p>Error code 8</p>
+      <small>0 Parameters.</small>
+      <p class="d-inline">Raised in: <pre class="d-inline p-1"><code class="language-js">DeStagnate.createElement</code></pre>, and other simillar functions.</p>
+      <p>"Cannot use non-HTMLElement as component parent"</p>
+      <p>When you passed in a DeStagnate component as a child, it's parent was not an HTMLElement.</p>
+    </div>
+
+    <footer></footer>
+    <script async src="compiled/footer.js"></script>
+
+    <!-- Popper.js for bootstrap, not actually needed for functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap for styling, not actually needed for functionality -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+
+    <!-- Prism JS for syntax hilighting code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

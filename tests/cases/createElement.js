@@ -3,7 +3,7 @@
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @copyright Copyright (C) 2020 Luke Zhang
  * @license MIT
- * @version 1.6.1
+ * @version 1.7.0
  * Main test suite for destagnate
  */
 
@@ -31,7 +31,7 @@ module.exports.test = (document) => {
     document.body.appendChild(element)
 
     it("Should have class bg-dark", () => {
-        assert.equal(
+        assert.strictEqual(
             "bg-dark",
             document.getElementById("_ELEMENTTEST")
                 .querySelector("div")

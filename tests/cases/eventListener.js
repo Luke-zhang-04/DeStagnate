@@ -3,7 +3,7 @@
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @copyright Copyright (C) 2020 Luke Zhang
  * @license MIT
- * @version 1.6.1
+ * @version 1.7.0
  * Main test suite for destagnate
  */
 
@@ -36,13 +36,13 @@ module.exports.test = (document, window) => {
     })
 
     it("Should have called event listener", () => {
-        assert.equal(
+        assert.strictEqual(
             false,
             document.getElementById("_EVENTLISTENERTEST").dispatchEvent(event),
         )
     })
 
     it("Event listener should have fired", () => {
-        assert.equal(true, clicked)
+        assert.strictEqual(true, clicked)
     })
 }
