@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Added
+- add ability to create function components within JSX and createElement [#35](https://github.com/Luke-zhang-04/DeStagnate/pull/35)
 - add es6 bundles [230a5c6](https://github.com/Luke-zhang-04/DeStagnate/commit/230a5c6)
 - feat: JSX Typings [#28](https://github.com/Luke-zhang-04/DeStagnate/pull/28)
 - export Ref interface from index.ts [#26](https://github.com/Luke-zhang-04/DeStagnate/pull/26)
