@@ -1,4 +1,4 @@
-import DeStagnate, {createElement} from "destagnate"
+import DeStagnate from "destagnate"
 
 class Calculator extends DeStagnate {
 
@@ -23,19 +23,14 @@ class Calculator extends DeStagnate {
 
     /**
      * Create a calculator button
-     * @param {string} text - text of button
-     * @param {string | undefined} append - value to append to
+     * @param {Object.<string, string | undefined>} param0 - text of button and value to append to
      * calculaton
      * @returns {HTMLElement} col element
      */
-    _calcButton = (text, append) => createElement(
-        "div",
-        {
-            class: "col-3 calc-btn", // Bootstrap grid
-            onClick: () => this.setState(this._appendState(text, append)),
-        },
-        text,
-    )
+    _calcButton = ({text, append}) => <div
+        class="col-3 calc-btn"
+        onClick={() => this.setState(this._appendState(text, append))}
+    >{text}</div>
 
     /* eslint-disable no-eval */
     /**
@@ -51,28 +46,22 @@ class Calculator extends DeStagnate {
      */
     _numBtns = [
         <div class="calc-btns row">
-            {["7", "8", "9", ["x", "*"]].map((val) => (
-                this._calcButton(
-                    val instanceof Array ? val[0] : val,
-                    val instanceof Array ? val[1] : val,
-                )
-            ))}
+            {["7", "8", "9", ["x", "*"]].map((val) => <this._calcButton
+                text={val instanceof Array ? val[0] : val}
+                append={val instanceof Array ? val[1] : val}
+            />)}
         </div>,
         <div class="calc-btns row">
-            {["4", "5", "6", "-"].map((val) => (
-                this._calcButton(
-                    val instanceof Array ? val[0] : val,
-                    val instanceof Array ? val[1] : val,
-                )
-            ))}
+            {["4", "5", "6", "-"].map((val) => <this._calcButton
+                text={val instanceof Array ? val[0] : val}
+                append={val instanceof Array ? val[1] : val}
+            />)}
         </div>,
         <div class="calc-btns row">
-            {["1", "2", "3", "+"].map((val) => (
-                this._calcButton(
-                    val instanceof Array ? val[0] : val,
-                    val instanceof Array ? val[1] : val,
-                )
-            ))}
+            {["1", "2", "3", "+"].map((val) => <this._calcButton
+                text={val instanceof Array ? val[0] : val}
+                append={val instanceof Array ? val[1] : val}
+            />)}
         </div>,
     ]
 
@@ -80,40 +69,40 @@ class Calculator extends DeStagnate {
      * Calculator Display
      * @returns {HTMLElement} display
      */
-    _calcDisplay = () => createElement(
-        "div",
-        {class: "calc-display"},
-        this.state.calculation,
-    )
+    _calcDisplay = () => <div class="calc-display">
+        {this.state.calculation}
+    </div>
 
     render = () => (
         <div>
-            {this._calcDisplay()}
+            <this._calcDisplay/>
             <div class="calc-btns row">
                 <div
                     class="col-3 calc-btn clear"
                     onClick={() => this.setState({calculation: ""})}
                 >C</div>
-                {createElement("div", {
-                    class: "col-3 calc-btn",
-                    onClick: () => this.setState({
+                <div
+                    class="col-3 calc-btn"
+                    onClick={() => this.setState({
                         calculation: this.state.calculation.slice(
                             0, this.state.calculation.length - 1,
                         ),
-                    }),
-                }, "\u2190")}
-                {this._calcButton("%")}
-                {this._calcButton("\u00f7", "/")}
+                    })}
+                >{"\u2190"}</div>
+                <this._calcButton text="%"/>
+                <this._calcButton text={"\u00f7"} append="/"/>
             </div>
             {this._numBtns.map((btn) => btn)}
-            {createElement("div", {class: "calc-btns row"}, [
-                this._calcButton("0"),
-                this._calcButton("."),
-                createElement("div", {
-                    class: "col-6 calc-btn equals",
-                    onClick: () => this.setState({calculation: this._evalCalc()}),
-                }, "="), // Equals
-            ])}
+            <div class="calc-btns row">
+                <this._calcButton text="0"/>
+                <this._calcButton text="."/>
+                <div
+                    class="col-6 calc-btn equals"
+                    onClick={() => (
+                        this.setState({calculation: this._evalCalc()})
+                    )}
+                ></div>
+            </div>
         </div>
     )
 

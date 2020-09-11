@@ -3,7 +3,7 @@ import createElement from "destagnate/lib/createElementOnly"
 /**
  * DeStagnate (Without JSX)
  */
-(() => {
+((): void => {
     document.getElementById("compare")?.children[0]?.appendChild( // Structured like your component/element
         createElement("div", {class: "container bg-light text-dark py-1 br-1 my-1"},
             createElement("p", {class: "m-0 p-0"}, "Hello World!")
@@ -14,7 +14,7 @@ import createElement from "destagnate/lib/createElementOnly"
 /**
  * Vanilla DOM
  */
-(() => {
+((): void => {
     // Lack of structure
 
     const helloWorldContainer = document.createElement("div"),

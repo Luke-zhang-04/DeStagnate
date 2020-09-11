@@ -27,39 +27,39 @@
             <div id="ref-source">
                 <pre class="d-block">
                     <code class="language-tsx">
-import DeStagnate, {createRef} from "destagnate"
+import DeStagnate, {createRef} from "../../lib"
 
 class RefExample extends DeStagnate {
 
-    private _inputGroupPrepend = (): HTMLElement => &lt;div class="input-group-prepend"&gt;
+    private _formRef = createRef&lt;HTMLInputElement&gt;()
+
+    private static _inputGroupPrepend = (): JSX.Element =&gt; &lt;div class="input-group-prepend"&gt;
         &lt;span class="input-group-text"&gt;
             Input
         &lt;/span&gt;
-    &lt;/&lt;div&gt;
+    &lt;/div&gt;
 
-    private _formRef = createRef&lt;HTMLInputElement&gt;()
-
-    private _getInputValues = () => {
-        const val = this._formRef.current?.value
-
-        alert(`INPUT VALUE: "${val}"`)
-    }
-
-    public render = (): HTMLElement[] => [
+    public render = (): HTMLElement[] =&gt; [
         &lt;div class="input-group"&gt;
-            {this._inputGroupPrepend()}
+            &lt;RefExample._inputGroupPrepend/&gt;
             &lt;input
                 type="text"
                 class="form-control mb-3"
                 placeholder="Insert text here"
                 ref={this._formRef}
-            >&lt;/input&gt;
+            &gt;&lt;/input&gt;
         &lt;/div&gt;,
         &lt;button
             class="btn btn-light mb-3"
             onClick={this._getInputValues}
-        >See Input Value&lt;/button&gt;
+        &gt;See Input Value&lt;/button&gt;
     ]
+
+    private _getInputValues = (): void =&gt; {
+        const val = this._formRef.current?.value
+
+        alert(`INPUT VALUE: "${val}"`)
+    }
 
 }
 

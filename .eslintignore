@@ -9,5 +9,5 @@
 src/*.js
 ./*.bundle.*.js
 ./lib/*
-docs/
+docs/compiled
 dist/

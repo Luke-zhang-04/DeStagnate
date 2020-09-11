@@ -28,7 +28,7 @@
             <div id="calc-source">
                 <pre class="d-block">
                     <code class="language-jsx">
-import DeStagnate, {createElement} from "destagnate"
+import DeStagnate from "destagnate"
 
 class Calculator extends DeStagnate {
 
@@ -45,104 +45,93 @@ class Calculator extends DeStagnate {
      * @param {string} text - text of button
      * @param {string | undefined} append - value to append to
      * calculation
-     * @returns {Object.&lt;string, string&gt} new state
+     * @returns {Object.&lt;string, string&gt;} new state
      */
-    _appendState = (text, append) =&gt ({
+    _appendState = (text, append) =&gt; ({
         calculation: this.state.calculation + (append ? append : text),
     })
 
     /**
      * Create a calculator button
-     * @param {string} text - text of button
-     * @param {string | undefined} append - value to append to
+     * @param {Object.&lt;string, string | undefined&gt;} param0 - text of button and value to append to
      * calculaton
      * @returns {HTMLElement} col element
      */
-    _calcButton = (text, append) =&gt createElement(
-        "div",
-        {
-            class: "col-3 calc-btn", // Bootstrap grid
-            onClick: () =&gt this.setState(this._appendState(text, append)),
-        },
-        text,
-    )
+    _calcButton = ({text, append}) =&gt; &lt;div
+        class="col-3 calc-btn"
+        onClick={() =&gt; this.setState(this._appendState(text, append))}
+    &gt;{text}&lt;/div&gt;
 
     /**
      * Evaluate current calculation
      * @returns {number} calculation
      */
-    _evalCalc = () =&gt eval(this.state.calculation)
+    _evalCalc = () =&gt; eval(this.state.calculation)
 
     /**
      * Calculator buttons for 3 numbered rows
-     * @type {Array.&lt;HTMLElement&gt}
+     * @type {Array.&lt;HTMLElement&gt;}
      */
     _numBtns = [
-        &lt;div class="calc-btns row"&gt
-            {["7", "8", "9", ["x", "*"]].map((val) =&gt (
-                this._calcButton(
-                    val instanceof Array ? val[0] : val,
-                    val instanceof Array ? val[1] : val,
-                )
-            ))}
-        &lt;/div&gt,
-        &lt;div class="calc-btns row"&gt
-            {["4", "5", "6", "-"].map((val) =&gt (
-                this._calcButton(
-                    val instanceof Array ? val[0] : val,
-                    val instanceof Array ? val[1] : val,
-                )
-            ))}
-        &lt;/div&gt,
-        &lt;div class="calc-btns row"&gt
-            {["1", "2", "3", "+"].map((val) =&gt (
-                this._calcButton(
-                    val instanceof Array ? val[0] : val,
-                    val instanceof Array ? val[1] : val,
-                )
-            ))}
-        &lt;/div&gt,
+        &lt;div class="calc-btns row"&gt;
+            {["7", "8", "9", ["x", "*"]].map((val) =&gt; &lt;this._calcButton
+                text={val instanceof Array ? val[0] : val}
+                append={val instanceof Array ? val[1] : val}
+            /&gt;)}
+        &lt;/div&gt;,
+        &lt;div class="calc-btns row"&gt;
+            {["4", "5", "6", "-"].map((val) =&gt; &lt;this._calcButton
+                text={val instanceof Array ? val[0] : val}
+                append={val instanceof Array ? val[1] : val}
+            /&gt;)}
+        &lt;/div&gt;,
+        &lt;div class="calc-btns row"&gt;
+            {["1", "2", "3", "+"].map((val) =&gt; &lt;this._calcButton
+                text={val instanceof Array ? val[0] : val}
+                append={val instanceof Array ? val[1] : val}
+            /&gt;)}
+        &lt;/div&gt;,
     ]
 
     /**
      * Calculator Display
      * @returns {HTMLElement} display
      */
-    _calcDisplay = () =&gt createElement(
-        "div",
-        {class: "calc-display"},
-        this.state.calculation,
-    )
+    _calcDisplay = () =&gt; &lt;div class="calc-display"&gt;
+        {this.state.calculation}
+    &lt;/div&gt;
 
-    render = () =&gt (
-        &lt;div&gt
-            {this._calcDisplay()}
-            &lt;div class="calc-btns row"&gt
+    render = () =&gt; (
+        &lt;div&gt;
+            &lt;this._calcDisplay/&gt;
+            &lt;div class="calc-btns row"&gt;
                 &lt;div
                     class="col-3 calc-btn clear"
-                    onClick={() =&gt this.setState({calculation: ""})}
-                &gtC&lt;/div&gt
-                {createElement("div", {
-                    class: "col-3 calc-btn",
-                    onClick: () =&gt this.setState({
+                    onClick={() =&gt; this.setState({calculation: ""})}
+                &gt;C&lt;/div&gt;
+                &lt;div
+                    class="col-3 calc-btn"
+                    onClick={() =&gt; this.setState({
                         calculation: this.state.calculation.slice(
                             0, this.state.calculation.length - 1,
                         ),
-                    }),
-                }, "\u2190")}
-                {this._calcButton("%")}
-                {this._calcButton("\u00f7", "/")}
-            &lt;/div&gt
-            {this._numBtns.map((btn) =&gt btn)}
-            {createElement("div", {class: "calc-btns row"}, [
-                this._calcButton("0"),
-                this._calcButton("."),
-                createElement("div", {
-                    class: "col-6 calc-btn equals",
-                    onClick: () =&gt this.setState({calculation: this._evalCalc()}),
-                }, "="), // Equals
-            ])}
-        &lt;/div&gt
+                    })}
+                &gt;&lt;/div&gt;
+                &lt;this._calcButton text="%"/&gt;
+                &lt;this._calcButton text={"\u00f7"} append="/"/&gt;
+            &lt;/div&gt;
+            {this._numBtns.map((btn) =&gt; btn)}
+            &lt;div class="calc-btns row"&gt;
+                &lt;this._calcButton text="0"/&gt;
+                &lt;this._calcButton text="."/&gt;
+                &lt;div
+                    class="col-6 calc-btn equals"
+                    onClick={() =&gt; (
+                        this.setState({calculation: this._evalCalc()})
+                    )}
+                &gt;&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
     )
 
 }
