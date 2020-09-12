@@ -125,7 +125,10 @@ $(cat "$file")" > "$file" &
         fi
     done
 
-    npx typedoc &
+
+    if [[ "$1" != "--no-docs" ]]; then
+        npx typedoc &
+    fi
 
     wait
 }
