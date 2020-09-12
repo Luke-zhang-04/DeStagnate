@@ -22,6 +22,7 @@ jobs:
     - run: yarn add sass -D
 
     - name: publish to NPM
-      run: yarn publish --access public
+      # Don't fail if version already exists
+      run: yarn publish --access public || echo "Version already published" && exit 0
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
