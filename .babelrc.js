@@ -1,6 +1,11 @@
-// Standard Babelrc
+// Babelrc for production/minified files
 
 module.exports = {
-    presets: ["@babel/preset-env"],
-    shouldPrintComment: (val) => /@/.test(val) && !(/eslint|istanbul/.test(val)),
+    presets: ["minify"],
+    plugins: [
+        "babel-plugin-loop-optimizer",
+    ],
+    minified: true,
+    shouldPrintComment: () => false,
+    comments: false,
 }

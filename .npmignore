@@ -125,6 +125,7 @@ typings/
 .vscode
 
 .github
+.
 assets
 docs
 src/
@@ -146,3 +147,4 @@ tsconfig.json
 tsconfig.cli.json
 yarn.lock
 tests
+es5
