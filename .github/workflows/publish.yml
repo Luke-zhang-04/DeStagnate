@@ -19,7 +19,7 @@ jobs:
     - name: install deps
       run: yarn install --frozen-lockfile
 
-    - run: yarn add sass -D
+    # No need to build. Build is executed before publish automatically
 
     - name: publish to NPM
       # Don't fail if version already exists
