@@ -184,7 +184,7 @@ __webpack_require__.r(__webpack_exports__);
  * Creates a reference for a nested component
  * @returns empty ref object
  */
-var createRef = function createRef() {
+var createRef = function () {
   return {
     current: null
   };
@@ -224,15 +224,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(a, b) { var c; if ("undefined" == typeof Symbol || null == a[Symbol.iterator]) { if (Array.isArray(a) || (c = _unsupportedIterableToArray(a)) || b && a && "number" == typeof a.length) { c && (a = c); var d = 0, e = function () {}; return { s: e, n: function n() { return d >= a.length ? { done: !0 } : { done: !1, value: a[d++] }; }, e: function e(a) { throw a; }, f: e }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var f, g = !0, h = !1; return { s: function s() { c = a[Symbol.iterator](); }, n: function n() { var a = c.next(); return g = a.done, a; }, e: function e(a) { h = !0, f = a; }, f: function f() { try { g || null == c["return"] || c["return"](); } finally { if (h) throw f; } } }; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(a, b) { if (a) { if ("string" == typeof a) return _arrayLikeToArray(a, b); var c = Object.prototype.toString.call(a).slice(8, -1); return "Object" === c && a.constructor && (c = a.constructor.name), "Map" === c || "Set" === c ? Array.from(a) : "Arguments" === c || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(c) ? _arrayLikeToArray(a, b) : void 0; } }
 
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray(a, b) { (null == b || b > a.length) && (b = a.length); for (var c = 0, d = Array(b); c < b; c++) d[c] = a[c]; return d; }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, result); }; }
+function _createSuper(a) { var b = _isNativeReflectConstruct(); return function () { var c, d = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(a); if (b) { var e = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(this).constructor; c = Reflect.construct(d, arguments, e); } else c = d.apply(this, arguments); return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, c); }; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if ("undefined" == typeof Reflect || !Reflect.construct) return !1; if (Reflect.construct.sham) return !1; if ("function" == typeof Proxy) return !0; try { return Date.prototype.toString.call(Reflect.construct(Date, [], function () {})), !0; } catch (a) { return !1; } }
 
 /**
  * DeStagnate
@@ -252,11 +252,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
  * @namespace
  * @abstract
  */
-var DeStagnate = function (_Base) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default()(DeStagnate, _Base);
-
-  var _super = _createSuper(DeStagnate);
-
+var DeStagnate = function (a) {
   /**
    * Construct class component
    * @public
@@ -265,305 +261,96 @@ var DeStagnate = function (_Base) {
    * @param props - element properties; works like React Props
    * @param shouldSkipParentCheck - warn or throw error if parent element already has children
    */
-  function DeStagnate(parent, props) {
-    var _this;
-
-    var shouldSkipParentCheck = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, DeStagnate);
-
-    _this = _super.call(this);
-    _this.props = props;
-    /**
-     * If strict mode should be used. True by default
-     * @private
-     * @instance
-     */
-    _this._strict = true;
-    /**
-     * State of component. Works similar React State
-     * @type {undefined | Object.<string, unknown>}
-     * @private
-     * @instance
-     */
-    _this._state = {};
-    /**
-     * If initial state was set in initializer
-     * Do not throw error with direct state setting
-     * @private
-     * @instance
-     */
-    _this._didSetInitialState = false;
-    /**
-     * If component is mounted
-     * @private
-     * @instance
-     */
-    _this._didMount = false;
-    /**
-     * What to call before component update (state mutation)
-     * @public
-     * @instance
-     * @param {Props} prevProps - previous props
-     * @param prevState - previous state
-     * @returns void
-     */
-    _this.getSnapshotBeforeUpdate = function (prevProps, prevState) {
-      return [prevProps, prevState];
-    };
-    /**
-     * Turn on strict mode
-     * @public
-     * @instance
-     * @returns void
-     */
-    _this.useStrict = function () {
-      _this._strict = true;
-    };
-    /**
-     * Turn off strict mode
-     * @public
-     * @instance
-     * @returns void
-     */
-    _this.disableStrict = function () {
-      _this._strict = false;
-    };
-    /**
-     * Forces a component to update
-     * Follows the same component updating procedure as setState without modifying state
-     * @public
-     * @instance
-     * @readonly
-     * @returns returns error if error is thrown
-     */
-    _this.forceUpdate = function () {
+  function b(a, d) {
+    var e,
+        f = !!(2 < arguments.length && void 0 !== arguments[2]) && arguments[2];
+    return _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, b), e = c.call(this), e.props = d, e._strict = !0, e._state = {}, e._didSetInitialState = !1, e._didMount = !1, e.getSnapshotBeforeUpdate = function (a, b) {
+      return [a, b];
+    }, e.useStrict = function () {
+      e._strict = !0;
+    }, e.disableStrict = function () {
+      e._strict = !1;
+    }, e.forceUpdate = function () {
       try {
-        _this.componentDidUpdate();
-
-        if (_this._parent === undefined) {
-          throw new Error("ERROR: code 3. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."));
-        }
-
-        _this.getSnapshotBeforeUpdate(Object.assign({}, _this.props), Object.assign({}, _this.state));
-
-        _this._update(_this._execRender());
-      } catch (err) {
-        _this.componentDidCatch(err);
-
-        return err;
+        if (e.componentDidUpdate(), void 0 === e._parent) throw new Error("ERROR: code 3. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."));
+        e.getSnapshotBeforeUpdate(Object.assign({}, e.props), Object.assign({}, e.state)), e._update(e._execRender());
+      } catch (a) {
+        return e.componentDidCatch(a), a;
       }
-    };
-    /**
-     * Sets state
-     * @public
-     * @instance
-     * @readonly
-     * @param obj - state to set
-     * @returns void
-     */
-    _this.setState = function (obj) {
+    }, e.setState = function (a) {
       try {
-        _this.componentWillUpdate();
+        if (e.componentWillUpdate(), void 0 === e._parent) throw new Error("ERROR: code 3. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."));
+        e._strict && e._checkKeys(a), e.getSnapshotBeforeUpdate(Object.assign({}, e.props), Object.assign({}, e.state)), Object.assign(e._state, a);
+        var b = e.shouldComponentUpdate() ? e._execRender() : void 0;
 
-        if (_this._parent === undefined) {
-          throw new Error("ERROR: code 3. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."));
-        }
-
-        if (_this._strict) {
-          _this._checkKeys(obj);
-        }
-
-        _this.getSnapshotBeforeUpdate(Object.assign({}, _this.props), Object.assign({}, _this.state));
-
-        Object.assign(_this._state, obj);
-        var renderedContent = _this.shouldComponentUpdate() ? _this._execRender() : undefined;
-
-        _this._update(renderedContent);
-      } catch (err) {
-        _this.componentDidCatch(err);
-
-        return err;
+        e._update(b);
+      } catch (a) {
+        return e.componentDidCatch(a), a;
       }
-    };
-    /**
-     * Initial mounting to be manually called
-     * @public
-     * @instance
-     * @readonly
-     * @param parent - parent element to mount with; optional
-     * @returns - result of append child to parent element
-     */
-    _this.mountComponent = function (parent) {
+    }, e.mountComponent = function (a) {
       try {
-        if (parent !== undefined) {
-          _this.parent = parent;
+        if (void 0 !== a && (e.parent = a), void 0 === e._parent) throw new Error("ERROR: code 3. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."));
+        var g = e.render();
+        if (e._didSetInitialState = !0, e.componentWillMount(), null === g) throw new Error("ERROR: code 5. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."));
+
+        if (e.bindEventListeners(e._parent), e._didMount = !0, e.componentDidMount(), "object" === _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(g) && g instanceof Array) {
+          for (var b = g, c = function (a) {
+            return e._parent.appendChild(a);
+          }, d = [], f = 0; f < b.length; f++) d.push(c(b[f], f, b));
+
+          return d;
         }
 
-        if (_this._parent === undefined) {
-          throw new Error("ERROR: code 3. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."));
-        }
-
-        var component = _this.render();
-
-        _this._didSetInitialState = true;
-
-        _this.componentWillMount();
-
-        if (component === null) {
-          throw new Error("ERROR: code 5. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."));
-        }
-
-        _this.bindEventListeners(_this._parent);
-
-        _this._didMount = true;
-
-        _this.componentDidMount();
-
-        if (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(component) === "object" && component instanceof Array) {
-          return component.map(function (element) {
-            return _this._parent.appendChild(element);
-          });
-        }
-
-        return _this._parent.appendChild(component);
-      } catch (err) {
-        _this.componentDidCatch(err);
-
-        return err;
+        return e._parent.appendChild(g);
+      } catch (a) {
+        return e.componentDidCatch(a), a;
       }
-    };
-    /**
-     * Initial mounting to be manually called
-     * @public
-     * @instance
-     * @readonly
-     * @returns - result of append child to parent element
-     */
-    _this.mount = _this.mountComponent;
-    /**
-     * Unmounting to be manually called
-     * @public
-     * @instance
-     * @readonly
-     * @returns - void
-     */
-    _this.unmountComponent = function () {
+    }, e.mount = e.mountComponent, e.unmountComponent = function () {
       try {
-        if (_this._parent === undefined) {
-          _this.componentDidWarn("WARN: code 4. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."));
-
-          return;
-        }
-
-        _this.componentWillUnmount();
-
-        _this.unbindEventListeners(_this._parent);
-
-        _this._removeChildren();
-
-        _this._didMount = false;
-      } catch (err) {
-        _this.componentDidCatch(err);
+        if (void 0 === e._parent) return void e.componentDidWarn("WARN: code 4. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."));
+        e.componentWillUnmount(), e.unbindEventListeners(e._parent), e._removeChildren(), e._didMount = !1;
+      } catch (a) {
+        e.componentDidCatch(a);
       }
-    };
-    /**
-     * Unmounting to be manually called
-     * @public
-     * @instance
-     * @readonly
-     * @returns - void
-     */
-    _this.unmount = _this.unmountComponent;
-    /**
-     * Removes children from this._parent
-     * @private
-     * @instance
-     * @return void
-     */
-    _this._removeChildren = function () {
-      if (_this._parent === undefined) {
-        throw new Error("ERROR: code 3. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."));
-      }
+    }, e.unmount = e.unmountComponent, e._removeChildren = function () {
+      if (void 0 === e._parent) throw new Error("ERROR: code 3. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."));
 
-      while (_this._parent.firstChild) {
-        if (_this._parent.lastChild) {
-          _this._parent.removeChild(_this._parent.lastChild);
-        }
-      }
-    };
-    /**
-     * Executes new render
-     * @private
-     * @instance
-     * @returns rendered content
-     */
-    _this._execRender = function () {
-      _this._removeChildren();
-
-      return _this.render();
-    };
-    /**
-     * Checks new state assignment to make sure no new keys are assigned
-     * @private
-     * @instance
-     * @param obj - new state
-     * @returns void
-     */
-    _this._checkKeys = function (obj) {
-      for (var _i = 0, _Object$keys = Object.keys(obj); _i < _Object$keys.length; _i++) {
-        var key = _Object$keys[_i];
-
-        if (!Object.keys(_this.state).includes(key)) {
-          _this.componentDidWarn("WARN: code 6. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], ". Params: ").concat(key, ", ").concat(JSON.stringify(Object.keys(_this.state)), "."));
-        }
-      }
-    };
-    /**
-     * Updates the component
-     * @private
-     * @instance
-     * @param renderedContent - rendered content from executing the render function
-     * @returns void
-     */
-    _this._update = function (renderedContent) {
-      if (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(renderedContent) === "object" && renderedContent instanceof Array) {
-        var _iterator = _createForOfIteratorHelper(renderedContent),
-            _step;
+      for (; e._parent.firstChild;) e._parent.lastChild && e._parent.removeChild(e._parent.lastChild);
+    }, e._execRender = function () {
+      return e._removeChildren(), e.render();
+    }, e._checkKeys = function (a) {
+      for (var b, c = 0, d = Object.keys(a); c < d.length; c++) b = d[c], Object.keys(e.state).includes(b) || e.componentDidWarn("WARN: code 6. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], ". Params: ").concat(b, ", ").concat(JSON.stringify(Object.keys(e.state)), "."));
+    }, e._update = function (a) {
+      if ("object" === _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(a) && a instanceof Array) {
+        var b,
+            c = _createForOfIteratorHelper(a);
 
         try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var element = _step.value;
+          for (c.s(); !(b = c.n()).done;) {
+            var d = b.value;
 
-            _this._parent.appendChild(element);
+            e._parent.appendChild(d);
           }
-        } catch (err) {
-          _iterator.e(err);
+        } catch (a) {
+          c.e(a);
         } finally {
-          _iterator.f();
+          c.f();
         }
-      } else if (renderedContent) {
-        _this._parent.appendChild(renderedContent);
-      }
+      } else a && e._parent.appendChild(a);
 
-      if (renderedContent) {
-        _this.componentDidUpdate();
-      }
-    };
-
-    if (parent && parent.childElementCount > 0 && !shouldSkipParentCheck && _this._strict) {
-      _this.componentDidCatch(new Error("ERROR: code 1. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], ". Params: ").concat(parent.tagName.toLowerCase())));
-    }
-
-    _this._parent = parent;
-    return _this;
+      a && e.componentDidUpdate();
+    }, a && 0 < a.childElementCount && !f && e._strict && e.componentDidCatch(new Error("ERROR: code 1. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], ". Params: ").concat(a.tagName.toLowerCase()))), e._parent = a, e;
   }
   /**
    * Public getState getter as this.state itself is protected
    * @public
    * @returns component state
    */
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(DeStagnate, [{
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default()(b, a);
+
+  var c = _createSuper(b);
+
+  return _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(b, [{
     key: "getState",
     get: function get() {
       return this.state;
@@ -585,15 +372,8 @@ var DeStagnate = function (_Base) {
      * @param obj - state to set
      */
     ,
-    set: function set(obj) {
-      if (this._didSetInitialState && this._strict) {
-        this.componentDidCatch(new Error("ERROR: code 2. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], ".")));
-        this.componentDidWarn("ERROR: code 2. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."));
-        this.setState(obj);
-      } else {
-        this._state = obj;
-        this._didSetInitialState = true;
-      }
+    set: function set(a) {
+      this._didSetInitialState && this._strict ? (this.componentDidCatch(new Error("ERROR: code 2. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], "."))), this.componentDidWarn("ERROR: code 2. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], ".")), this.setState(a)) : (this._state = a, this._didSetInitialState = !0);
     }
     /**
      * Public getProps getter as this.props itself is protected
@@ -613,12 +393,8 @@ var DeStagnate = function (_Base) {
      */
   }, {
     key: "parent",
-    set: function set(element) {
-      if (element && element.childElementCount > 0 && this._strict) {
-        this.componentDidCatch(new Error("ERROR: code 1. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], ". Params: ").concat(element.tagName.toLowerCase())));
-      }
-
-      this._parent = element;
+    set: function set(a) {
+      a && 0 < a.childElementCount && this._strict && this.componentDidCatch(new Error("ERROR: code 1. See ".concat(_private_url__WEBPACK_IMPORTED_MODULE_7__["default"], ". Params: ").concat(a.tagName.toLowerCase()))), this._parent = a;
     }
     /**
      * Get the parent element of this component
@@ -639,24 +415,20 @@ var DeStagnate = function (_Base) {
     get: function get() {
       return this._didMount;
     }
-  }]);
-
-  return DeStagnate;
+  }]), b;
 }(_private_events__WEBPACK_IMPORTED_MODULE_6__["default"]);
 
 
-var Component = function (_DeStagnate) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default()(Component, _DeStagnate);
-
-  var _super2 = _createSuper(Component);
-
-  function Component() {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, Component);
-
-    return _super2.apply(this, arguments);
+var Component = function (a) {
+  function b() {
+    return _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, b), c.apply(this, arguments);
   }
 
-  return Component;
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default()(b, a);
+
+  var c = _createSuper(b);
+
+  return b;
 }(DeStagnate);
 
 /***/ }),
@@ -823,15 +595,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(a, b) { var c; if ("undefined" == typeof Symbol || null == a[Symbol.iterator]) { if (Array.isArray(a) || (c = _unsupportedIterableToArray(a)) || b && a && "number" == typeof a.length) { c && (a = c); var d = 0, e = function () {}; return { s: e, n: function n() { return d >= a.length ? { done: !0 } : { done: !1, value: a[d++] }; }, e: function e(a) { throw a; }, f: e }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var f, g = !0, h = !1; return { s: function s() { c = a[Symbol.iterator](); }, n: function n() { var a = c.next(); return g = a.done, a; }, e: function e(a) { h = !0, f = a; }, f: function f() { try { g || null == c["return"] || c["return"](); } finally { if (h) throw f; } } }; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(a, b) { if (a) { if ("string" == typeof a) return _arrayLikeToArray(a, b); var c = Object.prototype.toString.call(a).slice(8, -1); return "Object" === c && a.constructor && (c = a.constructor.name), "Map" === c || "Set" === c ? Array.from(a) : "Arguments" === c || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(c) ? _arrayLikeToArray(a, b) : void 0; } }
 
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray(a, b) { (null == b || b > a.length) && (b = a.length); for (var c = 0, d = Array(b); c < b; c++) d[c] = a[c]; return d; }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, result); }; }
+function _createSuper(a) { var b = _isNativeReflectConstruct(); return function () { var c, d = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(a); if (b) { var e = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(this).constructor; c = Reflect.construct(d, arguments, e); } else c = d.apply(this, arguments); return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, c); }; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if ("undefined" == typeof Reflect || !Reflect.construct) return !1; if (Reflect.construct.sham) return !1; if ("function" == typeof Proxy) return !0; try { return Date.prototype.toString.call(Reflect.construct(Date, [], function () {})), !0; } catch (a) { return !1; } }
 
 /**
  * DeStagnate
@@ -844,248 +616,63 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
  * @package
  */
 
-var Events = function (_BaseComponent) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(Events, _BaseComponent);
-
-  var _super = _createSuper(Events);
-
-  function Events() {
-    var _this;
-
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, Events);
-
-    _this = _super.apply(this, arguments);
-    /**
-     * Focus event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onFocus = undefined;
-    /**
-     * Blur event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onBlur = undefined;
-    /**
-     * Focus in event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onFocusIn = undefined;
-    /**
-     * Focus out event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onFocusOut = undefined;
-    /**
-     * Animation start event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onAnimationStart = undefined;
-    /**
-     * Animation cancel event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onAnimationCancel = undefined;
-    /**
-     * Animation end event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onAnimationEnd = undefined;
-    /**
-     * Animation iteration event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onAnimationIteration = undefined;
-    /**
-     * Transition start event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onTransitionStart = undefined;
-    /**
-     * Transition cancel event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onTransitionCancel = undefined;
-    /**
-     * Transition end event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onTransitionEnd = undefined;
-    /**
-     * Transition run event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onTransitionRun = undefined;
-    /**
-     * Auxillary click event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onAuxClick = undefined;
-    /**
-     * Click event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onClick = undefined;
-    /**
-     * Double click event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onDblClick = undefined;
-    /**
-     * Mousedown event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onMouseDown = undefined;
-    /**
-     * Mouse enter event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onMouseEnter = undefined;
-    /**
-     * Mouse leave event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onMouseLeave = undefined;
-    /**
-     * Mouse move event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onMouseMove = undefined;
-    /**
-     * Mouseover event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onMouseOver = undefined;
-    /**
-     * Mouseout event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onMouseOut = undefined;
-    /**
-     * Mouseup event
-     * @protected
-     * @instance
-     * @returns
-     */
-    _this.onMouseUp = undefined;
-    /**
-     * Binds event listeners event
-     * Do not call manually
-     * @protected
-     * @instance
-     * @pacakge
-     * @param element - element to bind listeners to
-     * @returns void
-     */
-    _this.bindEventListeners = function (element) {
-      _this._eventListener(element.addEventListener);
-    };
-    /**
-     * Binds event listeners event
-     * Do not call manually
-     * @protected
-     * @instance
-     * @pacakge
-     * @param element - element to bind listeners to
-     * @returns void
-     */
-    _this.unbindEventListeners = function (element) {
-      _this._eventListener(element.removeEventListener);
-    };
-
-    _this._eventListener = function (eventListener) {
-      var _iterator = _createForOfIteratorHelper(Object(_eventsUtils__WEBPACK_IMPORTED_MODULE_5__["default"])(_this._events())),
-          _step;
+var Events = function (a) {
+  function b() {
+    var a;
+    return _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, b), a = c.apply(this, arguments), a.onFocus = void 0, a.onBlur = void 0, a.onFocusIn = void 0, a.onFocusOut = void 0, a.onAnimationStart = void 0, a.onAnimationCancel = void 0, a.onAnimationEnd = void 0, a.onAnimationIteration = void 0, a.onTransitionStart = void 0, a.onTransitionCancel = void 0, a.onTransitionEnd = void 0, a.onTransitionRun = void 0, a.onAuxClick = void 0, a.onClick = void 0, a.onDblClick = void 0, a.onMouseDown = void 0, a.onMouseEnter = void 0, a.onMouseLeave = void 0, a.onMouseMove = void 0, a.onMouseOver = void 0, a.onMouseOut = void 0, a.onMouseUp = void 0, a.bindEventListeners = function (b) {
+      a._eventListener(b.addEventListener);
+    }, a.unbindEventListeners = function (b) {
+      a._eventListener(b.removeEventListener);
+    }, a._eventListener = function (b) {
+      var c,
+          d = _createForOfIteratorHelper(Object(_eventsUtils__WEBPACK_IMPORTED_MODULE_5__["default"])(a._events()));
 
       try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var _step$value = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_step.value, 2),
-              event = _step$value[0],
-              callback = _step$value[1];
+        for (d.s(); !(c = d.n()).done;) {
+          var e = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(c.value, 2),
+              f = e[0],
+              g = e[1];
 
-          if (callback !== undefined) {
-            eventListener(event, callback);
-          }
+          void 0 !== g && b(f, g);
         }
-      } catch (err) {
-        _iterator.e(err);
+      } catch (a) {
+        d.e(a);
       } finally {
-        _iterator.f();
+        d.f();
       }
-    };
-
-    _this._events = function () {
+    }, a._events = function () {
       return {
-        focus: _this.onFocus,
-        blur: _this.onBlur,
-        focusin: _this.onFocusIn,
-        focusout: _this.onFocusOut,
-        animationstart: _this.onAnimationStart,
-        animationcancel: _this.onAnimationCancel,
-        animationend: _this.onAnimationEnd,
-        animationiteration: _this.onAnimationIteration,
-        transitionstart: _this.onTransitionStart,
-        transitioncancel: _this.onTransitionCancel,
-        transitionend: _this.onTransitionEnd,
-        transitionrun: _this.onTransitionRun,
-        auxclick: _this.onAuxClick,
-        click: _this.onClick,
-        dblclick: _this.onDblClick,
-        mousedown: _this.onMouseDown,
-        mouseenter: _this.onMouseEnter,
-        mouseleave: _this.onMouseLeave,
-        mousemove: _this.onMouseMove,
-        mouseover: _this.onMouseOver,
-        mouseout: _this.onMouseOut,
-        mouseup: _this.onMouseUp
+        focus: a.onFocus,
+        blur: a.onBlur,
+        focusin: a.onFocusIn,
+        focusout: a.onFocusOut,
+        animationstart: a.onAnimationStart,
+        animationcancel: a.onAnimationCancel,
+        animationend: a.onAnimationEnd,
+        animationiteration: a.onAnimationIteration,
+        transitionstart: a.onTransitionStart,
+        transitioncancel: a.onTransitionCancel,
+        transitionend: a.onTransitionEnd,
+        transitionrun: a.onTransitionRun,
+        auxclick: a.onAuxClick,
+        click: a.onClick,
+        dblclick: a.onDblClick,
+        mousedown: a.onMouseDown,
+        mouseenter: a.onMouseEnter,
+        mouseleave: a.onMouseLeave,
+        mousemove: a.onMouseMove,
+        mouseover: a.onMouseOver,
+        mouseout: a.onMouseOut,
+        mouseup: a.onMouseUp
       };
-    };
-
-    return _this;
+    }, a;
   }
 
-  return Events;
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(b, a);
+
+  var c = _createSuper(b);
+
+  return b;
 }(_base__WEBPACK_IMPORTED_MODULE_6__["default"]);
 
 
@@ -1207,18 +794,18 @@ __webpack_require__.r(__webpack_exports__);
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.8.0
+ * @version 1.7.1
  * @package
  */
-var eventsList = function eventsList(events) {
-  var res = [];
+/**
+ * Returns array of events
+ * Not a generator because Babel Regenerator Runtime causes dist files to be wayyyy to large
+ * @param events - events object
+ */
+var eventsList = function (a) {
+  for (var b, c = [], d = 0, e = Object.keys(a); d < e.length; d++) b = e[d], c.push([b, a[b]]);
 
-  for (var _i = 0, _Object$keys = Object.keys(events); _i < _Object$keys.length; _i++) {
-    var key = _Object$keys[_i];
-    res.push([key, events[key]]);
-  }
-
-  return res;
+  return c;
 };
 /* harmony default export */ __webpack_exports__["default"] = (eventsList);
 
@@ -1250,9 +837,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Preset = function Preset() {
-  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Preset);
-
+var Preset = function a() {
   /**
    * Creates nested DeStagnate component
    * @public
@@ -1262,7 +847,6 @@ var Preset = function Preset() {
    * @param props - props of component
    * @returns parent of component
    */
-  this.createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_1__["default"];
   /**
    * Creates an HTML Element
    * @public
@@ -1274,7 +858,6 @@ var Preset = function Preset() {
    * @param childrenRest - rest parameter of children
    * @returns html element
    */
-  this.createElement = _createElement__WEBPACK_IMPORTED_MODULE_2__["default"];
   /**
    * Creates a child element to deStagnate
    * @public
@@ -1287,7 +870,6 @@ var Preset = function Preset() {
    * @param childrenRest - rest parameter of children
    * @returns html element
    */
-  this.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_3__["default"];
   /**
    * Creates a reference for a nested component
    * @public
@@ -1295,75 +877,50 @@ var Preset = function Preset() {
    * @readonly
    * @returns empty ref object
    */
-  this.createRef = _createRef__WEBPACK_IMPORTED_MODULE_4__["default"];
   /**
    * Called when component catches error. Default behaviour is console.error
    * @param error - error object with info
    * @returns void
    */
-  this.componentDidCatch = function (error) {
-    return console.error(error);
-  };
   /**
    * What to call after component mounting
    * @public
    * @instance
    * @returns void
    */
-  this.componentDidMount = function () {
-    return undefined;
-  };
   /**
    * What to call after component update (state mutation)
    * @public
    * @instance
    * @returns void
    */
-  this.componentDidUpdate = function () {
-    return undefined;
-  };
   /**
    * Called when component catches a warning. Default behaviour is console.warn
    * @param msg - warning message
    * @returns void
    */
-  this.componentDidWarn = function (msg) {
-    return console.warn(msg);
-  };
   /**
    * What to call before component mounting
    * @public
    * @instance
    * @returns void
    */
-  this.componentWillMount = function () {
-    return undefined;
-  };
   /**
    * What to call before component unmounting
    * @public
    * @instance
    * @returns void
    */
-  this.componentWillUnmount = function () {
-    return undefined;
-  };
   /**
    * What to call before component update (state mutation)
    * @public
    * @instance
    * @returns void
    */
-  this.componentWillUpdate = function () {
-    return undefined;
-  };
   /**
    * Called before component is updated
    * @returns whether or not component should update/re-render
    */
-  this.shouldComponentUpdate = function () {
-    return true;
-  };
   /**
    * Rendering HTML, must be part of extended class
    * @public
@@ -1371,7 +928,13 @@ var Preset = function Preset() {
    * @abstract
    * @returns if returns null error will be thrown
    */
-  this.render = function () {
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, a), this.createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_1__["default"], this.createElement = _createElement__WEBPACK_IMPORTED_MODULE_2__["default"], this.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_3__["default"], this.createRef = _createRef__WEBPACK_IMPORTED_MODULE_4__["default"], this.componentDidCatch = function (a) {
+    return console.error(a);
+  }, this.componentDidMount = function () {}, this.componentDidUpdate = function () {}, this.componentDidWarn = function (a) {
+    return console.warn(a);
+  }, this.componentWillMount = function () {}, this.componentWillUnmount = function () {}, this.componentWillUpdate = function () {}, this.shouldComponentUpdate = function () {
+    return !0;
+  }, this.render = function () {
     return null;
   };
 };
@@ -1385,7 +948,7 @@ var Preset = function Preset() {
  * @returns parent of component
  */
 
-Preset.createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_1__["default"];
+
 /**
  * Creates an HTML Element
  * @public
@@ -1397,7 +960,6 @@ Preset.createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_1__["defa
  * @param childrenRest - rest parameter of children
  * @returns html element
  */
-Preset.createElement = _createElement__WEBPACK_IMPORTED_MODULE_2__["default"];
 /**
  * Creates a child element to deStagnate
  * @public
@@ -1410,7 +972,6 @@ Preset.createElement = _createElement__WEBPACK_IMPORTED_MODULE_2__["default"];
  * @param childrenRest - rest parameter of children
  * @returns html element
  */
-Preset.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_3__["default"];
 /**
  * Creates a reference for a nested component
  * @public
@@ -1418,7 +979,7 @@ Preset.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_3__["default"
  * @readonly
  * @returns empty ref object
  */
-Preset.createRef = _createRef__WEBPACK_IMPORTED_MODULE_4__["default"];
+Preset.createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_1__["default"], Preset.createElement = _createElement__WEBPACK_IMPORTED_MODULE_2__["default"], Preset.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_3__["default"], Preset.createRef = _createRef__WEBPACK_IMPORTED_MODULE_4__["default"];
 
 /***/ }),
 /* 20 */
@@ -1444,19 +1005,11 @@ __webpack_require__.r(__webpack_exports__);
  * @param ref - ref object
  * @returns parent of component
  */
-var createDSComponent = function createDSComponent(Component, props, ref) {
-  var element = document.createElement("div");
-  element.classList.add("DeStagnate-component-parent");
-
-  var _component = new Component(element, props);
-
-  _component.mount();
-
-  if (ref) {
-    ref.current = _component;
-  }
-
-  return element;
+var createDSComponent = function (a, b, c) {
+  var d = document.createElement("div");
+  d.classList.add("DeStagnate-component-parent");
+  var e = new a(d, b);
+  return e.mount(), c && (c.current = e), d;
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (createDSComponent);
@@ -1492,34 +1045,15 @@ __webpack_require__.r(__webpack_exports__);
  * @param childrenArgs - rest parameter for children
  * @returns element
  */
-function createElement(tagNameOrComponent, props, children) {
-  var _children = children;
+function createElement(a, b, c) {
+  for (var d = c, e = arguments.length, f = Array(3 < e ? e - 3 : 0), g = 3; g < e; g++) f[g - 3] = arguments[g];
 
-  for (var _len = arguments.length, childrenArgs = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
-    childrenArgs[_key - 3] = arguments[_key];
+  if (c && f && (c instanceof Array ? d = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_1__["unpackChildren"])(c)), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_1__["unpackChildren"])(f))) : d = [c].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_1__["unpackChildren"])(f)))), "string" == typeof a) {
+    var h = document.createElement(a);
+    return Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_1__["bindProps"])(h, b), Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_1__["bindChildren"])(h, d), h;
   }
 
-  if (children && childrenArgs) {
-    if (children instanceof Array) {
-      _children = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_1__["unpackChildren"])(children)), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_1__["unpackChildren"])(childrenArgs)));
-    } else {
-      _children = [children].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_1__["unpackChildren"])(childrenArgs)));
-    }
-  }
-
-  if (typeof tagNameOrComponent === "string") {
-    var element = document.createElement(tagNameOrComponent);
-
-    Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_1__["bindProps"])(element, props);
-
-    Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_1__["bindChildren"])(element, _children);
-
-    return element;
-  } else if (typeof tagNameOrComponent === "function") {
-    return tagNameOrComponent(props, _children);
-  }
-
-  return Error("tagNameOrComponent is of invalid type.");
+  return "function" == typeof a ? a(b, d) : Error("tagNameOrComponent is of invalid type.");
 }
 /* harmony default export */ __webpack_exports__["default"] = (createElement);
 
@@ -1594,11 +1128,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(a, b) { var c; if ("undefined" == typeof Symbol || null == a[Symbol.iterator]) { if (Array.isArray(a) || (c = _unsupportedIterableToArray(a)) || b && a && "number" == typeof a.length) { c && (a = c); var d = 0, e = function () {}; return { s: e, n: function n() { return d >= a.length ? { done: !0 } : { done: !1, value: a[d++] }; }, e: function e(a) { throw a; }, f: e }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var f, g = !0, h = !1; return { s: function s() { c = a[Symbol.iterator](); }, n: function n() { var a = c.next(); return g = a.done, a; }, e: function e(a) { h = !0, f = a; }, f: function f() { try { g || null == c["return"] || c["return"](); } finally { if (h) throw f; } } }; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(a, b) { if (a) { if ("string" == typeof a) return _arrayLikeToArray(a, b); var c = Object.prototype.toString.call(a).slice(8, -1); return "Object" === c && a.constructor && (c = a.constructor.name), "Map" === c || "Set" === c ? Array.from(a) : "Arguments" === c || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(c) ? _arrayLikeToArray(a, b) : void 0; } }
 
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray(a, b) { (null == b || b > a.length) && (b = a.length); for (var c = 0, d = Array(b); c < b; c++) d[c] = a[c]; return d; }
 
 /**
  * DeStagnate
@@ -1617,58 +1151,33 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
  * @param ns - if namespace element
  * @returns void
  */
-var bindProps = function bindProps(element, props) {
-  var ns = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+var bindProps = function (a, b) {
+  var c = !!(2 < arguments.length && arguments[2] !== void 0) && arguments[2];
+  if (b) for (var d = 0, e = Object.entries(b); d < e.length; d++) {
+    var f = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default()(e[d], 2),
+        g = f[0],
+        h = f[1];
 
-  if (props) {
-    for (var _i = 0, _Object$entries = Object.entries(props); _i < _Object$entries.length; _i++) {
-      var _Object$entries$_i = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default()(_Object$entries[_i], 2),
-          key = _Object$entries$_i[0],
-          val = _Object$entries$_i[1];
-
-      if (typeof val === "string" || typeof val === "number") {
-        if (key === "innerHTML") {
-          element.innerHTML = val.toString();
-        } else if (ns) {
-          element.setAttributeNS(null, key, val.toString());
-        } else {
-          element.setAttribute(key, val.toString());
-        }
-      } else if (key.slice(0, 2) === "on") {
-        if (typeof val === "function") {
-          element.addEventListener(key.slice(2).toLowerCase(), val);
-        }
-      } else if (key === "ref" && _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(val) === "object" && "current" in val) {
-        val.current = element;
-      } else {
-        console.warn("WARN: Code 7. See ".concat(_url__WEBPACK_IMPORTED_MODULE_4__["default"], ". Params: ").concat(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(val), ", ").concat(key));
-      }
-    }
+    "string" == typeof h || "number" == typeof h ? "innerHTML" === g ? a.innerHTML = h.toString() : c ? a.setAttributeNS(null, g, h.toString()) : a.setAttribute(g, h.toString()) : "on" === g.slice(0, 2) ? "function" == typeof h && a.addEventListener(g.slice(2).toLowerCase(), h) : "ref" === g && "object" === _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(h) && "current" in h ? h.current = a : console.warn("WARN: Code 7. See ".concat(_url__WEBPACK_IMPORTED_MODULE_4__["default"], ". Params: ").concat(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(h), ", ").concat(g));
   }
 };
-var unpackChildren = function unpackChildren(children) {
-  var newChildren = [];
-
-  var _iterator = _createForOfIteratorHelper(children),
-      _step;
+var unpackChildren = function (a) {
+  var b,
+      c = [],
+      d = _createForOfIteratorHelper(a);
 
   try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var child = _step.value;
-
-      if (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(child) === "object" && child instanceof Array) {
-        newChildren.push.apply(newChildren, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(unpackChildren(child)));
-      } else {
-        newChildren.push(child);
-      }
+    for (d.s(); !(b = d.n()).done;) {
+      var e = b.value;
+      "object" === _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(e) && e instanceof Array ? c.push.apply(c, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(unpackChildren(e))) : c.push(e);
     }
-  } catch (err) {
-    _iterator.e(err);
+  } catch (a) {
+    d.e(a);
   } finally {
-    _iterator.f();
+    d.f();
   }
 
-  return newChildren;
+  return c;
 };
 /**
  * Binds children to element
@@ -1677,41 +1186,26 @@ var unpackChildren = function unpackChildren(children) {
  * @param children - children to bind with
  * @returns void
  */
-var bindChildren = function bindChildren(element, children) {
-  if (children !== null && children !== undefined) {
-    if (children instanceof Array) {
-      var _iterator2 = _createForOfIteratorHelper(children),
-          _step2;
+var bindChildren = function (a, b) {
+  if (null !== b && b !== void 0) if (b instanceof Array) {
+    var c,
+        d = _createForOfIteratorHelper(b);
 
-      try {
-        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var child = _step2.value;
-          bindChildren(element, child);
-        }
-      } catch (err) {
-        _iterator2.e(err);
-      } finally {
-        _iterator2.f();
+    try {
+      for (d.s(); !(c = d.n()).done;) {
+        var e = c.value;
+        bindChildren(a, e);
       }
-    } else if (typeof children === "string" || typeof children === "number") {
-      element.innerText = children.toString();
-    } else if (children instanceof ___WEBPACK_IMPORTED_MODULE_3__["default"]) {
-      if (!children.didMount && element instanceof window.HTMLElement) {
-        children.mount(element);
-        return;
-      } else if (!(element instanceof window.HTMLElement)) {
-        throw new Error("ERROR: code 8. See ".concat(_url__WEBPACK_IMPORTED_MODULE_4__["default"]));
-      }
-
-      if (children.parent !== element) {
-        children.parent = element;
-      }
-
-      children.forceUpdate();
-    } else {
-      element.appendChild(children);
+    } catch (a) {
+      d.e(a);
+    } finally {
+      d.f();
     }
-  }
+  } else if ("string" == typeof b || "number" == typeof b) a.innerText = b.toString();else if (b instanceof ___WEBPACK_IMPORTED_MODULE_3__["default"]) {
+    if (!b.didMount && a instanceof window.HTMLElement) return void b.mount(a);
+    if (!(a instanceof window.HTMLElement)) throw new Error("ERROR: code 8. See ".concat(_url__WEBPACK_IMPORTED_MODULE_4__["default"]));
+    b.parent !== a && (b.parent = a), b.forceUpdate();
+  } else a.appendChild(b);
 };
 
 /***/ }),
@@ -1731,7 +1225,7 @@ __webpack_require__.r(__webpack_exports__);
  * @file share functions and types for createElement and it's variants
  */
 var url = "https://luke-zhang-04.github.io/DeStagnate/error-codes";
-/* harmony default export */ __webpack_exports__["default"] = (url);
+/* harmony default export */ __webpack_exports__["default"] = ("https://luke-zhang-04.github.io/DeStagnate/error-codes");
 
 /***/ }),
 /* 28 */
@@ -1766,28 +1260,14 @@ __webpack_require__.r(__webpack_exports__);
  * @param childrenRest - rest parameter of children
  * @returns html element
  */
-var createElementNS = function createElementNS(namespaceURI, tagName, props, children) {
-  var element = document.createElementNS(namespaceURI, tagName);
+var createElementNS = function (a, b, c, d) {
+  var e = document.createElementNS(a, b);
 
-  Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_2__["bindProps"])(element, props, true);
+  Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_2__["bindProps"])(e, c, !0);
 
-  var _children = children;
+  for (var f = d, g = arguments.length, h = Array(4 < g ? g - 4 : 0), i = 4; i < g; i++) h[i - 4] = arguments[i];
 
-  for (var _len = arguments.length, childrenRest = new Array(_len > 4 ? _len - 4 : 0), _key = 4; _key < _len; _key++) {
-    childrenRest[_key - 4] = arguments[_key];
-  }
-
-  if (children && childrenRest) {
-    if (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(children) === "object" && children instanceof Array) {
-      _children = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_2__["unpackChildren"])(children)), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_2__["unpackChildren"])(childrenRest)));
-    } else {
-      _children = [children].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_2__["unpackChildren"])(childrenRest)));
-    }
-  }
-
-  Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_2__["bindChildren"])(element, _children);
-
-  return element;
+  return d && h && ("object" === _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(d) && d instanceof Array ? f = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_2__["unpackChildren"])(d)), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_2__["unpackChildren"])(h))) : f = [d].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_2__["unpackChildren"])(h)))), Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_2__["bindChildren"])(e, f), e;
 };
 /* harmony default export */ __webpack_exports__["default"] = (createElementNS);
 

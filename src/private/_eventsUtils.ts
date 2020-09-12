@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.8.0
+ * @version 1.7.1
  * @package
  */
 
@@ -44,6 +44,11 @@ export interface EventsList {
     mouseup: EventMember,
 }
 
+/**
+ * Returns array of events
+ * Not a generator because Babel Regenerator Runtime causes dist files to be wayyyy to large
+ * @param events - events object
+ */
 export const eventsList = (
     events: EventsList,
 ): [keyof EventsList, EventMember][] => {

@@ -79,13 +79,13 @@ module.exports =
         /** ****/ 	// Mode & 8|1: behave like require
         /** ****/ 	__webpack_require__.t = function (value, mode) {
             /** ****/ 		if (mode & 1) {
-                value = __webpack_require__(value);
+                value = __webpack_require__(value); 
             }
             /** ****/ 		if (mode & 8) {
-                return value;
+                return value; 
             }
             /** ****/ 		if ((mode & 4) && typeof value === "object" && value && value.__esModule) {
-                return value;
+                return value; 
             }
             /** ****/ 		var ns = Object.create(null);
 
@@ -94,8 +94,8 @@ module.exports =
                 value});
             /** ****/ 		if (mode & 2 && typeof value !== "string") {
                 for (var key in value) {
-                    __webpack_require__.d(ns, key, ((key) => value[key]).bind(null, key));
-                }
+                    __webpack_require__.d(ns, key, ((key) => value[key]).bind(null, key)); 
+                } 
             }
             /** ****/ 		return ns;
             /** ****/ 	};
@@ -104,10 +104,10 @@ module.exports =
         /** ****/ 	__webpack_require__.n = function (module) {
             /** ****/ 		var getter = module && module.__esModule
             /** ****/ 			? function getDefault () {
-                    return module.default;
+                    return module.default; 
                 }
             /** ****/ 			: function getModuleExports () {
-                    return module;
+                    return module; 
                 };
 
             /** ****/ 		__webpack_require__.d(getter, "a", getter);
@@ -116,7 +116,7 @@ module.exports =
         /** ****/
         /** ****/ 	// Object.prototype.hasOwnProperty.call
         /** ****/ 	__webpack_require__.o = function (object, property) {
-            return Object.prototype.hasOwnProperty.call(object, property);
+            return Object.prototype.hasOwnProperty.call(object, property); 
         };
 
         /** ****/
@@ -129,7 +129,7 @@ module.exports =
         /** ****/ }([
         /* 0 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
-
+            
 
             __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createDSComponent", () => createDSComponent);
@@ -211,7 +211,7 @@ module.exports =
             /***/ }),
         /* 1 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
-
+            
 
             __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRef", () => createRef);
@@ -233,7 +233,7 @@ module.exports =
             /***/ }),
         /* 2 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
-
+            
 
             __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", () => DeStagnate);
@@ -352,7 +352,7 @@ module.exports =
                             this._update(this._execRender());
                         } catch (err) /* istanbul ignore next */ /* istanbul ignore next */ {
                             this.componentDidCatch(err);
-
+                            
                             return err;
                         }
                     };
@@ -383,7 +383,7 @@ module.exports =
                             this._update(renderedContent);
                         } catch (err) /* istanbul ignore next */ /* istanbul ignore next */ {
                             this.componentDidCatch(err);
-
+                            
                             return err;
                         }
                     };
@@ -417,11 +417,11 @@ module.exports =
                             if (typeof (component) === "object" && component instanceof Array) {
                                 return component.map((element) => (this._parent.appendChild(element)));
                             }
-
+                            
                             return this._parent.appendChild(component);
                         } catch (err) /* istanbul ignore next */ /* istanbul ignore next */ {
                             this.componentDidCatch(err);
-
+                            
                             return err;
                         }
                     };
@@ -446,7 +446,7 @@ module.exports =
                         try {
                             if (this._parent === undefined) {
                                 this.componentDidWarn(`WARN: code 4. See ${_private_url__WEBPACK_IMPORTED_MODULE_1__.default}.`);
-
+                                
                                 return;
                             }
                             this.componentWillUnmount();
@@ -492,7 +492,7 @@ module.exports =
                      */
                     this._execRender = () => {
                         this._removeChildren();
-
+                        
                         return this.render();
                     };
 
@@ -634,7 +634,7 @@ module.exports =
             /***/ }),
         /* 3 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
-
+            
 
             __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", () => Events);
@@ -896,7 +896,7 @@ module.exports =
             /***/ }),
         /* 4 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
-
+            
 
             __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eventsList", () => eventsList);
@@ -906,8 +906,13 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.8.0
+             * @version 1.7.1
              * @package
+             */
+            /**
+             * Returns array of events
+             * Not a generator because Babel Regenerator Runtime causes dist files to be wayyyy to large
+             * @param events - events object
              */
             const eventsList = (events) => {
                 const res = [];
@@ -915,17 +920,17 @@ module.exports =
                 for (const key of Object.keys(events)) {
                     res.push([key, events[key]]);
                 }
-
+                
                 return res;
             };
 
             /* Harmony default export */ __webpack_exports__.default = (eventsList);
-            // # sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiX2V2ZW50c1V0aWxzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL3ByaXZhdGUvX2V2ZW50c1V0aWxzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7OztHQVFHO0FBc0NILE1BQU0sQ0FBQyxNQUFNLFVBQVUsR0FBRyxDQUN0QixNQUFrQixFQUNlLEVBQUU7SUFDbkMsTUFBTSxHQUFHLEdBQXNDLEVBQUUsQ0FBQTtJQUVqRCxLQUFLLE1BQU0sR0FBRyxJQUFJLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLEVBQUU7UUFDbkMsR0FBRyxDQUFDLElBQUksQ0FBQyxDQUFDLEdBQXVCLEVBQUUsTUFBTSxDQUFDLEdBQXVCLENBQUMsQ0FBQyxDQUFDLENBQUE7S0FDdkU7SUFFRCxPQUFPLEdBQUcsQ0FBQTtBQUNkLENBQUMsQ0FBQTtBQUVELGVBQWUsVUFBVSxDQUFBIn0=
+            // # sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiX2V2ZW50c1V0aWxzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL3ByaXZhdGUvX2V2ZW50c1V0aWxzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7OztHQVFHO0FBc0NIOzs7O0dBSUc7QUFDSCxNQUFNLENBQUMsTUFBTSxVQUFVLEdBQUcsQ0FDdEIsTUFBa0IsRUFDZSxFQUFFO0lBQ25DLE1BQU0sR0FBRyxHQUFzQyxFQUFFLENBQUE7SUFFakQsS0FBSyxNQUFNLEdBQUcsSUFBSSxNQUFNLENBQUMsSUFBSSxDQUFDLE1BQU0sQ0FBQyxFQUFFO1FBQ25DLEdBQUcsQ0FBQyxJQUFJLENBQUMsQ0FBQyxHQUF1QixFQUFFLE1BQU0sQ0FBQyxHQUF1QixDQUFDLENBQUMsQ0FBQyxDQUFBO0tBQ3ZFO0lBRUQsT0FBTyxHQUFHLENBQUE7QUFDZCxDQUFDLENBQUE7QUFFRCxlQUFlLFVBQVUsQ0FBQSJ9
 
             /***/ }),
         /* 5 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
-
+            
 
             __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", () => Preset);
@@ -1121,7 +1126,7 @@ module.exports =
             /***/ }),
         /* 6 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
-
+            
 
             __webpack_require__.r(__webpack_exports__);
 
@@ -1154,7 +1159,7 @@ module.exports =
                 if (ref) {
                     ref.current = _component;
                 }
-
+                
                 return element;
             };
 
@@ -1164,7 +1169,7 @@ module.exports =
             /***/ }),
         /* 7 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
-
+            
 
             __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", () => createElement);
@@ -1209,12 +1214,12 @@ module.exports =
 
                     Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_0__.bindProps)(element, props);
                     Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_0__.bindChildren)(element, _children);
-
+                    
                     return element;
                 } else if (typeof (tagNameOrComponent) === "function") {
                     return tagNameOrComponent(props, _children);
                 }
-
+                
                 return Error("tagNameOrComponent is of invalid type.");
             }
             /* Harmony default export */ __webpack_exports__.default = (createElement);
@@ -1223,7 +1228,7 @@ module.exports =
             /***/ }),
         /* 8 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
-
+            
 
             __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bindProps", () => bindProps);
@@ -1284,7 +1289,7 @@ module.exports =
                             newChildren.push(child);
                         }
                     }
-
+                    
                     return newChildren;
                 },
 
@@ -1307,7 +1312,7 @@ module.exports =
                         } else if (children instanceof ___WEBPACK_IMPORTED_MODULE_0__.default) {
                             if (!children.didMount && element instanceof _window.HTMLElement) {
                                 children.mount(element);
-
+                                
                                 return;
                             } else if (!(element instanceof _window.HTMLElement)) {
                                 throw new Error(`ERROR: code 8. See ${_url__WEBPACK_IMPORTED_MODULE_1__.default}`);
@@ -1326,7 +1331,7 @@ module.exports =
             /***/ }),
         /* 9 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
-
+            
 
             __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "url", () => url);
@@ -1347,7 +1352,7 @@ module.exports =
             /***/ }),
         /* 10 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
-
+            
 
             __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElementNS", () => createElementNS);
@@ -1387,7 +1392,7 @@ module.exports =
                     }
                 }
                 Object(_private_createElementUtils__WEBPACK_IMPORTED_MODULE_0__.bindChildren)(element, _children);
-
+                
                 return element;
             };
 

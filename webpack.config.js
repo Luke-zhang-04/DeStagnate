@@ -14,6 +14,7 @@ const babelConfig = [
                             },
                         ],
                     ],
+                    minified: false,
                     shouldPrintComment: (val) => (
                         (/@/u).test(val) && !((/eslint|istanbul/u).test(val))
                     ),

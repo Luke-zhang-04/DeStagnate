@@ -815,8 +815,13 @@ __webpack_require__.r(__webpack_exports__);
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.8.0
+ * @version 1.7.1
  * @package
+ */
+/**
+ * Returns array of events
+ * Not a generator because Babel Regenerator Runtime causes dist files to be wayyyy to large
+ * @param events - events object
  */
 const eventsList = (events) => {
     const res = [];
@@ -826,7 +831,7 @@ const eventsList = (events) => {
     return res;
 };
 /* harmony default export */ __webpack_exports__["default"] = (eventsList);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiX2V2ZW50c1V0aWxzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL3ByaXZhdGUvX2V2ZW50c1V0aWxzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7OztHQVFHO0FBc0NILE1BQU0sQ0FBQyxNQUFNLFVBQVUsR0FBRyxDQUN0QixNQUFrQixFQUNlLEVBQUU7SUFDbkMsTUFBTSxHQUFHLEdBQXNDLEVBQUUsQ0FBQTtJQUVqRCxLQUFLLE1BQU0sR0FBRyxJQUFJLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLEVBQUU7UUFDbkMsR0FBRyxDQUFDLElBQUksQ0FBQyxDQUFDLEdBQXVCLEVBQUUsTUFBTSxDQUFDLEdBQXVCLENBQUMsQ0FBQyxDQUFDLENBQUE7S0FDdkU7SUFFRCxPQUFPLEdBQUcsQ0FBQTtBQUNkLENBQUMsQ0FBQTtBQUVELGVBQWUsVUFBVSxDQUFBIn0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiX2V2ZW50c1V0aWxzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL3ByaXZhdGUvX2V2ZW50c1V0aWxzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7OztHQVFHO0FBc0NIOzs7O0dBSUc7QUFDSCxNQUFNLENBQUMsTUFBTSxVQUFVLEdBQUcsQ0FDdEIsTUFBa0IsRUFDZSxFQUFFO0lBQ25DLE1BQU0sR0FBRyxHQUFzQyxFQUFFLENBQUE7SUFFakQsS0FBSyxNQUFNLEdBQUcsSUFBSSxNQUFNLENBQUMsSUFBSSxDQUFDLE1BQU0sQ0FBQyxFQUFFO1FBQ25DLEdBQUcsQ0FBQyxJQUFJLENBQUMsQ0FBQyxHQUF1QixFQUFFLE1BQU0sQ0FBQyxHQUF1QixDQUFDLENBQUMsQ0FBQyxDQUFBO0tBQ3ZFO0lBRUQsT0FBTyxHQUFHLENBQUE7QUFDZCxDQUFDLENBQUE7QUFFRCxlQUFlLFVBQVUsQ0FBQSJ9
 
 /***/ }),
 /* 5 */
