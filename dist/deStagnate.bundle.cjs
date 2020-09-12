@@ -1158,7 +1158,7 @@ var bindProps = function (a, b) {
         g = f[0],
         h = f[1];
 
-    "string" == typeof h || "number" == typeof h ? "innerHTML" === g ? a.innerHTML = h.toString() : c ? a.setAttributeNS(null, g, h.toString()) : a.setAttribute(g, h.toString()) : "on" === g.slice(0, 2) ? "function" == typeof h && a.addEventListener(g.slice(2).toLowerCase(), h) : "ref" === g && "object" === _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(h) && "current" in h ? h.current = a : console.warn("WARN: Code 7. See ".concat(_url__WEBPACK_IMPORTED_MODULE_4__["default"], ". Params: ").concat(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(h), ", ").concat(g));
+    "string" == typeof h || "number" == typeof h ? "innerHTML" === g ? a.innerHTML = h.toString() : c ? a.setAttributeNS(null, g, h.toString()) : a.setAttribute(g, h.toString()) : "on" === g.slice(0, 2) ? "function" == typeof h && a.addEventListener(g.slice(2).toLowerCase(), h) : "ref" === g && "object" === _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(h) && "current" in h ? h.current = a : void 0 !== h && console.warn("WARN: Code 7. See ".concat(_url__WEBPACK_IMPORTED_MODULE_4__["default"], ". Params: ").concat(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(h), ", ").concat(g));
   }
 };
 var unpackChildren = function (a) {

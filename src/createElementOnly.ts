@@ -13,9 +13,6 @@
 import url from "./private/_url"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
-type PropsType = {[key: string]: string | number | Element | EventFunc}
-    | null
-
 /* eslint-disable one-var, @typescript-eslint/no-explicit-any */
 
 type ChildrenFlatArrayType = (HTMLElement
@@ -36,7 +33,53 @@ type ChildrenType = HTMLElement
     | ChildrenArrayType
     | Element
 
-type EventFunc = (e: Event)=> void
+interface EventMap extends HTMLElementEventMap {
+    "": Event,
+}
+
+type EventFunc<T extends keyof EventMap = ""> = (
+    e: EventMap[T]
+)=> void
+
+interface BasicProps {
+    // eslint-disable-next-line
+    [key: string]: string | number | Element | EventFunc<keyof EventFunc> | undefined,
+    class?: string,
+    id?: string,
+    src?: string,
+    href?: string,
+    width?: number,
+    height?: number,
+    alt?: string,
+    style?: string,
+    title?: string,
+    
+    onFocus?: EventFunc<"focus">,
+    onBlur?: EventFunc<"blur">,
+    onFocusIn?: EventFunc<"focusin">,
+    onFocusOut?: EventFunc<"focusout">,
+
+    onAnimationStart?: EventFunc<"animationstart">,
+    onAnimationCancel?: EventFunc<"animationcancel">,
+    onAnimationEnd?: EventFunc<"animationend">,
+    onAnimationIteration?: EventFunc<"animationiteration">,
+
+    onTransitionStart?: EventFunc<"transitionstart">,
+    onTransitionCancel?: EventFunc<"transitioncancel">,
+    onTransitionEnd?: EventFunc<"transitionend">,
+    onTransitionRun?: EventFunc<"transitionrun">,
+
+    onAuxClick?: EventFunc<"auxclick">,
+    onClick?: EventFunc<"click">,
+    onDblClick?: EventFunc<"dblclick">,
+    onMouseDown?: EventFunc<"mousedown">,
+    onMouseEnter?: EventFunc<"mouseenter">,
+    onMouseLeave?: EventFunc<"mouseleave">,
+    onMouseMove?: EventFunc<"mousemove">,
+    onMouseOver?: EventFunc<"mouseover">,
+    onMouseOut?: EventFunc<"mouseout">,
+    onMouseUp?: EventFunc<"mouseup">,
+}
 
 /**
  * Binds children to element
@@ -48,7 +91,7 @@ type EventFunc = (e: Event)=> void
  */
 const _bindProps = (
     element: Element,
-    props?: {[key: string]: string | number | Element | EventFunc} | null,
+    props?: BasicProps | null,
     ns = false,
 ): void => {
     if (props) {
@@ -65,11 +108,11 @@ const _bindProps = (
                 if (typeof(val) === "function") {
                     element.addEventListener(
                         key.slice(2)
-                            .toLowerCase() as keyof HTMLElementEventMap,
-                        val
+                            .toLowerCase() as keyof EventMap,
+                        val as EventFunc
                     )
                 }
-            } else {
+            } else if (val !== undefined) {
                 console.warn(`WARN: Code 7. See ${url}. Params: ${typeof(val)}, ${key}`)
             }
         }
@@ -129,7 +172,7 @@ const _bindChildren = (
  */
 export function createElement<T extends keyof HTMLElementTagNameMap> (
     tagNameOrComponent: T,
-    props?: PropsType,
+    props?: BasicProps | null,
     children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
 ): HTMLElementTagNameMap[T]
@@ -171,7 +214,7 @@ export function createElement<
         props?: T,
         children?: ChildrenType,
     )=> Returns),
-    props?: PropsType | T,
+    props?: BasicProps | null | T,
     children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
 ): HTMLElement | Returns | Error {
@@ -191,7 +234,7 @@ export function createElement<
     if (typeof(tagNameOrComponent) === "string") {
         const element = document.createElement(tagNameOrComponent)
 
-        _bindProps(element, props as PropsType)
+        _bindProps(element, props as BasicProps | null)
 
         _bindChildren(element, _children)
 

@@ -34,7 +34,54 @@ export type ChildrenType = HTMLElement
     | Element
     | DeStagnate<any, any>
 
-export type EventFunc = (e: Event)=> void
+interface EventMap extends HTMLElementEventMap {
+    "": Event,
+}
+
+export type EventFunc<T extends keyof EventMap = ""> = (
+    e: EventMap[T]
+)=> void
+
+export interface BasicProps {
+    // eslint-disable-next-line
+    [key: string]: string | number | Element | Ref | EventFunc<keyof EventFunc> | undefined,
+    class?: string,
+    ref?: Ref,
+    id?: string,
+    src?: string,
+    href?: string,
+    width?: number,
+    height?: number,
+    alt?: string,
+    style?: string,
+    title?: string,
+    
+    onFocus?: EventFunc<"focus">,
+    onBlur?: EventFunc<"blur">,
+    onFocusIn?: EventFunc<"focusin">,
+    onFocusOut?: EventFunc<"focusout">,
+
+    onAnimationStart?: EventFunc<"animationstart">,
+    onAnimationCancel?: EventFunc<"animationcancel">,
+    onAnimationEnd?: EventFunc<"animationend">,
+    onAnimationIteration?: EventFunc<"animationiteration">,
+
+    onTransitionStart?: EventFunc<"transitionstart">,
+    onTransitionCancel?: EventFunc<"transitioncancel">,
+    onTransitionEnd?: EventFunc<"transitionend">,
+    onTransitionRun?: EventFunc<"transitionrun">,
+
+    onAuxClick?: EventFunc<"auxclick">,
+    onClick?: EventFunc<"click">,
+    onDblClick?: EventFunc<"dblclick">,
+    onMouseDown?: EventFunc<"mousedown">,
+    onMouseEnter?: EventFunc<"mouseenter">,
+    onMouseLeave?: EventFunc<"mouseleave">,
+    onMouseMove?: EventFunc<"mousemove">,
+    onMouseOver?: EventFunc<"mouseover">,
+    onMouseOut?: EventFunc<"mouseout">,
+    onMouseUp?: EventFunc<"mouseup">,
+}
 
 /**
  * Binds children to element
@@ -46,7 +93,7 @@ export type EventFunc = (e: Event)=> void
  */
 export const bindProps = (
     element: Element,
-    props?: {[key: string]: string | number | Element | Ref | EventFunc} | null,
+    props?: BasicProps | null,
     ns = false,
 ): void => {
     if (props) {
@@ -63,8 +110,8 @@ export const bindProps = (
                 if (typeof(val) === "function") {
                     element.addEventListener(
                         key.slice(2)
-                            .toLowerCase() as keyof HTMLElementEventMap,
-                        val
+                            .toLowerCase() as keyof EventMap,
+                        val as EventFunc
                     )
                 }
             } else if (
@@ -73,7 +120,7 @@ export const bindProps = (
                 "current" in val
             ) {
                 (val as Ref<Element>).current = element
-            } else {
+            } else if (val !== undefined) {
                 console.warn(`WARN: Code 7. See ${url}. Params: ${typeof(val)}, ${key}`)
             }
         }

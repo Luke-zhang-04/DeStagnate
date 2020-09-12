@@ -8,7 +8,7 @@
  * @exports JSX - importable JSX namespace
  */
 
-import type {ChildrenType, EventFunc} from "./private/_createElementUtils"
+import type {BasicProps, ChildrenType, EventFunc} from "./private/_createElementUtils"
 import type {Ref} from "."
 
 type DeStagnateElementType = undefined
@@ -19,11 +19,47 @@ type DeStagnateElementType = undefined
     | ChildrenType
     | JSX.Element
     | Ref
+    | EventFunc<keyof EventFunc>
 
 interface DeStagnateElement {
     [key: string]: DeStagnateElementType,
     children?: ChildrenType | JSX.Element,
-    ref?: Ref,
+    ref?: BasicProps["ref"],
+    class?: BasicProps["class"],
+    id?: BasicProps["id"],
+    src?: BasicProps["src"],
+    href?: BasicProps["href"],
+    width?: BasicProps["width"],
+    height?: BasicProps["height"],
+    alt?: BasicProps["alt"],
+    style?: BasicProps["style"],
+    title?: BasicProps["title"],
+
+    onFocus?: BasicProps["onFocus"],
+    onBlur?: BasicProps["onBlur"],
+    onFocusIn?: BasicProps["onFocusIn"],
+    onFocusOut?: BasicProps["onFocusOut"],
+
+    onAnimationStart?: BasicProps["onAnimationStart"],
+    onAnimationCancel?: BasicProps["onAnimationCancel"],
+    onAnimationEnd?: BasicProps["onAnimationEnd"],
+    onAnimationIteration?: BasicProps["onAnimationIteration"],
+
+    onTransitionStart?: BasicProps["onTransitionStart"],
+    onTransitionCancel?: BasicProps["onTransitionCancel"],
+    onTransitionEnd?: BasicProps["onTransitionEnd"],
+    onTransitionRun?: BasicProps["onTransitionRun"],
+
+    onAuxClick?: BasicProps["onAuxClick"],
+    onClick?: BasicProps["onClick"],
+    onDblClick?: BasicProps["onDblClick"],
+    onMouseDown?: BasicProps["onMouseDown"],
+    onMouseEnter?: BasicProps["onMouseEnter"],
+    onMouseLeave?: BasicProps["onMouseLeave"],
+    onMouseMove?: BasicProps["onMouseMove"],
+    onMouseOver?: BasicProps["onMouseOver"],
+    onMouseOut?: BasicProps["onMouseOut"],
+    onMouseUp?: BasicProps["onMouseUp"],
 }
 
 /* eslint-disable @typescript-eslint/no-namespace */
