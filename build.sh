@@ -89,13 +89,13 @@ build() {
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @file DeStagnate development bundle
  */
 "
 
     minHeader="/**
- * Destagnate v1.7.0
+ * Destagnate v1.7.1
  * @copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io
  * @license MIT
  * @file DeStagnate production bundle

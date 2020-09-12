@@ -1,6 +1,6 @@
 {
   "name": "destagnate",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Make creating dynamic components within static sites easier",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

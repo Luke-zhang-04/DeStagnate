@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @file DeStagnate development bundle
  */
 
@@ -142,7 +142,7 @@ var DeStagnate = function (modules) {
    * @copyright Copyright (C) 2020 Luke Zhang
    * @author Luke Zhang luke-zhang-04.github.io
    * @license MIT
-   * @version 1.7.0
+   * @version 1.7.1
    * @exports DeStagnate main destagnate class
    * @file main file for destagnate
    * @preserve
@@ -241,7 +241,7 @@ var DeStagnate = function (modules) {
    * @copyright Copyright (C) 2020 Luke Zhang
    * @author Luke Zhang luke-zhang-04.github.io
    * @license MIT
-   * @version 1.7.0
+   * @version 1.7.1
    * @exports DeStagnate main destagnate class
    * @file DeStagnate component class
    * @preserve
@@ -684,7 +684,7 @@ var DeStagnate = function (modules) {
    * @copyright Copyright (C) 2020 Luke Zhang
    * @author Luke Zhang luke-zhang-04.github.io
    * @license MIT
-   * @version 1.7.0
+   * @version 1.7.1
    * @exports Events
    * @package
    */
@@ -955,7 +955,7 @@ var DeStagnate = function (modules) {
    * @copyright Copyright (C) 2020 Luke Zhang
    * @author Luke Zhang luke-zhang-04.github.io
    * @license MIT
-   * @version 1.7.0
+   * @version 1.7.1
    * @package
    */
   Object.defineProperty(exports, "__esModule", {
@@ -983,7 +983,7 @@ var DeStagnate = function (modules) {
    * @copyright Copyright (C) 2020 Luke Zhang
    * @author Luke Zhang luke-zhang-04.github.io
    * @license MIT
-   * @version 1.7.0
+   * @version 1.7.1
    * @exports Preset - base for a component
    * @package
    */
@@ -1183,7 +1183,7 @@ var DeStagnate = function (modules) {
    * @copyright Copyright (C) 2020 Luke Zhang
    * @author Luke Zhang luke-zhang-04.github.io
    * @license MIT
-   * @version 1.7.0
+   * @version 1.7.1
    * @exports createDSComponent add nested component for DeStagnate components
    */
   Object.defineProperty(exports, "__esModule", {
@@ -1222,7 +1222,7 @@ var DeStagnate = function (modules) {
    * @copyright Copyright (C) 2020 Luke Zhang
    * @author Luke Zhang luke-zhang-04.github.io
    * @license MIT
-   * @version 1.7.0
+   * @version 1.7.1
    * @exports createElement function for DOM manipulation
    */
   Object.defineProperty(exports, "__esModule", {
@@ -1281,7 +1281,7 @@ var DeStagnate = function (modules) {
    * @copyright Copyright (C) 2020 Luke Zhang
    * @author Luke Zhang luke-zhang-04.github.io
    * @license MIT
-   * @version 1.7.0
+   * @version 1.7.1
    * @file share functions and types for createElement and it's variants
    */
   var __importDefault = this && this.__importDefault || function (mod) {
@@ -1411,7 +1411,7 @@ var DeStagnate = function (modules) {
    * @copyright Copyright (C) 2020 Luke Zhang
    * @author Luke Zhang luke-zhang-04.github.io
    * @license MIT
-   * @version 1.7.0
+   * @version 1.7.1
    * @file share functions and types for createElement and it's variants
    */
   Object.defineProperty(exports, "__esModule", {
@@ -1428,7 +1428,7 @@ var DeStagnate = function (modules) {
    * @copyright Copyright (C) 2020 Luke Zhang
    * @author Luke Zhang luke-zhang-04.github.io
    * @license MIT
-   * @version 1.7.0
+   * @version 1.7.1
    * @exports createElementNS createElement for namespaced elements
    */
   Object.defineProperty(exports, "__esModule", {
