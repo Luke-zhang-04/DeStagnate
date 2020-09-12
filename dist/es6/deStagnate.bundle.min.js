@@ -1,5 +1,5 @@
 /**
- * Destagnate v1.7.1
+ * Destagnate v1.8.0
  * @copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io
  * @license MIT
  * @file DeStagnate production bundle
