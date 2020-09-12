@@ -12,8 +12,11 @@ build() {
     npx tsc -p tsconfig.json &
     printf "${BIYellow}Compiling ${BIGreen}./src/${Purple} with ${BIBlue}TypeScript\n"
     npx tsc -p tsconfig.dist.json &
-    printf "${BIYellow}Compiling ${BIBlue}./docs/${BIGreen}src${Purple} with ${BIBlue}Typescript\n"
-    npx tsc -p tsconfig.docs.json &
+
+    if [[ "$1" != "--no-docs" ]]; then
+        printf "${BIYellow}Compiling ${BIBlue}./docs/${BIGreen}src${Purple} with ${BIBlue}Typescript\n"
+        npx tsc -p tsconfig.docs.json &
+    fi
 
     wait
 
@@ -21,7 +24,10 @@ build() {
     # Run Webpack on ./build and es5
     printf "${BIBlue}Packing ${Yellow}./build/index.js${Purple} files with ${ICyan}Webpack${Purple} and sending to ${Yellow}./dist/${Purple}\n"
     npx webpack &
-    npx webpack --config webpack.docs.config.js &
+
+    if [[ "$1" != "--no-docs" ]]; then
+        npx webpack --config webpack.docs.config.js &
+    fi
 
     wait
 
@@ -180,5 +186,5 @@ elif [[ "$1" == "--docs" ]]; then
 
     wait
 else
-    build
+    build "$1"
 fi
