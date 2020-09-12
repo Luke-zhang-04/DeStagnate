@@ -6,7 +6,7 @@
         "allowJs": true,
         "checkJs": false,
         "outDir": "./docs/lib",
-        "target": "ES5",
+        "target": "ES6", // Target ES6 because "class ES5 is causing probelems, plus no one uses IE anyways"
         "declaration": false,
         "noEmitOnError": false,
         "skipLibCheck": true,

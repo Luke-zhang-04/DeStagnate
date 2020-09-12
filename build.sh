@@ -153,7 +153,7 @@ buildDev() {
     # Compile typescript
     printf "${BIYellow}Compiling ${BIBlue}./src/${Purple} with ${BIBlue}TypeScript\n"
     npx tsc -p tsconfig.json &
-    npx tsc -p tsconfig.docs.json --target ES6 &
+    npx tsc -p tsconfig.docs.json &
 
     wait
 
@@ -190,7 +190,7 @@ if [[ "$1" == "--watch" ]]; then
 elif [[ "$1" == "-d" ]]||[[ "$1" == "--dev" ]]; then
     buildDev
 elif [[ "$1" == "--docs" ]]; then
-    npx tsc -p tsconfig.docs.json --target ES6
+    npx tsc -p tsconfig.docs.json
     cd docs || return
     yarn sass
     cd .. || return
