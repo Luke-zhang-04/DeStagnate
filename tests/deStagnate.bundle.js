@@ -1466,7 +1466,7 @@ module.exports =
             Object.defineProperty(exports, "__esModule", {
                 value: true
             });
-            exports.eventsList = void 0;
+            exports.eventsList = void 0; // Future: Make this a generator, and incorporate Babel regen runtime
 
             exports.eventsList = function (events) {
                 var res = [];

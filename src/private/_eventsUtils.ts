@@ -44,6 +44,7 @@ export interface EventsList {
     mouseup: EventMember,
 }
 
+// Future: Make this a generator, and incorporate Babel regen runtime
 export const eventsList = (
     events: EventsList,
 ): [keyof EventsList, EventMember][] => {
