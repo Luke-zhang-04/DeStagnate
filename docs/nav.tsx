@@ -26,13 +26,13 @@ const DeStagnate = { // Need this for JSX pragma
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <a
-                        href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/deStagnate.bundle.min.js"
+                        href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/es6/deStagnate.bundle.min.js"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="pl-4"
                     >
                         <img
-                            src="https://img.shields.io/github/size/luke-zhang-04/DeStagnate/dist/deStagnate.bundle.min.js?label=deStagnate.bundle.min.js&style=for-the-badge"
+                            src="https://img.shields.io/github/size/luke-zhang-04/DeStagnate/dist/es6/deStagnate.bundle.min.js?label=es6/deStagnate.bundle.min.js&style=for-the-badge"
                             alt="bundle min size"
                             class="mb-3"
                         />
