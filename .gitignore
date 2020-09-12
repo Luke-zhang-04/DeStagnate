@@ -117,7 +117,6 @@ typings/
 /build
 /lib
 */lib
-/es5
 
 # misc
 .DS_Store
