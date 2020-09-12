@@ -43,7 +43,7 @@ braces@~3.0.2:
     fsevents "~2.1.2"
 
 "destagnate@file:..":
-  version "1.7.0"
+  version "1.7.1"
 
 fill-range@^7.0.1:
   version "7.0.1"

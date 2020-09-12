@@ -46,8 +46,8 @@ curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.js > 
 wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.js
 
 # Latest
-curl -L https://unpkg.com/destagnate@1.7.0/dist/deStagnate.bundle.min.js > deStagnate.bundle.min.js
-wget https://unpkg.com/destagnate@1.7.0/dist/deStagnate.bundle.min.js
+curl -L https://unpkg.com/destagnate@1.7.1/dist/deStagnate.bundle.min.js > deStagnate.bundle.min.js
+wget https://unpkg.com/destagnate@1.7.1/dist/deStagnate.bundle.min.js
 ```
 
 With a CDN
@@ -59,7 +59,7 @@ With a CDN
 <script src="https://unpkg.com/destagnate@version/dist/deStagnate.bundle.js"></script>
 
 <!-- Latest -->
-<script src="https://unpkg.com/destagnate@1.7.0/dist/deStagnate.bundle.min.js"></script>
+<script src="https://unpkg.com/destagnate@1.7.1/dist/deStagnate.bundle.min.js"></script>
 ```
 
 ## Basic Use

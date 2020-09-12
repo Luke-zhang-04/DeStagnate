@@ -5,7 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## Unreleased
+## [1.7.1] - 09-11-2020
+
+### Fixed
+ - fixed documentation with `.nojekyll` file [#37](https://github.com/Luke-zhang-04/DeStagnate/pull/37)
+
+
+## [1.7.0] - 09-11-2020
 
 ### Added
 - add ability to create function components within JSX and createElement [#35](https://github.com/Luke-zhang-04/DeStagnate/pull/35)
