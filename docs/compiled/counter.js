@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports DeStagnate main destagnate class
  * @file main file for destagnate
  * @preserve
@@ -16,7 +16,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports createDSComponent add nested component for DeStagnate components
  */Object.defineProperty(e,"__esModule",{value:!0});e.default=(t,e,n)=>{const o=document.createElement("div");o.classList.add("DeStagnate-component-parent");const i=new t(o,e);return i.mount(),n&&(n.current=i),o}},function(t,e,n){"use strict";
 /**
@@ -25,7 +25,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports createElement function for DOM manipulation
  */Object.defineProperty(e,"__esModule",{value:!0}),e.createElement=void 0;const o=n(4);function i(t,e,n,...i){let r=n;if(n&&i&&(r=n instanceof Array?[...o.unpackChildren(n),...o.unpackChildren(i)]:[n,...o.unpackChildren(i)]),"string"==typeof t){const n=document.createElement(t);return o.bindProps(n,e),o.bindChildren(n,r),n}return"function"==typeof t?t(e,r):Error("tagNameOrComponent is of invalid type.")}e.createElement=i,e.default=i},function(t,e,n){"use strict";
 /**
@@ -34,7 +34,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @file share functions and types for createElement and it's variants
  */var o=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e.bindChildren=e.unpackChildren=e.bindProps=void 0;const i=o(n(0)),r=o(n(5));e.bindProps=(t,e,n=!1)=>{if(e)for(const[o,i]of Object.entries(e))"string"==typeof i||"number"==typeof i?"innerHTML"===o?t.innerHTML=i.toString():n?t.setAttributeNS(null,o,i.toString()):t.setAttribute(o,i.toString()):"on"===o.slice(0,2)?"function"==typeof i&&t.addEventListener(o.slice(2).toLowerCase(),i):"ref"===o&&"object"==typeof i&&"current"in i?i.current=t:console.warn(`WARN: Code 7. See ${r.default}. Params: ${typeof i}, ${o}`)},e.unpackChildren=t=>{const n=[];for(const o of t)"object"==typeof o&&o instanceof Array?n.push(...e.unpackChildren(o)):n.push(o);return n},e.bindChildren=(t,n)=>{if(null!=n)if(n instanceof Array)for(const o of n)e.bindChildren(t,o);else if("string"==typeof n||"number"==typeof n)t.innerText=n.toString();else if(n instanceof i.default){if(!n.didMount&&t instanceof window.HTMLElement)return void n.mount(t);if(!(t instanceof window.HTMLElement))throw new Error("ERROR: code 8. See "+r.default);n.parent!==t&&(n.parent=t),n.forceUpdate()}else t.appendChild(n)}},function(t,e,n){"use strict";
 /**
@@ -43,7 +43,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @file share functions and types for createElement and it's variants
  */Object.defineProperty(e,"__esModule",{value:!0}),e.url=void 0,e.url="https://luke-zhang-04.github.io/DeStagnate/error-codes",e.default=e.url},function(t,e,n){"use strict";
 /**
@@ -52,7 +52,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports createElementNS createElement for namespaced elements
  */Object.defineProperty(e,"__esModule",{value:!0}),e.createElementNS=void 0;const o=n(4);e.createElementNS=(t,e,n,i,...r)=>{const s=document.createElementNS(t,e);o.bindProps(s,n,!0);let a=i;return i&&r&&(a="object"==typeof i&&i instanceof Array?[...o.unpackChildren(i),...o.unpackChildren(r)]:[i,...o.unpackChildren(r)]),o.bindChildren(s,a),s},e.default=e.createElementNS},function(t,e,n){"use strict";var o,i=this&&this.__extends||(o=function(t,e){return(o=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n])})(t,e)},function(t,e){function n(){this.constructor=t}o(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)}),r=this&&this.__createBinding||(Object.create?function(t,e,n,o){void 0===o&&(o=n),Object.defineProperty(t,o,{enumerable:!0,get:function(){return e[n]}})}:function(t,e,n,o){void 0===o&&(o=n),t[o]=e[n]}),s=this&&this.__setModuleDefault||(Object.create?function(t,e){Object.defineProperty(t,"default",{enumerable:!0,value:e})}:function(t,e){t.default=e}),a=this&&this.__importStar||function(t){if(t&&t.__esModule)return t;var e={};if(null!=t)for(var n in t)"default"!==n&&Object.prototype.hasOwnProperty.call(t,n)&&r(e,t,n);return s(e,t),e};Object.defineProperty(e,"__esModule",{value:!0});var u=a(n(0));new(function(t){function e(e){var n=t.call(this,e)||this;return n.componentDidMount=function(){setInterval((function(){n.setState({count:n.state.count+1})}),1e3)},n.render=function(){return u.createElement("div",null,u.createElement("p",null,"Seconds:"),u.createElement("p",null,n.state.count))},n.state={count:0},n}return i(e,t),e}(u.Component))(document.querySelector("#counter")).mount()},function(t,e,n){"use strict";
 /**
@@ -61,7 +61,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports DeStagnate main destagnate class
  * @file DeStagnate component class
  * @preserve
@@ -72,7 +72,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports Events
  * @package
  */var o=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0});const i=o(n(10)),r=o(n(11));class s extends r.default{constructor(){super(...arguments),this.onFocus=void 0,this.onBlur=void 0,this.onFocusIn=void 0,this.onFocusOut=void 0,this.onAnimationStart=void 0,this.onAnimationCancel=void 0,this.onAnimationEnd=void 0,this.onAnimationIteration=void 0,this.onTransitionStart=void 0,this.onTransitionCancel=void 0,this.onTransitionEnd=void 0,this.onTransitionRun=void 0,this.onAuxClick=void 0,this.onClick=void 0,this.onDblClick=void 0,this.onMouseDown=void 0,this.onMouseEnter=void 0,this.onMouseLeave=void 0,this.onMouseMove=void 0,this.onMouseOver=void 0,this.onMouseOut=void 0,this.onMouseUp=void 0,this.bindEventListeners=t=>{this._eventListener(t.addEventListener)},this.unbindEventListeners=t=>{this._eventListener(t.removeEventListener)},this._eventListener=t=>{for(const[e,n]of i.default(this._events()))void 0!==n&&t(e,n)},this._events=()=>({focus:this.onFocus,blur:this.onBlur,focusin:this.onFocusIn,focusout:this.onFocusOut,animationstart:this.onAnimationStart,animationcancel:this.onAnimationCancel,animationend:this.onAnimationEnd,animationiteration:this.onAnimationIteration,transitionstart:this.onTransitionStart,transitioncancel:this.onTransitionCancel,transitionend:this.onTransitionEnd,transitionrun:this.onTransitionRun,auxclick:this.onAuxClick,click:this.onClick,dblclick:this.onDblClick,mousedown:this.onMouseDown,mouseenter:this.onMouseEnter,mouseleave:this.onMouseLeave,mousemove:this.onMouseMove,mouseover:this.onMouseOver,mouseout:this.onMouseOut,mouseup:this.onMouseUp})}}e.default=s},function(t,e,n){"use strict";
@@ -82,7 +82,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @package
  */Object.defineProperty(e,"__esModule",{value:!0}),e.eventsList=void 0,e.eventsList=t=>{const e=[];for(const n of Object.keys(t))e.push([n,t[n]]);return e},e.default=e.eventsList},function(t,e,n){"use strict";
 /**
@@ -91,7 +91,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports Preset - base for a component
  * @package
  */var o=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0});const i=o(n(2)),r=o(n(3)),s=o(n(6)),a=o(n(1));class u{constructor(){this.createDSComponent=i.default,this.createElement=r.default,this.createElementNS=s.default,this.createRef=a.default,this.componentDidCatch=t=>console.error(t),this.componentDidMount=()=>{},this.componentDidUpdate=()=>{},this.componentDidWarn=t=>console.warn(t),this.componentWillMount=()=>{},this.componentWillUnmount=()=>{},this.componentWillUpdate=()=>{},this.shouldComponentUpdate=()=>!0,this.render=()=>null}}e.default=u,u.createDSComponent=i.default,u.createElement=r.default,u.createElementNS=s.default,u.createRef=a.default}])}));

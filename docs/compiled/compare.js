@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports createElement function for DOM manipulation without DeStagnate class or Refs
  */var r=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(t,"__esModule",{value:!0}),t.createElement=void 0;const o=r(n(2)),i=e=>{const t=[];for(const n of e)"object"==typeof n&&n instanceof Array?t.push(...i(n)):t.push(n);return t},u=(e,t)=>{if(null!=t)if(t instanceof Array)for(const n of t)u(e,n);else"string"==typeof t||"number"==typeof t?e.innerText=t.toString():e.appendChild(t)};function l(e,t,n,...r){let l=n;if(n&&r&&(l=n instanceof Array?[...i(n),...i(r)]:[n,...i(r)]),"string"==typeof e){const n=document.createElement(e);return((e,t,n=!1)=>{if(t)for(const[r,i]of Object.entries(t))"string"==typeof i||"number"==typeof i?"innerHTML"===r?e.innerHTML=i.toString():n?e.setAttributeNS(null,r,i.toString()):e.setAttribute(r,i.toString()):"on"===r.slice(0,2)?"function"==typeof i&&e.addEventListener(r.slice(2).toLowerCase(),i):console.warn(`WARN: Code 7. See ${o.default}. Params: ${typeof i}, ${r}`)})(n,t),u(n,l),n}return"function"==typeof e?e(t,l):Error("tagNameOrComponent is of invalid type.")}t.createElement=l,t.default=l},function(e,t,n){"use strict";
 /**
@@ -14,6 +14,6 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @file share functions and types for createElement and it's variants
  */Object.defineProperty(t,"__esModule",{value:!0}),t.url=void 0,t.url="https://luke-zhang-04.github.io/DeStagnate/error-codes",t.default=t.url}])}));

@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports DeStagnate main destagnate class
  * @file main file for destagnate
  * @preserve
@@ -16,7 +16,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports createDSComponent add nested component for DeStagnate components
  */Object.defineProperty(e,"__esModule",{value:!0});e.default=(t,e,n)=>{const i=document.createElement("div");i.classList.add("DeStagnate-component-parent");const o=new t(i,e);return o.mount(),n&&(n.current=o),i}},function(t,e,n){"use strict";
 /**
@@ -25,7 +25,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports createElement function for DOM manipulation
  */Object.defineProperty(e,"__esModule",{value:!0}),e.createElement=void 0;const i=n(4);function o(t,e,n,...o){let r=n;if(n&&o&&(r=n instanceof Array?[...i.unpackChildren(n),...i.unpackChildren(o)]:[n,...i.unpackChildren(o)]),"string"==typeof t){const n=document.createElement(t);return i.bindProps(n,e),i.bindChildren(n,r),n}return"function"==typeof t?t(e,r):Error("tagNameOrComponent is of invalid type.")}e.createElement=o,e.default=o},function(t,e,n){"use strict";
 /**
@@ -34,7 +34,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @file share functions and types for createElement and it's variants
  */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e.bindChildren=e.unpackChildren=e.bindProps=void 0;const o=i(n(0)),r=i(n(5));e.bindProps=(t,e,n=!1)=>{if(e)for(const[i,o]of Object.entries(e))"string"==typeof o||"number"==typeof o?"innerHTML"===i?t.innerHTML=o.toString():n?t.setAttributeNS(null,i,o.toString()):t.setAttribute(i,o.toString()):"on"===i.slice(0,2)?"function"==typeof o&&t.addEventListener(i.slice(2).toLowerCase(),o):"ref"===i&&"object"==typeof o&&"current"in o?o.current=t:console.warn(`WARN: Code 7. See ${r.default}. Params: ${typeof o}, ${i}`)},e.unpackChildren=t=>{const n=[];for(const i of t)"object"==typeof i&&i instanceof Array?n.push(...e.unpackChildren(i)):n.push(i);return n},e.bindChildren=(t,n)=>{if(null!=n)if(n instanceof Array)for(const i of n)e.bindChildren(t,i);else if("string"==typeof n||"number"==typeof n)t.innerText=n.toString();else if(n instanceof o.default){if(!n.didMount&&t instanceof window.HTMLElement)return void n.mount(t);if(!(t instanceof window.HTMLElement))throw new Error("ERROR: code 8. See "+r.default);n.parent!==t&&(n.parent=t),n.forceUpdate()}else t.appendChild(n)}},function(t,e,n){"use strict";
 /**
@@ -43,7 +43,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @file share functions and types for createElement and it's variants
  */Object.defineProperty(e,"__esModule",{value:!0}),e.url=void 0,e.url="https://luke-zhang-04.github.io/DeStagnate/error-codes",e.default=e.url},function(t,e,n){"use strict";
 /**
@@ -52,7 +52,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports createElementNS createElement for namespaced elements
  */Object.defineProperty(e,"__esModule",{value:!0}),e.createElementNS=void 0;const i=n(4);e.createElementNS=(t,e,n,o,...r)=>{const s=document.createElementNS(t,e);i.bindProps(s,n,!0);let a=o;return o&&r&&(a="object"==typeof o&&o instanceof Array?[...i.unpackChildren(o),...i.unpackChildren(r)]:[o,...i.unpackChildren(r)]),i.bindChildren(s,a),s},e.default=e.createElementNS},function(t,e,n){"use strict";var i,o=this&&this.__extends||(i=function(t,e){return(i=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n])})(t,e)},function(t,e){function n(){this.constructor=t}i(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)}),r=this&&this.__createBinding||(Object.create?function(t,e,n,i){void 0===i&&(i=n),Object.defineProperty(t,i,{enumerable:!0,get:function(){return e[n]}})}:function(t,e,n,i){void 0===i&&(i=n),t[i]=e[n]}),s=this&&this.__setModuleDefault||(Object.create?function(t,e){Object.defineProperty(t,"default",{enumerable:!0,value:e})}:function(t,e){t.default=e}),a=this&&this.__importStar||function(t){if(t&&t.__esModule)return t;var e={};if(null!=t)for(var n in t)"default"!==n&&Object.prototype.hasOwnProperty.call(t,n)&&r(e,t,n);return s(e,t),e},u=this&&this.__values||function(t){var e="function"==typeof Symbol&&Symbol.iterator,n=e&&t[e],i=0;if(n)return n.call(t);if(t&&"number"==typeof t.length)return{next:function(){return t&&i>=t.length&&(t=void 0),{value:t&&t[i++],done:!t}}};throw new TypeError(e?"Object is not iterable.":"Symbol.iterator is not defined.")};Object.defineProperty(e,"__esModule",{value:!0});var c=a(n(0)),d="x",l=function(t){function e(){var e=null!==t&&t.apply(this,arguments)||this;return e._squares=[[new h,new h,new h],[new h,new h,new h],[new h,new h,new h]],e._checkForWinner=function(){for(var t,n,i=function(t){var n=[0,1,2].map((function(n){return e._squares[t][n].getState.clicked})),i=[0,1,2].map((function(n){return e._squares[n][t].getState.clicked}));return n[0]===n[1]&&n[1]===n[2]&&n[0]?{value:n[0]}:i[0]===i[1]&&i[1]===i[2]&&i[0]?{value:i[0]}:void 0},o=0;o<3;o++){var r=i(o);if("object"==typeof r)return r.value}var s=[[e._squares[0][0].getState.clicked,e._squares[1][1].getState.clicked,e._squares[2][2].getState.clicked],[e._squares[0][2].getState.clicked,e._squares[1][1].getState.clicked,e._squares[2][0].getState.clicked]];try{for(var a=u(s),c=a.next();!c.done;c=a.next()){var d=c.value;if(d[0]===d[1]&&d[1]===d[2]&&d[0])return d[0]}}catch(e){t={error:e}}finally{try{c&&!c.done&&(n=a.return)&&n.call(a)}finally{if(t)throw t.error}}return""},e.render=function(){return[0,1,2].map((function(t){return c.createElement("div",{class:"row"},[0,1,2].map((function(n){return c.createElement("div",{class:"col-4",onClick:function(){var i=e._squares[t][n];""===(null==i?void 0:i.getState.clicked)&&(null==i||i.setState({clicked:d})),d="x"===d?"o":"x",e._checkForWinner()&&alert("Player "+e._checkForWinner()+" has won the game!")}},e._squares[t][n])})))}))},e}return o(e,t),e}(c.default),h=function(t){function e(){var e=t.call(this)||this;return e.render=function(){return c.createElement("div",{class:"tictactoe-square"},e.state.clicked)},e.state={clicked:""},e}return o(e,t),e}(c.default),f=document.getElementById("nested"),p=function(){if(f){var t=new l(f),e=document.getElementById("nested-reset-btn");e&&e.addEventListener("click",(function(){t.unmount(),p()})),t.mount()}};p()},function(t,e,n){"use strict";
 /**
@@ -61,7 +61,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports DeStagnate main destagnate class
  * @file DeStagnate component class
  * @preserve
@@ -72,7 +72,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports Events
  * @package
  */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0});const o=i(n(10)),r=i(n(11));class s extends r.default{constructor(){super(...arguments),this.onFocus=void 0,this.onBlur=void 0,this.onFocusIn=void 0,this.onFocusOut=void 0,this.onAnimationStart=void 0,this.onAnimationCancel=void 0,this.onAnimationEnd=void 0,this.onAnimationIteration=void 0,this.onTransitionStart=void 0,this.onTransitionCancel=void 0,this.onTransitionEnd=void 0,this.onTransitionRun=void 0,this.onAuxClick=void 0,this.onClick=void 0,this.onDblClick=void 0,this.onMouseDown=void 0,this.onMouseEnter=void 0,this.onMouseLeave=void 0,this.onMouseMove=void 0,this.onMouseOver=void 0,this.onMouseOut=void 0,this.onMouseUp=void 0,this.bindEventListeners=t=>{this._eventListener(t.addEventListener)},this.unbindEventListeners=t=>{this._eventListener(t.removeEventListener)},this._eventListener=t=>{for(const[e,n]of o.default(this._events()))void 0!==n&&t(e,n)},this._events=()=>({focus:this.onFocus,blur:this.onBlur,focusin:this.onFocusIn,focusout:this.onFocusOut,animationstart:this.onAnimationStart,animationcancel:this.onAnimationCancel,animationend:this.onAnimationEnd,animationiteration:this.onAnimationIteration,transitionstart:this.onTransitionStart,transitioncancel:this.onTransitionCancel,transitionend:this.onTransitionEnd,transitionrun:this.onTransitionRun,auxclick:this.onAuxClick,click:this.onClick,dblclick:this.onDblClick,mousedown:this.onMouseDown,mouseenter:this.onMouseEnter,mouseleave:this.onMouseLeave,mousemove:this.onMouseMove,mouseover:this.onMouseOver,mouseout:this.onMouseOut,mouseup:this.onMouseUp})}}e.default=s},function(t,e,n){"use strict";
@@ -82,7 +82,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @package
  */Object.defineProperty(e,"__esModule",{value:!0}),e.eventsList=void 0,e.eventsList=t=>{const e=[];for(const n of Object.keys(t))e.push([n,t[n]]);return e},e.default=e.eventsList},function(t,e,n){"use strict";
 /**
@@ -91,7 +91,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.0
+ * @version 1.7.1
  * @exports Preset - base for a component
  * @package
  */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0});const o=i(n(2)),r=i(n(3)),s=i(n(6)),a=i(n(1));class u{constructor(){this.createDSComponent=o.default,this.createElement=r.default,this.createElementNS=s.default,this.createRef=a.default,this.componentDidCatch=t=>console.error(t),this.componentDidMount=()=>{},this.componentDidUpdate=()=>{},this.componentDidWarn=t=>console.warn(t),this.componentWillMount=()=>{},this.componentWillUnmount=()=>{},this.componentWillUpdate=()=>{},this.shouldComponentUpdate=()=>!0,this.render=()=>null}}e.default=u,u.createDSComponent=o.default,u.createElement=r.default,u.createElementNS=s.default,u.createRef=a.default}])}));
