@@ -21,7 +21,7 @@ jobs:
         run: make lint
 
       - name: build
-        run: yarn build
+        run: bash build.sh --no-docs
 
       - name: upload lib
         uses: actions/upload-artifact@v2

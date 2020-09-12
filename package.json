@@ -43,7 +43,7 @@
     "build": "bash build.sh",
     "build:dev": "bash build.sh --dev",
     "start": "bash build.sh --watch",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "bash build.sh --no-docs",
     "lint": "make lint",
     "test": "npx mocha tests --exit",
     "coverage": "npx nyc npx mocha tests"
