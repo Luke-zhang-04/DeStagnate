@@ -5,10 +5,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.8.0] - 09-11-2020
+
+### Added
+-  feat: add better typings for createElement props [4bb7642](https://github.com/Luke-zhang-04/DeStagnate/commit/4bb7642)
+
+### Changed
+- overhaul build process completely [af0f37e](https://github.com/Luke-zhang-04/DeStagnate/commit/af0f37e)
+    - use babel webpack loader
+        - no more exposed helper functions :)
+    - derive dist from es2020 modules - saves 2kb of space
+    - use loops in build script
+    - use babel regenerator runtime - saves a ton of space
+
+
 ## [1.7.1] - 09-11-2020
 
 ### Fixed
- - fixed documentation with `.nojekyll` file [#37](https://github.com/Luke-zhang-04/DeStagnate/pull/37)
+- fixed documentation with `.nojekyll` file [#37](https://github.com/Luke-zhang-04/DeStagnate/pull/37)
 
 
 ## [1.7.0] - 09-11-2020
