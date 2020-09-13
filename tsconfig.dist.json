@@ -1,0 +1,11 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "module": "es2020",
+        "declaration": false,
+        "outDir": "./build",
+        "downlevelIteration": true,
+        "esModuleInterop": false,
+    },
+    "include": ["./src/"],
+}

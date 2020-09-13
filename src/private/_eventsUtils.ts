@@ -44,6 +44,11 @@ export interface EventsList {
     mouseup: EventMember,
 }
 
+/**
+ * Returns array of events
+ * Not a generator because Babel Regenerator Runtime causes dist files to be wayyyy to large
+ * @param events - events object
+ */
 export const eventsList = (
     events: EventsList,
 ): [keyof EventsList, EventMember][] => {

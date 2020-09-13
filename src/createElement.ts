@@ -4,26 +4,22 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.1
+ * @version 1.8.0
  * @exports createElement function for DOM manipulation
  */
 // eslint-disable-next-line
 /// <reference path="./jsx.ts" />
 
 import {
+    BasicProps,
     ChildrenArrayType,
     ChildrenType,
-    EventFunc,
     bindChildren as _bindChildren,
     bindProps as _bindProps,
     unpackChildren as _unpackChildren
 } from "./private/_createElementUtils"
 import type JSX from "./jsx"
-import type {Ref} from "./createRef"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
-
-type PropsType = {[key: string]: string | number | Element | Ref | EventFunc}
-    | null
 
 /**
  * Creates an HTML Element
@@ -35,7 +31,7 @@ type PropsType = {[key: string]: string | number | Element | Ref | EventFunc}
  */
 export function createElement<T extends keyof HTMLElementTagNameMap> (
     tagNameOrComponent: T,
-    props?: PropsType,
+    props?: BasicProps | null,
     children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
 ): HTMLElementTagNameMap[T]
@@ -77,7 +73,7 @@ export function createElement<
         props?: T,
         children?: ChildrenType,
     )=> Returns),
-    props?: PropsType | T,
+    props?: BasicProps | null | T,
     children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
 ): HTMLElement | Returns | Error {
@@ -97,7 +93,7 @@ export function createElement<
     if (typeof(tagNameOrComponent) === "string") {
         const element = document.createElement(tagNameOrComponent)
 
-        _bindProps(element, props as PropsType)
+        _bindProps(element, props as BasicProps | null)
 
         _bindChildren(element, _children)
 
