@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bootstrap": "^5.0.0-alpha1",
-    "destagnate": "file:.."
+    "destagnate": "file:../lib"
   },
   "devDependencies": {
     "sass": "^1.26.10"
