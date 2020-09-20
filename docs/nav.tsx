@@ -1,4 +1,4 @@
-import createElement from "destagnate/lib/createElementOnly"
+import createElement from "destagnate/createElementOnly"
 import pages from "./pages"
 
 const DeStagnate = { // Need this for JSX pragma

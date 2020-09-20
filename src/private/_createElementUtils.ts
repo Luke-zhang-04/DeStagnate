@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.8.0
+ * @version 2.0.0
  * @file share functions and types for createElement and it's variants
  */
 
@@ -55,7 +55,7 @@ export interface BasicProps {
     alt?: string,
     style?: string,
     title?: string,
-    
+
     onFocus?: EventFunc<"focus">,
     onBlur?: EventFunc<"blur">,
     onFocusIn?: EventFunc<"focusin">,

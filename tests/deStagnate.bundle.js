@@ -4,7 +4,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.8.0
+ * @version 2.0.0
  * @file DeStagnate development bundle
  */
 
@@ -148,7 +148,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.8.0
+             * @version 2.0.0
              * @exports DeStagnate main destagnate class
              * @file main file for destagnate
              * @preserve
@@ -246,7 +246,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.8.0
+             * @version 2.0.0
              * @exports DeStagnate main destagnate class
              * @file DeStagnate component class
              * @preserve
@@ -646,7 +646,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.8.0
+             * @version 2.0.0
              * @exports Events
              * @package
              */
@@ -906,7 +906,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.7.1
+             * @version 2.0.0
              * @package
              */
             /**
@@ -944,7 +944,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.8.0
+             * @version 2.0.0
              * @exports Preset - base for a component
              * @package
              */
@@ -1136,7 +1136,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.8.0
+             * @version 2.0.0
              * @exports createDSComponent add nested component for DeStagnate components
              */
             /* eslint-disable @typescript-eslint/naming-convention */
@@ -1180,7 +1180,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.8.0
+             * @version 2.0.0
              * @exports createElement function for DOM manipulation
              */
             // eslint-disable-next-line
@@ -1242,7 +1242,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.8.0
+             * @version 2.0.0
              * @file share functions and types for createElement and it's variants
              */
             /**
@@ -1341,7 +1341,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.8.0
+             * @version 2.0.0
              * @file share functions and types for createElement and it's variants
              */
             const url = "https://luke-zhang-04.github.io/DeStagnate/error-codes";
@@ -1363,7 +1363,7 @@ module.exports =
              * @copyright Copyright (C) 2020 Luke Zhang
              * @author Luke Zhang luke-zhang-04.github.io
              * @license MIT
-             * @version 1.8.0
+             * @version 2.0.0
              * @exports createElementNS createElement for namespaced elements
              */
             /**
