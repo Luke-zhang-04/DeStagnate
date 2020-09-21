@@ -18,7 +18,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: lint
-        run: make lint
+        run: yarn lint
 
       - name: build
         run: bash build.sh --no-docs

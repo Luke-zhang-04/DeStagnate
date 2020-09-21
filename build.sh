@@ -80,7 +80,7 @@ build() {
     printf "${BIPurple}Formatting ${Red}dist ${Green}bundles\n"
     for file in "${distFiles[@]}"; do
         printf "    ${BIPurple}Formatting ${Green}$file\n"
-        npx eslint "$file" --fix --env browser --rule "$eslintConfig" > out.log &
+        npx eslint_d "$file" --fix --env browser --rule "$eslintConfig" > out.log &
     done
 
     wait
