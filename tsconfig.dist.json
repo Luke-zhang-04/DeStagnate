@@ -6,6 +6,8 @@
         "outDir": "./build",
         "downlevelIteration": true,
         "esModuleInterop": false,
+        "sourceMap": false,
+        "inlineSourceMap": false,
     },
     "include": ["./src/"],
 }

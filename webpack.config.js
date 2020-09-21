@@ -18,6 +18,7 @@ const babelConfig = [
                     shouldPrintComment: (val) => (
                         (/@/u).test(val) && !((/eslint|istanbul/u).test(val))
                     ),
+                    sourceMap: false,
                 },
             },
         }
