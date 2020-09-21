@@ -103,16 +103,14 @@ module.exports =
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createDSComponent", function() { return createDSComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElementNS", function() { return createElementNS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRef", function() { return createRef; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Component", function() { return Component; });
 /* harmony import */ var _createRef__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
-/* harmony import */ var _createDSComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
-/* harmony import */ var _createElement__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _createElementNS__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
+/* harmony import */ var _createElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
+/* harmony import */ var _createElementNS__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9);
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -129,14 +127,6 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-disable max-lines */
 
 
-
-/**
- * Creates nested DeStagnate component
- * @param Component - DeStagnate component
- * @param props - props of component
- * @returns parent of component
- */
-const createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_2__["default"];
 /**
  * Creates a child element to deStagnate
  * @param tagName - name of HTML element
@@ -144,7 +134,7 @@ const createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_2__["defau
  * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
  * @returns html element
  */
-const createElement = _createElement__WEBPACK_IMPORTED_MODULE_3__["default"];
+const createElement = _createElement__WEBPACK_IMPORTED_MODULE_2__["default"];
 /**
  * Creates an HTML Element
  * @param tagName - name of HTML element
@@ -153,7 +143,7 @@ const createElement = _createElement__WEBPACK_IMPORTED_MODULE_3__["default"];
  * @param childrenRest - rest parameter of children
  * @returns html element
  */
-const createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_4__["default"];
+const createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_3__["default"];
 /**
  * Creates a reference for a nested component
  * @returns empty ref object
@@ -208,7 +198,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeStagnate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Component", function() { return Component; });
 /* harmony import */ var _private_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
-/* harmony import */ var _private_url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9);
+/* harmony import */ var _private_url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -840,10 +830,9 @@ const eventsList = (events) => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Preset; });
-/* harmony import */ var _createDSComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
-/* harmony import */ var _createElement__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
-/* harmony import */ var _createElementNS__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(10);
-/* harmony import */ var _createRef__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1);
+/* harmony import */ var _createElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
+/* harmony import */ var _createElementNS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9);
+/* harmony import */ var _createRef__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1);
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -855,23 +844,12 @@ __webpack_require__.r(__webpack_exports__);
  * @package
  */
 
-
 /* istanbul ignore next */
 /**
  * Base class for components
  */
 class Preset {
     constructor() {
-        /**
-         * Creates nested DeStagnate component
-         * @public
-         * @instance
-         * @readonly
-         * @param Component - DeStagnate component
-         * @param props - props of component
-         * @returns parent of component
-         */
-        this.createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_0__["default"];
         /**
          * Creates an HTML Element
          * @public
@@ -883,7 +861,7 @@ class Preset {
          * @param childrenRest - rest parameter of children
          * @returns html element
          */
-        this.createElement = _createElement__WEBPACK_IMPORTED_MODULE_1__["default"];
+        this.createElement = _createElement__WEBPACK_IMPORTED_MODULE_0__["default"];
         /**
          * Creates a child element to deStagnate
          * @public
@@ -896,7 +874,7 @@ class Preset {
          * @param childrenRest - rest parameter of children
          * @returns html element
          */
-        this.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_2__["default"];
+        this.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_1__["default"];
         /**
          * Creates a reference for a nested component
          * @public
@@ -904,7 +882,7 @@ class Preset {
          * @readonly
          * @returns empty ref object
          */
-        this.createRef = _createRef__WEBPACK_IMPORTED_MODULE_3__["default"];
+        this.createRef = _createRef__WEBPACK_IMPORTED_MODULE_2__["default"];
         /**
          * Called when component catches error. Default behaviour is console.error
          * @param error - error object with info
@@ -968,16 +946,6 @@ class Preset {
     }
 }
 /**
- * Creates nested DeStagnate component
- * @public
- * @static
- * @readonly
- * @param Component - DeStagnate component
- * @param props - props of component
- * @returns parent of component
- */
-Preset.createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_0__["default"];
-/**
  * Creates an HTML Element
  * @public
  * @static
@@ -988,7 +956,7 @@ Preset.createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_0__["defa
  * @param childrenRest - rest parameter of children
  * @returns html element
  */
-Preset.createElement = _createElement__WEBPACK_IMPORTED_MODULE_1__["default"];
+Preset.createElement = _createElement__WEBPACK_IMPORTED_MODULE_0__["default"];
 /**
  * Creates a child element to deStagnate
  * @public
@@ -1001,7 +969,7 @@ Preset.createElement = _createElement__WEBPACK_IMPORTED_MODULE_1__["default"];
  * @param childrenRest - rest parameter of children
  * @returns html element
  */
-Preset.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_2__["default"];
+Preset.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_1__["default"];
 /**
  * Creates a reference for a nested component
  * @public
@@ -1009,7 +977,7 @@ Preset.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_2__["default"
  * @readonly
  * @returns empty ref object
  */
-Preset.createRef = _createRef__WEBPACK_IMPORTED_MODULE_3__["default"];
+Preset.createRef = _createRef__WEBPACK_IMPORTED_MODULE_2__["default"];
 
 
 /***/ }),
@@ -1018,46 +986,8 @@ Preset.createRef = _createRef__WEBPACK_IMPORTED_MODULE_3__["default"];
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 2.0.0
- * @exports createDSComponent add nested component for DeStagnate components
- */
-/* eslint-disable @typescript-eslint/naming-convention */
-/**
- * Creates nested DeStagnate component
- * @deprecated do not use this function, since 1.6.1
- * This only exists to adhere to semver
- * @param Component - DeStagnate component
- * @param props - props of component
- * @param ref - ref object
- * @returns parent of component
- */
-const createDSComponent = (Component, props, ref) => {
-    const element = document.createElement("div");
-    element.classList.add("DeStagnate-component-parent");
-    const _component = new Component(element, props);
-    _component.mount();
-    if (ref) {
-        ref.current = _component;
-    }
-    return element;
-};
-/* harmony default export */ __webpack_exports__["default"] = (createDSComponent);
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
-/* harmony import */ var _private_createElementUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8);
+/* harmony import */ var _private_createElementUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -1108,7 +1038,7 @@ function createElement(tagNameOrComponent, props, children, ...childrenArgs) {
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1117,7 +1047,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unpackChildren", function() { return unpackChildren; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bindChildren", function() { return bindChildren; });
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9);
+/* harmony import */ var _url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -1217,7 +1147,7 @@ const bindChildren = (element, children) => {
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1237,13 +1167,13 @@ const url = "https://luke-zhang-04.github.io/DeStagnate/error-codes";
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElementNS", function() { return createElementNS; });
-/* harmony import */ var _private_createElementUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8);
+/* harmony import */ var _private_createElementUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier

@@ -103,16 +103,14 @@ module.exports =
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createDSComponent", function() { return createDSComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElementNS", function() { return createElementNS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRef", function() { return createRef; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Component", function() { return Component; });
 /* harmony import */ var _createRef__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
-/* harmony import */ var _createDSComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(20);
-/* harmony import */ var _createElement__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(21);
-/* harmony import */ var _createElementNS__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(28);
+/* harmony import */ var _createElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(20);
+/* harmony import */ var _createElementNS__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(27);
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -126,14 +124,6 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-
-/**
- * Creates nested DeStagnate component
- * @param Component - DeStagnate component
- * @param props - props of component
- * @returns parent of component
- */
-var createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_2__["default"];
 /**
  * Creates a child element to deStagnate
  * @param tagName - name of HTML element
@@ -141,7 +131,7 @@ var createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_2__["default
  * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
  * @returns html element
  */
-var createElement = _createElement__WEBPACK_IMPORTED_MODULE_3__["default"];
+var createElement = _createElement__WEBPACK_IMPORTED_MODULE_2__["default"];
 /**
  * Creates an HTML Element
  * @param tagName - name of HTML element
@@ -150,7 +140,7 @@ var createElement = _createElement__WEBPACK_IMPORTED_MODULE_3__["default"];
  * @param childrenRest - rest parameter of children
  * @returns html element
  */
-var createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_4__["default"];
+var createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_3__["default"];
 /**
  * Creates a reference for a nested component
  * @returns empty ref object
@@ -216,7 +206,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(10);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _private_events__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(11);
-/* harmony import */ var _private_url__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(27);
+/* harmony import */ var _private_url__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(26);
 
 
 
@@ -818,10 +808,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Preset; });
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _createDSComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(20);
-/* harmony import */ var _createElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(21);
-/* harmony import */ var _createElementNS__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(28);
-/* harmony import */ var _createRef__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1);
+/* harmony import */ var _createElement__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(20);
+/* harmony import */ var _createElementNS__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(27);
+/* harmony import */ var _createRef__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1);
 
 
 /**
@@ -836,17 +825,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-
 var Preset = function a() {
-  /**
-   * Creates nested DeStagnate component
-   * @public
-   * @instance
-   * @readonly
-   * @param Component - DeStagnate component
-   * @param props - props of component
-   * @returns parent of component
-   */
   /**
    * Creates an HTML Element
    * @public
@@ -928,7 +907,7 @@ var Preset = function a() {
    * @abstract
    * @returns if returns null error will be thrown
    */
-  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, a), this.createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_1__["default"], this.createElement = _createElement__WEBPACK_IMPORTED_MODULE_2__["default"], this.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_3__["default"], this.createRef = _createRef__WEBPACK_IMPORTED_MODULE_4__["default"], this.componentDidCatch = function (a) {
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, a), this.createElement = _createElement__WEBPACK_IMPORTED_MODULE_1__["default"], this.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_2__["default"], this.createRef = _createRef__WEBPACK_IMPORTED_MODULE_3__["default"], this.componentDidCatch = function (a) {
     return console.error(a);
   }, this.componentDidMount = function () {}, this.componentDidUpdate = function () {}, this.componentDidWarn = function (a) {
     return console.warn(a);
@@ -938,17 +917,6 @@ var Preset = function a() {
     return null;
   };
 };
-/**
- * Creates nested DeStagnate component
- * @public
- * @static
- * @readonly
- * @param Component - DeStagnate component
- * @param props - props of component
- * @returns parent of component
- */
-
-
 /**
  * Creates an HTML Element
  * @public
@@ -960,6 +928,8 @@ var Preset = function a() {
  * @param childrenRest - rest parameter of children
  * @returns html element
  */
+
+
 /**
  * Creates a child element to deStagnate
  * @public
@@ -979,7 +949,7 @@ var Preset = function a() {
  * @readonly
  * @returns empty ref object
  */
-Preset.createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_1__["default"], Preset.createElement = _createElement__WEBPACK_IMPORTED_MODULE_2__["default"], Preset.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_3__["default"], Preset.createRef = _createRef__WEBPACK_IMPORTED_MODULE_4__["default"];
+Preset.createElement = _createElement__WEBPACK_IMPORTED_MODULE_1__["default"], Preset.createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_2__["default"], Preset.createRef = _createRef__WEBPACK_IMPORTED_MODULE_3__["default"];
 
 /***/ }),
 /* 20 */
@@ -987,43 +957,10 @@ Preset.createDSComponent = _createDSComponent__WEBPACK_IMPORTED_MODULE_1__["defa
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 2.0.0
- * @exports createDSComponent add nested component for DeStagnate components
- */
-/**
- * Creates nested DeStagnate component
- * @deprecated do not use this function, since 1.6.1
- * This only exists to adhere to semver
- * @param Component - DeStagnate component
- * @param props - props of component
- * @param ref - ref object
- * @returns parent of component
- */
-var createDSComponent = function (a, b, c) {
-  var d = document.createElement("div");
-  d.classList.add("DeStagnate-component-parent");
-  var e = new a(d, b);
-  return e.mount(), c && (c.current = e), d;
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (createDSComponent);
-
-/***/ }),
-/* 21 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(22);
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(21);
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _private_createElementUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(26);
+/* harmony import */ var _private_createElementUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(25);
 
 
 /**
@@ -1058,16 +995,16 @@ function createElement(a, b, c) {
 /* harmony default export */ __webpack_exports__["default"] = (createElement);
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithoutHoles = __webpack_require__(23);
+var arrayWithoutHoles = __webpack_require__(22);
 
-var iterableToArray = __webpack_require__(24);
+var iterableToArray = __webpack_require__(23);
 
 var unsupportedIterableToArray = __webpack_require__(15);
 
-var nonIterableSpread = __webpack_require__(25);
+var nonIterableSpread = __webpack_require__(24);
 
 function _toConsumableArray(arr) {
   return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
@@ -1076,7 +1013,7 @@ function _toConsumableArray(arr) {
 module.exports = _toConsumableArray;
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var arrayLikeToArray = __webpack_require__(16);
@@ -1088,7 +1025,7 @@ function _arrayWithoutHoles(arr) {
 module.exports = _arrayWithoutHoles;
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports) {
 
 function _iterableToArray(iter) {
@@ -1098,7 +1035,7 @@ function _iterableToArray(iter) {
 module.exports = _iterableToArray;
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports) {
 
 function _nonIterableSpread() {
@@ -1108,7 +1045,7 @@ function _nonIterableSpread() {
 module.exports = _nonIterableSpread;
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1116,14 +1053,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bindProps", function() { return bindProps; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unpackChildren", function() { return unpackChildren; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bindChildren", function() { return bindChildren; });
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(22);
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(21);
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(0);
-/* harmony import */ var _url__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(27);
+/* harmony import */ var _url__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(26);
 
 
 
@@ -1209,7 +1146,7 @@ var bindChildren = function (a, b) {
 };
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1228,17 +1165,17 @@ var url = "https://luke-zhang-04.github.io/DeStagnate/error-codes";
 /* harmony default export */ __webpack_exports__["default"] = ("https://luke-zhang-04.github.io/DeStagnate/error-codes");
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElementNS", function() { return createElementNS; });
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(22);
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(21);
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _private_createElementUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(26);
+/* harmony import */ var _private_createElementUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(25);
 
 
 
