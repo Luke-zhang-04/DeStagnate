@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.8.0
+ * @version 2.0.0
  * @exports createElement function for DOM manipulation without DeStagnate class or Refs
  */var o=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(t,"__esModule",{value:!0}),t.createElement=void 0;const r=o(n(2)),l=e=>{const t=[];for(const n of e)"object"==typeof n&&n instanceof Array?t.push(...l(n)):t.push(n);return t},u=(e,t)=>{if(null!=t)if(t instanceof Array)for(const n of t)u(e,n);else"string"==typeof t||"number"==typeof t?e.innerText=t.toString():e.appendChild(t)};function a(e,t,n,...o){let a=n;if(n&&o&&(a=n instanceof Array?[...l(n),...l(o)]:[n,...l(o)]),"string"==typeof e){const n=document.createElement(e);return((e,t,n=!1)=>{if(t)for(const[o,l]of Object.entries(t))"string"==typeof l||"number"==typeof l?"innerHTML"===o?e.innerHTML=l.toString():n?e.setAttributeNS(null,o,l.toString()):e.setAttribute(o,l.toString()):"on"===o.slice(0,2)?"function"==typeof l&&e.addEventListener(o.slice(2).toLowerCase(),l):void 0!==l&&console.warn(`WARN: Code 7. See ${r.default}. Params: ${typeof l}, ${o}`)})(n,t),u(n,a),n}return"function"==typeof e?e(t,a):Error("tagNameOrComponent is of invalid type.")}t.createElement=a,t.default=a},function(e,t,n){"use strict";
 /**
@@ -14,6 +14,6 @@
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.8.0
+ * @version 2.0.0
  * @file share functions and types for createElement and it's variants
  */Object.defineProperty(t,"__esModule",{value:!0}),t.url=void 0,t.url="https://luke-zhang-04.github.io/DeStagnate/error-codes",t.default=t.url},function(e,t,n){"use strict";e.exports=[["index.html","Home"],["state.html","State example"],["props.html","Props example"],["eventListener.html","Event listener example"],["ref.html","Ref example"],["calculator.html","Calculator Example"],["namespace.html","Namespaced element (SVG) example"],["ticTacToe.html","TicTacToe example"],["ticTacToe.html","Nested component example"],["using-jsx.html","Using JSX"],["docs/","Documentation"],["error-codes.html","Errors Reference"]]}])}));

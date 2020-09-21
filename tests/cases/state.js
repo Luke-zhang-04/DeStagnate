@@ -13,7 +13,7 @@ const DeStagnate = require("../deStagnate.bundle"),
 
 const {createElement} = DeStagnate
 
-class State extends DeStagnate.default {
+class State extends DeStagnate.Component {
 
     constructor (parent) {
         super(parent)

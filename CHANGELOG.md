@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - remove sourcemaps from distribution files [b84e492](https://github.com/Luke-zhang-04/DeStagnate/pull/40)
 
 ### Removed
+- remove CLI [3fd8414](https://github.com/Luke-zhang-04/DeStagnate/pull/40/commits/3fd8414)
 - remove createDSComponent [140b006](https://github.com/Luke-zhang-04/DeStagnate/pull/40/commits/140b006c32311539a8f91d72919070691d249b0d)
 
 

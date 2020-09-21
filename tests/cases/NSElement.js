@@ -12,7 +12,7 @@ const DeStagnate = require("../deStagnate.bundle"),
 
 const {createElementNS} = DeStagnate
 
-class NSElement extends DeStagnate.default {
+class NSElement extends DeStagnate.Component {
 
     render = () => createElementNS(
         "http://www.w3.org/2000/svg",

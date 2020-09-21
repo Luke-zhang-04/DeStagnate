@@ -11,9 +11,7 @@ const DeStagnate = require("../deStagnate.bundle"),
     assert = require("assert"),
     niceTry = require("nice-try")
 
-const {createElement} = DeStagnate
-
-class NoRender extends DeStagnate.default {
+class NoRender extends DeStagnate.Component {
 
     componentDidCatch = (err) => {
         console.log("ERR: This class does not abstract the render method")

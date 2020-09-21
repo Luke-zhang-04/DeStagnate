@@ -132,14 +132,19 @@ module.exports =
             
 
             __webpack_require__.r(__webpack_exports__);
-            /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", () => createElement);
-            /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElementNS", () => createElementNS);
-            /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRef", () => createRef);
-            /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Component", () => Component);
             /* Harmony import */ var _createRef__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1),
                 /* Harmony import */ _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2),
                 /* Harmony import */ _createElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6),
                 /* Harmony import */ _createElementNS__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9);
+
+            /* Harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createElement", () => _createElement__WEBPACK_IMPORTED_MODULE_2__.createElement);
+
+            /* Harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createElementNS", () => _createElementNS__WEBPACK_IMPORTED_MODULE_3__.createElementNS);
+
+            /* Harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createRef", () => _createRef__WEBPACK_IMPORTED_MODULE_0__.createRef);
+
+            /* Harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Component", () => _component__WEBPACK_IMPORTED_MODULE_1__.Component);
+
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -155,13 +160,40 @@ module.exports =
 /// <reference path="./jsx.ts" />
             /* eslint-disable max-lines */
             /**
-             * Creates a child element to deStagnate
+             * CreRefates a child element to deStagnate
              * @param tagName - name of HTML element
              * @param props - element properties, such as class, innerHTML, id, style, etc
              * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
              * @returns html element
              */
-            const createElement = _createElement__WEBPACK_IMPORTED_MODULE_2__.default,
+            /**
+             * Creates an HTML Element
+             * @param tagName - name of HTML element
+             * @param props - element properties, such as class, innerHTML, id, style, etc
+             * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+             * @param childrenRest - rest parameter of children
+             * @returns html element
+             */
+            /**
+             * Creates a reference for a nested component
+             * @returns empty ref object
+             */
+            /**
+             * DeStagnate
+             * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
+             * @class
+             * @namespace
+             * @abstract
+             */
+            /* Harmony default export */ __webpack_exports__.default = ({
+                /**
+                 * CreRefates a child element to deStagnate
+                 * @param tagName - name of HTML element
+                 * @param props - element properties, such as class, innerHTML, id, style, etc
+                 * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+                 * @returns html element
+                 */
+                createElement: _createElement__WEBPACK_IMPORTED_MODULE_2__.createElement,
 
                 /**
                  * Creates an HTML Element
@@ -171,13 +203,13 @@ module.exports =
                  * @param childrenRest - rest parameter of children
                  * @returns html element
                  */
-                createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_3__.default,
+                createElementNS: _createElementNS__WEBPACK_IMPORTED_MODULE_3__.createElementNS,
 
                 /**
                  * Creates a reference for a nested component
                  * @returns empty ref object
                  */
-                createRef = _createRef__WEBPACK_IMPORTED_MODULE_0__.default,
+                createRef: _createRef__WEBPACK_IMPORTED_MODULE_0__.createRef,
                 /* eslint-disable @typescript-eslint/naming-convention */
                 /**
                  * DeStagnate
@@ -186,18 +218,8 @@ module.exports =
                  * @namespace
                  * @abstract
                  */
-                Component = _component__WEBPACK_IMPORTED_MODULE_1__.default;
-
-            /**
-             * DeStagnate
-             * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
-             * @class
-             * @namespace
-             * @abstract
-             */
-            /* Harmony default export */ 
-
-            __webpack_exports__.default = (_component__WEBPACK_IMPORTED_MODULE_1__.default);
+                Component: _component__WEBPACK_IMPORTED_MODULE_1__.Component,
+            });
 
 
             /***/ }),
@@ -621,6 +643,14 @@ module.exports =
                 }
 
             }
+
+            /**
+             * DeStagnate
+             * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
+             * @class
+             * @namespace
+             * @abstract
+             */
             class Component extends DeStagnate {
             }
 
@@ -1237,7 +1267,7 @@ module.exports =
                         } else if (typeof (children) === "string" ||
             typeof (children) === "number") {
                             element.innerHTML = children.toString();
-                        } else if (children instanceof ___WEBPACK_IMPORTED_MODULE_0__.default) {
+                        } else if (children instanceof ___WEBPACK_IMPORTED_MODULE_0__.Component) {
                             if (!children.didMount && element instanceof _window.HTMLElement) {
                                 children.mount(element);
                                 

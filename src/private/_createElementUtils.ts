@@ -8,7 +8,7 @@
  * @file share functions and types for createElement and it's variants
  */
 
-import DeStagnate from ".."
+import {Component} from ".."
 import type {Ref} from "../createRef"
 import url from "./_url"
 
@@ -18,7 +18,7 @@ export type ChildrenFlatArrayType = (HTMLElement
     | Element
     | number
     | string
-    | DeStagnate<any, any>
+    | Component<any, any>
 )[]
 
 export type ChildrenArrayType = ChildrenFlatArrayType
@@ -32,7 +32,7 @@ export type ChildrenType = HTMLElement
     | number
     | ChildrenArrayType
     | Element
-    | DeStagnate<any, any>
+    | Component<any, any>
 
 interface EventMap extends HTMLElementEventMap {
     "": Event,
@@ -164,7 +164,7 @@ export const bindChildren = (
             typeof(children) === "number"
         ) {
             (element as HTMLElement).innerText = children.toString()
-        } else if (children instanceof DeStagnate) {
+        } else if (children instanceof Component) {
             if (!children.didMount && element instanceof window.HTMLElement) {
                 children.mount(element)
 

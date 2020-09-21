@@ -103,14 +103,18 @@ module.exports =
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElementNS", function() { return createElementNS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRef", function() { return createRef; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Component", function() { return Component; });
 /* harmony import */ var _createRef__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
 /* harmony import */ var _createElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(20);
 /* harmony import */ var _createElementNS__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(27);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return _createElement__WEBPACK_IMPORTED_MODULE_2__["createElement"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createElementNS", function() { return _createElementNS__WEBPACK_IMPORTED_MODULE_3__["createElementNS"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createRef", function() { return _createRef__WEBPACK_IMPORTED_MODULE_0__["createRef"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Component", function() { return _component__WEBPACK_IMPORTED_MODULE_1__["Component"]; });
+
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -125,13 +129,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * Creates a child element to deStagnate
+ * CreRefates a child element to deStagnate
  * @param tagName - name of HTML element
  * @param props - element properties, such as class, innerHTML, id, style, etc
  * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
  * @returns html element
  */
-var createElement = _createElement__WEBPACK_IMPORTED_MODULE_2__["default"];
 /**
  * Creates an HTML Element
  * @param tagName - name of HTML element
@@ -140,12 +143,10 @@ var createElement = _createElement__WEBPACK_IMPORTED_MODULE_2__["default"];
  * @param childrenRest - rest parameter of children
  * @returns html element
  */
-var createElementNS = _createElementNS__WEBPACK_IMPORTED_MODULE_3__["default"];
 /**
  * Creates a reference for a nested component
  * @returns empty ref object
  */
-var createRef = _createRef__WEBPACK_IMPORTED_MODULE_0__["default"];
 /**
  * DeStagnate
  * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -153,15 +154,41 @@ var createRef = _createRef__WEBPACK_IMPORTED_MODULE_0__["default"];
  * @namespace
  * @abstract
  */
-var Component = _component__WEBPACK_IMPORTED_MODULE_1__["default"];
-/**
- * DeStagnate
- * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @class
- * @namespace
- * @abstract
- */
-/* harmony default export */ __webpack_exports__["default"] = (_component__WEBPACK_IMPORTED_MODULE_1__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  /**
+   * CreRefates a child element to deStagnate
+   * @param tagName - name of HTML element
+   * @param props - element properties, such as class, innerHTML, id, style, etc
+   * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
+   * @returns html element
+   */
+  createElement: _createElement__WEBPACK_IMPORTED_MODULE_2__["createElement"],
+
+  /**
+   * Creates an HTML Element
+   * @param tagName - name of HTML element
+   * @param props - element properties, such as class, innerHTML, id, style, etc
+   * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
+   * @param childrenRest - rest parameter of children
+   * @returns html element
+   */
+  createElementNS: _createElementNS__WEBPACK_IMPORTED_MODULE_3__["createElementNS"],
+
+  /**
+   * Creates a reference for a nested component
+   * @returns empty ref object
+   */
+  createRef: _createRef__WEBPACK_IMPORTED_MODULE_0__["createRef"],
+
+  /**
+   * DeStagnate
+   * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
+   * @class
+   * @namespace
+   * @abstract
+   */
+  Component: _component__WEBPACK_IMPORTED_MODULE_1__["Component"]
+});
 
 /***/ }),
 /* 1 */
@@ -407,7 +434,13 @@ var DeStagnate = function (a) {
     }
   }]), b;
 }(_private_events__WEBPACK_IMPORTED_MODULE_6__["default"]);
-
+/**
+ * DeStagnate
+ * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @class
+ * @namespace
+ * @abstract
+ */
 
 var Component = function (a) {
   function b() {
@@ -1138,7 +1171,7 @@ var bindChildren = function (a, b) {
     } finally {
       d.f();
     }
-  } else if ("string" == typeof b || "number" == typeof b) a.innerText = b.toString();else if (b instanceof ___WEBPACK_IMPORTED_MODULE_3__["default"]) {
+  } else if ("string" == typeof b || "number" == typeof b) a.innerText = b.toString();else if (b instanceof ___WEBPACK_IMPORTED_MODULE_3__["Component"]) {
     if (!b.didMount && a instanceof window.HTMLElement) return void b.mount(a);
     if (!(a instanceof window.HTMLElement)) throw new Error("ERROR: code 8. See ".concat(_url__WEBPACK_IMPORTED_MODULE_4__["default"]));
     b.parent !== a && (b.parent = a), b.forceUpdate();

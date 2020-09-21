@@ -1,6 +1,6 @@
 import DeStagnate, {createElement} from "destagnate"
 
-class PropsDemo extends DeStagnate {
+class PropsDemo extends DeStagnate.Component {
 
     render = () => this.props.colors.map((color) => (
         createElement(

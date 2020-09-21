@@ -1,6 +1,6 @@
 import DeStagnate, {createRef} from "destagnate"
 
-class RefExample extends DeStagnate {
+class RefExample extends DeStagnate.Component {
 
     private _formRef = createRef<HTMLInputElement>()
 

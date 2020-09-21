@@ -7,9 +7,9 @@
  * @version 2.0.0
  * @exports createRef create a reference to a nested component
  */
-type DeStagnate = import(".").default
+type Component = import(".").Component
 
-export interface Ref<T = DeStagnate | HTMLElement> {
+export interface Ref<T = Component | HTMLElement> {
     current: T | null,
 }
 
@@ -17,7 +17,7 @@ export interface Ref<T = DeStagnate | HTMLElement> {
  * Creates a reference for a nested component
  * @returns empty ref object
  */
-export const createRef = <T = DeStagnate | HTMLElement>(): Ref<T> => ({
+export const createRef = <T = Component | HTMLElement>(): Ref<T> => ({
     current: null,
 })
 

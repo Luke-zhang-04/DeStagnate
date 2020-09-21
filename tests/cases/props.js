@@ -12,7 +12,7 @@ const DeStagnate = require("../deStagnate.bundle"),
 
 const {createElement} = DeStagnate
 
-class Props extends DeStagnate.default {
+class Props extends DeStagnate.Component {
 
     render = () => this.props.colors.map((color) => (
         createElement(

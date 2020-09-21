@@ -1,6 +1,6 @@
 import DeStagnate from "destagnate"
 
-class Calculator extends DeStagnate {
+class Calculator extends DeStagnate.Component {
 
     constructor (parent) {
         super(parent)

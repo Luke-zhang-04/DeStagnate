@@ -12,7 +12,7 @@ const DeStagnate = require("../deStagnate.bundle"),
 
 const {createElement} = DeStagnate
 
-class ComponentA extends DeStagnate.default {
+class ComponentA extends DeStagnate.Component {
 
     constructor () {
         super()
@@ -28,7 +28,7 @@ class ComponentA extends DeStagnate.default {
 
 }
 
-class ComponentB extends DeStagnate.default {
+class ComponentB extends DeStagnate.Component {
 
     nestedComponent = new ComponentA()
 

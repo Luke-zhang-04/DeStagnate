@@ -1,6 +1,6 @@
 import DeStagnate, {createElementNS} from "destagnate"
 
-class SVG extends DeStagnate {
+class SVG extends DeStagnate.Component {
 
     constructor (parent, props) {
         super(parent, props)

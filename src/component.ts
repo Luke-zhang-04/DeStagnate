@@ -442,6 +442,13 @@ export default abstract class DeStagnate
 
 }
 
+/**
+ * DeStagnate
+ * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * @class
+ * @namespace
+ * @abstract
+ */
 export abstract class Component
     <Props = Record<string, unknown>, State = Record<string, unknown>>
     extends DeStagnate<Props, State> {}

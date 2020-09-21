@@ -12,7 +12,7 @@ const DeStagnate = require("../deStagnate.bundle"),
 
 const {createElement, createRef} = DeStagnate
 
-class Ref extends DeStagnate.default {
+class Ref extends DeStagnate.Component {
 
     testRef = createRef()
 
