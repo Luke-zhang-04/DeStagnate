@@ -9,9 +9,45 @@
  * @package
  */
 
-import objectEntries, {EventListener, EventMember, EventsList} from "./_eventsUtils"
 import BaseComponent from "./_base"
 
+type EventListenerBinder = <T extends keyof EventsList>(
+    type: T,
+    listener: (event: HTMLElementEventMap[T])=> void,
+    options?: boolean | AddEventListenerOptions
+)=> void
+
+type EventFunc<T extends Event> = (
+    event: T
+)=> void
+
+interface EventsList {
+    focus: EventFunc<FocusEvent>,
+    blur: EventFunc<FocusEvent>,
+    focusin: EventFunc<FocusEvent>,
+    focusout: EventFunc<FocusEvent>,
+
+    animationstart: EventFunc<AnimationEvent>,
+    animationcancel: EventFunc<AnimationEvent>,
+    animationend: EventFunc<AnimationEvent>,
+    animationiteration: EventFunc<AnimationEvent>,
+
+    transitionstart: EventFunc<TransitionEvent>,
+    transitioncancel: EventFunc<TransitionEvent>,
+    transitionend: EventFunc<TransitionEvent>,
+    transitionrun: EventFunc<TransitionEvent>,
+
+    auxclick: EventFunc<MouseEvent>,
+    click: EventFunc<MouseEvent>,
+    dblclick: EventFunc<MouseEvent>,
+    mousedown: EventFunc<MouseEvent>,
+    mouseenter: EventFunc<MouseEvent>,
+    mouseleave: EventFunc<MouseEvent>,
+    mousemove: EventFunc<MouseEvent>,
+    mouseover: EventFunc<MouseEvent>,
+    mouseout: EventFunc<MouseEvent>,
+    mouseup: EventFunc<MouseEvent>,
+}
 
 /* istanbul ignore next */
 export default abstract class Events extends BaseComponent {
@@ -20,184 +56,188 @@ export default abstract class Events extends BaseComponent {
      * Focus event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onFocus: EventMember = undefined
+    protected onFocus: EventFunc<FocusEvent> | undefined = undefined
 
     /**
      * Blur event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onBlur: EventMember = undefined
+    protected onBlur: EventFunc<FocusEvent> | undefined = undefined
 
     /**
      * Focus in event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onFocusIn: EventMember = undefined
+    protected onFocusIn: EventFunc<FocusEvent> | undefined = undefined
 
     /**
      * Focus out event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onFocusOut: EventMember = undefined
+    protected onFocusOut: EventFunc<FocusEvent> | undefined = undefined
 
     /**
      * Animation start event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onAnimationStart: EventMember = undefined
+    protected onAnimationStart: EventFunc<AnimationEvent> | undefined = undefined
 
     /**
      * Animation cancel event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onAnimationCancel: EventMember = undefined
+    protected onAnimationCancel: EventFunc<AnimationEvent> | undefined =
+        undefined
 
     /**
      * Animation end event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onAnimationEnd: EventMember = undefined
+    protected onAnimationEnd: EventFunc<AnimationEvent> | undefined = undefined
 
     /**
      * Animation iteration event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onAnimationIteration: EventMember = undefined
+    protected onAnimationIteration: EventFunc<AnimationEvent> | undefined =
+        undefined
 
 
     /**
      * Transition start event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onTransitionStart: EventMember = undefined
+    protected onTransitionStart: EventFunc<TransitionEvent> | undefined =
+        undefined
 
     /**
      * Transition cancel event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onTransitionCancel: EventMember = undefined
+    protected onTransitionCancel: EventFunc<TransitionEvent> | undefined =
+        undefined
 
     /**
      * Transition end event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onTransitionEnd: EventMember = undefined
+    protected onTransitionEnd: EventFunc<TransitionEvent> | undefined = undefined
 
     /**
      * Transition run event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onTransitionRun: EventMember = undefined
+    protected onTransitionRun: EventFunc<TransitionEvent> | undefined = undefined
 
 
     /**
      * Auxillary click event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onAuxClick: EventMember = undefined
+    protected onAuxClick: EventFunc<MouseEvent> | undefined = undefined
 
     /**
      * Click event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onClick: EventMember = undefined
+    protected onClick: EventFunc<MouseEvent> | undefined = undefined
 
     /**
      * Double click event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onDblClick: EventMember = undefined
+    protected onDblClick: EventFunc<MouseEvent> | undefined = undefined
 
     /**
      * Mousedown event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onMouseDown: EventMember = undefined
+    protected onMouseDown: EventFunc<MouseEvent> | undefined = undefined
 
     /**
      * Mouse enter event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onMouseEnter: EventMember = undefined
+    protected onMouseEnter: EventFunc<MouseEvent> | undefined = undefined
 
     /**
      * Mouse leave event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onMouseLeave: EventMember = undefined
+    protected onMouseLeave: EventFunc<MouseEvent> | undefined = undefined
 
     /**
      * Mouse move event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onMouseMove: EventMember = undefined
+    protected onMouseMove: EventFunc<MouseEvent> | undefined = undefined
 
     /**
      * Mouseover event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onMouseOver: EventMember = undefined
+    protected onMouseOver: EventFunc<MouseEvent> | undefined = undefined
 
     /**
      * Mouseout event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onMouseOut: EventMember = undefined
+    protected onMouseOut: EventFunc<MouseEvent> | undefined = undefined
 
     /**
      * Mouseup event
      * @protected
      * @instance
-     * @returns
+     * @returns void
      */
-    protected onMouseUp: EventMember = undefined
+    protected onMouseUp: EventFunc<MouseEvent> | undefined = undefined
 
     /**
      * Binds event listeners event
      * Do not call manually
-     * @protected
+     * @protectedauxclick
      * @instance
      * @pacakge
      * @param element - element to bind listeners to
@@ -220,40 +260,35 @@ export default abstract class Events extends BaseComponent {
         this._eventListener(element.removeEventListener)
     }
 
-    private _eventListener = (eventListener: EventListener): void => {
-        for (const [event, callback] of objectEntries(this._events())) {
-            if (callback !== undefined) {
-                eventListener(event, callback)
-            }
-        }
+    /* eslint-disable */
+    private _eventListener = (eventListener: EventListenerBinder): void => {
+        this.onFocus && eventListener("focus", this.onFocus)
+        this.onBlur && eventListener("blur", this.onBlur)
+        this.onFocusIn && eventListener("focusin", this.onFocusIn)
+        this.onFocusOut && eventListener("focusout", this.onFocusOut)
+
+        this.onAnimationStart && eventListener("animationstart", this.onAnimationStart)
+        this.onAnimationEnd && eventListener("animationend", this.onAnimationEnd)
+        this.onAnimationCancel && eventListener("animationcancel", this.onAnimationCancel)
+        this.onAnimationIteration && eventListener("animationiteration", this.onAnimationIteration)
+
+        this.onTransitionStart && eventListener("transitionstart", this.onTransitionStart)
+        this.onTransitionEnd && eventListener("transitionend", this.onTransitionEnd)
+        this.onTransitionCancel && eventListener("transitioncancel", this.onTransitionCancel)
+        this.onTransitionRun && eventListener("transitionrun", this.onTransitionRun)
+
+        this.onAuxClick && eventListener("auxclick", this.onAuxClick)
+        this.onDblClick && eventListener("dblclick", this.onDblClick)
+        this.onClick && eventListener("click", this.onClick)
+        this.onDblClick && eventListener("dblclick", this.onDblClick)
+        this.onMouseDown && eventListener("mousedown", this.onMouseDown)
+        this.onMouseEnter && eventListener("mouseenter", this.onMouseEnter)
+        this.onMouseLeave && eventListener("mouseleave", this.onMouseLeave)
+        this.onMouseMove && eventListener("mousemove", this.onMouseMove)
+        this.onMouseOver && eventListener("mouseover", this.onMouseOver)
+        this.onMouseOut && eventListener("mouseout", this.onMouseOut)
+        this.onMouseUp && eventListener("mouseup", this.onMouseUp)
     }
-
-    private _events = (): EventsList => ({
-        focus: this.onFocus,
-        blur: this.onBlur,
-        focusin: this.onFocusIn,
-        focusout: this.onFocusOut,
-
-        animationstart: this.onAnimationStart,
-        animationcancel: this.onAnimationCancel,
-        animationend: this.onAnimationEnd,
-        animationiteration: this.onAnimationIteration,
-
-        transitionstart: this.onTransitionStart,
-        transitioncancel: this.onTransitionCancel,
-        transitionend: this.onTransitionEnd,
-        transitionrun: this.onTransitionRun,
-
-        auxclick: this.onAuxClick,
-        click: this.onClick,
-        dblclick: this.onDblClick,
-        mousedown: this.onMouseDown,
-        mouseenter: this.onMouseEnter,
-        mouseleave: this.onMouseLeave,
-        mousemove: this.onMouseMove,
-        mouseover: this.onMouseOver,
-        mouseout: this.onMouseOut,
-        mouseup: this.onMouseUp,
-    })
+    /* eslint-enable */
 
 }

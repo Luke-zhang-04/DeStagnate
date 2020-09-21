@@ -134,8 +134,8 @@ module.exports =
             __webpack_require__.r(__webpack_exports__);
             /* Harmony import */ var _createRef__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1),
                 /* Harmony import */ _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2),
-                /* Harmony import */ _createElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6),
-                /* Harmony import */ _createElementNS__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9);
+                /* Harmony import */ _createElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5),
+                /* Harmony import */ _createElementNS__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
 
             /* Harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createElement", () => _createElement__WEBPACK_IMPORTED_MODULE_2__.createElement);
 
@@ -255,7 +255,7 @@ module.exports =
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", () => DeStagnate);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Component", () => Component);
             /* Harmony import */ var _private_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3),
-                /* Harmony import */ _private_url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
+                /* Harmony import */ _private_url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -662,8 +662,7 @@ module.exports =
 
             __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", () => Events);
-            /* Harmony import */ var _eventsUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4),
-                /* Harmony import */ _base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
+            /* Harmony import */ var _base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -675,7 +674,7 @@ module.exports =
              * @package
              */
             /* istanbul ignore next */
-            class Events extends _base__WEBPACK_IMPORTED_MODULE_1__.default {
+            class Events extends _base__WEBPACK_IMPORTED_MODULE_0__.default {
 
                 constructor () {
                     super(...arguments);
@@ -684,7 +683,7 @@ module.exports =
                      * Focus event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onFocus = undefined;
 
@@ -692,7 +691,7 @@ module.exports =
                      * Blur event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onBlur = undefined;
 
@@ -700,7 +699,7 @@ module.exports =
                      * Focus in event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onFocusIn = undefined;
 
@@ -708,7 +707,7 @@ module.exports =
                      * Focus out event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onFocusOut = undefined;
 
@@ -716,7 +715,7 @@ module.exports =
                      * Animation start event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onAnimationStart = undefined;
 
@@ -724,7 +723,7 @@ module.exports =
                      * Animation cancel event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onAnimationCancel = undefined;
 
@@ -732,7 +731,7 @@ module.exports =
                      * Animation end event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onAnimationEnd = undefined;
 
@@ -740,7 +739,7 @@ module.exports =
                      * Animation iteration event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onAnimationIteration = undefined;
 
@@ -748,7 +747,7 @@ module.exports =
                      * Transition start event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onTransitionStart = undefined;
 
@@ -756,7 +755,7 @@ module.exports =
                      * Transition cancel event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onTransitionCancel = undefined;
 
@@ -764,7 +763,7 @@ module.exports =
                      * Transition end event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onTransitionEnd = undefined;
 
@@ -772,7 +771,7 @@ module.exports =
                      * Transition run event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onTransitionRun = undefined;
 
@@ -780,7 +779,7 @@ module.exports =
                      * Auxillary click event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onAuxClick = undefined;
 
@@ -788,7 +787,7 @@ module.exports =
                      * Click event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onClick = undefined;
 
@@ -796,7 +795,7 @@ module.exports =
                      * Double click event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onDblClick = undefined;
 
@@ -804,7 +803,7 @@ module.exports =
                      * Mousedown event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onMouseDown = undefined;
 
@@ -812,7 +811,7 @@ module.exports =
                      * Mouse enter event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onMouseEnter = undefined;
 
@@ -820,7 +819,7 @@ module.exports =
                      * Mouse leave event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onMouseLeave = undefined;
 
@@ -828,7 +827,7 @@ module.exports =
                      * Mouse move event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onMouseMove = undefined;
 
@@ -836,7 +835,7 @@ module.exports =
                      * Mouseover event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onMouseOver = undefined;
 
@@ -844,7 +843,7 @@ module.exports =
                      * Mouseout event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onMouseOut = undefined;
 
@@ -852,14 +851,14 @@ module.exports =
                      * Mouseup event
                      * @protected
                      * @instance
-                     * @returns
+                     * @returns void
                      */
                     this.onMouseUp = undefined;
 
                     /**
                      * Binds event listeners event
                      * Do not call manually
-                     * @protected
+                     * @protectedauxclick
                      * @instance
                      * @pacakge
                      * @param element - element to bind listeners to
@@ -881,37 +880,33 @@ module.exports =
                     this.unbindEventListeners = (element) => {
                         this._eventListener(element.removeEventListener);
                     };
-                    this._eventListener = (eventListener) => {
-                        for (const [event, callback] of Object(_eventsUtils__WEBPACK_IMPORTED_MODULE_0__.default)(this._events())) {
-                            if (callback !== undefined) {
-                                eventListener(event, callback);
-                            }
-                        }
-                    };
-                    this._events = () => ({
-                        focus: this.onFocus,
-                        blur: this.onBlur,
-                        focusin: this.onFocusIn,
-                        focusout: this.onFocusOut,
-                        animationstart: this.onAnimationStart,
-                        animationcancel: this.onAnimationCancel,
-                        animationend: this.onAnimationEnd,
-                        animationiteration: this.onAnimationIteration,
-                        transitionstart: this.onTransitionStart,
-                        transitioncancel: this.onTransitionCancel,
-                        transitionend: this.onTransitionEnd,
-                        transitionrun: this.onTransitionRun,
-                        auxclick: this.onAuxClick,
-                        click: this.onClick,
-                        dblclick: this.onDblClick,
-                        mousedown: this.onMouseDown,
-                        mouseenter: this.onMouseEnter,
-                        mouseleave: this.onMouseLeave,
-                        mousemove: this.onMouseMove,
-                        mouseover: this.onMouseOver,
-                        mouseout: this.onMouseOut,
-                        mouseup: this.onMouseUp,
-                    });
+                    /* eslint-disable */
+        this._eventListener = (eventListener) => {
+            this.onFocus && eventListener("focus", this.onFocus);
+            this.onBlur && eventListener("blur", this.onBlur);
+            this.onFocusIn && eventListener("focusin", this.onFocusIn);
+            this.onFocusOut && eventListener("focusout", this.onFocusOut);
+            this.onAnimationStart && eventListener("animationstart", this.onAnimationStart);
+            this.onAnimationEnd && eventListener("animationend", this.onAnimationEnd);
+            this.onAnimationCancel && eventListener("animationcancel", this.onAnimationCancel);
+            this.onAnimationIteration && eventListener("animationiteration", this.onAnimationIteration);
+            this.onTransitionStart && eventListener("transitionstart", this.onTransitionStart);
+            this.onTransitionEnd && eventListener("transitionend", this.onTransitionEnd);
+            this.onTransitionCancel && eventListener("transitioncancel", this.onTransitionCancel);
+            this.onTransitionRun && eventListener("transitionrun", this.onTransitionRun);
+            this.onAuxClick && eventListener("auxclick", this.onAuxClick);
+            this.onDblClick && eventListener("dblclick", this.onDblClick);
+            this.onClick && eventListener("click", this.onClick);
+            this.onDblClick && eventListener("dblclick", this.onDblClick);
+            this.onMouseDown && eventListener("mousedown", this.onMouseDown);
+            this.onMouseEnter && eventListener("mouseenter", this.onMouseEnter);
+            this.onMouseLeave && eventListener("mouseleave", this.onMouseLeave);
+            this.onMouseMove && eventListener("mousemove", this.onMouseMove);
+            this.onMouseOver && eventListener("mouseover", this.onMouseOver);
+            this.onMouseOut && eventListener("mouseout", this.onMouseOut);
+            this.onMouseUp && eventListener("mouseup", this.onMouseUp);
+        };
+        /* eslint-enable */
                 }
 
             }
@@ -923,43 +918,9 @@ module.exports =
             
 
             __webpack_require__.r(__webpack_exports__);
-            /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eventsList", () => eventsList);
-            /**
-             * DeStagnate
-             * A simple, ReactJS inspired library to create dynamic components within static sites easier
-             * @copyright Copyright (C) 2020 Luke Zhang
-             * @author Luke Zhang luke-zhang-04.github.io
-             * @license MIT
-             * @version 2.0.0
-             * @package
-             */
-            /**
-             * Returns array of events
-             * Not a generator because Babel Regenerator Runtime causes dist files to be wayyyy to large
-             * @param events - events object
-             */
-            const eventsList = (events) => {
-                const res = [];
-
-                for (const key of Object.keys(events)) {
-                    res.push([key, events[key]]);
-                }
-                
-                return res;
-            };
-
-            /* Harmony default export */ __webpack_exports__.default = (eventsList);
-
-
-            /***/ }),
-        /* 5 */
-        /***/ (function (module, __webpack_exports__, __webpack_require__) {
-            
-
-            __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", () => Preset);
-            /* Harmony import */ var _createElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6),
-                /* Harmony import */ _createElementNS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9),
+            /* Harmony import */ var _createElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5),
+                /* Harmony import */ _createElementNS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8),
                 /* Harmony import */ _createRef__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1);
             /**
              * DeStagnate
@@ -1125,13 +1086,13 @@ module.exports =
 
 
             /***/ }),
-        /* 6 */
+        /* 5 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             
 
             __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", () => createElement);
-            /* Harmony import */ var _private_createElementUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
+            /* Harmony import */ var _private_createElementUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -1184,7 +1145,7 @@ module.exports =
 
 
             /***/ }),
-        /* 7 */
+        /* 6 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             
 
@@ -1193,7 +1154,7 @@ module.exports =
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unpackChildren", () => unpackChildren);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bindChildren", () => bindChildren);
             /* Harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0),
-                /* Harmony import */ _url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
+                /* Harmony import */ _url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -1287,7 +1248,7 @@ module.exports =
 
 
             /***/ }),
-        /* 8 */
+        /* 7 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             
 
@@ -1308,13 +1269,13 @@ module.exports =
 
 
             /***/ }),
-        /* 9 */
+        /* 8 */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             
 
             __webpack_require__.r(__webpack_exports__);
             /* Harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElementNS", () => createElementNS);
-            /* Harmony import */ var _private_createElementUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
+            /* Harmony import */ var _private_createElementUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
             /**
              * DeStagnate
              * A simple, ReactJS inspired library to create dynamic components within static sites easier
