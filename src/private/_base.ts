@@ -9,7 +9,6 @@
  * @package
  */
 
-import {default as _createDSComponent} from "../createDSComponent"
 import {default as _createElement} from "../createElement"
 import {default as _createElementNS} from "../createElementNS"
 import {default as _createRef} from "../createRef"
@@ -21,17 +20,6 @@ type RenderType = null | HTMLElement | HTMLElement[] | Element | Element[]
  * Base class for components
  */
 export default abstract class Preset {
-
-    /**
-     * Creates nested DeStagnate component
-     * @public
-     * @static
-     * @readonly
-     * @param Component - DeStagnate component
-     * @param props - props of component
-     * @returns parent of component
-     */
-    public static readonly createDSComponent = _createDSComponent
 
     /**
      * Creates an HTML Element
@@ -68,17 +56,6 @@ export default abstract class Preset {
      * @returns empty ref object
      */
     public static readonly createRef = _createRef
-
-    /**
-     * Creates nested DeStagnate component
-     * @public
-     * @instance
-     * @readonly
-     * @param Component - DeStagnate component
-     * @param props - props of component
-     * @returns parent of component
-     */
-    public readonly createDSComponent = _createDSComponent
 
     /**
      * Creates an HTML Element
