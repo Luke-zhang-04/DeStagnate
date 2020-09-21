@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - unreleased
+
+## Changed
+- remove sourcemaps from distribution files [b84e492](https://github.com/Luke-zhang-04/DeStagnate/pull/40)
+
+### Removed
+- remove createDSComponent [140b006](https://github.com/Luke-zhang-04/DeStagnate/pull/40/commits/140b006c32311539a8f91d72919070691d249b0d)
+
 
 ## [1.8.0] - 09-11-2020
 
