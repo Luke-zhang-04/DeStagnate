@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.8.0] - 09-11-2020
 
 ### Added
+- better typings for JSX
 -  feat: add better typings for createElement props [4bb7642](https://github.com/Luke-zhang-04/DeStagnate/commit/4bb7642)
 
 ### Changed
