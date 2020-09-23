@@ -34,13 +34,7 @@ export type ChildrenType = HTMLElement
     | Element
     | Component<any, any>
 
-interface EventMap extends HTMLElementEventMap {
-    "": Event,
-}
-
-export type EventFunc<T extends keyof EventMap = ""> = (
-    e: EventMap[T]
-)=> void
+export type EventFunc<T extends Event = Event> = (e: T)=> void
 
 export interface BasicProps {
     // eslint-disable-next-line
@@ -55,32 +49,33 @@ export interface BasicProps {
     alt?: string,
     style?: string,
     title?: string,
+    name?: string,
 
-    onFocus?: EventFunc<"focus">,
-    onBlur?: EventFunc<"blur">,
-    onFocusIn?: EventFunc<"focusin">,
-    onFocusOut?: EventFunc<"focusout">,
+    onFocus?: EventFunc<FocusEvent>,
+    onBlur?: EventFunc<FocusEvent>,
+    onFocusIn?: EventFunc<FocusEvent>,
+    onFocusOut?: EventFunc<FocusEvent>,
 
-    onAnimationStart?: EventFunc<"animationstart">,
-    onAnimationCancel?: EventFunc<"animationcancel">,
-    onAnimationEnd?: EventFunc<"animationend">,
-    onAnimationIteration?: EventFunc<"animationiteration">,
+    onAnimationStart?: EventFunc<AnimationEvent>,
+    onAnimationCancel?: EventFunc<AnimationEvent>,
+    onAnimationEnd?: EventFunc<AnimationEvent>,
+    onAnimationIteration?: EventFunc<AnimationEvent>,
 
-    onTransitionStart?: EventFunc<"transitionstart">,
-    onTransitionCancel?: EventFunc<"transitioncancel">,
-    onTransitionEnd?: EventFunc<"transitionend">,
-    onTransitionRun?: EventFunc<"transitionrun">,
+    onTransitionStart?: EventFunc<TransitionEvent>,
+    onTransitionCancel?: EventFunc<TransitionEvent>,
+    onTransitionEnd?: EventFunc<TransitionEvent>,
+    onTransitionRun?: EventFunc<TransitionEvent>,
 
-    onAuxClick?: EventFunc<"auxclick">,
-    onClick?: EventFunc<"click">,
-    onDblClick?: EventFunc<"dblclick">,
-    onMouseDown?: EventFunc<"mousedown">,
-    onMouseEnter?: EventFunc<"mouseenter">,
-    onMouseLeave?: EventFunc<"mouseleave">,
-    onMouseMove?: EventFunc<"mousemove">,
-    onMouseOver?: EventFunc<"mouseover">,
-    onMouseOut?: EventFunc<"mouseout">,
-    onMouseUp?: EventFunc<"mouseup">,
+    onAuxClick?: EventFunc<MouseEvent>,
+    onClick?: EventFunc<MouseEvent>,
+    onDblClick?: EventFunc<MouseEvent>,
+    onMouseDown?: EventFunc<MouseEvent>,
+    onMouseEnter?: EventFunc<MouseEvent>,
+    onMouseLeave?: EventFunc<MouseEvent>,
+    onMouseMove?: EventFunc<MouseEvent>,
+    onMouseOver?: EventFunc<MouseEvent>,
+    onMouseOut?: EventFunc<MouseEvent>,
+    onMouseUp?: EventFunc<MouseEvent>,
 }
 
 /**
@@ -110,7 +105,7 @@ export const bindProps = (
                 if (typeof(val) === "function") {
                     element.addEventListener(
                         key.slice(2)
-                            .toLowerCase() as keyof EventMap,
+                            .toLowerCase() as keyof HTMLElementEventMap,
                         val as EventFunc
                     )
                 }

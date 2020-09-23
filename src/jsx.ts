@@ -27,13 +27,8 @@ interface DeStagnateElement {
     ref?: BasicProps["ref"],
     class?: BasicProps["class"],
     id?: BasicProps["id"],
-    src?: BasicProps["src"],
-    href?: BasicProps["href"],
-    width?: BasicProps["width"],
-    height?: BasicProps["height"],
-    alt?: BasicProps["alt"],
     style?: BasicProps["style"],
-    title?: BasicProps["title"],
+    name?: BasicProps["name"],
 
     onFocus?: BasicProps["onFocus"],
     onBlur?: BasicProps["onBlur"],
@@ -62,6 +57,34 @@ interface DeStagnateElement {
     onMouseUp?: BasicProps["onMouseUp"],
 }
 
+interface AnchorElement {
+    href: string,
+}
+
+interface ButtonElement {
+    role?: string,
+    type?: "submit" | "reset" | "button",
+    disabled?: boolean,
+}
+
+interface ImageElement {
+    src: string,
+    alt: string,
+}
+
+interface InputEvent extends Event {
+    target: HTMLInputElement,
+}
+
+interface FormElement {
+    onSubmit?: EventFunc,
+}
+
+interface InputElement {
+    onInput?: EventFunc<InputEvent>,
+    type?: string,
+}
+
 /* eslint-disable @typescript-eslint/no-namespace */
 
 declare global {
@@ -73,7 +96,7 @@ declare global {
 
         interface IntrinsicElements {
             // HTML
-            a: DeStagnateElement,
+            a: DeStagnateElement | AnchorElement,
             abbr: DeStagnateElement,
             address: DeStagnateElement,
             area: DeStagnateElement,
@@ -88,7 +111,7 @@ declare global {
             blockquote: DeStagnateElement,
             body: DeStagnateElement,
             br: DeStagnateElement,
-            button: DeStagnateElement,
+            button: DeStagnateElement | ButtonElement,
             canvas: DeStagnateElement,
             caption: DeStagnateElement,
             cite: DeStagnateElement,
@@ -96,7 +119,7 @@ declare global {
             col: DeStagnateElement,
             colgroup: DeStagnateElement,
             data: DeStagnateElement,
-            datalist: DeStagnateElement,
+            datalist: DeStagnateElement | InputElement,
             dd: DeStagnateElement,
             del: DeStagnateElement,
             details: DeStagnateElement,
@@ -107,11 +130,11 @@ declare global {
             dt: DeStagnateElement,
             em: DeStagnateElement,
             embed: DeStagnateElement,
-            fieldset: DeStagnateElement,
+            fieldset: DeStagnateElement | InputElement,
             figcaption: DeStagnateElement,
             figure: DeStagnateElement,
             footer: DeStagnateElement,
-            form: DeStagnateElement,
+            form: DeStagnateElement | FormElement,
             h1: DeStagnateElement,
             h2: DeStagnateElement,
             h3: DeStagnateElement,
@@ -125,13 +148,13 @@ declare global {
             html: DeStagnateElement,
             i: DeStagnateElement,
             iframe: DeStagnateElement,
-            img: DeStagnateElement,
-            input: DeStagnateElement,
+            img: DeStagnateElement | ImageElement,
+            input: DeStagnateElement | InputElement,
             ins: DeStagnateElement,
             kbd: DeStagnateElement,
             keygen: DeStagnateElement,
             label: DeStagnateElement,
-            legend: DeStagnateElement,
+            legend: DeStagnateElement | InputElement,
             li: DeStagnateElement,
             link: DeStagnateElement,
             main: DeStagnateElement,
@@ -147,7 +170,7 @@ declare global {
             object: DeStagnateElement,
             ol: DeStagnateElement,
             optgroup: DeStagnateElement,
-            option: DeStagnateElement,
+            option: DeStagnateElement | InputElement,
             output: DeStagnateElement,
             p: DeStagnateElement,
             param: DeStagnateElement,
@@ -162,7 +185,7 @@ declare global {
             samp: DeStagnateElement,
             script: DeStagnateElement,
             section: DeStagnateElement,
-            select: DeStagnateElement,
+            select: DeStagnateElement | InputElement,
             slot: DeStagnateElement,
             small: DeStagnateElement,
             source: DeStagnateElement,
@@ -175,7 +198,7 @@ declare global {
             table: DeStagnateElement,
             tbody: DeStagnateElement,
             td: DeStagnateElement,
-            textarea: DeStagnateElement,
+            textarea: DeStagnateElement | InputElement,
             tfoot: DeStagnateElement,
             th: DeStagnateElement,
             thead: DeStagnateElement,
