@@ -1,4 +1,4 @@
-import * as DeStagnate from "destagnate"
+import * as DeStagnate from "../../lib" // Import library from root
 
 class Counter extends DeStagnate.Component {
 

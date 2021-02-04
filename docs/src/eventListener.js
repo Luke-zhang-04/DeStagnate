@@ -1,4 +1,4 @@
-import DeStagnate, {createElement} from "destagnate"
+import DeStagnate, {createElement} from "../../lib" // Import library from root
 
 class EventListener extends DeStagnate {
 

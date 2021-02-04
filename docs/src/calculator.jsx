@@ -1,4 +1,4 @@
-import DeStagnate from "destagnate"
+import DeStagnate from "../../lib" // Import library from root
 
 class Calculator extends DeStagnate {
 
