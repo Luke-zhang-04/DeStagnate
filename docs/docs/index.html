@@ -54,7 +54,7 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="globals.html">Globals</a>
+					<a href="modules.html">Globals</a>
 				</li>
 			</ul>
 			<h1>destagnate</h1>
@@ -93,65 +93,69 @@
 					<h2>Installation</h2>
 				</a>
 				<p>Through NPM</p>
-				<pre><code class="language-bash"><span class="hljs-comment"># NPM</span>
-npm i destagnate --save
+				<pre><code class="language-bash"><span style="color: #6A9955"># NPM</span>
+<span style="color: #D4D4D4">npm i destagnate --save</span>
 
-<span class="hljs-comment"># Yarn</span>
-yarn add destagnate</code></pre>
+<span style="color: #6A9955"># Yarn</span>
+<span style="color: #D4D4D4">yarn add destagnate</span>
+</code></pre>
 				<p>Through <code>curl</code> or <code>wget</code> to download a bundle for browser usage<br/></p>
-				<pre><code class="language-bash"><span class="hljs-comment"># Prodution</span>
-curl -L https://unpkg.com/destagnate@&lt;VERSION_NAME&gt;/dist/deStagnate.bundle.min.js &gt; deStagnate.bundle.js
-wget https://unpkg.com/destagnate@&lt;VERSION_NAME&gt;/dist/deStagnate.bundle.min.js
+				<pre><code class="language-bash"><span style="color: #6A9955"># Prodution</span>
+<span style="color: #D4D4D4">curl -L https://unpkg.com/destagnate@&lt;VERSION_NAME&gt;/dist/deStagnate.bundle.min.js &gt; deStagnate.bundle.js</span>
+<span style="color: #D4D4D4">wget https://unpkg.com/destagnate@&lt;VERSION_NAME&gt;/dist/deStagnate.bundle.min.js</span>
 
-<span class="hljs-comment"># Development</span>
-curl -L https://unpkg.com/destagnate@&lt;VERSION_NAME&gt;/dist/deStagnate.bundle.js &gt; deStagnate.bundle.min.js
-wget https://unpkg.com/destagnate@&lt;VERSION_NAME&gt;/dist/deStagnate.bundle.js
+<span style="color: #6A9955"># Development</span>
+<span style="color: #D4D4D4">curl -L https://unpkg.com/destagnate@&lt;VERSION_NAME&gt;/dist/deStagnate.bundle.js &gt; deStagnate.bundle.min.js</span>
+<span style="color: #D4D4D4">wget https://unpkg.com/destagnate@&lt;VERSION_NAME&gt;/dist/deStagnate.bundle.js</span>
 
-<span class="hljs-comment"># Latest</span>
-curl -L https://unpkg.com/destagnate@1.8.0/dist/deStagnate.bundle.min.js &gt; deStagnate.bundle.min.js
-wget https://unpkg.com/destagnate@1.8.0/dist/deStagnate.bundle.min.js</code></pre>
+<span style="color: #6A9955"># Latest</span>
+<span style="color: #D4D4D4">curl -L https://unpkg.com/destagnate@1.8.0/dist/deStagnate.bundle.min.js &gt; deStagnate.bundle.min.js</span>
+<span style="color: #D4D4D4">wget https://unpkg.com/destagnate@1.8.0/dist/deStagnate.bundle.min.js</span>
+</code></pre>
 				<p>With a CDN</p>
-				<pre><code class="language-html"><span class="hljs-comment">&lt;!-- Production --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/destagnate@version/dist/deStagnate.bundle.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+				<pre><code class="language-html"><span style="color: #6A9955">&lt;!-- Production --&gt;</span>
+<span style="color: #808080">&lt;</span><span style="color: #569CD6">script</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">src</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;https://unpkg.com/destagnate@version/dist/deStagnate.bundle.min.js&quot;</span><span style="color: #808080">&gt;&lt;/</span><span style="color: #569CD6">script</span><span style="color: #808080">&gt;</span>
 
-<span class="hljs-comment">&lt;!-- Development --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/destagnate@version/dist/deStagnate.bundle.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span style="color: #6A9955">&lt;!-- Development --&gt;</span>
+<span style="color: #808080">&lt;</span><span style="color: #569CD6">script</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">src</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;https://unpkg.com/destagnate@version/dist/deStagnate.bundle.js&quot;</span><span style="color: #808080">&gt;&lt;/</span><span style="color: #569CD6">script</span><span style="color: #808080">&gt;</span>
 
-<span class="hljs-comment">&lt;!-- Latest --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/destagnate@1.8.0/dist/deStagnate.bundle.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<span style="color: #6A9955">&lt;!-- Latest --&gt;</span>
+<span style="color: #808080">&lt;</span><span style="color: #569CD6">script</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">src</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;https://unpkg.com/destagnate@1.8.0/dist/deStagnate.bundle.min.js&quot;</span><span style="color: #808080">&gt;&lt;/</span><span style="color: #569CD6">script</span><span style="color: #808080">&gt;</span>
+</code></pre>
 				<a href="#basic-use" id="basic-use" style="color: inherit; text-decoration: none;">
 					<h2>Basic Use</h2>
 				</a>
 				<p>See <a href="https://luke-zhang-04.github.io/DeStagnate/docs">https://luke-zhang-04.github.io/DeStagnate/docs</a> for example code and documentation.</p>
-				<pre><code class="language-js"><span class="hljs-comment">// Browser env requires this</span>
-<span class="hljs-keyword">const</span> DS = DeStagnate
+				<pre><code class="language-js"><span style="color: #6A9955">// Browser env requires this</span>
+<span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">DS</span><span style="color: #D4D4D4"> = </span><span style="color: #9CDCFE">DeStagnate</span>
 
-<span class="hljs-comment">// Node env requires this</span>
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> DS <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;destagnate&quot;</span>
-<span class="hljs-keyword">const</span> DS = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;destagnate&quot;</span>)
+<span style="color: #6A9955">// Node env requires this</span>
+<span style="color: #C586C0">import</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">*</span><span style="color: #D4D4D4"> </span><span style="color: #C586C0">as</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">DS</span><span style="color: #D4D4D4"> </span><span style="color: #C586C0">from</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&quot;destagnate&quot;</span>
+<span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">DS</span><span style="color: #D4D4D4"> = </span><span style="color: #DCDCAA">require</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;destagnate&quot;</span><span style="color: #D4D4D4">)</span>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">DS</span>.<span class="hljs-title">Component</span> </span>{
+<span style="color: #569CD6">class</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Counter</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">extends</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">DS</span><span style="color: #D4D4D4">.</span><span style="color: #4EC9B0">Component</span><span style="color: #D4D4D4"> {</span>
 
-    <span class="hljs-keyword">constructor</span> (parent) {
-        <span class="hljs-built_in">super</span>(parent)
+<span style="color: #D4D4D4">    </span><span style="color: #569CD6">constructor</span><span style="color: #D4D4D4"> (</span><span style="color: #9CDCFE">parent</span><span style="color: #D4D4D4">) {</span>
+<span style="color: #D4D4D4">        </span><span style="color: #569CD6">super</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">parent</span><span style="color: #D4D4D4">)</span>
 
-        <span class="hljs-built_in">this</span>.state = {}
-    }
+<span style="color: #D4D4D4">        </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">state</span><span style="color: #D4D4D4"> = {}</span>
+<span style="color: #D4D4D4">    }</span>
 
-    <span class="hljs-comment">// Using DS.createElement() - all options available below</span>
-    render = <span class="hljs-function">() =&gt;</span> DS.createElement(<span class="hljs-string">&quot;div&quot;</span>)
-    render = <span class="hljs-function">() =&gt;</span> Counter.createElement(<span class="hljs-string">&quot;div&quot;</span>)
-    render = <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">this</span>.createElement(<span class="hljs-string">&quot;div&quot;</span>)
+<span style="color: #D4D4D4">    </span><span style="color: #6A9955">// Using DS.createElement() - all options available below</span>
+<span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">render</span><span style="color: #D4D4D4"> = () </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">DS</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">createElement</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;div&quot;</span><span style="color: #D4D4D4">)</span>
+<span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">render</span><span style="color: #D4D4D4"> = () </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">Counter</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">createElement</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;div&quot;</span><span style="color: #D4D4D4">)</span>
+<span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">render</span><span style="color: #D4D4D4"> = () </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">createElement</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;div&quot;</span><span style="color: #D4D4D4">)</span>
 
-    <span class="hljs-comment">// Alternatively, you can use JSX. You will need a tranpiler, though.</span>
-    render = <span class="hljs-function">() =&gt;</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span style="color: #D4D4D4">    </span><span style="color: #6A9955">// Alternatively, you can use JSX. You will need a tranpiler, though.</span>
+<span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">render</span><span style="color: #D4D4D4"> = () </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #808080">&lt;</span><span style="color: #569CD6">div</span><span style="color: #808080">&gt;&lt;/</span><span style="color: #569CD6">div</span><span style="color: #808080">&gt;</span>
 
-}
+<span style="color: #D4D4D4">}</span>
 
-<span class="hljs-comment">// Warning: the parent must be dedicated to this component. Anything inside the parent will be removed on muatation</span>
-<span class="hljs-keyword">const</span> counter = <span class="hljs-keyword">new</span> Counter(<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#parent&quot;</span>))
+<span style="color: #6A9955">// Warning: the parent must be dedicated to this component. Anything inside the parent will be removed on muatation</span>
+<span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">counter</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Counter</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">document</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">querySelector</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;#parent&quot;</span><span style="color: #D4D4D4">))</span>
 
-counter.mount() <span class="hljs-comment">// Must call once to mount the component</span></code></pre>
+<span style="color: #9CDCFE">counter</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">mount</span><span style="color: #D4D4D4">() </span><span style="color: #6A9955">// Must call once to mount the component</span>
+</code></pre>
 				<a href="#using-jsx" id="using-jsx" style="color: inherit; text-decoration: none;">
 					<h2>Using JSX</h2>
 				</a>
@@ -160,67 +164,70 @@ counter.mount() <span class="hljs-comment">// Must call once to mount the compon
 					<h3>Typescript</h3>
 				</a>
 				<p>Consider the file <code>test.jsx</code> (or <code>test.tsx</code>)</p>
-				<pre><code class="language-tsx">/**
- * Importing DeStagnate is important
- * 1. It provides the JSX type defs (only typescript)
- * 2. It is needed when transpiled later
- */
-import DeStagnate from &quot;destagnate&quot;
+				<pre><code class="language-tsx"><span style="color: #6A9955">/**</span>
+<span style="color: #6A9955"> * Importing DeStagnate is important</span>
+<span style="color: #6A9955"> * 1. It provides the JSX type defs (only typescript)</span>
+<span style="color: #6A9955"> * 2. It is needed when transpiled later</span>
+<span style="color: #6A9955"> */</span>
+<span style="color: #C586C0">import</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">DeStagnate</span><span style="color: #D4D4D4"> </span><span style="color: #C586C0">from</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&quot;destagnate&quot;</span>
 
-DeStagnate.createElement(&quot;div&quot;, null, &lt;div class=&quot;myClass&quot;&gt;
-    &lt;p&gt;My Paragraph&lt;/p&gt;
-&lt;/div&gt;)
+<span style="color: #9CDCFE">DeStagnate</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">createElement</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;div&quot;</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">null</span><span style="color: #D4D4D4">, </span><span style="color: #808080">&lt;</span><span style="color: #569CD6">div</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">class</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;myClass&quot;</span><span style="color: #808080">&gt;</span>
+<span style="color: #D4D4D4">    </span><span style="color: #808080">&lt;</span><span style="color: #569CD6">p</span><span style="color: #808080">&gt;</span><span style="color: #D4D4D4">My Paragraph</span><span style="color: #808080">&lt;/</span><span style="color: #569CD6">p</span><span style="color: #808080">&gt;</span>
+<span style="color: #808080">&lt;/</span><span style="color: #569CD6">div</span><span style="color: #808080">&gt;</span><span style="color: #D4D4D4">)</span>
+
 </code></pre>
 				<p>You can compile with this <code>tsconfig.json</code></p>
-				<pre><code class="language-json">{
-    <span class="hljs-attr">&quot;compilerOptions&quot;</span>: {
-        <span class="hljs-attr">&quot;jsx&quot;</span>: <span class="hljs-string">&quot;react&quot;</span>,
-        <span class="hljs-attr">&quot;jsxFactory&quot;</span>: <span class="hljs-string">&quot;DeStagnate.createElement&quot;</span>,
-    },
-}</code></pre>
+				<pre><code class="language-json"><span style="color: #D4D4D4">{</span>
+<span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">&quot;compilerOptions&quot;</span><span style="color: #D4D4D4">: {</span>
+<span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">&quot;jsx&quot;</span><span style="color: #D4D4D4">: </span><span style="color: #CE9178">&quot;react&quot;</span><span style="color: #D4D4D4">,</span>
+<span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">&quot;jsxFactory&quot;</span><span style="color: #D4D4D4">: </span><span style="color: #CE9178">&quot;DeStagnate.createElement&quot;</span><span style="color: #D4D4D4">,</span>
+<span style="color: #D4D4D4">    },</span>
+<span style="color: #D4D4D4">}</span>
+</code></pre>
 				<p>You can also compile with this <code>.babelrc.json</code></p>
-				<pre><code class="language-json">{
-    <span class="hljs-attr">&quot;plugins&quot;</span>: [
-        [
-            <span class="hljs-string">&quot;@babel/plugin-transform-react-jsx&quot;</span>,
-            {
-                <span class="hljs-attr">&quot;pragma&quot;</span>: <span class="hljs-string">&quot;DeStagnate.createElement&quot;</span>
-            }
-        ]
-    ]
-}</code></pre>
+				<pre><code class="language-json"><span style="color: #D4D4D4">{</span>
+<span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">&quot;plugins&quot;</span><span style="color: #D4D4D4">: [</span>
+<span style="color: #D4D4D4">        [</span>
+<span style="color: #D4D4D4">            </span><span style="color: #CE9178">&quot;@babel/plugin-transform-react-jsx&quot;</span><span style="color: #D4D4D4">,</span>
+<span style="color: #D4D4D4">            {</span>
+<span style="color: #D4D4D4">                </span><span style="color: #9CDCFE">&quot;pragma&quot;</span><span style="color: #D4D4D4">: </span><span style="color: #CE9178">&quot;DeStagnate.createElement&quot;</span>
+<span style="color: #D4D4D4">            }</span>
+<span style="color: #D4D4D4">        ]</span>
+<span style="color: #D4D4D4">    ]</span>
+<span style="color: #D4D4D4">}</span>
+</code></pre>
 				<p>There are no fragments in DeStagnate. Use arrays instead.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_component_.html">&quot;component&quot;</a>
+						<a href="modules/component.html">component</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_createdscomponent_.html">&quot;createDSComponent&quot;</a>
+						<a href="modules/createdscomponent.html">createDSComponent</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_createelement_.html">&quot;create<wbr>Element&quot;</a>
+						<a href="modules/createelement.html">create<wbr>Element</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_createelementns_.html">&quot;create<wbr>ElementNS&quot;</a>
+						<a href="modules/createelementns.html">create<wbr>ElementNS</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_createelementonly_.html">&quot;create<wbr>Element<wbr>Only&quot;</a>
+						<a href="modules/createelementonly.html">create<wbr>Element<wbr>Only</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_createref_.html">&quot;create<wbr>Ref&quot;</a>
+						<a href="modules/createref.html">create<wbr>Ref</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_index_.html">&quot;index&quot;</a>
+						<a href="modules/index.html">index</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_jsx_.html">&quot;jsx&quot;</a>
+						<a href="modules/jsx.html">jsx</a>
 					</li>
 				</ul>
 			</nav>
