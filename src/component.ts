@@ -11,7 +11,7 @@
  */
 /* eslint-disable max-lines */
 
-import Base from "./private/_events"
+import {Events as Base} from "./private/_events"
 import url from "./private/_url"
 
 type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
@@ -216,7 +216,7 @@ export default abstract class DeStagnate
      */
     public readonly forceUpdate = (): void | Error => {
         try {
-            this.componentDidUpdate()
+            this.componentDidUpdate?.()
 
             if (this._parent === undefined) {
                 throw new Error(`ERROR: code 3. See ${url}.`)
@@ -245,7 +245,7 @@ export default abstract class DeStagnate
      */
     public readonly setState = (obj: Partial<State>): void | Error => {
         try {
-            this.componentWillUpdate()
+            this.componentWillUpdate?.()
 
             if (this._parent === undefined) {
                 throw new Error(`ERROR: code 3. See ${url}.`)
@@ -299,7 +299,7 @@ export default abstract class DeStagnate
 
             this._didSetInitialState = true
 
-            this.componentWillMount()
+            this.componentWillMount?.()
 
             if (component === null) {
                 throw new Error(`ERROR: code 5. See ${url}.`)
@@ -308,7 +308,7 @@ export default abstract class DeStagnate
             this.bindEventListeners(this._parent)
 
             this._didMount = true
-            this.componentDidMount()
+            this.componentDidMount?.()
 
             if (typeof(component) === "object" && component instanceof Array) {
                 return (component as Element[]).map((element) => (
@@ -348,7 +348,7 @@ export default abstract class DeStagnate
                 return
             }
 
-            this.componentWillUnmount()
+            this.componentWillUnmount?.()
 
             this.unbindEventListeners(this._parent)
 
@@ -436,7 +436,7 @@ export default abstract class DeStagnate
         }
 
         if (renderedContent) {
-            this.componentDidUpdate()
+            this.componentDidUpdate?.()
         }
     }
 

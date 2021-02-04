@@ -9,199 +9,131 @@
  * @package
  */
 
-import objectEntries, {EventListener, EventMember, EventsList} from "./_eventsUtils"
-import BaseComponent from "./_base"
+import {EventListener, EventMember, EventsList} from "./_eventsUtils"
+import {Preset as BaseComponent} from "./_base"
 
-
-/* istanbul ignore next */
-export default abstract class Events extends BaseComponent {
+export interface Events {
 
     /**
      * Focus event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onFocus: EventMember = undefined
+    onFocus?: EventMember<"focus">
 
     /**
      * Blur event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onBlur: EventMember = undefined
+    onBlur?: EventMember<"blur">
 
     /**
      * Focus in event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onFocusIn: EventMember = undefined
+    onFocusIn?: EventMember<"focusin">
 
     /**
      * Focus out event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onFocusOut: EventMember = undefined
+    onFocusOut?: EventMember<"focusout">
 
     /**
      * Animation start event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onAnimationStart: EventMember = undefined
+    onAnimationStart?: EventMember<"animationstart">
 
     /**
      * Animation cancel event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onAnimationCancel: EventMember = undefined
+    onAnimationCancel?: EventMember<"animationcancel">
 
     /**
      * Animation end event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onAnimationEnd: EventMember = undefined
+    onAnimationEnd?: EventMember<"animationend">
 
     /**
      * Animation iteration event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onAnimationIteration: EventMember = undefined
+    onAnimationIteration?: EventMember<"animationiteration">
 
 
     /**
      * Transition start event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onTransitionStart: EventMember = undefined
+    onTransitionStart?: EventMember<"transitionstart">
 
     /**
      * Transition cancel event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onTransitionCancel: EventMember = undefined
+    onTransitionCancel?: EventMember<"transitioncancel">
 
     /**
      * Transition end event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onTransitionEnd: EventMember = undefined
+    onTransitionEnd?: EventMember<"transitionend">
 
     /**
      * Transition run event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onTransitionRun: EventMember = undefined
+    onTransitionRun?: EventMember<"transitionrun">
 
 
     /**
      * Auxillary click event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onAuxClick: EventMember = undefined
+    onAuxClick?: EventMember<"auxclick">
 
     /**
      * Click event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onClick: EventMember = undefined
+    onClick?: EventMember<"click">
 
     /**
      * Double click event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onDblClick: EventMember = undefined
+    onDblClick?: EventMember<"dblclick">
 
     /**
      * Mousedown event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onMouseDown: EventMember = undefined
+    onMouseDown?: EventMember<"mousedown">
 
     /**
      * Mouse enter event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onMouseEnter: EventMember = undefined
+    onMouseEnter?: EventMember<"mouseenter">
 
     /**
      * Mouse leave event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onMouseLeave: EventMember = undefined
+    onMouseLeave?: EventMember<"mouseleave">
 
     /**
      * Mouse move event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onMouseMove: EventMember = undefined
+    onMouseMove?: EventMember<"mousemove">
 
     /**
      * Mouseover event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onMouseOver: EventMember = undefined
+    onMouseOver?: EventMember<"mouseover">
 
     /**
      * Mouseout event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onMouseOut: EventMember = undefined
+    onMouseOut?: EventMember<"mouseout">
 
     /**
      * Mouseup event
-     * @protected
-     * @instance
-     * @returns
      */
-    protected onMouseUp: EventMember = undefined
+    onMouseUp?: EventMember<"mouseup">
+}
+
+/* istanbul ignore next */
+export abstract class Events extends BaseComponent {
 
     /**
      * Binds event listeners event
      * Do not call manually
-     * @protected
-     * @instance
      * @pacakge
-     * @param element - element to bind listeners to
-     * @returns void
      */
     protected bindEventListeners = (element: HTMLElement): void => {
         this._eventListener(element.addEventListener)
@@ -210,18 +142,16 @@ export default abstract class Events extends BaseComponent {
     /**
      * Binds event listeners event
      * Do not call manually
-     * @protected
-     * @instance
      * @pacakge
-     * @param element - element to bind listeners to
-     * @returns void
      */
     protected unbindEventListeners = (element: HTMLElement): void => {
         this._eventListener(element.removeEventListener)
     }
 
     private _eventListener = (eventListener: EventListener): void => {
-        for (const [event, callback] of objectEntries(this._events())) {
+        type Events = [event: string, callback: EventListenerOrEventListenerObject][]
+
+        for (const [event, callback] of Object.entries(this._events()) as Events) {
             if (callback !== undefined) {
                 eventListener(event, callback)
             }

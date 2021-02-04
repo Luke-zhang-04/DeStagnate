@@ -269,32 +269,6 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
  * @copyright Copyright (C) 2020 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.7.1
- * @package
- */
-
-/**
- * Returns array of events
- * Not a generator because Babel Regenerator Runtime causes dist files to be wayyyy to large
- * @param events - events object
- */
-var eventsList = function eventsList(events) {
-  var res = [];
-
-  for (var _i = 0, _Object$keys = Object.keys(events); _i < _Object$keys.length; _i++) {
-    var key = _Object$keys[_i];
-    res.push([key, events[key]]);
-  }
-
-  return res;
-};
-
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
  * @version 1.8.0
  * @file share functions and types for createElement and it's variants
  */
@@ -485,40 +459,8 @@ var createElementNS = function createElementNS(namespaceURI, tagName, props, chi
 var Preset = function Preset() {
   _classCallCheck(this, Preset);
 
-  /**
-   * Creates an HTML Element
-   * @public
-   * @instance
-   * @readonly
-   * @param tagName - name of HTML element
-   * @param props - element properties, such as class, innerHTML, id, style, etc
-   * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-   * @param childrenRest - rest parameter of children
-   * @returns html element
-   */
   this.createElement = createElement;
-  /**
-   * Creates a child element to deStagnate
-   * @public
-   * @instance
-   * @readonly
-   * @param namespaceURI - namespace uri
-   * @param tagName - name of HTML element
-   * @param props - element properties, such as class, innerHTML, id, style, etc
-   * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-   * @param childrenRest - rest parameter of children
-   * @returns html element
-   */
-
   this.createElementNS = createElementNS;
-  /**
-   * Creates a reference for a nested component
-   * @public
-   * @instance
-   * @readonly
-   * @returns empty ref object
-   */
-
   this.createRef = createRef;
   /**
    * Called when component catches error. Default behaviour is console.error
@@ -530,28 +472,6 @@ var Preset = function Preset() {
     return console.error(error);
   };
   /**
-   * What to call after component mounting
-   * @public
-   * @instance
-   * @returns void
-   */
-
-
-  this.componentDidMount = function () {
-    return undefined;
-  };
-  /**
-   * What to call after component update (state mutation)
-   * @public
-   * @instance
-   * @returns void
-   */
-
-
-  this.componentDidUpdate = function () {
-    return undefined;
-  };
-  /**
    * Called when component catches a warning. Default behaviour is console.warn
    * @param msg - warning message
    * @returns void
@@ -560,39 +480,6 @@ var Preset = function Preset() {
 
   this.componentDidWarn = function (msg) {
     return console.warn(msg);
-  };
-  /**
-   * What to call before component mounting
-   * @public
-   * @instance
-   * @returns void
-   */
-
-
-  this.componentWillMount = function () {
-    return undefined;
-  };
-  /**
-   * What to call before component unmounting
-   * @public
-   * @instance
-   * @returns void
-   */
-
-
-  this.componentWillUnmount = function () {
-    return undefined;
-  };
-  /**
-   * What to call before component update (state mutation)
-   * @public
-   * @instance
-   * @returns void
-   */
-
-
-  this.componentWillUpdate = function () {
-    return undefined;
   };
   /**
    * Called before component is updated
@@ -617,28 +504,7 @@ var Preset = function Preset() {
   };
 };
 Preset.createElement = createElement;
-/**
- * Creates a child element to deStagnate
- * @public
- * @static
- * @readonly
- * @param namespaceURI - namespace uri
- * @param tagName - name of HTML element
- * @param props - element properties, such as class, innerHTML, id, style, etc
- * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param childrenRest - rest parameter of children
- * @returns html element
- */
-
 Preset.createElementNS = createElementNS;
-/**
- * Creates a reference for a nested component
- * @public
- * @static
- * @readonly
- * @returns empty ref object
- */
-
 Preset.createRef = createRef;
 
 var Events = function (_BaseComponent) {
@@ -653,189 +519,9 @@ var Events = function (_BaseComponent) {
 
     _this = _super.apply(this, arguments);
     /**
-     * Focus event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onFocus = undefined;
-    /**
-     * Blur event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onBlur = undefined;
-    /**
-     * Focus in event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onFocusIn = undefined;
-    /**
-     * Focus out event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onFocusOut = undefined;
-    /**
-     * Animation start event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onAnimationStart = undefined;
-    /**
-     * Animation cancel event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onAnimationCancel = undefined;
-    /**
-     * Animation end event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onAnimationEnd = undefined;
-    /**
-     * Animation iteration event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onAnimationIteration = undefined;
-    /**
-     * Transition start event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onTransitionStart = undefined;
-    /**
-     * Transition cancel event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onTransitionCancel = undefined;
-    /**
-     * Transition end event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onTransitionEnd = undefined;
-    /**
-     * Transition run event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onTransitionRun = undefined;
-    /**
-     * Auxillary click event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onAuxClick = undefined;
-    /**
-     * Click event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onClick = undefined;
-    /**
-     * Double click event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onDblClick = undefined;
-    /**
-     * Mousedown event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onMouseDown = undefined;
-    /**
-     * Mouse enter event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onMouseEnter = undefined;
-    /**
-     * Mouse leave event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onMouseLeave = undefined;
-    /**
-     * Mouse move event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onMouseMove = undefined;
-    /**
-     * Mouseover event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onMouseOver = undefined;
-    /**
-     * Mouseout event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onMouseOut = undefined;
-    /**
-     * Mouseup event
-     * @protected
-     * @instance
-     * @returns
-     */
-
-    _this.onMouseUp = undefined;
-    /**
      * Binds event listeners event
      * Do not call manually
-     * @protected
-     * @instance
      * @pacakge
-     * @param element - element to bind listeners to
-     * @returns void
      */
 
     _this.bindEventListeners = function (element) {
@@ -844,11 +530,7 @@ var Events = function (_BaseComponent) {
     /**
      * Binds event listeners event
      * Do not call manually
-     * @protected
-     * @instance
      * @pacakge
-     * @param element - element to bind listeners to
-     * @returns void
      */
 
 
@@ -857,23 +539,14 @@ var Events = function (_BaseComponent) {
     };
 
     _this._eventListener = function (eventListener) {
-      var _iterator = _createForOfIteratorHelper(eventsList(_this._events())),
-          _step;
+      for (var _i = 0, _Object$entries = Object.entries(_this._events()); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            event = _Object$entries$_i[0],
+            callback = _Object$entries$_i[1];
 
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var _step$value = _slicedToArray(_step.value, 2),
-              event = _step$value[0],
-              callback = _step$value[1];
-
-          if (callback !== undefined) {
-            eventListener(event, callback);
-          }
+        if (callback !== undefined) {
+          eventListener(event, callback);
         }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
       }
     };
 
@@ -1015,8 +688,10 @@ var DeStagnate = function (_Base) {
 
 
     _this.forceUpdate = function () {
+      var _a;
+
       try {
-        _this.componentDidUpdate();
+        (_a = _this.componentDidUpdate) === null || _a === void 0 ? void 0 : _a.call(_assertThisInitialized(_this));
 
         if (_this._parent === undefined) {
           throw new Error("ERROR: code 3. See ".concat(url, "."));
@@ -1042,8 +717,10 @@ var DeStagnate = function (_Base) {
 
 
     _this.setState = function (obj) {
+      var _a;
+
       try {
-        _this.componentWillUpdate();
+        (_a = _this.componentWillUpdate) === null || _a === void 0 ? void 0 : _a.call(_assertThisInitialized(_this));
 
         if (_this._parent === undefined) {
           throw new Error("ERROR: code 3. See ".concat(url, "."));
@@ -1076,6 +753,8 @@ var DeStagnate = function (_Base) {
 
 
     _this.mountComponent = function (parent) {
+      var _a, _b;
+
       try {
         if (parent !== undefined) {
           _this.parent = parent;
@@ -1088,8 +767,7 @@ var DeStagnate = function (_Base) {
         var component = _this.render();
 
         _this._didSetInitialState = true;
-
-        _this.componentWillMount();
+        (_a = _this.componentWillMount) === null || _a === void 0 ? void 0 : _a.call(_assertThisInitialized(_this));
 
         if (component === null) {
           throw new Error("ERROR: code 5. See ".concat(url, "."));
@@ -1098,8 +776,7 @@ var DeStagnate = function (_Base) {
         _this.bindEventListeners(_this._parent);
 
         _this._didMount = true;
-
-        _this.componentDidMount();
+        (_b = _this.componentDidMount) === null || _b === void 0 ? void 0 : _b.call(_assertThisInitialized(_this));
 
         if (_typeof(component) === "object" && component instanceof Array) {
           return component.map(function (element) {
@@ -1133,6 +810,8 @@ var DeStagnate = function (_Base) {
      */
 
     _this.unmountComponent = function () {
+      var _a;
+
       try {
         if (_this._parent === undefined) {
           _this.componentDidWarn("WARN: code 4. See ".concat(url, "."));
@@ -1140,7 +819,7 @@ var DeStagnate = function (_Base) {
           return;
         }
 
-        _this.componentWillUnmount();
+        (_a = _this.componentWillUnmount) === null || _a === void 0 ? void 0 : _a.call(_assertThisInitialized(_this));
 
         _this.unbindEventListeners(_this._parent);
 
@@ -1220,6 +899,8 @@ var DeStagnate = function (_Base) {
 
 
     _this._update = function (renderedContent) {
+      var _a;
+
       if (_typeof(renderedContent) === "object" && renderedContent instanceof Array) {
         var _iterator = _createForOfIteratorHelper(renderedContent),
             _step;
@@ -1240,7 +921,7 @@ var DeStagnate = function (_Base) {
       }
 
       if (renderedContent) {
-        _this.componentDidUpdate();
+        (_a = _this.componentDidUpdate) === null || _a === void 0 ? void 0 : _a.call(_assertThisInitialized(_this));
       }
     };
 

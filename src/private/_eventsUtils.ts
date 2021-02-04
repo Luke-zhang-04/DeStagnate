@@ -14,51 +14,34 @@ export type EventListener = (
     options?: boolean | AddEventListenerOptions,
 )=> void
 
-export type EventMember = EventListenerOrEventListenerObject | undefined
+export type EventMember<
+    K extends keyof HTMLElementEventMap,
+> = (event: HTMLElementEventMap[K]) => unknown | undefined
 
 export interface EventsList {
-    focus: EventMember,
-    blur: EventMember,
-    focusin: EventMember,
-    focusout: EventMember,
+    focus?: EventMember<"focus">,
+    blur?: EventMember<"blur">,
+    focusin?: EventMember<"focusin">,
+    focusout?: EventMember<"focusout">,
 
-    animationstart: EventMember,
-    animationcancel: EventMember,
-    animationend: EventMember,
-    animationiteration: EventMember,
+    animationstart?: EventMember<"animationstart">,
+    animationcancel?: EventMember<"animationcancel">,
+    animationend?: EventMember<"animationend">,
+    animationiteration?: EventMember<"animationiteration">,
 
-    transitionstart: EventMember,
-    transitioncancel: EventMember,
-    transitionend: EventMember,
-    transitionrun: EventMember,
+    transitionstart?: EventMember<"transitionstart">,
+    transitioncancel?: EventMember<"transitioncancel">,
+    transitionend?: EventMember<"transitionend">,
+    transitionrun?: EventMember<"transitionrun">,
 
-    auxclick: EventMember,
-    click: EventMember,
-    dblclick: EventMember,
-    mousedown: EventMember,
-    mouseenter: EventMember,
-    mouseleave: EventMember,
-    mousemove: EventMember,
-    mouseover: EventMember,
-    mouseout: EventMember,
-    mouseup: EventMember,
+    auxclick?: EventMember<"auxclick">,
+    click?: EventMember<"click">,
+    dblclick?: EventMember<"dblclick">,
+    mousedown?: EventMember<"mousedown">,
+    mouseenter?: EventMember<"mouseenter">,
+    mouseleave?: EventMember<"mouseleave">,
+    mousemove?: EventMember<"mousemove">,
+    mouseover?: EventMember<"mouseover">,
+    mouseout?: EventMember<"mouseout">,
+    mouseup?: EventMember<"mouseup">,
 }
-
-/**
- * Returns array of events
- * Not a generator because Babel Regenerator Runtime causes dist files to be wayyyy to large
- * @param events - events object
- */
-export const eventsList = (
-    events: EventsList,
-): [keyof EventsList, EventMember][] => {
-    const res: [keyof EventsList, EventMember][] = []
-
-    for (const key of Object.keys(events)) {
-        res.push([key as keyof EventsList, events[key as keyof EventsList]])
-    }
-
-    return res
-}
-
-export default eventsList
