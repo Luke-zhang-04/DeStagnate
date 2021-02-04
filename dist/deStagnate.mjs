@@ -47,40 +47,6 @@ const eventsList = events => {
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
  * @version 1.8.0
- * @exports createDSComponent add nested component for DeStagnate components
- */
-
-/**
- * Creates nested DeStagnate component
- * @deprecated do not use this function, since 1.6.1
- * This only exists to adhere to semver
- * @param Component - DeStagnate component
- * @param props - props of component
- * @param ref - ref object
- * @returns parent of component
- */
-const createDSComponent = (Component, props, ref) => {
-  const element = document.createElement("div");
-  element.classList.add("DeStagnate-component-parent");
-
-  const _component = new Component(element, props);
-
-  _component.mount();
-
-  if (ref) {
-    ref.current = _component;
-  }
-
-  return element;
-};
-
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
  * @file share functions and types for createElement and it's variants
  */
 const url = "https://luke-zhang-04.github.io/DeStagnate/error-codes";
@@ -272,16 +238,6 @@ const createElementNS = (namespaceURI, tagName, props, children, ...childrenRest
 class Preset {
   constructor() {
     /**
-     * Creates nested DeStagnate component
-     * @public
-     * @instance
-     * @readonly
-     * @param Component - DeStagnate component
-     * @param props - props of component
-     * @returns parent of component
-     */
-    this.createDSComponent = createDSComponent;
-    /**
      * Creates an HTML Element
      * @public
      * @instance
@@ -292,7 +248,6 @@ class Preset {
      * @param childrenRest - rest parameter of children
      * @returns html element
      */
-
     this.createElement = createElement;
     /**
      * Creates a child element to deStagnate
@@ -397,17 +352,6 @@ class Preset {
   }
 
 }
-/**
- * Creates nested DeStagnate component
- * @public
- * @static
- * @readonly
- * @param Component - DeStagnate component
- * @param props - props of component
- * @returns parent of component
- */
-
-Preset.createDSComponent = createDSComponent;
 /**
  * Creates an HTML Element
  * @public
@@ -1110,14 +1054,6 @@ class DeStagnate extends Events {
  * @preserve
  */
 /**
- * Creates nested DeStagnate component
- * @param Component - DeStagnate component
- * @param props - props of component
- * @returns parent of component
- */
-
-const createDSComponent$1 = createDSComponent;
-/**
  * Creates a child element to deStagnate
  * @param tagName - name of HTML element
  * @param props - element properties, such as class, innerHTML, id, style, etc
@@ -1153,4 +1089,4 @@ const createRef$1 = createRef;
 const Component = DeStagnate;
 
 export default DeStagnate;
-export { Component, createDSComponent$1 as createDSComponent, createElement$1 as createElement, createElementNS$1 as createElementNS, createRef$1 as createRef };
+export { Component, createElement$1 as createElement, createElementNS$1 as createElementNS, createRef$1 as createRef };

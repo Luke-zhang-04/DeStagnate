@@ -4,10 +4,8 @@
   "description": "Make creating dynamic components within static sites easier",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "bin": "cli/index.js",
   "directories": {
     "lib": "./lib",
-    "bin": "./cli",
     "browser": "./dist",
     "example": "./docs/src",
     "doc": "./wiki",

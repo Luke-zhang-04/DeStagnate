@@ -15,17 +15,8 @@
 /* eslint-disable max-lines */
 import {Ref as _Ref, default as _createRef} from "./createRef"
 import DeStagnate from "./component"
-import _createDSComponent from "./createDSComponent"
 import _createElement from "./createElement"
 import _createElementNS from "./createElementNS"
-
-/**
- * Creates nested DeStagnate component
- * @param Component - DeStagnate component
- * @param props - props of component
- * @returns parent of component
- */
-export const createDSComponent = _createDSComponent
 
 /**
  * Creates a child element to deStagnate

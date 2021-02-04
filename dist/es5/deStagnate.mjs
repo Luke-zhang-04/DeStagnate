@@ -296,40 +296,6 @@ var eventsList = function eventsList(events) {
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
  * @version 1.8.0
- * @exports createDSComponent add nested component for DeStagnate components
- */
-
-/**
- * Creates nested DeStagnate component
- * @deprecated do not use this function, since 1.6.1
- * This only exists to adhere to semver
- * @param Component - DeStagnate component
- * @param props - props of component
- * @param ref - ref object
- * @returns parent of component
- */
-var createDSComponent = function createDSComponent(Component, props, ref) {
-  var element = document.createElement("div");
-  element.classList.add("DeStagnate-component-parent");
-
-  var _component = new Component(element, props);
-
-  _component.mount();
-
-  if (ref) {
-    ref.current = _component;
-  }
-
-  return element;
-};
-
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
  * @file share functions and types for createElement and it's variants
  */
 var url = "https://luke-zhang-04.github.io/DeStagnate/error-codes";
@@ -520,16 +486,6 @@ var Preset = function Preset() {
   _classCallCheck(this, Preset);
 
   /**
-   * Creates nested DeStagnate component
-   * @public
-   * @instance
-   * @readonly
-   * @param Component - DeStagnate component
-   * @param props - props of component
-   * @returns parent of component
-   */
-  this.createDSComponent = createDSComponent;
-  /**
    * Creates an HTML Element
    * @public
    * @instance
@@ -540,7 +496,6 @@ var Preset = function Preset() {
    * @param childrenRest - rest parameter of children
    * @returns html element
    */
-
   this.createElement = createElement;
   /**
    * Creates a child element to deStagnate
@@ -661,19 +616,6 @@ var Preset = function Preset() {
     return null;
   };
 };
-Preset.createDSComponent = createDSComponent;
-/**
- * Creates an HTML Element
- * @public
- * @static
- * @readonly
- * @param tagName - name of HTML element
- * @param props - element properties, such as class, innerHTML, id, style, etc
- * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
- * @param childrenRest - rest parameter of children
- * @returns html element
- */
-
 Preset.createElement = createElement;
 /**
  * Creates a child element to deStagnate
@@ -1426,14 +1368,6 @@ var DeStagnate = function (_Base) {
  * @preserve
  */
 /**
- * Creates nested DeStagnate component
- * @param Component - DeStagnate component
- * @param props - props of component
- * @returns parent of component
- */
-
-var createDSComponent$1 = createDSComponent;
-/**
  * Creates a child element to deStagnate
  * @param tagName - name of HTML element
  * @param props - element properties, such as class, innerHTML, id, style, etc
@@ -1469,4 +1403,4 @@ var createRef$1 = createRef;
 var Component = DeStagnate;
 
 export default DeStagnate;
-export { Component, createDSComponent$1 as createDSComponent, createElement$1 as createElement, createElementNS$1 as createElementNS, createRef$1 as createRef };
+export { Component, createElement$1 as createElement, createElementNS$1 as createElementNS, createRef$1 as createRef };
