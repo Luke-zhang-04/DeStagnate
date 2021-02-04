@@ -1,11 +1,13 @@
 // Babelrc for production/minified files
 
 module.exports = {
-    presets: ["minify"],
-    plugins: [
-        "babel-plugin-loop-optimizer",
+    presets: [
+        ["minify", {
+            builtIns: true,
+            evaluate: true,
+            mangle: true,
+        }],
     ],
-    minified: true,
-    shouldPrintComment: () => false,
-    comments: false,
+    comments: true,
+    shouldPrintComment: (comment) => /licen[sc]e|copyright|@preserve|^!/i.test(comment),
 }
