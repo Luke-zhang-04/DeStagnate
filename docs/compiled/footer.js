@@ -1,19 +1,54 @@
-!function(e,t){if("object"==typeof exports&&"object"==typeof module)module.exports=t();else if("function"==typeof define&&define.amd)define([],t);else{var n=t();for(var o in n)("object"==typeof exports?exports:e)[o]=n[o]}}(window,(function(){return function(e){var t={};function n(o){if(t[o])return t[o].exports;var r=t[o]={i:o,l:!1,exports:{}};return e[o].call(r.exports,r,r.exports,n),r.l=!0,r.exports}return n.m=e,n.c=t,n.d=function(e,t,o){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:o})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)n.d(o,r,function(t){return e[t]}.bind(null,r));return o},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=0)}([function(e,t,n){"use strict";var o=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(t,"__esModule",{value:!0});const r=o(n(1)),l=o(n(3));(()=>{const e=document.querySelector("footer"),t=(e,t)=>r.default("li",null,r.default("a",{class:"text-light",href:e,rel:"noopener noreferrer"},t));null==e||e.setAttribute("class","page-footer font-small light pt-4 bg-tomorrow"),null==e||e.appendChild(r.default("div",{class:"container-fluid text-center text-md-left"},r.default("div",{class:"row"},r.default("div",{class:"col-md-6 mt-md-0 mt-3"},r.default("h5",{class:"test-uppercase"},"DeStagnate"),r.default("img",{class:"w-100 w-md-50",src:"logo.svg"})),r.default("div",{class:"col-md-3 mb-md-0 mb-3"},r.default("h5",{class:"text-uppercase"},"Examples"),r.default("ul",{class:"list-unstyled"},r.default("ul",{class:"list-unstyled"},l.default.map(e=>t(e[0],e[1]))))),r.default("div",{class:"col-md-3 mb-md-0 mb-3"},r.default("h5",{class:"text-uppercase"},"Links"),r.default("ul",{class:"list-unstyled"},r.default("ul",{class:"list-unstyled"},t("https://github.com/Luke-zhang-04/DeStagnate","GitHub"),t("https://www.npmjs.com/package/destagnate","NPM"))))))),null==e||e.appendChild(r.default("div",{class:"footer-copyright text-center py-3"},"Copyright © 2020 ",r.default("a",{href:"luke-zhang-04.github.io/"},"Luke Zhang")))})()},function(e,t,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports createElement function for DOM manipulation without DeStagnate class or Refs
- */var o=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(t,"__esModule",{value:!0}),t.createElement=void 0;const r=o(n(2)),l=e=>{const t=[];for(const n of e)"object"==typeof n&&n instanceof Array?t.push(...l(n)):t.push(n);return t},u=(e,t)=>{if(null!=t)if(t instanceof Array)for(const n of t)u(e,n);else"string"==typeof t||"number"==typeof t?e.innerText=t.toString():e.appendChild(t)};function a(e,t,n,...o){let a=n;if(n&&o&&(a=n instanceof Array?[...l(n),...l(o)]:[n,...l(o)]),"string"==typeof e){const n=document.createElement(e);return((e,t,n=!1)=>{if(t)for(const[o,l]of Object.entries(t))"string"==typeof l||"number"==typeof l?"innerHTML"===o?e.innerHTML=l.toString():n?e.setAttributeNS(null,o,l.toString()):e.setAttribute(o,l.toString()):"on"===o.slice(0,2)?"function"==typeof l&&e.addEventListener(o.slice(2).toLowerCase(),l):void 0!==l&&console.warn(`WARN: Code 7. See ${r.default}. Params: ${typeof l}, ${o}`)})(n,t),u(n,a),n}return"function"==typeof e?e(t,a):Error("tagNameOrComponent is of invalid type.")}t.createElement=a,t.default=a},function(e,t,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @file share functions and types for createElement and it's variants
- */Object.defineProperty(t,"__esModule",{value:!0}),t.url=void 0,t.url="https://luke-zhang-04.github.io/DeStagnate/error-codes",t.default=t.url},function(e,t,n){"use strict";e.exports=[["index.html","Home"],["state.html","State example"],["props.html","Props example"],["eventListener.html","Event listener example"],["ref.html","Ref example"],["calculator.html","Calculator Example"],["namespace.html","Namespaced element (SVG) example"],["ticTacToe.html","TicTacToe example"],["ticTacToe.html","Nested component example"],["using-jsx.html","Using JSX"],["docs/","Documentation"],["error-codes.html","Errors Reference"]]}])}));
+(function () {
+    'use strict';
+
+    var url = "https://luke-zhang-04.github.io/DeStagnate/error-codes";
+
+    const _bindProps=(a,b,c=!1)=>{if(b)for(const[d,e]of Object.entries(b))"string"==typeof e||"number"==typeof e?"innerHTML"===d?a.innerHTML=e.toString():c?a.setAttributeNS(null,d,e.toString()):a.setAttribute(d,e.toString()):"on"===d.slice(0,2)?"function"==typeof e&&a.addEventListener(d.slice(2).toLowerCase(),e):void 0!==e&&console.warn(`WARN: Code 7. See ${url}. Params: ${typeof e}, ${d}`);},_unpackChildren=a=>{const b=[];for(const c of a)"object"==typeof c&&c instanceof Array?b.push(..._unpackChildren(c)):b.push(c);return b},_bindChildren=(a,b)=>{if(null!==b&&b!==void 0)if(b instanceof Array)for(const c of b)_bindChildren(a,c);else "string"==typeof b||"number"==typeof b?a.innerText=b.toString():a.appendChild(b);};function createElement(a,b,c,...d){let e=c;if(c&&d&&(c instanceof Array?e=[..._unpackChildren(c),..._unpackChildren(d)]:e=[c,..._unpackChildren(d)]),"string"==typeof a){const c=document.createElement(a);return _bindProps(c,b),_bindChildren(c,e),c}return "function"==typeof a?a(b,e):Error("tagNameOrComponent is of invalid type.")}
+
+    var pages = [["index.html", "Home"], ["state.html", "State example"], ["props.html", "Props example"], ["eventListener.html", "Event listener example"], ["ref.html", "Ref example"], ["calculator.html", "Calculator Example"], ["namespace.html", "Namespaced element (SVG) example"], ["ticTacToe.html", "TicTacToe example"], ["ticTacToe.html", "Nested component example"], ["using-jsx.html", "Using JSX"], ["docs/", "Documentation"], ["error-codes.html", "Errors Reference"]];
+
+    (() => {
+      const footer = document.querySelector("footer"),
+            createFooterLink = (href, content) => createElement("li", null, createElement("a", {
+        class: "text-light",
+        href,
+        rel: "noopener noreferrer"
+      }, content));
+
+      footer === null || footer === void 0 ? void 0 : footer.setAttribute("class", "page-footer font-small light pt-4 bg-tomorrow");
+      footer === null || footer === void 0 ? void 0 : footer.appendChild(createElement("div", {
+        class: "container-fluid text-center text-md-left"
+      }, createElement("div", {
+        class: "row"
+      }, createElement("div", {
+        class: "col-md-6 mt-md-0 mt-3"
+      }, createElement("h5", {
+        class: "test-uppercase"
+      }, "DeStagnate"), createElement("img", {
+        class: "w-100 w-md-50",
+        src: "logo.svg"
+      })), createElement("div", {
+        class: "col-md-3 mb-md-0 mb-3"
+      }, createElement("h5", {
+        class: "text-uppercase"
+      }, "Examples"), createElement("ul", {
+        class: "list-unstyled"
+      }, createElement("ul", {
+        class: "list-unstyled"
+      }, pages.map(val => createFooterLink(val[0], val[1]))))), createElement("div", {
+        class: "col-md-3 mb-md-0 mb-3"
+      }, createElement("h5", {
+        class: "text-uppercase"
+      }, "Links"), createElement("ul", {
+        class: "list-unstyled"
+      }, createElement("ul", {
+        class: "list-unstyled"
+      }, createFooterLink("https://github.com/Luke-zhang-04/DeStagnate", "GitHub"), createFooterLink("https://www.npmjs.com/package/destagnate", "NPM")))))));
+      footer === null || footer === void 0 ? void 0 : footer.appendChild(createElement("div", {
+        class: "footer-copyright text-center py-3"
+      }, "Copyright © 2020 ", createElement("a", {
+        href: "luke-zhang-04.github.io/"
+      }, "Luke Zhang")));
+    })();
+
+}());

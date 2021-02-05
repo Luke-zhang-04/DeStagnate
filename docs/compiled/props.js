@@ -1,97 +1,38 @@
-!function(t,e){if("object"==typeof exports&&"object"==typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var n=e();for(var i in n)("object"==typeof exports?exports:t)[i]=n[i]}}(window,(function(){return function(t){var e={};function n(i){if(e[i])return e[i].exports;var o=e[i]={i:i,l:!1,exports:{}};return t[i].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=t,n.c=e,n.d=function(t,e,i){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:i})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var i=Object.create(null);if(n.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(i,o,function(e){return t[e]}.bind(null,o));return i},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=7)}([function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports DeStagnate main destagnate class
- * @file main file for destagnate
- * @preserve
- */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e.Component=e.createRef=e.createElementNS=e.createElement=e.createDSComponent=void 0;const o=i(n(1)),r=i(n(8)),s=i(n(2)),a=i(n(3)),u=i(n(6));e.createDSComponent=s.default,e.createElement=a.default,e.createElementNS=u.default,e.createRef=o.default,e.Component=r.default,e.default=r.default},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.createRef=void 0,e.createRef=()=>({current:null}),e.default=e.createRef},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports createDSComponent add nested component for DeStagnate components
- */Object.defineProperty(e,"__esModule",{value:!0});e.default=(t,e,n)=>{const i=document.createElement("div");i.classList.add("DeStagnate-component-parent");const o=new t(i,e);return o.mount(),n&&(n.current=o),i}},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports createElement function for DOM manipulation
- */Object.defineProperty(e,"__esModule",{value:!0}),e.createElement=void 0;const i=n(4);function o(t,e,n,...o){let r=n;if(n&&o&&(r=n instanceof Array?[...i.unpackChildren(n),...i.unpackChildren(o)]:[n,...i.unpackChildren(o)]),"string"==typeof t){const n=document.createElement(t);return i.bindProps(n,e),i.bindChildren(n,r),n}return"function"==typeof t?t(e,r):Error("tagNameOrComponent is of invalid type.")}e.createElement=o,e.default=o},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @file share functions and types for createElement and it's variants
- */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e.bindChildren=e.unpackChildren=e.bindProps=void 0;const o=i(n(0)),r=i(n(5));e.bindProps=(t,e,n=!1)=>{if(e)for(const[i,o]of Object.entries(e))"string"==typeof o||"number"==typeof o?"innerHTML"===i?t.innerHTML=o.toString():n?t.setAttributeNS(null,i,o.toString()):t.setAttribute(i,o.toString()):"on"===i.slice(0,2)?"function"==typeof o&&t.addEventListener(i.slice(2).toLowerCase(),o):"ref"===i&&"object"==typeof o&&"current"in o?o.current=t:void 0!==o&&console.warn(`WARN: Code 7. See ${r.default}. Params: ${typeof o}, ${i}`)},e.unpackChildren=t=>{const n=[];for(const i of t)"object"==typeof i&&i instanceof Array?n.push(...e.unpackChildren(i)):n.push(i);return n},e.bindChildren=(t,n)=>{if(null!=n)if(n instanceof Array)for(const i of n)e.bindChildren(t,i);else if("string"==typeof n||"number"==typeof n)t.innerText=n.toString();else if(n instanceof o.default){if(!n.didMount&&t instanceof window.HTMLElement)return void n.mount(t);if(!(t instanceof window.HTMLElement))throw new Error("ERROR: code 8. See "+r.default);n.parent!==t&&(n.parent=t),n.forceUpdate()}else t.appendChild(n)}},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @file share functions and types for createElement and it's variants
- */Object.defineProperty(e,"__esModule",{value:!0}),e.url=void 0,e.url="https://luke-zhang-04.github.io/DeStagnate/error-codes",e.default=e.url},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports createElementNS createElement for namespaced elements
- */Object.defineProperty(e,"__esModule",{value:!0}),e.createElementNS=void 0;const i=n(4);e.createElementNS=(t,e,n,o,...r)=>{const s=document.createElementNS(t,e);i.bindProps(s,n,!0);let a=o;return o&&r&&(a="object"==typeof o&&o instanceof Array?[...i.unpackChildren(o),...i.unpackChildren(r)]:[o,...i.unpackChildren(r)]),i.bindChildren(s,a),s},e.default=e.createElementNS},function(t,e,n){"use strict";var i=this&&this.__createBinding||(Object.create?function(t,e,n,i){void 0===i&&(i=n),Object.defineProperty(t,i,{enumerable:!0,get:function(){return e[n]}})}:function(t,e,n,i){void 0===i&&(i=n),t[i]=e[n]}),o=this&&this.__setModuleDefault||(Object.create?function(t,e){Object.defineProperty(t,"default",{enumerable:!0,value:e})}:function(t,e){t.default=e}),r=this&&this.__importStar||function(t){if(t&&t.__esModule)return t;var e={};if(null!=t)for(var n in t)"default"!==n&&Object.prototype.hasOwnProperty.call(t,n)&&i(e,t,n);return o(e,t),e};Object.defineProperty(e,"__esModule",{value:!0});const s=r(n(0));class a extends s.default{constructor(){super(...arguments),this.render=()=>this.props.colors.map(t=>s.createElement("button",{class:"btn btn-"+t},t+" button"))}}new a(document.querySelector("#props"),{colors:["primary","secondary","success","info","warning","danger","light","dark"]}).mount()},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports DeStagnate main destagnate class
- * @file DeStagnate component class
- * @preserve
- */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e.Component=void 0;const o=i(n(9)),r=i(n(5));class s extends o.default{constructor(t,e,n=!1){super(),this.props=e,this._strict=!0,this._state={},this._didSetInitialState=!1,this._didMount=!1,this.getSnapshotBeforeUpdate=(t,e)=>[t,e],this.useStrict=()=>{this._strict=!0},this.disableStrict=()=>{this._strict=!1},this.forceUpdate=()=>{try{if(this.componentDidUpdate(),void 0===this._parent)throw new Error(`ERROR: code 3. See ${r.default}.`);this.getSnapshotBeforeUpdate(Object.assign({},this.props),Object.assign({},this.state)),this._update(this._execRender())}catch(t){return this.componentDidCatch(t),t}},this.setState=t=>{try{if(this.componentWillUpdate(),void 0===this._parent)throw new Error(`ERROR: code 3. See ${r.default}.`);this._strict&&this._checkKeys(t),this.getSnapshotBeforeUpdate(Object.assign({},this.props),Object.assign({},this.state)),Object.assign(this._state,t);const e=this.shouldComponentUpdate()?this._execRender():void 0;this._update(e)}catch(t){return this.componentDidCatch(t),t}},this.mountComponent=t=>{try{if(void 0!==t&&(this.parent=t),void 0===this._parent)throw new Error(`ERROR: code 3. See ${r.default}.`);const e=this.render();if(this._didSetInitialState=!0,this.componentWillMount(),null===e)throw new Error(`ERROR: code 5. See ${r.default}.`);return this.bindEventListeners(this._parent),this._didMount=!0,this.componentDidMount(),"object"==typeof e&&e instanceof Array?e.map(t=>this._parent.appendChild(t)):this._parent.appendChild(e)}catch(t){return this.componentDidCatch(t),t}},this.mount=this.mountComponent,this.unmountComponent=()=>{try{if(void 0===this._parent)return void this.componentDidWarn(`WARN: code 4. See ${r.default}.`);this.componentWillUnmount(),this.unbindEventListeners(this._parent),this._removeChildren(),this._didMount=!1}catch(t){this.componentDidCatch(t)}},this.unmount=this.unmountComponent,this._removeChildren=()=>{if(void 0===this._parent)throw new Error(`ERROR: code 3. See ${r.default}.`);for(;this._parent.firstChild;)this._parent.lastChild&&this._parent.removeChild(this._parent.lastChild)},this._execRender=()=>(this._removeChildren(),this.render()),this._checkKeys=t=>{for(const e of Object.keys(t))Object.keys(this.state).includes(e)||this.componentDidWarn(`WARN: code 6. See ${r.default}. Params: ${e}, ${JSON.stringify(Object.keys(this.state))}.`)},this._update=t=>{if("object"==typeof t&&t instanceof Array)for(const e of t)this._parent.appendChild(e);else t&&this._parent.appendChild(t);t&&this.componentDidUpdate()},t&&t.childElementCount>0&&!n&&this._strict&&this.componentDidCatch(new Error(`ERROR: code 1. See ${r.default}. Params: ${t.tagName.toLowerCase()}`)),this._parent=t}get getState(){return this.state}get state(){return this._state}set state(t){this._didSetInitialState&&this._strict?(this.componentDidCatch(new Error(`ERROR: code 2. See ${r.default}.`)),this.componentDidWarn(`ERROR: code 2. See ${r.default}.`),this.setState(t)):(this._state=t,this._didSetInitialState=!0)}get getProps(){return this.props}set parent(t){t&&t.childElementCount>0&&this._strict&&this.componentDidCatch(new Error(`ERROR: code 1. See ${r.default}. Params: ${t.tagName.toLowerCase()}`)),this._parent=t}get parent(){return this._parent}get didMount(){return this._didMount}}e.default=s;e.Component=class extends s{}},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports Events
- * @package
- */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0});const o=i(n(10)),r=i(n(11));class s extends r.default{constructor(){super(...arguments),this.onFocus=void 0,this.onBlur=void 0,this.onFocusIn=void 0,this.onFocusOut=void 0,this.onAnimationStart=void 0,this.onAnimationCancel=void 0,this.onAnimationEnd=void 0,this.onAnimationIteration=void 0,this.onTransitionStart=void 0,this.onTransitionCancel=void 0,this.onTransitionEnd=void 0,this.onTransitionRun=void 0,this.onAuxClick=void 0,this.onClick=void 0,this.onDblClick=void 0,this.onMouseDown=void 0,this.onMouseEnter=void 0,this.onMouseLeave=void 0,this.onMouseMove=void 0,this.onMouseOver=void 0,this.onMouseOut=void 0,this.onMouseUp=void 0,this.bindEventListeners=t=>{this._eventListener(t.addEventListener)},this.unbindEventListeners=t=>{this._eventListener(t.removeEventListener)},this._eventListener=t=>{for(const[e,n]of o.default(this._events()))void 0!==n&&t(e,n)},this._events=()=>({focus:this.onFocus,blur:this.onBlur,focusin:this.onFocusIn,focusout:this.onFocusOut,animationstart:this.onAnimationStart,animationcancel:this.onAnimationCancel,animationend:this.onAnimationEnd,animationiteration:this.onAnimationIteration,transitionstart:this.onTransitionStart,transitioncancel:this.onTransitionCancel,transitionend:this.onTransitionEnd,transitionrun:this.onTransitionRun,auxclick:this.onAuxClick,click:this.onClick,dblclick:this.onDblClick,mousedown:this.onMouseDown,mouseenter:this.onMouseEnter,mouseleave:this.onMouseLeave,mousemove:this.onMouseMove,mouseover:this.onMouseOver,mouseout:this.onMouseOut,mouseup:this.onMouseUp})}}e.default=s},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.7.1
- * @package
- */Object.defineProperty(e,"__esModule",{value:!0}),e.eventsList=void 0,e.eventsList=t=>{const e=[];for(const n of Object.keys(t))e.push([n,t[n]]);return e},e.default=e.eventsList},function(t,e,n){"use strict";
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports Preset - base for a component
- * @package
- */var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0});const o=i(n(2)),r=i(n(3)),s=i(n(6)),a=i(n(1));class u{constructor(){this.createDSComponent=o.default,this.createElement=r.default,this.createElementNS=s.default,this.createRef=a.default,this.componentDidCatch=t=>console.error(t),this.componentDidMount=()=>{},this.componentDidUpdate=()=>{},this.componentDidWarn=t=>console.warn(t),this.componentWillMount=()=>{},this.componentWillUnmount=()=>{},this.componentWillUpdate=()=>{},this.shouldComponentUpdate=()=>!0,this.render=()=>null}}e.default=u,u.createDSComponent=o.default,u.createElement=r.default,u.createElementNS=s.default,u.createRef=a.default}])}));
+(function () {
+    'use strict';
+
+    const createRef=()=>({current:null});
+
+    var url = "https://luke-zhang-04.github.io/DeStagnate/error-codes";
+
+    const bindProps=(a,b,c=!1)=>{if(b)for(const[d,e]of Object.entries(b))"string"==typeof e||"number"==typeof e?"innerHTML"===d?a.innerHTML=e.toString():c?a.setAttributeNS(null,d,e.toString()):a.setAttribute(d,e.toString()):"on"===d.slice(0,2)?"function"==typeof e&&a.addEventListener(d.slice(2).toLowerCase(),e):"ref"===d&&"object"==typeof e&&"current"in e?e.current=a:void 0!==e&&console.warn(`WARN: Code 7. See ${url}. Params: ${typeof e}, ${d}`);};const unpackChildren=a=>{const b=[];for(const c of a)"object"==typeof c&&c instanceof Array?b.push(...unpackChildren(c)):b.push(c);return b};const bindChildren=(a,b)=>{if(null!==b&&b!==void 0)if(b instanceof Array)for(const c of b)bindChildren(a,c);else if("string"==typeof b||"number"==typeof b)a.innerText=b.toString();else if(b instanceof DeStagnate){if(!b.didMount&&a instanceof window.HTMLElement)return void b.mount(a);if(!(a instanceof window.HTMLElement))throw new Error(`ERROR: code 8. See ${url}`);b.parent!==a&&(b.parent=a),b.forceUpdate();}else a.appendChild(b);};
+
+    function createElement(a,b,c,...d){let e=c;if(c&&d&&(c instanceof Array?e=[...unpackChildren(c),...unpackChildren(d)]:e=[c,...unpackChildren(d)]),"string"==typeof a){const c=document.createElement(a);return bindProps(c,b),bindChildren(c,e),c}return "function"==typeof a?a(b,e):Error("tagNameOrComponent is of invalid type.")}
+
+    const createElementNS=(a,b,c,d,...e)=>{const f=document.createElementNS(a,b);bindProps(f,c,!0);let g=d;return d&&e&&("object"==typeof d&&d instanceof Array?g=[...unpackChildren(d),...unpackChildren(e)]:g=[d,...unpackChildren(e)]),bindChildren(f,g),f};
+
+    class Preset{constructor(){this.createElement=createElement,this.createElementNS=createElementNS,this.createRef=createRef,this.componentDidCatch=a=>console.error(a),this.componentDidWarn=a=>console.warn(a),this.shouldComponentUpdate=()=>!0,this.render=()=>null;}}Preset.createElement=createElement,Preset.createElementNS=createElementNS,Preset.createRef=createRef;
+
+    class Events extends Preset{constructor(){super(...arguments),this.bindEventListeners=a=>{this._eventListener(a.addEventListener);},this.unbindEventListeners=a=>{this._eventListener(a.removeEventListener);},this._eventListener=a=>{for(const[b,c]of Object.entries(this._events()))void 0!==c&&a(b,c);},this._events=()=>({focus:this.onFocus,blur:this.onBlur,focusin:this.onFocusIn,focusout:this.onFocusOut,animationstart:this.onAnimationStart,animationcancel:this.onAnimationCancel,animationend:this.onAnimationEnd,animationiteration:this.onAnimationIteration,transitionstart:this.onTransitionStart,transitioncancel:this.onTransitionCancel,transitionend:this.onTransitionEnd,transitionrun:this.onTransitionRun,auxclick:this.onAuxClick,click:this.onClick,dblclick:this.onDblClick,mousedown:this.onMouseDown,mouseenter:this.onMouseEnter,mouseleave:this.onMouseLeave,mousemove:this.onMouseMove,mouseover:this.onMouseOver,mouseout:this.onMouseOut,mouseup:this.onMouseUp});}}
+
+    class DeStagnate extends Events{constructor(a,b,c=!1){super(),this.props=b,this._strict=!0,this._state={},this._didSetInitialState=!1,this._didMount=!1,this.getSnapshotBeforeUpdate=(a,b)=>[a,b],this.useStrict=()=>{this._strict=!0;},this.disableStrict=()=>{this._strict=!1;},this.forceUpdate=()=>{var a;try{if(null===(a=this.componentDidUpdate)||void 0===a?void 0:a.call(this),void 0===this._parent)throw new Error(`ERROR: code 3. See ${url}.`);this.getSnapshotBeforeUpdate(Object.assign({},this.props),Object.assign({},this.state)),this._update(this._execRender());}catch(a){return this.componentDidCatch(a),a}},this.setState=a=>{var b;try{if(null===(b=this.componentWillUpdate)||void 0===b?void 0:b.call(this),void 0===this._parent)throw new Error(`ERROR: code 3. See ${url}.`);this._strict&&this._checkKeys(a),this.getSnapshotBeforeUpdate(Object.assign({},this.props),Object.assign({},this.state)),Object.assign(this._state,a);const c=this.shouldComponentUpdate()?this._execRender():void 0;this._update(c);}catch(a){return this.componentDidCatch(a),a}},this.mountComponent=a=>{var b,c;try{if(void 0!==a&&(this.parent=a),void 0===this._parent)throw new Error(`ERROR: code 3. See ${url}.`);const d=this.render();if(this._didSetInitialState=!0,null===(b=this.componentWillMount)||void 0===b?void 0:b.call(this),null===d)throw new Error(`ERROR: code 5. See ${url}.`);return this.bindEventListeners(this._parent),this._didMount=!0,null===(c=this.componentDidMount)||void 0===c?void 0:c.call(this),"object"==typeof d&&d instanceof Array?d.map(a=>this._parent.appendChild(a)):this._parent.appendChild(d)}catch(a){return this.componentDidCatch(a),a}},this.mount=this.mountComponent,this.unmountComponent=()=>{var a;try{if(void 0===this._parent)return void this.componentDidWarn(`WARN: code 4. See ${url}.`);null===(a=this.componentWillUnmount)||void 0===a?void 0:a.call(this),this.unbindEventListeners(this._parent),this._removeChildren(),this._didMount=!1;}catch(a){this.componentDidCatch(a);}},this.unmount=this.unmountComponent,this._removeChildren=()=>{if(this._parent===void 0)throw new Error(`ERROR: code 3. See ${url}.`);for(;this._parent.firstChild;)this._parent.lastChild&&this._parent.removeChild(this._parent.lastChild);},this._execRender=()=>(this._removeChildren(),this.render()),this._checkKeys=a=>{for(const b of Object.keys(a))Object.keys(this.state).includes(b)||this.componentDidWarn(`WARN: code 6. See ${url}. Params: ${b}, ${JSON.stringify(Object.keys(this.state))}.`);},this._update=a=>{var b;if("object"==typeof a&&a instanceof Array)for(const b of a)this._parent.appendChild(b);else a&&this._parent.appendChild(a);a&&(null===(b=this.componentDidUpdate)||void 0===b?void 0:b.call(this));},a&&0<a.childElementCount&&!c&&this._strict&&this.componentDidCatch(new Error(`ERROR: code 1. See ${url}. Params: ${a.tagName.toLowerCase()}`)),this._parent=a;}get getState(){return this.state}get state(){return this._state}set state(a){this._didSetInitialState&&this._strict?(this.componentDidCatch(new Error(`ERROR: code 2. See ${url}.`)),this.componentDidWarn(`ERROR: code 2. See ${url}.`),this.setState(a)):(this._state=a,this._didSetInitialState=!0);}get getProps(){return this.props}set parent(a){a&&0<a.childElementCount&&this._strict&&this.componentDidCatch(new Error(`ERROR: code 1. See ${url}. Params: ${a.tagName.toLowerCase()}`)),this._parent=a;}get parent(){return this._parent}get didMount(){return this._didMount}}
+
+    const createElement$1=createElement;
+
+    class PropsDemo extends DeStagnate {
+      constructor() {
+        super(...arguments);
+
+        this.render = () => this.props.colors.map(color => createElement$1("button", {
+          class: `btn btn-${color}`
+        }, `${color} button`));
+      }
+
+    }
+
+    const propsDemo = new PropsDemo(document.querySelector("#props"), {
+      colors: ["primary", "secondary", "success", "info", "warning", "danger", "light", "dark"]
+    });
+    propsDemo.mount(); // Must call once
+
+}());

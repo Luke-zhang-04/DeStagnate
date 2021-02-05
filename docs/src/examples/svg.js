@@ -1,4 +1,4 @@
-import DeStagnate, {createElementNS} from "../../lib" // Import library from root
+import DeStagnate, {createElementNS} from "../../../" // Import library from root
 
 class SVG extends DeStagnate {
 

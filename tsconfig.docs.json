@@ -10,7 +10,8 @@
         "declaration": false,
         "noEmitOnError": false,
         "skipLibCheck": true,
+        "incremental": false,
+        "tsBuildInfoFile": null,
     },
-    "include": ["docs/src/", "docs/*.ts", "docs/*.tsx"],
-    "exclude": ["./src/", "./lib"]
+    "include": ["docs/src/"],
 }

@@ -1,4 +1,4 @@
-import DeStagnate, {createRef} from "../../lib" // Import library from root
+import DeStagnate, {createRef} from "../../../" // Import library from root
 
 class RefExample extends DeStagnate {
 

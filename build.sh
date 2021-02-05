@@ -21,13 +21,11 @@ build() {
 
     # Run Rollup on ./build and es5
     echo -e "${BIBlue}Packing ${Yellow}./build/index.js${Purple} files with ${ICyan}Rollup${Purple} and sending to ${Yellow}./dist/${Purple}"
-    "$bin"/rollup -c rollup.config.js &
+    "$bin"/rollup -c rollup.config.js
 
     if [[ "$1" != "--no-docs" ]]; then
-        "$bin"/rollup --config rollup.docs.config.js &
+        "$bin"/rollup --config rollup.config.docs.js
     fi
-
-    wait
 
 
     # Minify copy of var bundle

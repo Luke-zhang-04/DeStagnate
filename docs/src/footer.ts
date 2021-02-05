@@ -1,4 +1,4 @@
-import createElement from "../lib/createElementOnly"
+import createElement from "../../lib/createElementOnly"
 import pages from "./pages"
 
 (() => {

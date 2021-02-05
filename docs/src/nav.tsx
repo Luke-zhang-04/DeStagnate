@@ -1,9 +1,6 @@
-import createElement from "..//lib/createElementOnly"
+import * as DeStagnate from "../../lib/createElementOnly"
 import pages from "./pages"
 
-const DeStagnate = { // Need this for JSX pragma
-    createElement,
-};
 
 (() => {
     /**
