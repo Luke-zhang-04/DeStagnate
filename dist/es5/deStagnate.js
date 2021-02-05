@@ -266,15 +266,6 @@ var DeStagnate = (function (exports) {
       };
     }
 
-    /**
-     * DeStagnate
-     * A simple, ReactJS inspired library to create dynamic components within static sites easier
-     * @copyright Copyright (C) 2020 Luke Zhang
-     * @author Luke Zhang luke-zhang-04.github.io
-     * @license MIT
-     * @version 1.8.0
-     * @file share functions and types for createElement and it's variants
-     */
     var url = "https://luke-zhang-04.github.io/DeStagnate/error-codes";
 
     /**
@@ -1040,17 +1031,6 @@ var DeStagnate = (function (exports) {
       return Component;
     }(DeStagnate));
 
-    /**
-     * DeStagnate
-     * A simple, ReactJS inspired library to create dynamic components within static sites easier
-     * @copyright Copyright (C) 2020 Luke Zhang
-     * @author Luke Zhang luke-zhang-04.github.io
-     * @license MIT
-     * @version 1.8.0
-     * @exports DeStagnate main destagnate class
-     * @file main file for destagnate
-     * @preserve
-     */
     /**
      * Creates a child element to deStagnate
      * @param tagName - name of HTML element

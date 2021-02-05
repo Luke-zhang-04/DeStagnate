@@ -15,26 +15,8 @@ const createRef = () => ({
   current: null
 });
 
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @file share functions and types for createElement and it's variants
- */
 const url = "https://luke-zhang-04.github.io/DeStagnate/error-codes";
 
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @file share functions and types for createElement and it's variants
- */
 /**
  * Binds children to element
  * @package
@@ -116,15 +98,6 @@ const bindChildren = (element, children) => {
 };
 
 /**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports createElement function for DOM manipulation
- */
-/**
  *
  * @param tagNameOrComponent - name of HTML element or function component
  * @param props - props of element or component
@@ -162,15 +135,6 @@ function createElement(tagNameOrComponent, props, children, ...childrenArgs) {
 }
 
 /**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports createElementNS createElement for namespaced elements
- */
-/**
  * Creates a child element to deStagnate
  * @param namespaceURI - namespace uri
  * @param tagName - name of HTML element
@@ -200,16 +164,6 @@ const createElementNS = (namespaceURI, tagName, props, children, ...childrenRest
   return element;
 };
 
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports Preset - base for a component
- * @package
- */
 class Preset {
   constructor() {
     this.createElement = createElement;
@@ -254,16 +208,6 @@ Preset.createElement = createElement;
 Preset.createElementNS = createElementNS;
 Preset.createRef = createRef;
 
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports Events
- * @package
- */
 class Events extends Preset {
   constructor() {
     super(...arguments);
@@ -323,17 +267,6 @@ class Events extends Preset {
 
 }
 
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports DeStagnate main destagnate class
- * @file DeStagnate component class
- * @preserve
- */
 /**
  * DeStagnate
  * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -733,17 +666,6 @@ class DeStagnate extends Events {
 
 }
 
-/**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
- * @license MIT
- * @version 1.8.0
- * @exports DeStagnate main destagnate class
- * @file main file for destagnate
- * @preserve
- */
 /**
  * Creates a child element to deStagnate
  * @param tagName - name of HTML element
