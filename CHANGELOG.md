@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+# [2.0.0] -
+
+### Changed
+- Change source type to module, and change `main` to `dist/deStagnate.mjs` [07470fff99d77642f6348bb90fdc60a6560dd5f2](https://github.com/Luke-zhang-04/DeStagnate/commit/07470fff99d77642f6348bb90fdc60a6560dd5f2)
+- Undefined class methods are no longer defined within compiled code. They are instead part of an interface. [adab61e06f5d58316280b15b554be62d0da6e096](https://github.com/Luke-zhang-04/DeStagnate/commit/adab61e06f5d58316280b15b554be62d0da6e096)
+- Switched bundler to Rollup [36bddb05b9a975d8f66a70e6656aac6fabcfb526](https://github.com/Luke-zhang-04/DeStagnate/commit/36bddb05b9a975d8f66a70e6656aac6fabcfb526)
+
+
 ## [1.8.0] - 09-11-2020
 
 ### Added
