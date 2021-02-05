@@ -1,6 +1,6 @@
 // Babelrc for production/minified files
 
-module.exports = {
+export default {
     presets: [
         ["minify", {
             builtIns: true,

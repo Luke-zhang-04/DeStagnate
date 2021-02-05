@@ -39,7 +39,10 @@ const makePlugins = (target = "es6", prod = true) => [
         minified: prod,
         comments: !prod,
         shouldPrintComment: (val) => (
-            !prod && (/@/u).test(val) && !((/eslint|istanbul/u).test(val))
+            !prod &&
+                (/@/u).test(val) &&
+                !((/eslint|istanbul/u).test(val)) &&
+                !(/@author Luke Zhang/u).test(val) // Remove license headers in favour of one banner
         ),
     }),
 ]
@@ -96,7 +99,6 @@ const es5 = (() => {
      * @type {[format: import("rollup").ModuleFormat, extension?: string][]}
      */
     const formats = [
-        ["esm", "mjs"],
         ["iife", "js"],
         ["cjs"],
     ]
