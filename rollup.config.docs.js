@@ -17,7 +17,16 @@ const createConfig = (file) => ({
         commonjs(),
         nodeResolve(),
         babel({
-            babelrc: true,
+            presets: [
+                ["minify", {
+                    builtIns: true,
+                    evaluate: true,
+                    mangle: true,
+                }],
+            ],
+            comments: true,
+            shouldPrintComment: (comment) => /licen[sc]e|copyright|@preserve|^!/i.test(comment),
+            babelrc: false,
             babelHelpers: "bundled",
         })
     ],
