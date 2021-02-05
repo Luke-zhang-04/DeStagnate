@@ -53,7 +53,7 @@ interface BasicProps {
     alt?: string,
     style?: string,
     title?: string,
-    
+
     onFocus?: EventFunc<"focus">,
     onBlur?: EventFunc<"blur">,
     onFocusIn?: EventFunc<"focusin">,
@@ -119,22 +119,6 @@ const _bindProps = (
     }
 }
 
-const _unpackChildren = (
-    children: ChildrenArrayType,
-): ChildrenFlatArrayType => {
-    const newChildren = []
-
-    for (const child of children) {
-        if (typeof(child) === "object" && child instanceof Array) {
-            newChildren.push(..._unpackChildren(child))
-        } else {
-            newChildren.push(child)
-        }
-    }
-
-    return newChildren as ChildrenFlatArrayType
-}
-
 /**
  * Binds children to element
  * @package
@@ -173,8 +157,7 @@ const _bindChildren = (
 export function createElement<T extends keyof HTMLElementTagNameMap> (
     tagNameOrComponent: T,
     props?: BasicProps | null,
-    children?: ChildrenType,
-    ...childrenArgs: ChildrenArrayType
+    ...children: ChildrenArrayType
 ): HTMLElementTagNameMap[T]
 
 /**
@@ -192,8 +175,7 @@ export function createElement<
 > (
     tagNameOrComponent: (props?: Props, children?: Children)=> Returns,
     props?: Props,
-    children?: ChildrenType,
-    ...childrenArgs: ChildrenArrayType
+    ...children: ChildrenArrayType
 ): Returns
 
 /**
@@ -212,35 +194,21 @@ export function createElement<
 > (
     tagNameOrComponent: T | ((
         props?: T,
-        children?: ChildrenType,
+        ...children: ChildrenArrayType
     )=> Returns),
     props?: BasicProps | null | T,
-    children?: ChildrenType,
-    ...childrenArgs: ChildrenArrayType
+    ...children: ChildrenArrayType
 ): HTMLElement | Returns | Error {
-    let _children: ChildrenType | undefined = children
-
-    if (children && childrenArgs) {
-        if (children instanceof Array) {
-            _children = [
-                ..._unpackChildren(children),
-                ..._unpackChildren(childrenArgs),
-            ]
-        } else {
-            _children = [children, ..._unpackChildren(childrenArgs)]
-        }
-    }
-
     if (typeof(tagNameOrComponent) === "string") {
         const element = document.createElement(tagNameOrComponent)
 
         _bindProps(element, props as BasicProps | null)
 
-        _bindChildren(element, _children)
+        _bindChildren(element, children)
 
         return element
     } else if (typeof(tagNameOrComponent) === "function") {
-        return tagNameOrComponent(props as T, _children)
+        return tagNameOrComponent(props as T, children)
     }
 
     return Error("tagNameOrComponent is of invalid type.")

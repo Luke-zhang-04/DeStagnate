@@ -55,7 +55,7 @@ export interface BasicProps {
     alt?: string,
     style?: string,
     title?: string,
-    
+
     onFocus?: EventFunc<"focus">,
     onBlur?: EventFunc<"blur">,
     onFocusIn?: EventFunc<"focusin">,
@@ -125,22 +125,6 @@ export const bindProps = (
             }
         }
     }
-}
-
-export const unpackChildren = (
-    children: ChildrenArrayType,
-): ChildrenFlatArrayType => {
-    const newChildren = []
-
-    for (const child of children) {
-        if (typeof(child) === "object" && child instanceof Array) {
-            newChildren.push(...unpackChildren(child))
-        } else {
-            newChildren.push(child)
-        }
-    }
-
-    return newChildren as ChildrenFlatArrayType
 }
 
 /**
