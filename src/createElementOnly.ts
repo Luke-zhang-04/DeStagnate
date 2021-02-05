@@ -136,10 +136,10 @@ const _bindChildren = (
                 _bindChildren(element, child)
             }
         } else if (
-            typeof(children) === "string" ||
-            typeof(children) === "number"
+            typeof children === "string" ||
+            typeof children === "number"
         ) {
-            (element as HTMLElement).innerText = children.toString()
+            element.appendChild(document.createTextNode(children.toString()))
         } else {
             element.appendChild(children)
         }

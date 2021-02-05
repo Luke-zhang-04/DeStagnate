@@ -140,14 +140,12 @@ export const bindChildren = (
 ): void => {
     if (children !== null && children !== undefined) {
         if (children instanceof Array) {
-            for (const child of children) {
-                bindChildren(element, child)
-            }
+            children.forEach((child: ChildrenType) => bindChildren(element, child))
         } else if (
-            typeof(children) === "string" ||
-            typeof(children) === "number"
+            typeof children === "string" ||
+            typeof children === "number"
         ) {
-            (element as HTMLElement).innerText = children.toString()
+            element.appendChild(document.createTextNode(children.toString()))
         } else if (children instanceof DeStagnate) {
             if (!children.didMount && element instanceof window.HTMLElement) {
                 children.mount(element)
