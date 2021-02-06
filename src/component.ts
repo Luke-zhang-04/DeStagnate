@@ -23,7 +23,7 @@ type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
  * @namespace
  * @abstract
  */
-export default abstract class DeStagnate
+export abstract class Component
     <Props = Record<string, unknown>, State = Record<string, unknown>>
     extends Base {
 
@@ -442,6 +442,4 @@ export default abstract class DeStagnate
 
 }
 
-export abstract class Component
-    <Props = Record<string, unknown>, State = Record<string, unknown>>
-    extends DeStagnate<Props, State> {}
+export default Component

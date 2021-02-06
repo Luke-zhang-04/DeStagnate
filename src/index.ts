@@ -12,96 +12,10 @@
 // eslint-disable-next-line
 /// <reference path="./jsx.ts" />
 
-/* eslint-disable max-lines */
-import {Ref as _Ref, default as _createRef} from "./createRef"
-import _Component from "./component"
-import _createElement from "./createElement"
-import _createElementNS from "./createElementNS"
+export {Component} from "./component"
 
-/**
- * Creates a child element to deStagnate
- * @param tagName - name of HTML element
- * @param props - element properties, such as class, innerHTML, id, style, etc
- * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @returns html element
- */
-export const createElement = _createElement
+export {Ref, createRef} from "./createRef"
 
-/**
- * Creates an HTML Element
- * @param tagName - name of HTML element
- * @param props - element properties, such as class, innerHTML, id, style, etc
- * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
- * @param childrenRest - rest parameter of children
- * @returns html element
- */
-export const createElementNS = _createElementNS
+export {createElement} from "./createElement"
 
-
-/**
- * Creates a reference for a nested component
- * @returns empty ref object
- */
-export const createRef = _createRef
-
-/* eslint-disable @typescript-eslint/naming-convention */
-
-/**
- * DeStagnate
- * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @class
- * @namespace
- * @abstract
- */
-export const Component = _Component
-
-export type Ref = _Ref
-
-/**
- * DeStagnate
- * @namespace
- * @abstract
- */
-export namespace DeStagnate {
-
-    /**
-     * Creates a child element to deStagnate
-     * @param tagName - name of HTML element
-     * @param props - element properties, such as class, innerHTML, id, style, etc
-     * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
-     * @returns html element
-     */
-    export const createElement = _createElement
-
-    /**
-     * Creates an HTML Element
-     * @param tagName - name of HTML element
-     * @param props - element properties, such as class, innerHTML, id, style, etc
-     * @param children -  children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these  will create multiple children
-     * @param childrenRest - rest parameter of children
-     * @returns html element
-     */
-    export const createElementNS = _createElementNS
-
-
-    /**
-     * Creates a reference for a nested component
-     * @returns empty ref object
-     */
-    export const createRef = _createRef
-
-    /* eslint-disable @typescript-eslint/naming-convention */
-
-    /**
-     * DeStagnate
-     * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
-     * @class
-     * @namespace
-     * @abstract
-     */
-    export const Component = _Component
-
-    export type Ref = _Ref
-}
-
-export default DeStagnate
+export {createElementNS} from "./createElementNS"
