@@ -67,8 +67,8 @@ const es5 = (() => {
      * @type {[format: import("rollup").ModuleFormat, extension?: string][]}
      */
     const formats = [
-        ["iife", "js"],
-        ["cjs"],
+        // ["iife", "js"],
+        // ["cjs"],
     ]
 
     for (const [format, extension] of formats) {
@@ -79,6 +79,7 @@ const es5 = (() => {
                 format,
                 banner: bannerProd,
                 name: "DeStagnate",
+                sourcemap: false,
             },
             plugins: makePlugins("es5", true),
         })
@@ -90,6 +91,7 @@ const es5 = (() => {
                 format,
                 banner: bannerDev,
                 name: "DeStagnate",
+                sourcemap: "inline",
             },
             plugins: makePlugins("es5", false),
         })
@@ -109,8 +111,8 @@ const es6 = (() => {
      */
     const formats = [
         ["esm", "mjs"],
-        ["iife", "js"],
-        ["cjs"],
+        // ["iife", "js"],
+        // ["cjs"],
     ]
 
     for (const [format, extension] of formats) {
@@ -121,15 +123,16 @@ const es6 = (() => {
                 format,
                 banner: bannerProd,
                 name: "DeStagnate",
+                sourcemap: false,
             },
             plugins: format === "esm"
             ? [
+                ...makePlugins("es6", true),
                 visualizer({
                     filename: "docs/bundle-stats.html",
                     template: "sunburst",
                     gzipSize: true,
                 }),
-                ...makePlugins("es6", true),
             ]
             : makePlugins("es6", true),
         })
@@ -141,6 +144,7 @@ const es6 = (() => {
                 format,
                 banner: bannerDev,
                 name: "DeStagnate",
+                sourcemap: "inline",
             },
             plugins: makePlugins("es6", false),
         })
