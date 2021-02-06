@@ -27,16 +27,6 @@ build() {
         "$bin"/rollup --config rollup.config.docs.js
     fi
 
-
-    # Minify copy of var bundle
-    echo -e "${BICyan}Running ${BIYellow}Babel${Purple} on ${Yellow}./dist/{.,**}/deStagnate.min.*${Purple} and ${Blue}minifying${Purple}"
-
-    "$bin"/babel dist/deStagnate.min.* --extensions ".cjs,.mjs,.js" -d dist --keep-file-extension &
-    "$bin"/babel dist/es5/deStagnate.min.* --extensions ".cjs,.mjs,.js" -d dist/es5 --keep-file-extension &
-
-    wait
-
-
     if [[ "$1" != "--no-docs" ]]; then
         "$bin"/typedoc src
     fi
@@ -44,22 +34,18 @@ build() {
 
 buildDev() {
     # Compile typescript
-    printf "${BIYellow}Compiling ${BIGreen}./src/${Purple} with ${BIBlue}TypeScript\n"
+    echo "${BIYellow}Compiling ${BIGreen}./src/${Purple} with ${BIBlue}TypeScript"
     "$bin"/tsc -p tsconfig.json &
-    printf "${BIYellow}Compiling ${BIGreen}./src/${Purple} with ${BIBlue}TypeScript\n"
-    "$bin"/tsc -p tsconfig.dist.json &
-    printf "${BIYellow}Compiling ${BIBlue}./docs/${BIGreen}src${Purple} with ${BIBlue}Typescript\n"
+    echo "${BIYellow}Compiling ${BIBlue}./docs/${BIGreen}src${Purple} with ${BIBlue}Typescript"
     "$bin"/tsc -p tsconfig.docs.json &
 
     wait
 
 
     # Run Rollup on ./build and es5
-    printf "${BIBlue}Packing ${Yellow}./build/index.js${Purple} files with ${ICyan}Rollup${Purple} and sending to ${Yellow}./dist/${Purple}\n"
-    "$bin"/rollup &
-    "$bin"/rollup --config rollup.docs.config.js &
-
-    wait
+    echo "${BIBlue}Packing ${Yellow}./build/index.js${Purple} files with ${ICyan}Rollup${Purple} and sending to ${Yellow}./dist/${Purple}"
+    "$bin"/rollup -c rollup.config.js
+    "$bin"/rollup --config rollup.config.docs.js
 }
 
 # Watches for file changes and executes build

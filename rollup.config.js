@@ -3,6 +3,7 @@ import commonjs from "@rollup/plugin-commonjs"
 import filesize from "rollup-plugin-filesize"
 import {nodeResolve} from "@rollup/plugin-node-resolve"
 import progress from "rollup-plugin-progress"
+import {terser} from "rollup-plugin-terser"
 import visualizer from "rollup-plugin-visualizer"
 
 const bannerProd = `/**
@@ -48,10 +49,54 @@ const makePlugins = (target = "es6", prod = true) => [
                 !(/@author Luke Zhang/u).test(val) // Remove license headers in favour of one banner
         ),
     }),
+    ...prod
+        ? [terser()]
+        : [],
     // To make bundling look cool
     filesize(),
     progress(),
 ]
+
+const es5 = (() => {
+    /**
+     * @type {import("rollup").RollupOptions[]}
+     */
+    const configs = []
+
+    /**
+     * @type {[format: import("rollup").ModuleFormat, extension?: string][]}
+     */
+    const formats = [
+        ["iife", "js"],
+        ["cjs"],
+    ]
+
+    for (const [format, extension] of formats) {
+        configs.push({
+            input: "lib",
+            output: {
+                file: `dist/es5/deStagnate.min.${extension ?? format}`,
+                format,
+                banner: bannerProd,
+                name: "DeStagnate",
+            },
+            plugins: makePlugins("es5", true),
+        })
+
+        configs.push({
+            input: "lib",
+            output: {
+                file: `dist/es5/deStagnate.${extension ?? format}`,
+                format,
+                banner: bannerDev,
+                name: "DeStagnate",
+            },
+            plugins: makePlugins("es5", false),
+        })
+    }
+
+    return configs
+})()
 
 const es6 = (() => {
     /**
@@ -104,53 +149,12 @@ const es6 = (() => {
     return configs
 })()
 
-const es5 = (() => {
-    /**
-     * @type {import("rollup").RollupOptions[]}
-     */
-    const configs = []
-
-    /**
-     * @type {[format: import("rollup").ModuleFormat, extension?: string][]}
-     */
-    const formats = [
-        ["iife", "js"],
-        ["cjs"],
-    ]
-
-    for (const [format, extension] of formats) {
-        configs.push({
-            input: "lib",
-            output: {
-                file: `dist/es5/deStagnate.min.${extension ?? format}`,
-                format,
-                banner: bannerProd,
-                name: "DeStagnate",
-            },
-            plugins: makePlugins("es5", true),
-        })
-
-        configs.push({
-            input: "lib",
-            output: {
-                file: `dist/es5/deStagnate.${extension ?? format}`,
-                format,
-                banner: bannerDev,
-                name: "DeStagnate",
-            },
-            plugins: makePlugins("es5", false),
-        })
-    }
-
-    return configs
-})()
-
 /**
  * @type {import("rollup").RollupOptions[]}
  */
 const rollupConfig = [
-    ...es6,
     ...es5,
+    ...es6,
 ]
 
 export default rollupConfig
