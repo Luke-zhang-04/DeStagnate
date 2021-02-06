@@ -1,6 +1,9 @@
 import {babel} from "@rollup/plugin-babel"
 import commonjs from "@rollup/plugin-commonjs"
+import filesize from "rollup-plugin-filesize"
 import {nodeResolve} from "@rollup/plugin-node-resolve"
+import progress from "rollup-plugin-progress"
+import visualizer from "rollup-plugin-visualizer"
 
 const bannerProd = `/**
  * Destagnate v2.0.0 | https://luke-zhang-04.github.io/DeStagnate/
@@ -45,6 +48,9 @@ const makePlugins = (target = "es6", prod = true) => [
                 !(/@author Luke Zhang/u).test(val) // Remove license headers in favour of one banner
         ),
     }),
+    // To make bundling look cool
+    filesize(),
+    progress(),
 ]
 
 const es6 = (() => {
@@ -71,7 +77,16 @@ const es6 = (() => {
                 banner: bannerProd,
                 name: "DeStagnate",
             },
-            plugins: makePlugins("es6", true),
+            plugins: format === "esm"
+            ? [
+                visualizer({
+                    filename: "docs/bundle-stats.html",
+                    template: "sunburst",
+                    gzipSize: true,
+                }),
+                ...makePlugins("es6", true),
+            ]
+            : makePlugins("es6", true),
         })
 
         configs.push({
