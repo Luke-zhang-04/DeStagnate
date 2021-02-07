@@ -1,5 +1,4 @@
 import {babel} from "@rollup/plugin-babel"
-import commonjs from "@rollup/plugin-commonjs"
 import filesize from "rollup-plugin-filesize"
 import {nodeResolve} from "@rollup/plugin-node-resolve"
 import progress from "rollup-plugin-progress"
@@ -30,7 +29,6 @@ const bannerDev = `/**
  * @returns {import("rollup").Plugin[]} rollup plugin configs
  */
 const makePlugins = (target = "es6", prod = true) => [
-    commonjs(),
     nodeResolve(),
     babel({
         babelrc: false,
@@ -67,8 +65,8 @@ const es5 = (() => {
      * @type {[format: import("rollup").ModuleFormat, extension?: string][]}
      */
     const formats = [
-        // ["iife", "js"],
-        // ["cjs"],
+        ["iife", "js"],
+        ["cjs"],
     ]
 
     for (const [format, extension] of formats) {
@@ -111,8 +109,8 @@ const es6 = (() => {
      */
     const formats = [
         ["esm", "mjs"],
-        // ["iife", "js"],
-        // ["cjs"],
+        ["iife", "js"],
+        ["cjs"],
     ]
 
     for (const [format, extension] of formats) {
