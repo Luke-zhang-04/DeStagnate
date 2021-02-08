@@ -10,8 +10,8 @@
 
 import {
     ChildrenArrayType,
-    bindChildren as _bindChildren,
-    bindProps as _bindProps,
+    bindChildren,
+    bindProps,
 } from "./private/_createElementUtils"
 
 /**
@@ -31,9 +31,9 @@ export const createElementNS = (
 ): Element => {
     const element = document.createElementNS(namespaceURI, tagName)
 
-    _bindProps(element, props, true)
+    bindProps(element, props, true)
 
-    _bindChildren(element, children)
+    bindChildren(element, children)
 
     return element
 }

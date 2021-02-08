@@ -89,7 +89,7 @@ interface BasicProps {
  * @param ns - if namespace element
  * @returns void
  */
-const _bindProps = (
+const bindProps = (
     element: Element,
     props?: BasicProps | null,
     ns = false,
@@ -126,14 +126,14 @@ const _bindProps = (
  * @param children - children to bind with
  * @returns void
  */
-const _bindChildren = (
+const bindChildren = (
     element: Element,
     children?: ChildrenType,
 ): void => {
     if (children !== null && children !== undefined) {
         if (children instanceof Array) {
             for (const child of children) {
-                _bindChildren(element, child)
+                bindChildren(element, child)
             }
         } else if (
             typeof children === "string" ||
@@ -202,9 +202,9 @@ export function createElement<
     if (typeof(tagNameOrComponent) === "string") {
         const element = document.createElement(tagNameOrComponent)
 
-        _bindProps(element, props as BasicProps | null)
+        bindProps(element, props as BasicProps | null)
 
-        _bindChildren(element, children)
+        bindChildren(element, children)
 
         return element
     } else if (typeof(tagNameOrComponent) === "function") {

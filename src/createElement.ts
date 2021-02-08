@@ -13,8 +13,8 @@
 import {
     BasicProps,
     ChildrenArrayType,
-    bindChildren as _bindChildren,
-    bindProps as _bindProps,
+    bindChildren,
+    bindProps,
 } from "./private/_createElementUtils"
 import type JSX from "./jsx"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
@@ -74,9 +74,9 @@ export function createElement<
     if (typeof(tagNameOrComponent) === "string") {
         const element = document.createElement(tagNameOrComponent)
 
-        _bindProps(element, props as BasicProps | null)
+        bindProps(element, props as BasicProps | null)
 
-        _bindChildren(element, children)
+        bindChildren(element, children)
 
         return element
     } else if (typeof(tagNameOrComponent) === "function") {
