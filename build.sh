@@ -28,7 +28,7 @@ build() {
     fi
 
     if [[ "$1" != "--no-docs" ]]; then
-        "$bin"/typedoc src
+        "$bin"/typedoc --options ./typedoc.cjs
     fi
 }
 
@@ -78,7 +78,7 @@ elif [[ "$1" == "--docs" ]]; then
     yarn sass
     cd .. || return
     "$bin"/rollup -c rollup.config.docs &
-    "$bin"/typedoc &
+    "$bin"/typedoc --options ./typedoc.cjs &
 
     wait
 else
