@@ -102,14 +102,14 @@
 					<a name="createelement" class="tsd-anchor"></a>
 					<h3>create<wbr>Element</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Element&lt;T&gt;<span class="tsd-signature-symbol">(</span>tagNameOrComponent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, props<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">BasicProps</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, children<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ChildrenType</span>, <span class="tsd-signature-symbol">...</span>childrenArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ChildrenArrayType</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElementTagNameMap[T]</span></li>
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Element&lt;Props, Returns, Children&gt;<span class="tsd-signature-symbol">(</span>tagNameOrComponent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, props<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Props</span>, children<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ChildrenType</span>, <span class="tsd-signature-symbol">...</span>childrenArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ChildrenArrayType</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Returns</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Element&lt;T&gt;<span class="tsd-signature-symbol">(</span>tagNameOrComponent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, props<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">BasicProps</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, <span class="tsd-signature-symbol">...</span>children<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ChildrenArrayType</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElementTagNameMap[T]</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Element&lt;Props, Returns, Children&gt;<span class="tsd-signature-symbol">(</span>tagNameOrComponent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, props<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Props</span>, <span class="tsd-signature-symbol">...</span>children<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ChildrenArrayType</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Returns</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/4599186/src/createElementOnly.ts#L173">src/createElementOnly.ts:173</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/315e760/src/createElementOnly.ts#L157">src/createElementOnly.ts:157</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -135,15 +135,9 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> children: <span class="tsd-signature-type">ChildrenType</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>children: <span class="tsd-signature-type">ChildrenArrayType</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>childrenArgs: <span class="tsd-signature-type">ChildrenArrayType</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>rest parameter of children</p>
 									</div>
 								</li>
 							</ul>
@@ -153,7 +147,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/4599186/src/createElementOnly.ts#L188">src/createElementOnly.ts:188</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/315e760/src/createElementOnly.ts#L171">src/createElementOnly.ts:171</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -206,15 +200,9 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> children: <span class="tsd-signature-type">ChildrenType</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>children: <span class="tsd-signature-type">ChildrenArrayType</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>childrenArgs: <span class="tsd-signature-type">ChildrenArrayType</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>rest parameter of children</p>
 									</div>
 								</li>
 							</ul>
@@ -245,6 +233,9 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="createref.html">create<wbr>Ref</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="fragment.html">fragment</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="index.html">index</a>
