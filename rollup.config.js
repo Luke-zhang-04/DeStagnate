@@ -3,14 +3,12 @@ import filesize from "rollup-plugin-filesize"
 import {nodeResolve} from "@rollup/plugin-node-resolve"
 import progress from "rollup-plugin-progress"
 import {terser} from "rollup-plugin-terser"
-import visualizer from "rollup-plugin-visualizer"
 
 const bannerProd = `/**
  * Destagnate v2.0.0 | https://luke-zhang-04.github.io/DeStagnate/
  * @copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io
  * @license MIT
- */
-`
+ */`
 
 const bannerDev = `/**
  * DeStagnate | https://luke-zhang-04.github.io/DeStagnate/
@@ -19,8 +17,7 @@ const bannerDev = `/**
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
  * @version 2.0.0
-*/
-`
+ */`
 
 /**
  * Creates plugin setup with parameters
@@ -108,7 +105,7 @@ const es6 = (() => {
      * @type {[format: import("rollup").ModuleFormat, extension?: string][]}
      */
     const formats = [
-        ["esm", "mjs"],
+        ["esm", "js"],
         ["iife", "js"],
         ["cjs"],
     ]
@@ -117,7 +114,7 @@ const es6 = (() => {
         configs.push({
             input: "lib",
             output: {
-                file: `dist/deStagnate.min.${extension ?? format}`,
+                file: `dist/${format}/deStagnate.min.${extension ?? format}`,
                 format,
                 banner: bannerProd,
                 name: "DeStagnate",
@@ -129,7 +126,7 @@ const es6 = (() => {
         configs.push({
             input: "lib",
             output: {
-                file: `dist/deStagnate.${extension ?? format}`,
+                file: `dist/${format}/deStagnate.${extension ?? format}`,
                 format,
                 banner: bannerDev,
                 name: "DeStagnate",
