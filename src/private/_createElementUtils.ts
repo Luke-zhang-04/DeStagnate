@@ -27,11 +27,11 @@ export type ChildrenArrayType = ChildrenFlatArrayType
 /**
  * All types the children parameter can be
  */
-export type ChildrenType = HTMLElement
+export type ChildrenType = ChildrenType[]
     | string
     | number
     | ChildrenArrayType
-    | Element
+    | Node
     | Component<any, any>
 
 interface EventMap extends HTMLElementEventMap {
@@ -98,7 +98,7 @@ export const bindProps = (
 ): void => {
     if (props) {
         for (const [key, val] of Object.entries(props)) {
-            if (typeof(val) === "string" || typeof(val) === "number") {
+            if (typeof val === "string" || typeof val === "number") {
                 if (key === "innerHTML") {
                     element.innerHTML = val.toString()
                 } else if (ns) {
@@ -135,7 +135,7 @@ export const bindProps = (
  * @returns void
  */
 export const bindChildren = (
-    element: Element,
+    element: Node,
     children?: ChildrenType,
 ): void => {
     if (children !== null && children !== undefined) {

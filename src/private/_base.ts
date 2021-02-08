@@ -13,7 +13,7 @@ import {default as _createElement} from "../createElement"
 import {default as _createElementNS} from "../createElementNS"
 import {default as _createRef} from "../createRef"
 
-type RenderType = Node | null
+export type RenderType = Node | Node[] | null
 
 export interface Preset {
 

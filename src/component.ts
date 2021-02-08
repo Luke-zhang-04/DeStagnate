@@ -12,9 +12,8 @@
 /* eslint-disable max-lines */
 
 import {Events as Base} from "./private/_events"
+import type {RenderType} from "./private/_base"
 import url from "./private/_url"
-
-type RenderType = Node | null
 
 /**
  * DeStagnate
