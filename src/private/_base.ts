@@ -13,7 +13,7 @@ import {default as _createElement} from "../createElement"
 import {default as _createElementNS} from "../createElementNS"
 import {default as _createRef} from "../createRef"
 
-type RenderType = null | HTMLElement | HTMLElement[] | Element | Element[]
+type RenderType = Node | null
 
 export interface Preset {
 
@@ -41,8 +41,6 @@ export interface Preset {
      * Function that is called before component update (state mutation)
      */
     componentWillUpdate?: ()=> void,
-
-    shouldComponentUpdate: ()=> boolean,
 
 }
 
