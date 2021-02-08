@@ -191,7 +191,7 @@ declare global {
         }
 
         // eslint-disable-next-line
-        interface Element extends HTMLElement {}
+        interface Element extends Node {}
     }
 
 }
