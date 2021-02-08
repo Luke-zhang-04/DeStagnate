@@ -1,6 +1,6 @@
 import DeStagnate, {createElement} from "../../../" // Import library from root
 
-class PropsDemo extends DeStagnate {
+class PropsDemo extends DeStagnate.Component {
 
     render = () => this.props.colors.map((color) => (
         createElement(

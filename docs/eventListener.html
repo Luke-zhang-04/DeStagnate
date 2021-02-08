@@ -28,7 +28,7 @@
                     <code class="language-js">
 import DeStagnate, {createElement} from "destagnate"
 
-class EventListener extends DeStagnate {
+class EventListener extends DeStagnate.Component {
 
     constructor (parent) {
         super(parent)
@@ -38,7 +38,7 @@ class EventListener extends DeStagnate {
         }
     }
 
-    onClick = () => { // This applies to the whole componentZ
+    onClick = () => {
         const colors = [
             "primary",
             "secondary",
@@ -57,7 +57,7 @@ class EventListener extends DeStagnate {
 
     render = () => createElement("button", {
         class: `btn btn-${this.state.color}`,
-        onClick: () => alert("Clicked!") // This applies to only this button
+        onClick: () => alert("Clicked!")
     }, "Click Me!")
 
 }

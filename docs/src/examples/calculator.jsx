@@ -1,6 +1,6 @@
 import DeStagnate from "../../../" // Import library from root
 
-class Calculator extends DeStagnate {
+class Calculator extends DeStagnate.Component {
 
     constructor (parent) {
         super(parent)
@@ -37,7 +37,7 @@ class Calculator extends DeStagnate {
      * Evaluate current calculation
      * @returns {number} calculation
      */
-    _evalCalc = () => eval(this.state.calculation)
+    _evalCalc = () => eval(this.state.calculation) // DO NOT USE EVAL IN A REAL APP EVAL OBJECTIVELY SUCKS
     /* eslint-disable no-eval */
 
     /**

@@ -9,7 +9,7 @@ import pages from "./pages"
      * @param {string} content - content of item
      * @returns {HTMLElement} nav item
      */
-    const createNavItem = (file: string, content: string): HTMLElement => (
+    const createNavItem = (file: string, content: string): JSX.Element => (
             <li>
                 <a class="text-dark" href={file}>{content}</a>
             </li>
@@ -23,13 +23,13 @@ import pages from "./pages"
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <a
-                        href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/es6/deStagnate.bundle.min.js"
+                        href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/deStagnate.min.mjs"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="pl-4"
                     >
                         <img
-                            src="https://img.shields.io/github/size/luke-zhang-04/DeStagnate/dist/es6/deStagnate.bundle.min.js?label=es6/deStagnate.bundle.min.js&style=for-the-badge"
+                            src="https://img.badgesize.io/https:/raw.githubusercontent.com/Luke-zhang-04/DeStagnate/master/dist/deStagnate.min.mjs?label=deStagnate.min.mjs%20gzip&compression=gzip&style=for-the-badge&bg=blue"
                             alt="bundle min size"
                             class="mb-3"
                         />

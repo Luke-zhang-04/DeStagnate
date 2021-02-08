@@ -8,7 +8,7 @@ interface SquareState {
     clicked: "" | "x" | "o",
 }
 
-class TicTacToe extends DeStagnate {
+class TicTacToe extends DeStagnate.Component {
 
     private _squares = [ // A bunch of squares
         [new Square(), new Square(), new Square()],
@@ -107,7 +107,7 @@ class TicTacToe extends DeStagnate {
 
 }
 
-class Square extends DeStagnate<{}, SquareState> {
+class Square extends DeStagnate.Component<{}, SquareState> {
 
     public constructor () {
         super()

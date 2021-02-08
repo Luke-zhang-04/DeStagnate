@@ -1,4 +1,4 @@
-module.exports = [
+export default [
     ["index.html", "Home"],
     ["state.html", "State example"],
     ["props.html", "Props example"],

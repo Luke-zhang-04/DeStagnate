@@ -27,9 +27,9 @@
             <div id="ref-source">
                 <pre class="d-block">
                     <code class="language-tsx">
-import DeStagnate, {createRef} from "../../lib"
+import DeStagnate, {createRef} from "destagnate"
 
-class RefExample extends DeStagnate {
+class RefExample extends DeStagnate.Component {
 
     private _formRef = createRef&lt;HTMLInputElement&gt;()
 
@@ -39,7 +39,7 @@ class RefExample extends DeStagnate {
         &lt;/span&gt;
     &lt;/div&gt;
 
-    public render = (): HTMLElement[] =&gt; [
+    public render = () =&gt; &lt;&gt;
         &lt;div class="input-group"&gt;
             &lt;RefExample._inputGroupPrepend/&gt;
             &lt;input
@@ -48,12 +48,12 @@ class RefExample extends DeStagnate {
                 placeholder="Insert text here"
                 ref={this._formRef}
             &gt;&lt;/input&gt;
-        &lt;/div&gt;,
+        &lt;/div&gt;
         &lt;button
             class="btn btn-light mb-3"
             onClick={this._getInputValues}
         &gt;See Input Value&lt;/button&gt;
-    ]
+    &lt;/&gt;
 
     private _getInputValues = (): void =&gt; {
         const val = this._formRef.current?.value

@@ -1,6 +1,6 @@
 import DeStagnate, {createRef} from "../../../" // Import library from root
 
-class RefExample extends DeStagnate {
+class RefExample extends DeStagnate.Component {
 
     private _formRef = createRef<HTMLInputElement>()
 
@@ -10,7 +10,7 @@ class RefExample extends DeStagnate {
         </span>
     </div>
 
-    public render = (): HTMLElement[] => [
+    public render = () => <>
         <div class="input-group">
             <RefExample._inputGroupPrepend/>
             <input
@@ -19,12 +19,12 @@ class RefExample extends DeStagnate {
                 placeholder="Insert text here"
                 ref={this._formRef}
             ></input>
-        </div>,
+        </div>
         <button
             class="btn btn-light mb-3"
             onClick={this._getInputValues}
         >See Input Value</button>
-    ]
+    </>
 
     private _getInputValues = (): void => {
         const val = this._formRef.current?.value

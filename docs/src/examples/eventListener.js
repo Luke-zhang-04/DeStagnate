@@ -1,6 +1,6 @@
 import DeStagnate, {createElement} from "../../../" // Import library from root
 
-class EventListener extends DeStagnate {
+class EventListener extends DeStagnate.Component {
 
     constructor (parent) {
         super(parent)
