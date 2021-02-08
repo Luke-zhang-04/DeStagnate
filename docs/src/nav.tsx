@@ -23,13 +23,13 @@ import pages from "./pages"
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <a
-                        href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/deStagnate.min.mjs"
+                        href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/iife/deStagnate.min.js"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="pl-4"
                     >
                         <img
-                            src="https://img.badgesize.io/https:/raw.githubusercontent.com/Luke-zhang-04/DeStagnate/master/dist/deStagnate.min.mjs?label=deStagnate.min.mjs%20gzip&compression=gzip&style=for-the-badge&bg=blue"
+                            src="https://img.badgesize.io/https:/raw.githubusercontent.com/Luke-zhang-04/DeStagnate/master/dist/iife/deStagnate.min.js?label=iife/deStagnate.min.js%20gzip&compression=gzip&style=for-the-badge&bg=blue"
                             alt="bundle min size"
                             class="mb-3"
                         />
