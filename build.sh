@@ -34,16 +34,16 @@ build() {
 
 buildDev() {
     # Compile typescript
-    echo "${BIYellow}Compiling ${BIGreen}./src/${Purple} with ${BIBlue}TypeScript"
+    echo -e "${BIYellow}Compiling ${BIGreen}./src/${Purple} with ${BIBlue}TypeScript"
     "$bin"/tsc -p tsconfig.json &
-    echo "${BIYellow}Compiling ${BIBlue}./docs/${BIGreen}src${Purple} with ${BIBlue}Typescript"
+    echo -e "${BIYellow}Compiling ${BIBlue}./docs/${BIGreen}src${Purple} with ${BIBlue}Typescript"
     "$bin"/tsc -p tsconfig.docs.json &
 
     wait
 
 
     # Run Rollup on ./build and es5
-    echo "${BIBlue}Packing ${Yellow}./build/index.js${Purple} files with ${ICyan}Rollup${Purple} and sending to ${Yellow}./dist/${Purple}"
+    echo -e "${BIBlue}Packing ${Yellow}./build/index.js${Purple} files with ${ICyan}Rollup${Purple} and sending to ${Yellow}./dist/${Purple}"
     "$bin"/rollup -c rollup.config.js
     "$bin"/rollup --config rollup.config.docs.js
 }
