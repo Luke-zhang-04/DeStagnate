@@ -123,16 +123,7 @@ const es6 = (() => {
                 name: "DeStagnate",
                 sourcemap: false,
             },
-            plugins: format === "esm"
-            ? [
-                ...makePlugins("es6", true),
-                visualizer({
-                    filename: "docs/bundle-stats.html",
-                    template: "sunburst",
-                    gzipSize: true,
-                }),
-            ]
-            : makePlugins("es6", true),
+            plugins: makePlugins("es6", true),
         })
 
         configs.push({
