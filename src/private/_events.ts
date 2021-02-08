@@ -9,8 +9,42 @@
  * @package
  */
 
-import {EventListener, EventMember, EventsList} from "./_eventsUtils"
 import {Preset as BaseComponent} from "./_base"
+
+type EventListener = (
+    type: string,
+    listener: EventListenerOrEventListenerObject,
+    options?: boolean | AddEventListenerOptions,
+)=> void
+
+type EventMember<
+    K extends keyof HTMLElementEventMap,
+> = (event: HTMLElementEventMap[K]) => unknown | undefined
+
+const eventNames: (keyof Events)[] = [
+    "onFocus",
+    "onBlur",
+    "onFocusIn",
+    "onFocusOut",
+    "onAnimationStart",
+    "onAnimationCancel",
+    "onAnimationEnd",
+    "onAnimationIteration",
+    "onTransitionStart",
+    "onTransitionCancel",
+    "onTransitionEnd",
+    "onTransitionRun",
+    "onAuxClick",
+    "onClick",
+    "onDblClick",
+    "onMouseDown",
+    "onMouseEnter",
+    "onMouseLeave",
+    "onMouseMove",
+    "onMouseOver",
+    "onMouseOut",
+    "onMouseUp",
+]
 
 export interface Events {
 
@@ -135,7 +169,7 @@ export abstract class Events extends BaseComponent {
      * Do not call manually
      * @pacakge
      */
-    protected bindEventListeners = (element: HTMLElement): void => {
+    protected readonly bindEventListeners = (element: HTMLElement): void => {
         this._eventListener(element.addEventListener)
     }
 
@@ -144,46 +178,19 @@ export abstract class Events extends BaseComponent {
      * Do not call manually
      * @pacakge
      */
-    protected unbindEventListeners = (element: HTMLElement): void => {
+    protected readonly unbindEventListeners = (element: HTMLElement): void => {
         this._eventListener(element.removeEventListener)
     }
 
     private _eventListener = (eventListener: EventListener): void => {
-        type Events = [event: string, callback: EventListenerOrEventListenerObject][]
+        for (const eventName of eventNames) {
+            const htmlEventName = eventName.slice(2, 0).toLowerCase(),
+                callback = this[eventName]
 
-        for (const [event, callback] of Object.entries(this._events()) as Events) {
-            if (callback !== undefined) {
-                eventListener(event, callback)
+            if (callback !== undefined && callback instanceof Function) {
+                eventListener(htmlEventName, callback as EventListenerOrEventListenerObject)
             }
         }
     }
-
-    private _events = (): EventsList => ({
-        focus: this.onFocus,
-        blur: this.onBlur,
-        focusin: this.onFocusIn,
-        focusout: this.onFocusOut,
-
-        animationstart: this.onAnimationStart,
-        animationcancel: this.onAnimationCancel,
-        animationend: this.onAnimationEnd,
-        animationiteration: this.onAnimationIteration,
-
-        transitionstart: this.onTransitionStart,
-        transitioncancel: this.onTransitionCancel,
-        transitionend: this.onTransitionEnd,
-        transitionrun: this.onTransitionRun,
-
-        auxclick: this.onAuxClick,
-        click: this.onClick,
-        dblclick: this.onDblClick,
-        mousedown: this.onMouseDown,
-        mouseenter: this.onMouseEnter,
-        mouseleave: this.onMouseLeave,
-        mousemove: this.onMouseMove,
-        mouseover: this.onMouseOver,
-        mouseout: this.onMouseOut,
-        mouseup: this.onMouseUp,
-    })
 
 }
