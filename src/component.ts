@@ -94,7 +94,7 @@ export abstract class Component
     protected set state (obj: State) {
         if (this._didSetInitialState) {
             this.componentDidCatch(
-                new Error(`ERROR: code 2. See ${url}.`)
+                new Error(`ERROR: code 1. See ${url}.`)
             )
             this.setState(obj)
         } else {
@@ -117,10 +117,6 @@ export abstract class Component
      * @returns void
      */
     public set parent (element: HTMLElement | undefined) {
-        if (element && element.childElementCount > 0) {
-            this.componentDidCatch(new Error(`ERROR: code 1. See ${url}. Params: ${element.tagName.toLowerCase()}`))
-        }
-
         this._parent = element
     }
 
@@ -150,7 +146,7 @@ export abstract class Component
             this.componentDidUpdate?.()
 
             if (this._parent === undefined) {
-                throw new Error(`ERROR: code 3. See ${url}.`)
+                throw new Error(`ERROR: code 2. See ${url}.`)
             }
 
             this.getSnapshotBeforeUpdate(
@@ -174,7 +170,7 @@ export abstract class Component
             this.componentWillUpdate?.()
 
             if (this._parent === undefined) {
-                throw new Error(`ERROR: code 3. See ${url}.`)
+                throw new Error(`ERROR: code 2. See ${url}.`)
             }
 
             this.getSnapshotBeforeUpdate(
@@ -204,11 +200,13 @@ export abstract class Component
         parent?: HTMLElement
     ): Node | Error => {
         try {
-            if (this._parent === undefined) {
-                throw new Error(`ERROR: code 3. See ${url}.`)
+            if (parent !== undefined) {
+                this.parent = parent
             }
 
-            this.parent = parent
+            if (this._parent === undefined) {
+                throw new Error(`ERROR: code 2. See ${url}.`)
+            }
 
             const component = this.render()
 
@@ -217,7 +215,7 @@ export abstract class Component
             this.componentWillMount?.()
 
             if (component === null) {
-                throw new Error(`ERROR: code 5. See ${url}.`)
+                throw new Error(`ERROR: code 3. See ${url}.`)
             }
 
             this.bindEventListeners(this._parent)
@@ -228,7 +226,7 @@ export abstract class Component
             if (component instanceof Array) {
                 const fragment = document.createDocumentFragment();
 
-                (component as Element[]).forEach(fragment.appendChild)
+                (component as Element[]).forEach((child) => fragment.appendChild(child))
 
                 return this._parent.appendChild(fragment)
             }
@@ -280,7 +278,7 @@ export abstract class Component
      */
     private _removeChildren = (): void => {
         if (this._parent === undefined) {
-            throw new Error(`ERROR: code 3. See ${url}.`)
+            throw new Error(`ERROR: code 2. See ${url}.`)
         }
 
         while (this._parent.firstChild) {

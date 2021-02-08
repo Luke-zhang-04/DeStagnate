@@ -152,7 +152,7 @@ export const bindChildren = (
 
                 return
             } else if (!(element instanceof window.HTMLElement)) {
-                throw new Error(`ERROR: code 8. See ${url}`)
+                throw new Error(`ERROR: code 4. See ${url}`)
             }
 
             if (children.parent !== element) {

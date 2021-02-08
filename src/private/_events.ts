@@ -184,7 +184,7 @@ export abstract class Events extends BaseComponent {
 
     private _eventListener = (eventListener: EventListener): void => {
         for (const eventName of eventNames) {
-            const htmlEventName = eventName.slice(2, 0).toLowerCase(),
+            const htmlEventName = eventName.slice(2).toLowerCase(),
                 callback = this[eventName]
 
             if (callback !== undefined && callback instanceof Function) {
