@@ -6,8 +6,8 @@ import createElement from "../../lib/createElementOnly"
 ((): void => {
     document.getElementById("compare")?.children[0]?.appendChild( // Structured like your component/element
         createElement("div", {class: "container bg-light text-dark py-1 br-1 my-1"},
-            createElement("p", {class: "m-0 p-0"}, "Hello World!")
-        )
+            createElement("p", {class: "m-0 p-0"}, "Hello World!"),
+        ),
     )
 })();
 
@@ -22,7 +22,7 @@ import createElement from "../../lib/createElementOnly"
 
     helloWorldContainer.setAttribute("class", "container bg-light text-dark py-1 br-1 my-1")
     helloWorld.setAttribute("class", "m-0 p-0")
-    helloWorld.innerText = "Hello World!"
+    helloWorld.appendChild(document.createTextNode("Hello World!"))
 
     helloWorldContainer.appendChild(helloWorld)
 
