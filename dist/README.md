@@ -18,6 +18,8 @@ Distribution bundles in the `es5` directory include helper functions for ES5 com
 
 According to Browserslist, the targeted browsers `account for 97.55% of all users globally`
 
+It should be noted, however, that polyfills are not included. This is because the bundle ends up being massive. It is therefore up to the user to polyfill the bundle. These bundles only work syntactically with es5.
+
 Below is a size comparison between the ES5 compatible bundles and the ES6 compatible bundles.
 
 <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/iife/deStagnate.min.js"><img src="https://img.shields.io/github/size/luke-zhang-04/DeStagnate/dist/iife/deStagnate.min.js?label=deStagnate.min.js&style=for-the-badge" alt="min size"></a>
