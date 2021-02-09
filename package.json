@@ -42,9 +42,10 @@
     "build:dev": "bash build.sh --dev",
     "start": "bash build.sh --watch",
     "prepublishOnly": "bash build.sh --no-docs",
-    "lint": "make lint",
-    "test": "npx mocha tests --exit",
-    "coverage": "npx nyc npx mocha tests"
+    "lint": "./node_modules/.bin/eslint \"*/**/*.ts\"",
+    "lint:fix": "./node_modules/.bin/eslint \"*/**/*.ts\" --fix",
+    "test": "./node_modules/.bin/mocha tests --exit",
+    "coverage": "./node_modules/.bin/nyc ./node_modules/.bin/mocha tests"
   },
   "repository": {
     "type": "git",
