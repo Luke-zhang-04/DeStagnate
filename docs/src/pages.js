@@ -2,6 +2,7 @@ export default [
     ["index.html", "Home"],
     ["state.html", "State example"],
     ["props.html", "Props example"],
+    ["state-change.html", "State Change"],
     ["eventListener.html", "Event listener example"],
     ["ref.html", "Ref example"],
     ["calculator.html", "Calculator Example"],

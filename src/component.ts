@@ -14,6 +14,7 @@
 import {Events as Base} from "./private/_events"
 import type {RenderType} from "./private/_base"
 import url from "./private/_url"
+import utils from "./utils"
 
 /**
  * DeStagnate
@@ -22,9 +23,10 @@ import url from "./private/_url"
  * @namespace
  * @abstract
  */
-export abstract class Component
-    <Props = Record<string, unknown>, State = Record<string, unknown>>
-    extends Base {
+export abstract class Component<
+    Props extends {} = Record<string, unknown>,
+    State extends {} = Record<string, unknown>,
+> extends Base {
 
     /**
      * State of component. Works similar React State
@@ -49,12 +51,21 @@ export abstract class Component
     private _didMount = false
 
     /**
+     * Previous state
+     */
+    private _prevState?: State
+
+    /**
      * Construct class component
      * @param parent - parent of this element
      * @param props - element properties; works like React Props
      */
-    public constructor (parent?: HTMLElement, protected props?: Props) {
+    public constructor (parent?: HTMLElement | null, protected props?: Props) {
         super()
+
+        if (parent === null) {
+            throw new Error("Parent is null, expected HTMLElement | undefined.")
+        }
 
         this._parent = parent
     }
@@ -137,6 +148,14 @@ export abstract class Component
     }
 
     /**
+     * Returns the previous state. Undefined if no previous state exists
+     * @returns previous state
+     */
+    public get prevState (): State | undefined {
+        return this._prevState
+    }
+
+    /**
      * Forces a component to update
      * Follows the same component updating procedure as setState without modifying state
      * @returns returns error if error is thrown
@@ -161,6 +180,44 @@ export abstract class Component
     }
 
     /**
+     * Checks if the state changed from the previous state. Can me attached to
+     * `shouldComponentUpdate`
+     * @param keys - list of keys to crawl. If left undefined (default) then
+     * use all keys. Should be `keyof State`, but there were some Typescript
+     * troubles.
+     * @param maxDepth - max recursion depth to crawl an object. After max depth
+     * is reached, the two values are simply compared with `===`
+     * @param maxLength - max length of array to crawl. If max lenth is reached,
+     * two arrays will simply be compared with `===`
+     * @returns `val1 === val2`
+     */
+    public readonly stateDidChange = (
+        keys?: (string)[],
+        maxDepth = 3,
+        maxLength = 15,
+    ): boolean => {
+        if (keys === undefined) {
+            return !utils.isEqual(
+                this._state,
+                this._prevState,
+                maxDepth,
+                maxLength,
+            )
+        }
+
+        const state: {[key: string]: unknown} = {},
+            prevState: {[key: string]: unknown} = {}
+
+        for (const key of keys) {
+            state[key] = (this._state as {[key: string]: unknown})[key]
+            prevState[key] =
+                (this._prevState as {[key: string]: unknown} | undefined)?.[key]
+        }
+
+        return !utils.isEqual(state, prevState, maxDepth, maxLength)
+    }
+
+    /**
      * Sets state
      * @param obj - state to set
      * @returns void
@@ -172,6 +229,8 @@ export abstract class Component
             if (this._parent === undefined) {
                 throw new Error(`ERROR: code 2. See ${url}.`)
             }
+
+            this._prevState = {...this._state}
 
             this.getSnapshotBeforeUpdate(
                 {...this.props} as Props,
