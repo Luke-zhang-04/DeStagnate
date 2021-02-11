@@ -1,6 +1,6 @@
 {
   "name": "destagnate",
-  "version": "1.8.0",
+  "version": "2.0.0",
   "description": "Make creating dynamic components within static sites easier",
   "main": "dist/esm/deStagnate.js",
   "types": "index.d.ts",

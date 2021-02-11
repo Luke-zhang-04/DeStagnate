@@ -1,9 +1,9 @@
 /*!
- * Destagnate v1.8.0
- * Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io
+ * Destagnate v2.0.0
+ * Copyright (C) 2020 - 2021 Luke Zhang https://luke-zhang-04.github.io
  * MIT License
  *//*!
- * * Destagnate v1.8.0
- * * Copyright (C) 2020 Luke Zhang https://luke-zhang-04.github.io
+ * * Destagnate v2.0.0
+ * * Copyright (C) 2020 - 2021 Luke Zhang https://luke-zhang-04.github.io
  * * MIT License
  * */#nested .row{border-bottom:solid .25rem #373737;width:30vw;height:10vw}#nested .row:nth-child(3){border-bottom:none}#nested .row .col-4{border-right:solid .25rem #373737;cursor:pointer;background-color:#f4f4f4;color:#373737;transition:background-color .2s ease}#nested .row .col-4 .tictactoe-square{text-align:center;font-size:6vw}#nested .row .col-4:nth-child(3){border-right:none}#nested .row .col-4:hover{background-color:#bbb}/*# sourceMappingURL=ticTacToe.css.map */

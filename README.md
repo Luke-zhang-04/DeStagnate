@@ -38,28 +38,28 @@ Through `curl` or `wget` to download a bundle for browser usage<br/>
 
 ```bash
 # Prodution
-curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.min.js > deStagnate.js
-wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.min.js
+curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.min.js > deStagnate.js
+wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.min.js
 
 # Development
-curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.js > deStagnate.min.js
-wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.js
+curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.js > deStagnate.min.js
+wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.js
 
-# Latest
-curl -L https://unpkg.com/destagnate@1.8.0/dist/deStagnate.min.js > deStagnate.min.js
-wget https://unpkg.com/destagnate@1.8.0/dist/deStagnate.min.js
+# Latest IIFE bundle
+curl -L https://unpkg.com/destagnate@2.0.0/dist/iife/deStagnate.min.js > deStagnate.min.js
+wget https://unpkg.com/destagnate@2.0.0/dist/iife/deStagnate.min.js
 ```
 
 With a CDN
 ```html
 <!-- Production -->
-<script src="https://unpkg.com/destagnate@version/dist/deStagnate.min.js"></script>
+<script src="https://unpkg.com/destagnate@version/dist/iife/deStagnate.min.js"></script>
 
 <!-- Development -->
-<script src="https://unpkg.com/destagnate@version/dist/deStagnate.js"></script>
+<script src="https://unpkg.com/destagnate@version/dist/iife/deStagnate.js"></script>
 
 <!-- Latest -->
-<script src="https://unpkg.com/destagnate@1.8.0/dist/deStagnate.min.js"></script>
+<script src="https://unpkg.com/destagnate@2.0.0/dist/iife/deStagnate.min.js"></script>
 ```
 
 ## Basic Use
