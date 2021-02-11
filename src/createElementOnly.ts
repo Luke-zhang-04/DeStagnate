@@ -10,7 +10,6 @@
 // eslint-disable-next-line
 /// <reference path="./jsx.ts" />
 
-import url from "./private/_url"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
 /* eslint-disable one-var, @typescript-eslint/no-explicit-any */
@@ -113,7 +112,7 @@ const bindProps = (
                     )
                 }
             } else if (val !== undefined) {
-                console.warn(`WARN: Code 7. See ${url}. Params: ${typeof(val)}, ${key}`)
+                console.warn(`${typeof val} is not a valid DeStagnate child`)
             }
         }
     }

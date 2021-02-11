@@ -90,10 +90,10 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>Props</h4>
+						<h4>Props<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
 					</li>
 					<li>
-						<h4>State</h4>
+						<h4>State<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -126,6 +126,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="component.component-1.html#_didmount" class="tsd-kind-icon">_did<wbr>Mount</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="component.component-1.html#_didsetinitialstate" class="tsd-kind-icon">_did<wbr>Set<wbr>Initial<wbr>State</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="component.component-1.html#_parent" class="tsd-kind-icon">_parent</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="component.component-1.html#_prevstate" class="tsd-kind-icon">_prev<wbr>State</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="component.component-1.html#_state" class="tsd-kind-icon">_state</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="component.component-1.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="component.component-1.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a></li>
@@ -172,6 +173,7 @@
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="component.component-1.html#getprops" class="tsd-kind-icon">get<wbr>Props</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="component.component-1.html#getstate" class="tsd-kind-icon">get<wbr>State</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="component.component-1.html#parent" class="tsd-kind-icon">parent</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="component.component-1.html#prevstate" class="tsd-kind-icon">prev<wbr>State</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="component.component-1.html#state" class="tsd-kind-icon">state</a></li>
 							</ul>
 						</section>
@@ -184,13 +186,13 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="component.component-1.html#_update" class="tsd-kind-icon">_update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="component.component-1.html#bindeventlisteners" class="tsd-kind-icon">bind<wbr>Event<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="component.component-1.html#componentdidcatch" class="tsd-kind-icon">component<wbr>Did<wbr>Catch</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="component.component-1.html#componentdidwarn" class="tsd-kind-icon">component<wbr>Did<wbr>Warn</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="component.component-1.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="component.component-1.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="component.component-1.html#mountcomponent" class="tsd-kind-icon">mount<wbr>Component</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="component.component-1.html#render" class="tsd-kind-icon">render</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="component.component-1.html#setstate" class="tsd-kind-icon">set<wbr>State</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="component.component-1.html#shouldcomponentupdate" class="tsd-kind-icon">should<wbr>Component<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="component.component-1.html#statedidchange" class="tsd-kind-icon">state<wbr>Did<wbr>Change</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="component.component-1.html#unbindeventlisteners" class="tsd-kind-icon">unbind<wbr>Event<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="component.component-1.html#unmountcomponent" class="tsd-kind-icon">unmount<wbr>Component</a></li>
 							</ul>
@@ -204,13 +206,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Component&lt;Props, State&gt;<span class="tsd-signature-symbol">(</span>parent<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">HTMLElement</span>, props<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="component.component-1.html" class="tsd-signature-type">Component</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Component&lt;Props, State&gt;<span class="tsd-signature-symbol">(</span>parent<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">HTMLElement</span>, props<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="component.component-1.html" class="tsd-signature-type">Component</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L49">src/component.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L56">src/component.ts:56</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -221,16 +223,16 @@
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>Props</h4>
+									<h4>Props<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
 								</li>
 								<li>
-									<h4>State</h4>
+									<h4>State<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parent: <span class="tsd-signature-type">HTMLElement</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parent: <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">HTMLElement</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>parent of this element</p>
 									</div>
@@ -255,7 +257,7 @@
 					<div class="tsd-signature tsd-kind-icon">_did<wbr>Mount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L49">src/component.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L51">src/component.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -270,7 +272,7 @@
 					<div class="tsd-signature tsd-kind-icon">_did<wbr>Set<wbr>Initial<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L39">src/component.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L41">src/component.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -286,7 +288,7 @@
 					<div class="tsd-signature tsd-kind-icon">_parent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">HTMLElement</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L44">src/component.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L46">src/component.ts:46</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -296,12 +298,27 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_prevstate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> _prev<wbr>State</h3>
+					<div class="tsd-signature tsd-kind-icon">_prev<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">State</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L56">src/component.ts:56</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Previous state</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_state" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _state</h3>
 					<div class="tsd-signature tsd-kind-icon">_state<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">State</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L33">src/component.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L35">src/component.ts:35</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -316,7 +333,7 @@
 					<div class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Mount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L23">src/private/_base.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L23">src/private/_base.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -331,7 +348,7 @@
 					<div class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L28">src/private/_base.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L28">src/private/_base.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -346,7 +363,7 @@
 					<div class="tsd-signature tsd-kind-icon">component<wbr>Will<wbr>Mount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L33">src/private/_base.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L33">src/private/_base.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -361,7 +378,7 @@
 					<div class="tsd-signature tsd-kind-icon">component<wbr>Will<wbr>Unmount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L38">src/private/_base.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L38">src/private/_base.ts:38</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -376,7 +393,7 @@
 					<div class="tsd-signature tsd-kind-icon">component<wbr>Will<wbr>Update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L43">src/private/_base.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L43">src/private/_base.ts:43</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -391,7 +408,7 @@
 					<div class="tsd-signature tsd-kind-icon">create<wbr>Element<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L59">src/private/_base.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L59">src/private/_base.ts:59</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -504,7 +521,7 @@
 					<div class="tsd-signature tsd-kind-icon">create<wbr>ElementNS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L61">src/private/_base.ts:61</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L61">src/private/_base.ts:61</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -567,7 +584,7 @@
 					<div class="tsd-signature tsd-kind-icon">create<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L63">src/private/_base.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L63">src/private/_base.ts:63</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -604,7 +621,7 @@
 					<div class="tsd-signature tsd-kind-icon">mount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L244">src/component.ts:244</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L303">src/component.ts:303</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -661,7 +678,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Animation<wbr>Cancel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"animationcancel"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L79">src/private/_events.ts:79</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L79">src/private/_events.ts:79</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -676,7 +693,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Animation<wbr>End<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"animationend"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L84">src/private/_events.ts:84</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L84">src/private/_events.ts:84</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -691,7 +708,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Animation<wbr>Iteration<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"animationiteration"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L89">src/private/_events.ts:89</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L89">src/private/_events.ts:89</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -706,7 +723,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Animation<wbr>Start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"animationstart"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L74">src/private/_events.ts:74</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L74">src/private/_events.ts:74</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -721,7 +738,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Aux<wbr>Click<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"auxclick"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L116">src/private/_events.ts:116</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L116">src/private/_events.ts:116</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -736,7 +753,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Blur<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"blur"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L59">src/private/_events.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L59">src/private/_events.ts:59</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -751,7 +768,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Click<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"click"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L121">src/private/_events.ts:121</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L121">src/private/_events.ts:121</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -766,7 +783,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Dbl<wbr>Click<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"dblclick"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L126">src/private/_events.ts:126</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L126">src/private/_events.ts:126</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -781,7 +798,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Focus<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"focus"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L54">src/private/_events.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L54">src/private/_events.ts:54</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -796,7 +813,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Focus<wbr>In<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"focusin"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L64">src/private/_events.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L64">src/private/_events.ts:64</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -811,7 +828,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Focus<wbr>Out<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"focusout"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L69">src/private/_events.ts:69</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L69">src/private/_events.ts:69</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -826,7 +843,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Mouse<wbr>Down<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"mousedown"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L131">src/private/_events.ts:131</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L131">src/private/_events.ts:131</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -841,7 +858,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Mouse<wbr>Enter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"mouseenter"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L136">src/private/_events.ts:136</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L136">src/private/_events.ts:136</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -856,7 +873,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Mouse<wbr>Leave<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"mouseleave"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L141">src/private/_events.ts:141</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L141">src/private/_events.ts:141</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -871,7 +888,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Mouse<wbr>Move<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"mousemove"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L146">src/private/_events.ts:146</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L146">src/private/_events.ts:146</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -886,7 +903,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Mouse<wbr>Out<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"mouseout"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L156">src/private/_events.ts:156</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L156">src/private/_events.ts:156</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -901,7 +918,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Mouse<wbr>Over<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"mouseover"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L151">src/private/_events.ts:151</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L151">src/private/_events.ts:151</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -916,7 +933,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Mouse<wbr>Up<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"mouseup"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L161">src/private/_events.ts:161</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L161">src/private/_events.ts:161</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -931,7 +948,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Transition<wbr>Cancel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"transitioncancel"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L100">src/private/_events.ts:100</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L100">src/private/_events.ts:100</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -946,7 +963,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Transition<wbr>End<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"transitionend"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L105">src/private/_events.ts:105</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L105">src/private/_events.ts:105</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -961,7 +978,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Transition<wbr>Run<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"transitionrun"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L110">src/private/_events.ts:110</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L110">src/private/_events.ts:110</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -976,7 +993,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Transition<wbr>Start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventMember</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"transitionstart"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L95">src/private/_events.ts:95</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L95">src/private/_events.ts:95</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -998,7 +1015,7 @@
 					<div class="tsd-signature tsd-kind-icon">unmount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L272">src/component.ts:272</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L331">src/component.ts:331</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1043,7 +1060,7 @@
 					<div class="tsd-signature tsd-kind-icon">create<wbr>Element<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L53">src/private/_base.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L53">src/private/_base.ts:53</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -1156,7 +1173,7 @@
 					<div class="tsd-signature tsd-kind-icon">create<wbr>ElementNS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L55">src/private/_base.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L55">src/private/_base.ts:55</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -1219,7 +1236,7 @@
 					<div class="tsd-signature tsd-kind-icon">create<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L57">src/private/_base.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L57">src/private/_base.ts:57</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -1263,7 +1280,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L135">src/component.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L146">src/component.ts:146</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1286,7 +1303,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L110">src/component.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L121">src/component.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1312,7 +1329,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L77">src/component.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L88">src/component.ts:88</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1336,7 +1353,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L127">src/component.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L138">src/component.ts:138</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1353,7 +1370,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L119">src/component.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L130">src/component.ts:130</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1377,6 +1394,32 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="prevstate" class="tsd-anchor"></a>
+					<h3>prev<wbr>State</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> prevState<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">State</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L154">src/component.ts:154</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the previous state. Undefined if no previous state exists</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">State</span>
+							</h4>
+							<p>previous state</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="state" class="tsd-anchor"></a>
 					<h3>state</h3>
@@ -1388,7 +1431,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L85">src/component.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L96">src/component.ts:96</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1402,7 +1445,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L94">src/component.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L105">src/component.ts:105</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1438,7 +1481,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L295">src/component.ts:295</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L354">src/component.ts:354</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1461,7 +1504,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L321">src/component.ts:321</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L380">src/component.ts:380</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1484,7 +1527,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L279">src/component.ts:279</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L338">src/component.ts:338</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1507,7 +1550,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L307">src/component.ts:307</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L366">src/component.ts:366</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1539,7 +1582,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L172">src/private/_events.ts:172</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L172">src/private/_events.ts:172</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1572,7 +1615,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L70">src/private/_base.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L70">src/private/_base.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1595,38 +1638,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="componentdidwarn" class="tsd-anchor"></a>
-					<h3>component<wbr>Did<wbr>Warn</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Warn<span class="tsd-signature-symbol">(</span>msg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L77">src/private/_base.ts:77</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Called when component catches a warning. Default behaviour is console.warn</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>msg: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>warning message</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							<p>void</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="forceupdate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> force<wbr>Update</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1636,7 +1647,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L144">src/component.ts:144</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L163">src/component.ts:163</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1663,7 +1674,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L68">src/component.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L79">src/component.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1701,7 +1712,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L199">src/component.ts:199</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L258">src/component.ts:258</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1738,7 +1749,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L92">src/private/_base.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L85">src/private/_base.ts:85</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1767,7 +1778,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L168">src/component.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L225">src/component.ts:225</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1802,7 +1813,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_base.ts#L83">src/private/_base.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_base.ts#L76">src/private/_base.ts:76</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1812,6 +1823,55 @@
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 							<p>whether or not component should update/re-render</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="statedidchange" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> state<wbr>Did<wbr>Change</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">state<wbr>Did<wbr>Change<span class="tsd-signature-symbol">(</span>keys<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, maxDepth<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, maxLength<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L194">src/component.ts:194</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks if the state changed from the previous state. Can me attached to
+									<code>shouldComponentUpdate</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> keys: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>list of keys to crawl. If left undefined (default) then
+											use all keys. Should be <code>keyof State</code>, but there were some Typescript
+										troubles.</p>
+									</div>
+								</li>
+								<li>
+									<h5>maxDepth: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 3</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>max recursion depth to crawl an object. After max depth
+										is reached, the two values are simply compared with <code>===</code></p>
+									</div>
+								</li>
+								<li>
+									<h5>maxLength: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 15</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>max length of array to crawl. If max lenth is reached,
+										two arrays will simply be compared with <code>===</code></p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p><code>val1 === val2</code></p>
 						</li>
 					</ul>
 				</section>
@@ -1825,7 +1885,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/private/_events.ts#L181">src/private/_events.ts:181</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/private/_events.ts#L181">src/private/_events.ts:181</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1858,7 +1918,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/d95a708/src/component.ts#L250">src/component.ts:250</a></li>
+									<li>Defined in <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/068096e/src/component.ts#L309">src/component.ts:309</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1905,6 +1965,9 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/jsx.html">jsx</a>
 					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/utils.html">utils</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
@@ -1928,6 +1991,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="component.component-1.html#_parent" class="tsd-kind-icon">_parent</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="component.component-1.html#_prevstate" class="tsd-kind-icon">_prev<wbr>State</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="component.component-1.html#_state" class="tsd-kind-icon">_state</a>
@@ -2052,6 +2118,9 @@
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="component.component-1.html#parent" class="tsd-kind-icon">parent</a>
 							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="component.component-1.html#prevstate" class="tsd-kind-icon">prev<wbr>State</a>
+							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="component.component-1.html#state" class="tsd-kind-icon">state</a>
 							</li>
@@ -2074,9 +2143,6 @@
 								<a href="component.component-1.html#componentdidcatch" class="tsd-kind-icon">component<wbr>Did<wbr>Catch</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="component.component-1.html#componentdidwarn" class="tsd-kind-icon">component<wbr>Did<wbr>Warn</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="component.component-1.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -2093,6 +2159,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="component.component-1.html#shouldcomponentupdate" class="tsd-kind-icon">should<wbr>Component<wbr>Update</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="component.component-1.html#statedidchange" class="tsd-kind-icon">state<wbr>Did<wbr>Change</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="component.component-1.html#unbindeventlisteners" class="tsd-kind-icon">unbind<wbr>Event<wbr>Listeners</a>

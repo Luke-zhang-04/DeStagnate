@@ -9,11 +9,11 @@ bin="node_modules/.bin"
 build() {
     # Compile typescript
     echo -e "${BIYellow}Compiling ${BIGreen}./src/${Purple} with ${BIBlue}TypeScript"
-    "$bin"/tsc -p tsconfig.json &
+    "$bin"/tsc -p tsconfig.json
 
     if [[ "$1" != "--no-docs" ]]; then
         echo -e "${BIYellow}Compiling ${BIBlue}./docs/${BIGreen}src${Purple} with ${BIBlue}Typescript"
-        "$bin"/tsc -p tsconfig.docs.json &
+        "$bin"/tsc -p tsconfig.docs.json
     fi
 
     wait

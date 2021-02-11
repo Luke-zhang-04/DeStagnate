@@ -70,13 +70,6 @@ export abstract class Preset {
     public componentDidCatch = (error: Error): void => console.error(error)
 
     /**
-     * Called when component catches a warning. Default behaviour is console.warn
-     * @param msg - warning message
-     * @returns void
-     */
-    public componentDidWarn = (msg: string): void => console.warn(msg)
-
-    /**
      * Called before component is updated
      * @returns whether or not component should update/re-render
      */

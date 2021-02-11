@@ -16,6 +16,23 @@ import type {RenderType} from "./private/_base"
 import url from "./private/_url"
 import utils from "./utils"
 
+export interface Component<
+    Props extends {} = Record<string, unknown>,
+    State extends {} = Record<string, unknown>,
+> {
+
+    /**
+     * What to call before component update (state mutation)
+     * @param prevProps - previous props
+     * @param prevState - previous state
+     * @returns void
+     */
+    getSnapshotBeforeUpdate: (
+        prevProps: Props,
+        prevState: State,
+    ) => void,
+}
+
 /**
  * DeStagnate
  * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
@@ -30,7 +47,6 @@ export abstract class Component<
 
     /**
      * State of component. Works similar React State
-     * @type {undefined | Object.<string, unknown>}
      */
     private _state: State = {} as State
 
@@ -69,17 +85,6 @@ export abstract class Component<
 
         this._parent = parent
     }
-
-    /**
-     * What to call before component update (state mutation)
-     * @param {Props} prevProps - previous props
-     * @param prevState - previous state
-     * @returns void
-     */
-    public getSnapshotBeforeUpdate = (
-        prevProps: Props,
-        prevState: State,
-    ): [Props, State] => [prevProps, prevState]
 
     /**
      * Public getState getter as this.state itself is protected
@@ -309,7 +314,7 @@ export abstract class Component<
     public readonly unmountComponent = (): void => {
         try {
             if (this._parent === undefined) {
-                return this.componentDidWarn(`WARN: code 4. See ${url}.`)
+                return
             }
 
             this.componentWillUnmount?.()

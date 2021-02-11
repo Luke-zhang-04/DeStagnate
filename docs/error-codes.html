@@ -23,25 +23,18 @@
       <p>Error code 1</p>
       <small>0 Parameters.</small>
       <p class="d-inline">Raised in: <pre class="d-inline p-1"><code class="language-js">DeStagnate.Component</code></pre></p>
-      <p>"Do not mutate state directly. Use setState instead."</p>
-      <p class="d-inline">You likely mutated state by doing <pre class="d-inline p-1"><code class="language-js">this.state = {}</code></pre> somewhere that is not your constructor. Use the <pre class="d-inline p-1"><code class="language-js">this.setState({})</code></pre> method instead. To disable this, invoke <pre class="d-inline p-1"><code class="language-js">this.disableStrict()</code></pre>.</p>
+      <p>"Parent is not defined. Set parent with the parent setter or set it during mounting."</p>
+      <p class="d-inline">You have not defined a parent element for your component. Define a parent on instantiation (in the constructor), or when you call the <pre class="d-inline p-1"><code class="language-js">this.mount()</code></pre>method (pass as param).</p>
 
       <h2>Code 2</h2>
       <p>Error code 2</p>
       <small>0 Parameters.</small>
       <p class="d-inline">Raised in: <pre class="d-inline p-1"><code class="language-js">DeStagnate.Component</code></pre></p>
-      <p>"Parent is not defined. Set parent with the parent setter or set it during mounting."</p>
-      <p class="d-inline">You have not defined a parent element for your component. Define a parent on instantiation (in the constructor), or when you call the <pre class="d-inline p-1"><code class="language-js">this.mount()</code></pre>method (pass as param).</p>
-
-      <h2>Code 3</h2>
-      <p>Error code 3</p>
-      <small>0 Parameters.</small>
-      <p class="d-inline">Raised in: <pre class="d-inline p-1"><code class="language-js">DeStagnate.Component</code></pre></p>
       <p>"Expected render method to be included in component class, no render method found, or render returned an empty array"</p>
       <p class="d-inline">Your component class needs to implement the <pre class="d-inline p-1"><code class="language-js">this.render()</code></pre> method. If you're using TypeScript, you might get the message "Non-abstract class <pre class="d-inline p-1"><code class="language-js">myComponent</code></pre> does not implement inherited abstract member <pre class="d-inline p-1"><code class="language-js">render</code></pre> from class <pre class="d-inline p-1"><code class="language-ts">DeStagnate&lt;Record&lt;string, unknown&gt;, Record&lt;string, unknown&gt;&gt;.</code></pre>"</p>
 
-      <h2>Code 4</h2>
-      <p>Error code 4</p>
+      <h2>Code 3</h2>
+      <p>Error code 3</p>
       <small>0 Parameters.</small>
       <p class="d-inline">Raised in: <pre class="d-inline p-1"><code class="language-js">DeStagnate.createElement</code></pre>, and other simillar functions.</p>
       <p>"Cannot use non-HTMLElement as component parent"</p>

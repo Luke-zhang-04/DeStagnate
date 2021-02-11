@@ -121,7 +121,7 @@ export const bindProps = (
             ) {
                 (val as Ref<Element>).current = element
             } else if (val !== undefined) {
-                console.warn(`WARN: Code 7. See ${url}. Params: ${typeof(val)}, ${key}`)
+                console.warn(`${typeof val} is not a valid DeStagnate child`)
             }
         }
     }
@@ -152,7 +152,7 @@ export const bindChildren = (
 
                 return
             } else if (!(element instanceof window.HTMLElement)) {
-                throw new Error(`ERROR: code 4. See ${url}`)
+                throw new Error(`ERROR: code 3. See ${url}`)
             }
 
             if (children.parent !== element) {

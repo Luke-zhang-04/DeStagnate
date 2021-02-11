@@ -2,6 +2,10 @@ import DeStagnate, {createRef} from "../../../" // Import library from root
 
 class RefExample extends DeStagnate.Component {
 
+    public constructor (parent: HTMLElement) {
+        super(parent)
+    }
+
     private _formRef = createRef<HTMLInputElement>()
 
     private static _inputGroupPrepend = (): JSX.Element => <div class="input-group-prepend">

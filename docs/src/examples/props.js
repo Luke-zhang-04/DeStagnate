@@ -1,4 +1,4 @@
-import DeStagnate, {createElement} from "../../../" // Import library from root
+import DeStagnate, {createElement} from "../../.." // Import library from root
 
 class PropsDemo extends DeStagnate.Component {
 
