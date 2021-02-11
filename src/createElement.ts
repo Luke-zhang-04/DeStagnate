@@ -14,7 +14,7 @@ import {
     BasicProps,
     ChildrenArrayType,
     bindChildren,
-    bindProps,
+    bindProps
 } from "./private/_createElementUtils"
 import type JSX from "./jsx"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
@@ -45,7 +45,10 @@ export function createElement<
     Props extends Record<string, unknown>,
     Returns extends HTMLElement | JSX.Element,
 > (
-    tagNameOrComponent: (props?: Props, ...children: ChildrenArrayType)=> Returns,
+    tagNameOrComponent: (
+        props?: Props,
+        ...children: ChildrenArrayType
+    )=> Returns,
     props?: Props,
     ...childrenArgs: ChildrenArrayType
 ): Returns
@@ -65,8 +68,8 @@ export function createElement<
     Returns = void,
 > (
     tagNameOrComponent: T | ((
-        props?: T,
-        ...children: ChildrenArrayType
+        _props?: T,
+        ..._children: ChildrenArrayType
     )=> Returns),
     props?: BasicProps | null | T,
     ...children: ChildrenArrayType

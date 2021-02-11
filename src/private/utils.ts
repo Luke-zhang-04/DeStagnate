@@ -33,7 +33,7 @@ export const isEqual = (
     if (val1 instanceof Array && val2 instanceof Array) {
         if (val1.length !== val2.length) { // If arrays have different lengths
             return false
-        } if (val1.length > maxLength || val2.length > maxLength) { // If array is too big
+        } else if (val1.length > maxLength || val2.length > maxLength) { // If array is too big
             return val1 === val2
         }
 

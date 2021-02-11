@@ -19,7 +19,122 @@ type EventListener = (
 
 type EventMember<
     K extends keyof HTMLElementEventMap,
-> = (event: HTMLElementEventMap[K]) => unknown | undefined
+> = (event: HTMLElementEventMap[K])=> unknown | undefined
+
+export interface Events {
+
+    /**
+     * Focus event
+     */
+    onFocus?: EventMember<"focus">,
+
+    /**
+     * Blur event
+     */
+    onBlur?: EventMember<"blur">,
+
+    /**
+     * Focus in event
+     */
+    onFocusIn?: EventMember<"focusin">,
+
+    /**
+     * Focus out event
+     */
+    onFocusOut?: EventMember<"focusout">,
+
+    /**
+     * Animation start event
+     */
+    onAnimationStart?: EventMember<"animationstart">,
+
+    /**
+     * Animation cancel event
+     */
+    onAnimationCancel?: EventMember<"animationcancel">,
+
+    /**
+     * Animation end event
+     */
+    onAnimationEnd?: EventMember<"animationend">,
+
+    /**
+     * Animation iteration event
+     */
+    onAnimationIteration?: EventMember<"animationiteration">,
+
+
+    /**
+     * Transition start event
+     */
+    onTransitionStart?: EventMember<"transitionstart">,
+
+    /**
+     * Transition cancel event
+     */
+    onTransitionCancel?: EventMember<"transitioncancel">,
+
+    /**
+     * Transition end event
+     */
+    onTransitionEnd?: EventMember<"transitionend">,
+
+    /**
+     * Transition run event
+     */
+    onTransitionRun?: EventMember<"transitionrun">,
+
+
+    /**
+     * Auxillary click event
+     */
+    onAuxClick?: EventMember<"auxclick">,
+
+    /**
+     * Click event
+     */
+    onClick?: EventMember<"click">,
+
+    /**
+     * Double click event
+     */
+    onDblClick?: EventMember<"dblclick">,
+
+    /**
+     * Mousedown event
+     */
+    onMouseDown?: EventMember<"mousedown">,
+
+    /**
+     * Mouse enter event
+     */
+    onMouseEnter?: EventMember<"mouseenter">,
+
+    /**
+     * Mouse leave event
+     */
+    onMouseLeave?: EventMember<"mouseleave">,
+
+    /**
+     * Mouse move event
+     */
+    onMouseMove?: EventMember<"mousemove">,
+
+    /**
+     * Mouseover event
+     */
+    onMouseOver?: EventMember<"mouseover">,
+
+    /**
+     * Mouseout event
+     */
+    onMouseOut?: EventMember<"mouseout">,
+
+    /**
+     * Mouseup event
+     */
+    onMouseUp?: EventMember<"mouseup">,
+}
 
 const eventNames: (keyof Events)[] = [
     "onFocus",
@@ -45,121 +160,6 @@ const eventNames: (keyof Events)[] = [
     "onMouseOut",
     "onMouseUp",
 ]
-
-export interface Events {
-
-    /**
-     * Focus event
-     */
-    onFocus?: EventMember<"focus">
-
-    /**
-     * Blur event
-     */
-    onBlur?: EventMember<"blur">
-
-    /**
-     * Focus in event
-     */
-    onFocusIn?: EventMember<"focusin">
-
-    /**
-     * Focus out event
-     */
-    onFocusOut?: EventMember<"focusout">
-
-    /**
-     * Animation start event
-     */
-    onAnimationStart?: EventMember<"animationstart">
-
-    /**
-     * Animation cancel event
-     */
-    onAnimationCancel?: EventMember<"animationcancel">
-
-    /**
-     * Animation end event
-     */
-    onAnimationEnd?: EventMember<"animationend">
-
-    /**
-     * Animation iteration event
-     */
-    onAnimationIteration?: EventMember<"animationiteration">
-
-
-    /**
-     * Transition start event
-     */
-    onTransitionStart?: EventMember<"transitionstart">
-
-    /**
-     * Transition cancel event
-     */
-    onTransitionCancel?: EventMember<"transitioncancel">
-
-    /**
-     * Transition end event
-     */
-    onTransitionEnd?: EventMember<"transitionend">
-
-    /**
-     * Transition run event
-     */
-    onTransitionRun?: EventMember<"transitionrun">
-
-
-    /**
-     * Auxillary click event
-     */
-    onAuxClick?: EventMember<"auxclick">
-
-    /**
-     * Click event
-     */
-    onClick?: EventMember<"click">
-
-    /**
-     * Double click event
-     */
-    onDblClick?: EventMember<"dblclick">
-
-    /**
-     * Mousedown event
-     */
-    onMouseDown?: EventMember<"mousedown">
-
-    /**
-     * Mouse enter event
-     */
-    onMouseEnter?: EventMember<"mouseenter">
-
-    /**
-     * Mouse leave event
-     */
-    onMouseLeave?: EventMember<"mouseleave">
-
-    /**
-     * Mouse move event
-     */
-    onMouseMove?: EventMember<"mousemove">
-
-    /**
-     * Mouseover event
-     */
-    onMouseOver?: EventMember<"mouseover">
-
-    /**
-     * Mouseout event
-     */
-    onMouseOut?: EventMember<"mouseout">
-
-    /**
-     * Mouseup event
-     */
-    onMouseUp?: EventMember<"mouseup">
-}
 
 /* istanbul ignore next */
 export abstract class Events extends BaseComponent {
@@ -188,7 +188,10 @@ export abstract class Events extends BaseComponent {
                 callback = this[eventName]
 
             if (callback !== undefined && callback instanceof Function) {
-                eventListener(htmlEventName, callback as EventListenerOrEventListenerObject)
+                eventListener(
+                    htmlEventName,
+                    callback as EventListenerOrEventListenerObject,
+                )
             }
         }
     }

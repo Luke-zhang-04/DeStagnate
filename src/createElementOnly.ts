@@ -192,8 +192,8 @@ export function createElement<
     Returns = void,
 > (
     tagNameOrComponent: T | ((
-        props?: T,
-        ...children: ChildrenArrayType
+        _props?: T,
+        ..._children: ChildrenArrayType
     )=> Returns),
     props?: BasicProps | null | T,
     ...children: ChildrenArrayType

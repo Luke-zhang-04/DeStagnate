@@ -11,7 +11,7 @@
 import {
     ChildrenArrayType,
     bindChildren,
-    bindProps,
+    bindProps
 } from "./private/_createElementUtils"
 
 /**

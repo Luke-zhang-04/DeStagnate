@@ -12,18 +12,18 @@
 
 import {
     ChildrenArrayType,
-    bindChildren,
+    bindChildren
 } from "./private/_createElementUtils"
 
 export const fragment = (
     _: unknown,
     ...children: ChildrenArrayType
 ): DocumentFragment => {
-    const fragment = document.createDocumentFragment()
+    const documentFragment = document.createDocumentFragment()
 
-    bindChildren(fragment, children)
+    bindChildren(documentFragment, children)
 
-    return fragment
+    return documentFragment
 }
 
 export default fragment

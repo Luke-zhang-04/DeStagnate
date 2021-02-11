@@ -16,9 +16,12 @@ import type {RenderType} from "./private/_base"
 import url from "./private/_url"
 import utils from "./private/utils"
 
+// eslint-disable-next-line
+interface Empty {}
+
 export interface Component<
-    Props extends {} = Record<string, unknown>,
-    State extends {} = Record<string, unknown>,
+    Props extends Empty = Record<string, unknown>,
+    State extends Empty = Record<string, unknown>,
 > {
 
     /**
@@ -30,7 +33,7 @@ export interface Component<
     getSnapshotBeforeUpdate: (
         prevProps: Props,
         prevState: State,
-    ) => void,
+    )=> void,
 }
 
 /**
@@ -41,8 +44,8 @@ export interface Component<
  * @abstract
  */
 export abstract class Component<
-    Props extends {} = Record<string, unknown>,
-    State extends {} = Record<string, unknown>,
+    Props extends Empty = Record<string, unknown>,
+    State extends Empty = Record<string, unknown>,
 > extends Base {
 
     /**
@@ -214,9 +217,8 @@ export abstract class Component<
             prevState: {[key: string]: unknown} = {}
 
         for (const key of keys) {
-            state[key] = (this._state as {[key: string]: unknown})[key]
-            prevState[key] =
-                (this._prevState as {[key: string]: unknown} | undefined)?.[key]
+            state[key] = this._state[key as keyof State]
+            prevState[key] = this._prevState?.[key as keyof State]
         }
 
         return !utils.isEqual(state, prevState, maxDepth, maxLength)

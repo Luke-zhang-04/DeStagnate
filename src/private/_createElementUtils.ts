@@ -140,7 +140,9 @@ export const bindChildren = (
 ): void => {
     if (children !== null && children !== undefined) {
         if (children instanceof Array) {
-            children.forEach((child: ChildrenType) => bindChildren(element, child))
+            children.forEach((child: ChildrenType) => (
+                bindChildren(element, child)
+            ))
         } else if (
             typeof children === "string" ||
             typeof children === "number"

@@ -13,9 +13,9 @@
 /// <reference path="./jsx.ts" />
 
 import * as _Component from "./component"
-import * as _CreateRef from "./createRef"
 import * as _CreateElement from "./createElement"
 import * as _CreateElementNS from "./createElementNS"
+import * as _CreateRef from "./createRef"
 import * as _Fragment from "./fragment"
 
 export {Component} from "./component"
@@ -24,6 +24,7 @@ export {createElement} from "./createElement"
 export {createElementNS} from "./createElementNS"
 export {fragment} from "./fragment"
 
+/* eslint-disable */
 export namespace DeStagnate {
     export const {Component} = _Component
     export const {createRef} = _CreateRef
@@ -32,5 +33,6 @@ export namespace DeStagnate {
     export const {createElementNS} = _CreateElementNS
     export const {fragment} = _Fragment
 }
+/* eslint-enable */
 
 export default DeStagnate
