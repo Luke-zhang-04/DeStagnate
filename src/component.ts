@@ -14,7 +14,7 @@
 import {Events as Base} from "./private/_events"
 import type {RenderType} from "./private/_base"
 import url from "./private/_url"
-import utils from "./utils"
+import utils from "./private/utils"
 
 export interface Component<
     Props extends {} = Record<string, unknown>,
