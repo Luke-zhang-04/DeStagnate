@@ -21,7 +21,6 @@
             <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/eventListener.js" target="_blank" rel="noopener noreferrer">Source Code</a>
             <div class="pt-5">
                 <div id="elistener"></div>
-                <div id="elistener-btn" class="mt-3"></div>
             </div>
             <div id="elistener-source">
                 <pre class="d-block">
@@ -66,6 +65,41 @@ const eListener = new EventListener(document.querySelector("#elistener"))
 
 eListener.mount() // Must call once
 
+                    </code>
+                </pre>
+            </div>
+
+            <div class="pt-5">
+                <div id="elistener2"></div>
+            </div>
+            <div id="elistener2-source">
+                <pre class="d-block">
+                    <code class="language-js">
+import DeStagnate, {createElement} from "destagnate"
+
+class ScrollListener extends DeStagnate.Component {
+
+    constructor (parent) {
+        super(parent)
+
+        this.state = {
+            scrollPosition: window.scrollY,
+        }
+    }
+
+    onScroll = () => this.setState({scrollPosition: window.scrollY})
+
+    render = () => createElement(
+        "p",
+        null,
+        "Scroll position: ",
+        this.state.scrollPosition,
+    )
+}
+
+const scrollListener = new ScrollListener(document.querySelector("#elistener2"))
+
+scrollListener.mount()
                     </code>
                 </pre>
             </div>

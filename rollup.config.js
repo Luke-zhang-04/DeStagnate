@@ -45,7 +45,13 @@ const makePlugins = (target = "es6", prod = true) => [
         ),
     }),
     ...prod
-        ? [terser()]
+        ? [terser({
+            mangle: {
+                properties: {
+                    regex: /^_/u, // Mangle private properties
+                },
+            },
+        })]
         : [],
     // To make bundling look cool
     filesize(),

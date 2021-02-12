@@ -16,6 +16,8 @@ import type {RenderType} from "./private/_base"
 import url from "./private/_url"
 import utils from "./private/utils"
 
+const unmountedMsg = "Refusing to update unmounted component"
+
 // eslint-disable-next-line
 interface Empty {}
 
@@ -30,7 +32,7 @@ export interface Component<
      * @param prevState - previous state
      * @returns void
      */
-    getSnapshotBeforeUpdate: (
+    getSnapshotBeforeUpdate?: (
         prevProps: Props,
         prevState: State,
     )=> void,
@@ -170,13 +172,17 @@ export abstract class Component<
      */
     public readonly forceUpdate = (): void | Error => {
         try {
+            if (!this._didMount) {
+                throw new Error(unmountedMsg)
+            }
+
             this.componentDidUpdate?.()
 
             if (this._parent === undefined) {
                 throw new Error(`ERROR: code 2. See ${url}.`)
             }
 
-            this.getSnapshotBeforeUpdate(
+            this.getSnapshotBeforeUpdate?.(
                 {...this.props} as Props,
                 {...this.state},
             )
@@ -231,6 +237,10 @@ export abstract class Component<
      */
     public readonly setState = (obj: Partial<State>): void | Error => {
         try {
+            if (!this._didMount) {
+                throw new Error(unmountedMsg)
+            }
+
             this.componentWillUpdate?.()
 
             if (this._parent === undefined) {
@@ -239,7 +249,7 @@ export abstract class Component<
 
             this._prevState = {...this._state}
 
-            this.getSnapshotBeforeUpdate(
+            this.getSnapshotBeforeUpdate?.(
                 {...this.props} as Props,
                 {...this.state},
             )
