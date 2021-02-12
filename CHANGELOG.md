@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 # [2.0.0] -
 
 ### Added
+- feat: add window event listeners [a46619b2212c8c5aa4dd13445a717cb0e50569de]((https://github.com/Luke-zhang-04/DeStagnate/commit/a46619b2212c8c5aa4dd13445a717cb0e50569de))
 - feat: add support for JSX Fragments [cf4132306ed6dfc0e5954d5095125d3cad3ba895](https://github.com/Luke-zhang-04/DeStagnate/commit/cf4132306ed6dfc0e5954d5095125d3cad3ba895)
 - feat: add stateDidChange checker [0aa7aad90ffc32aae2caa4c0d0d3d4ab7fe3c519](https://github.com/Luke-zhang-04/DeStagnate/commit/0aa7aad90ffc32aae2caa4c0d0d3d4ab7fe3c519)
 
