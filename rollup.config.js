@@ -80,7 +80,7 @@ const es5 = (() => {
                 format,
                 banner: bannerProd,
                 name: "DeStagnate",
-                sourcemap: false,
+                sourcemap: true,
             },
             plugins: makePlugins("es5", true),
         })
@@ -92,7 +92,7 @@ const es5 = (() => {
                 format,
                 banner: bannerDev,
                 name: "DeStagnate",
-                sourcemap: "inline",
+                sourcemap: true,
             },
             plugins: makePlugins("es5", false),
         })
@@ -124,7 +124,7 @@ const es6 = (() => {
                 format,
                 banner: bannerProd,
                 name: "DeStagnate",
-                sourcemap: false,
+                sourcemap: true,
             },
             plugins: makePlugins("es6", true),
         })
@@ -136,7 +136,7 @@ const es6 = (() => {
                 format,
                 banner: bannerDev,
                 name: "DeStagnate",
-                sourcemap: "inline",
+                sourcemap: true,
             },
             plugins: makePlugins("es6", false),
         })
