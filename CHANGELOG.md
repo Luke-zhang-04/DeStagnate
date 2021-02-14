@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-# [2.0.0] -
+# [2.0.0] - 02-14-2021
 
 ### Added
 - feat: add window event listeners [a46619b2212c8c5aa4dd13445a717cb0e50569de]((https://github.com/Luke-zhang-04/DeStagnate/commit/a46619b2212c8c5aa4dd13445a717cb0e50569de))
