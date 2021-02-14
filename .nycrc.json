@@ -1,5 +1,6 @@
 {
-    "exclude": ["dist", "tests/index.js", "tests/cases"],
-    "include": ["tests/deStagnate.bundle.js"],
-    "reporter": ["clover", "text"]
+    "exclude": ["dist", "test/index.js", "test/cases"],
+    "include": ["test/deStagnate.cjs"],
+    "reporter": ["clover", "text"],
+    "source-map": false
 }

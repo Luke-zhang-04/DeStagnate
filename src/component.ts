@@ -1,20 +1,42 @@
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.8.0
+ * @version 2.0.0
  * @exports DeStagnate main destagnate class
  * @file DeStagnate component class
  * @preserve
  */
 /* eslint-disable max-lines */
 
-import Base from "./private/_events"
+import {Events as Base} from "./private/_events"
+import type {RenderType} from "./private/_base"
 import url from "./private/_url"
+import utils from "./private/utils"
 
-type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
+const unmountedMsg = "Refusing to update unmounted component"
+
+// eslint-disable-next-line
+interface Empty {}
+
+export interface Component<
+    Props extends Empty = Record<string, unknown>,
+    State extends Empty = Record<string, unknown>,
+> {
+
+    /**
+     * What to call before component update (state mutation)
+     * @param prevProps - previous props
+     * @param prevState - previous state
+     * @returns void
+     */
+    getSnapshotBeforeUpdate?: (
+        prevProps: Props,
+        prevState: State,
+    )=> void,
+}
 
 /**
  * DeStagnate
@@ -23,109 +45,54 @@ type RenderType = HTMLElement | HTMLElement[] | Element | Element[] | null
  * @namespace
  * @abstract
  */
-export default abstract class DeStagnate
-    <Props = Record<string, unknown>, State = Record<string, unknown>>
-    extends Base {
-
-    /**
-     * If strict mode should be used. True by default
-     * @private
-     * @instance
-     */
-    private _strict = true
+export abstract class Component<
+    Props extends Empty = Record<string, unknown>,
+    State extends Empty = Record<string, unknown>,
+> extends Base {
 
     /**
      * State of component. Works similar React State
-     * @type {undefined | Object.<string, unknown>}
-     * @private
-     * @instance
      */
     private _state: State = {} as State
 
     /**
      * If initial state was set in initializer
      * Do not throw error with direct state setting
-     * @private
-     * @instance
      */
     private _didSetInitialState = false
 
     /**
      * Parent that this element if bound to
-     * @private
-     * @instance
      */
     private _parent: HTMLElement | undefined
 
     /**
      * If component is mounted
-     * @private
-     * @instance
      */
     private _didMount = false
 
     /**
+     * Previous state
+     */
+    private _prevState?: State
+
+    /**
      * Construct class component
-     * @public
-     * @constructor
      * @param parent - parent of this element
      * @param props - element properties; works like React Props
-     * @param shouldSkipParentCheck - warn or throw error if parent element already has children
      */
-    public constructor (
-        parent?: HTMLElement,
-        protected props?: Props,
-        shouldSkipParentCheck = false,
-    ) {
+    public constructor (parent?: HTMLElement | null, protected props?: Props) {
         super()
-        if (
-            parent &&
-            parent.childElementCount > 0 &&
-            !shouldSkipParentCheck &&
-            this._strict
-        ) {
-            this.componentDidCatch(new Error(`ERROR: code 1. See ${url}. Params: ${parent.tagName.toLowerCase()}`))
+
+        if (parent === null) {
+            throw new Error("Parent is null, expected HTMLElement | undefined.")
         }
 
         this._parent = parent
     }
 
     /**
-     * What to call before component update (state mutation)
-     * @public
-     * @instance
-     * @param {Props} prevProps - previous props
-     * @param prevState - previous state
-     * @returns void
-     */
-    public getSnapshotBeforeUpdate = (
-        prevProps: Props,
-        prevState: State,
-    ): [Props, State] => [prevProps, prevState]
-
-    /**
-     * Turn on strict mode
-     * @public
-     * @instance
-     * @returns void
-     */
-    public useStrict = (): void => {
-        this._strict = true
-    }
-
-    /**
-     * Turn off strict mode
-     * @public
-     * @instance
-     * @returns void
-     */
-    public disableStrict = (): void => {
-        this._strict = false
-    }
-
-    /**
      * Public getState getter as this.state itself is protected
-     * @public
      * @returns component state
      */
     public get getState (): State {
@@ -134,7 +101,6 @@ export default abstract class DeStagnate
 
     /**
      * Get component state
-     * @protected
      * @returns component state
      */
     protected get state (): State {
@@ -144,16 +110,13 @@ export default abstract class DeStagnate
     /**
      * Sets component state
      * WARN: do not use this method to mutate the state directly
-     * @protected
      * @param obj - state to set
      */
     protected set state (obj: State) {
-        if (this._didSetInitialState && this._strict) {
+        if (this._didSetInitialState) {
             this.componentDidCatch(
-                new Error(`ERROR: code 2. See ${url}.`)
+                new Error(`ERROR: code 1. See ${url}.`)
             )
-            // eslint-disable-next-line
-            this.componentDidWarn(`ERROR: code 2. See ${url}.`)
             this.setState(obj)
         } else {
             this._state = obj
@@ -163,7 +126,6 @@ export default abstract class DeStagnate
 
     /**
      * Public getProps getter as this.props itself is protected
-     * @public
      * @returns component props
      */
     public get getProps (): Props | undefined {
@@ -172,25 +134,15 @@ export default abstract class DeStagnate
 
     /**
      * Set the parent of this component
-     * @public
      * @param element - parent element
      * @returns void
      */
     public set parent (element: HTMLElement | undefined) {
-        if (
-            element &&
-            element.childElementCount > 0 &&
-            this._strict
-        ) {
-            this.componentDidCatch(new Error(`ERROR: code 1. See ${url}. Params: ${element.tagName.toLowerCase()}`))
-        }
-
         this._parent = element
     }
 
     /**
      * Get the parent element of this component
-     * @public
      * @returns parent
      */
     public get parent (): HTMLElement | undefined {
@@ -199,7 +151,6 @@ export default abstract class DeStagnate
 
     /**
      * Get didMount value publicly
-     * @public
      * @returns if mounted
      */
     public get didMount (): boolean {
@@ -207,164 +158,196 @@ export default abstract class DeStagnate
     }
 
     /**
+     * Returns the previous state. Undefined if no previous state exists
+     * @returns previous state
+     */
+    public get prevState (): State | undefined {
+        return this._prevState
+    }
+
+    /**
      * Forces a component to update
      * Follows the same component updating procedure as setState without modifying state
-     * @public
-     * @instance
-     * @readonly
      * @returns returns error if error is thrown
      */
     public readonly forceUpdate = (): void | Error => {
         try {
-            this.componentDidUpdate()
-
-            if (this._parent === undefined) {
-                throw new Error(`ERROR: code 3. See ${url}.`)
+            if (!this._didMount) {
+                throw new Error(unmountedMsg)
             }
 
-            this.getSnapshotBeforeUpdate(
+            this.componentDidUpdate?.()
+
+            if (this._parent === undefined) {
+                throw new Error(`ERROR: code 2. See ${url}.`)
+            }
+
+            this.getSnapshotBeforeUpdate?.(
                 {...this.props} as Props,
                 {...this.state},
             )
 
             this._update(this._execRender())
-        } catch (err) /* istanbul ignore next */ {
-            this.componentDidCatch(err)
-
-            return err as Error
+        } catch (err: unknown) /* istanbul ignore next */ {
+            return this._handleError(err)
         }
     }
 
     /**
+     * Checks if the state changed from the previous state. Can me attached to
+     * `shouldComponentUpdate`
+     * @param keys - list of keys to crawl. If left undefined (default) then
+     * use all keys. Should be `keyof State`, but there were some Typescript
+     * troubles.
+     * @param maxDepth - max recursion depth to crawl an object. After max depth
+     * is reached, the two values are simply compared with `===`
+     * @param maxLength - max length of array to crawl. If max lenth is reached,
+     * two arrays will simply be compared with `===`
+     * @returns `val1 === val2`
+     */
+    public readonly stateDidChange = (
+        keys?: (string)[],
+        maxDepth = 3,
+        maxLength = 15,
+    ): boolean => {
+        if (keys === undefined) {
+            return !utils.isEqual(
+                this._state,
+                this._prevState,
+                maxDepth,
+                maxLength,
+            )
+        }
+
+        const state: {[key: string]: unknown} = {},
+            prevState: {[key: string]: unknown} = {}
+
+        for (const key of keys) {
+            state[key] = this._state[key as keyof State]
+            prevState[key] = this._prevState?.[key as keyof State]
+        }
+
+        return !utils.isEqual(state, prevState, maxDepth, maxLength)
+    }
+
+    /**
      * Sets state
-     * @public
-     * @instance
-     * @readonly
      * @param obj - state to set
+     * @param shouldComponentUpdate - if component should update after state setting
      * @returns void
      */
-    public readonly setState = (obj: Partial<State>): void | Error => {
+    public readonly setState = (
+        obj: Partial<State>,
+        shouldComponentUpdate = true,
+    ): void | Error => {
         try {
-            this.componentWillUpdate()
+            if (!this._didMount) {
+                throw new Error(unmountedMsg)
+            }
+
+            this.componentWillUpdate?.()
 
             if (this._parent === undefined) {
-                throw new Error(`ERROR: code 3. See ${url}.`)
+                throw new Error(`ERROR: code 2. See ${url}.`)
             }
 
-            if (this._strict) {
-                this._checkKeys(obj)
-            }
+            this._prevState = {...this._state}
 
-            this.getSnapshotBeforeUpdate(
+            this.getSnapshotBeforeUpdate?.(
                 {...this.props} as Props,
                 {...this.state},
             )
 
             Object.assign(this._state, obj)
 
-            const renderedContent = this.shouldComponentUpdate()
-                ? this._execRender()
-                : undefined
+            const renderedContent =
+                shouldComponentUpdate && this.shouldComponentUpdate()
+                    ? this._execRender()
+                    : undefined
 
             this._update(renderedContent)
         } catch (err) /* istanbul ignore next */ {
-            this.componentDidCatch(err)
-
-            return err as Error
+            return this._handleError(err)
         }
     }
 
     /* eslint-disable @typescript-eslint/member-ordering, max-len */
     /**
      * Initial mounting to be manually called
-     * @public
-     * @instance
-     * @readonly
      * @param parent - parent element to mount with; optional
      * @returns - result of append child to parent element
      */
     public readonly mountComponent = (
         parent?: HTMLElement
-    ): HTMLElement | HTMLElement[] | Element | Element[] | Error => {
+    ): Node | Error => {
         try {
             if (parent !== undefined) {
                 this.parent = parent
             }
 
             if (this._parent === undefined) {
-                throw new Error(`ERROR: code 3. See ${url}.`)
+                throw new Error(`ERROR: code 2. See ${url}.`)
             }
 
             const component = this.render()
 
             this._didSetInitialState = true
 
-            this.componentWillMount()
+            this.componentWillMount?.()
 
             if (component === null) {
-                throw new Error(`ERROR: code 5. See ${url}.`)
+                throw new Error(`ERROR: code 3. See ${url}.`)
             }
 
             this.bindEventListeners(this._parent)
 
             this._didMount = true
-            this.componentDidMount()
+            this.componentDidMount?.()
 
-            if (typeof(component) === "object" && component instanceof Array) {
-                return (component as Element[]).map((element) => (
-                    this._parent!.appendChild(element)
-                ))
+            if (component instanceof Array) {
+                const fragment = document.createDocumentFragment();
+
+                (component as Element[]).forEach((child) => fragment.appendChild(child))
+
+                return this._parent.appendChild(fragment)
             }
 
             return this._parent.appendChild(component)
-        } catch (err) /* istanbul ignore next */ {
-            this.componentDidCatch(err)
-
-            return err as Error
+        } catch (err: unknown) /* istanbul ignore next */ {
+            return this._handleError(err)
         }
     }
 
     /**
      * Initial mounting to be manually called
-     * @public
-     * @instance
-     * @readonly
      * @returns - result of append child to parent element
      */
     public readonly mount = this.mountComponent
 
     /**
      * Unmounting to be manually called
-     * @public
-     * @instance
-     * @readonly
      * @returns - void
      */
     public readonly unmountComponent = (): void => {
         try {
             if (this._parent === undefined) {
-                this.componentDidWarn(`WARN: code 4. See ${url}.`)
-
                 return
             }
 
-            this.componentWillUnmount()
+            this.componentWillUnmount?.()
 
             this.unbindEventListeners(this._parent)
 
             this._removeChildren()
             this._didMount = false
-        } catch (err) /* istanbul ignore next */ {
-            this.componentDidCatch(err)
+        } catch (err: unknown) /* istanbul ignore next */ {
+            this._handleError(err)
         }
 
     }
 
     /**
      * Unmounting to be manually called
-     * @public
-     * @instance
-     * @readonly
      * @returns - void
      */
     public readonly unmount = this.unmountComponent
@@ -372,13 +355,11 @@ export default abstract class DeStagnate
 
     /**
      * Removes children from this._parent
-     * @private
-     * @instance
      * @return void
      */
     private _removeChildren = (): void => {
         if (this._parent === undefined) {
-            throw new Error(`ERROR: code 3. See ${url}.`)
+            throw new Error(`ERROR: code 2. See ${url}.`)
         }
 
         while (this._parent.firstChild) {
@@ -390,8 +371,6 @@ export default abstract class DeStagnate
 
     /**
      * Executes new render
-     * @private
-     * @instance
      * @returns rendered content
      */
     private _execRender = (): RenderType => {
@@ -400,48 +379,40 @@ export default abstract class DeStagnate
         return this.render()
     }
 
-    /**
-     * Checks new state assignment to make sure no new keys are assigned
-     * @private
-     * @instance
-     * @param obj - new state
-     * @returns void
-     */
-    private _checkKeys = (obj: Partial<State>): void => {
-        for (const key of Object.keys(obj)) {
-            if (!Object.keys(this.state).includes(key)) {
-                // eslint-disable-next-line
-                this.componentDidWarn(`WARN: code 6. See ${url}. Params: ${key}, ${JSON.stringify(Object.keys(this.state))}.`)
-            }
-        }
-    }
 
     /**
      * Updates the component
-     * @private
-     * @instance
      * @param renderedContent - rendered content from executing the render function
      * @returns void
      */
     private _update = (renderedContent?: RenderType): void => {
-        if (
-            typeof(renderedContent) === "object" &&
-            renderedContent instanceof Array
-        ) {
+        if (renderedContent instanceof Array) {
             for (const element of renderedContent) {
-                this._parent!.appendChild(element)
+                this._parent?.appendChild(element)
             }
         } else if (renderedContent) {
-            this._parent!.appendChild(renderedContent)
+            this._parent?.appendChild(renderedContent)
         }
 
         if (renderedContent) {
-            this.componentDidUpdate()
+            this.componentDidUpdate?.()
         }
+    }
+
+    private _handleError = (err: unknown): Error => {
+        if (err instanceof Error) {
+            this.componentDidCatch(err)
+
+            return err as Error
+        }
+
+        const error = new Error(String(err))
+
+        this.componentDidCatch(error)
+
+        return error
     }
 
 }
 
-export abstract class Component
-    <Props = Record<string, unknown>, State = Record<string, unknown>>
-    extends DeStagnate<Props, State> {}
+export default Component

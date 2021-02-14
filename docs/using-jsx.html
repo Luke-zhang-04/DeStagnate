@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   DeStagnate Docs
-  Copyright (C) 2020 Luke Zhang | luke-zhang-04.github.io | MIT License
+  Copyright (C) 2020 - 2021 Luke Zhang | luke-zhang-04.github.io | MIT License
 -->
 <html lang="en">
 <head>
@@ -42,8 +42,9 @@ yarn add typescript -D
     "compilerOptions": {
         "jsx": "react",
         "jsxFactory": "DeStagnate.createElement",
+        "jsxFragmentFactory": "DeStagnate.Fragment",
     },
-    "include": ["myFile.tsx"]
+    "include": ["myFile.tsx"],
 }
                 </code>
             </pre>
@@ -89,10 +90,11 @@ module.exports = {
         [
             "@babel/plugin-transform-react-jsx",
             {
-                "pragma": "DeStagnate.createElement"
-            }
-        ]
-    ]
+                "pragma": "DeStagnate.createElement",
+                "pragmaFrag": "DeStagnate.Fragment",
+            },
+        ],
+    ],
 }
                 </code>
             </pre>

@@ -1,0 +1,16 @@
+[es6]
+defaults
+
+not IE >= 0
+not IE_mob >= 0
+> 4%
+not dead
+
+[es5]
+defaults
+
+supports es5
+
+> 0.2%
+not dead
+not op_mini all

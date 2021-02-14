@@ -1,14 +1,14 @@
 /**
- * DeStagnate
+ * Component
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.8.0
+ * @version 2.0.0
  * @file share functions and types for createElement and it's variants
  */
 
-import DeStagnate from ".."
+import {Component} from "../component"
 import type {Ref} from "../createRef"
 import url from "./_url"
 
@@ -18,7 +18,7 @@ export type ChildrenFlatArrayType = (HTMLElement
     | Element
     | number
     | string
-    | DeStagnate<any, any>
+    | Component<any, any>
 )[]
 
 export type ChildrenArrayType = ChildrenFlatArrayType
@@ -27,12 +27,12 @@ export type ChildrenArrayType = ChildrenFlatArrayType
 /**
  * All types the children parameter can be
  */
-export type ChildrenType = HTMLElement
+export type ChildrenType = ChildrenType[]
     | string
     | number
     | ChildrenArrayType
-    | Element
-    | DeStagnate<any, any>
+    | Node
+    | Component<any, any>
 
 interface EventMap extends HTMLElementEventMap {
     "": Event,
@@ -55,7 +55,7 @@ export interface BasicProps {
     alt?: string,
     style?: string,
     title?: string,
-    
+
     onFocus?: EventFunc<"focus">,
     onBlur?: EventFunc<"blur">,
     onFocusIn?: EventFunc<"focusin">,
@@ -98,7 +98,7 @@ export const bindProps = (
 ): void => {
     if (props) {
         for (const [key, val] of Object.entries(props)) {
-            if (typeof(val) === "string" || typeof(val) === "number") {
+            if (typeof val === "string" || typeof val === "number") {
                 if (key === "innerHTML") {
                     element.innerHTML = val.toString()
                 } else if (ns) {
@@ -121,26 +121,10 @@ export const bindProps = (
             ) {
                 (val as Ref<Element>).current = element
             } else if (val !== undefined) {
-                console.warn(`WARN: Code 7. See ${url}. Params: ${typeof(val)}, ${key}`)
+                console.warn(`${typeof val} is not a valid DeStagnate child`)
             }
         }
     }
-}
-
-export const unpackChildren = (
-    children: ChildrenArrayType,
-): ChildrenFlatArrayType => {
-    const newChildren = []
-
-    for (const child of children) {
-        if (typeof(child) === "object" && child instanceof Array) {
-            newChildren.push(...unpackChildren(child))
-        } else {
-            newChildren.push(child)
-        }
-    }
-
-    return newChildren as ChildrenFlatArrayType
 }
 
 /**
@@ -151,26 +135,26 @@ export const unpackChildren = (
  * @returns void
  */
 export const bindChildren = (
-    element: Element,
+    element: Node,
     children?: ChildrenType,
 ): void => {
     if (children !== null && children !== undefined) {
         if (children instanceof Array) {
-            for (const child of children) {
+            children.forEach((child: ChildrenType) => (
                 bindChildren(element, child)
-            }
+            ))
         } else if (
-            typeof(children) === "string" ||
-            typeof(children) === "number"
+            typeof children === "string" ||
+            typeof children === "number"
         ) {
-            (element as HTMLElement).innerText = children.toString()
-        } else if (children instanceof DeStagnate) {
+            element.appendChild(document.createTextNode(children.toString()))
+        } else if (children instanceof Component) {
             if (!children.didMount && element instanceof window.HTMLElement) {
                 children.mount(element)
 
                 return
             } else if (!(element instanceof window.HTMLElement)) {
-                throw new Error(`ERROR: code 8. See ${url}`)
+                throw new Error(`ERROR: code 3. See ${url}`)
             }
 
             if (children.parent !== element) {

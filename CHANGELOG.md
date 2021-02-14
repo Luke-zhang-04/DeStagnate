@@ -5,10 +5,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+# [2.0.0] -
+
+### Added
+- feat: add window event listeners [a46619b2212c8c5aa4dd13445a717cb0e50569de]((https://github.com/Luke-zhang-04/DeStagnate/commit/a46619b2212c8c5aa4dd13445a717cb0e50569de))
+- feat: add support for JSX Fragments [cf4132306ed6dfc0e5954d5095125d3cad3ba895](https://github.com/Luke-zhang-04/DeStagnate/commit/cf4132306ed6dfc0e5954d5095125d3cad3ba895)
+- feat: add stateDidChange checker [0aa7aad90ffc32aae2caa4c0d0d3d4ab7fe3c519](https://github.com/Luke-zhang-04/DeStagnate/commit/0aa7aad90ffc32aae2caa4c0d0d3d4ab7fe3c519)
+
+### Changed
+- Overhaul component to always use strict [219d3bbd68f2bcedeac909719b04a059e423afeb](https://github.com/Luke-zhang-04/DeStagnate/commit/219d3bbd68f2bcedeac909719b04a059e423afeb)
+- Updated exports (export default namespace) [4ebce8ed7b72f81f83e9950ff14e5db0d83878c8](https://github.com/Luke-zhang-04/DeStagnate/commit/4ebce8ed7b72f81f83e9950ff14e5db0d83878c8)
+- Change source type to module, and change `main` to `dist/deStagnate.mjs` [07470fff99d77642f6348bb90fdc60a6560dd5f2](https://github.com/Luke-zhang-04/DeStagnate/commit/07470fff99d77642f6348bb90fdc60a6560dd5f2)
+- Undefined class methods are no longer defined within compiled code. They are instead part of an interface. [adab61e06f5d58316280b15b554be62d0da6e096](https://github.com/Luke-zhang-04/DeStagnate/commit/adab61e06f5d58316280b15b554be62d0da6e096)
+- Switched bundler to Rollup [36bddb05b9a975d8f66a70e6656aac6fabcfb526](https://github.com/Luke-zhang-04/DeStagnate/commit/36bddb05b9a975d8f66a70e6656aac6fabcfb526)
+
+
 ## [1.8.0] - 09-11-2020
 
 ### Added
--  feat: add better typings for createElement props [4bb7642](https://github.com/Luke-zhang-04/DeStagnate/commit/4bb7642)
+- feat: add better typings for createElement props [4bb7642](https://github.com/Luke-zhang-04/DeStagnate/commit/4bb7642)
 
 ### Changed
 - overhaul build process completely [af0f37e](https://github.com/Luke-zhang-04/DeStagnate/commit/af0f37e)

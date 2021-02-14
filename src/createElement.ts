@@ -1,10 +1,10 @@
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.8.0
+ * @version 2.0.0
  * @exports createElement function for DOM manipulation
  */
 // eslint-disable-next-line
@@ -13,10 +13,8 @@
 import {
     BasicProps,
     ChildrenArrayType,
-    ChildrenType,
-    bindChildren as _bindChildren,
-    bindProps as _bindProps,
-    unpackChildren as _unpackChildren
+    bindChildren,
+    bindProps
 } from "./private/_createElementUtils"
 import type JSX from "./jsx"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
@@ -32,7 +30,6 @@ import type JSX from "./jsx"
 export function createElement<T extends keyof HTMLElementTagNameMap> (
     tagNameOrComponent: T,
     props?: BasicProps | null,
-    children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
 ): HTMLElementTagNameMap[T]
 
@@ -47,11 +44,12 @@ export function createElement<T extends keyof HTMLElementTagNameMap> (
 export function createElement<
     Props extends Record<string, unknown>,
     Returns extends HTMLElement | JSX.Element,
-    Children extends ChildrenType | ChildrenArrayType,
 > (
-    tagNameOrComponent: (props?: Props, children?: Children)=> Returns,
+    tagNameOrComponent: (
+        props?: Props,
+        ...children: ChildrenArrayType
+    )=> Returns,
     props?: Props,
-    children?: ChildrenType,
     ...childrenArgs: ChildrenArrayType
 ): Returns
 
@@ -70,36 +68,22 @@ export function createElement<
     Returns = void,
 > (
     tagNameOrComponent: T | ((
-        props?: T,
-        children?: ChildrenType,
+        _props?: T,
+        ..._children: ChildrenArrayType
     )=> Returns),
     props?: BasicProps | null | T,
-    children?: ChildrenType,
-    ...childrenArgs: ChildrenArrayType
+    ...children: ChildrenArrayType
 ): HTMLElement | Returns | Error {
-    let _children: ChildrenType | undefined = children
-
-    if (children && childrenArgs) {
-        if (children instanceof Array) {
-            _children = [
-                ..._unpackChildren(children),
-                ..._unpackChildren(childrenArgs),
-            ]
-        } else {
-            _children = [children, ..._unpackChildren(childrenArgs)]
-        }
-    }
-
     if (typeof(tagNameOrComponent) === "string") {
         const element = document.createElement(tagNameOrComponent)
 
-        _bindProps(element, props as BasicProps | null)
+        bindProps(element, props as BasicProps | null)
 
-        _bindChildren(element, _children)
+        bindChildren(element, children)
 
         return element
     } else if (typeof(tagNameOrComponent) === "function") {
-        return tagNameOrComponent(props as T, _children)
+        return tagNameOrComponent(props as T, children)
     }
 
     return Error("tagNameOrComponent is of invalid type.")

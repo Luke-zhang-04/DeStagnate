@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   DeStagnate Docs
-  Copyright (C) 2020 Luke Zhang | luke-zhang-04.github.io | MIT License
+  Copyright (C) 2020 - 2021 Luke Zhang | luke-zhang-04.github.io | MIT License
 -->
 <html lang="en">
 <head>
@@ -26,15 +26,9 @@
             <div id="svg-source">
                 <pre class="d-block">
                     <code class="language-js">
-// Browser env, everything exposed to one global var, or namespace
-const DS = DeStagnate,
-    {createElementNS} = DS
+import DeStagnate, {createElementNS} from "destagnate"
 
-// Node env
-import * as DS from "destagnate"
-const {createElement} = DS
-
-class SVG extends DS.Component {
+class SVG extends DeStagnate.Component {
 
     constructor (parent, props) {
         super(parent, props)
@@ -49,10 +43,7 @@ class SVG extends DS.Component {
     componentDidMount = () => this.componentDidUpdate()
 
     componentDidUpdate = () => {
-        if (
-            this.state.xcord < 0 ||
-            this.state.xcord > this.props.width / 2
-        ) {
+        if (this.state.xcord < 0 || this.state.xcord > this.props.width) {
             this.direction *= -1
         }
 
@@ -74,10 +65,10 @@ class SVG extends DS.Component {
             "http://www.w3.org/2000/svg",
             "rect",
             {
-            width: this.props.width,
-            height: this.props.width,
-            fill: this.direction > 0 ? "#0D6EFD" : "#28A745",
-            x: this.state.xcord,
+                width: this.props.width,
+                height: this.props.width,
+                fill: this.direction > 0 ? "#0D6EFD" : "#28A745", /* eslint-disable id-length */
+                x: this.state.xcord, /* eslint-enable id-length */
             },
         ),
     )

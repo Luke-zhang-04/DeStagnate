@@ -5,7 +5,7 @@
 <p align="center">
     <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/LICENSE"><img src="https://img.shields.io/github/license/luke-zhang-04/destagnate" alt="License"/></a>
     <a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/v/destagnate?logo=npm" alt="npm version"/></a>
-    <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/es6/deStagnate.bundle.min.js"><img src="https://img.shields.io/github/size/luke-zhang-04/DeStagnate/dist/es6/deStagnate.bundle.min.js?label=es6/deStagnate.bundle.min.js" alt="bundle min size"></a>
+    <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/iife/deStagnate.min.js"><img src="https://img.badgesize.io/https:/raw.githubusercontent.com/Luke-zhang-04/DeStagnate/master/dist/iife/deStagnate.min.js?label=iife/deStagnate.min.js%20gzip&compression=gzip" alt="bundle min gzip size"></a>
     <a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/dt/destagnate"/></a>
     <a href="https://github.com/Luke-zhang-04/DeStagnate/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://img.shields.io/github/workflow/status/Luke-zhang-04/DeStagnate/Node.js%20CI/master?label=Tests&logo=github" alt="tests"/></a>
     <br/>
@@ -19,10 +19,10 @@ Make creating dynamic components within static sites easier with DeStagnate, a R
 [See some examples](https://luke-zhang-04.github.io/DeStagnate/)
 
 ## Why not just use React?
-React is great for dynamic web applications, but it is not well optimised for static-like sites. With DeStagnate, you can create React-like componnets within the browser environment, or a bundler such as Webpack or Browserify. DeStagnate uses less resources, and was made with use in static sites as it's main purpose.
+React is great for dynamic web applications, but it is not well optimized for static-like sites. With DeStagnate, you can create React-like components within a browser environment, or with a bundler such as Webpack, Browserify, Rollup, etc. DeStagnate uses less resources, and was made with use in static sites as it's main purpose.
 
 ## Documentation
-Documentation can be found at [https://github.com/Luke-zhang-04/DeStagnate/wiki](https://github.com/Luke-zhang-04/DeStagnate/wiki) for the latest version
+Documentation can be found at [https://luke-zhang-04.github.io/DeStagnate/docs/](https://luke-zhang-04.github.io/DeStagnate/docs/) for the latest version
 
 ## Installation
 Through NPM
@@ -38,28 +38,28 @@ Through `curl` or `wget` to download a bundle for browser usage<br/>
 
 ```bash
 # Prodution
-curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.min.js > deStagnate.bundle.js
-wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.min.js
+curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.min.js > deStagnate.js
+wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.min.js
 
 # Development
-curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.js > deStagnate.bundle.min.js
-wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/deStagnate.bundle.js
+curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.js > deStagnate.min.js
+wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.js
 
-# Latest
-curl -L https://unpkg.com/destagnate@1.8.0/dist/deStagnate.bundle.min.js > deStagnate.bundle.min.js
-wget https://unpkg.com/destagnate@1.8.0/dist/deStagnate.bundle.min.js
+# Latest IIFE bundle
+curl -L https://unpkg.com/destagnate@2.0.0/dist/iife/deStagnate.min.js > deStagnate.min.js
+wget https://unpkg.com/destagnate@2.0.0/dist/iife/deStagnate.min.js
 ```
 
 With a CDN
 ```html
 <!-- Production -->
-<script src="https://unpkg.com/destagnate@version/dist/deStagnate.bundle.min.js"></script>
+<script src="https://unpkg.com/destagnate@version/dist/iife/deStagnate.min.js"></script>
 
 <!-- Development -->
-<script src="https://unpkg.com/destagnate@version/dist/deStagnate.bundle.js"></script>
+<script src="https://unpkg.com/destagnate@version/dist/iife/deStagnate.js"></script>
 
 <!-- Latest -->
-<script src="https://unpkg.com/destagnate@1.8.0/dist/deStagnate.bundle.min.js"></script>
+<script src="https://unpkg.com/destagnate@2.0.0/dist/iife/deStagnate.min.js"></script>
 ```
 
 ## Basic Use
@@ -69,10 +69,10 @@ See [https://luke-zhang-04.github.io/DeStagnate/docs](https://luke-zhang-04.gith
 const DS = DeStagnate
 
 // Node env requires this
-import * as DS from "destagnate"
-const DS = require("destagnate")
+import DeStagnate from "destagnate"
+const DeStagnate = require("destagnate")
 
-class Counter extends DS.Component {
+class Counter extends DeStagnate.Component {
 
     constructor (parent) {
         super(parent)
@@ -81,7 +81,7 @@ class Counter extends DS.Component {
     }
 
     // Using DS.createElement() - all options available below
-    render = () => DS.createElement("div")
+    render = () => DeStagnate.createElement("div")
     render = () => Counter.createElement("div")
     render = () => this.createElement("div")
 
@@ -121,6 +121,7 @@ You can compile with this `tsconfig.json`
     "compilerOptions": {
         "jsx": "react",
         "jsxFactory": "DeStagnate.createElement",
+        "jsxFragmentFactory": "DeStagnate.Fragment",
     },
 }
 ```
@@ -132,11 +133,10 @@ You can also compile with this `.babelrc.json`
         [
             "@babel/plugin-transform-react-jsx",
             {
-                "pragma": "DeStagnate.createElement"
+                "pragma": "DeStagnate.createElement",
+                "pragmaFrag": "DeStagnate.Fragment"
             }
         ]
     ]
 }
 ```
-
-There are no fragments in DeStagnate. Use arrays instead.

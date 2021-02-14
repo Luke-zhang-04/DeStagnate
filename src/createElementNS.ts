@@ -1,19 +1,17 @@
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.8.0
+ * @version 2.0.0
  * @exports createElementNS createElement for namespaced elements
  */
 
 import {
     ChildrenArrayType,
-    ChildrenType,
-    bindChildren as _bindChildren,
-    bindProps as _bindProps,
-    unpackChildren as _unpackChildren
+    bindChildren,
+    bindProps
 } from "./private/_createElementUtils"
 
 /**
@@ -29,27 +27,13 @@ export const createElementNS = (
     namespaceURI: keyof SVGElementTagNameMap | "http://www.w3.org/1999/xhtml" | "http://www.w3.org/2000/svg" | null,
     tagName: keyof SVGElementEventMap | string,
     props?: {[key: string]: string | number},
-    children?: ChildrenType,
-    ...childrenRest: ChildrenArrayType
+    ...children: ChildrenArrayType
 ): Element => {
     const element = document.createElementNS(namespaceURI, tagName)
 
-    _bindProps(element, props, true)
+    bindProps(element, props, true)
 
-    let _children: ChildrenType | undefined = children
-
-    if (children && childrenRest) {
-        if (typeof(children) === "object" && children instanceof Array) {
-            _children = [
-                ..._unpackChildren(children),
-                ..._unpackChildren(childrenRest),
-            ]
-        } else {
-            _children = [children, ..._unpackChildren(childrenRest)]
-        }
-    }
-
-    _bindChildren(element, _children)
+    bindChildren(element, children)
 
     return element
 }

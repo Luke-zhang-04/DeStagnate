@@ -77,7 +77,7 @@
         "comma-dangle": ["warn", {
             "arrays": "only-multiline",
             "objects": "only-multiline",
-            "imports": "never",
+            "imports": "only-multiline",
             "exports": "only-multiline",
             "functions": "only-multiline"
         }],
@@ -125,7 +125,7 @@
         "max-depth": "error",
         "max-len": ["error", {"code": 81, "ignoreStrings": true, "ignoreComments": true, "ignoreTemplateLiterals": true, "ignoreUrls": true}],
         "max-lines": "error",
-        "max-lines-per-function": "error",
+        "max-lines-per-function": ["error", {"max": 60}],
         "max-nested-callbacks": "error",
         "max-params": ["error", {"max": 6}],
         "max-statements": ["error", {"max": 20}],
@@ -350,7 +350,7 @@
                     "format": ["camelCase"]
                 },{
                     "selector": "variableLike",
-                    "format": ["camelCase"],
+                    "format": ["camelCase", "PascalCase"],
                     "leadingUnderscore": "allow"
                 }, {
                     "selector": "memberLike",

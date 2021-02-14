@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   DeStagnate Docs
-  Copyright (C) 2020 Luke Zhang | luke-zhang-04.github.io | MIT License
+  Copyright (C) 2020 - 2021 Luke Zhang | luke-zhang-04.github.io | MIT License
 -->
 <html lang="en">
 <head>
@@ -49,7 +49,7 @@
         <div class="col-12 col-md-6 col-lg-12 container mb-3">
             <div class="bg-tertiary container p-5 br-3">
                 <h1>Documentation</h1>
-                <p>Check out the <a href="https://github.com/Luke-zhang-04/DeStagnate/wiki" target="_blank" rel="noopener noreferrer">wiki</a> for documentation, or see some examples.</p>
+                <p>Check out the <a href="https://luke-zhang-04.github.io/DeStagnate/docs/" target="_blank" rel="noopener noreferrer">docs</a> for documentation, or see some examples.</p>
             </div>
         </div>
         </div>
@@ -57,63 +57,45 @@
 
     <div class="container">
         <h1>Here's the source code for this website's navagation section (above)!</h1>
-        <p>How cool is that!</p>
         <pre class="d-block">
             <code class="language-tsx">
-import createElement from "destagnate/lib/createElementOnly"
+import * as DeStagnate from "../../lib/createElementOnly"
+import pages from "./pages" // 2D array of pages
 
-const DeStagnate = { // Need this for JSX pragma
-    createElement,
-};
-
-(() => {
+(() =&gt; {
     /**
      * Create nav item
      * @param {string} file - file to link to
      * @param {string} content - content of item
      * @returns {HTMLElement} nav item
      */
-    const createNavItem = (file: string, content: string): HTMLElement => (
+    const createNavItem = (file: string, content: string): JSX.Element =&gt; (
             &lt;li&gt;
                 &lt;a class="text-dark" href={file}&gt;{content}&lt;/a&gt;
             &lt;/li&gt;
-        ),
-        /**
-         * All pages with their location and display name
-         */
-        pages = [
-            ["index.html", "Home"],
-            ["state.html", "State example"],
-            ["props.html", "Props example"],
-            ["eventListener.html", "Event listener example"],
-            ["ref.html", "Ref example"],
-            ["calculator.html", "Calculator Example"],
-            ["namespace.html", "Namespaced element (SVG) example"],
-            ["ticTacToe.html", "TicTacToe example"],
-            ["ticTacToe.html", "Nested component example"],
-        ]
+        )
 
     /**
-        * Append to elements to nav
-        */
+     * Append to elements to nav
+     */
     document.getElementById("nav")?.appendChild(
         &lt;div class="p-4 bg-light"&gt;
             &lt;div class="row"&gt;
                 &lt;div class="col-12 col-sm-6"&gt;
                     &lt;a
-                        href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/es6/deStagnate.bundle.min.js"
+                        href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/iife/deStagnate.min.js"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="pl-4"
                     &gt;
                         &lt;img
-                            src="https://img.shields.io/github/size/luke-zhang-04/DeStagnate/dist/es6/deStagnate.bundle.min.js?label=es6/deStagnate.bundle.min.js&style=for-the-badge"
+                            src="https://img.badgesize.io/https:/raw.githubusercontent.com/Luke-zhang-04/DeStagnate/master/dist/iife/deStagnate.min.js?label=iife/deStagnate.min.js%20gzip&compression=gzip&style=for-the-badge&bg=blue"
                             alt="bundle min size"
                             class="mb-3"
                         /&gt;
                     &lt;/a&gt;
                     &lt;ul&gt;
-                        {pages.map((val) => createNavItem(val[0], val[1]))}
+                        {pages.map((val) =&gt; createNavItem(val[0], val[1]))}
                     &lt;/ul&gt;
                 &lt;/div&gt;
                 &lt;div class="col-12 col-sm-6 col-lg-4"&gt;
@@ -125,6 +107,7 @@ const DeStagnate = { // Need this for JSX pragma
         &lt;/div&gt;
     )
 })()
+
             </code>
         </pre>
     </div>
@@ -139,38 +122,32 @@ const DeStagnate = { // Need this for JSX pragma
         <script async src="compiled/compare.js"></script>
         <hr/>
         <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12">
                 <pre>
                     <code class="language-ts">
-const className = "container bg-light text-dark py-1 br-1 my-1"
-
-// Structured like your component/element
+// Structured like your component/element, even without JSX
 document.getElementById("compare")?.children[0]?.appendChild(
-    createElement("div", {class: className},
-        createElement("p", {class: "m-0 p-0"}, "Hello World!")
-    )
+    createElement("div", {class: "container bg-light text-dark py-1 br-1 my-1"},
+        createElement("p", {class: "m-0 p-0"}, "Hello World!"),
+    ),
 )
                     </code>
                 </pre>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12">
                 <pre>
                     <code class="language-ts">
-// Lack of structure
-
+// Lack of structure - what's going on here???
 const helloWorldContainer = document.createElement("div"),
-    helloWorld = document.createElement("p"),
-    className = "container bg-light text-dark py-1 br-1 my-1"
+    helloWorld = document.createElement("p")
 
-helloWorldContainer.setAttribute("class", className)
+helloWorldContainer.setAttribute("class", "container bg-light text-dark py-1 br-1 my-1")
 helloWorld.setAttribute("class", "m-0 p-0")
-helloWorld.innerText = "Hello World!"
+helloWorld.appendChild(document.createTextNode("Hello World!"))
 
 helloWorldContainer.appendChild(helloWorld)
 
-document.getElementById("compare")
-    ?.children[1]
-    ?.appendChild(helloWorldContainer)
+document.getElementById("compare")?.children[1]?.appendChild(helloWorldContainer)
                     </code>
                 </pre>
             </div>

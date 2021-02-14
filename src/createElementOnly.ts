@@ -1,16 +1,15 @@
 /**
  * DeStagnate
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 Luke Zhang
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 1.8.0
+ * @version 2.0.0
  * @exports createElement function for DOM manipulation without DeStagnate class or Refs
  */
 // eslint-disable-next-line
 /// <reference path="./jsx.ts" />
 
-import url from "./private/_url"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
 /* eslint-disable one-var, @typescript-eslint/no-explicit-any */
@@ -53,7 +52,7 @@ interface BasicProps {
     alt?: string,
     style?: string,
     title?: string,
-    
+
     onFocus?: EventFunc<"focus">,
     onBlur?: EventFunc<"blur">,
     onFocusIn?: EventFunc<"focusin">,
@@ -89,7 +88,7 @@ interface BasicProps {
  * @param ns - if namespace element
  * @returns void
  */
-const _bindProps = (
+const bindProps = (
     element: Element,
     props?: BasicProps | null,
     ns = false,
@@ -113,26 +112,10 @@ const _bindProps = (
                     )
                 }
             } else if (val !== undefined) {
-                console.warn(`WARN: Code 7. See ${url}. Params: ${typeof(val)}, ${key}`)
+                console.warn(`${typeof val} is not a valid DeStagnate child`)
             }
         }
     }
-}
-
-const _unpackChildren = (
-    children: ChildrenArrayType,
-): ChildrenFlatArrayType => {
-    const newChildren = []
-
-    for (const child of children) {
-        if (typeof(child) === "object" && child instanceof Array) {
-            newChildren.push(..._unpackChildren(child))
-        } else {
-            newChildren.push(child)
-        }
-    }
-
-    return newChildren as ChildrenFlatArrayType
 }
 
 /**
@@ -142,20 +125,20 @@ const _unpackChildren = (
  * @param children - children to bind with
  * @returns void
  */
-const _bindChildren = (
+const bindChildren = (
     element: Element,
     children?: ChildrenType,
 ): void => {
     if (children !== null && children !== undefined) {
         if (children instanceof Array) {
             for (const child of children) {
-                _bindChildren(element, child)
+                bindChildren(element, child)
             }
         } else if (
-            typeof(children) === "string" ||
-            typeof(children) === "number"
+            typeof children === "string" ||
+            typeof children === "number"
         ) {
-            (element as HTMLElement).innerText = children.toString()
+            element.appendChild(document.createTextNode(children.toString()))
         } else {
             element.appendChild(children)
         }
@@ -173,8 +156,7 @@ const _bindChildren = (
 export function createElement<T extends keyof HTMLElementTagNameMap> (
     tagNameOrComponent: T,
     props?: BasicProps | null,
-    children?: ChildrenType,
-    ...childrenArgs: ChildrenArrayType
+    ...children: ChildrenArrayType
 ): HTMLElementTagNameMap[T]
 
 /**
@@ -192,8 +174,7 @@ export function createElement<
 > (
     tagNameOrComponent: (props?: Props, children?: Children)=> Returns,
     props?: Props,
-    children?: ChildrenType,
-    ...childrenArgs: ChildrenArrayType
+    ...children: ChildrenArrayType
 ): Returns
 
 /**
@@ -211,36 +192,22 @@ export function createElement<
     Returns = void,
 > (
     tagNameOrComponent: T | ((
-        props?: T,
-        children?: ChildrenType,
+        _props?: T,
+        ..._children: ChildrenArrayType
     )=> Returns),
     props?: BasicProps | null | T,
-    children?: ChildrenType,
-    ...childrenArgs: ChildrenArrayType
+    ...children: ChildrenArrayType
 ): HTMLElement | Returns | Error {
-    let _children: ChildrenType | undefined = children
-
-    if (children && childrenArgs) {
-        if (children instanceof Array) {
-            _children = [
-                ..._unpackChildren(children),
-                ..._unpackChildren(childrenArgs),
-            ]
-        } else {
-            _children = [children, ..._unpackChildren(childrenArgs)]
-        }
-    }
-
     if (typeof(tagNameOrComponent) === "string") {
         const element = document.createElement(tagNameOrComponent)
 
-        _bindProps(element, props as BasicProps | null)
+        bindProps(element, props as BasicProps | null)
 
-        _bindChildren(element, _children)
+        bindChildren(element, children)
 
         return element
     } else if (typeof(tagNameOrComponent) === "function") {
-        return tagNameOrComponent(props as T, _children)
+        return tagNameOrComponent(props as T, children)
     }
 
     return Error("tagNameOrComponent is of invalid type.")
