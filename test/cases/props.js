@@ -7,12 +7,10 @@
  * Main test suite for destagnate
  */
 
-const DeStagnate = require("../deStagnate.bundle"),
-    assert = require("assert")
+import DeStagnate, {createElement} from "../deStagnate.cjs"
+import assert from "assert"
 
-const {createElement} = DeStagnate
-
-class Props extends DeStagnate.default {
+class Props extends DeStagnate.Component {
 
     render = () => this.props.colors.map((color) => (
         createElement(
@@ -55,9 +53,7 @@ const btnPrimary = (document) => {
         )
     }
 
-module.exports.test = (document) => {
-    DeStagnate.setDocument(document)
-
+export const test = () => {
     const props = new Props(
         document.querySelector("#props"),
         {colors: [

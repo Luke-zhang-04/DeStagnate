@@ -7,14 +7,10 @@
  * Main test suite for destagnate
  */
 
-const DeStagnate = require("../deStagnate.bundle"),
-    assert = require("assert")
+import assert from "assert"
+import {createElement} from "../deStagnate.cjs"
 
-const {createElement} = DeStagnate
-
-module.exports.test = (document) => {
-    DeStagnate.setDocument(document)
-
+export const test = () => {
     const element = createElement(
         "div",
         {id: "_ELEMENTTEST"},

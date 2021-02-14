@@ -24,8 +24,9 @@
     "eslint": "^7.19.0",
     "eslint-config-recommended": "^4.1.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
+    "global-jsdom": "^8.0.0-beta.1",
     "jsdom": "^16.4.0",
-    "mocha": "^8.2.1",
+    "mocha": "^8.3.0",
     "nice-try": "^2.1.0",
     "nyc": "^15.1.0",
     "rollup": "^2.38.4",
@@ -41,11 +42,11 @@
     "build": "bash build.sh",
     "build:dev": "bash build.sh --dev",
     "start": "bash build.sh --watch",
-    "prepublishOnly": "bash build.sh --no-docs",
-    "lint": "./node_modules/.bin/eslint \"*/**/*.ts\"",
-    "lint:fix": "./node_modules/.bin/eslint \"*/**/*.ts\" --fix",
-    "test": "./node_modules/.bin/mocha tests --exit",
-    "coverage": "./node_modules/.bin/nyc ./node_modules/.bin/mocha tests"
+    "prepublishOnly": "./build.sh --no-docs",
+    "lint": "eslint \"*/**/*.ts\"",
+    "lint:fix": "eslint \"*/**/*.ts\" --fix",
+    "test": "mocha test --exit",
+    "coverage": "./node_modules/.bin/nyc ./node_modules/.bin/mocha test"
   },
   "repository": {
     "type": "git",
@@ -65,5 +66,7 @@
     "url": "https://github.com/Luke-zhang-04/DeStagnate/issues"
   },
   "homepage": "https://luke-zhang-04.github.io/DeStagnate/",
-  "dependencies": {}
+  "dependencies": {
+    "cross-env": "^7.0.3"
+  }
 }

@@ -7,13 +7,11 @@
  * Main test suite for destagnate
  */
 
-const DeStagnate = require("../deStagnate.bundle"),
-    assert = require("assert"),
-    niceTry = require("nice-try")
+import DeStagnate, {createElement} from "../deStagnate.cjs"
+import assert from "assert"
+import niceTry from "nice-try"
 
-const {createElement} = DeStagnate
-
-class State extends DeStagnate.default {
+class State extends DeStagnate.Component {
 
     constructor (parent) {
         super(parent)
@@ -61,7 +59,7 @@ class State extends DeStagnate.default {
 
 }
 
-const checkNaN = (document) => {
+const checkNaN = () => {
         const val = document.getElementById("counter")
             .getElementsByTagName("p")[1]
             .innerHTML
@@ -71,7 +69,7 @@ const checkNaN = (document) => {
             isNaN(Number(val)),
         )
     },
-    value = (document, state) => {
+    value = (state) => {
         state.setState({count: 1})
 
         const val = document.getElementById("counter")
@@ -94,7 +92,7 @@ const checkNaN = (document) => {
             state.getState.count,
         )
     },
-    unmountedComponent = (document, state) => {
+    unmountedComponent = (state) => {
         state.unmount()
 
         const inner = document.getElementById("counter").innerHTML
@@ -116,22 +114,6 @@ const checkNaN = (document) => {
             tried,
         )
     },
-    nonStrictStateSet = (state) => {
-        const tried = niceTry(() => {
-            state.disableStrict()
-
-            state.state = state.getState
-
-            state.useStrict()
-
-            return true
-        })
-
-        assert.strictEqual(
-            true,
-            tried
-        )
-    },
     noThrow = (state) => {
         state.shouldthrow = false
         state.state = state.getState
@@ -142,24 +124,20 @@ const checkNaN = (document) => {
         )
     }
 
-module.exports.test = (document) => {
-    DeStagnate.setDocument(document)
-
+export const test = () => {
     const state = new State(document.getElementById("counter"))
 
     state.mount()
 
-    it("Should return a number", () => checkNaN(document))
+    it("Should return a number", () => checkNaN())
 
-    it("Should return 1", () => value(document, state))
+    it("Should return 1", () => value(state))
 
     it("Should return 2", () => getState(state))
 
-    it("Should return 1", () => unmountedComponent(document, state))
+    it("Should return 1", () => unmountedComponent(state))
 
     it("Should throw error and return undefined", () => invalidStateSetting(state))
-
-    it("Should not throw error", () => nonStrictStateSet(state))
 
     it("Should return true", () => noThrow(state))
 }

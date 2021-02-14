@@ -7,12 +7,10 @@
  * Main test suite for destagnate
  */
 
-const DeStagnate = require("../deStagnate.bundle"),
-    assert = require("assert")
+import DeStagnate, {createElement} from "../deStagnate.cjs"
+import assert from "assert"
 
-const {createElement} = DeStagnate
-
-class ComponentA extends DeStagnate.default {
+class ComponentA extends DeStagnate.Component {
 
     constructor () {
         super()
@@ -28,7 +26,7 @@ class ComponentA extends DeStagnate.default {
 
 }
 
-class ComponentB extends DeStagnate.default {
+class ComponentB extends DeStagnate.Component {
 
     nestedComponent = new ComponentA()
 
@@ -42,10 +40,7 @@ class ComponentB extends DeStagnate.default {
 
 }
 
-module.exports.test = (document, window) => {
-    DeStagnate.setDocument(document)
-    DeStagnate.setWindow(window)
-
+export const test = () => {
     const nestedComponent = new ComponentB(document.getElementById("nest"))
 
     nestedComponent.mount()

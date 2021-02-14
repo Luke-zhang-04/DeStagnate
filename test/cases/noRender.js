@@ -7,13 +7,11 @@
  * Main test suite for destagnate
  */
 
-const DeStagnate = require("../deStagnate.bundle"),
-    assert = require("assert"),
-    niceTry = require("nice-try")
+import DeStagnate from "../deStagnate.cjs"
+import assert from "assert"
+import niceTry from "nice-try"
 
-const {createElement} = DeStagnate
-
-class NoRender extends DeStagnate.default {
+class NoRender extends DeStagnate.Component {
 
     componentDidCatch = (err) => {
         console.log("ERR: This class does not abstract the render method")
@@ -23,9 +21,7 @@ class NoRender extends DeStagnate.default {
 
 }
 
-module.exports.test = (document) => {
-    DeStagnate.setDocument(document)
-
+export const test = (document) => {
     const noRender = niceTry(() => {
         const _noRender = new NoRender(document.body)
 

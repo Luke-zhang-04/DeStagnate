@@ -7,12 +7,10 @@
  * Main test suite for destagnate
  */
 
-const DeStagnate = require("../deStagnate.bundle"),
-    assert = require("assert")
+import DeStagnate, {createElementNS} from "../deStagnate.cjs"
+import assert from "assert"
 
-const {createElementNS} = DeStagnate
-
-class NSElement extends DeStagnate.default {
+class NSElement extends DeStagnate.Component {
 
     render = () => createElementNS(
         "http://www.w3.org/2000/svg",
@@ -45,9 +43,7 @@ class NSElement extends DeStagnate.default {
 
 }
 
-module.exports.test = (document) => {
-    DeStagnate.setDocument(document)
-
+export const test = () => {
     const nsElement = new NSElement(document.getElementById("SVG"), {width: 250})
 
     nsElement.mount()

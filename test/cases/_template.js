@@ -7,21 +7,16 @@
  * Main test suite for destagnate
  */
 
-const DeStagnate = require("../deStagnate.bundle"),
-    assert = require("assert")
+import DeStagnate, {createElement} from "../deStagnate.cjs"
+import assert from "assert"
 
-const {createElement} = DeStagnate
+class COMPONENTNAMECLASS extends DeStagnate.Component {
 
-class COMPONENTNAMECLASS extends DeStagnate.default {
-
-    render = () => createElement(
-    )
+    render = () => createElement()
 
 }
 
-module.exports.test = (document) => {
-    DeStagnate.setDocument(document)
-
+export const test = () => {
     const COMPONENTNAME = new COMPONENTNAMECLASS(document.getElementById("COMPONENTNAME"))
 
     COMPONENTNAME.mount()
