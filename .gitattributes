@@ -1,5 +1,5 @@
 # Distribution is generated
-./dist/*.js linguist-generated=true
+./dist/**/*.js linguist-generated=true
 
 # Enforce Unix newlines
 * text=auto eol=lf
@@ -10,9 +10,6 @@
 # Remove config files
 *.config.js linguist-detectable=false
 
-# Remove babel files
-.babelrc.* linguist-detectable=false
-
 # Ignore some test files
-*.bundle.js linguist-generated=true
-./test/ linguist-detectable=false
+test/ linguist-detectable=false
+docs/ linguist-documentation=true
