@@ -22,7 +22,7 @@ export {Component} from "./component"
 export {Ref, createRef} from "./createRef"
 export {createElement} from "./createElement"
 export {createElementNS} from "./createElementNS"
-export {fragment} from "./fragment"
+export {Fragment} from "./fragment"
 
 /* eslint-disable */
 export namespace DeStagnate {
@@ -31,7 +31,7 @@ export namespace DeStagnate {
     export type Ref = _CreateRef.Ref
     export const {createElement} = _CreateElement
     export const {createElementNS} = _CreateElementNS
-    export const {fragment} = _Fragment
+    export const {Fragment} = _Fragment
 }
 /* eslint-enable */
 

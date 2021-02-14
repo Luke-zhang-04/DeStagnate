@@ -42,7 +42,7 @@ yarn add typescript -D
     "compilerOptions": {
         "jsx": "react",
         "jsxFactory": "DeStagnate.createElement",
-        "jsxFragmentFactory": "DeStagnate.fragment",
+        "jsxFragmentFactory": "DeStagnate.Fragment",
     },
     "include": ["myFile.tsx"],
 }
@@ -91,7 +91,7 @@ module.exports = {
             "@babel/plugin-transform-react-jsx",
             {
                 "pragma": "DeStagnate.createElement",
-                "pragmaFrag": "DeStagnate.fragment",
+                "pragmaFrag": "DeStagnate.Fragment",
             },
         ],
     ],

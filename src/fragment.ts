@@ -15,7 +15,7 @@ import {
     bindChildren
 } from "./private/_createElementUtils"
 
-export const fragment = (
+export const Fragment = (
     _: unknown,
     ...children: ChildrenArrayType
 ): DocumentFragment => {
@@ -26,4 +26,4 @@ export const fragment = (
     return documentFragment
 }
 
-export default fragment
+export default Fragment

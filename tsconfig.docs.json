@@ -3,7 +3,7 @@
     "compilerOptions": {
         "jsx": "react",
         "jsxFactory": "DeStagnate.createElement",
-        "jsxFragmentFactory": "DeStagnate.fragment",
+        "jsxFragmentFactory": "DeStagnate.Fragment",
         "allowJs": true,
         "checkJs": false,
         "outDir": "./docs/lib",

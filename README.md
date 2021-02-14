@@ -121,7 +121,7 @@ You can compile with this `tsconfig.json`
     "compilerOptions": {
         "jsx": "react",
         "jsxFactory": "DeStagnate.createElement",
-        "jsxFragmentFactory": "DeStagnate.fragment",
+        "jsxFragmentFactory": "DeStagnate.Fragment",
     },
 }
 ```
@@ -134,7 +134,7 @@ You can also compile with this `.babelrc.json`
             "@babel/plugin-transform-react-jsx",
             {
                 "pragma": "DeStagnate.createElement",
-                "pragmaFrag": "DeStagnate.fragment"
+                "pragmaFrag": "DeStagnate.Fragment"
             }
         ]
     ]
