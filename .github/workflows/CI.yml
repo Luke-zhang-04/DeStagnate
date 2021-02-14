@@ -18,22 +18,10 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: lint
-        run: make lint
+        run: yarn lint
 
       - name: build
-        run: bash build.sh --no-docs
-
-      - name: upload lib
-        uses: actions/upload-artifact@v2
-        with:
-          name: lib
-          path: lib
-
-      - name: upload build
-        uses: actions/upload-artifact@v2
-        with:
-          name: build
-          path: build
+        run: ./build.sh --no-docs
 
   test:
     name: test

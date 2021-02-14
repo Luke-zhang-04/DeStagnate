@@ -45,8 +45,8 @@
     "prepublishOnly": "./build.sh --no-docs",
     "lint": "eslint \"*/**/*.ts\"",
     "lint:fix": "eslint \"*/**/*.ts\" --fix",
-    "test": "mocha test --exit",
-    "coverage": "./node_modules/.bin/nyc ./node_modules/.bin/mocha test"
+    "test": "mocha --exit",
+    "coverage": "nyc mocha"
   },
   "repository": {
     "type": "git",
