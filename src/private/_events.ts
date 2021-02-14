@@ -142,7 +142,7 @@ export interface Events {
     /**
      * Wheel event
      */
-    onWheel?: EventMember<"wheel">
+    onWheel?: EventMember<"wheel">,
 
     /**
      * Window load event
@@ -152,7 +152,7 @@ export interface Events {
     /**
      * Window online event
      */
-    onOnline?: WindowEventMember<"online">
+    onOnline?: WindowEventMember<"online">,
 
     /**
      * Window offline event
@@ -171,17 +171,17 @@ export interface Events {
      * scrolled even slightly. This means that it can trigger a lot of DOM
      * reflows if you're not careful
      */
-    onScroll?: WindowEventMember<"scroll">
+    onScroll?: WindowEventMember<"scroll">,
 
     /**
      * Window keydown  event
      */
-    onKeyDown?: WindowEventMember<"keydown">
+    onKeyDown?: WindowEventMember<"keydown">,
 
     /**
      * Window keypress  event
      */
-    onKeyPress?: WindowEventMember<"keypress">
+    onKeyPress?: WindowEventMember<"keypress">,
 
     /**
      * Window keyup  event
@@ -190,30 +190,30 @@ export interface Events {
 }
 
 const eventNames: (keyof Events)[] = [
-        "onFocus",
-        "onBlur",
-        "onFocusIn",
-        "onFocusOut",
-        "onAnimationStart",
-        "onAnimationCancel",
-        "onAnimationEnd",
-        "onAnimationIteration",
-        "onTransitionStart",
-        "onTransitionCancel",
-        "onTransitionEnd",
-        "onTransitionRun",
-        "onAuxClick",
-        "onClick",
-        "onDblClick",
-        "onMouseDown",
-        "onMouseEnter",
-        "onMouseLeave",
-        "onMouseMove",
-        "onMouseOver",
-        "onMouseOut",
-        "onMouseUp",
-        "onWheel",
-    ],
+    "onFocus",
+    "onBlur",
+    "onFocusIn",
+    "onFocusOut",
+    "onAnimationStart",
+    "onAnimationCancel",
+    "onAnimationEnd",
+    "onAnimationIteration",
+    "onTransitionStart",
+    "onTransitionCancel",
+    "onTransitionEnd",
+    "onTransitionRun",
+    "onAuxClick",
+    "onClick",
+    "onDblClick",
+    "onMouseDown",
+    "onMouseEnter",
+    "onMouseLeave",
+    "onMouseMove",
+    "onMouseOver",
+    "onMouseOut",
+    "onMouseUp",
+    "onWheel",
+],
     windowEventNames: (keyof Events)[] = [
         "onLoad",
         "onOnline",
