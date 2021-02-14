@@ -1,5 +1,5 @@
 # Distribution is generated
-./dist/**/*.js linguist-generated=true
+dist/ linguist-generated=true
 
 # Enforce Unix newlines
 * text=auto eol=lf
