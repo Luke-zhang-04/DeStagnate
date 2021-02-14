@@ -1,5 +1,5 @@
 # Distribution is generated
-dist/ linguist-generated=true
+dist/**/* linguist-generated=true
 
 # Enforce Unix newlines
 * text=auto eol=lf
@@ -11,5 +11,5 @@ dist/ linguist-generated=true
 *.config.js linguist-detectable=false
 
 # Ignore some test files
-test/ linguist-detectable=false
-docs/ linguist-documentation=true
+test/**/* linguist-detectable=false
+docs/**/* linguist-documentation=true
