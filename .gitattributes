@@ -15,4 +15,4 @@
 
 # Ignore some test files
 *.bundle.js linguist-generated=true
-./tests/ linguist-detectable=false
+./test/ linguist-detectable=false
