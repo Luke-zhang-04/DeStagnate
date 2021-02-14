@@ -233,9 +233,13 @@ export abstract class Component<
     /**
      * Sets state
      * @param obj - state to set
+     * @param shouldComponentUpdate - if component should update after state setting
      * @returns void
      */
-    public readonly setState = (obj: Partial<State>): void | Error => {
+    public readonly setState = (
+        obj: Partial<State>,
+        shouldComponentUpdate = true,
+    ): void | Error => {
         try {
             if (!this._didMount) {
                 throw new Error(unmountedMsg)
@@ -256,9 +260,10 @@ export abstract class Component<
 
             Object.assign(this._state, obj)
 
-            const renderedContent = this.shouldComponentUpdate()
-                ? this._execRender()
-                : undefined
+            const renderedContent =
+                shouldComponentUpdate && this.shouldComponentUpdate()
+                    ? this._execRender()
+                    : undefined
 
             this._update(renderedContent)
         } catch (err) /* istanbul ignore next */ {
