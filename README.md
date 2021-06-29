@@ -6,6 +6,7 @@
     <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/LICENSE"><img src="https://img.shields.io/github/license/luke-zhang-04/destagnate" alt="License"/></a>
     <a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/v/destagnate?logo=npm" alt="npm version"/></a>
     <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/iife/deStagnate.min.js"><img src="https://img.badgesize.io/https:/raw.githubusercontent.com/Luke-zhang-04/DeStagnate/master/dist/iife/deStagnate.min.js?label=iife/deStagnate.min.js%20gzip&compression=gzip" alt="bundle min gzip size"></a>
+    <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/iife/createElement.min.js"><img src="https://img.badgesize.io/https:/raw.githubusercontent.com/Luke-zhang-04/DeStagnate/master/dist/iife/createElement.min.js?label=iife/createElement.min.js%20gzip&compression=gzip" alt="bundle min gzip size"></a>
     <a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/dt/destagnate"/></a>
     <a href="https://github.com/Luke-zhang-04/DeStagnate/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://img.shields.io/github/workflow/status/Luke-zhang-04/DeStagnate/Node.js%20CI/master?label=Tests&logo=github" alt="tests"/></a>
     <br/>
@@ -14,7 +15,7 @@
     <a href="https://codeclimate.com/github/Luke-zhang-04/DeStagnate/test_coverage"><img src="https://api.codeclimate.com/v1/badges/a4e072a738b46c76393b/test_coverage" alt="coverage"/></a>
 </p>
 
-Make creating dynamic components within static sites easier with DeStagnate, a ReactJS inspired library.
+Write JSX for just under 800 gziped bytes
 
 [See some examples](https://luke-zhang-04.github.io/DeStagnate/)
 

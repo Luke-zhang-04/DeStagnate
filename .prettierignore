@@ -6,9 +6,11 @@ lib/
 tsconfig*.json
 public/css
 public/js
-dist/
+dist/**/*.js
+dist/**/*.cjs
 docs/docs
 docs/compiled
 docs/css
 docs/lib
 tsbuildinfo.json
+.nyc_output

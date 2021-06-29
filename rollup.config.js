@@ -64,14 +64,12 @@ const makePlugins = (target = "es6", prod = true) => [
 ]
 
 const es5 = (() => {
-    /** @type {import("rollup").RollupOptions[]} */
-    const configs = []
-
     /** @type {[format: import("rollup").ModuleFormat, extension?: string][]} */
     const formats = [["iife", "js"], ["cjs"]]
 
-    for (const [format, extension] of formats) {
-        configs.push({
+    /** @type {import("rollup").RollupOptions[][]} */
+    const configs = formats.map(([format, extension]) => [
+        {
             input: "lib",
             output: {
                 file: `dist/es5/deStagnate.min.${extension ?? format}`,
@@ -81,9 +79,8 @@ const es5 = (() => {
                 sourcemap: true,
             },
             plugins: makePlugins("es5", true),
-        })
-
-        configs.push({
+        },
+        {
             input: "lib",
             output: {
                 file: `dist/es5/deStagnate.${extension ?? format}`,
@@ -93,21 +90,41 @@ const es5 = (() => {
                 sourcemap: true,
             },
             plugins: makePlugins("es5", false),
-        })
-    }
+        },
+        {
+            input: "lib/createElementOnly",
+            output: {
+                file: `dist/es5/createElement.min.${extension ?? format}`,
+                format,
+                banner: bannerProd,
+                name: "DeStagnate",
+                sourcemap: true,
+            },
+            plugins: makePlugins("es5", true),
+        },
+        {
+            input: "lib/createElementOnly",
+            output: {
+                file: `dist/es5/createElement.${extension ?? format}`,
+                format,
+                banner: bannerDev,
+                name: "DeStagnate",
+                sourcemap: true,
+            },
+            plugins: makePlugins("es5", false),
+        },
+    ])
 
-    return configs
+    return configs.flat()
 })()
 
 const es6 = (() => {
-    /** @type {import("rollup").RollupOptions[]} */
-    const configs = []
-
     /** @type {[format: import("rollup").ModuleFormat, extension?: string][]} */
     const formats = [["esm", "js"], ["iife", "js"], ["cjs"]]
 
-    for (const [format, extension] of formats) {
-        configs.push({
+    /** @type {import("rollup").RollupOptions[]} */
+    const configs = formats.map(([format, extension]) => [
+        {
             input: "lib",
             output: {
                 file: `dist/${format}/deStagnate.min.${extension ?? format}`,
@@ -117,9 +134,8 @@ const es6 = (() => {
                 sourcemap: true,
             },
             plugins: makePlugins("es6", true),
-        })
-
-        configs.push({
+        },
+        {
             input: "lib",
             output: {
                 file: `dist/${format}/deStagnate.${extension ?? format}`,
@@ -129,10 +145,32 @@ const es6 = (() => {
                 sourcemap: true,
             },
             plugins: makePlugins("es6", false),
-        })
-    }
+        },
+        {
+            input: "lib/createElementOnly",
+            output: {
+                file: `dist/${format}/createElement.min.${extension ?? format}`,
+                format,
+                banner: bannerProd,
+                name: "DeStagnate",
+                sourcemap: true,
+            },
+            plugins: makePlugins("es6", true),
+        },
+        {
+            input: "lib/createElementOnly",
+            output: {
+                file: `dist/${format}/createElement.${extension ?? format}`,
+                format,
+                banner: bannerDev,
+                name: "DeStagnate",
+                sourcemap: true,
+            },
+            plugins: makePlugins("es6", false),
+        },
+    ])
 
-    return configs
+    return configs.flat()
 })()
 
 /** @type {import("rollup").RollupOptions[]} */
