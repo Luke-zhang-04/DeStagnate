@@ -857,20 +857,19 @@ var Fragment = function Fragment(_) {
   return documentFragment;
 };
 
-(function (DeStagnate) {
-  DeStagnate.Component = Component;
-  DeStagnate.createRef = createRef;
-  DeStagnate.createElement = createElement;
-  DeStagnate.createElementNS = createElementNS;
-  DeStagnate.Fragment = Fragment;
-})(exports.DeStagnate || (exports.DeStagnate = {}));
-
-var DeStagnate = exports.DeStagnate;
+var exports$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  Component: Component,
+  createRef: createRef,
+  createElement: createElement,
+  createElementNS: createElementNS,
+  Fragment: Fragment
+});
 
 exports.Component = Component;
 exports.Fragment = Fragment;
 exports.createElement = createElement;
 exports.createElementNS = createElementNS;
 exports.createRef = createRef;
-exports.default = DeStagnate;
+exports.default = exports$1;
 //# sourceMappingURL=deStagnate.cjs.map

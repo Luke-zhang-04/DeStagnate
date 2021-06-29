@@ -611,18 +611,15 @@ const Fragment = (_, ...children) => {
   return documentFragment;
 };
 
-var DeStagnate;
+var exports = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    Component: Component,
+    createRef: createRef,
+    createElement: createElement,
+    createElementNS: createElementNS,
+    Fragment: Fragment
+});
 
-(function (DeStagnate) {
-  DeStagnate.Component = Component;
-  DeStagnate.createRef = createRef;
-  DeStagnate.createElement = createElement;
-  DeStagnate.createElementNS = createElementNS;
-  DeStagnate.Fragment = Fragment;
-})(DeStagnate || (DeStagnate = {}));
-
-var DeStagnate$1 = DeStagnate;
-
-export default DeStagnate$1;
-export { Component, DeStagnate, Fragment, createElement, createElementNS, createRef };
+export default exports;
+export { Component, Fragment, createElement, createElementNS, createRef };
 //# sourceMappingURL=deStagnate.js.map
