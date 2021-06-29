@@ -9,6 +9,9 @@
 var DeStagnate = (function (exports) {
     'use strict';
 
+    const eventNames = ["onFocus", "onBlur", "onFocusIn", "onFocusOut", "onAnimationStart", "onAnimationCancel", "onAnimationEnd", "onAnimationIteration", "onTransitionStart", "onTransitionCancel", "onTransitionEnd", "onTransitionRun", "onAuxClick", "onClick", "onDblClick", "onMouseDown", "onMouseEnter", "onMouseLeave", "onMouseMove", "onMouseOver", "onMouseOut", "onMouseUp", "onWheel"];
+    const windowEventNames = ["onLoad", "onOnline", "onOffline", "onResize", "onScroll", "onKeyDown", "onKeyPress", "onKeyUp"];
+
     const url = "https://luke-zhang-04.github.io/DeStagnate/error-codes";
 
     /**
@@ -132,88 +135,6 @@ var DeStagnate = (function (exports) {
       current: null
     });
 
-    class Preset {
-      constructor() {
-        this.createElement = createElement;
-        this.createElementNS = createElementNS;
-        this.createRef = createRef;
-        /**
-         * Called when component catches error. Default behaviour is console.error
-         *
-         * @param error - Error object with info
-         * @returns Void
-         */
-
-        this.componentDidCatch = error => console.error(error);
-        /**
-         * Called before component is updated
-         *
-         * @returns Whether or not component should update/re-render
-         */
-
-
-        this.shouldComponentUpdate = () => true;
-        /**
-         * Rendering HTML, must be part of extended class
-         *
-         * @abstract
-         * @returns If returns null error will be thrown
-         * @public
-         * @instance
-         */
-
-
-        this.render = () => null;
-      }
-
-    }
-    Preset.createElement = createElement;
-    Preset.createElementNS = createElementNS;
-    Preset.createRef = createRef;
-
-    const eventNames = ["onFocus", "onBlur", "onFocusIn", "onFocusOut", "onAnimationStart", "onAnimationCancel", "onAnimationEnd", "onAnimationIteration", "onTransitionStart", "onTransitionCancel", "onTransitionEnd", "onTransitionRun", "onAuxClick", "onClick", "onDblClick", "onMouseDown", "onMouseEnter", "onMouseLeave", "onMouseMove", "onMouseOver", "onMouseOut", "onMouseUp", "onWheel"];
-    const windowEventNames = ["onLoad", "onOnline", "onOffline", "onResize", "onScroll", "onKeyDown", "onKeyPress", "onKeyUp"];
-    class Events extends Preset {
-      constructor() {
-        super(...arguments);
-        /**
-         * Binds event listeners. Do not call manually
-         *
-         * @pacakge
-         */
-
-        this.bindEventListeners = element => {
-          this._eventListener(element.addEventListener);
-
-          this._eventListener(window.addEventListener, windowEventNames);
-        };
-        /**
-         * Binds event listeners. Do not call manually
-         *
-         * @pacakge
-         */
-
-
-        this.unbindEventListeners = element => {
-          this._eventListener(element.removeEventListener);
-
-          this._eventListener(window.removeEventListener, windowEventNames);
-        };
-
-        this._eventListener = (eventListener, events = eventNames) => {
-          for (const eventName of events) {
-            const htmlEventName = eventName.slice(2).toLowerCase();
-            const callback = this[eventName];
-
-            if (callback !== undefined && callback instanceof Function) {
-              eventListener(htmlEventName, callback);
-            }
-          }
-        };
-      }
-
-    }
-
     /**
      * Checks if val1 and val2 are equal
      *
@@ -276,7 +197,7 @@ var DeStagnate = (function (exports) {
      * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
      */
 
-    class Component extends Events {
+    class Component {
       /**
        * Construct class component
        *
@@ -284,151 +205,18 @@ var DeStagnate = (function (exports) {
        * @param props - Element properties; works like React Props
        */
       constructor(parent, props) {
-        super();
         this.props = props;
+        this.createElement = createElement;
+        this.createElementNS = createElementNS;
+        this.createRef = createRef;
         this._state = {};
         this._didSetInitialState = false;
         this._didMount = false;
         /**
-         * Forces a component to update Follows the same component updating procedure as setState
-         * without modifying state
-         *
-         * @returns Returns error if error is thrown
-         */
-
-        this.forceUpdate = () => {
-          var _a, _b;
-
-          try {
-            if (!this._didMount) {
-              throw new Error(unmountedMsg);
-            }
-
-            (_a = this.componentDidUpdate) === null || _a === void 0 ? void 0 : _a.call(this);
-
-            if (this._parent === undefined) {
-              throw new Error(`ERROR: code 2. See ${url}.`);
-            }
-
-            (_b = this.getSnapshotBeforeUpdate) === null || _b === void 0 ? void 0 : _b.call(this, Object.assign({}, this.props), Object.assign({}, this.state));
-
-            this._update(this._execRender());
-          } catch (err) {
-            return this._handleError(err);
-          }
-        };
-        /**
-         * Checks if the state changed from the previous state. Can me attached to `shouldComponentUpdate`
-         *
-         * @param keys - List of keys to crawl. If left undefined (default) then use all keys. Should
-         *   be `keyof State`, but there were some Typescript troubles.
-         * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the
-         *   two values are simply compared with `===`
-         * @param maxLength - Max length of array to crawl. If max lenth is reached, two arrays will
-         *   simply be compared with `===`
-         * @returns `val1 === val2`
-         */
-
-
-        this.stateDidChange = (keys, maxDepth = 3, maxLength = 15) => {
-          var _a;
-
-          if (keys === undefined) {
-            return !utils.isEqual(this._state, this._prevState, maxDepth, maxLength);
-          }
-
-          const state = {};
-          const prevState = {};
-
-          for (const key of keys) {
-            state[key] = this._state[key];
-            prevState[key] = (_a = this._prevState) === null || _a === void 0 ? void 0 : _a[key];
-          }
-
-          return !utils.isEqual(state, prevState, maxDepth, maxLength);
-        };
-        /**
-         * Sets state
-         *
-         * @param obj - State to set
-         * @param shouldComponentUpdate - If component should update after state setting
-         * @returns Void
-         */
-
-
-        this.setState = (obj, shouldComponentUpdate = true) => {
-          var _a, _b;
-
-          try {
-            if (!this._didMount) {
-              throw new Error(unmountedMsg);
-            }
-
-            (_a = this.componentWillUpdate) === null || _a === void 0 ? void 0 : _a.call(this);
-
-            if (this._parent === undefined) {
-              throw new Error(`ERROR: code 2. See ${url}.`);
-            }
-
-            this._prevState = Object.assign({}, this._state);
-            (_b = this.getSnapshotBeforeUpdate) === null || _b === void 0 ? void 0 : _b.call(this, Object.assign({}, this.props), Object.assign({}, this.state));
-            Object.assign(this._state, obj);
-            const renderedContent = shouldComponentUpdate && this.shouldComponentUpdate() ? this._execRender() : undefined;
-
-            this._update(renderedContent);
-          } catch (err) {
-            return this._handleError(err);
-          }
-        };
-        /**
-         * Initial mounting to be manually called
-         *
-         * @param parent - Parent element to mount with; optional
-         * @returns - Result of append child to parent element
-         */
-
-
-        this.mountComponent = parent => {
-          var _a, _b;
-
-          try {
-            if (parent !== undefined) {
-              this.parent = parent;
-            }
-
-            if (this._parent === undefined) {
-              throw new Error(`ERROR: code 2. See ${url}.`);
-            }
-
-            const component = this.render();
-            this._didSetInitialState = true;
-            (_a = this.componentWillMount) === null || _a === void 0 ? void 0 : _a.call(this);
-
-            if (component === null) {
-              throw new Error(`ERROR: code 3. See ${url}.`);
-            }
-
-            this.bindEventListeners(this._parent);
-            this._didMount = true;
-            (_b = this.componentDidMount) === null || _b === void 0 ? void 0 : _b.call(this);
-
-            if (component instanceof Array) {
-              const fragment = document.createDocumentFragment();
-              component.forEach(child => fragment.appendChild(child));
-              return this._parent.appendChild(fragment);
-            }
-
-            return this._parent.appendChild(component);
-          } catch (err) {
-            return this._handleError(err);
-          }
-        };
-        /**
          * Initial mounting to be manually called
          *
          * @returns - Result of append child to parent element
          */
-
 
         this.mount = this.mountComponent;
         /**
@@ -437,95 +225,7 @@ var DeStagnate = (function (exports) {
          * @returns - Void
          */
 
-        this.unmountComponent = () => {
-          var _a;
-
-          try {
-            if (this._parent === undefined) {
-              return;
-            }
-
-            (_a = this.componentWillUnmount) === null || _a === void 0 ? void 0 : _a.call(this);
-            this.unbindEventListeners(this._parent);
-
-            this._removeChildren();
-
-            this._didMount = false;
-          } catch (err) {
-            this._handleError(err);
-          }
-        };
-        /**
-         * Unmounting to be manually called
-         *
-         * @returns - Void
-         */
-
-
         this.unmount = this.unmountComponent;
-        /**
-         * Removes children from this._parent
-         *
-         * @returns Void
-         */
-
-        this._removeChildren = () => {
-          if (this._parent === undefined) {
-            throw new Error(`ERROR: code 2. See ${url}.`);
-          }
-
-          while (this._parent.firstChild) {
-            if (this._parent.lastChild) {
-              this._parent.removeChild(this._parent.lastChild);
-            }
-          }
-        };
-        /**
-         * Executes new render
-         *
-         * @returns Rendered content
-         */
-
-
-        this._execRender = () => {
-          this._removeChildren();
-
-          return this.render();
-        };
-        /**
-         * Updates the component
-         *
-         * @param renderedContent - Rendered content from executing the render function
-         * @returns Void
-         */
-
-
-        this._update = renderedContent => {
-          var _a, _b, _c;
-
-          if (renderedContent instanceof Array) {
-            for (const element of renderedContent) {
-              (_a = this._parent) === null || _a === void 0 ? void 0 : _a.appendChild(element);
-            }
-          } else if (renderedContent) {
-            (_b = this._parent) === null || _b === void 0 ? void 0 : _b.appendChild(renderedContent);
-          }
-
-          if (renderedContent) {
-            (_c = this.componentDidUpdate) === null || _c === void 0 ? void 0 : _c.call(this);
-          }
-        };
-
-        this._handleError = err => {
-          if (err instanceof Error) {
-            this.componentDidCatch(err);
-            return err;
-          }
-
-          const error = new Error(String(err));
-          this.componentDidCatch(error);
-          return error;
-        };
 
         if (parent === null) {
           throw new Error("Parent is null, expected HTMLElement | undefined.");
@@ -620,8 +320,293 @@ var DeStagnate = (function (exports) {
       get prevState() {
         return this._prevState;
       }
+      /**
+       * Forces a component to update Follows the same component updating procedure as setState
+       * without modifying state
+       *
+       * @returns Returns error if error is thrown
+       */
+
+
+      forceUpdate() {
+        var _a, _b;
+
+        try {
+          if (!this._didMount) {
+            throw new Error(unmountedMsg);
+          }
+
+          (_a = this.componentDidUpdate) === null || _a === void 0 ? void 0 : _a.call(this);
+
+          if (this._parent === undefined) {
+            throw new Error(`ERROR: code 2. See ${url}.`);
+          }
+
+          (_b = this.getSnapshotBeforeUpdate) === null || _b === void 0 ? void 0 : _b.call(this, Object.assign({}, this.props), Object.assign({}, this.state));
+
+          this._update(this._execRender());
+        } catch (err) {
+          return this._handleError(err);
+        }
+      }
+      /**
+       * Checks if the state changed from the previous state. Can me attached to `shouldComponentUpdate`
+       *
+       * @param keys - List of keys to crawl. If left undefined (default) then use all keys. Should
+       *   be `keyof State`, but there were some Typescript troubles.
+       * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the
+       *   two values are simply compared with `===`
+       * @param maxLength - Max length of array to crawl. If max lenth is reached, two arrays will
+       *   simply be compared with `===`
+       * @returns `val1 === val2`
+       */
+
+
+      stateDidChange(keys, maxDepth = 3, maxLength = 15) {
+        var _a;
+
+        if (keys === undefined) {
+          return !utils.isEqual(this._state, this._prevState, maxDepth, maxLength);
+        }
+
+        const state = {};
+        const prevState = {};
+
+        for (const key of keys) {
+          state[key] = this._state[key];
+          prevState[key] = (_a = this._prevState) === null || _a === void 0 ? void 0 : _a[key];
+        }
+
+        return !utils.isEqual(state, prevState, maxDepth, maxLength);
+      }
+      /**
+       * Sets state
+       *
+       * @param obj - State to set
+       * @param shouldComponentUpdate - If component should update after state setting
+       * @returns Void
+       */
+
+
+      setState(obj, shouldComponentUpdate = true) {
+        var _a, _b;
+
+        try {
+          if (!this._didMount) {
+            throw new Error(unmountedMsg);
+          }
+
+          (_a = this.componentWillUpdate) === null || _a === void 0 ? void 0 : _a.call(this);
+
+          if (this._parent === undefined) {
+            throw new Error(`ERROR: code 2. See ${url}.`);
+          }
+
+          this._prevState = Object.assign({}, this._state);
+          (_b = this.getSnapshotBeforeUpdate) === null || _b === void 0 ? void 0 : _b.call(this, Object.assign({}, this.props), Object.assign({}, this.state));
+          Object.assign(this._state, obj);
+          const renderedContent = shouldComponentUpdate && this.shouldComponentUpdate() ? this._execRender() : undefined;
+
+          this._update(renderedContent);
+        } catch (err) {
+          return this._handleError(err);
+        }
+      }
+      /**
+       * Initial mounting to be manually called
+       *
+       * @param parent - Parent element to mount with; optional
+       * @returns - Result of append child to parent element
+       */
+
+
+      mountComponent(parent) {
+        var _a, _b;
+
+        try {
+          if (parent !== undefined) {
+            this.parent = parent;
+          }
+
+          if (this._parent === undefined) {
+            throw new Error(`ERROR: code 2. See ${url}.`);
+          }
+
+          const component = this.render();
+          this._didSetInitialState = true;
+          (_a = this.componentWillMount) === null || _a === void 0 ? void 0 : _a.call(this);
+
+          if (component === null) {
+            throw new Error(`ERROR: code 3. See ${url}.`);
+          }
+
+          this._bindEventListeners(this._parent);
+
+          this._didMount = true;
+          (_b = this.componentDidMount) === null || _b === void 0 ? void 0 : _b.call(this);
+
+          if (component instanceof Array) {
+            const fragment = document.createDocumentFragment();
+            component.forEach(child => fragment.appendChild(child));
+            return this._parent.appendChild(fragment);
+          }
+
+          return this._parent.appendChild(component);
+        } catch (err) {
+          return this._handleError(err);
+        }
+      }
+      /**
+       * Unmounting to be manually called
+       *
+       * @returns - Void
+       */
+
+
+      unmountComponent() {
+        var _a;
+
+        try {
+          if (this._parent === undefined) {
+            return;
+          }
+
+          (_a = this.componentWillUnmount) === null || _a === void 0 ? void 0 : _a.call(this);
+
+          this._unbindEventListeners(this._parent);
+
+          this._removeChildren();
+
+          this._didMount = false;
+        } catch (err) {
+          this._handleError(err);
+        }
+      }
+      /**
+       * Called when component catches error. Default behaviour is console.error
+       *
+       * @param error - Error object with info
+       * @returns Void
+       */
+
+
+      componentDidCatch(error) {
+        console.error(error);
+      }
+      /**
+       * Called before component is updated
+       *
+       * @returns Whether or not component should update/re-render
+       */
+
+
+      shouldComponentUpdate() {
+        return true;
+      }
+      /**
+       * Removes children from this._parent
+       *
+       * @returns Void
+       */
+
+
+      _removeChildren() {
+        if (this._parent === undefined) {
+          throw new Error(`ERROR: code 2. See ${url}.`);
+        }
+
+        while (this._parent.firstChild) {
+          if (this._parent.lastChild) {
+            this._parent.removeChild(this._parent.lastChild);
+          }
+        }
+      }
+      /**
+       * Executes new render
+       *
+       * @returns Rendered content
+       */
+
+
+      _execRender() {
+        this._removeChildren();
+
+        return this.render();
+      }
+      /**
+       * Updates the component
+       *
+       * @param renderedContent - Rendered content from executing the render function
+       * @returns Void
+       */
+
+
+      _update(renderedContent) {
+        var _a, _b, _c;
+
+        if (renderedContent instanceof Array) {
+          for (const element of renderedContent) {
+            (_a = this._parent) === null || _a === void 0 ? void 0 : _a.appendChild(element);
+          }
+        } else if (renderedContent) {
+          (_b = this._parent) === null || _b === void 0 ? void 0 : _b.appendChild(renderedContent);
+        }
+
+        if (renderedContent) {
+          (_c = this.componentDidUpdate) === null || _c === void 0 ? void 0 : _c.call(this);
+        }
+      }
+
+      _handleError(err) {
+        if (err instanceof Error) {
+          this.componentDidCatch(err);
+          return err;
+        }
+
+        const error = new Error(String(err));
+        this.componentDidCatch(error);
+        return error;
+      }
+      /**
+       * Binds event listeners. Do not call manually
+       *
+       * @pacakge
+       */
+
+
+      _bindEventListeners(element) {
+        this._eventListener(element.addEventListener);
+
+        this._eventListener(window.addEventListener, windowEventNames);
+      }
+      /**
+       * Binds event listeners. Do not call manually
+       *
+       * @pacakge
+       */
+
+
+      _unbindEventListeners(element) {
+        this._eventListener(element.removeEventListener);
+
+        this._eventListener(window.removeEventListener, windowEventNames);
+      }
+
+      _eventListener(eventListener, events = eventNames) {
+        for (const eventName of events) {
+          const htmlEventName = eventName.slice(2).toLowerCase();
+          const callback = this[eventName];
+
+          if (callback !== undefined && callback instanceof Function) {
+            eventListener(htmlEventName, callback);
+          }
+        }
+      }
 
     }
+    Component.createElement = createElement;
+    Component.createElementNS = createElementNS;
+    Component.createRef = createRef;
 
     const Fragment = (_, ...children) => {
       const documentFragment = document.createDocumentFragment();

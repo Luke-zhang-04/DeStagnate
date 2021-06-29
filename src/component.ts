@@ -10,10 +10,14 @@
  */
 /* eslint-disable max-lines */
 
-import {Events as Base} from "./private/_events"
-import type {RenderType} from "./private/_base"
+import {EventListener, Events, eventNames, windowEventNames} from "./private/_events"
+import _createElement from "./createElement"
+import _createElementNS from "./createElementNS"
+import _createRef from "./createRef"
 import url from "./private/_url"
 import utils from "./private/utils"
+
+type RenderType = Node | Node[] | null
 
 const unmountedMsg = "Refusing to update unmounted component"
 
@@ -23,7 +27,7 @@ interface Empty {}
 export interface Component<
     Props extends Empty = {[key: string]: unknown},
     State extends Empty = {[key: string]: unknown},
-> {
+> extends Events {
     /**
      * What to call before component update (state mutation)
      *
@@ -32,6 +36,21 @@ export interface Component<
      * @returns Void
      */
     getSnapshotBeforeUpdate?: (prevProps: Props, prevState: State) => void
+
+    /** Function that is called after component mounting */
+    componentDidMount?: () => void
+
+    /** Function that is called after component update (state mutation) */
+    componentDidUpdate?: () => void
+
+    /** Function that is called before component mounting */
+    componentWillMount?: () => void
+
+    /** Function that is called before component unmounting */
+    componentWillUnmount?: () => void
+
+    /** Function that is called before component update (state mutation) */
+    componentWillUpdate?: () => void
 }
 
 /**
@@ -45,7 +64,19 @@ export interface Component<
 export abstract class Component<
     Props extends Empty = {[key: string]: unknown},
     State extends Empty = {[key: string]: unknown},
-> extends Base {
+> {
+    public static readonly createElement = _createElement
+
+    public static readonly createElementNS = _createElementNS
+
+    public static readonly createRef = _createRef
+
+    public readonly createElement = _createElement
+
+    public readonly createElementNS = _createElementNS
+
+    public readonly createRef = _createRef
+
     /** State of component. Works similar React State */
     private _state: State = {} as State
 
@@ -68,8 +99,6 @@ export abstract class Component<
      * @param props - Element properties; works like React Props
      */
     public constructor(parent?: HTMLElement | null, protected props?: Props) {
-        super()
-
         if (parent === null) {
             throw new Error("Parent is null, expected HTMLElement | undefined.")
         }
@@ -162,7 +191,7 @@ export abstract class Component<
      *
      * @returns Returns error if error is thrown
      */
-    public readonly forceUpdate = (): void | Error => {
+    public forceUpdate(): void | Error {
         try {
             if (!this._didMount) {
                 throw new Error(unmountedMsg)
@@ -193,7 +222,7 @@ export abstract class Component<
      *   simply be compared with `===`
      * @returns `val1 === val2`
      */
-    public readonly stateDidChange = (keys?: string[], maxDepth = 3, maxLength = 15): boolean => {
+    public stateDidChange(keys?: string[], maxDepth = 3, maxLength = 15): boolean {
         if (keys === undefined) {
             return !utils.isEqual(this._state, this._prevState, maxDepth, maxLength)
         }
@@ -216,10 +245,7 @@ export abstract class Component<
      * @param shouldComponentUpdate - If component should update after state setting
      * @returns Void
      */
-    public readonly setState = (
-        obj: Partial<State>,
-        shouldComponentUpdate = true,
-    ): void | Error => {
+    public setState(obj: Partial<State>, shouldComponentUpdate = true): void | Error {
         try {
             if (!this._didMount) {
                 throw new Error(unmountedMsg)
@@ -255,7 +281,7 @@ export abstract class Component<
      * @param parent - Parent element to mount with; optional
      * @returns - Result of append child to parent element
      */
-    public readonly mountComponent = (parent?: HTMLElement): Node | Error => {
+    public mountComponent(parent?: HTMLElement): Node | Error {
         try {
             if (parent !== undefined) {
                 this.parent = parent
@@ -275,7 +301,7 @@ export abstract class Component<
                 throw new Error(`ERROR: code 3. See ${url}.`)
             }
 
-            this.bindEventListeners(this._parent)
+            this._bindEventListeners(this._parent)
 
             this._didMount = true
             this.componentDidMount?.()
@@ -306,7 +332,7 @@ export abstract class Component<
      *
      * @returns - Void
      */
-    public readonly unmountComponent = (): void => {
+    public unmountComponent(): void {
         try {
             if (this._parent === undefined) {
                 return
@@ -314,7 +340,7 @@ export abstract class Component<
 
             this.componentWillUnmount?.()
 
-            this.unbindEventListeners(this._parent)
+            this._unbindEventListeners(this._parent)
 
             this._removeChildren()
             this._didMount = false
@@ -332,11 +358,30 @@ export abstract class Component<
     /* eslint-enable max-len, @typescript-eslint/member-ordering */
 
     /**
+     * Called when component catches error. Default behaviour is console.error
+     *
+     * @param error - Error object with info
+     * @returns Void
+     */
+    public componentDidCatch(error: Error): void {
+        console.error(error)
+    }
+
+    /**
+     * Called before component is updated
+     *
+     * @returns Whether or not component should update/re-render
+     */
+    public shouldComponentUpdate(): boolean {
+        return true
+    }
+
+    /**
      * Removes children from this._parent
      *
      * @returns Void
      */
-    private _removeChildren = (): void => {
+    private _removeChildren(): void {
         if (this._parent === undefined) {
             throw new Error(`ERROR: code 2. See ${url}.`)
         }
@@ -353,7 +398,7 @@ export abstract class Component<
      *
      * @returns Rendered content
      */
-    private _execRender = (): RenderType => {
+    private _execRender(): RenderType {
         this._removeChildren()
 
         return this.render()
@@ -365,7 +410,7 @@ export abstract class Component<
      * @param renderedContent - Rendered content from executing the render function
      * @returns Void
      */
-    private _update = (renderedContent?: RenderType): void => {
+    private _update(renderedContent?: RenderType): void {
         if (renderedContent instanceof Array) {
             for (const element of renderedContent) {
                 this._parent?.appendChild(element)
@@ -379,7 +424,7 @@ export abstract class Component<
         }
     }
 
-    private _handleError = (err: unknown): Error => {
+    private _handleError(err: unknown): Error {
         if (err instanceof Error) {
             this.componentDidCatch(err)
 
@@ -392,6 +437,47 @@ export abstract class Component<
 
         return error
     }
+
+    /**
+     * Binds event listeners. Do not call manually
+     *
+     * @pacakge
+     */
+    private _bindEventListeners(element: HTMLElement): void {
+        this._eventListener(element.addEventListener)
+        this._eventListener(window.addEventListener, windowEventNames)
+    }
+
+    /**
+     * Binds event listeners. Do not call manually
+     *
+     * @pacakge
+     */
+    private _unbindEventListeners(element: HTMLElement): void {
+        this._eventListener(element.removeEventListener)
+        this._eventListener(window.removeEventListener, windowEventNames)
+    }
+
+    private _eventListener(eventListener: EventListener, events = eventNames): void {
+        for (const eventName of events) {
+            const htmlEventName = eventName.slice(2).toLowerCase()
+            const callback = this[eventName]
+
+            if (callback !== undefined && callback instanceof Function) {
+                eventListener(htmlEventName, callback as EventListenerOrEventListenerObject)
+            }
+        }
+    }
+
+    /**
+     * Rendering HTML, must be part of extended class
+     *
+     * @abstract
+     * @returns If returns null error will be thrown
+     * @public
+     * @instance
+     */
+    public abstract render(): RenderType
 }
 
 export default Component

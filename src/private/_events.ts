@@ -8,9 +8,7 @@
  * @package
  */
 
-import {Preset as BaseComponent} from "./_base"
-
-type EventListener = (
+export type EventListener = (
     type: string,
     listener: EventListenerOrEventListenerObject,
     options?: boolean | AddEventListenerOptions,
@@ -124,7 +122,7 @@ export interface Events {
     onKeyUp?: WindowEventMember<"keyup">
 }
 
-const eventNames: (keyof Events)[] = [
+export const eventNames: (keyof Events)[] = [
     "onFocus",
     "onBlur",
     "onFocusIn",
@@ -149,7 +147,7 @@ const eventNames: (keyof Events)[] = [
     "onMouseUp",
     "onWheel",
 ]
-const windowEventNames: (keyof Events)[] = [
+export const windowEventNames: (keyof Events)[] = [
     "onLoad",
     "onOnline",
     "onOffline",
@@ -159,37 +157,3 @@ const windowEventNames: (keyof Events)[] = [
     "onKeyPress",
     "onKeyUp",
 ]
-
-/* istanbul ignore next */
-export abstract class Events extends BaseComponent {
-    /**
-     * Binds event listeners. Do not call manually
-     *
-     * @pacakge
-     */
-    protected readonly bindEventListeners = (element: HTMLElement): void => {
-        this._eventListener(element.addEventListener)
-        this._eventListener(window.addEventListener, windowEventNames)
-    }
-
-    /**
-     * Binds event listeners. Do not call manually
-     *
-     * @pacakge
-     */
-    protected readonly unbindEventListeners = (element: HTMLElement): void => {
-        this._eventListener(element.removeEventListener)
-        this._eventListener(window.removeEventListener, windowEventNames)
-    }
-
-    private _eventListener = (eventListener: EventListener, events = eventNames): void => {
-        for (const eventName of events) {
-            const htmlEventName = eventName.slice(2).toLowerCase()
-            const callback = this[eventName]
-
-            if (callback !== undefined && callback instanceof Function) {
-                eventListener(htmlEventName, callback as EventListenerOrEventListenerObject)
-            }
-        }
-    }
-}
