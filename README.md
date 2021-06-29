@@ -15,7 +15,7 @@
     <a href="https://codeclimate.com/github/Luke-zhang-04/DeStagnate/test_coverage"><img src="https://api.codeclimate.com/v1/badges/a4e072a738b46c76393b/test_coverage" alt="coverage"/></a>
 </p>
 
-Write JSX for just under 800 gziped bytes
+Write JSX for just under 800 gziped bytes, and create React-like components with under 2 gziped KB.
 
 [See some examples](https://luke-zhang-04.github.io/DeStagnate/)
 

@@ -845,9 +845,6 @@ var Component = function () {
 
   return Component;
 }();
-Component.createElement = createElement;
-Component.createElementNS = createElementNS;
-Component.createRef = createRef;
 
 var Fragment = function Fragment(_) {
   var documentFragment = document.createDocumentFragment();

@@ -604,9 +604,6 @@ class Component {
   }
 
 }
-Component.createElement = createElement;
-Component.createElementNS = createElementNS;
-Component.createRef = createRef;
 
 const Fragment = (_, ...children) => {
   const documentFragment = document.createDocumentFragment();

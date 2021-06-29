@@ -65,12 +65,6 @@ export abstract class Component<
     Props extends Empty = {[key: string]: unknown},
     State extends Empty = {[key: string]: unknown},
 > {
-    public static readonly createElement = _createElement
-
-    public static readonly createElementNS = _createElementNS
-
-    public static readonly createRef = _createRef
-
     public readonly createElement = _createElement
 
     public readonly createElementNS = _createElementNS
