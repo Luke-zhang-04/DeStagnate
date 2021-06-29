@@ -66,7 +66,3 @@ export const isEqual = (val1: unknown, val2: unknown, maxDepth = 3, maxLength = 
 
     return val1 === val2
 }
-
-export default {
-    isEqual,
-}

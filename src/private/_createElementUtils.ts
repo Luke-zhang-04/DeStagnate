@@ -7,7 +7,7 @@
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  */
 
-import {Component} from "../component"
+import type {Component} from "../component"
 import type {Ref} from "../createRef"
 import url from "./_url"
 
@@ -130,7 +130,9 @@ export const bindChildren = (element: Node, children?: ChildrenType): void => {
             children.forEach((child: ChildrenType) => bindChildren(element, child))
         } else if (typeof children === "string" || typeof children === "number") {
             element.appendChild(document.createTextNode(children.toString()))
-        } else if (children instanceof Component) {
+        } else if (children instanceof Node) {
+            element.appendChild(children)
+        } else {
             if (!children.didMount && element instanceof window.HTMLElement) {
                 children.mount(element)
 
@@ -144,8 +146,6 @@ export const bindChildren = (element: Node, children?: ChildrenType): void => {
             }
 
             children.forceUpdate()
-        } else {
-            element.appendChild(children)
         }
     }
 }

@@ -10,12 +10,12 @@
  */
 /* eslint-disable max-lines */
 
+import * as utils from "./private/utils"
 import {EventListener, Events, eventNames, windowEventNames} from "./private/_events"
 import _createElement from "./createElement"
 import _createElementNS from "./createElementNS"
 import _createRef from "./createRef"
 import url from "./private/_url"
-import utils from "./private/utils"
 
 type RenderType = Node | Node[] | null
 

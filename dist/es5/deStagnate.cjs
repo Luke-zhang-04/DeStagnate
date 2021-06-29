@@ -161,6 +161,60 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
   };
 }
 
+/**
+ * Checks if val1 and val2 are equal
+ *
+ * @param val1 - Value to check for equality
+ * @param val2 - Value to compare against val1
+ * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the two
+ *   values are simply compared with `===`
+ * @param maxLength - Max length of array to crawl. If max lenth is reached, two arrays will simply
+ *   be compared with `===`
+ * @returns `val1 === val2`
+ */
+var isEqual = function isEqual(val1, val2) {
+  var maxDepth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 3;
+  var maxLength = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 10;
+
+  if (maxDepth === 0) {
+    return val1 === val2;
+  } else if (_typeof(val1) !== _typeof(val2)) {
+    return false;
+  }
+
+  if (val1 instanceof Array && val2 instanceof Array) {
+    if (val1.length !== val2.length) {
+      return false;
+    } else if (val1.length > maxLength || val2.length > maxLength) {
+      return val1 === val2;
+    }
+
+    for (var index = 0; index < val1.length; index++) {
+      if (!isEqual(val1[index], val2[index], maxDepth - 1, maxLength)) {
+        return false;
+      }
+    }
+
+    return true;
+  } else if (val1 instanceof Object && val2 instanceof Object) {
+    if (!isEqual(Object.keys(val1), Object.keys(val2), maxDepth - 1, maxLength)) {
+      return false;
+    }
+
+    for (var _i = 0, _Object$keys = Object.keys(val1); _i < _Object$keys.length; _i++) {
+      var key = _Object$keys[_i];
+
+      if (!isEqual(val1[key], val2[key], maxDepth - 1, maxLength)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  return val1 === val2;
+};
+
 var eventNames = ["onFocus", "onBlur", "onFocusIn", "onFocusOut", "onAnimationStart", "onAnimationCancel", "onAnimationEnd", "onAnimationIteration", "onTransitionStart", "onTransitionCancel", "onTransitionEnd", "onTransitionRun", "onAuxClick", "onClick", "onDblClick", "onMouseDown", "onMouseEnter", "onMouseLeave", "onMouseMove", "onMouseOver", "onMouseOut", "onMouseUp", "onWheel"];
 var windowEventNames = ["onLoad", "onOnline", "onOffline", "onResize", "onScroll", "onKeyDown", "onKeyPress", "onKeyUp"];
 
@@ -222,7 +276,9 @@ var bindChildren = function bindChildren(element, children) {
       });
     } else if (typeof children === "string" || typeof children === "number") {
       element.appendChild(document.createTextNode(children.toString()));
-    } else if (children instanceof Component) {
+    } else if (children instanceof Node) {
+      element.appendChild(children);
+    } else {
       if (!children.didMount && element instanceof window.HTMLElement) {
         children.mount(element);
         return;
@@ -235,8 +291,6 @@ var bindChildren = function bindChildren(element, children) {
       }
 
       children.forceUpdate();
-    } else {
-      element.appendChild(children);
     }
   }
 };
@@ -304,63 +358,6 @@ var createRef = function createRef() {
   return {
     current: null
   };
-};
-
-/**
- * Checks if val1 and val2 are equal
- *
- * @param val1 - Value to check for equality
- * @param val2 - Value to compare against val1
- * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the two
- *   values are simply compared with `===`
- * @param maxLength - Max length of array to crawl. If max lenth is reached, two arrays will simply
- *   be compared with `===`
- * @returns `val1 === val2`
- */
-var isEqual = function isEqual(val1, val2) {
-  var maxDepth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 3;
-  var maxLength = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 10;
-
-  if (maxDepth === 0) {
-    return val1 === val2;
-  } else if (_typeof(val1) !== _typeof(val2)) {
-    return false;
-  }
-
-  if (val1 instanceof Array && val2 instanceof Array) {
-    if (val1.length !== val2.length) {
-      return false;
-    } else if (val1.length > maxLength || val2.length > maxLength) {
-      return val1 === val2;
-    }
-
-    for (var index = 0; index < val1.length; index++) {
-      if (!isEqual(val1[index], val2[index], maxDepth - 1, maxLength)) {
-        return false;
-      }
-    }
-
-    return true;
-  } else if (val1 instanceof Object && val2 instanceof Object) {
-    if (!isEqual(Object.keys(val1), Object.keys(val2), maxDepth - 1, maxLength)) {
-      return false;
-    }
-
-    for (var _i = 0, _Object$keys = Object.keys(val1); _i < _Object$keys.length; _i++) {
-      var key = _Object$keys[_i];
-
-      if (!isEqual(val1[key], val2[key], maxDepth - 1, maxLength)) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  return val1 === val2;
-};
-var utils = {
-  isEqual: isEqual
 };
 
 var unmountedMsg = "Refusing to update unmounted component";
@@ -554,7 +551,7 @@ var Component = function () {
       var _a;
 
       if (keys === undefined) {
-        return !utils.isEqual(this._state, this._prevState, maxDepth, maxLength);
+        return !isEqual(this._state, this._prevState, maxDepth, maxLength);
       }
 
       var state = {};
@@ -575,7 +572,7 @@ var Component = function () {
         _iterator.f();
       }
 
-      return !utils.isEqual(state, prevState, maxDepth, maxLength);
+      return !isEqual(state, prevState, maxDepth, maxLength);
     }
     /**
      * Sets state

@@ -10,6 +10,55 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+/**
+ * Checks if val1 and val2 are equal
+ *
+ * @param val1 - Value to check for equality
+ * @param val2 - Value to compare against val1
+ * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the two
+ *   values are simply compared with `===`
+ * @param maxLength - Max length of array to crawl. If max lenth is reached, two arrays will simply
+ *   be compared with `===`
+ * @returns `val1 === val2`
+ */
+const isEqual = (val1, val2, maxDepth = 3, maxLength = 10) => {
+  if (maxDepth === 0) {
+    return val1 === val2;
+  } else if (typeof val1 !== typeof val2) {
+    return false;
+  }
+
+  if (val1 instanceof Array && val2 instanceof Array) {
+    if (val1.length !== val2.length) {
+      return false;
+    } else if (val1.length > maxLength || val2.length > maxLength) {
+      return val1 === val2;
+    }
+
+    for (let index = 0; index < val1.length; index++) {
+      if (!isEqual(val1[index], val2[index], maxDepth - 1, maxLength)) {
+        return false;
+      }
+    }
+
+    return true;
+  } else if (val1 instanceof Object && val2 instanceof Object) {
+    if (!isEqual(Object.keys(val1), Object.keys(val2), maxDepth - 1, maxLength)) {
+      return false;
+    }
+
+    for (const key of Object.keys(val1)) {
+      if (!isEqual(val1[key], val2[key], maxDepth - 1, maxLength)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  return val1 === val2;
+};
+
 const eventNames = ["onFocus", "onBlur", "onFocusIn", "onFocusOut", "onAnimationStart", "onAnimationCancel", "onAnimationEnd", "onAnimationIteration", "onTransitionStart", "onTransitionCancel", "onTransitionEnd", "onTransitionRun", "onAuxClick", "onClick", "onDblClick", "onMouseDown", "onMouseEnter", "onMouseLeave", "onMouseMove", "onMouseOver", "onMouseOut", "onMouseUp", "onWheel"];
 const windowEventNames = ["onLoad", "onOnline", "onOffline", "onResize", "onScroll", "onKeyDown", "onKeyPress", "onKeyUp"];
 
@@ -63,7 +112,9 @@ const bindChildren = (element, children) => {
       children.forEach(child => bindChildren(element, child));
     } else if (typeof children === "string" || typeof children === "number") {
       element.appendChild(document.createTextNode(children.toString()));
-    } else if (children instanceof Component) {
+    } else if (children instanceof Node) {
+      element.appendChild(children);
+    } else {
       if (!children.didMount && element instanceof window.HTMLElement) {
         children.mount(element);
         return;
@@ -76,8 +127,6 @@ const bindChildren = (element, children) => {
       }
 
       children.forceUpdate();
-    } else {
-      element.appendChild(children);
     }
   }
 };
@@ -135,58 +184,6 @@ const createElementNS = (namespaceURI, tagName, props, ...children) => {
 const createRef = () => ({
   current: null
 });
-
-/**
- * Checks if val1 and val2 are equal
- *
- * @param val1 - Value to check for equality
- * @param val2 - Value to compare against val1
- * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the two
- *   values are simply compared with `===`
- * @param maxLength - Max length of array to crawl. If max lenth is reached, two arrays will simply
- *   be compared with `===`
- * @returns `val1 === val2`
- */
-const isEqual = (val1, val2, maxDepth = 3, maxLength = 10) => {
-  if (maxDepth === 0) {
-    return val1 === val2;
-  } else if (typeof val1 !== typeof val2) {
-    return false;
-  }
-
-  if (val1 instanceof Array && val2 instanceof Array) {
-    if (val1.length !== val2.length) {
-      return false;
-    } else if (val1.length > maxLength || val2.length > maxLength) {
-      return val1 === val2;
-    }
-
-    for (let index = 0; index < val1.length; index++) {
-      if (!isEqual(val1[index], val2[index], maxDepth - 1, maxLength)) {
-        return false;
-      }
-    }
-
-    return true;
-  } else if (val1 instanceof Object && val2 instanceof Object) {
-    if (!isEqual(Object.keys(val1), Object.keys(val2), maxDepth - 1, maxLength)) {
-      return false;
-    }
-
-    for (const key of Object.keys(val1)) {
-      if (!isEqual(val1[key], val2[key], maxDepth - 1, maxLength)) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  return val1 === val2;
-};
-var utils = {
-  isEqual
-};
 
 const unmountedMsg = "Refusing to update unmounted component";
 /**
@@ -367,7 +364,7 @@ class Component {
     var _a;
 
     if (keys === undefined) {
-      return !utils.isEqual(this._state, this._prevState, maxDepth, maxLength);
+      return !isEqual(this._state, this._prevState, maxDepth, maxLength);
     }
 
     const state = {};
@@ -378,7 +375,7 @@ class Component {
       prevState[key] = (_a = this._prevState) === null || _a === void 0 ? void 0 : _a[key];
     }
 
-    return !utils.isEqual(state, prevState, maxDepth, maxLength);
+    return !isEqual(state, prevState, maxDepth, maxLength);
   }
   /**
    * Sets state
