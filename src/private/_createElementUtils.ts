@@ -1,33 +1,31 @@
 /**
- * Component
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
+ * Component A simple, ReactJS inspired library to create dynamic components within static sites easier
+ *
  * @license MIT
- * @version 2.0.0
- * @file share functions and types for createElement and it's variants
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @file share Functions and types for createElement and it's variants
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  */
 
-import {Component} from "../component"
+import type {Component} from "../component"
 import type {Ref} from "../createRef"
 import url from "./_url"
 
 /* eslint-disable one-var, @typescript-eslint/no-explicit-any */
 
-export type ChildrenFlatArrayType = (HTMLElement
+export type ChildrenFlatArrayType = (
+    | HTMLElement
     | Element
     | number
     | string
     | Component<any, any>
 )[]
 
-export type ChildrenArrayType = ChildrenFlatArrayType
-    | ChildrenArrayType[]
+export type ChildrenArrayType = ChildrenFlatArrayType | ChildrenArrayType[]
 
-/**
- * All types the children parameter can be
- */
-export type ChildrenType = ChildrenType[]
+/** All types the children parameter can be */
+export type ChildrenType =
+    | ChildrenType[]
     | string
     | number
     | ChildrenArrayType
@@ -35,67 +33,62 @@ export type ChildrenType = ChildrenType[]
     | Component<any, any>
 
 interface EventMap extends HTMLElementEventMap {
-    "": Event,
+    "": Event
 }
 
-export type EventFunc<T extends keyof EventMap = ""> = (
-    e: EventMap[T]
-)=> void
+export type EventFunc<T extends keyof EventMap = ""> = (e: EventMap[T]) => void
 
 export interface BasicProps {
     // eslint-disable-next-line
-    [key: string]: string | number | Element | Ref | EventFunc<keyof EventFunc> | undefined,
-    class?: string,
-    ref?: Ref,
-    id?: string,
-    src?: string,
-    href?: string,
-    width?: number,
-    height?: number,
-    alt?: string,
-    style?: string,
-    title?: string,
+    [key: string]: string | number | Element | Ref | EventFunc<keyof EventFunc> | undefined
+    class?: string
+    ref?: Ref
+    id?: string
+    src?: string
+    href?: string
+    width?: number
+    height?: number
+    alt?: string
+    style?: string
+    title?: string
 
-    onFocus?: EventFunc<"focus">,
-    onBlur?: EventFunc<"blur">,
-    onFocusIn?: EventFunc<"focusin">,
-    onFocusOut?: EventFunc<"focusout">,
+    onFocus?: EventFunc<"focus">
+    onBlur?: EventFunc<"blur">
+    onFocusIn?: EventFunc<"focusin">
+    onFocusOut?: EventFunc<"focusout">
 
-    onAnimationStart?: EventFunc<"animationstart">,
-    onAnimationCancel?: EventFunc<"animationcancel">,
-    onAnimationEnd?: EventFunc<"animationend">,
-    onAnimationIteration?: EventFunc<"animationiteration">,
+    onAnimationStart?: EventFunc<"animationstart">
+    onAnimationCancel?: EventFunc<"animationcancel">
+    onAnimationEnd?: EventFunc<"animationend">
+    onAnimationIteration?: EventFunc<"animationiteration">
 
-    onTransitionStart?: EventFunc<"transitionstart">,
-    onTransitionCancel?: EventFunc<"transitioncancel">,
-    onTransitionEnd?: EventFunc<"transitionend">,
-    onTransitionRun?: EventFunc<"transitionrun">,
+    onTransitionStart?: EventFunc<"transitionstart">
+    onTransitionCancel?: EventFunc<"transitioncancel">
+    onTransitionEnd?: EventFunc<"transitionend">
+    onTransitionRun?: EventFunc<"transitionrun">
 
-    onAuxClick?: EventFunc<"auxclick">,
-    onClick?: EventFunc<"click">,
-    onDblClick?: EventFunc<"dblclick">,
-    onMouseDown?: EventFunc<"mousedown">,
-    onMouseEnter?: EventFunc<"mouseenter">,
-    onMouseLeave?: EventFunc<"mouseleave">,
-    onMouseMove?: EventFunc<"mousemove">,
-    onMouseOver?: EventFunc<"mouseover">,
-    onMouseOut?: EventFunc<"mouseout">,
-    onMouseUp?: EventFunc<"mouseup">,
+    onAuxClick?: EventFunc<"auxclick">
+    onClick?: EventFunc<"click">
+    onDblClick?: EventFunc<"dblclick">
+    onMouseDown?: EventFunc<"mousedown">
+    onMouseEnter?: EventFunc<"mouseenter">
+    onMouseLeave?: EventFunc<"mouseleave">
+    onMouseMove?: EventFunc<"mousemove">
+    onMouseOver?: EventFunc<"mouseover">
+    onMouseOut?: EventFunc<"mouseout">
+    onMouseUp?: EventFunc<"mouseup">
 }
 
 /**
  * Binds children to element
+ *
+ * @param element - Element to bind
+ * @param props - Props to bind with
+ * @param ns - If namespace element
+ * @returns Void
  * @package
- * @param element - element to bind
- * @param props - props to bind with
- * @param ns - if namespace element
- * @returns void
  */
-export const bindProps = (
-    element: Element,
-    props?: BasicProps | null,
-    ns = false,
-): void => {
+export const bindProps = (element: Element, props?: BasicProps | null, ns = false): void => {
     if (props) {
         for (const [key, val] of Object.entries(props)) {
             if (typeof val === "string" || typeof val === "number") {
@@ -106,20 +99,16 @@ export const bindProps = (
                 } else {
                     element.setAttribute(key, val.toString())
                 }
-            } else if (key.slice(0, 2) === "on") { // Works such as onClick, onAnimationEnd, etc.
-                if (typeof(val) === "function") {
+            } else if (key.slice(0, 2) === "on") {
+                // Works such as onClick, onAnimationEnd, etc.
+                if (typeof val === "function") {
                     element.addEventListener(
-                        key.slice(2)
-                            .toLowerCase() as keyof EventMap,
-                        val as EventFunc
+                        key.slice(2).toLowerCase() as keyof EventMap,
+                        val as EventFunc,
                     )
                 }
-            } else if (
-                key === "ref" &&
-                typeof(val) === "object" &&
-                "current" in val
-            ) {
-                (val as Ref<Element>).current = element
+            } else if (key === "ref" && typeof val === "object" && "current" in val) {
+                ;(val as Ref<Element>).current = element
             } else if (val !== undefined) {
                 console.warn(`${typeof val} is not a valid DeStagnate child`)
             }
@@ -127,43 +116,40 @@ export const bindProps = (
     }
 }
 
-/**
- * Binds children to element
- * @package
- * @param element - element to bind
- * @param children - children to bind with
- * @returns void
- */
-export const bindChildren = (
-    element: Node,
-    children?: ChildrenType,
-): void => {
-    if (children !== null && children !== undefined) {
-        if (children instanceof Array) {
-            children.forEach((child: ChildrenType) => (
-                bindChildren(element, child)
-            ))
-        } else if (
-            typeof children === "string" ||
-            typeof children === "number"
-        ) {
-            element.appendChild(document.createTextNode(children.toString()))
-        } else if (children instanceof Component) {
-            if (!children.didMount && element instanceof window.HTMLElement) {
-                children.mount(element)
-
-                return
-            } else if (!(element instanceof window.HTMLElement)) {
-                throw new Error(`ERROR: code 3. See ${url}`)
-            }
-
+const bindDestagnateElement = (element: Node, children: Component): void => {
+    if (element instanceof HTMLElement) {
+        if (children.didMount) {
             if (children.parent !== element) {
-                children.parent = element
+                children.parent = element as HTMLElement
             }
 
             children.forceUpdate()
         } else {
+            children.mount(element)
+        }
+    } else {
+        throw new Error(`ERROR: code 3. See ${url}`)
+    }
+}
+
+/**
+ * Binds children to element
+ *
+ * @param element - Element to bind
+ * @param children - Children to bind with
+ * @returns Void
+ * @package
+ */
+export const bindChildren = (element: Node, children?: ChildrenType): void => {
+    if (children !== null && children !== undefined) {
+        if (children instanceof Array) {
+            children.forEach((child: ChildrenType) => bindChildren(element, child))
+        } else if (typeof children === "string" || typeof children === "number") {
+            element.appendChild(document.createTextNode(children.toString()))
+        } else if (children instanceof Node) {
             element.appendChild(children)
+        } else {
+            bindDestagnateElement(element, children)
         }
     }
 }

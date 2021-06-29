@@ -1,43 +1,33 @@
 /**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
+ * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
+ *
  * @license MIT
- * @version 2.0.0
- * Main test suite for destagnate
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  */
 
 import DeStagnate, {createElement} from "../deStagnate.cjs"
 import assert from "assert"
 
 class ComponentA extends DeStagnate.Component {
-
-    constructor () {
+    constructor() {
         super()
 
         this.state = {
-            value: "A"
+            value: "A",
         }
     }
 
-    render = () => createElement("div", {class: "ComponentA"},
-        this.state.value
-    )
-
+    render = () => createElement("div", {class: "ComponentA"}, this.state.value)
 }
 
 class ComponentB extends DeStagnate.Component {
-
     nestedComponent = new ComponentA()
 
     updateNestedComponent = (val = "B") => {
         this.nestedComponent.setState({value: val})
     }
 
-    render = () => createElement("div", {class: "ComponentB"},
-        this.nestedComponent
-    )
-
+    render = () => createElement("div", {class: "ComponentB"}, this.nestedComponent)
 }
 
 export const test = () => {
@@ -56,7 +46,7 @@ export const test = () => {
         it("Should equal A", () => {
             assert.strictEqual(
                 document.querySelector("#nest .ComponentB .ComponentA").innerHTML,
-                "A"
+                "A",
             )
         })
 
@@ -65,7 +55,7 @@ export const test = () => {
 
             assert.strictEqual(
                 document.querySelector("#nest .ComponentB .ComponentA").innerHTML,
-                "B"
+                "B",
             )
         })
 
@@ -75,7 +65,7 @@ export const test = () => {
 
             assert.strictEqual(
                 document.querySelector("#nest .ComponentB .ComponentA").innerHTML,
-                "C"
+                "C",
             )
         })
     })

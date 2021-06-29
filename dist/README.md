@@ -9,11 +9,13 @@ Files in `./iife/*.js` and `./es5/*.js` expose the library to a single, global v
 Files that include `.min` are minified and meant for production. Files without are meant for development, and are not minified.
 
 ## ES6
+
 Distribution bundles in the `cjs`, `esm`, and `iife` directory do not include helper functions for ES5 compatible code. You should use them if you don't care about supporting ancient browsers such as Internet Explorer, Chrome 50 (~2016), etc. These bundles are a lot smaller.
 
 According to Browserslist, the targeted browsers `account for 90.42% of all users globally`.
 
 ## ES5
+
 Distribution bundles in the `es5` directory include helper functions for ES5 compatible code. You should use these if you care about supporting ancient browsers such as Internet Explorer, Chrome 50 (~2016), etc. These bundles are very large.
 
 According to Browserslist, the targeted browsers `account for 97.55% of all users globally`

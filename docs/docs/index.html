@@ -72,6 +72,7 @@
 					<a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/LICENSE"><img src="https://img.shields.io/github/license/luke-zhang-04/destagnate" alt="License"/></a>
 					<a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/v/destagnate?logo=npm" alt="npm version"/></a>
 					<a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/iife/deStagnate.min.js"><img src="https://img.badgesize.io/https:/raw.githubusercontent.com/Luke-zhang-04/DeStagnate/master/dist/iife/deStagnate.min.js?label=iife/deStagnate.min.js%20gzip&compression=gzip" alt="bundle min gzip size"></a>
+					<a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/iife/createElement.min.js"><img src="https://img.badgesize.io/https:/raw.githubusercontent.com/Luke-zhang-04/DeStagnate/master/dist/iife/createElement.min.js?label=iife/createElement.min.js%20gzip&compression=gzip" alt="bundle min gzip size"></a>
 					<a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/dt/destagnate"/></a>
 					<a href="https://github.com/Luke-zhang-04/DeStagnate/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://img.shields.io/github/workflow/status/Luke-zhang-04/DeStagnate/Node.js%20CI/master?label=Tests&logo=github" alt="tests"/></a>
 					<br/>
@@ -79,7 +80,7 @@
 					<a href="https://codeclimate.com/github/Luke-zhang-04/DeStagnate/maintainability"><img src="https://api.codeclimate.com/v1/badges/a4e072a738b46c76393b/maintainability" alt="maintainability grade"/></a>
 					<a href="https://codeclimate.com/github/Luke-zhang-04/DeStagnate/test_coverage"><img src="https://api.codeclimate.com/v1/badges/a4e072a738b46c76393b/test_coverage" alt="coverage"/></a>
 				</p>
-				<p>Make creating dynamic components within static sites easier with DeStagnate, a ReactJS inspired library.</p>
+				<p>Write JSX for just under 800 gziped bytes, and create React-like components with under 2 gziped KB.</p>
 				<p><a href="https://luke-zhang-04.github.io/DeStagnate/">See some examples</a></p>
 				<a href="#why-not-just-use-react" id="why-not-just-use-react" style="color: inherit; text-decoration: none;">
 					<h2>Why not just use React?</h2>
@@ -109,8 +110,8 @@
 <span style="color: #D4D4D4">wget https://unpkg.com/destagnate@&lt;VERSION_NAME&gt;/dist/&lt;FORMAT&gt;/deStagnate.js</span>
 
 <span style="color: #6A9955"># Latest IIFE bundle</span>
-<span style="color: #D4D4D4">curl -L https://unpkg.com/destagnate@2.0.0/dist/iife/deStagnate.min.js &gt; deStagnate.min.js</span>
-<span style="color: #D4D4D4">wget https://unpkg.com/destagnate@2.0.0/dist/iife/deStagnate.min.js</span>
+<span style="color: #D4D4D4">curl -L https://unpkg.com/destagnate@2.1.0/dist/iife/deStagnate.min.js &gt; deStagnate.min.js</span>
+<span style="color: #D4D4D4">wget https://unpkg.com/destagnate@2.1.0/dist/iife/deStagnate.min.js</span>
 </code></pre>
 				<p>With a CDN</p>
 				<pre><code class="language-html"><span style="color: #6A9955">&lt;!-- Production --&gt;</span>
@@ -120,7 +121,7 @@
 <span style="color: #808080">&lt;</span><span style="color: #569CD6">script</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">src</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;https://unpkg.com/destagnate@version/dist/iife/deStagnate.js&quot;</span><span style="color: #808080">&gt;&lt;/</span><span style="color: #569CD6">script</span><span style="color: #808080">&gt;</span>
 
 <span style="color: #6A9955">&lt;!-- Latest --&gt;</span>
-<span style="color: #808080">&lt;</span><span style="color: #569CD6">script</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">src</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;https://unpkg.com/destagnate@2.0.0/dist/iife/deStagnate.min.js&quot;</span><span style="color: #808080">&gt;&lt;/</span><span style="color: #569CD6">script</span><span style="color: #808080">&gt;</span>
+<span style="color: #808080">&lt;</span><span style="color: #569CD6">script</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">src</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;https://unpkg.com/destagnate@2.1.0/dist/iife/deStagnate.min.js&quot;</span><span style="color: #808080">&gt;&lt;/</span><span style="color: #569CD6">script</span><span style="color: #808080">&gt;</span>
 </code></pre>
 				<a href="#basic-use" id="basic-use" style="color: inherit; text-decoration: none;">
 					<h2>Basic Use</h2>
@@ -134,8 +135,7 @@
 <span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">DeStagnate</span><span style="color: #D4D4D4"> = </span><span style="color: #DCDCAA">require</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;destagnate&quot;</span><span style="color: #D4D4D4">)</span>
 
 <span style="color: #569CD6">class</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Counter</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">extends</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">DeStagnate</span><span style="color: #D4D4D4">.</span><span style="color: #4EC9B0">Component</span><span style="color: #D4D4D4"> {</span>
-
-<span style="color: #D4D4D4">    </span><span style="color: #569CD6">constructor</span><span style="color: #D4D4D4"> (</span><span style="color: #9CDCFE">parent</span><span style="color: #D4D4D4">) {</span>
+<span style="color: #D4D4D4">    </span><span style="color: #569CD6">constructor</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">parent</span><span style="color: #D4D4D4">) {</span>
 <span style="color: #D4D4D4">        </span><span style="color: #569CD6">super</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">parent</span><span style="color: #D4D4D4">)</span>
 
 <span style="color: #D4D4D4">        </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">state</span><span style="color: #D4D4D4"> = {}</span>
@@ -148,11 +148,10 @@
 
 <span style="color: #D4D4D4">    </span><span style="color: #6A9955">// Alternatively, you can use JSX. You will need a tranpiler, though.</span>
 <span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">render</span><span style="color: #D4D4D4"> = () </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #808080">&lt;</span><span style="color: #569CD6">div</span><span style="color: #808080">&gt;&lt;/</span><span style="color: #569CD6">div</span><span style="color: #808080">&gt;</span>
-
 <span style="color: #D4D4D4">}</span>
 
 <span style="color: #6A9955">// Warning: the parent must be dedicated to this component. Anything inside the parent will be removed on muatation</span>
-<span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">counter</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Counter</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">document</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">querySelector</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;#parent&quot;</span><span style="color: #D4D4D4">))</span>
+<span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">counter</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Counter</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">document</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">querySelector</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;#parent&quot;</span><span style="color: #D4D4D4">))</span>
 
 <span style="color: #9CDCFE">counter</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">mount</span><span style="color: #D4D4D4">() </span><span style="color: #6A9955">// Must call once to mount the component</span>
 </code></pre>
@@ -166,23 +165,27 @@
 				<p>Consider the file <code>test.jsx</code> (or <code>test.tsx</code>)</p>
 				<pre><code class="language-tsx"><span style="color: #6A9955">/**</span>
 <span style="color: #6A9955"> * Importing DeStagnate is important</span>
+<span style="color: #6A9955"> *</span>
 <span style="color: #6A9955"> * 1. It provides the JSX type defs (only typescript)</span>
 <span style="color: #6A9955"> * 2. It is needed when transpiled later</span>
 <span style="color: #6A9955"> */</span>
 <span style="color: #C586C0">import</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">DeStagnate</span><span style="color: #D4D4D4"> </span><span style="color: #C586C0">from</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&quot;destagnate&quot;</span>
 
-<span style="color: #9CDCFE">DeStagnate</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">createElement</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;div&quot;</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">null</span><span style="color: #D4D4D4">, </span><span style="color: #808080">&lt;</span><span style="color: #569CD6">div</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">class</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;myClass&quot;</span><span style="color: #808080">&gt;</span>
-<span style="color: #D4D4D4">    </span><span style="color: #808080">&lt;</span><span style="color: #569CD6">p</span><span style="color: #808080">&gt;</span><span style="color: #D4D4D4">My Paragraph</span><span style="color: #808080">&lt;/</span><span style="color: #569CD6">p</span><span style="color: #808080">&gt;</span>
-<span style="color: #808080">&lt;/</span><span style="color: #569CD6">div</span><span style="color: #808080">&gt;</span><span style="color: #D4D4D4">)</span>
-
+<span style="color: #9CDCFE">DeStagnate</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">createElement</span><span style="color: #D4D4D4">(</span>
+<span style="color: #D4D4D4">    </span><span style="color: #CE9178">&quot;div&quot;</span><span style="color: #D4D4D4">,</span>
+<span style="color: #D4D4D4">    </span><span style="color: #569CD6">null</span><span style="color: #D4D4D4">,</span>
+<span style="color: #D4D4D4">    </span><span style="color: #808080">&lt;</span><span style="color: #569CD6">div</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">class</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;myClass&quot;</span><span style="color: #808080">&gt;</span>
+<span style="color: #D4D4D4">        </span><span style="color: #808080">&lt;</span><span style="color: #569CD6">p</span><span style="color: #808080">&gt;</span><span style="color: #D4D4D4">My Paragraph</span><span style="color: #808080">&lt;/</span><span style="color: #569CD6">p</span><span style="color: #808080">&gt;</span>
+<span style="color: #D4D4D4">    </span><span style="color: #808080">&lt;/</span><span style="color: #569CD6">div</span><span style="color: #808080">&gt;</span><span style="color: #D4D4D4">,</span>
+<span style="color: #D4D4D4">)</span>
 </code></pre>
 				<p>You can compile with this <code>tsconfig.json</code></p>
 				<pre><code class="language-json"><span style="color: #D4D4D4">{</span>
 <span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">&quot;compilerOptions&quot;</span><span style="color: #D4D4D4">: {</span>
 <span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">&quot;jsx&quot;</span><span style="color: #D4D4D4">: </span><span style="color: #CE9178">&quot;react&quot;</span><span style="color: #D4D4D4">,</span>
 <span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">&quot;jsxFactory&quot;</span><span style="color: #D4D4D4">: </span><span style="color: #CE9178">&quot;DeStagnate.createElement&quot;</span><span style="color: #D4D4D4">,</span>
-<span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">&quot;jsxFragmentFactory&quot;</span><span style="color: #D4D4D4">: </span><span style="color: #CE9178">&quot;DeStagnate.Fragment&quot;</span><span style="color: #D4D4D4">,</span>
-<span style="color: #D4D4D4">    },</span>
+<span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">&quot;jsxFragmentFactory&quot;</span><span style="color: #D4D4D4">: </span><span style="color: #CE9178">&quot;DeStagnate.Fragment&quot;</span>
+<span style="color: #D4D4D4">    }</span>
 <span style="color: #D4D4D4">}</span>
 </code></pre>
 				<p>You can also compile with this <code>.babelrc.json</code></p>
@@ -220,6 +223,9 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/createref.html">create<wbr>Ref</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/exports.html">exports</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/fragment.html">fragment</a>

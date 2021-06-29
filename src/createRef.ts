@@ -1,21 +1,21 @@
 /**
- * Component
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
+ * Component A simple, ReactJS inspired library to create dynamic components within static sites easier
+ *
  * @license MIT
- * @version 2.0.0
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @exports createRef create a reference to a nested component
  */
 type Component = typeof import(".").Component
 
 export interface Ref<T = Component | HTMLElement> {
-    current: T | null,
+    current: T | null
 }
 
 /**
  * Creates a reference for a nested component
- * @returns empty ref object
+ *
+ * @returns Empty ref object
  */
 export const createRef = <T = Component | HTMLElement>(): Ref<T> => ({
     current: null,
@@ -23,6 +23,7 @@ export const createRef = <T = Component | HTMLElement>(): Ref<T> => ({
 
 /**
  * Creates a reference for a nested component
- * @returns empty ref object
+ *
+ * @returns Empty ref object
  */
 export default createRef

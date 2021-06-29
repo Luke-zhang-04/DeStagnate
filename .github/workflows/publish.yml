@@ -7,32 +7,34 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+          registry-url: "https://registry.npmjs.org"
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.0.2
 
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
-        registry-url: 'https://registry.npmjs.org'
+      - name: install deps
+        run: pnpm install --frozen-lockfile
 
-    - name: install deps
-      run: yarn install --frozen-lockfile
+      # No need to build. Build is executed before publish automatically
 
-    # No need to build. Build is executed before publish automatically
+      - name: publish to NPM
+        # Don't fail if version already exists
+        run: pnpm publish --access public || echo "Version already published" && exit 0
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: publish to NPM
-      # Don't fail if version already exists
-      run: yarn publish --access public || echo "Version already published" && exit 0
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: archive files
+        run: tar -czvf deStagnate.tar.gz dist && zip -rv deStagnate.zip dist
 
-    - name: archive files
-      run: tar -czvf deStagnate.tar.gz dist && zip -rv deStagnate.zip dist
-
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: |
-          ./deStagnate.tar.gz
-          ./deStagnate.zip
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./deStagnate.tar.gz
+            ./deStagnate.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

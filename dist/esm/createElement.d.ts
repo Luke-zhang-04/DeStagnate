@@ -8,4 +8,4 @@
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  */
 
-export * from "../../lib"
+export * from "../../lib/createElementOnly"

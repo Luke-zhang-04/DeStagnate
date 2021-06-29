@@ -1,19 +1,15 @@
 /**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
+ * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
+ *
  * @license MIT
- * @version 2.0.0
- * Main test suite for destagnate
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  */
 
 import DeStagnate, {createElement} from "../deStagnate.cjs"
 import assert from "assert"
 
 class COMPONENTNAMECLASS extends DeStagnate.Component {
-
     render = () => createElement()
-
 }
 
 export const test = () => {
@@ -22,9 +18,6 @@ export const test = () => {
     COMPONENTNAME.mount()
 
     it("", () => {
-        assert.strictEqual(
-            true,
-            true,
-        )
+        assert.strictEqual(true, true)
     })
 }

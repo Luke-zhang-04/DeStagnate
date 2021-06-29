@@ -7,6 +7,12 @@ dist/**/* linguist-generated=true
 # Don't diff or textually merge source maps
 *.map binary
 
+# Don't diff dist files
+dist/**/*.{js,cjs} binary
+docs/compiled binary
+docs/css binary
+docs/docs binary
+
 # Remove config files
 *.config.js linguist-detectable=false
 

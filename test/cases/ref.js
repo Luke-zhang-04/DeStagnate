@@ -1,27 +1,21 @@
 /**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
+ * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
+ *
  * @license MIT
- * @version 2.0.0
- * Main test suite for destagnate
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  */
 
 import DeStagnate, {createElement, createRef} from "../deStagnate.cjs"
 import assert from "assert"
 
 class Ref extends DeStagnate.Component {
-
     testRef = createRef()
 
-    render = () => createElement(
-        "div",
-        {
+    render = () =>
+        createElement("div", {
             ref: this.testRef,
-            id: "_REFTEST"
-        },
-    )
-
+            id: "_REFTEST",
+        })
 }
 
 export const test = () => {
@@ -30,9 +24,6 @@ export const test = () => {
     ref.mount()
 
     it("Should have an ID of _REFTEST", () => {
-        assert.strictEqual(
-            "_REFTEST",
-            ref.testRef.current.id,
-        )
+        assert.strictEqual("_REFTEST", ref.testRef.current.id)
     })
 }

@@ -3,8 +3,9 @@ import {terser} from "rollup-plugin-terser"
 
 /**
  * Create rollup config
- * @param {stirng} file - filename
- * @returns {import("rollup").RollupOptions} rollup config
+ *
+ * @param {stirng} file - Filename
+ * @returns {import("rollup").RollupOptions} Rollup config
  */
 const createConfig = (file) => ({
     input: `./docs/lib/${file}`,
@@ -12,10 +13,7 @@ const createConfig = (file) => ({
         file: `docs/compiled/${file.replace("examples/", "")}`,
         format: "iife",
     },
-    plugins: [
-        nodeResolve(),
-        terser(),
-    ],
+    plugins: [nodeResolve(), terser()],
 })
 
 export default [
@@ -29,5 +27,5 @@ export default [
     "examples/ref.js",
     "examples/stateChange.js",
     "examples/svg.js",
-    "examples/tictactoe.js"
+    "examples/tictactoe.js",
 ].map(createConfig)

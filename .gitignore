@@ -126,3 +126,6 @@ typings/
 .env.production.local
 .vscode
 tsbuildinfo.json
+dist/*/**/*.js
+dist/*/**/*.cjs
+dist/*/**/*.map
