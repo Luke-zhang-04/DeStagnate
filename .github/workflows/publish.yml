@@ -15,13 +15,13 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - name: install deps
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       # No need to build. Build is executed before publish automatically
 
       - name: publish to NPM
         # Don't fail if version already exists
-        run: yarn publish --access public || echo "Version already published" && exit 0
+        run: pnpm publish --access public || echo "Version already published" && exit 0
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
