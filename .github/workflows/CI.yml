@@ -43,7 +43,7 @@ jobs:
           version: 6.0.2
 
       - name: install deps
-        run: pnpm --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: test
         run: pnpm test
@@ -65,7 +65,7 @@ jobs:
           version: 6.0.2
 
       - name: install deps
-        run: pnpm --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: test coverage
         uses: paambaati/codeclimate-action@v2.6.0
