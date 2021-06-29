@@ -1,7 +1,0 @@
-/**
- * Destagnate v2.1.0 | https://luke-zhang-04.github.io/DeStagnate/
- * @copyright (C) 2020 - 2021 Luke Zhang https://luke-zhang-04.github.io
- * @license MIT
- */
-"use strict";Object.defineProperty(exports,"t",{value:!0});const e=(e,t,o=!1)=>{if(t)for(const[n,r]of Object.entries(t))"string"==typeof r||"number"==typeof r?"innerHTML"===n?e.innerHTML=r.toString():o?e.setAttributeNS(null,n,r.toString()):e.setAttribute(n,r.toString()):"on"===n.slice(0,2)?"function"==typeof r&&e.addEventListener(n.slice(2).toLowerCase(),r):"ref"===n&&"object"==typeof r&&"current"in r?r.current=e:void 0!==r&&console.warn(typeof r+" is not a valid DeStagnate child")},t=(e,o)=>{null!=o&&(o instanceof Array?o.forEach((o=>t(e,o))):"string"==typeof o||"number"==typeof o?e.appendChild(document.createTextNode(o.toString())):o instanceof Node?e.appendChild(o):((e,t)=>{if(!(e instanceof HTMLElement))throw new Error("ERROR: code 3. See https://luke-zhang-04.github.io/DeStagnate/error-codes");t.didMount?(t.parent!==e&&(t.parent=e),t.forceUpdate()):t.mount(e)})(e,o))};function o(o,n,...r){if("string"==typeof o){const s=document.createElement(o);return e(s,n),t(s,r),s}return"function"==typeof o?o(n,r):Error("tagNameOrComponent is of invalid type.")}exports.Fragment=(e,...o)=>{const n=document.createDocumentFragment();return t(n,o),n},exports.ce=o,exports.createElement=o,exports.createElementNS=(o,n,r,...s)=>{const c=document.createElementNS(o,n);return e(c,r,!0),t(c,s),c},exports.default=o;
-//# sourceMappingURL=createElement.min.cjs.map
