@@ -1,8 +1,7 @@
 import * as DeStagnate from "../../../" // Import library from root
 
 class Counter extends DeStagnate.Component {
-
-    constructor (parent) {
+    constructor(parent) {
         super(parent)
 
         this.state = {
@@ -16,11 +15,12 @@ class Counter extends DeStagnate.Component {
         }, 1000)
     }
 
-    render = () => <div>
-        <p>Seconds:</p>
-        <p>{this.state.count}</p>
-    </div>
-
+    render = () => (
+        <div>
+            <p>Seconds:</p>
+            <p>{this.state.count}</p>
+        </div>
+    )
 }
 
 const counter = new Counter(document.querySelector("#counter"))

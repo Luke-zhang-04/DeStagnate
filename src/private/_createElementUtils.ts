@@ -1,10 +1,10 @@
 /**
- * Component
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
+ * Component A simple, ReactJS inspired library to create dynamic components within static sites easier
+ *
  * @license MIT
- * @file share functions and types for createElement and it's variants
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @file share Functions and types for createElement and it's variants
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  */
 
 import {Component} from "../component"
@@ -23,9 +23,7 @@ export type ChildrenFlatArrayType = (
 
 export type ChildrenArrayType = ChildrenFlatArrayType | ChildrenArrayType[]
 
-/**
- * All types the children parameter can be
- */
+/** All types the children parameter can be */
 export type ChildrenType =
     | ChildrenType[]
     | string
@@ -83,11 +81,12 @@ export interface BasicProps {
 
 /**
  * Binds children to element
+ *
+ * @param element - Element to bind
+ * @param props - Props to bind with
+ * @param ns - If namespace element
+ * @returns Void
  * @package
- * @param element - element to bind
- * @param props - props to bind with
- * @param ns - if namespace element
- * @returns void
  */
 export const bindProps = (element: Element, props?: BasicProps | null, ns = false): void => {
     if (props) {
@@ -119,10 +118,11 @@ export const bindProps = (element: Element, props?: BasicProps | null, ns = fals
 
 /**
  * Binds children to element
+ *
+ * @param element - Element to bind
+ * @param children - Children to bind with
+ * @returns Void
  * @package
- * @param element - element to bind
- * @param children - children to bind with
- * @returns void
  */
 export const bindChildren = (element: Node, children?: ChildrenType): void => {
     if (children !== null && children !== undefined) {

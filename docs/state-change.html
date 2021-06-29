@@ -4,28 +4,44 @@
   Copyright (C) 2020 - 2021 Luke Zhang | luke-zhang-04.github.io | MIT License
 -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DeStagnate Examples | Event Listener</title>
-    <link rel="stylesheet" href="css/styles.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-tomorrow.min.css"/>
-    <link rel="icon" href="favicon.ico"/>
-<body>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-tomorrow.min.css"
+    />
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <body>
     <div id="nav"></div>
     <script async src="compiled/nav.js"></script>
 
     <div class="container">
-        <div id="state-change-h">
-            <h1 class="mt-3">State Change Check Example</h1>
-            <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/examples/stateChange.tsx" target="_blank" rel="noopener noreferrer">Source Code</a>
-            <p>instance.stateDidChange is a function that diffs the new state with the previous state and returns whether it thinks the state has changed. It is disabled by default, but you can use it by attaching it to shouldComponentUpdate. In this example, there are 3 instances of each number in numbers. In shouldComponentUpdate, the stateDidChange function is used to determine whether or not state.numbers was changed. If you inspect element, you can see that the dom is only touched when number changes.</p>
-            <div class="pt-5">
-                <div id="state-change"></div>
-                <div id="state-change-btn" class="mt-3"></div>
-            </div>
-            <div id="state-change-source">
-                <pre class="d-block">
+      <div id="state-change-h">
+        <h1 class="mt-3">State Change Check Example</h1>
+        <a
+          href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/examples/stateChange.tsx"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Source Code</a
+        >
+        <p
+          >instance.stateDidChange is a function that diffs the new state with the previous state
+          and returns whether it thinks the state has changed. It is disabled by default, but you
+          can use it by attaching it to shouldComponentUpdate. In this example, there are 3
+          instances of each number in numbers. In shouldComponentUpdate, the stateDidChange
+          function is used to determine whether or not state.numbers was changed. If you inspect
+          element, you can see that the dom is only touched when number changes.</p
+        >
+        <div class="pt-5">
+          <div id="state-change"></div>
+          <div id="state-change-btn" class="mt-3"></div>
+        </div>
+        <div id="state-change-source">
+          <pre class="d-block">
                     <code class="language-tsx">
 import DeStagnate from "destagnate"
 
@@ -82,18 +98,26 @@ stateChange.mount() // Must call once
 
                     </code>
                 </pre>
-            </div>
         </div>
+      </div>
     </div>
 
     <footer></footer>
     <script async src="compiled/footer.js"></script>
 
     <!-- Popper.js for bootstrap, not actually needed for functionality -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- Bootstrap for styling, not actually needed for functionality -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- Prism JS for syntax hilighting code -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
@@ -102,5 +126,5 @@ stateChange.mount() // Must call once
     <!-- Source Code of Examples -->
 
     <script src="compiled/stateChange.js"></script>
-</body>
+  </body>
 </html>

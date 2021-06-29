@@ -1,9 +1,9 @@
 /**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
+ * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
+ *
  * @license MIT
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @exports createElement function for DOM manipulation
  */
 // eslint-disable-next-line
@@ -20,11 +20,13 @@ import type JSX from "./jsx"
 
 /**
  * Creates an HTML Element
- * @param tagName - name of HTML element
- * @param props - element properties, such as class, innerHTML, id, style, etc
- * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - rest parameter of children
- * @returns element
+ *
+ * @param tagName - Name of HTML element
+ * @param props - Element properties, such as class, innerHTML, id, style, etc
+ * @param children - Children of this element. Can be nothing, number (converted to string), string
+ *   (text), or another element. An array of any of these will create multiple children
+ * @param childrenArgs - Rest parameter of children
+ * @returns Element
  */
 export function createElement<T extends keyof HTMLElementTagNameMap>(
     tagNameOrComponent: T,
@@ -34,14 +36,16 @@ export function createElement<T extends keyof HTMLElementTagNameMap>(
 
 /**
  * Creates an HTML Element
- * @param component - function component
- * @param props - props of function component
- * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - rest parameter of children
- * @returns element
+ *
+ * @param component - Function component
+ * @param props - Props of function component
+ * @param children - Children of this element. Can be nothing, number (converted to string), string
+ *   (text), or another element. An array of any of these will create multiple children
+ * @param childrenArgs - Rest parameter of children
+ * @returns Element
  */
 export function createElement<
-    Props extends Record<string, unknown>,
+    Props extends {[key: string]: unknown},
     Returns extends HTMLElement | JSX.Element,
 >(
     tagNameOrComponent: (props?: Props, ...children: ChildrenArrayType) => Returns,
@@ -50,16 +54,18 @@ export function createElement<
 ): Returns
 
 /**
+ * @param tagNameOrComponent - Name of HTML element or function component
+ * @param props - Props of element or component
  *
- * @param tagNameOrComponent - name of HTML element or function component
- * @param props - props of element or component
- * 1. If `tagNameOrComponent` is tagname, props are element properties, such as class, innerHTML, id, style, etc
- * 2. If `tagNameOrComponent` is a function, props are that functions parameters
- * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - rest parameter for children
- * @returns element
+ *   1. If `tagNameOrComponent` is tagname, props are element properties, such as class, innerHTML, id, style, etc
+ *   2. If `tagNameOrComponent` is a function, props are that functions parameters
+ *
+ * @param children - Children of this element. Can be nothing, number (converted to string), string
+ *   (text), or another element. An array of any of these will create multiple children
+ * @param childrenArgs - Rest parameter for children
+ * @returns Element
  */
-export function createElement<T extends string | Record<string, unknown>, Returns = void>(
+export function createElement<T extends string | {[key: string]: unknown}, Returns = void>(
     tagNameOrComponent: T | ((_props?: T, ..._children: ChildrenArrayType) => Returns),
     props?: BasicProps | null | T,
     ...children: ChildrenArrayType

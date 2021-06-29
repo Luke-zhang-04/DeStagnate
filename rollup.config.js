@@ -21,9 +21,10 @@ const bannerDev = `/**
 
 /**
  * Creates plugin setup with parameters
+ *
  * @param {string} target - Browserslist target env
- * @param {boolean} prod - if bundle is production
- * @returns {import("rollup").Plugin[]} rollup plugin configs
+ * @param {boolean} prod - If bundle is production
+ * @returns {import("rollup").Plugin[]} Rollup plugin configs
  */
 const makePlugins = (target = "es6", prod = true) => [
     nodeResolve(),
@@ -63,14 +64,10 @@ const makePlugins = (target = "es6", prod = true) => [
 ]
 
 const es5 = (() => {
-    /**
-     * @type {import("rollup").RollupOptions[]}
-     */
+    /** @type {import("rollup").RollupOptions[]} */
     const configs = []
 
-    /**
-     * @type {[format: import("rollup").ModuleFormat, extension?: string][]}
-     */
+    /** @type {[format: import("rollup").ModuleFormat, extension?: string][]} */
     const formats = [["iife", "js"], ["cjs"]]
 
     for (const [format, extension] of formats) {
@@ -103,14 +100,10 @@ const es5 = (() => {
 })()
 
 const es6 = (() => {
-    /**
-     * @type {import("rollup").RollupOptions[]}
-     */
+    /** @type {import("rollup").RollupOptions[]} */
     const configs = []
 
-    /**
-     * @type {[format: import("rollup").ModuleFormat, extension?: string][]}
-     */
+    /** @type {[format: import("rollup").ModuleFormat, extension?: string][]} */
     const formats = [["esm", "js"], ["iife", "js"], ["cjs"]]
 
     for (const [format, extension] of formats) {
@@ -142,9 +135,7 @@ const es6 = (() => {
     return configs
 })()
 
-/**
- * @type {import("rollup").RollupOptions[]}
- */
+/** @type {import("rollup").RollupOptions[]} */
 const rollupConfig = [...es5, ...es6]
 
 export default rollupConfig

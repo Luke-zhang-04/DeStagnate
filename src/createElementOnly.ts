@@ -1,9 +1,9 @@
 /**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
+ * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
+ *
  * @license MIT
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @exports createElement function for DOM manipulation without DeStagnate class or Refs
  */
 // eslint-disable-next-line
@@ -17,9 +17,7 @@ type ChildrenFlatArrayType = (HTMLElement | Element | number | string)[]
 
 type ChildrenArrayType = ChildrenFlatArrayType | ChildrenArrayType[]
 
-/**
- * All types the children parameter can be
- */
+/** All types the children parameter can be */
 type ChildrenType = HTMLElement | string | number | ChildrenArrayType | Element
 
 interface EventMap extends HTMLElementEventMap {
@@ -70,11 +68,12 @@ interface BasicProps {
 
 /**
  * Binds children to element
+ *
+ * @param element - Element to bind
+ * @param props - Props to bind with
+ * @param ns - If namespace element
+ * @returns Void
  * @package
- * @param element - element to bind
- * @param props - props to bind with
- * @param ns - if namespace element
- * @returns void
  */
 const bindProps = (element: Element, props?: BasicProps | null, ns = false): void => {
     if (props) {
@@ -104,10 +103,11 @@ const bindProps = (element: Element, props?: BasicProps | null, ns = false): voi
 
 /**
  * Binds children to element
+ *
+ * @param element - Element to bind
+ * @param children - Children to bind with
+ * @returns Void
  * @package
- * @param element - element to bind
- * @param children - children to bind with
- * @returns void
  */
 const bindChildren = (element: Element, children?: ChildrenType): void => {
     if (children !== null && children !== undefined) {
@@ -125,11 +125,13 @@ const bindChildren = (element: Element, children?: ChildrenType): void => {
 
 /**
  * Creates an HTML Element
- * @param tagName - name of HTML element
- * @param props - element properties, such as class, innerHTML, id, style, etc
- * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - rest parameter of children
- * @returns element
+ *
+ * @param tagName - Name of HTML element
+ * @param props - Element properties, such as class, innerHTML, id, style, etc
+ * @param children - Children of this element. Can be nothing, number (converted to string), string
+ *   (text), or another element. An array of any of these will create multiple children
+ * @param childrenArgs - Rest parameter of children
+ * @returns Element
  */
 export function createElement<T extends keyof HTMLElementTagNameMap>(
     tagNameOrComponent: T,
@@ -139,14 +141,16 @@ export function createElement<T extends keyof HTMLElementTagNameMap>(
 
 /**
  * Creates an HTML Element
- * @param component - function component
- * @param props - props of function component
- * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - rest parameter of children
- * @returns element
+ *
+ * @param component - Function component
+ * @param props - Props of function component
+ * @param children - Children of this element. Can be nothing, number (converted to string), string
+ *   (text), or another element. An array of any of these will create multiple children
+ * @param childrenArgs - Rest parameter of children
+ * @returns Element
  */
 export function createElement<
-    Props extends Record<string, unknown>,
+    Props extends {[key: string]: unknown},
     Returns extends HTMLElement | JSX.Element,
     Children extends ChildrenType | ChildrenArrayType,
 >(
@@ -156,16 +160,18 @@ export function createElement<
 ): Returns
 
 /**
+ * @param tagNameOrComponent - Name of HTML element or function component
+ * @param props - Props of element or component
  *
- * @param tagNameOrComponent - name of HTML element or function component
- * @param props - props of element or component
- * 1. If `tagNameOrComponent` is tagname, props are element properties, such as class, innerHTML, id, style, etc
- * 2. If `tagNameOrComponent` is a function, props are that functions parameters
- * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - rest parameter for children
- * @returns element
+ *   1. If `tagNameOrComponent` is tagname, props are element properties, such as class, innerHTML, id, style, etc
+ *   2. If `tagNameOrComponent` is a function, props are that functions parameters
+ *
+ * @param children - Children of this element. Can be nothing, number (converted to string), string
+ *   (text), or another element. An array of any of these will create multiple children
+ * @param childrenArgs - Rest parameter for children
+ * @returns Element
  */
-export function createElement<T extends string | Record<string, unknown>, Returns = void>(
+export function createElement<T extends string | {[key: string]: unknown}, Returns = void>(
     tagNameOrComponent: T | ((_props?: T, ..._children: ChildrenArrayType) => Returns),
     props?: BasicProps | null | T,
     ...children: ChildrenArrayType

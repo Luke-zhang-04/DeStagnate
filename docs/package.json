@@ -2,25 +2,25 @@
   "name": "destagnate-docs",
   "version": "2.1.0",
   "description": "Examples for dynamic componnet",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luke-zhang-04/dynamic-component.git"
+  },
+  "author": "Luke Zhang",
+  "homepage": "https://luke-zhang-04.github.io/DeStagnate/",
+  "bugs": {
+    "url": "https://github.com/Luke-zhang-04/dynamic-component/issues"
+  },
   "main": "index.js",
+  "scripts": {
+    "sass": "sass scss:css --style compressed || npx sass scss:css --style compressed"
+  },
+  "keywords": [],
   "dependencies": {
     "bootstrap": "^5.0.0-alpha1"
   },
   "devDependencies": {
     "sass": "^1.26.10"
-  },
-  "scripts": {
-    "sass": "sass scss:css --style compressed || npx sass scss:css --style compressed"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Luke-zhang-04/dynamic-component.git"
-  },
-  "keywords": [],
-  "author": "Luke Zhang",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Luke-zhang-04/dynamic-component/issues"
-  },
-  "homepage": "https://luke-zhang-04.github.io/DeStagnate/"
+  }
 }

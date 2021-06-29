@@ -1,9 +1,9 @@
 /**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
+ * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
+ *
  * @license MIT
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @exports JSX - importable JSX namespace
  */
 
@@ -65,9 +65,7 @@ interface DeStagnateElement {
 /* eslint-disable @typescript-eslint/no-namespace */
 
 declare global {
-    /**
-     * JSX typings for
-     */
+    /** JSX typings for */
     namespace JSX {
         interface IntrinsicElements {
             // HTML

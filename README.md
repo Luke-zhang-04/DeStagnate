@@ -112,6 +112,7 @@ Consider the file `test.jsx` (or `test.tsx`)
 ```tsx
 /**
  * Importing DeStagnate is important
+ *
  * 1. It provides the JSX type defs (only typescript)
  * 2. It is needed when transpiled later
  */

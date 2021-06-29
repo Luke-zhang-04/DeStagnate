@@ -1,20 +1,21 @@
 /**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
+ * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
+ *
  * @license MIT
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @exports Utils - utilities for DeStagnate
  */
 
 /**
  * Checks if val1 and val2 are equal
- * @param val1 - value to check for equality
- * @param val2 - value to compare against val1
- * @param maxDepth - max recursion depth to crawl an object. After max depth is
- * reached, the two values are simply compared with `===`
- * @param maxLength - max length of array to crawl. If max lenth is reached, two
- * arrays will simply be compared with `===`
+ *
+ * @param val1 - Value to check for equality
+ * @param val2 - Value to compare against val1
+ * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the two
+ *   values are simply compared with `===`
+ * @param maxLength - Max length of array to crawl. If max lenth is reached, two arrays will simply
+ *   be compared with `===`
  * @returns `val1 === val2`
  */
 export const isEqual = (val1: unknown, val2: unknown, maxDepth = 3, maxLength = 10): boolean => {

@@ -1,11 +1,11 @@
 /**
- * DeStagnate
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
+ * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
+ *
  * @license MIT
+ * @author Luke Zhang luke-zhang-04.github.io
+ * @file DeStagnate Component class
+ * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @exports DeStagnate main destagnate class
- * @file DeStagnate component class
  * @preserve
  */
 /* eslint-disable max-lines */
@@ -21,59 +21,51 @@ const unmountedMsg = "Refusing to update unmounted component"
 interface Empty {}
 
 export interface Component<
-    Props extends Empty = Record<string, unknown>,
-    State extends Empty = Record<string, unknown>,
+    Props extends Empty = {[key: string]: unknown},
+    State extends Empty = {[key: string]: unknown},
 > {
     /**
      * What to call before component update (state mutation)
-     * @param prevProps - previous props
-     * @param prevState - previous state
-     * @returns void
+     *
+     * @param prevProps - Previous props
+     * @param prevState - Previous state
+     * @returns Void
      */
     getSnapshotBeforeUpdate?: (prevProps: Props, prevState: State) => void
 }
 
 /**
  * DeStagnate
- * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @class
- * @namespace
+ *
  * @abstract
+ * @namespace
+ * @class
+ * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
  */
 export abstract class Component<
-    Props extends Empty = Record<string, unknown>,
-    State extends Empty = Record<string, unknown>,
+    Props extends Empty = {[key: string]: unknown},
+    State extends Empty = {[key: string]: unknown},
 > extends Base {
-    /**
-     * State of component. Works similar React State
-     */
+    /** State of component. Works similar React State */
     private _state: State = {} as State
 
-    /**
-     * If initial state was set in initializer
-     * Do not throw error with direct state setting
-     */
+    /** If initial state was set in initializer Do not throw error with direct state setting */
     private _didSetInitialState = false
 
-    /**
-     * Parent that this element if bound to
-     */
+    /** Parent that this element if bound to */
     private _parent: HTMLElement | undefined
 
-    /**
-     * If component is mounted
-     */
+    /** If component is mounted */
     private _didMount = false
 
-    /**
-     * Previous state
-     */
+    /** Previous state */
     private _prevState?: State
 
     /**
      * Construct class component
-     * @param parent - parent of this element
-     * @param props - element properties; works like React Props
+     *
+     * @param parent - Parent of this element
+     * @param props - Element properties; works like React Props
      */
     public constructor(parent?: HTMLElement | null, protected props?: Props) {
         super()
@@ -87,7 +79,8 @@ export abstract class Component<
 
     /**
      * Public getState getter as this.state itself is protected
-     * @returns component state
+     *
+     * @returns Component state
      */
     public get getState(): State {
         return this.state
@@ -95,16 +88,17 @@ export abstract class Component<
 
     /**
      * Get component state
-     * @returns component state
+     *
+     * @returns Component state
      */
     protected get state(): State {
         return this._state
     }
 
     /**
-     * Sets component state
-     * WARN: do not use this method to mutate the state directly
-     * @param obj - state to set
+     * Sets component state WARN: do not use this method to mutate the state directly
+     *
+     * @param obj - State to set
      */
     protected set state(obj: State) {
         if (this._didSetInitialState) {
@@ -118,7 +112,8 @@ export abstract class Component<
 
     /**
      * Public getProps getter as this.props itself is protected
-     * @returns component props
+     *
+     * @returns Component props
      */
     public get getProps(): Props | undefined {
         return this.props
@@ -126,8 +121,9 @@ export abstract class Component<
 
     /**
      * Set the parent of this component
-     * @param element - parent element
-     * @returns void
+     *
+     * @param element - Parent element
+     * @returns Void
      */
     public set parent(element: HTMLElement | undefined) {
         this._parent = element
@@ -135,7 +131,8 @@ export abstract class Component<
 
     /**
      * Get the parent element of this component
-     * @returns parent
+     *
+     * @returns Parent
      */
     public get parent(): HTMLElement | undefined {
         return this._parent
@@ -143,7 +140,8 @@ export abstract class Component<
 
     /**
      * Get didMount value publicly
-     * @returns if mounted
+     *
+     * @returns If mounted
      */
     public get didMount(): boolean {
         return this._didMount
@@ -151,16 +149,18 @@ export abstract class Component<
 
     /**
      * Returns the previous state. Undefined if no previous state exists
-     * @returns previous state
+     *
+     * @returns Previous state
      */
     public get prevState(): State | undefined {
         return this._prevState
     }
 
     /**
-     * Forces a component to update
-     * Follows the same component updating procedure as setState without modifying state
-     * @returns returns error if error is thrown
+     * Forces a component to update Follows the same component updating procedure as setState
+     * without modifying state
+     *
+     * @returns Returns error if error is thrown
      */
     public readonly forceUpdate = (): void | Error => {
         try {
@@ -183,15 +183,14 @@ export abstract class Component<
     }
 
     /**
-     * Checks if the state changed from the previous state. Can me attached to
-     * `shouldComponentUpdate`
-     * @param keys - list of keys to crawl. If left undefined (default) then
-     * use all keys. Should be `keyof State`, but there were some Typescript
-     * troubles.
-     * @param maxDepth - max recursion depth to crawl an object. After max depth
-     * is reached, the two values are simply compared with `===`
-     * @param maxLength - max length of array to crawl. If max lenth is reached,
-     * two arrays will simply be compared with `===`
+     * Checks if the state changed from the previous state. Can me attached to `shouldComponentUpdate`
+     *
+     * @param keys - List of keys to crawl. If left undefined (default) then use all keys. Should
+     *   be `keyof State`, but there were some Typescript troubles.
+     * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the
+     *   two values are simply compared with `===`
+     * @param maxLength - Max length of array to crawl. If max lenth is reached, two arrays will
+     *   simply be compared with `===`
      * @returns `val1 === val2`
      */
     public readonly stateDidChange = (keys?: string[], maxDepth = 3, maxLength = 15): boolean => {
@@ -199,8 +198,8 @@ export abstract class Component<
             return !utils.isEqual(this._state, this._prevState, maxDepth, maxLength)
         }
 
-        const state: {[key: string]: unknown} = {},
-            prevState: {[key: string]: unknown} = {}
+        const state: {[key: string]: unknown} = {}
+        const prevState: {[key: string]: unknown} = {}
 
         for (const key of keys) {
             state[key] = this._state[key as keyof State]
@@ -212,9 +211,10 @@ export abstract class Component<
 
     /**
      * Sets state
-     * @param obj - state to set
-     * @param shouldComponentUpdate - if component should update after state setting
-     * @returns void
+     *
+     * @param obj - State to set
+     * @param shouldComponentUpdate - If component should update after state setting
+     * @returns Void
      */
     public readonly setState = (
         obj: Partial<State>,
@@ -251,8 +251,9 @@ export abstract class Component<
     /* eslint-disable @typescript-eslint/member-ordering, max-len */
     /**
      * Initial mounting to be manually called
-     * @param parent - parent element to mount with; optional
-     * @returns - result of append child to parent element
+     *
+     * @param parent - Parent element to mount with; optional
+     * @returns - Result of append child to parent element
      */
     public readonly mountComponent = (parent?: HTMLElement): Node | Error => {
         try {
@@ -295,13 +296,15 @@ export abstract class Component<
 
     /**
      * Initial mounting to be manually called
-     * @returns - result of append child to parent element
+     *
+     * @returns - Result of append child to parent element
      */
     public readonly mount = this.mountComponent
 
     /**
      * Unmounting to be manually called
-     * @returns - void
+     *
+     * @returns - Void
      */
     public readonly unmountComponent = (): void => {
         try {
@@ -322,14 +325,16 @@ export abstract class Component<
 
     /**
      * Unmounting to be manually called
-     * @returns - void
+     *
+     * @returns - Void
      */
     public readonly unmount = this.unmountComponent
     /* eslint-enable max-len, @typescript-eslint/member-ordering */
 
     /**
      * Removes children from this._parent
-     * @return void
+     *
+     * @returns Void
      */
     private _removeChildren = (): void => {
         if (this._parent === undefined) {
@@ -345,7 +350,8 @@ export abstract class Component<
 
     /**
      * Executes new render
-     * @returns rendered content
+     *
+     * @returns Rendered content
      */
     private _execRender = (): RenderType => {
         this._removeChildren()
@@ -355,8 +361,9 @@ export abstract class Component<
 
     /**
      * Updates the component
-     * @param renderedContent - rendered content from executing the render function
-     * @returns void
+     *
+     * @param renderedContent - Rendered content from executing the render function
+     * @returns Void
      */
     private _update = (renderedContent?: RenderType): void => {
         if (renderedContent instanceof Array) {

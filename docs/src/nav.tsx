@@ -1,23 +1,22 @@
 import * as DeStagnate from "../../lib/createElementOnly"
 import pages from "./pages"
-
-
-(() => {
+;(() => {
     /**
      * Create nav item
-     * @param {string} file - file to link to
-     * @param {string} content - content of item
-     * @returns {HTMLElement} nav item
+     *
+     * @param {string} file - File to link to
+     * @param {string} content - Content of item
+     * @returns {HTMLElement} Nav item
      */
     const createNavItem = (file: string, content: string): JSX.Element => (
-            <li>
-                <a class="text-dark" href={file}>{content}</a>
-            </li>
-        )
+        <li>
+            <a class="text-dark" href={file}>
+                {content}
+            </a>
+        </li>
+    )
 
-    /**
-     * Append to elements to nav
-     */
+    /** Append to elements to nav */
     document.getElementById("nav")?.appendChild(
         <div class="p-4 bg-light">
             <div class="row">
@@ -34,16 +33,14 @@ import pages from "./pages"
                             class="mb-3"
                         />
                     </a>
-                    <ul>
-                        {pages.map((val) => createNavItem(val[0], val[1]))}
-                    </ul>
+                    <ul>{pages.map((val) => createNavItem(val[0], val[1]))}</ul>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4">
                     <a href="/">
-                        <img src="./logo.svg" class="w-100"/>
+                        <img src="./logo.svg" class="w-100" />
                     </a>
                 </div>
             </div>
-        </div>
+        </div>,
     )
 })()

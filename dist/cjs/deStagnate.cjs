@@ -14,11 +14,12 @@ const url = "https://luke-zhang-04.github.io/DeStagnate/error-codes";
 
 /**
  * Binds children to element
+ *
+ * @param element - Element to bind
+ * @param props - Props to bind with
+ * @param ns - If namespace element
+ * @returns Void
  * @package
- * @param element - element to bind
- * @param props - props to bind with
- * @param ns - if namespace element
- * @returns void
  */
 
 const bindProps = (element, props, ns = false) => {
@@ -46,10 +47,11 @@ const bindProps = (element, props, ns = false) => {
 };
 /**
  * Binds children to element
+ *
+ * @param element - Element to bind
+ * @param children - Children to bind with
+ * @returns Void
  * @package
- * @param element - element to bind
- * @param children - children to bind with
- * @returns void
  */
 
 const bindChildren = (element, children) => {
@@ -78,14 +80,16 @@ const bindChildren = (element, children) => {
 };
 
 /**
+ * @param tagNameOrComponent - Name of HTML element or function component
+ * @param props - Props of element or component
  *
- * @param tagNameOrComponent - name of HTML element or function component
- * @param props - props of element or component
- * 1. If `tagNameOrComponent` is tagname, props are element properties, such as class, innerHTML, id, style, etc
- * 2. If `tagNameOrComponent` is a function, props are that functions parameters
- * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - rest parameter for children
- * @returns element
+ *   1. If `tagNameOrComponent` is tagname, props are element properties, such as class, innerHTML, id, style, etc
+ *   2. If `tagNameOrComponent` is a function, props are that functions parameters
+ *
+ * @param children - Children of this element. Can be nothing, number (converted to string), string
+ *   (text), or another element. An array of any of these will create multiple children
+ * @param childrenArgs - Rest parameter for children
+ * @returns Element
  */
 
 function createElement(tagNameOrComponent, props, ...children) {
@@ -103,12 +107,14 @@ function createElement(tagNameOrComponent, props, ...children) {
 
 /**
  * Creates a child element to deStagnate
- * @param namespaceURI - namespace uri
- * @param tagName - name of HTML element
- * @param props - element properties, such as class, innerHTML, id, style, etc
- * @param children - children of this element. Can be nothing, number (converted to string), string (text), or another element. An array of any of these will create multiple children
- * @param childrenRest - rest parameter of children
- * @returns html element
+ *
+ * @param namespaceURI - Namespace uri
+ * @param tagName - Name of HTML element
+ * @param props - Element properties, such as class, innerHTML, id, style, etc
+ * @param children - Children of this element. Can be nothing, number (converted to string), string
+ *   (text), or another element. An array of any of these will create multiple children
+ * @param childrenRest - Rest parameter of children
+ * @returns Html element
  */
 
 const createElementNS = (namespaceURI, tagName, props, ...children) => {
@@ -120,7 +126,8 @@ const createElementNS = (namespaceURI, tagName, props, ...children) => {
 
 /**
  * Creates a reference for a nested component
- * @returns empty ref object
+ *
+ * @returns Empty ref object
  */
 const createRef = () => ({
   current: null
@@ -133,24 +140,27 @@ class Preset {
     this.createRef = createRef;
     /**
      * Called when component catches error. Default behaviour is console.error
-     * @param error - error object with info
-     * @returns void
+     *
+     * @param error - Error object with info
+     * @returns Void
      */
 
     this.componentDidCatch = error => console.error(error);
     /**
      * Called before component is updated
-     * @returns whether or not component should update/re-render
+     *
+     * @returns Whether or not component should update/re-render
      */
 
 
     this.shouldComponentUpdate = () => true;
     /**
      * Rendering HTML, must be part of extended class
+     *
+     * @abstract
+     * @returns If returns null error will be thrown
      * @public
      * @instance
-     * @abstract
-     * @returns if returns null error will be thrown
      */
 
 
@@ -162,14 +172,14 @@ Preset.createElement = createElement;
 Preset.createElementNS = createElementNS;
 Preset.createRef = createRef;
 
-const eventNames = ["onFocus", "onBlur", "onFocusIn", "onFocusOut", "onAnimationStart", "onAnimationCancel", "onAnimationEnd", "onAnimationIteration", "onTransitionStart", "onTransitionCancel", "onTransitionEnd", "onTransitionRun", "onAuxClick", "onClick", "onDblClick", "onMouseDown", "onMouseEnter", "onMouseLeave", "onMouseMove", "onMouseOver", "onMouseOut", "onMouseUp", "onWheel"],
-      windowEventNames = ["onLoad", "onOnline", "onOffline", "onResize", "onScroll", "onKeyDown", "onKeyPress", "onKeyUp"];
+const eventNames = ["onFocus", "onBlur", "onFocusIn", "onFocusOut", "onAnimationStart", "onAnimationCancel", "onAnimationEnd", "onAnimationIteration", "onTransitionStart", "onTransitionCancel", "onTransitionEnd", "onTransitionRun", "onAuxClick", "onClick", "onDblClick", "onMouseDown", "onMouseEnter", "onMouseLeave", "onMouseMove", "onMouseOver", "onMouseOut", "onMouseUp", "onWheel"];
+const windowEventNames = ["onLoad", "onOnline", "onOffline", "onResize", "onScroll", "onKeyDown", "onKeyPress", "onKeyUp"];
 class Events extends Preset {
   constructor() {
     super(...arguments);
     /**
-     * Binds event listeners.
-     * Do not call manually
+     * Binds event listeners. Do not call manually
+     *
      * @pacakge
      */
 
@@ -179,8 +189,8 @@ class Events extends Preset {
       this._eventListener(window.addEventListener, windowEventNames);
     };
     /**
-     * Binds event listeners.
-     * Do not call manually
+     * Binds event listeners. Do not call manually
+     *
      * @pacakge
      */
 
@@ -193,8 +203,8 @@ class Events extends Preset {
 
     this._eventListener = (eventListener, events = eventNames) => {
       for (const eventName of events) {
-        const htmlEventName = eventName.slice(2).toLowerCase(),
-              callback = this[eventName];
+        const htmlEventName = eventName.slice(2).toLowerCase();
+        const callback = this[eventName];
 
         if (callback !== undefined && callback instanceof Function) {
           eventListener(htmlEventName, callback);
@@ -207,12 +217,13 @@ class Events extends Preset {
 
 /**
  * Checks if val1 and val2 are equal
- * @param val1 - value to check for equality
- * @param val2 - value to compare against val1
- * @param maxDepth - max recursion depth to crawl an object. After max depth is
- * reached, the two values are simply compared with `===`
- * @param maxLength - max length of array to crawl. If max lenth is reached, two
- * arrays will simply be compared with `===`
+ *
+ * @param val1 - Value to check for equality
+ * @param val2 - Value to compare against val1
+ * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the two
+ *   values are simply compared with `===`
+ * @param maxLength - Max length of array to crawl. If max lenth is reached, two arrays will simply
+ *   be compared with `===`
  * @returns `val1 === val2`
  */
 const isEqual = (val1, val2, maxDepth = 3, maxLength = 10) => {
@@ -259,17 +270,19 @@ var utils = {
 const unmountedMsg = "Refusing to update unmounted component";
 /**
  * DeStagnate
- * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @class
- * @namespace
+ *
  * @abstract
+ * @namespace
+ * @class
+ * @classdesc A simple, ReactJS inspired library to create dynamic components within static sites easier
  */
 
 class Component extends Events {
   /**
    * Construct class component
-   * @param parent - parent of this element
-   * @param props - element properties; works like React Props
+   *
+   * @param parent - Parent of this element
+   * @param props - Element properties; works like React Props
    */
   constructor(parent, props) {
     super();
@@ -278,9 +291,10 @@ class Component extends Events {
     this._didSetInitialState = false;
     this._didMount = false;
     /**
-     * Forces a component to update
-     * Follows the same component updating procedure as setState without modifying state
-     * @returns returns error if error is thrown
+     * Forces a component to update Follows the same component updating procedure as setState
+     * without modifying state
+     *
+     * @returns Returns error if error is thrown
      */
 
     this.forceUpdate = () => {
@@ -305,15 +319,14 @@ class Component extends Events {
       }
     };
     /**
-     * Checks if the state changed from the previous state. Can me attached to
-     * `shouldComponentUpdate`
-     * @param keys - list of keys to crawl. If left undefined (default) then
-     * use all keys. Should be `keyof State`, but there were some Typescript
-     * troubles.
-     * @param maxDepth - max recursion depth to crawl an object. After max depth
-     * is reached, the two values are simply compared with `===`
-     * @param maxLength - max length of array to crawl. If max lenth is reached,
-     * two arrays will simply be compared with `===`
+     * Checks if the state changed from the previous state. Can me attached to `shouldComponentUpdate`
+     *
+     * @param keys - List of keys to crawl. If left undefined (default) then use all keys. Should
+     *   be `keyof State`, but there were some Typescript troubles.
+     * @param maxDepth - Max recursion depth to crawl an object. After max depth is reached, the
+     *   two values are simply compared with `===`
+     * @param maxLength - Max length of array to crawl. If max lenth is reached, two arrays will
+     *   simply be compared with `===`
      * @returns `val1 === val2`
      */
 
@@ -325,8 +338,8 @@ class Component extends Events {
         return !utils.isEqual(this._state, this._prevState, maxDepth, maxLength);
       }
 
-      const state = {},
-            prevState = {};
+      const state = {};
+      const prevState = {};
 
       for (const key of keys) {
         state[key] = this._state[key];
@@ -337,9 +350,10 @@ class Component extends Events {
     };
     /**
      * Sets state
-     * @param obj - state to set
-     * @param shouldComponentUpdate - if component should update after state setting
-     * @returns void
+     *
+     * @param obj - State to set
+     * @param shouldComponentUpdate - If component should update after state setting
+     * @returns Void
      */
 
 
@@ -369,8 +383,9 @@ class Component extends Events {
     };
     /**
      * Initial mounting to be manually called
-     * @param parent - parent element to mount with; optional
-     * @returns - result of append child to parent element
+     *
+     * @param parent - Parent element to mount with; optional
+     * @returns - Result of append child to parent element
      */
 
 
@@ -411,14 +426,16 @@ class Component extends Events {
     };
     /**
      * Initial mounting to be manually called
-     * @returns - result of append child to parent element
+     *
+     * @returns - Result of append child to parent element
      */
 
 
     this.mount = this.mountComponent;
     /**
      * Unmounting to be manually called
-     * @returns - void
+     *
+     * @returns - Void
      */
 
     this.unmountComponent = () => {
@@ -441,14 +458,16 @@ class Component extends Events {
     };
     /**
      * Unmounting to be manually called
-     * @returns - void
+     *
+     * @returns - Void
      */
 
 
     this.unmount = this.unmountComponent;
     /**
      * Removes children from this._parent
-     * @return void
+     *
+     * @returns Void
      */
 
     this._removeChildren = () => {
@@ -464,7 +483,8 @@ class Component extends Events {
     };
     /**
      * Executes new render
-     * @returns rendered content
+     *
+     * @returns Rendered content
      */
 
 
@@ -475,8 +495,9 @@ class Component extends Events {
     };
     /**
      * Updates the component
-     * @param renderedContent - rendered content from executing the render function
-     * @returns void
+     *
+     * @param renderedContent - Rendered content from executing the render function
+     * @returns Void
      */
 
 
@@ -515,7 +536,8 @@ class Component extends Events {
   }
   /**
    * Public getState getter as this.state itself is protected
-   * @returns component state
+   *
+   * @returns Component state
    */
 
 
@@ -524,7 +546,8 @@ class Component extends Events {
   }
   /**
    * Get component state
-   * @returns component state
+   *
+   * @returns Component state
    */
 
 
@@ -532,9 +555,9 @@ class Component extends Events {
     return this._state;
   }
   /**
-   * Sets component state
-   * WARN: do not use this method to mutate the state directly
-   * @param obj - state to set
+   * Sets component state WARN: do not use this method to mutate the state directly
+   *
+   * @param obj - State to set
    */
 
 
@@ -549,7 +572,8 @@ class Component extends Events {
   }
   /**
    * Public getProps getter as this.props itself is protected
-   * @returns component props
+   *
+   * @returns Component props
    */
 
 
@@ -558,8 +582,9 @@ class Component extends Events {
   }
   /**
    * Set the parent of this component
-   * @param element - parent element
-   * @returns void
+   *
+   * @param element - Parent element
+   * @returns Void
    */
 
 
@@ -568,7 +593,8 @@ class Component extends Events {
   }
   /**
    * Get the parent element of this component
-   * @returns parent
+   *
+   * @returns Parent
    */
 
 
@@ -577,7 +603,8 @@ class Component extends Events {
   }
   /**
    * Get didMount value publicly
-   * @returns if mounted
+   *
+   * @returns If mounted
    */
 
 
@@ -586,7 +613,8 @@ class Component extends Events {
   }
   /**
    * Returns the previous state. Undefined if no previous state exists
-   * @returns previous state
+   *
+   * @returns Previous state
    */
 
 

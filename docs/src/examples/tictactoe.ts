@@ -5,12 +5,12 @@ let currentPlayer: "x" | "o" = "x"
 
 // Interfaces for states
 interface SquareState {
-    clicked: "" | "x" | "o",
+    clicked: "" | "x" | "o"
 }
 
 class TicTacToe extends DeStagnate.Component {
-
-    private _squares = [ // A bunch of squares
+    private _squares = [
+        // A bunch of squares
         [new Square(), new Square(), new Square()],
         [new Square(), new Square(), new Square()],
         [new Square(), new Square(), new Square()],
@@ -18,30 +18,15 @@ class TicTacToe extends DeStagnate.Component {
 
     private _checkForWinner = (): SquareState["clicked"] => {
         for (let i = 0; i < 3; i++) {
-            const rows = [0, 1, 2].map((val) => this._squares[i][val]
-                .getState
-                .clicked
-            )
+            const rows = [0, 1, 2].map((val) => this._squares[i][val].getState.clicked)
 
-            const columns = [0, 1, 2].map((val) => this._squares[val][i]
-                .getState
-                .clicked
-            )
+            const columns = [0, 1, 2].map((val) => this._squares[val][i].getState.clicked)
 
-            if (
-                rows[0] === rows[1] &&
-                rows[1] === rows[2] &&
-                rows[0]
-            ) {
+            if (rows[0] === rows[1] && rows[1] === rows[2] && rows[0]) {
                 return rows[0]
-            } else if (
-                columns[0] === columns[1] &&
-                columns[1] === columns[2] &&
-                columns[0]
-            ) {
+            } else if (columns[0] === columns[1] && columns[1] === columns[2] && columns[0]) {
                 return columns[0]
             }
-
         }
 
         const diagonals = [
@@ -58,11 +43,7 @@ class TicTacToe extends DeStagnate.Component {
         ]
 
         for (const diagonal of diagonals) {
-            if (
-                diagonal[0] === diagonal[1] &&
-                diagonal[1] === diagonal[2] &&
-                diagonal[0]
-            ) {
+            if (diagonal[0] === diagonal[1] && diagonal[1] === diagonal[2] && diagonal[0]) {
                 return diagonal[0]
             }
         }
@@ -70,46 +51,49 @@ class TicTacToe extends DeStagnate.Component {
         return ""
     }
 
-    public render = (): HTMLElement[] => [0, 1, 2]
-        // Create 3 rows
-        .map((val) => createElement(
-            "div",
-            {class: "row"},
-            // Create 3 columns
-            [0, 1, 2].map((val2) => createElement(
-                "div",
-                {
-                    class: "col-4",
-                    onClick: () => {
-                        // Current square
-                        const square = this._squares[val][val2]
+    public render = (): HTMLElement[] =>
+        [0, 1, 2]
+            // Create 3 rows
+            .map((val) =>
+                createElement(
+                    "div",
+                    {class: "row"},
+                    // Create 3 columns
+                    [0, 1, 2].map((val2) =>
+                        createElement(
+                            "div",
+                            {
+                                class: "col-4",
+                                onClick: () => {
+                                    // Current square
+                                    const square = this._squares[val][val2]
 
-                        // Check if square isn't already clicked
-                        if (square?.getState.clicked === "") {
-                            square?.setState({clicked: currentPlayer})
-                        }
+                                    // Check if square isn't already clicked
+                                    if (square?.getState.clicked === "") {
+                                        square?.setState({clicked: currentPlayer})
+                                    }
 
-                        // Change current player
-                        if (currentPlayer === "x") {
-                            currentPlayer = "o"
-                        } else {
-                            currentPlayer = "x"
-                        }
+                                    // Change current player
+                                    if (currentPlayer === "x") {
+                                        currentPlayer = "o"
+                                    } else {
+                                        currentPlayer = "x"
+                                    }
 
-                        if (this._checkForWinner()) {
-                            alert(`Player ${this._checkForWinner()} has won the game!`)
-                        }
-                    },
-                },
-                this._squares[val][val2],
-            ))
-        ))
-
+                                    if (this._checkForWinner()) {
+                                        alert(`Player ${this._checkForWinner()} has won the game!`)
+                                    }
+                                },
+                            },
+                            this._squares[val][val2],
+                        ),
+                    ),
+                ),
+            )
 }
 
 class Square extends DeStagnate.Component<{}, SquareState> {
-
-    public constructor () {
+    public constructor() {
         super()
 
         this.state = {
@@ -117,12 +101,8 @@ class Square extends DeStagnate.Component<{}, SquareState> {
         }
     }
 
-    public render = (): HTMLElement => createElement(
-        "div",
-        {class: "tictactoe-square",},
-        this.state.clicked,
-    )
-
+    public render = (): HTMLElement =>
+        createElement("div", {class: "tictactoe-square"}, this.state.clicked)
 }
 
 const tictactoeParent = document.getElementById("nested")
