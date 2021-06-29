@@ -230,6 +230,7 @@ var DeStagnate = (function (exports) {
   };
 
   exports.Fragment = Fragment;
+  exports.ce = createElement;
   exports.createElement = createElement;
   exports.createElementNS = createElementNS;
   exports.default = createElement;

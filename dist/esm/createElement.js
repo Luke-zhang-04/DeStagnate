@@ -133,5 +133,5 @@ const createElementNS = (namespaceURI, tagName, props, ...children) => {
 };
 
 export default createElement;
-export { Fragment, createElement, createElementNS };
+export { Fragment, createElement as ce, createElement, createElementNS };
 //# sourceMappingURL=createElement.js.map

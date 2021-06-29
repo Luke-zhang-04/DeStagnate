@@ -231,6 +231,7 @@ var createElementNS = function createElementNS(namespaceURI, tagName, props) {
 };
 
 exports.Fragment = Fragment;
+exports.ce = createElement;
 exports.createElement = createElement;
 exports.createElementNS = createElementNS;
 exports.default = createElement;

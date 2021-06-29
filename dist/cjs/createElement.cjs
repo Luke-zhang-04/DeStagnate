@@ -137,6 +137,7 @@ const createElementNS = (namespaceURI, tagName, props, ...children) => {
 };
 
 exports.Fragment = Fragment;
+exports.ce = createElement;
 exports.createElement = createElement;
 exports.createElementNS = createElementNS;
 exports.default = createElement;

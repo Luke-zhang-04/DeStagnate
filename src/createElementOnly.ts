@@ -10,5 +10,5 @@
 /// <reference path="./jsx.ts" />
 
 export {Fragment} from "./fragment"
-export {createElement, createElement as default} from "./createElement"
+export {createElement, createElement as ce, createElement as default} from "./createElement"
 export {createElementNS} from "./createElementNS"
