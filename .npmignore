@@ -147,3 +147,9 @@ tsbuildinfo.json
 tsconfig*
 typedoc.cjs
 yarn.lock
+
+pnpm-lock.yaml
+.eslintrc.cjs
+.prettierignore
+.prettierrc.yml
+
