@@ -116,6 +116,22 @@ export const bindProps = (element: Element, props?: BasicProps | null, ns = fals
     }
 }
 
+const bindDestagnateElement = (element: Node, children: Component): void => {
+    if (element instanceof HTMLElement) {
+        if (children.didMount) {
+            if (children.parent !== element) {
+                children.parent = element as HTMLElement
+            }
+
+            children.forceUpdate()
+        } else {
+            children.mount(element)
+        }
+    } else {
+        throw new Error(`ERROR: code 3. See ${url}`)
+    }
+}
+
 /**
  * Binds children to element
  *
@@ -133,19 +149,7 @@ export const bindChildren = (element: Node, children?: ChildrenType): void => {
         } else if (children instanceof Node) {
             element.appendChild(children)
         } else {
-            if (!children.didMount && element instanceof window.HTMLElement) {
-                children.mount(element)
-
-                return
-            } else if (!(element instanceof window.HTMLElement)) {
-                throw new Error(`ERROR: code 3. See ${url}`)
-            }
-
-            if (children.parent !== element) {
-                children.parent = element
-            }
-
-            children.forceUpdate()
+            bindDestagnateElement(element, children)
         }
     }
 }

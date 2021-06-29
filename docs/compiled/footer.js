@@ -1,4 +1,4 @@
-!function(){"use strict";const e=(t,n)=>{if(null!=n)if(n instanceof Array)n.forEach((n=>e(t,n)));else if("string"==typeof n||"number"==typeof n)t.appendChild(document.createTextNode(n.toString()));else if(n instanceof Node)t.appendChild(n);else{if(!n.didMount&&t instanceof window.HTMLElement)return void n.mount(t);if(!(t instanceof window.HTMLElement))throw new Error("ERROR: code 3. See https://luke-zhang-04.github.io/DeStagnate/error-codes");n.parent!==t&&(n.parent=t),n.forceUpdate()}};
+!function(){"use strict";const e=(t,n)=>{null!=n&&(n instanceof Array?n.forEach((n=>e(t,n))):"string"==typeof n||"number"==typeof n?t.appendChild(document.createTextNode(n.toString())):n instanceof Node?t.appendChild(n):((e,t)=>{if(!(e instanceof HTMLElement))throw new Error("ERROR: code 3. See https://luke-zhang-04.github.io/DeStagnate/error-codes");t.didMount?(t.parent!==e&&(t.parent=e),t.forceUpdate()):t.mount(e)})(t,n))};
 /**
      * Component A simple, ReactJS inspired library to create dynamic components within static sites easier
      *

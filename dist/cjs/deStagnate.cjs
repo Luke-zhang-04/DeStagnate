@@ -97,6 +97,22 @@ const bindProps = (element, props, ns = false) => {
     }
   }
 };
+
+const bindDestagnateElement = (element, children) => {
+  if (element instanceof HTMLElement) {
+    if (children.didMount) {
+      if (children.parent !== element) {
+        children.parent = element;
+      }
+
+      children.forceUpdate();
+    } else {
+      children.mount(element);
+    }
+  } else {
+    throw new Error(`ERROR: code 3. See ${url}`);
+  }
+};
 /**
  * Binds children to element
  *
@@ -105,6 +121,7 @@ const bindProps = (element, props, ns = false) => {
  * @returns Void
  * @package
  */
+
 
 const bindChildren = (element, children) => {
   if (children !== null && children !== undefined) {
@@ -115,18 +132,7 @@ const bindChildren = (element, children) => {
     } else if (children instanceof Node) {
       element.appendChild(children);
     } else {
-      if (!children.didMount && element instanceof window.HTMLElement) {
-        children.mount(element);
-        return;
-      } else if (!(element instanceof window.HTMLElement)) {
-        throw new Error(`ERROR: code 3. See ${url}`);
-      }
-
-      if (children.parent !== element) {
-        children.parent = element;
-      }
-
-      children.forceUpdate();
+      bindDestagnateElement(element, children);
     }
   }
 };
