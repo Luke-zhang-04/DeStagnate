@@ -32,7 +32,6 @@
     "component",
     "web"
   ],
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
