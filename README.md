@@ -5,8 +5,8 @@
 <p align="center">
     <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/LICENSE"><img src="https://img.shields.io/github/license/luke-zhang-04/destagnate" alt="License"/></a>
     <a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/v/destagnate?logo=npm" alt="npm version"/></a>
-    <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/iife/deStagnate.min.js"><img src="https://img.badgesize.io/https:/raw.githubusercontent.com/Luke-zhang-04/DeStagnate/master/dist/iife/deStagnate.min.js?label=iife/deStagnate.min.js%20gzip&compression=gzip" alt="bundle min gzip size"></a>
-    <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/dist/iife/createElement.min.js"><img src="https://img.badgesize.io/https:/raw.githubusercontent.com/Luke-zhang-04/DeStagnate/master/dist/iife/createElement.min.js?label=iife/createElement.min.js%20gzip&compression=gzip" alt="bundle min gzip size"></a>
+    <a href="https://unpkg.com/destagnate/dist/iife/deStagnate.min.js"><img src="https://img.badgesize.io/https:/unpkg.com/destagnate/dist/iife/deStagnate.min.js?label=iife/deStagnate.min.js%20gzip&compression=gzip" alt="bundle min gzip size"></a>
+    <a href="https://unpkg.com/destagnate/dist/iife/createElement.min.js"><img src="https://img.badgesize.io/https:/unpkg.com/destagnate/dist/iife/createElement.min.js?label=iife/createElement.min.js%20gzip&compression=gzip" alt="bundle min gzip size"></a>
     <a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/dt/destagnate"/></a>
     <a href="https://github.com/Luke-zhang-04/DeStagnate/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://img.shields.io/github/workflow/status/Luke-zhang-04/DeStagnate/Node.js%20CI/master?label=Tests&logo=github" alt="tests"/></a>
     <br/>
