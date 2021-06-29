@@ -4,7 +4,6 @@
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 2.0.0
  * @file share functions and types for createElement and it's variants
  */
 
@@ -14,20 +13,21 @@ import url from "./_url"
 
 /* eslint-disable one-var, @typescript-eslint/no-explicit-any */
 
-export type ChildrenFlatArrayType = (HTMLElement
+export type ChildrenFlatArrayType = (
+    | HTMLElement
     | Element
     | number
     | string
     | Component<any, any>
 )[]
 
-export type ChildrenArrayType = ChildrenFlatArrayType
-    | ChildrenArrayType[]
+export type ChildrenArrayType = ChildrenFlatArrayType | ChildrenArrayType[]
 
 /**
  * All types the children parameter can be
  */
-export type ChildrenType = ChildrenType[]
+export type ChildrenType =
+    | ChildrenType[]
     | string
     | number
     | ChildrenArrayType
@@ -35,52 +35,50 @@ export type ChildrenType = ChildrenType[]
     | Component<any, any>
 
 interface EventMap extends HTMLElementEventMap {
-    "": Event,
+    "": Event
 }
 
-export type EventFunc<T extends keyof EventMap = ""> = (
-    e: EventMap[T]
-)=> void
+export type EventFunc<T extends keyof EventMap = ""> = (e: EventMap[T]) => void
 
 export interface BasicProps {
     // eslint-disable-next-line
-    [key: string]: string | number | Element | Ref | EventFunc<keyof EventFunc> | undefined,
-    class?: string,
-    ref?: Ref,
-    id?: string,
-    src?: string,
-    href?: string,
-    width?: number,
-    height?: number,
-    alt?: string,
-    style?: string,
-    title?: string,
+    [key: string]: string | number | Element | Ref | EventFunc<keyof EventFunc> | undefined
+    class?: string
+    ref?: Ref
+    id?: string
+    src?: string
+    href?: string
+    width?: number
+    height?: number
+    alt?: string
+    style?: string
+    title?: string
 
-    onFocus?: EventFunc<"focus">,
-    onBlur?: EventFunc<"blur">,
-    onFocusIn?: EventFunc<"focusin">,
-    onFocusOut?: EventFunc<"focusout">,
+    onFocus?: EventFunc<"focus">
+    onBlur?: EventFunc<"blur">
+    onFocusIn?: EventFunc<"focusin">
+    onFocusOut?: EventFunc<"focusout">
 
-    onAnimationStart?: EventFunc<"animationstart">,
-    onAnimationCancel?: EventFunc<"animationcancel">,
-    onAnimationEnd?: EventFunc<"animationend">,
-    onAnimationIteration?: EventFunc<"animationiteration">,
+    onAnimationStart?: EventFunc<"animationstart">
+    onAnimationCancel?: EventFunc<"animationcancel">
+    onAnimationEnd?: EventFunc<"animationend">
+    onAnimationIteration?: EventFunc<"animationiteration">
 
-    onTransitionStart?: EventFunc<"transitionstart">,
-    onTransitionCancel?: EventFunc<"transitioncancel">,
-    onTransitionEnd?: EventFunc<"transitionend">,
-    onTransitionRun?: EventFunc<"transitionrun">,
+    onTransitionStart?: EventFunc<"transitionstart">
+    onTransitionCancel?: EventFunc<"transitioncancel">
+    onTransitionEnd?: EventFunc<"transitionend">
+    onTransitionRun?: EventFunc<"transitionrun">
 
-    onAuxClick?: EventFunc<"auxclick">,
-    onClick?: EventFunc<"click">,
-    onDblClick?: EventFunc<"dblclick">,
-    onMouseDown?: EventFunc<"mousedown">,
-    onMouseEnter?: EventFunc<"mouseenter">,
-    onMouseLeave?: EventFunc<"mouseleave">,
-    onMouseMove?: EventFunc<"mousemove">,
-    onMouseOver?: EventFunc<"mouseover">,
-    onMouseOut?: EventFunc<"mouseout">,
-    onMouseUp?: EventFunc<"mouseup">,
+    onAuxClick?: EventFunc<"auxclick">
+    onClick?: EventFunc<"click">
+    onDblClick?: EventFunc<"dblclick">
+    onMouseDown?: EventFunc<"mousedown">
+    onMouseEnter?: EventFunc<"mouseenter">
+    onMouseLeave?: EventFunc<"mouseleave">
+    onMouseMove?: EventFunc<"mousemove">
+    onMouseOver?: EventFunc<"mouseover">
+    onMouseOut?: EventFunc<"mouseout">
+    onMouseUp?: EventFunc<"mouseup">
 }
 
 /**
@@ -91,11 +89,7 @@ export interface BasicProps {
  * @param ns - if namespace element
  * @returns void
  */
-export const bindProps = (
-    element: Element,
-    props?: BasicProps | null,
-    ns = false,
-): void => {
+export const bindProps = (element: Element, props?: BasicProps | null, ns = false): void => {
     if (props) {
         for (const [key, val] of Object.entries(props)) {
             if (typeof val === "string" || typeof val === "number") {
@@ -106,20 +100,16 @@ export const bindProps = (
                 } else {
                     element.setAttribute(key, val.toString())
                 }
-            } else if (key.slice(0, 2) === "on") { // Works such as onClick, onAnimationEnd, etc.
-                if (typeof(val) === "function") {
+            } else if (key.slice(0, 2) === "on") {
+                // Works such as onClick, onAnimationEnd, etc.
+                if (typeof val === "function") {
                     element.addEventListener(
-                        key.slice(2)
-                            .toLowerCase() as keyof EventMap,
-                        val as EventFunc
+                        key.slice(2).toLowerCase() as keyof EventMap,
+                        val as EventFunc,
                     )
                 }
-            } else if (
-                key === "ref" &&
-                typeof(val) === "object" &&
-                "current" in val
-            ) {
-                (val as Ref<Element>).current = element
+            } else if (key === "ref" && typeof val === "object" && "current" in val) {
+                ;(val as Ref<Element>).current = element
             } else if (val !== undefined) {
                 console.warn(`${typeof val} is not a valid DeStagnate child`)
             }
@@ -134,19 +124,11 @@ export const bindProps = (
  * @param children - children to bind with
  * @returns void
  */
-export const bindChildren = (
-    element: Node,
-    children?: ChildrenType,
-): void => {
+export const bindChildren = (element: Node, children?: ChildrenType): void => {
     if (children !== null && children !== undefined) {
         if (children instanceof Array) {
-            children.forEach((child: ChildrenType) => (
-                bindChildren(element, child)
-            ))
-        } else if (
-            typeof children === "string" ||
-            typeof children === "number"
-        ) {
+            children.forEach((child: ChildrenType) => bindChildren(element, child))
+        } else if (typeof children === "string" || typeof children === "number") {
             element.appendChild(document.createTextNode(children.toString()))
         } else if (children instanceof Component) {
             if (!children.didMount && element instanceof window.HTMLElement) {

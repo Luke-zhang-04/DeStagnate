@@ -1,5 +1,5 @@
 /*!
- * Destagnate v2.0.0
+ * Destagnate v2.1.0
  * Copyright (C) 2020 - 2021 Luke Zhang https://luke-zhang-04.github.io
  * MIT License
  */
@@ -10,20 +10,20 @@
 $dark: #373737;
 $light: #f4f4f4;
 $primary: #071d26;
-$secondary: #048eC4;
+$secondary: #048ec4;
 $tertiary: darken($dark, 5%);
 $tomorrow: #2d2d2d;
 $mixed: mix($light, $dark, 50%);
 
 $theme-colors: map-merge(
-    $theme-colors,
-    (
-        dark: $dark,
-        light: $light,
-        mixed: $mixed,
-        primary: $primary,
-        secondary: $secondary,
-        tertiary: $tertiary,
-        tomorrow: $tomorrow,
-    )
-)
+  $theme-colors,
+  (
+    dark: $dark,
+    light: $light,
+    mixed: $mixed,
+    primary: $primary,
+    secondary: $secondary,
+    tertiary: $tertiary,
+    tomorrow: $tomorrow,
+  )
+);

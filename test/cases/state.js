@@ -3,7 +3,7 @@
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @license MIT
- * @version 2.0.0
+ * @version 2.1.0
  * Main test suite for destagnate
  */
 
@@ -12,8 +12,7 @@ import assert from "assert"
 import niceTry from "nice-try"
 
 class State extends DeStagnate.Component {
-
-    constructor (parent) {
+    constructor(parent) {
         super(parent)
 
         this.state = {
@@ -35,51 +34,26 @@ class State extends DeStagnate.Component {
         }
     }
 
-    render = () => createElement(
-        "div",
-        {},
-        [
-            createElement(
-                "p",
-                {},
-                ["Seconds:"]
-            ),
-            createElement(
-                "p",
-                {},
-                this.state.count
-            ),
-        ],
+    render = () =>
         createElement(
-            "p",
+            "div",
             {},
-            "TEST"
-        ),
-    )
-
+            [createElement("p", {}, ["Seconds:"]), createElement("p", {}, this.state.count)],
+            createElement("p", {}, "TEST"),
+        )
 }
 
 const checkNaN = () => {
-        const val = document.getElementById("counter")
-            .getElementsByTagName("p")[1]
-            .innerHTML
+        const val = document.getElementById("counter").getElementsByTagName("p")[1].innerHTML
 
-        assert.strictEqual(
-            false,
-            isNaN(Number(val)),
-        )
+        assert.strictEqual(false, isNaN(Number(val)))
     },
     value = (state) => {
         state.setState({count: 1})
 
-        const val = document.getElementById("counter")
-            .getElementsByTagName("p")[1]
-            .innerHTML
+        const val = document.getElementById("counter").getElementsByTagName("p")[1].innerHTML
 
-        assert.strictEqual(
-            1,
-            Number(val),
-        )
+        assert.strictEqual(1, Number(val))
     },
     getState = (state) => {
         state.setState({
@@ -87,20 +61,14 @@ const checkNaN = () => {
             warn: true,
         })
 
-        assert.strictEqual(
-            2,
-            state.getState.count,
-        )
+        assert.strictEqual(2, state.getState.count)
     },
     unmountedComponent = (state) => {
         state.unmount()
 
         const inner = document.getElementById("counter").innerHTML
 
-        assert.strictEqual(
-            "",
-            inner,
-        )
+        assert.strictEqual("", inner)
     },
     invalidStateSetting = (state) => {
         const tried = niceTry(() => {
@@ -109,19 +77,13 @@ const checkNaN = () => {
             return true
         })
 
-        assert.strictEqual(
-            undefined,
-            tried,
-        )
+        assert.strictEqual(undefined, tried)
     },
     noThrow = (state) => {
         state.shouldthrow = false
         state.state = state.getState
 
-        assert.strictEqual(
-            true,
-            state.didthrow
-        )
+        assert.strictEqual(true, state.didthrow)
     }
 
 export const test = () => {

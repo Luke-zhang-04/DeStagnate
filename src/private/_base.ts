@@ -4,7 +4,6 @@
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 2.0.0
  * @exports Preset - base for a component
  * @package
  */
@@ -16,32 +15,30 @@ import {default as _createRef} from "../createRef"
 export type RenderType = Node | Node[] | null
 
 export interface Preset {
-
     /**
      * Function that is called after component mounting
      */
-    componentDidMount?: ()=> void,
+    componentDidMount?: () => void
 
     /**
      * Function that is called after component update (state mutation)
      */
-    componentDidUpdate?: ()=> void,
+    componentDidUpdate?: () => void
 
     /**
      * Function that is called before component mounting
      */
-    componentWillMount?: ()=> void,
+    componentWillMount?: () => void
 
     /**
      * Function that is called before component unmounting
      */
-    componentWillUnmount?: ()=> void,
+    componentWillUnmount?: () => void
 
     /**
      * Function that is called before component update (state mutation)
      */
-    componentWillUpdate?: ()=> void,
-
+    componentWillUpdate?: () => void
 }
 
 /* istanbul ignore next */
@@ -49,7 +46,6 @@ export interface Preset {
  * Base class for components
  */
 export abstract class Preset {
-
     public static readonly createElement = _createElement
 
     public static readonly createElementNS = _createElementNS
@@ -83,5 +79,4 @@ export abstract class Preset {
      * @returns if returns null error will be thrown
      */
     public abstract render = (): RenderType => null
-
 }

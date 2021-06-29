@@ -4,7 +4,6 @@
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 2.0.0
  * @exports createElement function for DOM manipulation
  */
 // eslint-disable-next-line
@@ -14,7 +13,7 @@ import {
     BasicProps,
     ChildrenArrayType,
     bindChildren,
-    bindProps
+    bindProps,
 } from "./private/_createElementUtils"
 import type JSX from "./jsx"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
@@ -27,7 +26,7 @@ import type JSX from "./jsx"
  * @param childrenArgs - rest parameter of children
  * @returns element
  */
-export function createElement<T extends keyof HTMLElementTagNameMap> (
+export function createElement<T extends keyof HTMLElementTagNameMap>(
     tagNameOrComponent: T,
     props?: BasicProps | null,
     ...childrenArgs: ChildrenArrayType
@@ -44,11 +43,8 @@ export function createElement<T extends keyof HTMLElementTagNameMap> (
 export function createElement<
     Props extends Record<string, unknown>,
     Returns extends HTMLElement | JSX.Element,
-> (
-    tagNameOrComponent: (
-        props?: Props,
-        ...children: ChildrenArrayType
-    )=> Returns,
+>(
+    tagNameOrComponent: (props?: Props, ...children: ChildrenArrayType) => Returns,
     props?: Props,
     ...childrenArgs: ChildrenArrayType
 ): Returns
@@ -63,18 +59,12 @@ export function createElement<
  * @param childrenArgs - rest parameter for children
  * @returns element
  */
-export function createElement<
-    T extends string | Record<string, unknown>,
-    Returns = void,
-> (
-    tagNameOrComponent: T | ((
-        _props?: T,
-        ..._children: ChildrenArrayType
-    )=> Returns),
+export function createElement<T extends string | Record<string, unknown>, Returns = void>(
+    tagNameOrComponent: T | ((_props?: T, ..._children: ChildrenArrayType) => Returns),
     props?: BasicProps | null | T,
     ...children: ChildrenArrayType
 ): HTMLElement | Returns | Error {
-    if (typeof(tagNameOrComponent) === "string") {
+    if (typeof tagNameOrComponent === "string") {
         const element = document.createElement(tagNameOrComponent)
 
         bindProps(element, props as BasicProps | null)
@@ -82,7 +72,7 @@ export function createElement<
         bindChildren(element, children)
 
         return element
-    } else if (typeof(tagNameOrComponent) === "function") {
+    } else if (typeof tagNameOrComponent === "function") {
         return tagNameOrComponent(props as T, children)
     }
 

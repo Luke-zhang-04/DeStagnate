@@ -4,15 +4,10 @@
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 2.0.0
  * @exports createElementNS createElement for namespaced elements
  */
 
-import {
-    ChildrenArrayType,
-    bindChildren,
-    bindProps
-} from "./private/_createElementUtils"
+import {ChildrenArrayType, bindChildren, bindProps} from "./private/_createElementUtils"
 
 /**
  * Creates a child element to deStagnate
@@ -24,7 +19,11 @@ import {
  * @returns html element
  */
 export const createElementNS = (
-    namespaceURI: keyof SVGElementTagNameMap | "http://www.w3.org/1999/xhtml" | "http://www.w3.org/2000/svg" | null,
+    namespaceURI:
+        | keyof SVGElementTagNameMap
+        | "http://www.w3.org/1999/xhtml"
+        | "http://www.w3.org/2000/svg"
+        | null,
     tagName: keyof SVGElementEventMap | string,
     props?: {[key: string]: string | number},
     ...children: ChildrenArrayType

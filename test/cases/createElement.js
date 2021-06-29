@@ -3,7 +3,7 @@
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @license MIT
- * @version 2.0.0
+ * @version 2.1.0
  * Main test suite for destagnate
  */
 
@@ -14,14 +14,11 @@ export const test = () => {
     const element = createElement(
         "div",
         {id: "_ELEMENTTEST"},
-        createElement(
-            "div",
-            {
-                class: "bg-dark",
-                skip: [],
-                innerHTML: "coverage",
-            }
-        )
+        createElement("div", {
+            class: "bg-dark",
+            skip: [],
+            innerHTML: "coverage",
+        }),
     )
 
     document.body.appendChild(element)
@@ -29,9 +26,7 @@ export const test = () => {
     it("Should have class bg-dark", () => {
         assert.strictEqual(
             "bg-dark",
-            document.getElementById("_ELEMENTTEST")
-                .querySelector("div")
-                .classList[0],
+            document.getElementById("_ELEMENTTEST").querySelector("div").classList[0],
         )
     })
 }

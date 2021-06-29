@@ -4,7 +4,6 @@
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 2.0.0
  * @exports DeStagnate main destagnate class
  * @file DeStagnate component class
  * @preserve
@@ -25,17 +24,13 @@ export interface Component<
     Props extends Empty = Record<string, unknown>,
     State extends Empty = Record<string, unknown>,
 > {
-
     /**
      * What to call before component update (state mutation)
      * @param prevProps - previous props
      * @param prevState - previous state
      * @returns void
      */
-    getSnapshotBeforeUpdate?: (
-        prevProps: Props,
-        prevState: State,
-    )=> void,
+    getSnapshotBeforeUpdate?: (prevProps: Props, prevState: State) => void
 }
 
 /**
@@ -49,7 +44,6 @@ export abstract class Component<
     Props extends Empty = Record<string, unknown>,
     State extends Empty = Record<string, unknown>,
 > extends Base {
-
     /**
      * State of component. Works similar React State
      */
@@ -81,7 +75,7 @@ export abstract class Component<
      * @param parent - parent of this element
      * @param props - element properties; works like React Props
      */
-    public constructor (parent?: HTMLElement | null, protected props?: Props) {
+    public constructor(parent?: HTMLElement | null, protected props?: Props) {
         super()
 
         if (parent === null) {
@@ -95,7 +89,7 @@ export abstract class Component<
      * Public getState getter as this.state itself is protected
      * @returns component state
      */
-    public get getState (): State {
+    public get getState(): State {
         return this.state
     }
 
@@ -103,7 +97,7 @@ export abstract class Component<
      * Get component state
      * @returns component state
      */
-    protected get state (): State {
+    protected get state(): State {
         return this._state
     }
 
@@ -112,11 +106,9 @@ export abstract class Component<
      * WARN: do not use this method to mutate the state directly
      * @param obj - state to set
      */
-    protected set state (obj: State) {
+    protected set state(obj: State) {
         if (this._didSetInitialState) {
-            this.componentDidCatch(
-                new Error(`ERROR: code 1. See ${url}.`)
-            )
+            this.componentDidCatch(new Error(`ERROR: code 1. See ${url}.`))
             this.setState(obj)
         } else {
             this._state = obj
@@ -128,7 +120,7 @@ export abstract class Component<
      * Public getProps getter as this.props itself is protected
      * @returns component props
      */
-    public get getProps (): Props | undefined {
+    public get getProps(): Props | undefined {
         return this.props
     }
 
@@ -137,7 +129,7 @@ export abstract class Component<
      * @param element - parent element
      * @returns void
      */
-    public set parent (element: HTMLElement | undefined) {
+    public set parent(element: HTMLElement | undefined) {
         this._parent = element
     }
 
@@ -145,7 +137,7 @@ export abstract class Component<
      * Get the parent element of this component
      * @returns parent
      */
-    public get parent (): HTMLElement | undefined {
+    public get parent(): HTMLElement | undefined {
         return this._parent
     }
 
@@ -153,7 +145,7 @@ export abstract class Component<
      * Get didMount value publicly
      * @returns if mounted
      */
-    public get didMount (): boolean {
+    public get didMount(): boolean {
         return this._didMount
     }
 
@@ -161,7 +153,7 @@ export abstract class Component<
      * Returns the previous state. Undefined if no previous state exists
      * @returns previous state
      */
-    public get prevState (): State | undefined {
+    public get prevState(): State | undefined {
         return this._prevState
     }
 
@@ -182,10 +174,7 @@ export abstract class Component<
                 throw new Error(`ERROR: code 2. See ${url}.`)
             }
 
-            this.getSnapshotBeforeUpdate?.(
-                {...this.props} as Props,
-                {...this.state},
-            )
+            this.getSnapshotBeforeUpdate?.({...this.props} as Props, {...this.state})
 
             this._update(this._execRender())
         } catch (err: unknown) /* istanbul ignore next */ {
@@ -205,18 +194,9 @@ export abstract class Component<
      * two arrays will simply be compared with `===`
      * @returns `val1 === val2`
      */
-    public readonly stateDidChange = (
-        keys?: (string)[],
-        maxDepth = 3,
-        maxLength = 15,
-    ): boolean => {
+    public readonly stateDidChange = (keys?: string[], maxDepth = 3, maxLength = 15): boolean => {
         if (keys === undefined) {
-            return !utils.isEqual(
-                this._state,
-                this._prevState,
-                maxDepth,
-                maxLength,
-            )
+            return !utils.isEqual(this._state, this._prevState, maxDepth, maxLength)
         }
 
         const state: {[key: string]: unknown} = {},
@@ -253,10 +233,7 @@ export abstract class Component<
 
             this._prevState = {...this._state}
 
-            this.getSnapshotBeforeUpdate?.(
-                {...this.props} as Props,
-                {...this.state},
-            )
+            this.getSnapshotBeforeUpdate?.({...this.props} as Props, {...this.state})
 
             Object.assign(this._state, obj)
 
@@ -277,9 +254,7 @@ export abstract class Component<
      * @param parent - parent element to mount with; optional
      * @returns - result of append child to parent element
      */
-    public readonly mountComponent = (
-        parent?: HTMLElement
-    ): Node | Error => {
+    public readonly mountComponent = (parent?: HTMLElement): Node | Error => {
         try {
             if (parent !== undefined) {
                 this.parent = parent
@@ -305,9 +280,9 @@ export abstract class Component<
             this.componentDidMount?.()
 
             if (component instanceof Array) {
-                const fragment = document.createDocumentFragment();
+                const fragment = document.createDocumentFragment()
 
-                (component as Element[]).forEach((child) => fragment.appendChild(child))
+                ;(component as Element[]).forEach((child) => fragment.appendChild(child))
 
                 return this._parent.appendChild(fragment)
             }
@@ -343,7 +318,6 @@ export abstract class Component<
         } catch (err: unknown) /* istanbul ignore next */ {
             this._handleError(err)
         }
-
     }
 
     /**
@@ -379,7 +353,6 @@ export abstract class Component<
         return this.render()
     }
 
-
     /**
      * Updates the component
      * @param renderedContent - rendered content from executing the render function
@@ -412,7 +385,6 @@ export abstract class Component<
 
         return error
     }
-
 }
 
 export default Component

@@ -4,7 +4,6 @@
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 2.0.0
  * @exports Events
  * @package
  */
@@ -15,154 +14,151 @@ type EventListener = (
     type: string,
     listener: EventListenerOrEventListenerObject,
     options?: boolean | AddEventListenerOptions,
-)=> void
+) => void
 
-type EventMember<
-    K extends keyof HTMLElementEventMap,
-> = (event: HTMLElementEventMap[K])=> unknown | undefined
+type EventMember<K extends keyof HTMLElementEventMap> = (
+    event: HTMLElementEventMap[K],
+) => unknown | undefined
 
-type WindowEventMember<
-    K extends keyof WindowEventMap,
-> = (event: WindowEventMap[K])=> unknown | undefined
+type WindowEventMember<K extends keyof WindowEventMap> = (
+    event: WindowEventMap[K],
+) => unknown | undefined
 
 export interface Events {
-
     /**
      * Focus event
      */
-    onFocus?: EventMember<"focus">,
+    onFocus?: EventMember<"focus">
 
     /**
      * Blur event
      */
-    onBlur?: EventMember<"blur">,
+    onBlur?: EventMember<"blur">
 
     /**
      * Focus in event
      */
-    onFocusIn?: EventMember<"focusin">,
+    onFocusIn?: EventMember<"focusin">
 
     /**
      * Focus out event
      */
-    onFocusOut?: EventMember<"focusout">,
+    onFocusOut?: EventMember<"focusout">
 
     /**
      * Animation start event
      */
-    onAnimationStart?: EventMember<"animationstart">,
+    onAnimationStart?: EventMember<"animationstart">
 
     /**
      * Animation cancel event
      */
-    onAnimationCancel?: EventMember<"animationcancel">,
+    onAnimationCancel?: EventMember<"animationcancel">
 
     /**
      * Animation end event
      */
-    onAnimationEnd?: EventMember<"animationend">,
+    onAnimationEnd?: EventMember<"animationend">
 
     /**
      * Animation iteration event
      */
-    onAnimationIteration?: EventMember<"animationiteration">,
-
+    onAnimationIteration?: EventMember<"animationiteration">
 
     /**
      * Transition start event
      */
-    onTransitionStart?: EventMember<"transitionstart">,
+    onTransitionStart?: EventMember<"transitionstart">
 
     /**
      * Transition cancel event
      */
-    onTransitionCancel?: EventMember<"transitioncancel">,
+    onTransitionCancel?: EventMember<"transitioncancel">
 
     /**
      * Transition end event
      */
-    onTransitionEnd?: EventMember<"transitionend">,
+    onTransitionEnd?: EventMember<"transitionend">
 
     /**
      * Transition run event
      */
-    onTransitionRun?: EventMember<"transitionrun">,
-
+    onTransitionRun?: EventMember<"transitionrun">
 
     /**
      * Auxillary click event
      */
-    onAuxClick?: EventMember<"auxclick">,
+    onAuxClick?: EventMember<"auxclick">
 
     /**
      * Click event
      */
-    onClick?: EventMember<"click">,
+    onClick?: EventMember<"click">
 
     /**
      * Double click event
      */
-    onDblClick?: EventMember<"dblclick">,
+    onDblClick?: EventMember<"dblclick">
 
     /**
      * Mousedown event
      */
-    onMouseDown?: EventMember<"mousedown">,
+    onMouseDown?: EventMember<"mousedown">
 
     /**
      * Mouse enter event
      */
-    onMouseEnter?: EventMember<"mouseenter">,
+    onMouseEnter?: EventMember<"mouseenter">
 
     /**
      * Mouse leave event
      */
-    onMouseLeave?: EventMember<"mouseleave">,
+    onMouseLeave?: EventMember<"mouseleave">
 
     /**
      * Mouse move event
      */
-    onMouseMove?: EventMember<"mousemove">,
+    onMouseMove?: EventMember<"mousemove">
 
     /**
      * Mouseover event
      */
-    onMouseOver?: EventMember<"mouseover">,
+    onMouseOver?: EventMember<"mouseover">
 
     /**
      * Mouseout event
      */
-    onMouseOut?: EventMember<"mouseout">,
+    onMouseOut?: EventMember<"mouseout">
 
     /**
      * Mouseup event
      */
-    onMouseUp?: EventMember<"mouseup">,
+    onMouseUp?: EventMember<"mouseup">
 
     /**
      * Wheel event
      */
-    onWheel?: EventMember<"wheel">,
+    onWheel?: EventMember<"wheel">
 
     /**
      * Window load event
      */
-    onLoad?: WindowEventMember<"load">,
+    onLoad?: WindowEventMember<"load">
 
     /**
      * Window online event
      */
-    onOnline?: WindowEventMember<"online">,
+    onOnline?: WindowEventMember<"online">
 
     /**
      * Window offline event
      */
-    onOffline?: WindowEventMember<"offline">,
+    onOffline?: WindowEventMember<"offline">
 
     /**
      * Window resize event
      */
-    onResize?: WindowEventMember<"resize">,
+    onResize?: WindowEventMember<"resize">
 
     /**
      * Window scroll event
@@ -171,49 +167,49 @@ export interface Events {
      * scrolled even slightly. This means that it can trigger a lot of DOM
      * reflows if you're not careful
      */
-    onScroll?: WindowEventMember<"scroll">,
+    onScroll?: WindowEventMember<"scroll">
 
     /**
      * Window keydown  event
      */
-    onKeyDown?: WindowEventMember<"keydown">,
+    onKeyDown?: WindowEventMember<"keydown">
 
     /**
      * Window keypress  event
      */
-    onKeyPress?: WindowEventMember<"keypress">,
+    onKeyPress?: WindowEventMember<"keypress">
 
     /**
      * Window keyup  event
      */
-    onKeyUp?: WindowEventMember<"keyup">,
+    onKeyUp?: WindowEventMember<"keyup">
 }
 
 const eventNames: (keyof Events)[] = [
-    "onFocus",
-    "onBlur",
-    "onFocusIn",
-    "onFocusOut",
-    "onAnimationStart",
-    "onAnimationCancel",
-    "onAnimationEnd",
-    "onAnimationIteration",
-    "onTransitionStart",
-    "onTransitionCancel",
-    "onTransitionEnd",
-    "onTransitionRun",
-    "onAuxClick",
-    "onClick",
-    "onDblClick",
-    "onMouseDown",
-    "onMouseEnter",
-    "onMouseLeave",
-    "onMouseMove",
-    "onMouseOver",
-    "onMouseOut",
-    "onMouseUp",
-    "onWheel",
-],
+        "onFocus",
+        "onBlur",
+        "onFocusIn",
+        "onFocusOut",
+        "onAnimationStart",
+        "onAnimationCancel",
+        "onAnimationEnd",
+        "onAnimationIteration",
+        "onTransitionStart",
+        "onTransitionCancel",
+        "onTransitionEnd",
+        "onTransitionRun",
+        "onAuxClick",
+        "onClick",
+        "onDblClick",
+        "onMouseDown",
+        "onMouseEnter",
+        "onMouseLeave",
+        "onMouseMove",
+        "onMouseOver",
+        "onMouseOut",
+        "onMouseUp",
+        "onWheel",
+    ],
     windowEventNames: (keyof Events)[] = [
         "onLoad",
         "onOnline",
@@ -225,10 +221,8 @@ const eventNames: (keyof Events)[] = [
         "onKeyUp",
     ]
 
-
 /* istanbul ignore next */
 export abstract class Events extends BaseComponent {
-
     /**
      * Binds event listeners.
      * Do not call manually
@@ -249,21 +243,14 @@ export abstract class Events extends BaseComponent {
         this._eventListener(window.removeEventListener, windowEventNames)
     }
 
-    private _eventListener = (
-        eventListener: EventListener,
-        events = eventNames,
-    ): void => {
+    private _eventListener = (eventListener: EventListener, events = eventNames): void => {
         for (const eventName of events) {
             const htmlEventName = eventName.slice(2).toLowerCase(),
                 callback = this[eventName]
 
             if (callback !== undefined && callback instanceof Function) {
-                eventListener(
-                    htmlEventName,
-                    callback as EventListenerOrEventListenerObject,
-                )
+                eventListener(htmlEventName, callback as EventListenerOrEventListenerObject)
             }
         }
     }
-
 }

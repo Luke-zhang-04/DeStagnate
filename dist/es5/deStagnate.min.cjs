@@ -1,5 +1,5 @@
 /**
- * Destagnate v2.0.0 | https://luke-zhang-04.github.io/DeStagnate/
+ * Destagnate v2.1.0 | https://luke-zhang-04.github.io/DeStagnate/
  * @copyright (C) 2020 - 2021 Luke Zhang https://luke-zhang-04.github.io
  * @license MIT
  */

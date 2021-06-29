@@ -5,7 +5,7 @@ import progress from "rollup-plugin-progress"
 import {terser} from "rollup-plugin-terser"
 
 const bannerProd = `/**
- * Destagnate v2.0.0 | https://luke-zhang-04.github.io/DeStagnate/
+ * Destagnate v2.1.0 | https://luke-zhang-04.github.io/DeStagnate/
  * @copyright (C) 2020 - 2021 Luke Zhang https://luke-zhang-04.github.io
  * @license MIT
  */`
@@ -16,7 +16,7 @@ const bannerDev = `/**
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 2.0.0
+ * @version 2.1.0
  */`
 
 /**
@@ -31,28 +31,32 @@ const makePlugins = (target = "es6", prod = true) => [
         babelrc: false,
         babelHelpers: "bundled",
         presets: [
-            ["@babel/preset-env", {
-                browserslistEnv: target,
-            }],
+            [
+                "@babel/preset-env",
+                {
+                    browserslistEnv: target,
+                },
+            ],
         ],
         minified: prod,
         comments: !prod,
-        shouldPrintComment: (val) => (
+        shouldPrintComment: (val) =>
             !prod &&
-                (/@/u).test(val) &&
-                !((/eslint|istanbul/u).test(val)) &&
-                !(/@author Luke Zhang/u).test(val) // Remove license headers in favour of one banner
-        ),
+            /@/u.test(val) &&
+            !/eslint|istanbul/u.test(val) &&
+            !/@author Luke Zhang/u.test(val), // Remove license headers in favour of one banner
     }),
-    ...prod
-        ? [terser({
-            mangle: {
-                properties: {
-                    regex: /^_/u, // Mangle private properties
-                },
-            },
-        })]
-        : [],
+    ...(prod
+        ? [
+              terser({
+                  mangle: {
+                      properties: {
+                          regex: /^_/u, // Mangle private properties
+                      },
+                  },
+              }),
+          ]
+        : []),
     // To make bundling look cool
     filesize(),
     progress(),
@@ -67,10 +71,7 @@ const es5 = (() => {
     /**
      * @type {[format: import("rollup").ModuleFormat, extension?: string][]}
      */
-    const formats = [
-        ["iife", "js"],
-        ["cjs"],
-    ]
+    const formats = [["iife", "js"], ["cjs"]]
 
     for (const [format, extension] of formats) {
         configs.push({
@@ -110,11 +111,7 @@ const es6 = (() => {
     /**
      * @type {[format: import("rollup").ModuleFormat, extension?: string][]}
      */
-    const formats = [
-        ["esm", "js"],
-        ["iife", "js"],
-        ["cjs"],
-    ]
+    const formats = [["esm", "js"], ["iife", "js"], ["cjs"]]
 
     for (const [format, extension] of formats) {
         configs.push({
@@ -148,9 +145,6 @@ const es6 = (() => {
 /**
  * @type {import("rollup").RollupOptions[]}
  */
-const rollupConfig = [
-    ...es5,
-    ...es6,
-]
+const rollupConfig = [...es5, ...es6]
 
 export default rollupConfig

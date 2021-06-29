@@ -3,7 +3,7 @@
  * A simple, ReactJS inspired library to create dynamic components within static sites easier
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @license MIT
- * @version 2.0.0
+ * @version 2.1.0
  * Main test suite for destagnate
  */
 
@@ -11,8 +11,7 @@ import DeStagnate, {createElement} from "../deStagnate.cjs"
 import assert from "assert"
 
 class StateDidChange extends DeStagnate.Component {
-
-    constructor (parent) {
+    constructor(parent) {
         super(parent)
 
         this.state = {
@@ -25,16 +24,17 @@ class StateDidChange extends DeStagnate.Component {
 
     update = this.setState
 
-    render = () => createElement(DeStagnate.fragment, null,
-        createElement("p", null, this.state.key1),
-        createElement("p", null, this.state.key2),
-    )
-
+    render = () =>
+        createElement(
+            DeStagnate.fragment,
+            null,
+            createElement("p", null, this.state.key1),
+            createElement("p", null, this.state.key2),
+        )
 }
 
 class StateDidChangeDeep extends DeStagnate.Component {
-
-    constructor (parent) {
+    constructor(parent) {
         super(parent)
 
         this.state = {
@@ -50,12 +50,13 @@ class StateDidChangeDeep extends DeStagnate.Component {
     update = this.setState
 
     render = () => createElement("div")
-
 }
 
 export const test = () => {
     const stateDidChange = new StateDidChange(document.getElementById("stateDidChange"))
-    const stateDidChangeDeep = new StateDidChangeDeep(document.getElementById("stateDidChangeDeep"))
+    const stateDidChangeDeep = new StateDidChangeDeep(
+        document.getElementById("stateDidChangeDeep"),
+    )
 
     stateDidChange.mount()
     stateDidChangeDeep.mount()
@@ -65,15 +66,9 @@ export const test = () => {
             key2: 1,
         })
 
-        assert.strictEqual(
-            "0",
-            document.querySelectorAll("#stateDidChange p")[0].innerHTML,
-        )
+        assert.strictEqual("0", document.querySelectorAll("#stateDidChange p")[0].innerHTML)
 
-        assert.strictEqual(
-            "0",
-            document.querySelectorAll("#stateDidChange p")[1].innerHTML,
-        )
+        assert.strictEqual("0", document.querySelectorAll("#stateDidChange p")[1].innerHTML)
     })
 
     it("Should have both key1 and key2 at 1", () => {
@@ -81,20 +76,11 @@ export const test = () => {
             key1: 1,
         })
 
-        assert.strictEqual(
-            "1",
-            document.querySelectorAll("#stateDidChange p")[0].innerHTML,
-        )
+        assert.strictEqual("1", document.querySelectorAll("#stateDidChange p")[0].innerHTML)
 
-        assert.strictEqual(
-            "1",
-            document.querySelectorAll("#stateDidChange p")[1].innerHTML,
-        )
+        assert.strictEqual("1", document.querySelectorAll("#stateDidChange p")[1].innerHTML)
 
-        assert.strictEqual(
-            stateDidChange.prevState.key2,
-            1,
-        )
+        assert.strictEqual(stateDidChange.prevState.key2, 1)
     })
 
     it("Should not have changed state", () => {
@@ -102,10 +88,7 @@ export const test = () => {
             key1: 0,
         })
 
-        assert.strictEqual(
-            false,
-            stateDidChangeDeep.stateDidChange(),
-        )
+        assert.strictEqual(false, stateDidChangeDeep.stateDidChange())
     })
 
     it("Should have changed state", () => {
@@ -113,9 +96,6 @@ export const test = () => {
             key3: [0, 1],
         })
 
-        assert.strictEqual(
-            true,
-            stateDidChangeDeep.stateDidChange(),
-        )
+        assert.strictEqual(true, stateDidChangeDeep.stateDidChange())
     })
 }

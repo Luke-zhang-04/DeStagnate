@@ -109,8 +109,8 @@
 <span style="color: #D4D4D4">wget https://unpkg.com/destagnate@&lt;VERSION_NAME&gt;/dist/&lt;FORMAT&gt;/deStagnate.js</span>
 
 <span style="color: #6A9955"># Latest IIFE bundle</span>
-<span style="color: #D4D4D4">curl -L https://unpkg.com/destagnate@2.0.0/dist/iife/deStagnate.min.js &gt; deStagnate.min.js</span>
-<span style="color: #D4D4D4">wget https://unpkg.com/destagnate@2.0.0/dist/iife/deStagnate.min.js</span>
+<span style="color: #D4D4D4">curl -L https://unpkg.com/destagnate@2.1.0/dist/iife/deStagnate.min.js &gt; deStagnate.min.js</span>
+<span style="color: #D4D4D4">wget https://unpkg.com/destagnate@2.1.0/dist/iife/deStagnate.min.js</span>
 </code></pre>
 				<p>With a CDN</p>
 				<pre><code class="language-html"><span style="color: #6A9955">&lt;!-- Production --&gt;</span>
@@ -120,7 +120,7 @@
 <span style="color: #808080">&lt;</span><span style="color: #569CD6">script</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">src</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;https://unpkg.com/destagnate@version/dist/iife/deStagnate.js&quot;</span><span style="color: #808080">&gt;&lt;/</span><span style="color: #569CD6">script</span><span style="color: #808080">&gt;</span>
 
 <span style="color: #6A9955">&lt;!-- Latest --&gt;</span>
-<span style="color: #808080">&lt;</span><span style="color: #569CD6">script</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">src</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;https://unpkg.com/destagnate@2.0.0/dist/iife/deStagnate.min.js&quot;</span><span style="color: #808080">&gt;&lt;/</span><span style="color: #569CD6">script</span><span style="color: #808080">&gt;</span>
+<span style="color: #808080">&lt;</span><span style="color: #569CD6">script</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">src</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;https://unpkg.com/destagnate@2.1.0/dist/iife/deStagnate.min.js&quot;</span><span style="color: #808080">&gt;&lt;/</span><span style="color: #569CD6">script</span><span style="color: #808080">&gt;</span>
 </code></pre>
 				<a href="#basic-use" id="basic-use" style="color: inherit; text-decoration: none;">
 					<h2>Basic Use</h2>
@@ -134,8 +134,7 @@
 <span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">DeStagnate</span><span style="color: #D4D4D4"> = </span><span style="color: #DCDCAA">require</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;destagnate&quot;</span><span style="color: #D4D4D4">)</span>
 
 <span style="color: #569CD6">class</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">Counter</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">extends</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">DeStagnate</span><span style="color: #D4D4D4">.</span><span style="color: #4EC9B0">Component</span><span style="color: #D4D4D4"> {</span>
-
-<span style="color: #D4D4D4">    </span><span style="color: #569CD6">constructor</span><span style="color: #D4D4D4"> (</span><span style="color: #9CDCFE">parent</span><span style="color: #D4D4D4">) {</span>
+<span style="color: #D4D4D4">    </span><span style="color: #569CD6">constructor</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">parent</span><span style="color: #D4D4D4">) {</span>
 <span style="color: #D4D4D4">        </span><span style="color: #569CD6">super</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">parent</span><span style="color: #D4D4D4">)</span>
 
 <span style="color: #D4D4D4">        </span><span style="color: #569CD6">this</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">state</span><span style="color: #D4D4D4"> = {}</span>
@@ -148,7 +147,6 @@
 
 <span style="color: #D4D4D4">    </span><span style="color: #6A9955">// Alternatively, you can use JSX. You will need a tranpiler, though.</span>
 <span style="color: #D4D4D4">    </span><span style="color: #DCDCAA">render</span><span style="color: #D4D4D4"> = () </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> </span><span style="color: #808080">&lt;</span><span style="color: #569CD6">div</span><span style="color: #808080">&gt;&lt;/</span><span style="color: #569CD6">div</span><span style="color: #808080">&gt;</span>
-
 <span style="color: #D4D4D4">}</span>
 
 <span style="color: #6A9955">// Warning: the parent must be dedicated to this component. Anything inside the parent will be removed on muatation</span>
@@ -171,18 +169,21 @@
 <span style="color: #6A9955"> */</span>
 <span style="color: #C586C0">import</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">DeStagnate</span><span style="color: #D4D4D4"> </span><span style="color: #C586C0">from</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&quot;destagnate&quot;</span>
 
-<span style="color: #9CDCFE">DeStagnate</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">createElement</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">&quot;div&quot;</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">null</span><span style="color: #D4D4D4">, </span><span style="color: #808080">&lt;</span><span style="color: #569CD6">div</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">class</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;myClass&quot;</span><span style="color: #808080">&gt;</span>
-<span style="color: #D4D4D4">    </span><span style="color: #808080">&lt;</span><span style="color: #569CD6">p</span><span style="color: #808080">&gt;</span><span style="color: #D4D4D4">My Paragraph</span><span style="color: #808080">&lt;/</span><span style="color: #569CD6">p</span><span style="color: #808080">&gt;</span>
-<span style="color: #808080">&lt;/</span><span style="color: #569CD6">div</span><span style="color: #808080">&gt;</span><span style="color: #D4D4D4">)</span>
-
+<span style="color: #9CDCFE">DeStagnate</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">createElement</span><span style="color: #D4D4D4">(</span>
+<span style="color: #D4D4D4">    </span><span style="color: #CE9178">&quot;div&quot;</span><span style="color: #D4D4D4">,</span>
+<span style="color: #D4D4D4">    </span><span style="color: #569CD6">null</span><span style="color: #D4D4D4">,</span>
+<span style="color: #D4D4D4">    </span><span style="color: #808080">&lt;</span><span style="color: #569CD6">div</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">class</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">&quot;myClass&quot;</span><span style="color: #808080">&gt;</span>
+<span style="color: #D4D4D4">        </span><span style="color: #808080">&lt;</span><span style="color: #569CD6">p</span><span style="color: #808080">&gt;</span><span style="color: #D4D4D4">My Paragraph</span><span style="color: #808080">&lt;/</span><span style="color: #569CD6">p</span><span style="color: #808080">&gt;</span>
+<span style="color: #D4D4D4">    </span><span style="color: #808080">&lt;/</span><span style="color: #569CD6">div</span><span style="color: #808080">&gt;</span><span style="color: #D4D4D4">,</span>
+<span style="color: #D4D4D4">)</span>
 </code></pre>
 				<p>You can compile with this <code>tsconfig.json</code></p>
 				<pre><code class="language-json"><span style="color: #D4D4D4">{</span>
 <span style="color: #D4D4D4">    </span><span style="color: #9CDCFE">&quot;compilerOptions&quot;</span><span style="color: #D4D4D4">: {</span>
 <span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">&quot;jsx&quot;</span><span style="color: #D4D4D4">: </span><span style="color: #CE9178">&quot;react&quot;</span><span style="color: #D4D4D4">,</span>
 <span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">&quot;jsxFactory&quot;</span><span style="color: #D4D4D4">: </span><span style="color: #CE9178">&quot;DeStagnate.createElement&quot;</span><span style="color: #D4D4D4">,</span>
-<span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">&quot;jsxFragmentFactory&quot;</span><span style="color: #D4D4D4">: </span><span style="color: #CE9178">&quot;DeStagnate.Fragment&quot;</span><span style="color: #D4D4D4">,</span>
-<span style="color: #D4D4D4">    },</span>
+<span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">&quot;jsxFragmentFactory&quot;</span><span style="color: #D4D4D4">: </span><span style="color: #CE9178">&quot;DeStagnate.Fragment&quot;</span>
+<span style="color: #D4D4D4">    }</span>
 <span style="color: #D4D4D4">}</span>
 </code></pre>
 				<p>You can also compile with this <code>.babelrc.json</code></p>

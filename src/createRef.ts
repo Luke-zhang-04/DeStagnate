@@ -4,13 +4,12 @@
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  * @author Luke Zhang luke-zhang-04.github.io
  * @license MIT
- * @version 2.0.0
  * @exports createRef create a reference to a nested component
  */
 type Component = typeof import(".").Component
 
 export interface Ref<T = Component | HTMLElement> {
-    current: T | null,
+    current: T | null
 }
 
 /**
