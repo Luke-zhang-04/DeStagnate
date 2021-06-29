@@ -295,7 +295,9 @@ export abstract class Component<
                 throw new Error(`ERROR: code 3. See ${url}.`)
             }
 
-            this._bindEventListeners(this._parent)
+            // Bind event listeners
+            this._eventListener(this._parent.addEventListener)
+            this._eventListener(window.addEventListener, windowEventNames)
 
             this._didMount = true
             this.componentDidMount?.()
@@ -334,7 +336,9 @@ export abstract class Component<
 
             this.componentWillUnmount?.()
 
-            this._unbindEventListeners(this._parent)
+            // Unbind event listeners
+            this._eventListener(this._parent.removeEventListener)
+            this._eventListener(window.removeEventListener, windowEventNames)
 
             this._removeChildren()
             this._didMount = false
@@ -430,26 +434,6 @@ export abstract class Component<
         this.componentDidCatch(error)
 
         return error
-    }
-
-    /**
-     * Binds event listeners. Do not call manually
-     *
-     * @pacakge
-     */
-    private _bindEventListeners(element: HTMLElement): void {
-        this._eventListener(element.addEventListener)
-        this._eventListener(window.addEventListener, windowEventNames)
-    }
-
-    /**
-     * Binds event listeners. Do not call manually
-     *
-     * @pacakge
-     */
-    private _unbindEventListeners(element: HTMLElement): void {
-        this._eventListener(element.removeEventListener)
-        this._eventListener(window.removeEventListener, windowEventNames)
     }
 
     private _eventListener(eventListener: EventListener, events = eventNames): void {
