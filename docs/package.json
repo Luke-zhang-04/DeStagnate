@@ -13,6 +13,7 @@
     "url": "https://github.com/Luke-zhang-04/dynamic-component/issues"
   },
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "sass": "sass scss:css --style compressed"
   },

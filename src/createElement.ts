@@ -11,7 +11,7 @@ import type JSX from "./jsx"
  * Creates an HTML Element
  *
  * @param tagName - Name of HTML element
- * @param props - Element properties, such as class, innerHTML, id, style, etc
+ * @param props - Element properties, such as class, id, style, etc
  * @param children - Children of this element. Can be nothing, number (converted to string), string
  *   (text), or another element. An array of any of these will create multiple children
  * @returns Element
@@ -44,7 +44,7 @@ export function createElement<
  * @param tagNameOrFunction - Name of HTML element or function component
  * @param props - Props of element or component
  *
- *   1. If `tagNameOrFunction` is tagname, props are element properties, such as class, innerHTML, id, style, etc
+ *   1. If `tagNameOrFunction` is tagname, props are element properties, such as class, id, style, etc
  *   2. If `tagNameOrFunction` is a function, props are that functions parameters
  *
  * @param children - Children of this element. Can be nothing, number (converted to string), string
@@ -70,7 +70,7 @@ export function createElement<
         return tagNameOrFunction(props as T, children)
     }
 
-    return Error(`${typeof tagNameOrFunction} ${tagNameOrFunction} is of invalid type.`)
+    return Error(`Invalid type: ${typeof tagNameOrFunction} ${tagNameOrFunction}`)
 }
 
 export default createElement

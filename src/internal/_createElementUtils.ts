@@ -81,6 +81,12 @@ export interface BasicProps<T extends Node | null = Node | null> {
     onMouseUp?: EventFunc<"mouseup">
 }
 
+const isStringable = (val: unknown): val is boolean | number | bigint | string =>
+    typeof val === "boolean" ||
+    typeof val === "number" ||
+    typeof val === "bigint" ||
+    typeof val === "string"
+
 /**
  * Binds children to element
  *
@@ -93,15 +99,8 @@ export interface BasicProps<T extends Node | null = Node | null> {
 export const bindProps = (element: Element, props?: BasicProps | null, ns = false): void => {
     if (props) {
         for (const [key, val] of Object.entries(props)) {
-            if (
-                typeof val === "boolean" ||
-                typeof val === "number" ||
-                typeof val === "bigint" ||
-                typeof val === "string"
-            ) {
-                if (key === "innerHTML") {
-                    element.innerHTML = val.toString()
-                } else if (ns) {
+            if (isStringable(val)) {
+                if (ns) {
                     element.setAttributeNS(null, key, val.toString())
                 } else {
                     element.setAttribute(key, val.toString())
@@ -137,12 +136,7 @@ export const bindChildren = (element: Node, children?: ChildrenType): void => {
             for (const child of children) {
                 bindChildren(element, child)
             }
-        } else if (
-            typeof children === "boolean" ||
-            typeof children === "number" ||
-            typeof children === "bigint" ||
-            typeof children === "string"
-        ) {
+        } else if (isStringable(children)) {
             element.appendChild(document.createTextNode(children.toString()))
         } else if (children instanceof Node) {
             element.appendChild(children)

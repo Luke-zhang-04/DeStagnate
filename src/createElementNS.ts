@@ -5,7 +5,7 @@ import {ChildrenArrayType, bindChildren, bindProps} from "./internal/_createElem
  *
  * @param namespaceURI - Namespace uri
  * @param tagName - Name of HTML element
- * @param props - Element properties, such as class, innerHTML, id, style, etc
+ * @param props - Element properties, such as class, id, style, etc
  * @param children - Children of this element. Can be nothing, number (converted to string), string
  *   (text), or another element. An array of any of these will create multiple children
  * @param childrenRest - Rest parameter of children
