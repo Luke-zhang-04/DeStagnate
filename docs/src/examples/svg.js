@@ -1,23 +1,24 @@
-import DeStagnate, {createElementNS, createRef} from "../../../" // Import library from root
+import DeStagnate, {StateContainer, createElementNS, createRef} from "../../../"
 
 const width = 250
 let direction = 2.5
-let xCoord = 0
 
-const rectRef = createRef()
+class XCoordState extends StateContainer {
+    constructor() {
+        super(0)
+    }
 
-const updateXCoord = (newCoord) => {
-    xCoord = newCoord
-
-    if (rectRef.current) {
-        rectRef.current.setAttribute("x", xCoord.toString())
+    updateDOM(rectRef) {
+        rectRef.current.setAttribute("x", this.value.toString())
     }
 }
 
-setInterval(() => {
-    updateXCoord(xCoord + direction)
+const xCoordState = new XCoordState()
 
-    if (xCoord < 0 || xCoord > width) {
+setInterval(() => {
+    xCoordState.value += direction
+
+    if (xCoordState.value < 0 || xCoordState.value > width) {
         direction *= -1
     }
 }, 10)
@@ -35,8 +36,8 @@ document.querySelector("#SVG")?.appendChild(
             width: width,
             height: width,
             fill: direction > 0 ? "#0D6EFD" : "#28A745",
-            x: xCoord,
-            ref: rectRef,
+            x: xCoordState.value,
+            ref: xCoordState.ref,
         }),
     ),
 )

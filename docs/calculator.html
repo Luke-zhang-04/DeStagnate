@@ -41,36 +41,42 @@
                     <code class="language-tsx">
 import DeStagnate from &quot;destagnate&quot;
 
-let calculation = &quot;&quot;
+class CalcState extends DeStagnate.StateContainer&lt;string, HTMLDivElement | null&gt; {
+    public constructor() {
+        super(&quot;&quot;)
+    }
 
-const calcDisplay = DeStagnate.createRef&lt;HTMLDivElement&gt;()
-
-const updateCalculation = (newCalculation: string) =&gt; {
-    calculation = newCalculation
-
-    if (calcDisplay.current) {
+    protected updateDOM(calcDisplay: DeStagnate.Ref&lt;HTMLDivElement&gt;) {
+        // `calcDisplay` is the same as `this.ref`, except `calcDisplay.current` is garunteed not
+        // to be null.
         DeStagnate.clearChildren(calcDisplay.current)
 
-        calcDisplay.current.appendChild(document.createTextNode(calculation))
+        calcDisplay.current.appendChild(document.createTextNode(this.value))
     }
 }
 
+const calcState = new CalcState()
+
 const CalcButton = ({text, append}: {text: string; append?: string}) =&gt; (
-    &lt;div class=&quot;col-3 calc-btn&quot; onClick={() =&gt; updateCalculation(calculation + (append ?? text))}&gt;
+    // Invoking the `calcState.value` setter is equivalent to calling `calcState.update()`, which
+    // will automatically call `updateDOM` after setting value.
+    &lt;div class=&quot;col-3 calc-btn&quot; onClick={() =&gt; (calcState.value += append ?? text)}&gt;
         {text}
     &lt;/div&gt;
 )
 
 document.querySelector(&quot;#calculator&quot;)?.appendChild(
     &lt;div&gt;
-        &lt;div class=&quot;calc-display&quot; ref={calcDisplay}&gt;&lt;/div&gt;
+        &lt;div class=&quot;calc-display&quot; ref={calcState.ref}&gt;&lt;/div&gt;
         &lt;div class=&quot;calc-btns row&quot;&gt;
-            &lt;div class=&quot;col-3 calc-btn clear&quot; onClick={() =&gt; updateCalculation(&quot;&quot;)}&gt;
+            &lt;div class=&quot;col-3 calc-btn clear&quot; onClick={() =&gt; (calcState.value = &quot;&quot;)}&gt;
                 C
             &lt;/div&gt;
             &lt;div
                 class=&quot;col-3 calc-btn&quot;
-                onClick={() =&gt; updateCalculation(calculation.slice(0, calculation.length - 1))}
+                onClick={() =&gt;
+                    (calcState.value = calcState.value.slice(0, calcState.value.length - 1))
+                }
             &gt;
                 {&quot;\u2190&quot;}
             &lt;/div&gt;
@@ -102,17 +108,15 @@ document.querySelector(&quot;#calculator&quot;)?.appendChild(
                 class=&quot;col-6 calc-btn equals&quot;
                 onClick={() =&gt; {
                     /* eslint-disable no-eval */
-                    calculation = eval(calculation).toString() // DO NOT USE EVAL IN A REAL APP EVAL OBJECTIVELY SUCKS
+                    calcState.value = eval(calcState.value).toString() // DO NOT USE EVAL IN A REAL APP EVAL OBJECTIVELY SUCKS
                     /* eslint-enable no-eval */
-                    if (calcDisplay.current) {
-                        calcDisplay.current.innerText = calculation
-                    }
                 }}
-            &gt;&lt;/div&gt;
+            &gt;
+                =
+            &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;,
 )
-
                     </code>
                 </pre>
         </div>

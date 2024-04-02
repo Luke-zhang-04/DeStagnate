@@ -41,35 +41,31 @@
         <div id="nested-source">
           <pre class="d-block">
                     <code class="language-ts">
-import {Fragment, createElement, createRef} from &quot;destagnate&quot; // Import library from root
+import {Fragment, type Ref, StateContainer, createElement} from &quot;../../../&quot;
 
-// Current player
 let currentPlayer: &quot;x&quot; | &quot;o&quot; = &quot;x&quot;
 
-class Square {
-    public clicked: &quot;&quot; | &quot;x&quot; | &quot;o&quot; = &quot;&quot;
-    public ref = createRef&lt;HTMLDivElement&gt;()
+class SquareState extends StateContainer&lt;&quot;&quot; | &quot;x&quot; | &quot;o&quot;, HTMLDivElement | null&gt; {
+    constructor() {
+        super(&quot;&quot;)
+    }
 
-    public update(value: &quot;&quot; | &quot;x&quot; | &quot;o&quot;) {
-        this.clicked = value
-
-        if (this.ref.current) {
-            this.ref.current.innerText = value
-        }
+    public updateDOM(squareRef: Ref&lt;HTMLDivElement&gt;) {
+        squareRef.current.innerText = this.value
     }
 }
 
 const squares = [
-    [new Square(), new Square(), new Square()],
-    [new Square(), new Square(), new Square()],
-    [new Square(), new Square(), new Square()],
+    [new SquareState(), new SquareState(), new SquareState()],
+    [new SquareState(), new SquareState(), new SquareState()],
+    [new SquareState(), new SquareState(), new SquareState()],
 ]
 
 const checkForWinner = (): &quot;&quot; | &quot;x&quot; | &quot;o&quot; =&gt; {
     for (let i = 0; i &lt; 3; i++) {
-        const rows = [0, 1, 2].map((val) =&gt; squares[i][val].clicked)
+        const rows = [0, 1, 2].map((val) =&gt; squares[i][val].value)
 
-        const columns = [0, 1, 2].map((val) =&gt; squares[val][i].clicked)
+        const columns = [0, 1, 2].map((val) =&gt; squares[val][i].value)
 
         if (rows[0] === rows[1] &amp;&amp; rows[1] === rows[2] &amp;&amp; rows[0]) {
             return rows[0]
@@ -79,8 +75,8 @@ const checkForWinner = (): &quot;&quot; | &quot;x&quot; | &quot;o&quot; =&gt; {
     }
 
     const diagonals = [
-        [squares[0][0].clicked, squares[1][1].clicked, squares[2][2].clicked],
-        [squares[0][2].clicked, squares[1][1].clicked, squares[2][0].clicked],
+        [squares[0][0].value, squares[1][1].value, squares[2][2].value],
+        [squares[0][2].value, squares[1][1].value, squares[2][0].value],
     ]
 
     for (const diagonal of diagonals) {
@@ -110,8 +106,8 @@ tictactoeParent?.appendChild(
                             class: &quot;col-4&quot;,
                             onClick: () =&gt; {
                                 // Check if square isn't already clicked
-                                if (square.clicked === &quot;&quot;) {
-                                    square.update(currentPlayer)
+                                if (square.value === &quot;&quot;) {
+                                    square.value = currentPlayer
                                 }
 
                                 // Change current player
@@ -125,7 +121,7 @@ tictactoeParent?.appendChild(
                         createElement(
                             &quot;div&quot;,
                             {class: &quot;tictactoe-square&quot;, ref: square.ref},
-                            square.clicked,
+                            square.value,
                         ),
                     ),
                 ),

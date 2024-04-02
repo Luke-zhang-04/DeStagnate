@@ -28,3 +28,7 @@ overrides:
       - "*.scss"
     options:
       tabWidth: 2
+  - files:
+      - "stateContainer.ts"
+    options:
+      plugins: [] # Disable jsdoc formatter

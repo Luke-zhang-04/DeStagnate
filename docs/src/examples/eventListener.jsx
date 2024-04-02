@@ -1,7 +1,9 @@
-import DeStagnate from "../../../" // Import library from root
+import DeStagnate from "../../../"
 
 const colors = ["primary", "secondary", "success", "info", "warning", "danger", "light", "dark"]
 
+// State management without StateContainer: it's really the same idea, just without the extra class
+// to put it in a neat box
 let currentColor = colors[0]
 const buttonRef = DeStagnate.createRef()
 

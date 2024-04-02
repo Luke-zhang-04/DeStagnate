@@ -1,35 +1,41 @@
-import DeStagnate from "../../../" // Import library from root
+import DeStagnate from "../../../"
 
-let calculation = ""
+class CalcState extends DeStagnate.StateContainer<string, HTMLDivElement | null> {
+    public constructor() {
+        super("")
+    }
 
-const calcDisplay = DeStagnate.createRef<HTMLDivElement>()
-
-const updateCalculation = (newCalculation: string) => {
-    calculation = newCalculation
-
-    if (calcDisplay.current) {
+    protected updateDOM(calcDisplay: DeStagnate.Ref<HTMLDivElement>) {
+        // `calcDisplay` is the same as `this.ref`, except `calcDisplay.current` is garunteed not
+        // to be null.
         DeStagnate.clearChildren(calcDisplay.current)
 
-        calcDisplay.current.appendChild(document.createTextNode(calculation))
+        calcDisplay.current.appendChild(document.createTextNode(this.value))
     }
 }
 
+const calcState = new CalcState()
+
 const CalcButton = ({text, append}: {text: string; append?: string}) => (
-    <div class="col-3 calc-btn" onClick={() => updateCalculation(calculation + (append ?? text))}>
+    // Invoking the `calcState.value` setter is equivalent to calling `calcState.update()`, which
+    // will automatically call `updateDOM` after setting value.
+    <div class="col-3 calc-btn" onClick={() => (calcState.value += append ?? text)}>
         {text}
     </div>
 )
 
 document.querySelector("#calculator")?.appendChild(
     <div>
-        <div class="calc-display" ref={calcDisplay}></div>
+        <div class="calc-display" ref={calcState.ref}></div>
         <div class="calc-btns row">
-            <div class="col-3 calc-btn clear" onClick={() => updateCalculation("")}>
+            <div class="col-3 calc-btn clear" onClick={() => (calcState.value = "")}>
                 C
             </div>
             <div
                 class="col-3 calc-btn"
-                onClick={() => updateCalculation(calculation.slice(0, calculation.length - 1))}
+                onClick={() =>
+                    (calcState.value = calcState.value.slice(0, calcState.value.length - 1))
+                }
             >
                 {"\u2190"}
             </div>
@@ -61,11 +67,8 @@ document.querySelector("#calculator")?.appendChild(
                 class="col-6 calc-btn equals"
                 onClick={() => {
                     /* eslint-disable no-eval */
-                    calculation = eval(calculation).toString() // DO NOT USE EVAL IN A REAL APP EVAL OBJECTIVELY SUCKS
+                    calcState.value = eval(calcState.value).toString() // DO NOT USE EVAL IN A REAL APP EVAL OBJECTIVELY SUCKS
                     /* eslint-enable no-eval */
-                    if (calcDisplay.current) {
-                        calcDisplay.current.innerText = calculation
-                    }
                 }}
             >
                 =

@@ -7,8 +7,52 @@ export type Args<Value, RefVal extends Node | null> =
 
 /**
  * Convenient container class to hold a reference object and value to allow for easy (but manual)
- * state management. Just implement the update function by taking advantage of the ref object. NB:
- * this pattern will get very messy if things are too complicated.
+ * state management. Just implement the update function by taking advantage of the ref object.
+ *
+ * @example
+ * Tic-tac-toe example
+ * ```ts
+ * let currentPlayer: "x" | "o" = "x"
+ *
+ * class SquareState extends StateContainer<"" | "x" | "o", HTMLDivElement | null> {
+ *     constructor() {
+ *         super("")
+ *     }
+ *
+ *     public updateDOM(squareRef: Ref<HTMLDivElement>) {
+ *         squareRef.current.innerText = this.value
+ *     }
+ * }
+ *
+ * // Then we can attach the ref and value to some element
+ * ...
+ * const square = new SquareState()
+ *
+ * createElement(
+ *     "div",
+ *     {
+ *         class: "col-4",
+ *         onClick: () => {
+ *             // Check if square isn't already clicked
+ *             if (square.value === "") {
+ *                 // Setter sets the value and then invokes `updateDOM`
+ *                 square.value = currentPlayer
+ *             }
+ *
+ *             // Change current player
+ *             currentPlayer = currentPlayer === "x" ? "o" : "x"
+ *         },
+ *     },
+ *     createElement(
+ *         "div",
+ *         {class: "tictactoe-square", ref: square.ref},
+ *         square.value,
+ *     ),
+ * )
+ * ...
+ * ```
+ *
+ * @remark this pattern will get very messy if things are too complicated.
  */
 export abstract class StateContainer<Value, RefVal extends Node | null = Node | null> {
     /** Ref object */
@@ -48,9 +92,11 @@ export abstract class StateContainer<Value, RefVal extends Node | null = Node | 
     public update(value: Value): void {
         this.#value = value
 
-        this.updateDOM()
+        if (this.ref.current !== null) {
+            this.updateDOM(this.ref as Ref<Exclude<RefVal, null>>)
+        }
     }
 
-    /** Update the DOM accordingly */
-    protected abstract updateDOM(): void
+    /** Update the DOM whenever the value is updated and the ref is not currently null */
+    protected abstract updateDOM(ref: Ref<Exclude<RefVal, null>>): void
 }

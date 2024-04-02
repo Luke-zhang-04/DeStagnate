@@ -1,32 +1,28 @@
-import {Fragment, createElement, createRef} from "../../../" // Import library from root
+import {Fragment, type Ref, StateContainer, createElement} from "../../../"
 
-// Current player
 let currentPlayer: "x" | "o" = "x"
 
-class Square {
-    public clicked: "" | "x" | "o" = ""
-    public ref = createRef<HTMLDivElement>()
+class SquareState extends StateContainer<"" | "x" | "o", HTMLDivElement | null> {
+    constructor() {
+        super("")
+    }
 
-    public update(value: "" | "x" | "o") {
-        this.clicked = value
-
-        if (this.ref.current) {
-            this.ref.current.innerText = value
-        }
+    public updateDOM(squareRef: Ref<HTMLDivElement>) {
+        squareRef.current.innerText = this.value
     }
 }
 
 const squares = [
-    [new Square(), new Square(), new Square()],
-    [new Square(), new Square(), new Square()],
-    [new Square(), new Square(), new Square()],
+    [new SquareState(), new SquareState(), new SquareState()],
+    [new SquareState(), new SquareState(), new SquareState()],
+    [new SquareState(), new SquareState(), new SquareState()],
 ]
 
 const checkForWinner = (): "" | "x" | "o" => {
     for (let i = 0; i < 3; i++) {
-        const rows = [0, 1, 2].map((val) => squares[i][val].clicked)
+        const rows = [0, 1, 2].map((val) => squares[i][val].value)
 
-        const columns = [0, 1, 2].map((val) => squares[val][i].clicked)
+        const columns = [0, 1, 2].map((val) => squares[val][i].value)
 
         if (rows[0] === rows[1] && rows[1] === rows[2] && rows[0]) {
             return rows[0]
@@ -36,8 +32,8 @@ const checkForWinner = (): "" | "x" | "o" => {
     }
 
     const diagonals = [
-        [squares[0][0].clicked, squares[1][1].clicked, squares[2][2].clicked],
-        [squares[0][2].clicked, squares[1][1].clicked, squares[2][0].clicked],
+        [squares[0][0].value, squares[1][1].value, squares[2][2].value],
+        [squares[0][2].value, squares[1][1].value, squares[2][0].value],
     ]
 
     for (const diagonal of diagonals) {
@@ -67,8 +63,8 @@ tictactoeParent?.appendChild(
                             class: "col-4",
                             onClick: () => {
                                 // Check if square isn't already clicked
-                                if (square.clicked === "") {
-                                    square.update(currentPlayer)
+                                if (square.value === "") {
+                                    square.value = currentPlayer
                                 }
 
                                 // Change current player
@@ -82,7 +78,7 @@ tictactoeParent?.appendChild(
                         createElement(
                             "div",
                             {class: "tictactoe-square", ref: square.ref},
-                            square.clicked,
+                            square.value,
                         ),
                     ),
                 ),
