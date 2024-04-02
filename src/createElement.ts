@@ -13,8 +13,8 @@ import {
  * @param props - Element properties, such as class, id, style, etc
  * @param children - Children of this element. Can be nothing, number (converted to string), string
  *   (text), or another element. An array of any of these will create multiple children
- * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  * @returns Element
+ * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  */
 export function createElement<T extends keyof HTMLElementTagNameMap>(
     tagName: T,
@@ -29,8 +29,8 @@ export function createElement<T extends keyof HTMLElementTagNameMap>(
  * @param props - Props of function component
  * @param children - Children of this element. Can be nothing, number (converted to string), string
  *   (text), or another element. An array of any of these will create multiple children
- * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  * @returns Element
+ * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  */
 export function createElement<
     Props extends {[key: string]: unknown} | null | undefined,
@@ -50,8 +50,8 @@ export function createElement<
  *
  * @param children - Children of this element. Can be nothing, number (converted to string), string
  *   (text), or another element. An array of any of these will create multiple children
- * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  * @returns Element
+ * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  */
 export function createElement<
     T extends string | {[key: string]: unknown} | null | undefined,

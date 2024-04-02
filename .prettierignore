@@ -14,3 +14,4 @@ docs/css
 docs/lib
 tsbuildinfo.json
 .nyc_output
+pnpm-lock.yaml

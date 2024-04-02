@@ -1,7 +1,7 @@
 /**
  * Remove all children of DOM node `parent`
  *
- * @param parent - parent element whose children need to be removed
+ * @param parent - Parent element whose children need to be removed
  */
 export const clearChildren = (parent: Node) => {
     while (parent.firstChild) {

@@ -6,7 +6,7 @@ type CreateRef = {
     /**
      * Creates a reference for a nested component
      *
-     * @param defaultValue - default value of ref
+     * @param defaultValue - Default value of ref
      * @returns Ref object
      */
     <T = Element>(defaultValue: T): Ref<T>
@@ -14,7 +14,7 @@ type CreateRef = {
     /**
      * Creates a reference for a nested component
      *
-     * @param defaultValue - default value of ref
+     * @param defaultValue - Default value of ref
      * @returns Empty ref object
      */
     <T = Element>(defaultValue?: null | undefined): Ref<T | null>
@@ -23,7 +23,7 @@ type CreateRef = {
 /**
  * Creates a reference for a nested component
  *
- * @param defaultValue - default value of ref
+ * @param defaultValue - Default value of ref
  * @returns Ref object
  */
 export const createRef: CreateRef = <T = Element>(
@@ -35,7 +35,7 @@ export const createRef: CreateRef = <T = Element>(
 /**
  * Creates a reference for a nested component
  *
- * @param defaultValue - default value of ref
+ * @param defaultValue - Default value of ref
  * @returns Ref object
  */
 export default createRef
