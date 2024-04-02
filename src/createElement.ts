@@ -1,6 +1,3 @@
-// eslint-disable-next-line
-/// <reference path="./jsx.ts" />
-
 import {
     BasicProps,
     ChildrenArrayType,

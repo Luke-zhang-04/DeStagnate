@@ -1,8 +1,5 @@
-// eslint-disable-next-line
-/// <reference path="./jsx.ts" />
-
 import {ChildrenArrayType, bindChildren} from "./internal/_createElementUtils"
-import type {Ref} from "destagnate"
+import {Ref} from "./createRef"
 
 interface FragmentProps {
     ref: Ref<DocumentFragment>
