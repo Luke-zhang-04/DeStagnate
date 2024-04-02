@@ -6,7 +6,6 @@ import {terser} from "rollup-plugin-terser"
 
 const bannerProd = `/**
  * DeStagnate
- *
  * @license MIT
  * @copyright 2020 - 2024 Luke Zhang
  */`
@@ -45,19 +44,9 @@ const makePlugins = (target = "es6", prod = true) => [
             !prod &&
             /@/u.test(val) &&
             !/eslint|istanbul/u.test(val) &&
-            !/@author Luke Zhang/u.test(val), // Remove license headers in favour of one banner
+            !/@copyright .* Luke Zhang/u.test(val), // Remove license headers in favour of one banner
     }),
-    ...(prod
-        ? [
-              terser({
-                  mangle: {
-                      properties: {
-                          regex: /^_/u, // Mangle private properties
-                      },
-                  },
-              }),
-          ]
-        : []),
+    ...(prod ? [terser()] : []),
     // To make bundling look cool
     filesize(),
     progress(),
@@ -70,7 +59,7 @@ const es5 = (() => {
     /** @type {import("rollup").RollupOptions[][]} */
     const configs = formats.map(([format, extension]) => [
         {
-            input: "lib",
+            input: "lib", // TODO: bundle directly from source
             output: {
                 file: `dist/es5/deStagnate.min.${extension ?? format}`,
                 format,

@@ -4,7 +4,6 @@ import {
     bindChildren,
     bindProps,
 } from "./internal/_createElementUtils"
-import type JSX from "./jsx"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
 /**

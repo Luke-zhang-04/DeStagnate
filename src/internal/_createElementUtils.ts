@@ -27,6 +27,7 @@ export type ChildrenType =
     | undefined
 
 interface EventMap extends HTMLElementEventMap {
+    /* eslint-disable-next-line @typescript-eslint/naming-convention */
     "": Event
 }
 
