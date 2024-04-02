@@ -1,29 +1,30 @@
-/**
- * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
- *
- * @license MIT
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- */
-
-import DeStagnate, {createElement, createRef} from "../deStagnate.cjs"
+import {Fragment, createElement, createRef} from "../destagnate.js"
 import assert from "assert"
 
-class Ref extends DeStagnate.Component {
-    testRef = createRef()
-
-    render = () =>
-        createElement("div", {
-            ref: this.testRef,
-            id: "_REFTEST",
-        })
-}
+const testRef = createRef()
+const testRef2 = createRef()
+const testRef3 = createRef()
 
 export const test = () => {
-    const ref = new Ref(document.getElementById("ref"))
+    document.getElementById("ref").appendChild(
+        createElement("div", {
+            ref: [testRef, testRef2],
+            id: "_REFTEST",
+        }),
+    )
 
-    ref.mount()
+    document.getElementById("ref").appendChild(
+        createElement(Fragment, {
+            ref: testRef3,
+        }),
+    )
 
     it("Should have an ID of _REFTEST", () => {
-        assert.strictEqual("_REFTEST", ref.testRef.current.id)
+        assert.strictEqual("_REFTEST", testRef.current?.id)
+        assert.strictEqual("_REFTEST", testRef2.current?.id)
+    })
+
+    it("Should be document fragment", () => {
+        assert.strictEqual(true, testRef3.current instanceof DocumentFragment)
     })
 }
