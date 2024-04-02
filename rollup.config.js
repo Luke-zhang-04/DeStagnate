@@ -2,7 +2,7 @@ import {babel} from "@rollup/plugin-babel"
 import filesize from "rollup-plugin-filesize"
 import {nodeResolve} from "@rollup/plugin-node-resolve"
 import progress from "rollup-plugin-progress"
-import {terser} from "rollup-plugin-terser"
+import terser from "@rollup/plugin-terser"
 
 const bannerProd = `/**
  * DeStagnate

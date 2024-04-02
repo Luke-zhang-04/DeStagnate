@@ -1,7 +1,7 @@
 import {dirname} from "path"
 import {fileURLToPath} from "url"
 import {nodeResolve} from "@rollup/plugin-node-resolve"
-import {terser} from "rollup-plugin-terser"
+import terser from "@rollup/plugin-terser"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 

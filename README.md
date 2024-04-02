@@ -7,7 +7,7 @@
     <a href="https://github.com/Luke-zhang-04/DeStagnate/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://img.shields.io/github/actions/workflow/status/Luke-zhang-04/DeStagnate/CI.yml?branch=master&label=Tests&logo=github" alt="tests"/></a>
 </p>
 
-A lightweight (800 gziped bytes) wrapper around vanilla DOM methods for declarative DOM creation.
+A lightweight (< 1 KB gzipped) wrapper around vanilla DOM methods for declarative DOM creation.
 
 ## Why not just use React?
 
