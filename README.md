@@ -66,8 +66,6 @@ With a CDN
 See [https://luke-zhang-04.github.io/DeStagnate/docs](https://luke-zhang-04.github.io/DeStagnate/docs) for example code and documentation.
 
 ```tsx
-import * as DeStagnate from "destagnate"
-
 const divRef = DeStagnate.createRef<HTMLDivElement>()
 
 document.getElementById("my-container")?.appendChild(
@@ -123,7 +121,7 @@ document.getElementById("my-container")?.appendChild(
 
 // Using vanilla DOM methods:
 const container = document.getElementById("my-container")
-const div = document.createElement("div)
+const div = document.createElement("div")
 
 div.classList.add("my-class")
 div.addEventListener("mycustomevent", (event) => console.log(event))
@@ -137,16 +135,17 @@ const italic = document.createElement("i")
 italic.innerText = " italic"
 
 paragraph.appendChild(italic)
-div.appentChild(paragraph)
+div.appendChild(paragraph)
 container?.appendChild(div)
 
 const button = document.createElement("button")
 
-button.addEventListener("click", (event) => div.dispatchEvent(new CustomEvent("mycustomevent", {detail: event})))
+button.addEventListener("click", (event) =>
+    div.dispatchEvent(new CustomEvent("mycustomevent", {detail: event})),
+)
 button.innerText = "Click me!"
 
 container?.appendChild(button)
-
 ```
 
 ## Alternatives

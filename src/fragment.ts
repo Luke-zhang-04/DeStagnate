@@ -4,7 +4,7 @@
 import {ChildrenArrayType, bindChildren} from "./internal/_createElementUtils"
 
 /* eslint-disable @typescript-eslint/naming-convention */
-export const Fragment = (_: unknown, ...children: ChildrenArrayType): DocumentFragment => {
+export const Fragment = (_props: unknown, ...children: ChildrenArrayType): DocumentFragment => {
     const documentFragment = document.createDocumentFragment()
 
     bindChildren(documentFragment, children)

@@ -1,4 +1,4 @@
-import * as DeStagnate from "../../lib/createElementOnly"
+import * as DeStagnate from "../../lib"
 import pages from "./pages"
 ;(() => {
     const footer = document.querySelector<HTMLElement>("footer"),

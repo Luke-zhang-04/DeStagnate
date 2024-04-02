@@ -2,7 +2,15 @@ import type {Ref} from "../createRef"
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export type ChildrenFlatArrayType = (HTMLElement | Element | boolean | number | BigInt | string)[]
+export type ChildrenFlatArrayType = (
+    | boolean
+    | number
+    | BigInt
+    | string
+    | Node
+    | null
+    | undefined
+)[]
 
 export type ChildrenArrayType = ChildrenFlatArrayType | ChildrenArrayType[]
 
@@ -15,6 +23,8 @@ export type ChildrenType =
     | string
     | ChildrenArrayType
     | Node
+    | null
+    | undefined
 
 interface EventMap extends HTMLElementEventMap {
     "": Event

@@ -40,8 +40,8 @@ export function createElement<
     Props extends {[key: string]: unknown},
     Returns extends HTMLElement | JSX.Element,
 >(
-    func: (props?: Props, ...children: ChildrenArrayType) => Returns,
-    props?: Props,
+    func: (props?: Props | null, ...children: ChildrenArrayType) => Returns,
+    props?: Props | null,
     ...childrenArgs: ChildrenArrayType
 ): Returns
 
@@ -58,7 +58,7 @@ export function createElement<
  * @returns Element
  */
 export function createElement<T extends string | {[key: string]: unknown}, Returns = void>(
-    tagNameOrFunction: T | ((_props?: T, ..._children: ChildrenArrayType) => Returns),
+    tagNameOrFunction: T | ((_props?: T | null, ..._children: ChildrenArrayType) => Returns),
     props?: BasicProps | null | T,
     ...children: ChildrenArrayType
 ): HTMLElement | Returns | Error {
