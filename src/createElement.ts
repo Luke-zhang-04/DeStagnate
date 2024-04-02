@@ -21,7 +21,7 @@ import type JSX from "./jsx"
  * @returns Element
  */
 export function createElement<T extends keyof HTMLElementTagNameMap>(
-    tagNameOrComponent: T,
+    tagName: T,
     props?: BasicProps | null,
     ...childrenArgs: ChildrenArrayType
 ): HTMLElementTagNameMap[T]
@@ -29,7 +29,7 @@ export function createElement<T extends keyof HTMLElementTagNameMap>(
 /**
  * Creates an HTML Element
  *
- * @param component - Function component
+ * @param func - Function component
  * @param props - Props of function component
  * @param children - Children of this element. Can be nothing, number (converted to string), string
  *   (text), or another element. An array of any of these will create multiple children
@@ -40,17 +40,17 @@ export function createElement<
     Props extends {[key: string]: unknown},
     Returns extends HTMLElement | JSX.Element,
 >(
-    tagNameOrComponent: (props?: Props, ...children: ChildrenArrayType) => Returns,
+    func: (props?: Props, ...children: ChildrenArrayType) => Returns,
     props?: Props,
     ...childrenArgs: ChildrenArrayType
 ): Returns
 
 /**
- * @param tagNameOrComponent - Name of HTML element or function component
+ * @param tagNameOrFunction - Name of HTML element or function component
  * @param props - Props of element or component
  *
- *   1. If `tagNameOrComponent` is tagname, props are element properties, such as class, innerHTML, id, style, etc
- *   2. If `tagNameOrComponent` is a function, props are that functions parameters
+ *   1. If `tagNameOrFunction` is tagname, props are element properties, such as class, innerHTML, id, style, etc
+ *   2. If `tagNameOrFunction` is a function, props are that functions parameters
  *
  * @param children - Children of this element. Can be nothing, number (converted to string), string
  *   (text), or another element. An array of any of these will create multiple children
@@ -58,23 +58,22 @@ export function createElement<
  * @returns Element
  */
 export function createElement<T extends string | {[key: string]: unknown}, Returns = void>(
-    tagNameOrComponent: T | ((_props?: T, ..._children: ChildrenArrayType) => Returns),
+    tagNameOrFunction: T | ((_props?: T, ..._children: ChildrenArrayType) => Returns),
     props?: BasicProps | null | T,
     ...children: ChildrenArrayType
 ): HTMLElement | Returns | Error {
-    if (typeof tagNameOrComponent === "string") {
-        const element = document.createElement(tagNameOrComponent)
+    if (typeof tagNameOrFunction === "string") {
+        const element = document.createElement(tagNameOrFunction)
 
         bindProps(element, props as BasicProps | null)
-
         bindChildren(element, children)
 
         return element
-    } else if (typeof tagNameOrComponent === "function") {
-        return tagNameOrComponent(props as T, children)
+    } else if (typeof tagNameOrFunction === "function") {
+        return tagNameOrFunction(props as T, children)
     }
 
-    return Error("tagNameOrComponent is of invalid type.")
+    return Error(`${typeof tagNameOrFunction} ${tagNameOrFunction} is of invalid type.`)
 }
 
 export default createElement
