@@ -1,7 +1,7 @@
 {
   "name": "destagnate",
-  "version": "2.1.0",
-  "description": "Make creating dynamic components within static sites easier",
+  "version": "3.0.0",
+  "description": "A lightweight wrapper around vanilla DOM methods",
   "license": "MIT",
   "repository": {
     "type": "git",

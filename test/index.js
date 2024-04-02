@@ -1,9 +1,9 @@
 /**
- * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
+ * DeStagnate: A lightweight wrapper around vanilla DOM methods
  *
  * @license MIT
- * @version 2.1.0 Main test suite for destagnate
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
+ * @version 3.0.0
+ * @copyright 2020 - 2024 Luke Zhang
  */
 
 import "global-jsdom/register"

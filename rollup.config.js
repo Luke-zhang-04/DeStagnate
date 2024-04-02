@@ -5,18 +5,18 @@ import progress from "rollup-plugin-progress"
 import {terser} from "rollup-plugin-terser"
 
 const bannerProd = `/**
- * Destagnate v2.1.0 | https://luke-zhang-04.github.io/DeStagnate/
- * @copyright (C) 2020 - 2021 Luke Zhang https://luke-zhang-04.github.io
+ * DeStagnate
+ *
  * @license MIT
+ * @copyright 2020 - 2024 Luke Zhang
  */`
 
 const bannerDev = `/**
- * DeStagnate | https://luke-zhang-04.github.io/DeStagnate/
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
+ * DeStagnate: A lightweight wrapper around vanilla DOM methods
+ *
  * @license MIT
- * @version 2.1.0
+ * @version 3.0.0
+ * @copyright 2020 - 2024 Luke Zhang
  */`
 
 /**

@@ -1,27 +1,17 @@
-<div align="center">
-    <img width="50%" src="https://raw.githubusercontent.com/Luke-zhang-04/DeStagnate/4f32bdeefa0521b433261463a2481f75a4fc09f1/assets/logo.svg" alt="logo">
-</div>
+# DeStagnate
 
 <p align="center">
     <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/LICENSE"><img src="https://img.shields.io/github/license/luke-zhang-04/destagnate" alt="License"/></a>
     <a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/v/destagnate?logo=npm" alt="npm version"/></a>
-    <a href="https://unpkg.com/destagnate/dist/iife/deStagnate.min.js"><img src="https://img.badgesize.io/https:/unpkg.com/destagnate/dist/iife/deStagnate.min.js?label=iife/deStagnate.min.js%20gzip&compression=gzip" alt="bundle min gzip size"></a>
-    <a href="https://unpkg.com/destagnate/dist/iife/createElement.min.js"><img src="https://img.badgesize.io/https:/unpkg.com/destagnate/dist/iife/createElement.min.js?label=iife/createElement.min.js%20gzip&compression=gzip" alt="bundle min gzip size"></a>
     <a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/dt/destagnate"/></a>
-    <a href="https://github.com/Luke-zhang-04/DeStagnate/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://img.shields.io/github/workflow/status/Luke-zhang-04/DeStagnate/Node.js%20CI/master?label=Tests&logo=github" alt="tests"/></a>
-    <br/>
-    <a href="http://app.codacy.com/manual/luke.zhang2004/DeStagnate/dashboard"><img src="https://img.shields.io/codacy/grade/a59860e39a224bc3970e7e050a1be617?logo=codacy" alt="codacy grade"></a>
-    <a href="https://codeclimate.com/github/Luke-zhang-04/DeStagnate/maintainability"><img src="https://api.codeclimate.com/v1/badges/a4e072a738b46c76393b/maintainability" alt="maintainability grade"/></a>
-    <a href="https://codeclimate.com/github/Luke-zhang-04/DeStagnate/test_coverage"><img src="https://api.codeclimate.com/v1/badges/a4e072a738b46c76393b/test_coverage" alt="coverage"/></a>
+    <a href="https://github.com/Luke-zhang-04/DeStagnate/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://img.shields.io/github/actions/workflow/status/Luke-zhang-04/DeStagnate/CI.yml?branch=master&label=Tests&logo=github" alt="tests"/></a>
 </p>
 
-Write JSX for just under 800 gziped bytes, and create React-like components with under 2 gziped KB.
-
-[See some examples](https://luke-zhang-04.github.io/DeStagnate/)
+A lightweight (800 gziped bytes) wrapper around vanilla DOM methods for declarative DOM creation.
 
 ## Why not just use React?
 
-React is great for dynamic web applications, but it is not well optimized for static-like sites. With DeStagnate, you can create React-like components within a browser environment, or with a bundler such as Webpack, Browserify, Rollup, etc. DeStagnate uses less resources, and was made with use in static sites as it's main purpose.
+This isn't meant to be React. React has virtual DOM, hooks, and a huge ecosystem surrounding it. React 19 is supposed to have a compiler too. This is just a wrapper for when you need to create some DOM declaratively, and don't need all of React. I suppose you could use Preact, but even that involves some VDOM stuff.
 
 ## Documentation
 
@@ -37,6 +27,9 @@ npm i destagnate --save
 
 # Yarn
 yarn add destagnate
+
+# PNPM
+pnpm i destagnate
 ```
 
 Through `curl` or `wget` to download a bundle for browser usage<br/>
@@ -51,8 +44,8 @@ curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.js 
 wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.js
 
 # Latest IIFE bundle
-curl -L https://unpkg.com/destagnate@2.1.0/dist/iife/deStagnate.min.js > deStagnate.min.js
-wget https://unpkg.com/destagnate@2.1.0/dist/iife/deStagnate.min.js
+curl -L https://unpkg.com/destagnate@3.0.0/dist/iife/deStagnate.min.js > deStagnate.min.js
+wget https://unpkg.com/destagnate@3.0.0/dist/iife/deStagnate.min.js
 ```
 
 With a CDN
@@ -65,68 +58,111 @@ With a CDN
 <script src="https://unpkg.com/destagnate@version/dist/iife/deStagnate.js"></script>
 
 <!-- Latest -->
-<script src="https://unpkg.com/destagnate@2.1.0/dist/iife/deStagnate.min.js"></script>
+<script src="https://unpkg.com/destagnate@3.0.0/dist/iife/deStagnate.min.js"></script>
 ```
 
-## Basic Use
+## Kitchen Sink Example
 
 See [https://luke-zhang-04.github.io/DeStagnate/docs](https://luke-zhang-04.github.io/DeStagnate/docs) for example code and documentation.
 
-```js
-// Browser env requires this
-const DS = DeStagnate
+```tsx
+import * as DeStagnate from "destagnate"
 
-// Node env requires this
-import DeStagnate from "destagnate"
-const DeStagnate = require("destagnate")
+const divRef = DeStagnate.createRef<HTMLDivElement>()
 
-class Counter extends DeStagnate.Component {
-    constructor(parent) {
-        super(parent)
+document.getElementById("my-container")?.appendChild(
+    // `createElement` can be abbreviated to `ce`
+    DeStagnate.createElement(
+        DeStagnate.Fragment,
+        null,
+        DeStagnate.createElement(
+            "div",
+            {
+                class: "my-class",
+                ref: divRef,
+                onMyCustomEvent: (event: Event) => console.log(event),
+            },
+            DeStagnate.createElement(
+                "p",
+                null,
+                "My paragraph",
+                DeStagnate.createElement("i", null, " italic"),
+            ),
+        ),
+        DeStagnate.createElement(
+            "button",
+            {
+                onClick: (event) =>
+                    divRef.current?.dispatchEvent(
+                        new CustomEvent("mycustomevent", {detail: event}),
+                    ),
+            },
+            "Click me!",
+        ),
+    ),
+)
 
-        this.state = {}
-    }
+// Alternatively, you can use JSX. You will need a tranpiler, though.
+document.getElementById("my-container")?.appendChild(
+    <>
+        <div class="my-class" ref={divRef} onMyCustomEvent={(event: Event) => console.log(event)}>
+            <p>
+                My paragraph
+                <i> italic</i>
+            </p>
+        </div>
+        <button
+            onClick={(event) =>
+                divRef.current?.dispatchEvent(new CustomEvent("mycustomevent", {detail: event}))
+            }
+        >
+            Click me!
+        </button>
+    </>,
+)
 
-    // Using DS.createElement() - all options available below
-    render = () => DeStagnate.createElement("div")
-    render = () => Counter.createElement("div")
-    render = () => this.createElement("div")
+// Using vanilla DOM methods:
+const container = document.getElementById("my-container")
+const div = document.createElement("div)
 
-    // Alternatively, you can use JSX. You will need a tranpiler, though.
-    render = () => <div></div>
-}
+div.classList.add("my-class")
+div.addEventListener("mycustomevent", (event) => console.log(event))
 
-// Warning: the parent must be dedicated to this component. Anything inside the parent will be removed on muatation
-const counter = new Counter(document.querySelector("#parent"))
+const paragraph = document.createElement("p")
 
-counter.mount() // Must call once to mount the component
+paragraph.innerText = "My paragraph"
+
+const italic = document.createElement("i")
+
+italic.innerText = " italic"
+
+paragraph.appendChild(italic)
+div.appentChild(paragraph)
+container?.appendChild(div)
+
+const button = document.createElement("button")
+
+button.addEventListener("click", (event) => div.dispatchEvent(new CustomEvent("mycustomevent", {detail: event})))
+button.innerText = "Click me!"
+
+container?.appendChild(button)
+
 ```
+
+## Alternatives
+
+-   What about [HTL](https://www.npmjs.com/package/htl)?
+    -   HTL is cool, but it involves an HTML parser, which comes with its drawbacks. One upside though, you don't need to transpile to create DOM using XML-like syntax.
+-   What about [HTM](https://www.npmjs.com/package/htm)?
+    -   HTM generates virtual DOM and doesn't directly create DOM nodes.
+-   Why not just `innerHTML`?
+    -   You're missing dev tool support, it's a big security risk, and you'll have to deal with character escaping. Not fun. Mike Bostock goes over why `innerHTML` is bad in the [HTL README](https://www.npmjs.com/package/htl).
 
 ## Using JSX
 
 If you're using JSX, you'll need a transpiler. Either TypeScript, or a Babel with a Plugin will work.
 
 ### Typescript
-
-Consider the file `test.jsx` (or `test.tsx`)
-
-```tsx
-/**
- * Importing DeStagnate is important
- *
- * 1. It provides the JSX type defs (only typescript)
- * 2. It is needed when transpiled later
- */
-import DeStagnate from "destagnate"
-
-DeStagnate.createElement(
-    "div",
-    null,
-    <div class="myClass">
-        <p>My Paragraph</p>
-    </div>,
-)
-```
 
 You can compile with this `tsconfig.json`
 
