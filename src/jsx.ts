@@ -1,23 +1,23 @@
 import type {BasicProps, ChildrenType, EventFunc} from "./internal/_createElementUtils"
 import type {Ref} from "."
 
-type DeStagnateElementType =
+type DeStagnateElementType<T extends Node | null> =
     | boolean
     | number
     | BigInt
     | string
     | Element
-    | Ref
+    | Ref<T>
     | EventFunc<keyof EventFunc>
     | undefined
     | EventFunc
     | ChildrenType
     | JSX.Element
 
-interface DeStagnateElement {
-    [key: string]: DeStagnateElementType
+interface DeStagnateElement<T extends Node | null = Node | null> {
+    [key: string]: DeStagnateElementType<T>
     children?: ChildrenType | JSX.Element
-    ref?: BasicProps["ref"]
+    ref?: BasicProps<T>["ref"]
     class?: BasicProps["class"]
     id?: BasicProps["id"]
     src?: BasicProps["src"]

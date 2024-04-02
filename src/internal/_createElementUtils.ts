@@ -32,7 +32,7 @@ interface EventMap extends HTMLElementEventMap {
 
 export type EventFunc<T extends keyof EventMap = ""> = (e: EventMap[T]) => void
 
-export interface BasicProps {
+export interface BasicProps<T extends Node | null = Node | null> {
     // eslint-disable-next-line
     [key: string]:
         | boolean
@@ -40,11 +40,11 @@ export interface BasicProps {
         | BigInt
         | string
         | Element
-        | Ref
+        | Ref<T>
         | EventFunc<keyof EventFunc>
         | undefined
     class?: string
-    ref?: Ref
+    ref?: Ref<T>
     id?: string
     src?: string
     href?: string

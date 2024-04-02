@@ -24,133 +24,94 @@
       <div class="row" id="calculator-h">
         <h1 class="mt-3">Calculator example</h1>
         <p
-          >This example was written with JSX, which needs to be transpiled. See
-          <a href="using-jsx.html">using JSX</a>.</p
+          >This example was written with TypeScript and JSX, which needs to be compiled with the
+          Typscript Compiler or Babel. See <a href="using-jsx.html">using JSX</a>.</p
         >
         <a
-          href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/calculator.jsx"
+          href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/calculator.tsx"
           target="_blank"
           rel="noopener noreferrer"
           >Source Code</a
         >
         <div class="pt-5">
           <div id="calculator"></div>
-          <div id="calc-btn" class="mt-3"></div>
         </div>
         <div id="calc-source">
           <pre class="d-block">
-                    <code class="language-jsx">
-import DeStagnate from "destagnate"
+                    <code class="language-tsx">
+import DeStagnate from &quot;destagnate&quot;
 
-class Calculator extends DeStagnate {
+let calculation = &quot;&quot;
 
-    constructor (parent) {
-        super(parent)
+const calcDisplay = DeStagnate.createRef&lt;HTMLDivElement&gt;()
 
-        this.state = {
-            calculation: "",
-        }
+const updateCalculation = (newCalculation: string) =&gt; {
+    calculation = newCalculation
+
+    if (calcDisplay.current) {
+        DeStagnate.clearChildren(calcDisplay.current)
+
+        calcDisplay.current.appendChild(document.createTextNode(calculation))
     }
-
-    /**
-     * Appends new values to calculation
-     * @param {string} text - text of button
-     * @param {string | undefined} append - value to append to
-     * calculation
-     * @returns {Object.&lt;string, string&gt;} new state
-     */
-    _appendState = (text, append) =&gt; ({
-        calculation: this.state.calculation + (append ? append : text),
-    })
-
-    /**
-     * Create a calculator button
-     * @param {Object.&lt;string, string | undefined&gt;} param0 - text of button and value to append to
-     * calculaton
-     * @returns {HTMLElement} col element
-     */
-    _calcButton = ({text, append}) =&gt; &lt;div
-        class="col-3 calc-btn"
-        onClick={() =&gt; this.setState(this._appendState(text, append))}
-    &gt;{text}&lt;/div&gt;
-
-    /**
-     * Evaluate current calculation
-     * @returns {number} calculation
-     */
-    _evalCalc = () =&gt; eval(this.state.calculation)
-
-    /**
-     * Calculator buttons for 3 numbered rows
-     * @type {Array.&lt;HTMLElement&gt;}
-     */
-    _numBtns = [
-        &lt;div class="calc-btns row"&gt;
-            {["7", "8", "9", ["x", "*"]].map((val) =&gt; &lt;this._calcButton
-                text={val instanceof Array ? val[0] : val}
-                append={val instanceof Array ? val[1] : val}
-            /&gt;)}
-        &lt;/div&gt;,
-        &lt;div class="calc-btns row"&gt;
-            {["4", "5", "6", "-"].map((val) =&gt; &lt;this._calcButton
-                text={val instanceof Array ? val[0] : val}
-                append={val instanceof Array ? val[1] : val}
-            /&gt;)}
-        &lt;/div&gt;,
-        &lt;div class="calc-btns row"&gt;
-            {["1", "2", "3", "+"].map((val) =&gt; &lt;this._calcButton
-                text={val instanceof Array ? val[0] : val}
-                append={val instanceof Array ? val[1] : val}
-            /&gt;)}
-        &lt;/div&gt;,
-    ]
-
-    /**
-     * Calculator Display
-     * @returns {HTMLElement} display
-     */
-    _calcDisplay = () =&gt; &lt;div class="calc-display"&gt;
-        {this.state.calculation}
-    &lt;/div&gt;
-
-    render = () =&gt; (
-        &lt;div&gt;
-            &lt;this._calcDisplay/&gt;
-            &lt;div class="calc-btns row"&gt;
-                &lt;div
-                    class="col-3 calc-btn clear"
-                    onClick={() =&gt; this.setState({calculation: ""})}
-                &gt;C&lt;/div&gt;
-                &lt;div
-                    class="col-3 calc-btn"
-                    onClick={() =&gt; this.setState({
-                        calculation: this.state.calculation.slice(
-                            0, this.state.calculation.length - 1,
-                        ),
-                    })}
-                &gt;&lt;/div&gt;
-                &lt;this._calcButton text="%"/&gt;
-                &lt;this._calcButton text={"\u00f7"} append="/"/&gt;
-            &lt;/div&gt;
-            {this._numBtns.map((btn) =&gt; btn)}
-            &lt;div class="calc-btns row"&gt;
-                &lt;this._calcButton text="0"/&gt;
-                &lt;this._calcButton text="."/&gt;
-                &lt;div
-                    class="col-6 calc-btn equals"
-                    onClick={() =&gt; (
-                        this.setState({calculation: this._evalCalc()})
-                    )}
-                &gt;&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    )
-
 }
 
-const calculator = new Calculator(document.querySelector("#calculator"))
+const CalcButton = ({text, append}: {text: string; append?: string}) =&gt; (
+    &lt;div class=&quot;col-3 calc-btn&quot; onClick={() =&gt; updateCalculation(calculation + (append ?? text))}&gt;
+        {text}
+    &lt;/div&gt;
+)
 
-calculator.mount() // Must call once
+document.querySelector(&quot;#calculator&quot;)?.appendChild(
+    &lt;div&gt;
+        &lt;div class=&quot;calc-display&quot; ref={calcDisplay}&gt;&lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            &lt;div class=&quot;col-3 calc-btn clear&quot; onClick={() =&gt; updateCalculation(&quot;&quot;)}&gt;
+                C
+            &lt;/div&gt;
+            &lt;div
+                class=&quot;col-3 calc-btn&quot;
+                onClick={() =&gt; updateCalculation(calculation.slice(0, calculation.length - 1))}
+            &gt;
+                {&quot;\u2190&quot;}
+            &lt;/div&gt;
+            &lt;CalcButton text=&quot;%&quot; /&gt;
+            &lt;CalcButton text={&quot;\u00f7&quot;} append=&quot;/&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            {[&quot;7&quot;, &quot;8&quot;, &quot;9&quot;, [&quot;x&quot;, &quot;*&quot;]].map((val) =&gt; (
+                &lt;CalcButton
+                    text={val instanceof Array ? val[0] : val}
+                    append={val instanceof Array ? val[1] : val}
+                /&gt;
+            ))}
+        &lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            {[&quot;4&quot;, &quot;5&quot;, &quot;6&quot;, &quot;-&quot;].map((val) =&gt; (
+                &lt;CalcButton text={val} /&gt;
+            ))}
+        &lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            {[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;+&quot;].map((val) =&gt; (
+                &lt;CalcButton text={val} /&gt;
+            ))}
+        &lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            &lt;CalcButton text=&quot;0&quot; /&gt;
+            &lt;CalcButton text=&quot;.&quot; /&gt;
+            &lt;div
+                class=&quot;col-6 calc-btn equals&quot;
+                onClick={() =&gt; {
+                    /* eslint-disable no-eval */
+                    calculation = eval(calculation).toString() // DO NOT USE EVAL IN A REAL APP EVAL OBJECTIVELY SUCKS
+                    /* eslint-enable no-eval */
+                    if (calcDisplay.current) {
+                        calcDisplay.current.innerText = calculation
+                    }
+                }}
+            &gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;,
+)
 
                     </code>
                 </pre>

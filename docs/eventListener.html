@@ -22,8 +22,12 @@
     <div class="container">
       <div id="elistener-h">
         <h1 class="mt-3">Event listener example</h1>
+        <p
+          >This example was written with JSX, which needs to be transpiled. See
+          <a href="using-jsx.html">using JSX</a>.</p
+        >
         <a
-          href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/eventListener.js"
+          href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/eventListener.jsx"
           target="_blank"
           rel="noopener noreferrer"
           >Source Code</a
@@ -34,81 +38,27 @@
         <div id="elistener-source">
           <pre class="d-block">
                     <code class="language-js">
-import DeStagnate, {createElement} from "destagnate"
+import DeStagnate from &quot;destagnate&quot;
 
-class EventListener extends DeStagnate.Component {
+const colors = [&quot;primary&quot;, &quot;secondary&quot;, &quot;success&quot;, &quot;info&quot;, &quot;warning&quot;, &quot;danger&quot;, &quot;light&quot;, &quot;dark&quot;]
 
-    constructor (parent) {
-        super(parent)
+let currentColor = colors[0]
+const buttonRef = DeStagnate.createRef()
 
-        this.state = {
-            color: "primary",
-        }
+const updateColor = (index = Math.floor(Math.random() * colors.length)) =&gt; {
+    currentColor = colors[index]
+
+    if (buttonRef.current) {
+        buttonRef.current.className = `btn btn-${currentColor}`
     }
-
-    onClick = () => {
-        const colors = [
-            "primary",
-            "secondary",
-            "success",
-            "info",
-            "warning",
-            "danger",
-            "light",
-            "dark",
-        ].filter((val) => this.state.color !== val)
-
-        this.setState({
-            color: colors[Math.floor(Math.random() * colors.length)]
-        })
-    }
-
-    render = () => createElement("button", {
-        class: `btn btn-${this.state.color}`,
-        onClick: () => alert("Clicked!")
-    }, "Click Me!")
-
 }
 
-const eListener = new EventListener(document.querySelector("#elistener"))
+document.querySelector(&quot;#elistener&quot;)?.appendChild(
+    &lt;button class={`btn btn-${currentColor}`} ref={buttonRef} onClick={() =&gt; updateColor()}&gt;
+        Click Me!
+    &lt;/button&gt;,
+)
 
-eListener.mount() // Must call once
-
-                    </code>
-                </pre>
-        </div>
-
-        <div class="pt-5">
-          <div id="elistener2"></div>
-        </div>
-        <div id="elistener2-source">
-          <pre class="d-block">
-                    <code class="language-js">
-import DeStagnate, {createElement} from "destagnate"
-
-class ScrollListener extends DeStagnate.Component {
-
-    constructor (parent) {
-        super(parent)
-
-        this.state = {
-            scrollPosition: window.scrollY,
-        }
-    }
-
-    onScroll = () => this.setState({scrollPosition: window.scrollY})
-
-    render = () => createElement(
-        "p",
-        null,
-        "Scroll position: ",
-        this.state.scrollPosition,
-    )
-}
-
-const scrollListener = new ScrollListener(document.querySelector("#elistener2"))
-
-scrollListener.mount()
                     </code>
                 </pre>
         </div>

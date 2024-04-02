@@ -91,28 +91,6 @@ const es5 = (() => {
             },
             plugins: makePlugins("es5", false),
         },
-        {
-            input: "lib/createElementOnly",
-            output: {
-                file: `dist/es5/createElement.min.${extension ?? format}`,
-                format,
-                banner: bannerProd,
-                name: "DeStagnate",
-                sourcemap: true,
-            },
-            plugins: makePlugins("es5", true),
-        },
-        {
-            input: "lib/createElementOnly",
-            output: {
-                file: `dist/es5/createElement.${extension ?? format}`,
-                format,
-                banner: bannerDev,
-                name: "DeStagnate",
-                sourcemap: true,
-            },
-            plugins: makePlugins("es5", false),
-        },
     ])
 
     return configs.flat()
@@ -139,28 +117,6 @@ const es6 = (() => {
             input: "lib",
             output: {
                 file: `dist/${format}/deStagnate.${extension ?? format}`,
-                format,
-                banner: bannerDev,
-                name: "DeStagnate",
-                sourcemap: true,
-            },
-            plugins: makePlugins("es6", false),
-        },
-        {
-            input: "lib/createElementOnly",
-            output: {
-                file: `dist/${format}/createElement.min.${extension ?? format}`,
-                format,
-                banner: bannerProd,
-                name: "DeStagnate",
-                sourcemap: true,
-            },
-            plugins: makePlugins("es6", true),
-        },
-        {
-            input: "lib/createElementOnly",
-            output: {
-                file: `dist/${format}/createElement.${extension ?? format}`,
                 format,
                 banner: bannerDev,
                 name: "DeStagnate",

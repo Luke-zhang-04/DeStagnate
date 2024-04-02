@@ -35,58 +35,54 @@
         <div id="svg-source">
           <pre class="d-block">
                     <code class="language-js">
-import DeStagnate, {createElementNS} from "destagnate"
+import DeStagnate, {createElementNS, createRef} from &quot;destagnate&quot;
 
-class SVG extends DeStagnate.Component {
+const width = 250
+let direction = 2.5
+let xCoord = 0
 
-    constructor (parent, props) {
-        super(parent, props)
+const rectRef = createRef()
 
-        this.state = {
-            xcord: 0,
-        }
+const updateXCoord = (newCoord) =&gt; {
+    xCoord = newCoord
+
+    if (rectRef.current) {
+        rectRef.current.setAttribute(&quot;x&quot;, xCoord.toString())
     }
-
-    direction = 2.5
-
-    componentDidMount = () => this.componentDidUpdate()
-
-    componentDidUpdate = () => {
-        if (this.state.xcord < 0 || this.state.xcord > this.props.width) {
-            this.direction *= -1
-        }
-
-        setTimeout(
-            () => this.setState({xcord: this.state.xcord + this.direction}),
-            10,
-        )
-    }
-
-    render = () => createElementNS(
-        "http://www.w3.org/2000/svg",
-        "svg",
-        {
-            width: this.props.width * 2,
-            height: this.props.width,
-            viewBox: `0 0 ${this.props.width * 2} ${this.props.width}`,
-        },
-        createElementNS(
-            "http://www.w3.org/2000/svg",
-            "rect",
-            {
-                width: this.props.width,
-                height: this.props.width,
-                fill: this.direction > 0 ? "#0D6EFD" : "#28A745", /* eslint-disable id-length */
-                x: this.state.xcord, /* eslint-enable id-length */
-            },
-        ),
-    )
-
 }
 
-const svg = new SVG(document.querySelector("#SVG"), {width: 250})
+setInterval(() =&gt; {
+    updateXCoord(xCoord + direction)
 
-svg.mount() // Must call once
+    if (xCoord &lt; 0 || xCoord &gt; width) {
+        direction *= -1
+    }
+}, 10)
+
+document.querySelector(&quot;#SVG&quot;)?.appendChild(
+    createElementNS(
+        &quot;http://www.w3.org/2000/svg&quot;,
+        &quot;svg&quot;,
+        {
+            width: width * 2,
+            height: width,
+            viewBox: `0 0 ${width * 2} ${width}`,
+        },
+        createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;rect&quot;, {
+            width: width,
+            height: width,
+            fill: direction &gt; 0 ? &quot;#0D6EFD&quot; : &quot;#28A745&quot;,
+            x: xCoord,
+            ref: rectRef,
+        }),
+    ),
+)
+
+/* SVG Equiv
+&lt;svg width=&quot;200&quot; height=&quot;200&quot; viewBox=&quot;0 0 200 200&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
+    &lt;rect width=&quot;200&quot; height=&quot;200&quot; fill=&quot;#0D6EFD&quot;/&gt;
+&lt;/svg&gt;
+*/
 
                     </code>
                 </pre>

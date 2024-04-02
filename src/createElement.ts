@@ -14,13 +14,12 @@ import type JSX from "./jsx"
  * @param props - Element properties, such as class, innerHTML, id, style, etc
  * @param children - Children of this element. Can be nothing, number (converted to string), string
  *   (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - Rest parameter of children
  * @returns Element
  */
 export function createElement<T extends keyof HTMLElementTagNameMap>(
     tagName: T,
     props?: BasicProps | null,
-    ...childrenArgs: ChildrenArrayType
+    ...children: ChildrenArrayType
 ): HTMLElementTagNameMap[T]
 
 /**
@@ -30,16 +29,15 @@ export function createElement<T extends keyof HTMLElementTagNameMap>(
  * @param props - Props of function component
  * @param children - Children of this element. Can be nothing, number (converted to string), string
  *   (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - Rest parameter of children
  * @returns Element
  */
 export function createElement<
-    Props extends {[key: string]: unknown},
+    Props extends {[key: string]: unknown} | null | undefined,
     Returns extends HTMLElement | JSX.Element,
 >(
-    func: (props?: Props | null, ...children: ChildrenArrayType) => Returns,
+    func: (props: Props, ...children: ChildrenArrayType) => Returns,
     props?: Props | null,
-    ...childrenArgs: ChildrenArrayType
+    ...children: ChildrenArrayType
 ): Returns
 
 /**
@@ -51,11 +49,13 @@ export function createElement<
  *
  * @param children - Children of this element. Can be nothing, number (converted to string), string
  *   (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - Rest parameter for children
  * @returns Element
  */
-export function createElement<T extends string | {[key: string]: unknown}, Returns = void>(
-    tagNameOrFunction: T | ((_props?: T | null, ..._children: ChildrenArrayType) => Returns),
+export function createElement<
+    T extends string | {[key: string]: unknown} | null | undefined,
+    Returns = void,
+>(
+    tagNameOrFunction: T | ((_props: T, ..._children: ChildrenArrayType) => Returns),
     props?: BasicProps | null | T,
     ...children: ChildrenArrayType
 ): HTMLElement | Returns | Error {

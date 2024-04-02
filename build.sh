@@ -13,7 +13,7 @@ build() {
 
     if [[ "$1" != "--no-docs" ]]; then
         echo -e "${BIYellow}Compiling ${BIBlue}./docs/${BIGreen}src${Purple} with ${BIBlue}Typescript"
-        "$bin"/tsc -p tsconfig.docs.json
+        "$bin"/tsc -p docs/tsconfig.json
     fi
 
     wait
@@ -24,7 +24,7 @@ build() {
     "$bin"/rollup -c rollup.config.js
 
     if [[ "$1" != "--no-docs" ]]; then
-        "$bin"/rollup --config rollup.config.docs.js
+        "$bin"/rollup --config docs/rollup.config.js
     fi
 
     if [[ "$1" != "--no-docs" ]]; then
@@ -37,7 +37,7 @@ buildDev() {
     echo -e "${BIYellow}Compiling ${BIGreen}./src/${Purple} with ${BIBlue}TypeScript"
     "$bin"/tsc -p tsconfig.json &
     echo -e "${BIYellow}Compiling ${BIBlue}./docs/${BIGreen}src${Purple} with ${BIBlue}Typescript"
-    "$bin"/tsc -p tsconfig.docs.json &
+    "$bin"/tsc -p docs/tsconfig.json &
 
     wait
 
@@ -45,7 +45,7 @@ buildDev() {
     # Run Rollup on ./build and es5
     echo -e "${BIBlue}Packing ${Yellow}./build/index.js${Purple} files with ${ICyan}Rollup${Purple} and sending to ${Yellow}./dist/${Purple}"
     "$bin"/rollup -c rollup.config.js
-    "$bin"/rollup --config rollup.config.docs.js
+    "$bin"/rollup --config docs/rollup.config.js
 }
 
 # Watches for file changes and executes build
@@ -73,11 +73,11 @@ if [[ "$1" == "--watch" ]]; then
 elif [[ "$1" == "-d" ]]||[[ "$1" == "--dev" ]]; then
     buildDev
 elif [[ "$1" == "--docs" ]]; then
-    "$bin"/tsc -p tsconfig.docs.json
+    "$bin"/tsc -p docs/tsconfig.json
     cd docs || return
-    yarn sass
+    pnpm sass
     cd .. || return
-    "$bin"/rollup -c rollup.config.docs &
+    "$bin"/rollup -c docs/rollup.config.js &
     "$bin"/typedoc --options ./typedoc.cjs &
 
     wait

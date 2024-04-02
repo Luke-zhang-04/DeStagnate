@@ -1,4 +1,4 @@
-export interface Ref<T = Element> {
+export interface Ref<T = Element | null> {
     current: T
 }
 
