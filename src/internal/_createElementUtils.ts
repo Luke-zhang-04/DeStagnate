@@ -124,7 +124,9 @@ export const bindProps = (element: Element, props?: BasicProps | null, ns = fals
 export const bindChildren = (element: Node, children?: ChildrenType): void => {
     if (children !== null && children !== undefined && children !== false) {
         if (children instanceof Array) {
-            children.forEach((child: ChildrenType) => bindChildren(element, child))
+            for (const child of children) {
+                bindChildren(element, child)
+            }
         } else if (
             typeof children === "boolean" ||
             typeof children === "number" ||
