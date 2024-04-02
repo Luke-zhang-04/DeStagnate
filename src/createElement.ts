@@ -13,6 +13,7 @@ import {
  * @param props - Element properties, such as class, id, style, etc
  * @param children - Children of this element. Can be nothing, number (converted to string), string
  *   (text), or another element. An array of any of these will create multiple children
+ * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  * @returns Element
  */
 export function createElement<T extends keyof HTMLElementTagNameMap>(
@@ -28,6 +29,7 @@ export function createElement<T extends keyof HTMLElementTagNameMap>(
  * @param props - Props of function component
  * @param children - Children of this element. Can be nothing, number (converted to string), string
  *   (text), or another element. An array of any of these will create multiple children
+ * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  * @returns Element
  */
 export function createElement<
@@ -48,6 +50,7 @@ export function createElement<
  *
  * @param children - Children of this element. Can be nothing, number (converted to string), string
  *   (text), or another element. An array of any of these will create multiple children
+ * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  * @returns Element
  */
 export function createElement<
@@ -57,7 +60,7 @@ export function createElement<
     tagNameOrFunction: T | ((_props: T, ..._children: ChildrenArrayType) => Returns),
     props?: BasicProps | null | T,
     ...children: ChildrenArrayType
-): HTMLElement | Returns | Error {
+): HTMLElement | Returns {
     if (typeof tagNameOrFunction === "string") {
         const element = document.createElement(tagNameOrFunction)
 
@@ -69,7 +72,7 @@ export function createElement<
         return tagNameOrFunction(props as T, children)
     }
 
-    return Error(`Invalid type: ${typeof tagNameOrFunction} ${tagNameOrFunction}`)
+    throw new Error(`Invalid element type ${typeof tagNameOrFunction}: ${tagNameOrFunction}`)
 }
 
 export default createElement

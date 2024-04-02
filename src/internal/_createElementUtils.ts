@@ -128,7 +128,7 @@ export const bindProps = (element: Element, props?: BasicProps | null, ns = fals
                     val.current = element
                 }
             } else if (val !== undefined && val !== null) {
-                console.warn(`${typeof val} ${val} is not a valid DeStagnate prop`)
+                console.warn(`Invalid prop type ${typeof val} at ${key}: ${val}`)
             }
         }
     }
@@ -152,6 +152,8 @@ export const bindChildren = (element: Node, children?: ChildrenType): void => {
             element.appendChild(document.createTextNode(children.toString()))
         } else if (children instanceof Node) {
             element.appendChild(children)
+        } else {
+            console.warn(`Invalid child type ${typeof children}: ${children}`)
         }
     }
 }
