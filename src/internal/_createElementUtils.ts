@@ -2,12 +2,19 @@ import type {Ref} from "../createRef"
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export type ChildrenFlatArrayType = (HTMLElement | Element | number | string)[]
+export type ChildrenFlatArrayType = (HTMLElement | Element | boolean | number | BigInt | string)[]
 
 export type ChildrenArrayType = ChildrenFlatArrayType | ChildrenArrayType[]
 
 /** All types the children parameter can be */
-export type ChildrenType = ChildrenType[] | string | number | ChildrenArrayType | Node
+export type ChildrenType =
+    | ChildrenType[]
+    | boolean
+    | number
+    | BigInt
+    | string
+    | ChildrenArrayType
+    | Node
 
 interface EventMap extends HTMLElementEventMap {
     "": Event
@@ -115,10 +122,15 @@ export const bindProps = (element: Element, props?: BasicProps | null, ns = fals
  * @package
  */
 export const bindChildren = (element: Node, children?: ChildrenType): void => {
-    if (children !== null && children !== undefined) {
+    if (children !== null && children !== undefined && children !== false) {
         if (children instanceof Array) {
             children.forEach((child: ChildrenType) => bindChildren(element, child))
-        } else if (typeof children === "string" || typeof children === "number") {
+        } else if (
+            typeof children === "boolean" ||
+            typeof children === "number" ||
+            typeof children === "bigint" ||
+            typeof children === "string"
+        ) {
             element.appendChild(document.createTextNode(children.toString()))
         } else if (children instanceof Node) {
             element.appendChild(children)
