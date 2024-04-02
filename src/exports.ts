@@ -7,7 +7,7 @@
  */
 
 export {Ref, createRef} from "./createRef"
-export {createElement} from "./createElement"
-export {createElementNS} from "./createElementNS"
+export {createElement, createElement as ce} from "./createElement"
+export {createElementNS, createElementNS as ceNS} from "./createElementNS"
 export {Fragment} from "./fragment"
 export {removeChildren} from "./removeChildren"
