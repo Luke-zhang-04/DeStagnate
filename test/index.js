@@ -17,6 +17,7 @@ import {test as elementCreating} from "./cases/createElement.js"
 import {test as elistener} from "./cases/eventListener.js"
 import {test as functionComponents} from "./cases/functionComponent.js"
 import {test as fragments} from "./cases/fragment.js"
+import {test as stateContainer} from "./cases/stateContainer.js"
 
 document.body.innerHTML = fs.readFileSync(`${process.cwd()}/test/test.html`, "utf-8")
 
@@ -27,3 +28,4 @@ describe("CreateElement", elementCreating)
 describe("Event listener", elistener)
 describe("Function components", functionComponents)
 describe("Fragments", fragments)
+describe("State container", stateContainer)
