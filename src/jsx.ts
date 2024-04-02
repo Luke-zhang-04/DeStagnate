@@ -8,6 +8,7 @@ type DeStagnateElementType<T extends Node | null> =
     | string
     | Element
     | Ref<T>
+    | Ref<T>[]
     | EventFunc<keyof EventFunc>
     | undefined
     | EventFunc

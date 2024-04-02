@@ -42,10 +42,11 @@ export interface BasicProps<T extends Node | null = Node | null> {
         | string
         | Element
         | Ref<T>
+        | Ref<T>[]
         | EventFunc<keyof EventFunc>
         | undefined
     class?: string
-    ref?: Ref<T>
+    ref?: Ref<T> | Ref<T>[]
     id?: string
     src?: string
     href?: string
@@ -114,8 +115,18 @@ export const bindProps = (element: Element, props?: BasicProps | null, ns = fals
                         val as EventFunc,
                     )
                 }
-            } else if (key === "ref" && typeof val === "object" && "current" in val) {
-                val.current = element
+            } else if (
+                key === "ref" &&
+                typeof val === "object" &&
+                ("current" in val || Array.isArray(val))
+            ) {
+                if (Array.isArray(val)) {
+                    for (const ref of val) {
+                        ref.current = element
+                    }
+                } else {
+                    val.current = element
+                }
             } else if (val !== undefined && val !== null) {
                 console.warn(`${typeof val} ${val} is not a valid DeStagnate prop`)
             }
