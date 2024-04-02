@@ -6,7 +6,7 @@ import {
     ChildrenArrayType,
     bindChildren,
     bindProps,
-} from "./private/_createElementUtils"
+} from "./internal/_createElementUtils"
 import type JSX from "./jsx"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 

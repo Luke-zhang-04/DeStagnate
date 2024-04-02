@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 /// <reference path="./jsx.ts" />
 
-import {ChildrenArrayType, bindChildren} from "./private/_createElementUtils"
+import {ChildrenArrayType, bindChildren} from "./internal/_createElementUtils"
 
 /* eslint-disable @typescript-eslint/naming-convention */
 export const Fragment = (_: unknown, ...children: ChildrenArrayType): DocumentFragment => {

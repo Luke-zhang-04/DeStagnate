@@ -1,4 +1,4 @@
-import type {BasicProps, ChildrenType, EventFunc} from "./private/_createElementUtils"
+import type {BasicProps, ChildrenType, EventFunc} from "./internal/_createElementUtils"
 import type {Ref} from "."
 
 type DeStagnateElementType =

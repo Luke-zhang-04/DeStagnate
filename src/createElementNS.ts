@@ -1,4 +1,4 @@
-import {ChildrenArrayType, bindChildren, bindProps} from "./private/_createElementUtils"
+import {ChildrenArrayType, bindChildren, bindProps} from "./internal/_createElementUtils"
 
 /**
  * Creates a child element to deStagnate
