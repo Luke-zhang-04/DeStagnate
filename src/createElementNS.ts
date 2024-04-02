@@ -1,12 +1,3 @@
-/**
- * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
- *
- * @license MIT
- * @author Luke Zhang luke-zhang-04.github.io
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @exports createElementNS createElement for namespaced elements
- */
-
 import {ChildrenArrayType, bindChildren, bindProps} from "./private/_createElementUtils"
 
 /**

@@ -1,36 +1,13 @@
-/**
- * Component A simple, ReactJS inspired library to create dynamic components within static sites easier
- *
- * @license MIT
- * @author Luke Zhang luke-zhang-04.github.io
- * @file share Functions and types for createElement and it's variants
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- */
-
-import type {Component} from "../component"
 import type {Ref} from "../createRef"
-import url from "./_url"
 
-/* eslint-disable one-var, @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-export type ChildrenFlatArrayType = (
-    | HTMLElement
-    | Element
-    | number
-    | string
-    | Component<any, any>
-)[]
+export type ChildrenFlatArrayType = (HTMLElement | Element | number | string)[]
 
 export type ChildrenArrayType = ChildrenFlatArrayType | ChildrenArrayType[]
 
 /** All types the children parameter can be */
-export type ChildrenType =
-    | ChildrenType[]
-    | string
-    | number
-    | ChildrenArrayType
-    | Node
-    | Component<any, any>
+export type ChildrenType = ChildrenType[] | string | number | ChildrenArrayType | Node
 
 interface EventMap extends HTMLElementEventMap {
     "": Event
@@ -116,22 +93,6 @@ export const bindProps = (element: Element, props?: BasicProps | null, ns = fals
     }
 }
 
-const bindDestagnateElement = (element: Node, children: Component): void => {
-    if (element instanceof HTMLElement) {
-        if (children.didMount) {
-            if (children.parent !== element) {
-                children.parent = element as HTMLElement
-            }
-
-            children.forceUpdate()
-        } else {
-            children.mount(element)
-        }
-    } else {
-        throw new Error(`ERROR: code 3. See ${url}`)
-    }
-}
-
 /**
  * Binds children to element
  *
@@ -148,8 +109,6 @@ export const bindChildren = (element: Node, children?: ChildrenType): void => {
             element.appendChild(document.createTextNode(children.toString()))
         } else if (children instanceof Node) {
             element.appendChild(children)
-        } else {
-            bindDestagnateElement(element, children)
         }
     }
 }

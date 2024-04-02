@@ -6,7 +6,6 @@
  * @copyright Copyright (C) 2020 - 2021 Luke Zhang
  */
 
-export {Component} from "./component"
 export {Ref, createRef} from "./createRef"
 export {createElement} from "./createElement"
 export {createElementNS} from "./createElementNS"

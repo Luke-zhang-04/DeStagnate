@@ -8,7 +8,7 @@
 
 import "global-jsdom/register"
 
-/* eslint-disable one-var, no-sync */
+/* eslint-disable no-sync */
 import fs from "fs"
 
 import {test as state} from "./cases/state.js"
