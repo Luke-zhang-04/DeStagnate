@@ -1,4 +1,4 @@
-export interface Ref<T = HTMLElement> {
+export interface Ref<T = Element> {
     current: T | null
 }
 
@@ -7,7 +7,7 @@ export interface Ref<T = HTMLElement> {
  *
  * @returns Empty ref object
  */
-export const createRef = <T = HTMLElement>(): Ref<T> => ({
+export const createRef = <T = Element>(): Ref<T> => ({
     current: null,
 })
 

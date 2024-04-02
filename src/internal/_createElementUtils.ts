@@ -17,7 +17,15 @@ export type EventFunc<T extends keyof EventMap = ""> = (e: EventMap[T]) => void
 
 export interface BasicProps {
     // eslint-disable-next-line
-    [key: string]: string | number | Element | Ref | EventFunc<keyof EventFunc> | undefined
+    [key: string]:
+        | boolean
+        | number
+        | BigInt
+        | string
+        | Element
+        | Ref
+        | EventFunc<keyof EventFunc>
+        | undefined
     class?: string
     ref?: Ref
     id?: string
@@ -68,7 +76,12 @@ export interface BasicProps {
 export const bindProps = (element: Element, props?: BasicProps | null, ns = false): void => {
     if (props) {
         for (const [key, val] of Object.entries(props)) {
-            if (typeof val === "string" || typeof val === "number") {
+            if (
+                typeof val === "boolean" ||
+                typeof val === "number" ||
+                typeof val === "bigint" ||
+                typeof val === "string"
+            ) {
                 if (key === "innerHTML") {
                     element.innerHTML = val.toString()
                 } else if (ns) {
@@ -85,9 +98,9 @@ export const bindProps = (element: Element, props?: BasicProps | null, ns = fals
                     )
                 }
             } else if (key === "ref" && typeof val === "object" && "current" in val) {
-                ;(val as Ref<Element>).current = element
-            } else if (val !== undefined) {
-                console.warn(`${typeof val} is not a valid DeStagnate child`)
+                val.current = element
+            } else if (val !== undefined && val !== null) {
+                console.warn(`${typeof val} ${val} is not a valid DeStagnate prop`)
             }
         }
     }

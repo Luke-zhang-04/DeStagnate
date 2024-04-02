@@ -2,15 +2,17 @@ import type {BasicProps, ChildrenType, EventFunc} from "./internal/_createElemen
 import type {Ref} from "."
 
 type DeStagnateElementType =
-    | undefined
-    | string
+    | boolean
     | number
+    | BigInt
+    | string
     | Element
+    | Ref
+    | EventFunc<keyof EventFunc>
+    | undefined
     | EventFunc
     | ChildrenType
     | JSX.Element
-    | Ref
-    | EventFunc<keyof EventFunc>
 
 interface DeStagnateElement {
     [key: string]: DeStagnateElementType
