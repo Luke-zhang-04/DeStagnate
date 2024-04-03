@@ -86,8 +86,8 @@ document.querySelector(&quot;#calculator&quot;)?.appendChild(
         &lt;div class=&quot;calc-btns row&quot;&gt;
             {[&quot;7&quot;, &quot;8&quot;, &quot;9&quot;, [&quot;x&quot;, &quot;*&quot;]].map((val) =&gt; (
                 &lt;CalcButton
-                    text={val instanceof Array ? val[0] : val}
-                    append={val instanceof Array ? val[1] : val}
+                    text={Array.isArray(val) ? val[0] : val}
+                    append={Array.isArray(val) ? val[1] : val}
                 /&gt;
             ))}
         &lt;/div&gt;

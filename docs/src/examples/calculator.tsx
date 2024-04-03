@@ -45,8 +45,8 @@ document.querySelector("#calculator")?.appendChild(
         <div class="calc-btns row">
             {["7", "8", "9", ["x", "*"]].map((val) => (
                 <CalcButton
-                    text={val instanceof Array ? val[0] : val}
-                    append={val instanceof Array ? val[1] : val}
+                    text={Array.isArray(val) ? val[0] : val}
+                    append={Array.isArray(val) ? val[1] : val}
                 />
             ))}
         </div>

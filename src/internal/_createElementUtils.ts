@@ -62,7 +62,7 @@ export const bindProps = (element: Element, props?: AllProps | null, ns = false)
  */
 export const bindChildren = (element: Node, children?: ChildrenType): void => {
     if (children !== null && children !== undefined && children !== false) {
-        if (children instanceof Array) {
+        if (Array.isArray(children)) {
             for (const child of children) {
                 bindChildren(element, child)
             }
