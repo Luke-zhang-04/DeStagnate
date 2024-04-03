@@ -1,5 +1,5 @@
 import {ChildrenArrayType, ElementProps, SVGElementProps} from "./types"
-import {bindChildren, bindProps} from "./internal/_createElementUtils"
+import {bindChildren, bindProps} from "./utils"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
 export type Namespaces =

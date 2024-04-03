@@ -35,7 +35,7 @@
         <div id="svg-source">
           <pre class="d-block">
                     <code class="language-js">
-import {StateContainer, createElementNS} from &quot;destagnate&quot;
+import {StateContainer, bindProps, createElementNS} from &quot;../../..&quot;
 
 const svgURI = &quot;http://www.w3.org/2000/svg&quot;
 
@@ -48,7 +48,14 @@ class XCoordState extends StateContainer {
     }
 
     updateDOM(rectRef) {
-        rectRef.current.setAttribute(&quot;x&quot;, this.value.toString())
+        bindProps(
+            rectRef.current,
+            {
+                x: this.value.toString(),
+                fill: direction &gt; 0 ? &quot;#0D6EFD&quot; : &quot;#28A745&quot;,
+            },
+            true,
+        )
     }
 }
 

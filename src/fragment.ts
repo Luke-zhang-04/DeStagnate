@@ -1,5 +1,5 @@
 import type {ChildrenArrayType, RefProp} from "./types"
-import {bindChildren, setRefs} from "./internal/_createElementUtils"
+import {bindChildren, setRefs} from "./utils"
 
 interface FragmentProps {
     ref?: RefProp<DocumentFragment>

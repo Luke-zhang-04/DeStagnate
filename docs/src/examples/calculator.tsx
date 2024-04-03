@@ -9,8 +9,7 @@ class CalcState extends DeStagnate.StateContainer<string, HTMLDivElement | null>
         // `calcDisplay` is the same as `this.ref`, except `calcDisplay.current` is garunteed not
         // to be null.
         DeStagnate.clearChildren(calcDisplay.current)
-
-        calcDisplay.current.appendChild(document.createTextNode(this.value))
+        DeStagnate.bindChildren(calcDisplay.current, this.value)
     }
 }
 
@@ -68,6 +67,7 @@ document.querySelector("#calculator")?.appendChild(
                 onClick={() => {
                     /* eslint-disable no-eval */
                     calcState.value = eval(calcState.value).toString() // DO NOT USE EVAL IN A REAL APP EVAL OBJECTIVELY SUCKS
+                    // These examples are just tests to make sure the library is working anyways
                     /* eslint-enable no-eval */
                 }}
             >

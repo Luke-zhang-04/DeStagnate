@@ -1,4 +1,4 @@
-import {StateContainer, createElementNS} from "../../.."
+import {StateContainer, bindProps, createElementNS} from "../../.."
 
 const svgURI = "http://www.w3.org/2000/svg"
 
@@ -11,7 +11,14 @@ class XCoordState extends StateContainer {
     }
 
     updateDOM(rectRef) {
-        rectRef.current.setAttribute("x", this.value.toString())
+        bindProps(
+            rectRef.current,
+            {
+                x: this.value.toString(),
+                fill: direction > 0 ? "#0D6EFD" : "#28A745",
+            },
+            true,
+        )
     }
 }
 
