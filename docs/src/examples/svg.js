@@ -1,4 +1,6 @@
-import DeStagnate, {StateContainer, createElementNS, createRef} from "../../../"
+import {StateContainer, createElementNS} from "../../.."
+
+const svgURI = "http://www.w3.org/2000/svg"
 
 const width = 250
 let direction = 2.5
@@ -25,14 +27,14 @@ setInterval(() => {
 
 document.querySelector("#SVG")?.appendChild(
     createElementNS(
-        "http://www.w3.org/2000/svg",
+        svgURI,
         "svg",
         {
             width: width * 2,
             height: width,
             viewBox: `0 0 ${width * 2} ${width}`,
         },
-        createElementNS("http://www.w3.org/2000/svg", "rect", {
+        createElementNS(svgURI, "rect", {
             width: width,
             height: width,
             fill: direction > 0 ? "#0D6EFD" : "#28A745",
@@ -43,7 +45,7 @@ document.querySelector("#SVG")?.appendChild(
 )
 
 /* SVG Equiv
-<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns=svgURI>
     <rect width="200" height="200" fill="#0D6EFD"/>
 </svg>
 */
