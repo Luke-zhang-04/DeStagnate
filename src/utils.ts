@@ -81,9 +81,7 @@ export const bindProps = (element: Element, props?: GeneralProps | null, ns = fa
  *
  * @param element - Element to add children to
  * @param children - Children to append to `element`
- * @remark
- * This funcion will **append** `children` to `element` in the order that they appear. To remove
- * children, see `clearChildren`.
+ * @remark This funcion will **append** `children` to `element` in the order that they appear. To remove children, see `clearChildren`.
  */
 export const bindChildren = (element: Node, children?: ChildrenType): void => {
     if (children !== null && children !== undefined && children !== false) {
