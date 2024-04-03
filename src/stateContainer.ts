@@ -57,20 +57,9 @@ export type Args<Value, RefVal extends Node | null> =
 export abstract class StateContainer<Value, RefVal extends Node | null = Node | null> {
     /** Ref object */
     public readonly ref: Ref<RefVal>
+
     /** State value, not actually reactive */
     #value: Value
-
-    public get value(): Value {
-        return this.#value
-    }
-
-    /**
-     * Setter updates the value and triggers a DOM update. Equivalent to the `update` method, but
-     * may be more confusing.
-     */
-    public set value(value: Value) {
-        this.update(value)
-    }
 
     /**
      * Really funny constructor here, but it's just to allow omission of the reference parameter in
@@ -86,6 +75,18 @@ export abstract class StateContainer<Value, RefVal extends Node | null = Node | 
     public constructor(value: Value, ref: RefVal) {
         this.#value = value
         this.ref = (ref ?? createRef<RefVal>()) as Ref<RefVal>
+    }
+
+    public get value(): Value {
+        return this.#value
+    }
+
+    /**
+     * Setter updates the value and triggers a DOM update. Equivalent to the `update` method, but
+     * may be more confusing.
+     */
+    public set value(value: Value) {
+        this.update(value)
     }
 
     /** Update the value and trigger `updateDOM`. */

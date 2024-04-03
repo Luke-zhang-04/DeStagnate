@@ -1,4 +1,4 @@
-import {BasicProps, ChildrenArrayType} from "./types"
+import {ChildrenArrayType, ElementProps, SVGElementProps} from "./types"
 import {bindChildren, bindProps} from "./internal/_createElementUtils"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
@@ -20,7 +20,7 @@ export type Namespaces =
 export function createElementNS<T extends keyof MathMLElementTagNameMap>(
     namespaceURI: "http://www.w3.org/1998/Math/MathML",
     tagName: T,
-    props?: BasicProps | null,
+    props?: ElementProps | null,
     ...children: ChildrenArrayType
 ): MathMLElementTagNameMap[T]
 
@@ -37,7 +37,7 @@ export function createElementNS<T extends keyof MathMLElementTagNameMap>(
 export function createElementNS<T extends keyof SVGElementTagNameMap>(
     namespaceURI: "http://www.w3.org/2000/svg",
     tagName: T,
-    props?: BasicProps | null,
+    props?: SVGElementProps<T> | null,
     ...children: ChildrenArrayType
 ): SVGElementTagNameMap[T]
 
@@ -54,7 +54,7 @@ export function createElementNS<T extends keyof SVGElementTagNameMap>(
 export function createElementNS(
     namespaceURI: Namespaces | string | null,
     tagName: string,
-    props?: BasicProps | null,
+    props?: ElementProps | null,
     ...children: ChildrenArrayType
 ): Element {
     const element = document.createElementNS(namespaceURI, tagName)

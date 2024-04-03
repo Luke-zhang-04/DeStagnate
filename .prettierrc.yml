@@ -32,3 +32,8 @@ overrides:
       - "stateContainer.ts"
     options:
       plugins: [] # Disable jsdoc formatter
+
+  - files:
+      - "jsx.ts"
+    options:
+      printWidth: 200

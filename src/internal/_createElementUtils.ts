@@ -1,10 +1,20 @@
-import type {BasicProps, ChildrenType, EventFunc} from "../types"
+import type {AllProps, ChildrenType, EventFunc, RefProp} from "../types"
 
 const isStringable = (val: unknown): val is boolean | number | bigint | string =>
     typeof val === "boolean" ||
     typeof val === "number" ||
     typeof val === "bigint" ||
     typeof val === "string"
+
+export const setRefs = (element: Node, refs: RefProp<Node>): void => {
+    if (Array.isArray(refs)) {
+        for (const ref of refs) {
+            ref.current = element
+        }
+    } else {
+        refs.current = element
+    }
+}
 
 /**
  * Binds children to element
@@ -15,7 +25,7 @@ const isStringable = (val: unknown): val is boolean | number | bigint | string =
  * @returns Void
  * @package
  */
-export const bindProps = (element: Element, props?: BasicProps | null, ns = false): void => {
+export const bindProps = (element: Element, props?: AllProps | null, ns = false): void => {
     if (props) {
         for (const [key, val] of Object.entries(props)) {
             if (isStringable(val)) {
@@ -34,13 +44,7 @@ export const bindProps = (element: Element, props?: BasicProps | null, ns = fals
                 typeof val === "object" &&
                 ("current" in val || Array.isArray(val))
             ) {
-                if (Array.isArray(val)) {
-                    for (const ref of val) {
-                        ref.current = element
-                    }
-                } else {
-                    val.current = element
-                }
+                setRefs(element, val)
             } else if (val !== undefined && val !== null) {
                 console.warn(`Invalid prop type ${typeof val} at ${key}: ${val}`)
             }

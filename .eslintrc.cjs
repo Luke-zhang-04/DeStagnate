@@ -68,7 +68,7 @@ module.exports = {
         "@typescript-eslint/consistent-type-assertions": ["warn", {assertionStyle: "as"}],
         "@typescript-eslint/member-ordering": "warn",
         "@typescript-eslint/naming-convention": [
-            "error",
+            "warn",
             {
                 selector: "default",
                 format: ["camelCase"],

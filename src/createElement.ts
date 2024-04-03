@@ -1,4 +1,4 @@
-import {BasicProps, ChildrenArrayType} from "./types"
+import {ChildrenArrayType, HTMLElementProps} from "./types"
 import {bindChildren, bindProps} from "./internal/_createElementUtils"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
@@ -14,7 +14,7 @@ import {bindChildren, bindProps} from "./internal/_createElementUtils"
  */
 export function createElement<T extends keyof HTMLElementTagNameMap>(
     tagName: T,
-    props?: BasicProps | null,
+    props?: HTMLElementProps<T> | null,
     ...children: ChildrenArrayType
 ): HTMLElementTagNameMap[T]
 
@@ -54,17 +54,21 @@ export function createElement<
     Returns = void,
 >(
     tagNameOrFunction: T | ((_props: T, ..._children: ChildrenArrayType) => Returns),
-    props?: BasicProps | null | T,
+    props?: HTMLElementProps[T extends string ? T : ""] | null | T,
     ...children: ChildrenArrayType
 ): HTMLElement | Returns {
     if (typeof tagNameOrFunction === "string") {
         const element = document.createElement(tagNameOrFunction)
 
-        bindProps(element, props as BasicProps | null)
+        // If `tagNameOrFunction` is a string, then the previous overload should've enforced that
+        // the props are `HTMLElementProps` or `null`
+        bindProps(element, props as HTMLElementProps | null)
         bindChildren(element, children)
 
         return element
     } else if (typeof tagNameOrFunction === "function") {
+        // If `tagNameOrFunction` is a function, then the previous overload should've enforced that
+        // the props are set by the function (`T`)
         return tagNameOrFunction(props as T, children)
     }
 
