@@ -1,4 +1,4 @@
-import DeStagnate from "../../../"
+import * as DeStagnate from "../../../"
 
 const colors = ["primary", "secondary", "success", "info", "warning", "danger", "light", "dark"]
 

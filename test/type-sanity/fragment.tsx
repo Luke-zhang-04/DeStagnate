@@ -1,4 +1,5 @@
-import DeStagnate, {Fragment, createRef, createElement} from "../../src"
+import * as DeStagnate from "../../src"
+import {Fragment, createRef, createElement} from "../../src"
 
 // Also a test for function components
 

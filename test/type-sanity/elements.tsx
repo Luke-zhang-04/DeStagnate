@@ -1,4 +1,5 @@
-import DeStagnate, {createRef, createElement} from "../../src"
+import * as DeStagnate from "../../src"
+import {createRef, createElement} from "../../src"
 
 let div: HTMLDivElement
 let anchor: HTMLAnchorElement

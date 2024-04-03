@@ -1,4 +1,4 @@
-import DeStagnate from "../../../"
+import * as DeStagnate from "../../../"
 
 class CalcState extends DeStagnate.StateContainer<string, HTMLDivElement | null> {
     public constructor() {
