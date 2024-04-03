@@ -1,0 +1,20 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+      "jsx": "react",
+      "jsxFactory": "DeStagnate.createElement",
+      "jsxFragmentFactory": "DeStagnate.Fragment",
+      "allowJs": true,
+      "checkJs": false,
+      "target": "ES2020",
+      "declaration": false,
+      "noEmitOnError": false,
+      "skipLibCheck": true,
+      "incremental": false,
+      "tsBuildInfoFile": null,
+      "isolatedModules": true,
+      "noEmit": true,
+      "noUnusedLocals": false
+  },
+  "include": ["./type-sanity"],
+}

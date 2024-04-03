@@ -13,14 +13,16 @@
     "url": "https://github.com/Luke-zhang-04/dynamic-component/issues"
   },
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "sass": "sass scss:css --style compressed || npx sass scss:css --style compressed"
+    "sass": "sass scss:css --style compressed"
   },
   "keywords": [],
   "dependencies": {
-    "bootstrap": "^5.0.0-alpha1"
+    "bootstrap": "~5.0.0-alpha1"
   },
   "devDependencies": {
-    "sass": "^1.26.10"
+    "sass": "^1.26.10",
+    "typescript": "~5.4.3"
   }
 }

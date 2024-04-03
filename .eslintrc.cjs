@@ -68,7 +68,7 @@ module.exports = {
         "@typescript-eslint/consistent-type-assertions": ["warn", {assertionStyle: "as"}],
         "@typescript-eslint/member-ordering": "warn",
         "@typescript-eslint/naming-convention": [
-            "error",
+            "warn",
             {
                 selector: "default",
                 format: ["camelCase"],
@@ -134,12 +134,12 @@ module.exports = {
         "@typescript-eslint/dot-notation": "warn",
         "@typescript-eslint/lines-between-class-members": ["warn", "always"],
         "@typescript-eslint/no-dupe-class-members": "warn",
-        "@typescript-eslint/no-duplicate-imports": "warn",
+        "no-duplicate-imports": "warn",
         "@typescript-eslint/no-extra-semi": "off",
         "@typescript-eslint/no-shadow": "warn",
         "@typescript-eslint/no-unused-expressions": "warn",
         "@typescript-eslint/no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars-experimental": "warn",
+        "@typescript-eslint/no-unused-vars": "warn",
         "@typescript-eslint/no-use-before-define": "warn",
 
         // Preter arrow rules

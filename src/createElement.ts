@@ -1,88 +1,78 @@
-/**
- * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
- *
- * @license MIT
- * @author Luke Zhang luke-zhang-04.github.io
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @exports createElement function for DOM manipulation
- */
-// eslint-disable-next-line
-/// <reference path="./jsx.ts" />
-
-import {
-    BasicProps,
-    ChildrenArrayType,
-    bindChildren,
-    bindProps,
-} from "./private/_createElementUtils"
-import type JSX from "./jsx"
+import {ChildrenArrayType, HTMLElementProps} from "./types"
+import {bindChildren, bindProps} from "./utils"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
 /**
  * Creates an HTML Element
  *
  * @param tagName - Name of HTML element
- * @param props - Element properties, such as class, innerHTML, id, style, etc
- * @param children - Children of this element. Can be nothing, number (converted to string), string
- *   (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - Rest parameter of children
+ * @param props - Element properties, such as class, id, style, etc
+ * @param children - Children of this element. Can be nothing, number, string, boolean, bigint, or
+ *   more elements. An array will create multiple, flattened children.
  * @returns Element
+ * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  */
 export function createElement<T extends keyof HTMLElementTagNameMap>(
-    tagNameOrComponent: T,
-    props?: BasicProps | null,
-    ...childrenArgs: ChildrenArrayType
+    tagName: T,
+    props?: HTMLElementProps<T> | null,
+    ...children: ChildrenArrayType
 ): HTMLElementTagNameMap[T]
 
 /**
  * Creates an HTML Element
  *
- * @param component - Function component
+ * @param func - Function component
  * @param props - Props of function component
- * @param children - Children of this element. Can be nothing, number (converted to string), string
- *   (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - Rest parameter of children
+ * @param children - Children of this element. Can be nothing, number, string, boolean, bigint, or
+ *   more elements. An array will create multiple, flattened children.
  * @returns Element
+ * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  */
 export function createElement<
-    Props extends {[key: string]: unknown},
+    Props extends {[key: string]: unknown} | null | undefined,
     Returns extends HTMLElement | JSX.Element,
 >(
-    tagNameOrComponent: (props?: Props, ...children: ChildrenArrayType) => Returns,
-    props?: Props,
-    ...childrenArgs: ChildrenArrayType
+    func: (props: Props, ...children: ChildrenArrayType) => Returns,
+    props?: Props | null,
+    ...children: ChildrenArrayType
 ): Returns
 
 /**
- * @param tagNameOrComponent - Name of HTML element or function component
+ * @param tagNameOrFunction - Name of HTML element or function component
  * @param props - Props of element or component
  *
- *   1. If `tagNameOrComponent` is tagname, props are element properties, such as class, innerHTML, id, style, etc
- *   2. If `tagNameOrComponent` is a function, props are that functions parameters
+ *   1. If `tagNameOrFunction` is tagname, props are element properties, such as class, id, style, etc
+ *   2. If `tagNameOrFunction` is a function, props are that functions parameters
  *
- * @param children - Children of this element. Can be nothing, number (converted to string), string
- *   (text), or another element. An array of any of these will create multiple children
- * @param childrenArgs - Rest parameter for children
+ * @param children - Children of this element. Can be nothing, number, string, boolean, bigint, or
+ *   more elements. An array will create multiple, flattened children.
  * @returns Element
+ * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  */
-export function createElement<T extends string | {[key: string]: unknown}, Returns = void>(
-    tagNameOrComponent: T | ((_props?: T, ..._children: ChildrenArrayType) => Returns),
-    props?: BasicProps | null | T,
+export function createElement<
+    T extends string | {[key: string]: unknown} | null | undefined,
+    Returns = void,
+>(
+    tagNameOrFunction: T | ((_props: T, ..._children: ChildrenArrayType) => Returns),
+    props?: HTMLElementProps[T extends string ? T : ""] | null | T,
     ...children: ChildrenArrayType
-): HTMLElement | Returns | Error {
-    if (typeof tagNameOrComponent === "string") {
-        const element = document.createElement(tagNameOrComponent)
+): HTMLElement | Returns {
+    if (typeof tagNameOrFunction === "string") {
+        const element = document.createElement(tagNameOrFunction)
 
-        bindProps(element, props as BasicProps | null)
-
+        // If `tagNameOrFunction` is a string, then the previous overload should've enforced that
+        // the props are `HTMLElementProps` or `null`
+        bindProps(element, props as HTMLElementProps | null)
         bindChildren(element, children)
 
         return element
-    } else if (typeof tagNameOrComponent === "function") {
-        return tagNameOrComponent(props as T, children)
+    } else if (typeof tagNameOrFunction === "function") {
+        // If `tagNameOrFunction` is a function, then the previous overload should've enforced that
+        // the props are set by the function (`T`)
+        return tagNameOrFunction(props as T, children)
     }
 
-    return Error("tagNameOrComponent is of invalid type.")
+    throw new Error(`Invalid element type ${typeof tagNameOrFunction}: ${tagNameOrFunction}`)
 }
 
 export default createElement

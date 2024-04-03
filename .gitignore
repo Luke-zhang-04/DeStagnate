@@ -129,3 +129,5 @@ tsbuildinfo.json
 dist/*/**/*.js
 dist/*/**/*.cjs
 dist/*/**/*.map
+
+.rollup.cache

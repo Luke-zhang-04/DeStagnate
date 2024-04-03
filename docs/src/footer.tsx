@@ -1,4 +1,4 @@
-import * as DeStagnate from "../../lib/createElementOnly"
+import * as DeStagnate from "../../lib"
 import pages from "./pages"
 ;(() => {
     const footer = document.querySelector<HTMLElement>("footer"),
@@ -17,7 +17,6 @@ import pages from "./pages"
             <div class="row">
                 <div class="col-md-6 mt-md-0 mt-3">
                     <h5 class="text-uppercase">DeStagnate</h5>
-                    <img src="logo.svg" class="w-100 w-md-50" />
                 </div>
                 <div class="col-md-3 mb-md-0 mb-3">
                     <h5 class="text-uppercase">Examples</h5>
@@ -45,7 +44,7 @@ import pages from "./pages"
 
     footer?.appendChild(
         <div class="footer-copyright text-center py-3">
-            Copyright © 2020, <a href="luke-zhang-04.github.io/">Luke Zhang</a>
+            Copyright © 2020 - 2024 <a href="luke-zhang-04.github.io/">Luke Zhang</a>
         </div>,
     )
 })()

@@ -1,43 +1,34 @@
-/**
- * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
- *
- * @license MIT
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- */
-
-import DeStagnate, {createElementNS} from "../deStagnate.cjs"
+import {createElementNS} from "../destagnate.js"
 import assert from "assert"
 
-class NSElement extends DeStagnate.Component {
-    render = () =>
+const width = 250
+const direction = 2.5
+
+export const test = () => {
+    document.getElementById("SVG")?.appendChild(
         createElementNS(
             "http://www.w3.org/2000/svg",
             "svg",
             {
-                width: this.props.width * 2,
-                height: this.props.width,
-                viewBox: `0 0 ${this.props.width * 2} ${this.props.width}`,
+                width: width * 2,
+                height: width,
+                viewBox: `0 0 ${width * 2} ${width}`,
             },
             createElementNS("http://www.w3.org/2000/svg", "circle", {
                 cx: 0,
-                cy: 0 /* eslint-disable id-length */,
-                r: this.props.width /* eslint-enable id-length */,
+                cy: 0,
+                r: width,
             }),
             createElementNS("http://www.w3.org/2000/svg", "rect", {
-                width: this.props.width,
-                height: this.props.width,
-                fill: this.direction > 0 ? "#0D6EFD" : "#28A745" /* eslint-disable id-length */,
-                x: 0 /* eslint-enable id-length */,
+                width: width,
+                height: width,
+                fill: direction > 0 ? "#0D6EFD" : "#28A745",
+                x: 0,
             }),
-        )
-}
-
-export const test = () => {
-    const nsElement = new NSElement(document.getElementById("SVG"), {width: 250})
-
-    nsElement.mount()
+        ),
+    )
 
     it("Should have a tagname of svg", () => {
-        assert.strictEqual("svg", document.querySelector("#SVG svg").tagName)
+        assert.strictEqual("svg", document.querySelector("#SVG").firstChild?.tagName)
     })
 }

@@ -2,21 +2,20 @@ import {babel} from "@rollup/plugin-babel"
 import filesize from "rollup-plugin-filesize"
 import {nodeResolve} from "@rollup/plugin-node-resolve"
 import progress from "rollup-plugin-progress"
-import {terser} from "rollup-plugin-terser"
+import terser from "@rollup/plugin-terser"
 
 const bannerProd = `/**
- * Destagnate v2.1.0 | https://luke-zhang-04.github.io/DeStagnate/
- * @copyright (C) 2020 - 2021 Luke Zhang https://luke-zhang-04.github.io
+ * DeStagnate
  * @license MIT
+ * @copyright 2020 - 2024 Luke Zhang
  */`
 
 const bannerDev = `/**
- * DeStagnate | https://luke-zhang-04.github.io/DeStagnate/
- * A simple, ReactJS inspired library to create dynamic components within static sites easier
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @author Luke Zhang luke-zhang-04.github.io
+ * DeStagnate: A lightweight wrapper around vanilla DOM methods
+ *
  * @license MIT
- * @version 2.1.0
+ * @version 3.0.0
+ * @copyright 2020 - 2024 Luke Zhang
  */`
 
 /**
@@ -45,19 +44,9 @@ const makePlugins = (target = "es6", prod = true) => [
             !prod &&
             /@/u.test(val) &&
             !/eslint|istanbul/u.test(val) &&
-            !/@author Luke Zhang/u.test(val), // Remove license headers in favour of one banner
+            !/@copyright .* Luke Zhang/u.test(val), // Remove license headers in favour of one banner
     }),
-    ...(prod
-        ? [
-              terser({
-                  mangle: {
-                      properties: {
-                          regex: /^_/u, // Mangle private properties
-                      },
-                  },
-              }),
-          ]
-        : []),
+    ...(prod ? [terser()] : []),
     // To make bundling look cool
     filesize(),
     progress(),
@@ -70,13 +59,14 @@ const es5 = (() => {
     /** @type {import("rollup").RollupOptions[][]} */
     const configs = formats.map(([format, extension]) => [
         {
-            input: "lib",
+            input: "lib", // TODO: bundle directly from source
             output: {
                 file: `dist/es5/deStagnate.min.${extension ?? format}`,
                 format,
                 banner: bannerProd,
                 name: "DeStagnate",
                 sourcemap: true,
+                exports: "named",
             },
             plugins: makePlugins("es5", true),
         },
@@ -88,28 +78,7 @@ const es5 = (() => {
                 banner: bannerDev,
                 name: "DeStagnate",
                 sourcemap: true,
-            },
-            plugins: makePlugins("es5", false),
-        },
-        {
-            input: "lib/createElementOnly",
-            output: {
-                file: `dist/es5/createElement.min.${extension ?? format}`,
-                format,
-                banner: bannerProd,
-                name: "DeStagnate",
-                sourcemap: true,
-            },
-            plugins: makePlugins("es5", true),
-        },
-        {
-            input: "lib/createElementOnly",
-            output: {
-                file: `dist/es5/createElement.${extension ?? format}`,
-                format,
-                banner: bannerDev,
-                name: "DeStagnate",
-                sourcemap: true,
+                exports: "named",
             },
             plugins: makePlugins("es5", false),
         },
@@ -132,6 +101,7 @@ const es6 = (() => {
                 banner: bannerProd,
                 name: "DeStagnate",
                 sourcemap: true,
+                exports: format === "esm" ? "auto" : "named",
             },
             plugins: makePlugins("es6", true),
         },
@@ -143,28 +113,7 @@ const es6 = (() => {
                 banner: bannerDev,
                 name: "DeStagnate",
                 sourcemap: true,
-            },
-            plugins: makePlugins("es6", false),
-        },
-        {
-            input: "lib/createElementOnly",
-            output: {
-                file: `dist/${format}/createElement.min.${extension ?? format}`,
-                format,
-                banner: bannerProd,
-                name: "DeStagnate",
-                sourcemap: true,
-            },
-            plugins: makePlugins("es6", true),
-        },
-        {
-            input: "lib/createElementOnly",
-            output: {
-                file: `dist/${format}/createElement.${extension ?? format}`,
-                format,
-                banner: bannerDev,
-                name: "DeStagnate",
-                sourcemap: true,
+                exports: format === "esm" ? "auto" : "named",
             },
             plugins: makePlugins("es6", false),
         },

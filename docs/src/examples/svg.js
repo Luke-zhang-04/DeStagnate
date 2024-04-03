@@ -1,50 +1,58 @@
-import DeStagnate, {createElementNS} from "../../../" // Import library from root
+import {StateContainer, bindProps, createElementNS} from "../../.."
 
-class SVG extends DeStagnate.Component {
-    constructor(parent, props) {
-        super(parent, props)
+const svgURI = "http://www.w3.org/2000/svg"
 
-        this.state = {
-            xcord: 0,
-        }
+const width = 250
+let direction = 2.5
+
+class XCoordState extends StateContainer {
+    constructor() {
+        super(0)
     }
 
-    direction = 2.5
-
-    componentDidMount = () => this.componentDidUpdate()
-
-    componentDidUpdate = () => {
-        if (this.state.xcord < 0 || this.state.xcord > this.props.width) {
-            this.direction *= -1
-        }
-
-        setTimeout(() => this.setState({xcord: this.state.xcord + this.direction}), 10)
-    }
-
-    render = () =>
-        createElementNS(
-            "http://www.w3.org/2000/svg",
-            "svg",
+    updateDOM(rectRef) {
+        bindProps(
+            rectRef.current,
             {
-                width: this.props.width * 2,
-                height: this.props.width,
-                viewBox: `0 0 ${this.props.width * 2} ${this.props.width}`,
+                x: this.value.toString(),
+                fill: direction > 0 ? "#0D6EFD" : "#28A745",
             },
-            createElementNS("http://www.w3.org/2000/svg", "rect", {
-                width: this.props.width,
-                height: this.props.width,
-                fill: this.direction > 0 ? "#0D6EFD" : "#28A745" /* eslint-disable id-length */,
-                x: this.state.xcord /* eslint-enable id-length */,
-            }),
+            true,
         )
+    }
 }
 
-const svg = new SVG(document.querySelector("#SVG"), {width: 250})
+const xCoordState = new XCoordState()
 
-svg.mount() // Must call once
+setInterval(() => {
+    xCoordState.value += direction
+
+    if (xCoordState.value < 0 || xCoordState.value > width) {
+        direction *= -1
+    }
+}, 10)
+
+document.querySelector("#SVG")?.appendChild(
+    createElementNS(
+        svgURI,
+        "svg",
+        {
+            width: width * 2,
+            height: width,
+            viewBox: `0 0 ${width * 2} ${width}`,
+        },
+        createElementNS(svgURI, "rect", {
+            width: width,
+            height: width,
+            fill: direction > 0 ? "#0D6EFD" : "#28A745",
+            x: xCoordState.value,
+            ref: xCoordState.ref,
+        }),
+    ),
+)
 
 /* SVG Equiv
-<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns=svgURI>
     <rect width="200" height="200" fill="#0D6EFD"/>
 </svg>
 */

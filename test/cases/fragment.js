@@ -1,17 +1,10 @@
-/**
- * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
- *
- * @license MIT
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- */
-
-import {createElement, fragment} from "../deStagnate.cjs"
+import {createElement, Fragment} from "../destagnate.js"
 import assert from "assert"
 
 export const test = () => {
     document.body.appendChild(
         createElement(
-            fragment,
+            Fragment,
             null,
             createElement("div", {id: "fragmentTest1"}),
             createElement("div", {id: "fragmentTest2"}),

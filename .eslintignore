@@ -11,3 +11,5 @@ src/*.js
 ./lib/*
 docs/
 dist/
+test/type-sanity/*.ts
+test/type-sanity/*.tsx

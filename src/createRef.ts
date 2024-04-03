@@ -1,29 +1,41 @@
-/**
- * Component A simple, ReactJS inspired library to create dynamic components within static sites easier
- *
- * @license MIT
- * @author Luke Zhang luke-zhang-04.github.io
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @exports createRef create a reference to a nested component
- */
-type Component = typeof import(".").Component
+export interface Ref<T = Element | null> {
+    current: T
+}
 
-export interface Ref<T = Component | HTMLElement> {
-    current: T | null
+type CreateRef = {
+    /**
+     * Creates a reference for a nested component
+     *
+     * @param defaultValue - Default value of ref
+     * @returns Ref object
+     */
+    <T = Element>(defaultValue: T): Ref<T>
+
+    /**
+     * Creates a reference for a nested component
+     *
+     * @param defaultValue - Default value of ref
+     * @returns Empty ref object
+     */
+    <T = Element>(defaultValue?: null | undefined): Ref<T | null>
 }
 
 /**
  * Creates a reference for a nested component
  *
- * @returns Empty ref object
+ * @param defaultValue - Default value of ref
+ * @returns Ref object
  */
-export const createRef = <T = Component | HTMLElement>(): Ref<T> => ({
-    current: null,
+export const createRef: CreateRef = <T = Element>(
+    defaultValue: T | null = null,
+): Ref<T | null> => ({
+    current: defaultValue,
 })
 
 /**
  * Creates a reference for a nested component
  *
- * @returns Empty ref object
+ * @param defaultValue - Default value of ref
+ * @returns Ref object
  */
 export default createRef

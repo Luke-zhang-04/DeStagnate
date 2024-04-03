@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--
   DeStagnate Docs
   Copyright (C) 2020 - 2021 Luke Zhang | luke-zhang-04.github.io | MIT License
@@ -24,134 +24,99 @@
       <div class="row" id="calculator-h">
         <h1 class="mt-3">Calculator example</h1>
         <p
-          >This example was written with JSX, which needs to be transpiled. See
-          <a href="using-jsx.html">using JSX</a>.</p
+          >This example was written with TypeScript and JSX, which needs to be compiled with the
+          Typscript Compiler or Babel. See <a href="using-jsx.html">using JSX</a>.</p
         >
         <a
-          href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/calculator.jsx"
+          href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/examples/calculator.tsx"
           target="_blank"
           rel="noopener noreferrer"
           >Source Code</a
         >
         <div class="pt-5">
           <div id="calculator"></div>
-          <div id="calc-btn" class="mt-3"></div>
         </div>
         <div id="calc-source">
           <pre class="d-block">
-                    <code class="language-jsx">
-import DeStagnate from "destagnate"
+                    <code class="language-tsx">
+import DeStagnate from &quot;../../../&quot;
 
-class Calculator extends DeStagnate {
-
-    constructor (parent) {
-        super(parent)
-
-        this.state = {
-            calculation: "",
-        }
+class CalcState extends DeStagnate.StateContainer&lt;string, HTMLDivElement | null&gt; {
+    public constructor() {
+        super(&quot;&quot;)
     }
 
-    /**
-     * Appends new values to calculation
-     * @param {string} text - text of button
-     * @param {string | undefined} append - value to append to
-     * calculation
-     * @returns {Object.&lt;string, string&gt;} new state
-     */
-    _appendState = (text, append) =&gt; ({
-        calculation: this.state.calculation + (append ? append : text),
-    })
-
-    /**
-     * Create a calculator button
-     * @param {Object.&lt;string, string | undefined&gt;} param0 - text of button and value to append to
-     * calculaton
-     * @returns {HTMLElement} col element
-     */
-    _calcButton = ({text, append}) =&gt; &lt;div
-        class="col-3 calc-btn"
-        onClick={() =&gt; this.setState(this._appendState(text, append))}
-    &gt;{text}&lt;/div&gt;
-
-    /**
-     * Evaluate current calculation
-     * @returns {number} calculation
-     */
-    _evalCalc = () =&gt; eval(this.state.calculation)
-
-    /**
-     * Calculator buttons for 3 numbered rows
-     * @type {Array.&lt;HTMLElement&gt;}
-     */
-    _numBtns = [
-        &lt;div class="calc-btns row"&gt;
-            {["7", "8", "9", ["x", "*"]].map((val) =&gt; &lt;this._calcButton
-                text={val instanceof Array ? val[0] : val}
-                append={val instanceof Array ? val[1] : val}
-            /&gt;)}
-        &lt;/div&gt;,
-        &lt;div class="calc-btns row"&gt;
-            {["4", "5", "6", "-"].map((val) =&gt; &lt;this._calcButton
-                text={val instanceof Array ? val[0] : val}
-                append={val instanceof Array ? val[1] : val}
-            /&gt;)}
-        &lt;/div&gt;,
-        &lt;div class="calc-btns row"&gt;
-            {["1", "2", "3", "+"].map((val) =&gt; &lt;this._calcButton
-                text={val instanceof Array ? val[0] : val}
-                append={val instanceof Array ? val[1] : val}
-            /&gt;)}
-        &lt;/div&gt;,
-    ]
-
-    /**
-     * Calculator Display
-     * @returns {HTMLElement} display
-     */
-    _calcDisplay = () =&gt; &lt;div class="calc-display"&gt;
-        {this.state.calculation}
-    &lt;/div&gt;
-
-    render = () =&gt; (
-        &lt;div&gt;
-            &lt;this._calcDisplay/&gt;
-            &lt;div class="calc-btns row"&gt;
-                &lt;div
-                    class="col-3 calc-btn clear"
-                    onClick={() =&gt; this.setState({calculation: ""})}
-                &gt;C&lt;/div&gt;
-                &lt;div
-                    class="col-3 calc-btn"
-                    onClick={() =&gt; this.setState({
-                        calculation: this.state.calculation.slice(
-                            0, this.state.calculation.length - 1,
-                        ),
-                    })}
-                &gt;&lt;/div&gt;
-                &lt;this._calcButton text="%"/&gt;
-                &lt;this._calcButton text={"\u00f7"} append="/"/&gt;
-            &lt;/div&gt;
-            {this._numBtns.map((btn) =&gt; btn)}
-            &lt;div class="calc-btns row"&gt;
-                &lt;this._calcButton text="0"/&gt;
-                &lt;this._calcButton text="."/&gt;
-                &lt;div
-                    class="col-6 calc-btn equals"
-                    onClick={() =&gt; (
-                        this.setState({calculation: this._evalCalc()})
-                    )}
-                &gt;&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    )
-
+    protected updateDOM(calcDisplay: DeStagnate.Ref&lt;HTMLDivElement&gt;) {
+        // `calcDisplay` is the same as `this.ref`, except `calcDisplay.current` is garunteed not
+        // to be null.
+        DeStagnate.clearChildren(calcDisplay.current)
+        DeStagnate.bindChildren(calcDisplay.current, this.value)
+    }
 }
 
-const calculator = new Calculator(document.querySelector("#calculator"))
+const calcState = new CalcState()
 
-calculator.mount() // Must call once
+const CalcButton = ({text, append}: {text: string; append?: string}) =&gt; (
+    // Invoking the `calcState.value` setter is equivalent to calling `calcState.update()`, which
+    // will automatically call `updateDOM` after setting value.
+    &lt;div class=&quot;col-3 calc-btn&quot; onClick={() =&gt; (calcState.value += append ?? text)}&gt;
+        {text}
+    &lt;/div&gt;
+)
 
+document.querySelector(&quot;#calculator&quot;)?.appendChild(
+    &lt;div&gt;
+        &lt;div class=&quot;calc-display&quot; ref={calcState.ref}&gt;&lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            &lt;div class=&quot;col-3 calc-btn clear&quot; onClick={() =&gt; (calcState.value = &quot;&quot;)}&gt;
+                C
+            &lt;/div&gt;
+            &lt;div
+                class=&quot;col-3 calc-btn&quot;
+                onClick={() =&gt;
+                    (calcState.value = calcState.value.slice(0, calcState.value.length - 1))
+                }
+            &gt;
+                {&quot;\u2190&quot;}
+            &lt;/div&gt;
+            &lt;CalcButton text=&quot;%&quot; /&gt;
+            &lt;CalcButton text={&quot;\u00f7&quot;} append=&quot;/&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            {[&quot;7&quot;, &quot;8&quot;, &quot;9&quot;, [&quot;x&quot;, &quot;*&quot;]].map((val) =&gt; (
+                &lt;CalcButton
+                    text={Array.isArray(val) ? val[0] : val}
+                    append={Array.isArray(val) ? val[1] : val}
+                /&gt;
+            ))}
+        &lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            {[&quot;4&quot;, &quot;5&quot;, &quot;6&quot;, &quot;-&quot;].map((val) =&gt; (
+                &lt;CalcButton text={val} /&gt;
+            ))}
+        &lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            {[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;+&quot;].map((val) =&gt; (
+                &lt;CalcButton text={val} /&gt;
+            ))}
+        &lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            &lt;CalcButton text=&quot;0&quot; /&gt;
+            &lt;CalcButton text=&quot;.&quot; /&gt;
+            &lt;div
+                class=&quot;col-6 calc-btn equals&quot;
+                onClick={() =&gt; {
+                    /* eslint-disable no-eval */
+                    calcState.value = eval(calcState.value).toString() // DO NOT USE EVAL IN A REAL APP EVAL OBJECTIVELY SUCKS
+                    // These examples are just tests to make sure the library is working anyways
+                    /* eslint-enable no-eval */
+                }}
+            &gt;
+                =
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;,
+)
                     </code>
                 </pre>
         </div>

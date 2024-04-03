@@ -1,20 +1,20 @@
-/**
- * DeStagnate A simple, ReactJS inspired library to create dynamic components within static sites easier
- *
- * @license MIT
- * @author Luke Zhang luke-zhang-04.github.io
- * @copyright Copyright (C) 2020 - 2021 Luke Zhang
- * @exports createElement function for DOM manipulation
- */
-// eslint-disable-next-line
-/// <reference path="./jsx.ts" />
+import type {ChildrenArrayType, RefProp} from "./types"
+import {bindChildren, setRefs} from "./utils"
 
-import {ChildrenArrayType, bindChildren} from "./private/_createElementUtils"
+interface FragmentProps {
+    ref?: RefProp<DocumentFragment>
+}
 
 /* eslint-disable @typescript-eslint/naming-convention */
-export const Fragment = (_: unknown, ...children: ChildrenArrayType): DocumentFragment => {
+export const Fragment = (
+    props?: FragmentProps | null,
+    ...children: ChildrenArrayType
+): DocumentFragment => {
     const documentFragment = document.createDocumentFragment()
 
+    if (props?.ref) {
+        setRefs(documentFragment, props.ref)
+    }
     bindChildren(documentFragment, children)
 
     return documentFragment
