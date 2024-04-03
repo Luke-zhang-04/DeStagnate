@@ -1,6 +1,6 @@
 import createRef, {Ref} from "./createRef"
 
-export type Args<Value, RefVal extends Node | null> =
+type Args<Value, RefVal extends Node | null> =
     Extract<RefVal, null> extends never // If the union does not include null:
         ? [value: Value, ref: Ref<RefVal>] // Ref param is mandatory
         : [value: Value, ref?: Ref<RefVal> | null] // Otherwise, it's optional

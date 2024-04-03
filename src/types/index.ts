@@ -50,7 +50,7 @@ export type EventFuncs = {
  */
 export type RefProp<T extends Node> = Ref<T | null> | Ref<T> | (Ref<T | null> | Ref<T>)[]
 
-export interface AllProps<T extends Node = Node> {
+export interface GeneralProps<T extends Node = Node> {
     [key: string]:
         | boolean
         | number
@@ -99,7 +99,7 @@ export type PropsWithChildren<T> = T & {
 export type DSElementProps<
     T extends Node = Node,
     K extends HTMLAttributes = AllHTMLAttributes,
-> = PropsWithRef<T, AllProps<T> & ExtraEvents & K>
+> = PropsWithRef<T, GeneralProps<T> & ExtraEvents & K>
 
 // Props for HTML, deprecated HTML, SVG, and general elements
 

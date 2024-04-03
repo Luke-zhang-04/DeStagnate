@@ -1,4 +1,4 @@
-import type {AllProps, ChildrenType, EventFunc, RefProp} from "./types"
+import type {GeneralProps, ChildrenType, EventFunc, RefProp} from "./types"
 
 const isStringable = (val: unknown): val is boolean | number | bigint | string =>
     typeof val === "boolean" ||
@@ -44,7 +44,7 @@ export const setRefs = (element: Node, refs: RefProp<Node>): void => {
  * @param props - Props to bind with
  * @param ns - If namespace element
  */
-export const bindProps = (element: Element, props?: AllProps | null, ns = false): void => {
+export const bindProps = (element: Element, props?: GeneralProps | null, ns = false): void => {
     if (props) {
         for (const [key, val] of Object.entries(props)) {
             if (isStringable(val)) {
