@@ -1,4 +1,4 @@
-import type {GeneralProps, ChildrenType, EventFunc, RefProp} from "./types"
+import type {ChildrenType, EventFunc, GeneralProps, RefProp} from "./types"
 
 const isStringable = (val: unknown): val is boolean | number | bigint | string =>
     typeof val === "boolean" ||
