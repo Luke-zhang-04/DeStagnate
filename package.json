@@ -24,7 +24,9 @@
     "lint:fix": "eslint \"*/**/*.ts\" --fix --cache",
     "prepublishOnly": "./build.sh --no-docs",
     "start": "bash build.sh --watch",
-    "test": "mocha --exit"
+    "test": "pnpm test:functional && pnpm test:types",
+    "test:functional": "mocha --exit",
+    "test:types": "tsc -p test/tsconfig.json"
   },
   "keywords": [
     "dynamic",
