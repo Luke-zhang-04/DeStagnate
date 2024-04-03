@@ -1,7 +1,4 @@
 #!/bin/bash
-# Build shell script for DeStagnate
-# Copyright (C) 2020 - 2021 Luke Zhang | MIT License | luke-zhang-04.github.io
-
 source "./colours.sh" # Source colours file
 
 bin="node_modules/.bin"
