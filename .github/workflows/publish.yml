@@ -23,7 +23,7 @@ jobs:
 
       - name: publish to NPM
         # Don't fail if version already exists
-        run: pnpm publish --access public || echo "Version already published" && exit 0
+        run: pnpm publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
