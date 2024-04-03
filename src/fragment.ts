@@ -1,4 +1,5 @@
-import {ChildrenArrayType, bindChildren} from "./internal/_createElementUtils"
+import {bindChildren} from "./internal/_createElementUtils"
+import type {ChildrenArrayType} from "./types"
 import {Ref} from "./createRef"
 
 interface FragmentProps {

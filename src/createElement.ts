@@ -1,9 +1,5 @@
-import {
-    BasicProps,
-    ChildrenArrayType,
-    bindChildren,
-    bindProps,
-} from "./internal/_createElementUtils"
+import {BasicProps, ChildrenArrayType} from "./types"
+import {bindChildren, bindProps} from "./internal/_createElementUtils"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
 /**
@@ -11,8 +7,8 @@ import {
  *
  * @param tagName - Name of HTML element
  * @param props - Element properties, such as class, id, style, etc
- * @param children - Children of this element. Can be nothing, number (converted to string), string
- *   (text), or another element. An array of any of these will create multiple children
+ * @param children - Children of this element. Can be nothing, number, string, boolean, bigint, or
+ *   more elements. An array will create multiple, flattened children.
  * @returns Element
  * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  */
@@ -27,8 +23,8 @@ export function createElement<T extends keyof HTMLElementTagNameMap>(
  *
  * @param func - Function component
  * @param props - Props of function component
- * @param children - Children of this element. Can be nothing, number (converted to string), string
- *   (text), or another element. An array of any of these will create multiple children
+ * @param children - Children of this element. Can be nothing, number, string, boolean, bigint, or
+ *   more elements. An array will create multiple, flattened children.
  * @returns Element
  * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  */
@@ -48,8 +44,8 @@ export function createElement<
  *   1. If `tagNameOrFunction` is tagname, props are element properties, such as class, id, style, etc
  *   2. If `tagNameOrFunction` is a function, props are that functions parameters
  *
- * @param children - Children of this element. Can be nothing, number (converted to string), string
- *   (text), or another element. An array of any of these will create multiple children
+ * @param children - Children of this element. Can be nothing, number, string, boolean, bigint, or
+ *   more elements. An array will create multiple, flattened children.
  * @returns Element
  * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  */
