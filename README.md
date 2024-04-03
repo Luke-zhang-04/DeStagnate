@@ -15,7 +15,7 @@ This isn't meant to be React. React has virtual DOM, hooks, and a huge ecosystem
 
 ## Documentation
 
-Documentation can be found at [https://luke-zhang-04.github.io/DeStagnate/docs/](https://luke-zhang-04.github.io/DeStagnate/docs/) for the latest version
+Documentation can be found at [https://luke-zhang-04.github.io/DeStagnate/](https://luke-zhang-04.github.io/DeStagnate/) for the latest version
 
 ## Installation
 
@@ -63,7 +63,7 @@ With a CDN
 
 ## Kitchen Sink Example
 
-See [https://luke-zhang-04.github.io/DeStagnate/docs](https://luke-zhang-04.github.io/DeStagnate/docs) for example code and documentation.
+Sorta. There's way more you can do with DeStagnate. See [https://luke-zhang-04.github.io/DeStagnate/docs](https://luke-zhang-04.github.io/DeStagnate/docs) for example code and documentation.
 
 ```tsx
 const divRef = DeStagnate.createRef<HTMLDivElement>()
