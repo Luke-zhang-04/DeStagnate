@@ -1,13 +1,13 @@
 # DeStagnate
 
 <p align="center">
-    <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/LICENSE"><img src="https://img.shields.io/github/license/luke-zhang-04/destagnate" alt="License"/></a>
-    <a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/v/destagnate?logo=npm" alt="npm version"/></a>
-    <a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/dt/destagnate"/></a>
-    <a href="https://github.com/Luke-zhang-04/DeStagnate/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://img.shields.io/github/actions/workflow/status/Luke-zhang-04/DeStagnate/CI.yml?branch=master&label=Tests&logo=github" alt="tests"/></a>
+    <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/LICENSE"><img src="https://img.shields.io/github/license/luke-zhang-04/destagnate?style=flat-square" alt="License"/></a>
+    <a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/v/destagnate?logo=npm&style=flat-square" alt="npm version"/></a>
+    <a href="https://github.com/Luke-zhang-04/DeStagnate/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://img.shields.io/github/actions/workflow/status/Luke-zhang-04/DeStagnate/CI.yml?branch=master&label=Tests&logo=github&style=flat-square" alt="tests"/></a>
+    <a href="https://bundlephobia.com/package/destagnate"><img src="https://img.shields.io/bundlephobia/minzip/destagnate?logo=files&style=flat-square&color=38bdf1&logoColor=4ccafb" alt="bundle size"/></a>
 </p>
 
-A lightweight (< 1 KB gzipped) wrapper around vanilla DOM methods for declarative DOM creation.
+A lightweight (~ 1 KB gzipped) wrapper around vanilla DOM methods for declarative DOM creation.
 
 ## Why not just use React?
 
