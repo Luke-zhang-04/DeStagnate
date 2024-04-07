@@ -6,29 +6,10 @@ import type {
 } from "./dom"
 import type {Ref} from "../createRef"
 
-export type ChildrenFlatArrayType = (
-    | boolean
-    | number
-    | BigInt
-    | string
-    | Node
-    | null
-    | undefined
-)[]
-
-export type ChildrenArrayType = ChildrenFlatArrayType | ChildrenArrayType[]
+export type ChildType = Node | boolean | number | BigInt | string | null | undefined
 
 /** All types the children parameter can be */
-export type ChildrenType =
-    | ChildrenType[]
-    | boolean
-    | number
-    | BigInt
-    | string
-    | ChildrenArrayType
-    | Node
-    | null
-    | undefined
+export type ChildrenType = ChildrenType[] | ChildType[]
 
 export interface EventMap extends HTMLElementEventMap, HTMLMediaElementEventMap {
     /* eslint-disable-next-line @typescript-eslint/naming-convention */

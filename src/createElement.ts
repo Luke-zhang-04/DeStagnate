@@ -1,5 +1,5 @@
 import {
-    ChildrenArrayType,
+    ChildrenType,
     ElementProps,
     HTMLDeprecatedElementProps,
     HTMLElementProps,
@@ -13,11 +13,11 @@ import {bindChildren, bindProps} from "./utils"
 // TODO: make children optional
 export type FunctionComponent<
     Props extends {} | null | undefined,
-    Children extends ChildrenArrayType = ChildrenArrayType,
+    Children extends ChildrenType = ChildrenType,
     Returns extends Node | JSX.Element = JSX.Element,
 > = (props: Props, ...children: Children) => Returns
 
-export {FunctionComponent as FC}
+export type {FunctionComponent as FC}
 
 /**
  * Creates an HTML element
@@ -32,7 +32,7 @@ export {FunctionComponent as FC}
 export function createElement<T extends keyof HTMLElementTagNameMap>(
     tagName: T,
     props?: HTMLElementProps<T> | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): HTMLElementTagNameMap[T]
 
 /**
@@ -49,7 +49,7 @@ export function createElement<T extends keyof HTMLElementTagNameMap>(
 export function createElement<T extends keyof HTMLElementDeprecatedTagNameMap>(
     tagName: T,
     props?: HTMLDeprecatedElementProps<T> | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): HTMLElementDeprecatedTagNameMap[T]
 
 /**
@@ -65,7 +65,7 @@ export function createElement<T extends keyof HTMLElementDeprecatedTagNameMap>(
 export function createElement<T extends keyof SVGElementTagNameMap>(
     tagName: `svg:${T}`,
     props?: SVGElementProps<T> | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): SVGElementTagNameMap[T]
 
 /**
@@ -83,7 +83,7 @@ export function createElement<
 >(
     tagName: `xhtml:${T}`,
     props?: XHTMLElementProps<T> | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): HTMLElement
 
 /**
@@ -99,7 +99,7 @@ export function createElement<
 export function createElement<T extends keyof MathMLElementTagNameMap>(
     tagName: `mathML:${T}`,
     props?: ElementProps | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): MathMLElementTagNameMap[T]
 
 /**
@@ -116,7 +116,7 @@ export function createElement<T extends keyof MathMLElementTagNameMap>(
 export function createElement(
     tagName: `${Exclude<keyof NamespaceURIMap, "svg" | "xhtml" | "mathML">}:${string}`,
     props?: ElementProps | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): Element
 
 /**
@@ -131,7 +131,7 @@ export function createElement(
  */
 export function createElement<
     Props extends {} | null | undefined,
-    Children extends ChildrenArrayType,
+    Children extends ChildrenType,
     Returns extends Node | JSX.Element,
 >(
     func: FunctionComponent<Props, Children, Returns>,
@@ -153,9 +153,9 @@ export function createElement<
     Props extends {} | null | undefined,
     Returns extends Node | JSX.Element,
 >(
-    func: FunctionComponent<Props, ChildrenArrayType, Returns>,
+    func: FunctionComponent<Props, ChildrenType, Returns>,
     props?: Props | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): Returns
 
 /**
@@ -174,9 +174,9 @@ export function createElement<
     T extends string | {[key: string]: unknown} | null | undefined,
     Returns = void,
 >(
-    tagNameOrFunction: T | ((_props: T, ..._children: ChildrenArrayType) => Returns),
+    tagNameOrFunction: T | ((_props: T, ..._children: ChildrenType) => Returns),
     props?: HTMLElementProps[T extends string ? T : ""] | null | T,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): Element | Returns {
     if (typeof tagNameOrFunction === "string") {
         const [namespace, tagName] = tagNameOrFunction.split(":") as [string, string | undefined]

@@ -1,4 +1,4 @@
-import type {ChildrenType, EventFunc, GeneralProps, RefProp} from "./types"
+import type {ChildType, ChildrenType, EventFunc, GeneralProps, RefProp} from "./types"
 
 const isStringable = (val: unknown): val is boolean | number | bigint | string =>
     typeof val === "boolean" ||
@@ -84,7 +84,7 @@ export const bindProps = (element: Element, props?: GeneralProps | null, ns = fa
  * @remark This funcion will **append** `children` to `element` in the order that they appear. To remove children, @see clearChildren
  * @remark This function will **sequentially** append `children` to `element`. If `element` is already in the DOM (due to a ref for example), each child will cause DOM reflow when appended. To avoid this, wrap children in a Fragment when necessary.
  */
-export const bindChildren = (element: Node, children?: ChildrenType): void => {
+export const bindChildren = (element: Node, children?: ChildrenType | ChildType): void => {
     if (children !== null && children !== undefined && children !== false) {
         if (Array.isArray(children)) {
             for (const child of children) {

@@ -1,4 +1,4 @@
-import {ChildrenArrayType, ElementProps, SVGElementProps, XHTMLElementProps} from "./types"
+import {ChildrenType, ElementProps, SVGElementProps, XHTMLElementProps} from "./types"
 import {bindChildren, bindProps} from "./utils"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
@@ -68,7 +68,7 @@ export function createElementNS<T extends keyof SVGElementTagNameMap>(
     namespaceURI: SVGURI,
     tagName: T,
     props?: SVGElementProps<T> | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): SVGElementTagNameMap[T]
 
 /**
@@ -88,7 +88,7 @@ export function createElementNS<
     namespaceURI: XHTMLURI,
     tagName: T,
     props?: XHTMLElementProps<T> | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): HTMLElement
 
 /**
@@ -106,7 +106,7 @@ export function createElementNS<T extends keyof MathMLElementTagNameMap>(
     namespaceURI: MathMLURI,
     tagName: T,
     props?: ElementProps | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): MathMLElementTagNameMap[T]
 
 /**
@@ -125,7 +125,7 @@ export function createElementNS(
     namespaceURI: Exclude<NamespaceURIs, MathMLURI | XHTMLURI | SVGURI>,
     tagName: string,
     props?: ElementProps | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): Element
 
 /**
@@ -143,7 +143,7 @@ export function createElementNS(
     namespaceURI: null,
     tagName: string,
     props?: ElementProps | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): Element
 
 /**
@@ -170,14 +170,14 @@ export function createElementNS<
                   : ElementProps
               : ElementProps)
         | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): CreateElementNSReturnType<T, K>
 
 export function createElementNS(
     namespaceURI: NamespaceURIs | (string & {}) | null,
     tagName: string,
     props?: ElementProps | null,
-    ...children: ChildrenArrayType
+    ...children: ChildrenType
 ): Element {
     const element = document.createElementNS(namespaceURI, tagName)
 

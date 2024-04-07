@@ -23,6 +23,7 @@ export {StateContainer} from "./stateContainer"
 
 export type {
     ChildrenType,
+    ChildType,
     EventFunc,
     RefProp,
     GeneralProps,
