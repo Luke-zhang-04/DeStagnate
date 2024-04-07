@@ -15,7 +15,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "sass": "sass scss:css --style compressed"
+    "sass": "sass scss:public/css --style compressed"
   },
   "keywords": [],
   "dependencies": {

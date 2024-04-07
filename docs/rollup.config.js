@@ -12,9 +12,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
  * @returns {import("rollup").RollupOptions} Rollup config
  */
 const createConfig = (file) => ({
-    input: `${__dirname}/lib/${file}`, // This is probably from like 2020, not sure why we're not using the TS plugin??
+    input: `${__dirname}/lib/${file}`, // This is probably from like 2020, but not sure why we're not using the TS plugin??
     output: {
-        file: `${__dirname}/compiled/${file.replace("examples/", "")}`,
+        file: `${__dirname}/public/js/${file.replace("examples/", "")}`,
         format: "iife",
     },
     plugins: [nodeResolve(), terser()],
