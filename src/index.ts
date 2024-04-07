@@ -11,7 +11,7 @@
 export {type Ref, createRef} from "./createRef"
 export {bindProps, bindChildren, clearChildren, setRefs} from "./utils"
 export {createElement, createElement as ce} from "./createElement"
-export {createElementNS, createElementNS as ceNS} from "./createElementNS"
+export {createElementNS, createElementNS as ceNS, namespaces} from "./createElementNS"
 export {Fragment} from "./fragment"
 export {StateContainer} from "./stateContainer"
 
@@ -25,6 +25,8 @@ export type {
     DSElementProps,
     HTMLElementProps,
     HTMLDeprecatedElementProps,
+    AllHTMLElementProps,
     SVGElementProps,
+    XHTMLElementProps,
     ElementProps,
 } from "./types"

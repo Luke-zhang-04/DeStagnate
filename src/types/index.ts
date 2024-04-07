@@ -108,12 +108,25 @@ export type HTMLElementProps<T extends keyof HTMLElementTagNameMap | string = st
         ? DSElementProps<HTMLElementTagNameMap[T], HTMLAttributeTagNameMap[T]>
         : DSElementProps<HTMLElement, HTMLAttributes>
 
+export type AllHTMLElementProps = DSElementProps<HTMLElement, AllHTMLAttributes>
+
 export type HTMLDeprecatedElementProps<T extends keyof HTMLElementDeprecatedTagNameMap> =
     DSElementProps<HTMLElementDeprecatedTagNameMap[T], HTMLAttributeDeprecatedTagNameMap[T]>
 
-export type SVGElementProps<T extends keyof SVGElementTagNameMap> = DSElementProps<
-    SVGElementTagNameMap[T],
-    SVGAttributes
->
+export type XHTMLElementProps<
+    T extends
+        | keyof HTMLElementTagNameMap
+        | keyof HTMLElementDeprecatedTagNameMap
+        | string = string,
+> = T extends keyof HTMLElementTagNameMap
+    ? DSElementProps<HTMLElement, HTMLAttributeTagNameMap[T]>
+    : T extends keyof HTMLElementDeprecatedTagNameMap
+      ? DSElementProps<HTMLElement, HTMLAttributeDeprecatedTagNameMap[T]>
+      : DSElementProps<HTMLElement, HTMLAttributes>
+
+export type SVGElementProps<T extends keyof SVGElementTagNameMap | string = string> =
+    T extends keyof SVGElementTagNameMap
+        ? DSElementProps<SVGElementTagNameMap[T], SVGAttributes>
+        : DSElementProps<SVGElement, SVGAttributes>
 
 export type ElementProps = DSElementProps<Element, ElementAttributes>

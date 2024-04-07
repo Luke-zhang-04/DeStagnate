@@ -18,22 +18,24 @@
     <div class="container">
       <div id="svg-h">
         <h1 class="mt-3">SVG/namespace example</h1>
+        <p
+          >This example was written with JSX, which needs to be transpiled. See
+          <a href="using-jsx.html">using JSX</a>.</p
+        >
         <a
-          href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/examples/svg.js"
+          href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/examples/svg.jsx"
           target="_blank"
           rel="noopener noreferrer"
           >Source Code</a
         >
         <div class="pt-5">
-          <div id="SVG"></div>
-          <div id="svg-btn" class="mt-3"></div>
+          <div id="svg-1"></div>
         </div>
         <div id="svg-source">
           <pre class="d-block">
-                    <code class="language-js">
-import {StateContainer, bindProps, createElementNS} from &quot;../../..&quot;
-
-const svgURI = &quot;http://www.w3.org/2000/svg&quot;
+            <code class="language-js">
+import * as DeStagnate from &quot;destagnate&quot;
+import {StateContainer, bindProps, createElementNS} from &quot;destagnate&quot;
 
 const width = 250
 let direction = 2.5
@@ -55,17 +57,54 @@ class XCoordState extends StateContainer {
     }
 }
 
-const xCoordState = new XCoordState()
+const xCoordState1 = new XCoordState()
 
 setInterval(() =&gt; {
-    xCoordState.value += direction
+    xCoordState1.value += direction
 
-    if (xCoordState.value &lt; 0 || xCoordState.value &gt; width) {
+    if (xCoordState1.value &lt; 0 || xCoordState1.value &gt; width) {
         direction *= -1
     }
 }, 10)
 
-document.querySelector(&quot;#SVG&quot;)?.appendChild(
+document.querySelector(&quot;#svg-1&quot;)?.appendChild(
+    &lt;svg:svg width={width * 2} height={width} viewBox={`0 0 ${width * 2} ${width}`} fill=&quot;none&quot;&gt;
+        &lt;rect:rect
+            width={width}
+            height={width0}
+            fill={direction &gt; 0 ? &quot;#0D6EFD&quot; : &quot;#28A745&quot;}
+            x={xCoordState1.value}
+            ref={xCoordState1.ref}
+        /&gt;
+    &lt;/svg:svg&gt;,
+)
+              </code>
+          </pre>
+        </div>
+
+        <div class="pt-5">
+          <p
+            >If your namespace not supported by default, you can use createElementNS and specify
+            the namespace URI</p
+          >
+          <div id="svg-2"></div>
+        </div>
+        <div id="svg-source">
+          <pre class="d-block">
+            <code class="language-js">
+const svgURI = &quot;http://www.w3.org/2000/svg&quot;
+
+const xCoordState2 = new XCoordState()
+
+setInterval(() =&gt; {
+    xCoordState2.value += direction
+
+    if (xCoordState2.value &lt; 0 || xCoordState2.value &gt; width) {
+        direction *= -1
+    }
+}, 10)
+
+document.querySelector(&quot;#svg-2&quot;)?.appendChild(
     createElementNS(
         svgURI,
         &quot;svg&quot;,
@@ -78,19 +117,13 @@ document.querySelector(&quot;#SVG&quot;)?.appendChild(
             width: width,
             height: width,
             fill: direction &gt; 0 ? &quot;#0D6EFD&quot; : &quot;#28A745&quot;,
-            x: xCoordState.value,
-            ref: xCoordState.ref,
+            x: xCoordState2.value,
+            ref: xCoordState2.ref,
         }),
     ),
 )
-
-/* SVG Equiv
-&lt;svg width=&quot;200&quot; height=&quot;200&quot; viewBox=&quot;0 0 200 200&quot; fill=&quot;none&quot; xmlns=svgURI&gt;
-    &lt;rect width=&quot;200&quot; height=&quot;200&quot; fill=&quot;#0D6EFD&quot;/&gt;
-&lt;/svg&gt;
-*/
-                    </code>
-                </pre>
+              </code>
+          </pre>
         </div>
       </div>
     </div>
