@@ -1,4 +1,5 @@
-import {Fragment, type Ref, StateContainer, createElement} from "../../../"
+import * as DeStagnate from "../../.."
+import {type Ref, StateContainer} from "../../.."
 
 let currentPlayer: "x" | "o" = "x"
 
@@ -49,42 +50,34 @@ const tictactoeParent = document.getElementById("nested")
 const resetBtn = document.getElementById("nested-reset-btn")
 
 tictactoeParent?.appendChild(
-    createElement(
-        Fragment,
-        null,
-        squares.map((row) =>
-            createElement(
-                "div",
-                {class: "row"},
-                row.map((square) =>
-                    createElement(
-                        "div",
-                        {
-                            class: "col-4",
-                            onClick: () => {
-                                // Check if square isn't already clicked
-                                if (square.value === "") {
-                                    square.value = currentPlayer
-                                }
+    <>
+        {squares.map((row) => (
+            <div class="row">
+                {row.map((square) => (
+                    <div
+                        class="col-4"
+                        onClick={() => {
+                            // Check if square isn't already clicked
+                            if (square.value === "") {
+                                square.value = currentPlayer
+                            }
 
-                                // Change current player
-                                currentPlayer = currentPlayer === "x" ? "o" : "x"
+                            // Change current player
+                            currentPlayer = currentPlayer === "x" ? "o" : "x"
 
-                                if (checkForWinner()) {
-                                    alert(`Player ${checkForWinner()} has won the game!`)
-                                }
-                            },
-                        },
-                        createElement(
-                            "div",
-                            {class: "tictactoe-square", ref: square.ref},
-                            square.value,
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    ),
+                            if (checkForWinner()) {
+                                alert(`Player ${checkForWinner()} has won the game!`)
+                            }
+                        }}
+                    >
+                        <div class="tictactoe-square" ref={square.ref}>
+                            {square.value}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        ))}
+    </>,
 )
 
 resetBtn?.addEventListener("click", () => {
