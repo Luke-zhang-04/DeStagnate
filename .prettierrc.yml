@@ -3,7 +3,7 @@ arrowParens: "always"
 bracketSpacing: false
 embeddedLanguageFormatting: "auto"
 endOfLine: "lf"
-htmlWhitespaceSensitivity: "strict"
+htmlWhitespaceSensitivity: "css"
 jsxBracketSameLine: false
 jsxSingleQuote: false
 printWidth: 99
