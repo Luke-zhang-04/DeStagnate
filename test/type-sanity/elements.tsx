@@ -5,6 +5,8 @@ let div: HTMLDivElement
 let anchor: HTMLAnchorElement
 
 div = createElement("div")
+div = createElement("div", null)
+div = createElement("div", {})
 ;<div></div>
 
 // @ts-expect-error

@@ -10,6 +10,15 @@ import {NamespaceURIMap, namespaces} from "./createElementNS"
 import {bindChildren, bindProps} from "./utils"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
+// TODO: make children optional
+export type FunctionComponent<
+    Props extends {} | null | undefined,
+    Children extends ChildrenArrayType = ChildrenArrayType,
+    Returns extends Node | JSX.Element = JSX.Element,
+> = (props: Props, ...children: Children) => Returns
+
+export {FunctionComponent as FC}
+
 /**
  * Creates an HTML element
  *
@@ -121,10 +130,30 @@ export function createElement(
  * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  */
 export function createElement<
-    Props extends {[key: string]: unknown} | null | undefined,
+    Props extends {} | null | undefined,
+    Children extends ChildrenArrayType,
     Returns extends Node | JSX.Element,
 >(
-    func: (props: Props, ...children: ChildrenArrayType) => Returns,
+    func: FunctionComponent<Props, Children, Returns>,
+    props?: Props | null,
+    ...children: Children
+): Returns
+
+/**
+ * Creates a function component
+ *
+ * @param func - Function component
+ * @param props - Props of function component
+ * @param children - Children of this element. Can be nothing, number, string, boolean, bigint, or
+ *   more elements. An array will create multiple, flattened children.
+ * @returns Element
+ * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
+ */
+export function createElement<
+    Props extends {} | null | undefined,
+    Returns extends Node | JSX.Element,
+>(
+    func: FunctionComponent<Props, ChildrenArrayType, Returns>,
     props?: Props | null,
     ...children: ChildrenArrayType
 ): Returns

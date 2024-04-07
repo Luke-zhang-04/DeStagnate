@@ -10,7 +10,13 @@
 
 export {type Ref, createRef} from "./createRef"
 export {bindProps, bindChildren, clearChildren, setRefs} from "./utils"
-export {createElement, createElement as ce, createElement as default} from "./createElement"
+export {
+    type FC,
+    type FunctionComponent,
+    createElement,
+    createElement as ce,
+    createElement as default,
+} from "./createElement"
 export {createElementNS, createElementNS as ceNS, namespaces} from "./createElementNS"
 export {Fragment} from "./fragment"
 export {StateContainer} from "./stateContainer"
