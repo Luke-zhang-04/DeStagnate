@@ -49,10 +49,6 @@ const xCoordState2 = new XCoordState()
 
 setInterval(() => {
     xCoordState2.value += direction
-
-    if (xCoordState2.value < 0 || xCoordState2.value > width) {
-        direction *= -1
-    }
 }, 10)
 
 document.querySelector("#svg-2")?.appendChild(
