@@ -7,8 +7,8 @@ interface FragmentProps {
 }
 
 /* eslint-disable @typescript-eslint/naming-convention */
-export const Fragment: FC<FragmentProps | null | undefined, ChildrenType, DocumentFragment> = (
-    props?,
+export const Fragment: FC<FragmentProps | null, ChildrenType, DocumentFragment> = (
+    props,
     ...children
 ) => {
     const documentFragment = document.createDocumentFragment()

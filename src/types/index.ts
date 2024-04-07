@@ -9,7 +9,7 @@ import type {Ref} from "../createRef"
 export type ChildType = Node | boolean | number | BigInt | string | null | undefined
 
 /** All types the children parameter can be */
-export type ChildrenType = ChildrenType[] | ChildType[]
+export type ChildrenType = (ChildrenType | ChildType)[]
 
 export interface EventMap extends HTMLElementEventMap, HTMLMediaElementEventMap {
     /* eslint-disable-next-line @typescript-eslint/naming-convention */

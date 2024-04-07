@@ -13,7 +13,7 @@ import {bindChildren, bindProps} from "./utils"
 // TODO: make children optional
 export type FunctionComponent<
     Props extends {} | null | undefined,
-    Children extends ChildrenType = ChildrenType,
+    Children extends unknown[] = ChildrenType,
     Returns extends Node | JSX.Element = JSX.Element,
 > = (props: Props, ...children: Children) => Returns
 
@@ -130,32 +130,15 @@ export function createElement(
  * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  */
 export function createElement<
-    Props extends {} | null | undefined,
-    Children extends ChildrenType,
+    Props extends {} | null,
+    Children extends unknown[],
     Returns extends Node | JSX.Element,
 >(
-    func: FunctionComponent<Props, Children, Returns>,
-    props?: Props | null,
-    ...children: Children
-): Returns
-
-/**
- * Creates a function component
- *
- * @param func - Function component
- * @param props - Props of function component
- * @param children - Children of this element. Can be nothing, number, string, boolean, bigint, or
- *   more elements. An array will create multiple, flattened children.
- * @returns Element
- * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
- */
-export function createElement<
-    Props extends {} | null | undefined,
-    Returns extends Node | JSX.Element,
->(
-    func: FunctionComponent<Props, ChildrenType, Returns>,
-    props?: Props | null,
-    ...children: ChildrenType
+    ...[func, props, ...children]: [
+        func: FunctionComponent<Props, Children, Returns>,
+        ...(Props extends null ? [props?: Props | undefined] : [props: Props]),
+        ...children: Children,
+    ]
 ): Returns
 
 /**
@@ -170,12 +153,9 @@ export function createElement<
  * @returns Element
  * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  */
-export function createElement<
-    T extends string | {[key: string]: unknown} | null | undefined,
-    Returns = void,
->(
+export function createElement<T extends string | {[key: string]: unknown} | null, Returns = void>(
     tagNameOrFunction: T | ((_props: T, ..._children: ChildrenType) => Returns),
-    props?: HTMLElementProps[T extends string ? T : ""] | null | T,
+    props?: HTMLElementProps[T extends string ? T : ""] | null | T | undefined,
     ...children: ChildrenType
 ): Element | Returns {
     if (typeof tagNameOrFunction === "string") {
@@ -198,7 +178,7 @@ export function createElement<
     } else if (typeof tagNameOrFunction === "function") {
         // If `tagNameOrFunction` is a function, then the previous overload should've enforced that
         // the props are set by the function (`T`)
-        return tagNameOrFunction(props as T, children)
+        return tagNameOrFunction((props ?? null) as T, children)
     }
 
     throw new Error(`Invalid element type ${typeof tagNameOrFunction}: ${tagNameOrFunction}`)
