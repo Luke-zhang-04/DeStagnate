@@ -27,4 +27,5 @@ export default [
     "examples/eventListener.js",
     "examples/svg.js",
     "examples/tictactoe.js",
+    "examples/usingJsx.js",
 ].map(createConfig)

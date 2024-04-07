@@ -35,7 +35,7 @@ pnpm i destagnate
 Through `curl` or `wget` to download a bundle for browser usage<br/>
 
 ```bash
-# Prodution
+# Production
 curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.min.js > deStagnate.js
 wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.min.js
 
@@ -63,7 +63,7 @@ With a CDN
 
 ## Kitchen Sink Example
 
-Sorta. There's way more you can do with DeStagnate. See [https://luke-zhang-04.github.io/DeStagnate/docs](https://luke-zhang-04.github.io/DeStagnate/docs) for example code and documentation.
+Sorta. There's way more you can do with DeStagnate. See [https://luke-zhang-04.github.io/DeStagnate](https://luke-zhang-04.github.io/DeStagnate) for example code and documentation.
 
 ```tsx
 const divRef = DeStagnate.createRef<HTMLDivElement>()
@@ -151,11 +151,15 @@ container?.appendChild(button)
 ## Alternatives
 
 -   What about [HTL](https://www.npmjs.com/package/htl)?
-    -   HTL is cool, but it involves an HTML parser, which comes with its drawbacks. One upside though, you don't need to transpile to create DOM using XML-like syntax.
--   What about [HTM](https://www.npmjs.com/package/htm)?
-    -   HTM generates virtual DOM and doesn't directly create DOM nodes.
+    -   HTL is cool, but it involves an HTML parser at runtime, which makes it quite slow. You also lose devtool support whren working with strings. One upside though, you don't need to transpile to create DOM using XML-like syntax.
+-   What about [VHTML](https://github.com/developit/vhtml)?
+    -   VHTML generates strings which you can safely add to the DOM with `innerHTML`. Unfortunately this has the drawback of not supporting refs or event listeners, which is extremely limiting.
 -   Why not just `innerHTML`?
-    -   You're missing dev tool support, it's a big security risk, and you'll have to deal with character escaping. Not fun. Mike Bostock goes over why `innerHTML` is bad in the [HTL README](https://www.npmjs.com/package/htl).
+    -   You're missing dev tool support, it's a big security risk, and you'll have to deal with character escaping. Not fun. Mike Bostock goes over why `innerHTML` is bad in the [HTL README](https://github.com/observablehq/htl?tab=readme-ov-file#why-not-concatenate).
+
+## Using HTM
+
+Since [HTM](https://www.npmjs.com/package/htm) is meant to be a drop-in replacement wherever JSX is used, DeStagnate is compatible with `HTM`. See [using-jsx](https://luke-zhang-04.github.io/DeStagnate/using-jsx.html#using-htm).
 
 ## Using JSX
 

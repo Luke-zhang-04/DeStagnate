@@ -95,6 +95,9 @@ importers:
       bootstrap:
         specifier: ~5.0.0-alpha1
         version: 5.0.0-alpha1(popper.js@1.16.1)
+      htm:
+        specifier: ^3.1.1
+        version: 3.1.1
     devDependencies:
       sass:
         specifier: ^1.26.10
@@ -2857,6 +2860,10 @@ packages:
     dependencies:
       lru-cache: 7.18.3
     dev: true
+
+  /htm@3.1.1:
+    resolution: {integrity: sha512-983Vyg8NwUE7JkZ6NmOqpCZ+sh1bKv2iYTlUkzlWmA5JD2acKoxd4KVxbMmxX/85mtfdnDmTFoNKcg5DGAvxNQ==}
+    dev: false
 
   /html-encoding-sniffer@4.0.0:
     resolution: {integrity: sha512-Y22oTqIU4uuPgEemfz7NDJz6OeKf12Lsu+QC+s3BVpda64lTiMYCyGwg5ki4vFxkMwQdeZDl2adZoqUgdFuTgQ==}

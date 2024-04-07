@@ -16,7 +16,7 @@
     <div id="nav"></div>
     <script async src="js/nav.js"></script>
 
-    <div class="container py-5">
+    <div class="container pt-5">
       <h1>Using JSX</h1>
       <p
         >If you're using JSX, you'll need a transpiler. Either TypeScript, or a Babel with a Plugin
@@ -33,17 +33,17 @@
       <ol>
         <li>Install TypeScript (if you haven't already)</li>
         <pre class="d-block">
-                <code class="language-bash">
+          <code class="language-bash">
 # npm
 npm i typescript -D
 
 # yarn
 yarn add typescript -D
-                </code>
-            </pre>
+          </code>
+        </pre>
         <li>Create and configure your tsconfig file</li>
         <pre class="d-block">
-                <code class="language-json">
+          <code class="language-json">
 {
     "compilerOptions": {
         "jsx": "react",
@@ -52,24 +52,24 @@ yarn add typescript -D
     },
     "include": ["myFile.tsx"],
 }
-                </code>
-            </pre>
+          </code>
+        </pre>
         <li>Include DeStagnate in your files that use JSX (if you haven't already)</li>
         <pre class="d-block">
-                <code class="language-tsx">
+          <code class="language-tsx">
 import DeStagnate from "destagnate" // Include this, even if linters say it's never used
 
 document.getElementById("id")?.appendChild(
     &lt;div&gt;&lt;/div&gt;
 )
-                </code>
-            </pre>
+          </code>
+        </pre>
         <li>Compile</li>
         <pre class="d-block">
-                <code class="language-bash">
+          <code class="language-bash">
 npx tsc
-                </code>
-            </pre>
+          </code>
+        </pre>
       </ol>
 
       <h2>Babel</h2>
@@ -81,18 +81,18 @@ npx tsc
       <ol>
         <li>Install Babel and plugins</li>
         <pre class="d-block">
-                <code class="language-bash">
+          <code class="language-bash">
 # npm
 npm i @babel/core @babel/cli @babel/plugin-transform-react-jsx -D
 
 # yarn
 yarn add @babel/core @babel/cli @babel/plugin-transform-react-jsx -D
-                </code>
-            </pre>
+          </code>
+        </pre>
 
         <li>Create and configure your .babelrc file</li>
         <pre class="d-block">
-                <code class="language-js">
+          <code class="language-js">
 module.exports = {
     "plugins": [
         [
@@ -104,27 +104,190 @@ module.exports = {
         ],
     ],
 }
-                </code>
-            </pre>
+          </code>
+        </pre>
 
         <li>Include DeStagnate in your files that use JSX (if you haven't already)</li>
         <pre class="d-block">
-                <code class="language-jsx">
+          <code class="language-jsx">
 import DeStagnate from "destagnate" // Include this, even if linters say it's never used
 
 document.getElementById("id")?.appendChild(
     &lt;div&gt;&lt;/div&gt;
 )
-                </code>
-            </pre>
+          </code>
+        </pre>
 
         <li>Compile</li>
         <pre class="d-block">
-                <code class="language-bash">
+          <code class="language-bash">
 npx babel myfile.tsx -o myfile.js
-                </code>
-            </pre>
+          </code>
+        </pre>
       </ol>
+
+      <h1 id="using-htm">Using HTM</h1>
+      <p
+        >Since HTM is a drop-in replacement wherever JSX is used, DeStagnate is compatible with HTM
+        as well.</p
+      >
+
+      <h1>Example</h1>
+      <p>Here is creating the same table using createElement, JSX, HTM, and vanilla DOM.</p>
+      <a
+        href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/examples/usingJsx.tsx"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Source Code</a
+      >
+      <div class="pt-5">
+        <div id="jsx-example" class="row"></div>
+      </div>
+      <pre class="d-block">
+        <code class="language-tsx">
+import * as DeStagnate from &quot;../../../&quot;
+import {createElement} from &quot;../../../&quot;
+import htm from &quot;htm&quot;
+
+const data = new Array(10).fill(undefined).map((_, index) =&gt; index)
+const container = document.getElementById(&quot;jsx-example&quot;)!
+
+interface TableData {
+    num: number
+}
+
+jsx: {
+    const Row: DeStagnate.FC&lt;TableData, []&gt; = ({num}) =&gt; (
+        &lt;tr&gt;
+            &lt;td&gt;{num}&lt;/td&gt;
+            &lt;td&gt;{num % 2 === 0 ? &quot;Even&quot; : &quot;Odd&quot;}&lt;/td&gt;
+            &lt;td&gt;{(num % 3 === 0).toString()}&lt;/td&gt;
+        &lt;/tr&gt;
+    )
+
+    container.appendChild(
+        &lt;div class=&quot;col-3&quot;&gt;
+            &lt;table&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;Number&lt;/th&gt;
+                    &lt;th&gt;Even/odd&lt;/th&gt;
+                    &lt;th&gt;Multiple of 3&lt;/th&gt;
+                &lt;/tr&gt;
+                {data.map((num) =&gt; (
+                    &lt;Row num={num} /&gt;
+                ))}
+            &lt;/table&gt;
+        &lt;/div&gt;,
+    )
+}
+
+createElement: {
+    const Row: DeStagnate.FC&lt;TableData, []&gt; = ({num}) =&gt;
+        createElement(
+            &quot;tr&quot;,
+            null,
+            createElement(&quot;td&quot;, null, num),
+            createElement(&quot;td&quot;, null, num % 2 === 0 ? &quot;Even&quot; : &quot;Odd&quot;),
+            createElement(&quot;td&quot;, null, (num % 3 === 0).toString()),
+        )
+
+    container.appendChild(
+        createElement(
+            &quot;div&quot;,
+            {class: &quot;col-3&quot;},
+            createElement(
+                &quot;table&quot;,
+                null,
+                createElement(
+                    &quot;tr&quot;,
+                    null,
+                    createElement(&quot;th&quot;, null, &quot;Number&quot;),
+                    createElement(&quot;th&quot;, null, &quot;Even/odd&quot;),
+                    createElement(&quot;th&quot;, null, &quot;Multiple of 3&quot;),
+                ),
+                data.map((num) =&gt; createElement(Row, {num})),
+            ),
+        ),
+    )
+}
+
+vanillaDOM: {
+    const row = (num: number): HTMLTableRowElement =&gt; {
+        const tableRow = document.createElement(&quot;tr&quot;)
+
+        const [d1, d2, d3] = [
+            document.createElement(&quot;td&quot;),
+            document.createElement(&quot;td&quot;),
+            document.createElement(&quot;td&quot;),
+        ]
+
+        d1.innerText = num.toString()
+        d2.innerText = num % 2 === 0 ? &quot;Even&quot; : &quot;Odd&quot;
+        d3.innerText = (num % 3 === 0).toString()
+
+        tableRow.appendChild(d1)
+        tableRow.appendChild(d2)
+        tableRow.appendChild(d3)
+
+        return tableRow
+    }
+
+    const col = document.createElement(&quot;div&quot;)
+
+    col.setAttribute(&quot;class&quot;, &quot;col-3&quot;)
+
+    const table = document.createElement(&quot;table&quot;)
+
+    const headerRow = document.createElement(&quot;tr&quot;)
+    const [numberHeader, evenOddHeader, mult3Header] = [
+        document.createElement(&quot;th&quot;),
+        document.createElement(&quot;th&quot;),
+        document.createElement(&quot;th&quot;),
+    ]
+
+    numberHeader.innerText = &quot;Number&quot;
+    evenOddHeader.innerText = &quot;Even/odd&quot;
+    mult3Header.innerText = &quot;Multiple of 3&quot;
+
+    headerRow.appendChild(numberHeader)
+    headerRow.appendChild(evenOddHeader)
+    headerRow.appendChild(mult3Header)
+
+    table.appendChild(headerRow)
+
+    for (const num of data) {
+        table.appendChild(row(num))
+    }
+
+    col.appendChild(table)
+    container.appendChild(col)
+}
+
+htm: {
+    const html = htm.bind(createElement)
+
+    const Row: DeStagnate.FC&lt;TableData, []&gt; = ({num}) =&gt;
+        html`&lt;tr&gt;
+            &lt;td&gt;${num}&lt;/td&gt;
+            &lt;td&gt;${num % 2 === 0 ? &quot;Even&quot; : &quot;Odd&quot;}&lt;/td&gt;
+            &lt;td&gt;${(num % 3 === 0).toString()}&lt;/td&gt;
+        &lt;/tr&gt;` as Element
+
+    container.appendChild(
+        html`&lt;div class=&quot;col-3&quot;&gt;
+            &lt;table&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;Number&lt;/th&gt;
+                    &lt;th&gt;Even/odd&lt;/th&gt;
+                    &lt;th&gt;Multiple of 3&lt;/th&gt;
+                &lt;/tr&gt;
+                ${data.map((num) =&gt; html`&lt;${Row} num=${num} /&gt;`)}
+            &lt;/table&gt;
+        &lt;/div&gt;` as Element,
+    )
+}
+        </code>
+      </pre>
     </div>
 
     <footer></footer>
@@ -147,5 +310,9 @@ npx babel myfile.tsx -o myfile.js
     <!-- Prism JS for syntax hilighting code -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- Source Code of Examples -->
+
+    <script src="js/usingJsx.js"></script>
   </body>
 </html>

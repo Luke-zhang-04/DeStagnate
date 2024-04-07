@@ -7,7 +7,8 @@ export const test = () => {
             Fragment,
             null,
             createElement("div", {id: "fragmentTest1"}),
-            createElement("div", {id: "fragmentTest2"}),
+            createElement(Fragment, undefined, createElement("div", {id: "fragmentTest2"})),
+            createElement(Fragment),
         ),
     )
 
