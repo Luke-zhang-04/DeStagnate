@@ -27,6 +27,7 @@ export default [
     "examples/calculator.js",
     "examples/eventListener.js",
     "examples/svg.js",
+    "examples/mathML.js",
     "examples/tictactoe.js",
     "examples/usingJsx.js",
     "examples/kitchen-sink.js",
