@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DeStagnate | Run Benchmark</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <body>
+    <div id="nav"></div>
+    <script async src="js/nav.js"></script>
+
+    <div class="container">
+      <div id="nested-h">
+        <h1 class="mt-3">Benchmarks</h1>
+        <p>
+          NOTE: running this may cause your browser to lag up. Also, results are highly dependent
+          on your machine and browser. This uses benchmark.js.
+        </p>
+        <a
+          href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/examples/benchmark.ts"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Source Code</a
+        >
+        <div class="pt-5">
+          <div class="btn btn-success" id="start-btn">Start benchmark</div>
+          <div id="bench-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer></footer>
+    <script async src="js/footer.js"></script>
+
+    <!-- Popper.js for bootstrap, not actually needed for functionality -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Bootstrap for styling, not actually needed for functionality -->
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"
+      integrity="sha256-qXBd/EfAdjOA2FGrGAG+b3YBn2tn5A6bhz+LSgYD96k="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/benchmark@2.1.4/benchmark.min.js"></script>
+
+    <script src="js/benchmark.js"></script>
+  </body>
+</html>

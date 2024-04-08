@@ -13,7 +13,7 @@ jsx: {
     const Row: DeStagnate.FC<TableData, []> = ({num}) => (
         <tr>
             <td>{num}</td>
-            <td>{num % 2 === 0 ? "Even" : "Odd"}</td>
+            <td class="px-3">{num % 2 === 0 ? "Even" : "Odd"}</td>
             <td>{(num % 3 === 0).toString()}</td>
         </tr>
     )
@@ -23,7 +23,7 @@ jsx: {
             <table>
                 <tr>
                     <th>Number</th>
-                    <th>Even/odd</th>
+                    <th class="px-3">Even/odd</th>
                     <th>Multiple of 3</th>
                 </tr>
                 {data.map((num) => (
@@ -40,7 +40,7 @@ createElement: {
             "tr",
             null,
             createElement("td", null, num),
-            createElement("td", null, num % 2 === 0 ? "Even" : "Odd"),
+            createElement("td", {class: "px-3"}, num % 2 === 0 ? "Even" : "Odd"),
             createElement("td", null, (num % 3 === 0).toString()),
         )
 
@@ -55,7 +55,7 @@ createElement: {
                     "tr",
                     null,
                     createElement("th", null, "Number"),
-                    createElement("th", null, "Even/odd"),
+                    createElement("th", {class: "px-3"}, "Even/odd"),
                     createElement("th", null, "Multiple of 3"),
                 ),
                 data.map((num) => createElement(Row, {num})),
@@ -74,6 +74,7 @@ vanillaDOM: {
             document.createElement("td"),
         ]
 
+        d2.className = "px-3"
         d1.innerText = num.toString()
         d2.innerText = num % 2 === 0 ? "Even" : "Odd"
         d3.innerText = (num % 3 === 0).toString()
@@ -98,6 +99,7 @@ vanillaDOM: {
         document.createElement("th"),
     ]
 
+    evenOddHeader.className = "px-3"
     numberHeader.innerText = "Number"
     evenOddHeader.innerText = "Even/odd"
     mult3Header.innerText = "Multiple of 3"
@@ -122,7 +124,7 @@ htm: {
     const Row: DeStagnate.FC<TableData, []> = ({num}) =>
         html`<tr>
             <td>${num}</td>
-            <td>${num % 2 === 0 ? "Even" : "Odd"}</td>
+            <td class="px-3">${num % 2 === 0 ? "Even" : "Odd"}</td>
             <td>${(num % 3 === 0).toString()}</td>
         </tr>` as Element
 
@@ -131,7 +133,7 @@ htm: {
             <table>
                 <tr>
                     <th>Number</th>
-                    <th>Even/odd</th>
+                    <th class="px-3">Even/odd</th>
                     <th>Multiple of 3</th>
                 </tr>
                 ${data.map((num) => html`<${Row} num=${num} />`)}

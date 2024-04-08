@@ -1,3 +1,4 @@
+import commonJs from "@rollup/plugin-commonjs"
 import {dirname} from "path"
 import {fileURLToPath} from "url"
 import {nodeResolve} from "@rollup/plugin-node-resolve"
@@ -17,7 +18,7 @@ const createConfig = (file) => ({
         file: `${__dirname}/public/js/${file.replace("examples/", "")}`,
         format: "iife",
     },
-    plugins: [nodeResolve(), terser()],
+    plugins: [commonJs(), nodeResolve(), terser()],
 })
 
 export default [
@@ -28,4 +29,5 @@ export default [
     "examples/svg.js",
     "examples/tictactoe.js",
     "examples/usingJsx.js",
+    "benchmark.js",
 ].map(createConfig)

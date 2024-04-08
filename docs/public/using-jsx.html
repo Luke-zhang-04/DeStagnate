@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DeStagnate Examples | Calculator</title>
-    <link rel="stylesheet" href="css/calculator.css" />
+    <title>DeStagnate Examples | Using JSX</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link
       rel="stylesheet"
@@ -160,7 +159,7 @@ jsx: {
     const Row: DeStagnate.FC&lt;TableData, []&gt; = ({num}) =&gt; (
         &lt;tr&gt;
             &lt;td&gt;{num}&lt;/td&gt;
-            &lt;td&gt;{num % 2 === 0 ? &quot;Even&quot; : &quot;Odd&quot;}&lt;/td&gt;
+            &lt;td class=&quot;px-3&quot;&gt;{num % 2 === 0 ? &quot;Even&quot; : &quot;Odd&quot;}&lt;/td&gt;
             &lt;td&gt;{(num % 3 === 0).toString()}&lt;/td&gt;
         &lt;/tr&gt;
     )
@@ -170,7 +169,7 @@ jsx: {
             &lt;table&gt;
                 &lt;tr&gt;
                     &lt;th&gt;Number&lt;/th&gt;
-                    &lt;th&gt;Even/odd&lt;/th&gt;
+                    &lt;th class=&quot;px-3&quot;&gt;Even/odd&lt;/th&gt;
                     &lt;th&gt;Multiple of 3&lt;/th&gt;
                 &lt;/tr&gt;
                 {data.map((num) =&gt; (
@@ -187,7 +186,7 @@ createElement: {
             &quot;tr&quot;,
             null,
             createElement(&quot;td&quot;, null, num),
-            createElement(&quot;td&quot;, null, num % 2 === 0 ? &quot;Even&quot; : &quot;Odd&quot;),
+            createElement(&quot;td&quot;, {class: &quot;px-3&quot;}, num % 2 === 0 ? &quot;Even&quot; : &quot;Odd&quot;),
             createElement(&quot;td&quot;, null, (num % 3 === 0).toString()),
         )
 
@@ -202,7 +201,7 @@ createElement: {
                     &quot;tr&quot;,
                     null,
                     createElement(&quot;th&quot;, null, &quot;Number&quot;),
-                    createElement(&quot;th&quot;, null, &quot;Even/odd&quot;),
+                    createElement(&quot;th&quot;, {class: &quot;px-3&quot;}, &quot;Even/odd&quot;),
                     createElement(&quot;th&quot;, null, &quot;Multiple of 3&quot;),
                 ),
                 data.map((num) =&gt; createElement(Row, {num})),
@@ -221,6 +220,7 @@ vanillaDOM: {
             document.createElement(&quot;td&quot;),
         ]
 
+        d2.className = &quot;px-3&quot;
         d1.innerText = num.toString()
         d2.innerText = num % 2 === 0 ? &quot;Even&quot; : &quot;Odd&quot;
         d3.innerText = (num % 3 === 0).toString()
@@ -245,6 +245,7 @@ vanillaDOM: {
         document.createElement(&quot;th&quot;),
     ]
 
+    evenOddHeader.className = &quot;px-3&quot;
     numberHeader.innerText = &quot;Number&quot;
     evenOddHeader.innerText = &quot;Even/odd&quot;
     mult3Header.innerText = &quot;Multiple of 3&quot;
@@ -269,7 +270,7 @@ htm: {
     const Row: DeStagnate.FC&lt;TableData, []&gt; = ({num}) =&gt;
         html`&lt;tr&gt;
             &lt;td&gt;${num}&lt;/td&gt;
-            &lt;td&gt;${num % 2 === 0 ? &quot;Even&quot; : &quot;Odd&quot;}&lt;/td&gt;
+            &lt;td class=&quot;px-3&quot;&gt;${num % 2 === 0 ? &quot;Even&quot; : &quot;Odd&quot;}&lt;/td&gt;
             &lt;td&gt;${(num % 3 === 0).toString()}&lt;/td&gt;
         &lt;/tr&gt;` as Element
 
@@ -278,7 +279,7 @@ htm: {
             &lt;table&gt;
                 &lt;tr&gt;
                     &lt;th&gt;Number&lt;/th&gt;
-                    &lt;th&gt;Even/odd&lt;/th&gt;
+                    &lt;th class=&quot;px-3&quot;&gt;Even/odd&lt;/th&gt;
                     &lt;th&gt;Multiple of 3&lt;/th&gt;
                 &lt;/tr&gt;
                 ${data.map((num) =&gt; html`&lt;${Row} num=${num} /&gt;`)}
