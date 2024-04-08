@@ -29,5 +29,6 @@ export default [
     "examples/svg.js",
     "examples/tictactoe.js",
     "examples/usingJsx.js",
+    "examples/kitchen-sink.js",
     "benchmark.js",
 ].map(createConfig)

@@ -1,71 +1,3 @@
-# DeStagnate
-
-<p align="center">
-    <a href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/LICENSE"><img src="https://img.shields.io/github/license/luke-zhang-04/destagnate?style=flat-square" alt="License"/></a>
-    <a href="https://www.npmjs.com/package/destagnate"><img src="https://img.shields.io/npm/v/destagnate?logo=npm&style=flat-square" alt="npm version"/></a>
-    <a href="https://github.com/Luke-zhang-04/DeStagnate/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://img.shields.io/github/actions/workflow/status/Luke-zhang-04/DeStagnate/CI.yml?branch=master&label=Tests&logo=github&style=flat-square" alt="tests"/></a>
-    <a href="https://bundlephobia.com/package/destagnate"><img src="https://img.shields.io/bundlephobia/minzip/destagnate?logo=files&style=flat-square&color=38bdf1&logoColor=4ccafb" alt="bundle size"/></a>
-</p>
-
-A lightweight (~ 1 KB gzipped) wrapper around vanilla DOM methods for declarative DOM creation.
-
-## Why not just use React?
-
-This isn't meant to be React. React has virtual DOM, hooks, and a huge ecosystem surrounding it. React 19 is supposed to have a compiler too. This is just a wrapper for when you need to create some DOM declaratively, and don't need all of React. I suppose you could use Preact, but even that involves some VDOM stuff.
-
-## Documentation
-
-Documentation can be found at [https://luke-zhang-04.github.io/DeStagnate/](https://luke-zhang-04.github.io/DeStagnate/) for the latest version
-
-## Installation
-
-Through NPM
-
-```bash
-# NPM
-npm i destagnate --save
-
-# Yarn
-yarn add destagnate
-
-# PNPM
-pnpm i destagnate
-```
-
-Through `curl` or `wget` to download a bundle for browser usage<br/>
-
-```bash
-# Production
-curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.min.js > deStagnate.js
-wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.min.js
-
-# Development
-curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.js > deStagnate.min.js
-wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.js
-
-# Latest IIFE bundle
-curl -L https://unpkg.com/destagnate@3.0.0/dist/iife/deStagnate.min.js > deStagnate.min.js
-wget https://unpkg.com/destagnate@3.0.0/dist/iife/deStagnate.min.js
-```
-
-With a CDN
-
-```html
-<!-- Production -->
-<script src="https://unpkg.com/destagnate@version/dist/iife/deStagnate.min.js"></script>
-
-<!-- Development -->
-<script src="https://unpkg.com/destagnate@version/dist/iife/deStagnate.js"></script>
-
-<!-- Latest -->
-<script src="https://unpkg.com/destagnate@3.0.0/dist/iife/deStagnate.min.js"></script>
-```
-
-## Kitchen Sink Example
-
-See [luke-zhang-04.github.io/DeStagnate/kitchen-sink.html](https://luke-zhang-04.github.io/DeStagnate/kitchen-sink.html) for working demo.
-
-```tsx
 import * as DeStagnate from "../../.."
 
 const width = 250
@@ -202,6 +134,60 @@ jsx: {
     )
 }
 
+// Using the HTM library on top:
+import htm from "htm"
+
+htm: {
+    const html = htm.bind(DeStagnate.createElement)
+
+    const rectState = new RectState()
+    const divRef = DeStagnate.createRef<HTMLDivElement>()
+
+    const ReactiveRect: DeStagnate.FC<{state: RectState}> = () =>
+        html`<svg:svg
+            width=${width * 2}
+            height=${width}
+            viewBox="0 0 ${width * 2} ${width}"
+            fill="none"
+        >
+            <svg:rect
+                width=${width}
+                height=${width}
+                fill=${rectState.value % 2 === 0 ? "#0D6EFD" : "#28A745"}
+                x=${rectState.value}
+                ref=${rectState.ref}
+            />
+        </svg:svg>` as Element
+
+    document.getElementById("my-container-3")?.appendChild(
+        html`<${DeStagnate.Fragment}>
+            <div
+                class="my-class"
+                ref=${divRef}
+                onMyCustomEvent=${(event: Event) => {
+                    console.log(event)
+                    rectState.update(rectState.value + 25)
+                }}
+            >
+                <p>
+                    My paragraph
+                    <i> italic</i>
+                </p>
+            </div>
+            <button
+                onClick=${(event: MouseEvent) =>
+                    divRef.current?.dispatchEvent(
+                        new CustomEvent("mycustomevent", {detail: event}),
+                    )}
+                class="btn btn-secondary mr-3"
+            >
+                Click me!
+            </button>
+            <${ReactiveRect} state=${rectState} />
+        <//>` as Element,
+    )
+}
+
 // Using vanilla DOM methods:
 vanillaDOM: {
     const svgURI = "http://www.w3.org/2000/svg"
@@ -256,52 +242,3 @@ vanillaDOM: {
     container?.appendChild(button)
     container?.appendChild(svg)
 }
-```
-
-## Alternatives
-
--   Why not just `innerHTML`?
-    -   You're missing dev tool support, it's a big security risk, and you'll have to deal with character escaping. Not fun. Mike Bostock goes over why `innerHTML` is bad in the [HTL README](https://github.com/observablehq/htl?tab=readme-ov-file#why-not-concatenate).
--   What about [HTL](https://www.npmjs.com/package/htl)?
-    -   HTL is cool, but it involves an HTML parser at runtime, which makes it quite slow. You also lose devtool support when working with strings.
-    -   Upside: you don't need to transpile to create DOM using XML-like syntax. However you can use HTM (see [#using-htm](#using-htm)) with DeStagnate and it will be faster.
--   What about [VHTML](https://github.com/developit/vhtml)?
-    -   VHTML generates strings which you can safely add to the DOM with `innerHTML`. Unfortunately this has the drawback of not supporting refs or event listeners, which is extremely limiting.
-
-## Using HTM
-
-Since [HTM](https://www.npmjs.com/package/htm) is meant to be a drop-in replacement wherever JSX is used, DeStagnate is compatible with `HTM`. See [using-jsx](https://luke-zhang-04.github.io/DeStagnate/using-jsx.html#using-htm).
-
-## Using JSX
-
-If you're using JSX, you'll need a transpiler. Either TypeScript, or a Babel with a Plugin will work.
-
-### Typescript
-
-You can compile with this `tsconfig.json`
-
-```json
-{
-    "compilerOptions": {
-        "jsx": "react",
-        "jsxFactory": "DeStagnate.createElement",
-        "jsxFragmentFactory": "DeStagnate.Fragment"
-    }
-}
-```
-
-You can also compile with this `.babelrc.json`
-
-```json
-{
-    "plugins": [
-        [
-            "@babel/plugin-transform-react-jsx",
-            {
-                "pragma": "DeStagnate.createElement",
-                "pragmaFrag": "DeStagnate.Fragment"
-            }
-        ]
-    ]
-}
-```
