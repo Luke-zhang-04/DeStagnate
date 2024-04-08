@@ -12,7 +12,7 @@ declare global {
 
 const suite = new window.Benchmark.Suite()
 
-const data = new Array(100).fill(undefined).map((_, index) => index)
+const data = new Array(50).fill(undefined).map((_, index) => index)
 const startBtn = document.getElementById("start-btn") as HTMLButtonElement
 const result = document.getElementById("bench-result")!
 
@@ -117,7 +117,7 @@ startBtn.addEventListener("click", () => {
                 </table>
             </div>
         })
-        .add("HTM", () => {
+        .add("DeStagnate + HTM", () => {
             const Row: DeStagnate.FC<TableData, []> = ({num}) =>
                 html`<tr>
                     <td>${num}</td>

@@ -305,3 +305,39 @@ You can also compile with this `.babelrc.json`
     ]
 }
 ```
+
+## Benchmarks
+
+I ran these on my M1 Air. Your mileage may vary depending on machine, processes running, and browser version. These are just good ballpark estimates. Higher ops/sec = better.
+
+You can run the same benchmarks at [luke-zhang-04.github.io/DeStagnate/bench.html](https://luke-zhang-04.github.io/DeStagnate/bench.html). The benchmark is to create a 50-row table.
+
+Firefox:
+
+```
+innerHTML x 13,569 ops/sec ±0.83% (68 runs sampled)
+Vanilla DOM x 10,731 ops/sec ±4.12% (57 runs sampled)
+DeStagnate x 6,678 ops/sec ±4.46% (38 runs sampled)
+DeStagnate + HTM x 5,368 ops/sec ±3.19% (32 runs sampled)
+HTL x 2,306 ops/sec ±4.50% (55 runs sampled)
+```
+
+Chrome:
+
+```
+innerHTML x 5,362 ops/sec ±3.80% (59 runs sampled)
+Vanilla DOM x 8,422 ops/sec ±3.82% (46 runs sampled)
+DeStagnate x 6,465 ops/sec ±1.82% (37 runs sampled)
+DeStagnate + HTM x 5,885 ops/sec ±0.63% (34 runs sampled)
+HTL x 1,658 ops/sec ±2.25% (61 runs sampled)
+```
+
+Safari:
+
+```
+innerHTML x 8,242 ops/sec ±0.99% (46 runs sampled)
+Vanilla DOM x 13,244 ops/sec ±1.97% (57 runs sampled)
+DeStagnate x 5,140 ops/sec ±1.34% (60 runs sampled)
+DeStagnate + HTM x 3,634 ops/sec ±1.90% (60 runs sampled)
+HTL x 1,315 ops/sec ±1.56% (61 runs sampled)
+```
