@@ -44,8 +44,8 @@ curl -L https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.js 
 wget https://unpkg.com/destagnate@<VERSION_NAME>/dist/<FORMAT>/deStagnate.js
 
 # Latest IIFE bundle
-curl -L https://unpkg.com/destagnate@3.0.0/dist/iife/deStagnate.min.js > deStagnate.min.js
-wget https://unpkg.com/destagnate@3.0.0/dist/iife/deStagnate.min.js
+curl -L https://unpkg.com/destagnate@3.1.0/dist/iife/deStagnate.min.js > deStagnate.min.js
+wget https://unpkg.com/destagnate@3.1.0/dist/iife/deStagnate.min.js
 ```
 
 With a CDN
@@ -58,7 +58,7 @@ With a CDN
 <script src="https://unpkg.com/destagnate@version/dist/iife/deStagnate.js"></script>
 
 <!-- Latest -->
-<script src="https://unpkg.com/destagnate@3.0.0/dist/iife/deStagnate.min.js"></script>
+<script src="https://unpkg.com/destagnate@3.1.0/dist/iife/deStagnate.min.js"></script>
 ```
 
 ## Kitchen Sink Example
