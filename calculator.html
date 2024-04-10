@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DeStagnate Examples | Calculator</title>
+    <link rel="stylesheet" href="css/calculator.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-tomorrow.min.css"
+    />
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <body>
+    <div id="nav"></div>
+    <script async src="js/nav.js"></script>
+
+    <div class="container">
+      <div class="row" id="calculator-h">
+        <h1 class="mt-3">Calculator Example</h1>
+        <p>
+          This example was written with TypeScript and JSX, which needs to be compiled with the
+          Typscript Compiler or Babel. See <a href="using-jsx.html">using JSX</a>.
+        </p>
+        <a
+          href="https://github.com/Luke-zhang-04/DeStagnate/blob/master/docs/src/examples/calculator.tsx"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Source Code</a
+        >
+        <div class="pt-5">
+          <div id="calculator"></div>
+        </div>
+        <div id="calc-source">
+          <pre class="d-block">
+                    <code class="language-tsx">
+import DeStagnate from &quot;../../../&quot;
+
+class CalcState extends DeStagnate.StateContainer&lt;string, HTMLDivElement | null&gt; {
+    public constructor() {
+        super(&quot;&quot;)
+    }
+
+    protected updateDOM(calcDisplay: DeStagnate.Ref&lt;HTMLDivElement&gt;) {
+        // `calcDisplay` is the same as `this.ref`, except `calcDisplay.current` is garunteed not
+        // to be null.
+        DeStagnate.clearChildren(calcDisplay.current)
+        DeStagnate.bindChildren(calcDisplay.current, this.value)
+    }
+}
+
+const calcState = new CalcState()
+
+const CalcButton = ({text, append}: {text: string; append?: string}) =&gt; (
+    // Invoking the `calcState.value` setter is equivalent to calling `calcState.update()`, which
+    // will automatically call `updateDOM` after setting value.
+    &lt;div class=&quot;col-3 calc-btn&quot; onClick={() =&gt; (calcState.value += append ?? text)}&gt;
+        {text}
+    &lt;/div&gt;
+)
+
+document.querySelector(&quot;#calculator&quot;)?.appendChild(
+    &lt;div&gt;
+        &lt;div class=&quot;calc-display&quot; ref={calcState.ref}&gt;&lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            &lt;div class=&quot;col-3 calc-btn clear&quot; onClick={() =&gt; (calcState.value = &quot;&quot;)}&gt;
+                C
+            &lt;/div&gt;
+            &lt;div
+                class=&quot;col-3 calc-btn&quot;
+                onClick={() =&gt;
+                    (calcState.value = calcState.value.slice(0, calcState.value.length - 1))
+                }
+            &gt;
+                {&quot;\u2190&quot;}
+            &lt;/div&gt;
+            &lt;CalcButton text=&quot;%&quot; /&gt;
+            &lt;CalcButton text={&quot;\u00f7&quot;} append=&quot;/&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            {[&quot;7&quot;, &quot;8&quot;, &quot;9&quot;, [&quot;x&quot;, &quot;*&quot;]].map((val) =&gt; (
+                &lt;CalcButton
+                    text={Array.isArray(val) ? val[0] : val}
+                    append={Array.isArray(val) ? val[1] : val}
+                /&gt;
+            ))}
+        &lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            {[&quot;4&quot;, &quot;5&quot;, &quot;6&quot;, &quot;-&quot;].map((val) =&gt; (
+                &lt;CalcButton text={val} /&gt;
+            ))}
+        &lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            {[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;+&quot;].map((val) =&gt; (
+                &lt;CalcButton text={val} /&gt;
+            ))}
+        &lt;/div&gt;
+        &lt;div class=&quot;calc-btns row&quot;&gt;
+            &lt;CalcButton text=&quot;0&quot; /&gt;
+            &lt;CalcButton text=&quot;.&quot; /&gt;
+            &lt;div
+                class=&quot;col-6 calc-btn equals&quot;
+                onClick={() =&gt; {
+                    /* eslint-disable no-eval */
+                    calcState.value = eval(calcState.value).toString() // DO NOT USE EVAL IN A REAL APP EVAL OBJECTIVELY SUCKS
+                    // These examples are just tests to make sure the library is working anyways
+                    /* eslint-enable no-eval */
+                }}
+            &gt;
+                =
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;,
+)
+                    </code>
+                </pre>
+        </div>
+      </div>
+    </div>
+
+    <footer></footer>
+    <script async src="js/footer.js"></script>
+
+    <!-- Popper.js for bootstrap, not actually needed for functionality -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Bootstrap for styling, not actually needed for functionality -->
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Prism JS for syntax hilighting code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- Source Code of Examples -->
+
+    <script src="js/calculator.js"></script>
+  </body>
+</html>
