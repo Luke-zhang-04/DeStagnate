@@ -1,15 +1,16 @@
-import type {ChildrenArrayType, RefProp} from "./types"
+import type {ChildrenType, RefProp} from "./types"
 import {bindChildren, setRefs} from "./utils"
+import type {FC} from "./createElement"
 
 interface FragmentProps {
     ref?: RefProp<DocumentFragment>
 }
 
 /* eslint-disable @typescript-eslint/naming-convention */
-export const Fragment = (
-    props?: FragmentProps | null,
-    ...children: ChildrenArrayType
-): DocumentFragment => {
+export const Fragment: FC<FragmentProps | null, ChildrenType, DocumentFragment> = (
+    props,
+    ...children
+) => {
     const documentFragment = document.createDocumentFragment()
 
     if (props?.ref) {

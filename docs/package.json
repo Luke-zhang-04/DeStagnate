@@ -15,13 +15,17 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "sass": "sass scss:css --style compressed"
+    "sass": "sass scss:public/css --style compressed"
   },
   "keywords": [],
   "dependencies": {
-    "bootstrap": "~5.0.0-alpha1"
+    "bootstrap": "~5.0.0-alpha1",
+    "htl": "^0.3.1",
+    "htm": "^3.1.1"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@types/benchmark": "^2.1.5",
     "sass": "^1.26.10",
     "typescript": "~5.4.3"
   }

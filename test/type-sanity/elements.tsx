@@ -5,6 +5,8 @@ let div: HTMLDivElement
 let anchor: HTMLAnchorElement
 
 div = createElement("div")
+div = createElement("div", null)
+div = createElement("div", {})
 ;<div></div>
 
 // @ts-expect-error
@@ -42,3 +44,15 @@ createElement("a", {href: true})
 
 createElement("a", null, <div></div>)
 ;<a>{createElement("div")}</a>
+
+div = createElement(
+    "div",
+    {class: "col-3"},
+    createElement("table", null, createElement("tr", null), [createElement("tr", null)]),
+)
+;<div class="col-3">
+    <table>
+        <tr />
+        {[<tr />]}
+    </table>
+</div>

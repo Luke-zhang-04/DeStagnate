@@ -24,7 +24,6 @@ type Args<Value, RefVal extends Node | null> =
  *     }
  * }
  *
- * // Then we can attach the ref and value to some element
  * ...
  * const square = new SquareState()
  *
@@ -37,6 +36,7 @@ type Args<Value, RefVal extends Node | null> =
  *             if (square.value === "") {
  *                 // Setter sets the value and then invokes `updateDOM`
  *                 square.value = currentPlayer
+ *                 // Alternatively, `square.update(currentPlayer)` may be easier to understand
  *             }
  *
  *             // Change current player
@@ -45,6 +45,7 @@ type Args<Value, RefVal extends Node | null> =
  *     },
  *     createElement(
  *         "div",
+ *         // We can attach the ref and value to some element
  *         {class: "tictactoe-square", ref: square.ref},
  *         square.value,
  *     ),

@@ -6,29 +6,10 @@ import type {
 } from "./dom"
 import type {Ref} from "../createRef"
 
-export type ChildrenFlatArrayType = (
-    | boolean
-    | number
-    | BigInt
-    | string
-    | Node
-    | null
-    | undefined
-)[]
-
-export type ChildrenArrayType = ChildrenFlatArrayType | ChildrenArrayType[]
+export type ChildType = Node | boolean | number | BigInt | string | null | undefined
 
 /** All types the children parameter can be */
-export type ChildrenType =
-    | ChildrenType[]
-    | boolean
-    | number
-    | BigInt
-    | string
-    | ChildrenArrayType
-    | Node
-    | null
-    | undefined
+export type ChildrenType = (ChildrenType | ChildType)[]
 
 export interface EventMap extends HTMLElementEventMap, HTMLMediaElementEventMap {
     /* eslint-disable-next-line @typescript-eslint/naming-convention */
@@ -108,12 +89,25 @@ export type HTMLElementProps<T extends keyof HTMLElementTagNameMap | string = st
         ? DSElementProps<HTMLElementTagNameMap[T], HTMLAttributeTagNameMap[T]>
         : DSElementProps<HTMLElement, HTMLAttributes>
 
+export type AllHTMLElementProps = DSElementProps<HTMLElement, AllHTMLAttributes>
+
 export type HTMLDeprecatedElementProps<T extends keyof HTMLElementDeprecatedTagNameMap> =
     DSElementProps<HTMLElementDeprecatedTagNameMap[T], HTMLAttributeDeprecatedTagNameMap[T]>
 
-export type SVGElementProps<T extends keyof SVGElementTagNameMap> = DSElementProps<
-    SVGElementTagNameMap[T],
-    SVGAttributes
->
+export type XHTMLElementProps<
+    T extends
+        | keyof HTMLElementTagNameMap
+        | keyof HTMLElementDeprecatedTagNameMap
+        | string = string,
+> = T extends keyof HTMLElementTagNameMap
+    ? DSElementProps<HTMLElement, HTMLAttributeTagNameMap[T]>
+    : T extends keyof HTMLElementDeprecatedTagNameMap
+      ? DSElementProps<HTMLElement, HTMLAttributeDeprecatedTagNameMap[T]>
+      : DSElementProps<HTMLElement, HTMLAttributes>
+
+export type SVGElementProps<T extends keyof SVGElementTagNameMap | string = string> =
+    T extends keyof SVGElementTagNameMap
+        ? DSElementProps<SVGElementTagNameMap[T], SVGAttributes>
+        : DSElementProps<SVGElement, SVGAttributes>
 
 export type ElementProps = DSElementProps<Element, ElementAttributes>
