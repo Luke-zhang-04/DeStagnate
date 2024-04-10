@@ -56,6 +56,9 @@ jobs:
       - name: install deps
         run: pnpm install
 
+      - name: build
+        run: pnpm build --no-docs
+
       - name: build docs
         run: pnpm build --docs
 
