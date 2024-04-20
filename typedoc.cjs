@@ -5,4 +5,13 @@ module.exports = {
     plugin: ["typedoc-material-theme", "typedoc-plugin-missing-exports"],
     themeColor: "#cb9820",
     darkHighlightTheme: "dark-plus",
+    customCss: "./docs/typedoc.css",
+    navigationLinks: {
+        Examples: "..",
+        GitHub: "https://github.com/Luke-zhang-04/DeStagnate",
+    },
+    sidebarLinks: {
+        Examples: "..",
+        GitHub: "https://github.com/Luke-zhang-04/DeStagnate",
+    },
 }
