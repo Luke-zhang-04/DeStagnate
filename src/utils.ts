@@ -114,7 +114,7 @@ export const bindProps = (element: Element, props?: GeneralProps | null, ns = fa
 
 /**
  * Adds children to element. A nested array of children will be recursively appended to `element`
- * in the order that they appear. `null`, `undefined`, and `false` will be ignored.
+ * in the order that they appear. Falsey values for children will be ignored.
  *
  * @param element - Element to add children to
  * @param children - Children to append to `element`
@@ -122,7 +122,7 @@ export const bindProps = (element: Element, props?: GeneralProps | null, ns = fa
  * @remark This function will **sequentially** append `children` to `element`. If `element` is already in the DOM (due to a ref for example), each child will cause DOM reflow when appended. To avoid this, wrap children in a Fragment when necessary.
  */
 export const bindChildren = (element: Node, children?: ChildrenType | ChildType): void => {
-    if (children !== null && children !== undefined && children !== false) {
+    if (children) {
         if (Array.isArray(children)) {
             for (const child of children) {
                 bindChildren(element, child)
