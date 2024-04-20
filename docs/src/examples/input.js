@@ -1,4 +1,4 @@
-import {createElement, StateContainer} from "../../.."
+import {bindProps, createElement, StateContainer} from "../../.."
 import htm from "htm"
 
 const html = htm.bind(createElement)
@@ -9,8 +9,10 @@ class InputState extends StateContainer {
     }
 
     updateDOM(ref) {
-        ref.current.disabled = this.value.disabled
-        ref.current.placeholder = this.value.disabled ? "Disabled" : "My Input"
+        bindProps(ref.current, {
+            disabled: this.value.disabled,
+            placeholder: this.value.disabled ? "Disabled" : "My Input",
+        })
     }
 }
 

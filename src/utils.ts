@@ -1,4 +1,12 @@
-import type {ChildType, ChildrenType, EventFunc, GeneralProps, RefProp} from "./types"
+import type {
+    AllHTMLElementProps,
+    ChildType,
+    ChildrenType,
+    EventFunc,
+    GeneralProps,
+    RefProp,
+    SVGElementProps,
+} from "./types"
 import {CSSStyles} from "./types/dom"
 
 const isStringable = (val: unknown): val is boolean | number | bigint | string =>
@@ -53,6 +61,16 @@ function* objectEntries<T extends {}>(
     return
 }
 
+type BindProps = {
+    (
+        element: HTMLElement,
+        props?: AllHTMLElementProps | null | undefined,
+        ns?: false | undefined,
+    ): void
+    (element: SVGElement, props: SVGElementProps | null | undefined, ns: true): void
+    (element: Element, props?: GeneralProps | null | undefined, ns?: boolean): void
+}
+
 /**
  * Binds children to element.
  *
@@ -74,7 +92,11 @@ function* objectEntries<T extends {}>(
  * @param props - Props to bind with
  * @param ns - If namespace element
  */
-export const bindProps = (element: Element, props?: GeneralProps | null, ns = false): void => {
+export const bindProps: BindProps = (
+    element: Element,
+    props?: GeneralProps | null | undefined,
+    ns = false,
+): void => {
     if (props) {
         for (const [key, val] of objectEntries(props)) {
             if (typeof val === "boolean") {
