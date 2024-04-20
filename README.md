@@ -13,6 +13,14 @@ A lightweight (~ 1 KB gzipped) wrapper around vanilla DOM methods for declarativ
 
 This isn't meant to be React. React has virtual DOM, hooks, and a huge ecosystem surrounding it. React 19 is supposed to have a compiler too. This is just a wrapper for when you need to create some DOM declaratively, and don't need all of React. I suppose you could use Preact, but even that involves some VDOM stuff.
 
+## Why did you name it that?
+
+> Had I actually considered this to be a career, I probably would have called it something else, because it's the stupidest f\*\*\*ing band name in the world.
+>
+> \- Dave Grohl
+
+I was in like 10th grade, I don't know what I was thinking. It's supposed to mean taking a static page (stagnant) and adding an interactive/dynamic piece to it (de-stagnate), but it's a stupid name.
+
 ## Documentation
 
 Documentation can be found at [https://luke-zhang-04.github.io/DeStagnate/](https://luke-zhang-04.github.io/DeStagnate/) for the latest version
@@ -60,6 +68,205 @@ With a CDN
 <!-- Latest -->
 <script src="https://unpkg.com/destagnate@3.2.0/dist/iife/deStagnate.min.js"></script>
 ```
+
+## Features
+
+You can create DOM elements, their properties, and their children declaratively using JSX, the `createElement` API, or HTM.
+
+```tsx
+;<p>Hello world!</p> // Creates a paragraph element
+createElement("p", null, "Hello world!")
+html`<p>Hello world!</p>`
+```
+
+DeStagnate can handle multiple children, and nested children are recursively handled "depth-first".
+
+```tsx
+;<div>
+    <p>This is a </p>
+    <i>paragraph</i>
+    {[
+        <ul>
+            {[1, 2, 3].map((num) => (
+                <li>{num}</li>
+            ))}
+        </ul>,
+    ]}
+</div>
+createElement(
+    "div",
+    null,
+    createElement("p", null, "This is a "),
+    createElement("i", null, "paragraph"),
+    [
+        createElement(
+            "ul",
+            null,
+            [1, 2, 3].map((num) => createElement("li", null, num)),
+        ),
+    ],
+)
+html`<div>
+    <p>This is a</p>
+    <i>paragraph</i>
+    ${[
+        html`<ul>
+            ${[1, 2, 3].map((num) => html`<li>${num}</li>`)}
+        </ul>`,
+    ]}
+</div>`
+```
+
+### Fragments
+
+You can place multiple children in a document fragment, which can be useful for treating multiple elements as one.
+
+```tsx
+myElement.appendChild(
+    <>
+        <div>Hello</div>
+        <div>World</div>
+    </>,
+)
+myElement.appendChild(
+    createElement(
+        DeStagnate.Fragment,
+        null,
+        createElement("div", null, "Hello"),
+        createElement("div", null, "World"),
+    ),
+)
+myElement.appendChild(
+    html`<${DeStagnate.Fragment}>
+        <div>Hello</div>
+        <div>World</div>
+    <//>`,
+)
+```
+
+### Automatic Escaping
+
+The biggest risk of using `innerHTML` is XSS attacks and script injections. But it's also just bad when you try to display data with special characters in it.
+
+```tsx
+const myData = '<script>alert("xss")</script> <a>Malicious link</a>'
+
+;<div>{myData}</div> // Will display as `<script>alert("xss")</script> <a>Malicious link</a>`
+createElement("div", null, myData) // Same
+html`<div>${myData}</div>` // Also same
+```
+
+### Props
+
+Define element attributes like you would with React. Note that `class` is used instead of `className`.
+
+```tsx
+;<input class="my-class" disabled data-custom-prop="value" />
+createElement("input", {class: "my-class", disabled: true, "data-custom-prop": "value"})
+html`<input class="my-class" disabled data-custom-prop="value" />`
+```
+
+#### Styles
+
+DeStagnate supports string and object styles. For objects, it uses the native `style` property under the hood, except that `null` is changed to an empty string and `undefined` is ignored. This also means styles are safely escaped.
+
+```tsx
+const myBadColor: "red; display: none"
+;<div
+    style={{
+        padding: "1rem",
+        color: myBadColor, // Will not apply
+        margin: "1px;", // Will also not apply (extra semicolon)
+        background: "blue",
+    }}
+/>
+createElement("div", {
+    style: {
+        padding: "1rem",
+        color: myBadColor, // Will not apply
+        margin: "1px;", // Will also not apply (extra semicolon)
+        background: "blue",
+    },
+})
+html`<div
+    style=${{
+        padding: "1rem",
+        color: myBadColor, // Will not apply
+        margin: "1px;", // Will also not apply (extra semicolon)
+        background: "blue",
+    }}
+/>`
+
+// Will also work, but display will be none, and margin applied.
+;<div style={`padding: 1rem; color: ${myBadColor}; margin: 1px;; background: blue;`} />
+```
+
+#### Event Listeners
+
+Any prop whose value is a function and name starts with "on" will be added as an event listener. The name of the event will be forced to lowercase, even for custom events. Adding event listeners this way is more obvious and follows locality-of-behaviour.
+
+```tsx
+;<input onInput={console.log} onCustomEvent={console.log} /> // Adds event listeners for "input" and "customevent"
+createElement("input", {onInput: console.log, onCustomEvent: console.log})
+html`<input onInput=${console.log} onCustomEvent=${console.log} />`
+```
+
+#### References
+
+Like React, DeStagnate supports refs. Refs allow you to edit an element after it has been created.
+
+```tsx
+const ref = DeStagnate.createRef()
+
+;<input ref={ref} />
+createElement("input", {ref})
+html`<input ref=${ref} />`
+
+ref.current.value = "Form value"
+```
+
+### Function "Components"
+
+Since DeStagnate doesn't have hooks or anything, function components end up being equivalent to just calling the function directly. Nevertheless supporting them was necessary for fragments, so their support was generalized.
+
+```tsx
+interface MyProps {
+    title: string
+}
+
+const MyComponent: DeStagnate.FC<MyProps> = ({title}, ...children) => (
+    <p title={title}>{children}</p>
+)
+
+;<MyComponent title="My Title">Hello world!</MyComponent>
+createElement(MyComponent, {class: "My Title"}, "Hello world!")
+html`<${MyComponent} title="My Title">Hello world!<//>`
+
+// The return type and children of the function can also be specified
+const MyComponent2: DeStagnate.FC<MyProps, [string, number], HTMLParagraphElement> = (
+    {title},
+    [str, num],
+) =>
+    (
+        <p title={title}>
+            {str} {num}
+        </p>
+    ) as HTMLParagraphElement // JSX return type cannot be specified, so it's just `Node`
+
+;<MyComponent2 title="My Title">Hello world!{100}</MyComponent2>
+// Typescript does not check if the JSX children type is valid, so these next two don't have to follow the rules
+createElement(MyComponent2, {class: "My Title"}, "Hello world!", 100)
+html`<${MyComponent2} title="My Title">Hello world! ${100}<//>`
+```
+
+### Utilities
+
+DeStagnate comes with a few utilities to make DOM manipulation easier. Most of these are also used under the hood by `createElement`. More precise documentation can be found at [https://luke-zhang-04.github.io/DeStagnate/docs](https://luke-zhang-04.github.io/DeStagnate/docs)
+
+-   `setRefs` takes a ref or array of refs, and applies the current value to the first argument.
+-   `bindProps` takes an object of props and sets element attributes accordingly. Specific details about what happens to what are in the [docs](https://luke-zhang-04.github.io/DeStagnate/docs/functions/bindProps.html)
+-   `bindChildren` some child (which could be either a singular, array, or nested array of DOM nodes), and appends them to an element "depth first", in the order they appear. This is useful for iterating over data, and you don't have to worry about spreading or flattening.
+-   `clearChildren` removes all children from a DOM node.
 
 ## Kitchen Sink Example
 
@@ -156,7 +363,7 @@ createElement: {
     )
 }
 
-// Alternatively, you can use JSX. You will need a tranpiler, though.
+// Alternatively, you can use JSX. You will need a transpiler, though.
 jsx: {
     const rectState = new RectState()
     const divRef = DeStagnate.createRef<HTMLDivElement>()

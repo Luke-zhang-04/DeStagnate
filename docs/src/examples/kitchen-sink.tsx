@@ -89,7 +89,7 @@ createElement: {
     )
 }
 
-// Alternatively, you can use JSX. You will need a tranpiler, though.
+// Alternatively, you can use JSX. You will need a transpiler, though.
 jsx: {
     const rectState = new RectState()
     const divRef = DeStagnate.createRef<HTMLDivElement>()
