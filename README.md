@@ -126,6 +126,12 @@ createElement: {
                         console.log(event)
                         rectState.update(rectState.value + 25)
                     },
+                    style: {
+                        borderStyle: "solid",
+                        borderColor: "black",
+                        borderWidth: "1px",
+                        paddingTop: "1rem",
+                    },
                 },
                 DeStagnate.createElement(
                     "p",
@@ -181,6 +187,12 @@ jsx: {
                     console.log(event)
                     rectState.update(rectState.value + 25)
                 }}
+                style={{
+                    borderStyle: "solid",
+                    borderColor: "black",
+                    borderWidth: "1px",
+                    paddingTop: "1rem",
+                }}
             >
                 <p>
                     My paragraph
@@ -199,6 +211,66 @@ jsx: {
             </button>
             <ReactiveRect state={rectState} />
         </>,
+    )
+}
+
+// Using the HTM library on top:
+import htm from "htm"
+
+htm: {
+    const html = htm.bind(DeStagnate.createElement)
+
+    const rectState = new RectState()
+    const divRef = DeStagnate.createRef<HTMLDivElement>()
+
+    const ReactiveRect: DeStagnate.FC<{state: RectState}> = () =>
+        html`<svg:svg
+            width=${width * 2}
+            height=${width}
+            viewBox="0 0 ${width * 2} ${width}"
+            fill="none"
+        >
+            <svg:rect
+                width=${width}
+                height=${width}
+                fill=${rectState.value % 2 === 0 ? "#0D6EFD" : "#28A745"}
+                x=${rectState.value}
+                ref=${rectState.ref}
+            />
+        </svg:svg>` as Element
+
+    document.getElementById("my-container-3")?.appendChild(
+        html`<${DeStagnate.Fragment}>
+            <div
+                class="my-class"
+                ref=${divRef}
+                onMyCustomEvent=${(event: Event) => {
+                    console.log(event)
+                    rectState.update(rectState.value + 25)
+                }}
+                style=${{
+                    borderStyle: "solid",
+                    borderColor: "black",
+                    borderWidth: "1px",
+                    paddingTop: "1rem",
+                }}
+            >
+                <p>
+                    My paragraph
+                    <i> italic</i>
+                </p>
+            </div>
+            <button
+                onClick=${(event: MouseEvent) =>
+                    divRef.current?.dispatchEvent(
+                        new CustomEvent("mycustomevent", {detail: event}),
+                    )}
+                class="btn btn-secondary mr-3"
+            >
+                Click me!
+            </button>
+            <${ReactiveRect} state=${rectState} />
+        <//>` as Element,
     )
 }
 
@@ -232,6 +304,10 @@ vanillaDOM: {
         rect.setAttributeNS(null, "fill", rectStateValue % 2 === 0 ? "#0D6EFD" : "#28A745")
         rect.setAttributeNS(null, "x", rectStateValue.toString())
     })
+    div.style.borderStyle = "solid"
+    div.style.borderColor = "black"
+    div.style.borderWidth = "1px"
+    div.style.paddingTop = "1rem"
 
     const paragraph = document.createElement("p")
 

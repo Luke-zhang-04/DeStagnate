@@ -1,4 +1,5 @@
 import type {ChildType, ChildrenType, EventFunc, GeneralProps, RefProp} from "./types"
+import {CSSStyles} from "./types/dom"
 
 const isStringable = (val: unknown): val is boolean | number | bigint | string =>
     typeof val === "boolean" ||
@@ -27,6 +28,32 @@ export const setRefs = (element: Node, refs: RefProp<Node>): void => {
 }
 
 /**
+ * Better `Object.entries`, which is faster, returns an iterator instead of an array, and is typed
+ * better
+ *
+ * @example
+ *     ;```ts
+ *     Array.from(objectEntries({a: 1, b: 2})) // [["a", 1], ["b", 2]]
+ *     ```
+ *
+ * @param obj - Object to get entries for
+ * @returns Generator producing the key and value of each item
+ * @see {@link https://github.com/Luke-zhang-04/utils}
+ */
+function* objectEntries<T extends {}>(
+    obj: T,
+): Generator<{[K in keyof T]: [K, T[K]]}[keyof T], void, void> {
+    for (const key in obj) {
+        /* eslint-disable-next-line no-prototype-builtins */
+        if (obj.hasOwnProperty(key)) {
+            yield [key, obj[key]]
+        }
+    }
+
+    return
+}
+
+/**
  * Binds children to element.
  *
  * - Props of type `string`, `number`, `bigint`, `boolean` will be cast to a string before being
@@ -46,7 +73,7 @@ export const setRefs = (element: Node, refs: RefProp<Node>): void => {
  */
 export const bindProps = (element: Element, props?: GeneralProps | null, ns = false): void => {
     if (props) {
-        for (const [key, val] of Object.entries(props)) {
+        for (const [key, val] of objectEntries(props)) {
             if (isStringable(val)) {
                 if (ns) {
                     element.setAttributeNS(null, key, val.toString())
@@ -62,6 +89,16 @@ export const bindProps = (element: Element, props?: GeneralProps | null, ns = fa
                 ("current" in val || Array.isArray(val))
             ) {
                 setRefs(element, val)
+            } else if (
+                key === "style" &&
+                typeof val === "object" &&
+                element instanceof HTMLElement
+            ) {
+                for (const [name, value] of objectEntries(val as CSSStyles)) {
+                    if (value !== undefined) {
+                        element.style[name] = value ?? ""
+                    }
+                }
             } else if (val === null) {
                 if (ns) {
                     element.removeAttributeNS(null, key)
@@ -69,7 +106,7 @@ export const bindProps = (element: Element, props?: GeneralProps | null, ns = fa
                     element.removeAttribute(key)
                 }
             } else if (val !== undefined) {
-                console.warn(`Invalid prop type ${typeof val} at ${key}: ${val}`)
+                console.warn(`Invalid prop type ${typeof val} at ${key}: ${val} for ${element}`)
             }
         }
     }

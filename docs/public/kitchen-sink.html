@@ -54,6 +54,7 @@ class RectState extends DeStagnate.StateContainer&lt;number, SVGRectElement | nu
         )
     }
 }
+const paragraphContent = '&quot;My paragraph&quot; &lt;i&gt;Escaped&lt;/i&gt; &lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;'
           </code>
         </pre>
 
@@ -66,7 +67,7 @@ class RectState extends DeStagnate.StateContainer&lt;number, SVGRectElement | nu
 const rectState = new RectState()
 const divRef = DeStagnate.createRef&lt;HTMLDivElement&gt;()
 
-const ReactiveRect: DeStagnate.FC&lt;{state: RectState}&gt; = () =&gt;
+const ReactiveRect: DeStagnate.FC&lt;{state: RectState}&gt; = ({state}) =&gt;
     DeStagnate.createElement(
         &quot;svg:svg&quot;,
         {
@@ -78,9 +79,9 @@ const ReactiveRect: DeStagnate.FC&lt;{state: RectState}&gt; = () =&gt;
         DeStagnate.createElement(&quot;svg:rect&quot;, {
             width,
             height: width,
-            fill: rectState.value % 2 === 0 ? &quot;#0D6EFD&quot; : &quot;#28A745&quot;,
-            x: rectState.value,
-            ref: rectState.ref,
+            fill: state.value % 2 === 0 ? &quot;#0D6EFD&quot; : &quot;#28A745&quot;,
+            x: state.value,
+            ref: state.ref,
         }),
     )
 
@@ -98,11 +99,17 @@ document.getElementById(&quot;my-container-1&quot;)?.appendChild(
                     console.log(event)
                     rectState.update(rectState.value + 25)
                 },
+                style: {
+                    borderStyle: &quot;solid&quot;,
+                    borderColor: &quot;black&quot;,
+                    borderWidth: &quot;1px&quot;,
+                    paddingTop: &quot;1rem&quot;,
+                },
             },
             DeStagnate.createElement(
                 &quot;p&quot;,
                 null,
-                &quot;My paragraph&quot;,
+                paragraphContent
                 DeStagnate.createElement(&quot;i&quot;, null, &quot; italic&quot;),
             ),
         ),
@@ -132,7 +139,7 @@ document.getElementById(&quot;my-container-1&quot;)?.appendChild(
 const rectState = new RectState()
 const divRef = DeStagnate.createRef&lt;HTMLDivElement&gt;()
 
-const ReactiveRect: DeStagnate.FC&lt;{state: RectState}&gt; = () =&gt; (
+const ReactiveRect: DeStagnate.FC&lt;{state: RectState}&gt; = ({state}) =&gt; (
     &lt;svg:svg
         width={width * 2}
         height={width}
@@ -142,9 +149,9 @@ const ReactiveRect: DeStagnate.FC&lt;{state: RectState}&gt; = () =&gt; (
         &lt;svg:rect
             width={width}
             height={width}
-            fill={rectState.value % 2 === 0 ? &quot;#0D6EFD&quot; : &quot;#28A745&quot;}
-            x={rectState.value}
-            ref={rectState.ref}
+            fill={state.value % 2 === 0 ? &quot;#0D6EFD&quot; : &quot;#28A745&quot;}
+            x={state.value}
+            ref={state.ref}
         /&gt;
     &lt;/svg:svg&gt;
 )
@@ -158,9 +165,15 @@ document.getElementById(&quot;my-container-2&quot;)?.appendChild(
                 console.log(event)
                 rectState.update(rectState.value + 25)
             }}
+            style={{
+                borderStyle: &quot;solid&quot;,
+                borderColor: &quot;black&quot;,
+                borderWidth: &quot;1px&quot;,
+                paddingTop: &quot;1rem&quot;,
+            }}
         &gt;
             &lt;p&gt;
-                My paragraph
+                {paragraphContent}
                 &lt;i&gt; italic&lt;/i&gt;
             &lt;/p&gt;
         &lt;/div&gt;
@@ -196,7 +209,7 @@ const html = htm.bind(DeStagnate.createElement)
 const rectState = new RectState()
 const divRef = DeStagnate.createRef&lt;HTMLDivElement&gt;()
 
-const ReactiveRect: DeStagnate.FC&lt;{state: RectState}&gt; = () =&gt;
+const ReactiveRect: DeStagnate.FC&lt;{state: RectState}&gt; = ({state}) =&gt;
     html`&lt;svg:svg
         width=${width * 2}
         height=${width}
@@ -206,9 +219,9 @@ const ReactiveRect: DeStagnate.FC&lt;{state: RectState}&gt; = () =&gt;
         &lt;svg:rect
             width=${width}
             height=${width}
-            fill=${rectState.value % 2 === 0 ? &quot;#0D6EFD&quot; : &quot;#28A745&quot;}
-            x=${rectState.value}
-            ref=${rectState.ref}
+            fill=${state.value % 2 === 0 ? &quot;#0D6EFD&quot; : &quot;#28A745&quot;}
+            x=${state.value}
+            ref=${state.ref}
         /&gt;
     &lt;/svg:svg&gt;` as Element
 
@@ -221,9 +234,15 @@ document.getElementById(&quot;my-container-3&quot;)?.appendChild(
                 console.log(event)
                 rectState.update(rectState.value + 25)
             }}
+            style=${{
+                borderStyle: &quot;solid&quot;,
+                borderColor: &quot;black&quot;,
+                borderWidth: &quot;1px&quot;,
+                paddingTop: &quot;1rem&quot;,
+            }}
         &gt;
             &lt;p&gt;
-                My paragraph
+                ${paragraphContent}
                 &lt;i&gt; italic&lt;/i&gt;
             &lt;/p&gt;
         &lt;/div&gt;
@@ -276,10 +295,14 @@ div.addEventListener(&quot;mycustomevent&quot;, (event) =&gt; {
     rect.setAttributeNS(null, &quot;fill&quot;, rectStateValue % 2 === 0 ? &quot;#0D6EFD&quot; : &quot;#28A745&quot;)
     rect.setAttributeNS(null, &quot;x&quot;, rectStateValue.toString())
 })
+div.style.borderStyle = &quot;solid&quot;
+div.style.borderColor = &quot;black&quot;
+div.style.borderWidth = &quot;1px&quot;
+div.style.paddingTop = &quot;1rem&quot;
 
 const paragraph = document.createElement(&quot;p&quot;)
 
-paragraph.innerText = &quot;My paragraph&quot;
+paragraph.appendChild(document.createTextNode(paragraphContent))
 
 const italic = document.createElement(&quot;i&quot;)
 
