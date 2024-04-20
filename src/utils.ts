@@ -56,8 +56,11 @@ function* objectEntries<T extends {}>(
 /**
  * Binds children to element.
  *
- * - Props of type `string`, `number`, `bigint`, `boolean` will be cast to a string before being
- *   added as an attribute to `element`
+ * - Props of type `boolean` will be treated as a boolean attribute usind `toggleAttribute`, and will
+ *   follow the rules of [boolean
+ *   attributes](https://developer.mozilla.org/en-US/docs/Glossary/Boolean/HTML)
+ * - Props of type `string`, `number`, `bigint` will be cast to a string before being added as an
+ *   attribute to `element`
  * - Props that begin with "on" and have a function value will be added as event listeners, where the
  *   name of the event is the key name without the "on" prefix, all set to lower case, and the
  *   function is the handler.
@@ -74,7 +77,9 @@ function* objectEntries<T extends {}>(
 export const bindProps = (element: Element, props?: GeneralProps | null, ns = false): void => {
     if (props) {
         for (const [key, val] of objectEntries(props)) {
-            if (isStringable(val)) {
+            if (typeof val === "boolean") {
+                element.toggleAttribute(key, val)
+            } else if (isStringable(val)) {
                 if (ns) {
                     element.setAttributeNS(null, key, val.toString())
                 } else {
@@ -106,7 +111,7 @@ export const bindProps = (element: Element, props?: GeneralProps | null, ns = fa
                     element.removeAttribute(key)
                 }
             } else if (val !== undefined) {
-                console.warn(`Invalid prop type ${typeof val} at ${key}: ${val} for ${element}`)
+                console.warn(`Invalid prop at ${key}: ${val} for ${element}`)
             }
         }
     }

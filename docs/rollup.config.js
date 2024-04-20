@@ -26,6 +26,7 @@ export default [
     "footer.js",
     "examples/calculator.js",
     "examples/eventListener.js",
+    "examples/input.js",
     "examples/svg.js",
     "examples/mathML.js",
     "examples/tictactoe.js",
