@@ -8,6 +8,7 @@ import type {
 import type {Ref} from "../createRef"
 
 export type PartialNullable<T> = {[P in keyof T]?: T[P] | undefined | null}
+export type IsAllPartial<T> = Partial<T> extends T ? true : false
 
 export type ChildType = Node | boolean | number | BigInt | string | null | undefined
 

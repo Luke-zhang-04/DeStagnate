@@ -3,6 +3,7 @@ import {
     ElementProps,
     HTMLDeprecatedElementProps,
     HTMLElementProps,
+    IsAllPartial,
     SVGElementProps,
     XHTMLElementProps,
 } from "./types"
@@ -12,7 +13,7 @@ import {bindChildren, bindProps} from "./utils"
 
 // TODO: make children optional
 export type FunctionComponent<
-    Props extends {} | null | undefined,
+    Props extends {},
     Children extends unknown[] = ChildrenType,
     Returns extends Node | JSX.Element = JSX.Element,
 > = (props: Props, ...children: Children) => Returns
@@ -130,13 +131,15 @@ export function createElement(
  * @throws {Error} - If `tagNameOrFunction` is not a string or function, an errow is thrown
  */
 export function createElement<
-    Props extends {} | null,
+    Props extends {},
     Children extends unknown[],
     Returns extends Node | JSX.Element,
 >(
     ...[func, props, ...children]: [
         func: FunctionComponent<Props, Children, Returns>,
-        ...(Props extends null ? [props?: Props | undefined] : [props: Props]),
+        ...(IsAllPartial<Props> extends true
+            ? [props?: Props | null | undefined]
+            : [props: Props]),
         ...children: Children,
     ]
 ): Returns
@@ -178,7 +181,7 @@ export function createElement<T extends string | {[key: string]: unknown} | null
     } else if (typeof tagNameOrFunction === "function") {
         // If `tagNameOrFunction` is a function, then the previous overload should've enforced that
         // the props are set by the function (`T`)
-        return tagNameOrFunction((props ?? null) as T, children)
+        return tagNameOrFunction((props ?? {}) as T, children)
     }
 
     throw new Error(`Invalid element type ${typeof tagNameOrFunction}: ${tagNameOrFunction}`)

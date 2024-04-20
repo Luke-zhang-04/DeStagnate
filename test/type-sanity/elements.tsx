@@ -48,12 +48,19 @@ createElement("a", null, <div></div>)
 div = createElement(
     "div",
     {class: "col-3"},
-    createElement("table", null, createElement("tr", null), [createElement("tr", null)]),
+    createElement("table", null, createElement("tr", null), [
+        createElement("tr", null),
+        [createElement("tr", null)],
+        [createElement("tr", null), [[[[createElement("tr", null)]]]], createElement("tr", null)],
+        createElement("tr", null),
+    ]),
 )
 ;<div class="col-3">
     <table>
         <tr />
         {[<tr />]}
+        {[<tr />, [[[[<tr />]]]], <tr />]}
+        <tr />
     </table>
 </div>
 

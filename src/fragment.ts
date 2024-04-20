@@ -7,14 +7,14 @@ interface FragmentProps {
 }
 
 /* eslint-disable @typescript-eslint/naming-convention */
-export const Fragment: FC<FragmentProps | null, ChildrenType, DocumentFragment> = (
-    props,
+export const Fragment: FC<FragmentProps, ChildrenType, DocumentFragment> = (
+    {ref},
     ...children
 ) => {
     const documentFragment = document.createDocumentFragment()
 
-    if (props?.ref) {
-        setRefs(documentFragment, props.ref)
+    if (ref) {
+        setRefs(documentFragment, ref)
     }
     bindChildren(documentFragment, children)
 
