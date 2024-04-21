@@ -75,8 +75,10 @@ You can create DOM elements, their properties, and their children declaratively 
 
 ```tsx
 ;<p>Hello world!</p> // Creates a paragraph element
-createElement("p", null, "Hello world!")
-html`<p>Hello world!</p>`
+
+createElement("p", null, "Hello world!") // Same
+
+html`<p>Hello world!</p>` // Also works
 ```
 
 DeStagnate can handle multiple children, and nested children are recursively handled "depth-first".
@@ -93,6 +95,7 @@ DeStagnate can handle multiple children, and nested children are recursively han
         </ul>,
     ]}
 </div>
+
 createElement(
     "div",
     null,
@@ -106,6 +109,7 @@ createElement(
         ),
     ],
 )
+
 html`<div>
     <p>This is a</p>
     <i>paragraph</i>
@@ -128,6 +132,7 @@ myElement.appendChild(
         <div>World</div>
     </>,
 )
+
 myElement.appendChild(
     createElement(
         DeStagnate.Fragment,
@@ -136,6 +141,7 @@ myElement.appendChild(
         createElement("div", null, "World"),
     ),
 )
+
 myElement.appendChild(
     html`<${DeStagnate.Fragment}>
         <div>Hello</div>
@@ -152,7 +158,9 @@ The biggest risk of using `innerHTML` is XSS attacks and script injections. But 
 const myData = '<script>alert("xss")</script> <a>Malicious link</a>'
 
 ;<div>{myData}</div> // Will display as `<script>alert("xss")</script> <a>Malicious link</a>`
+
 createElement("div", null, myData) // Same
+
 html`<div>${myData}</div>` // Also same
 ```
 
@@ -162,7 +170,9 @@ Define element attributes like you would with React. Note that `class` is used i
 
 ```tsx
 ;<input class="my-class" disabled data-custom-prop="value" />
+
 createElement("input", {class: "my-class", disabled: true, "data-custom-prop": "value"})
+
 html`<input class="my-class" disabled data-custom-prop="value" />`
 ```
 
@@ -180,6 +190,7 @@ const myBadColor: "red; display: none"
         background: "blue",
     }}
 />
+
 createElement("div", {
     style: {
         padding: "1rem",
@@ -188,6 +199,7 @@ createElement("div", {
         background: "blue",
     },
 })
+
 html`<div
     style=${{
         padding: "1rem",
@@ -219,9 +231,12 @@ Like React, DeStagnate supports refs. Refs allow you to edit an element after it
 const ref = DeStagnate.createRef()
 
 ;<input ref={ref} />
+
 createElement("input", {ref})
+
 html`<input ref=${ref} />`
 
+// Update the value of the referenced DOM element
 ref.current.value = "Form value"
 ```
 
@@ -239,7 +254,9 @@ const MyComponent: DeStagnate.FC<MyProps> = ({title}, ...children) => (
 )
 
 ;<MyComponent title="My Title">Hello world!</MyComponent>
+
 createElement(MyComponent, {class: "My Title"}, "Hello world!")
+
 html`<${MyComponent} title="My Title">Hello world!<//>`
 
 // The return type and children of the function can also be specified
@@ -254,18 +271,68 @@ const MyComponent2: DeStagnate.FC<MyProps, [string, number], HTMLParagraphElemen
     ) as HTMLParagraphElement // JSX return type cannot be specified, so it's just `Node`
 
 ;<MyComponent2 title="My Title">Hello world!{100}</MyComponent2>
+
 // Typescript does not check if the JSX children type is valid, so these next two don't have to follow the rules
 createElement(MyComponent2, {class: "My Title"}, "Hello world!", 100)
+
 html`<${MyComponent2} title="My Title">Hello world! ${100}<//>`
+```
+
+### Namespaced Elements
+
+DeStagnate can create namespaced elements. If a namespace one of the [default namespaces](https://www.w3.org/TR/2011/WD-html5-20110405/namespaces.html), you can create elements from those namespaces with the `namespace:tagName` syntax. Otherwise, use `createElementNS`.
+
+```js
+/**
+ * Default HTML namespaces
+ *
+ * @see {@link https://www.w3.org/TR/2011/WD-html5-20110405/namespaces.html}
+ */
+export const namespaces = Object.freeze({
+    xml: "http://www.w3.org/XML/1998/namespace",
+    mathML: "http://www.w3.org/1998/Math/MathML",
+    xhtml: "http://www.w3.org/1999/xhtml",
+    xlink: "http://www.w3.org/1999/xlink",
+    svg: "http://www.w3.org/2000/svg",
+    xmlns: "http://www.w3.org/2000/xmlns/",
+})
+```
+
+```tsx
+;<svg:svg width={100} height={100} viewBox="0 0 100 100" fill="none">
+    <svg:rect width={100} height={100} fill="#0D6EFD" x={0} />
+</svg:svg>
+
+createElement(
+    "svg:svg",
+    {width: 100, height: 100, viewBox: "0 0 100 100", fill: "none"},
+    createElement("svg:rect", {width: 100, height: 100, fill: "#0D6EFD", x: 0}),
+)
+
+createElementNS(
+    "http://www.w3.org/2000/svg",
+    "svg",
+    {width: 100, height: 100, viewBox: "0 0 100 100", fill: "none"},
+    createElementNS("http://www.w3.org/2000/svg", "rect", {
+        width: 100,
+        height: 100,
+        fill: "#0D6EFD",
+        x: 0,
+    }),
+)
+
+html`<svg:svg width=${100} height=${100} viewBox="0 0 100 100" fill="none">
+    <svg:rect width=${100} height=${100} fill="#0D6EFD" x=${0} />
+</svg:svg>`
 ```
 
 ### Utilities
 
 DeStagnate comes with a few utilities to make DOM manipulation easier. Most of these are also used under the hood by `createElement`. More precise documentation can be found at [https://luke-zhang-04.github.io/DeStagnate/docs](https://luke-zhang-04.github.io/DeStagnate/docs)
 
--   `setRefs` takes a ref or array of refs, and applies the current value to the first argument.
--   `bindProps` takes an object of props and sets element attributes accordingly. Specific details about what happens to what are in the [docs](https://luke-zhang-04.github.io/DeStagnate/docs/functions/bindProps.html)
--   `bindChildren` some child (which could be either a singular, array, or nested array of DOM nodes), and appends them to an element "depth first", in the order they appear. This is useful for iterating over data, and you don't have to worry about spreading or flattening.
+-   `setRefs` takes a ref or array of refs, and sets the current value of each ref to the given element.
+-   `bindProps` takes an object of props and sets element attributes accordingly. Specific details about what happens to what are in the [docs](https://luke-zhang-04.github.io/DeStagnate/docs/functions/bindProps.html).
+-   `bindChildren` takes some child (which could be either a singular, array, or nested array of DOM nodes), and appends them to an element "depth first", in the order they appear. This is useful for iterating over data, and you don't have to worry about spreading or flattening.
 -   `clearChildren` removes all children from a DOM node.
 
 ## Kitchen Sink Example
@@ -591,7 +658,7 @@ You can also compile with this `.babelrc.json`
 
 ## Benchmarks
 
-I ran these on my M1 Air. Your mileage may vary depending on machine, processes running, and browser version. These are just good ballpark estimates. Higher ops/sec = better.
+I ran these on my M1 Air. Your mileage may vary depending on machine, processes running, browser version, and just how your computer feels on that day. These are just good ballpark estimates. Higher ops/sec = better.
 
 You can run the same benchmarks at [luke-zhang-04.github.io/DeStagnate/bench.html](https://luke-zhang-04.github.io/DeStagnate/bench.html). The benchmark is to create a 50-row table.
 
