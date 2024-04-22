@@ -15,11 +15,11 @@ This isn't meant to be React. React has virtual DOM, hooks, and a huge ecosystem
 
 ## Why did you name it that?
 
+I was in like 10th grade, I don't know what I was thinking. It's supposed to mean taking a static page (stagnant) and adding an interactive/dynamic piece to it (de-stagnate), but it's a stupid name.
+
 > Had I actually considered this to be a career, I probably would have called it something else, because it's the stupidest f\*\*\*ing band name in the world.
 >
 > \- Dave Grohl
-
-I was in like 10th grade, I don't know what I was thinking. It's supposed to mean taking a static page (stagnant) and adding an interactive/dynamic piece to it (de-stagnate), but it's a stupid name.
 
 ## Documentation
 
