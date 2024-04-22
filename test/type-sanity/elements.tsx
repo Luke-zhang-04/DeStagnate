@@ -48,11 +48,29 @@ createElement("a", null, <div></div>)
 div = createElement(
     "div",
     {class: "col-3"},
-    createElement("table", null, createElement("tr", null), [createElement("tr", null)]),
+    createElement("table", null, createElement("tr", null), [
+        createElement("tr", null),
+        [createElement("tr", null)],
+        [createElement("tr", null), [[[[createElement("tr", null)]]]], createElement("tr", null)],
+        createElement("tr", null),
+    ]),
 )
 ;<div class="col-3">
     <table>
         <tr />
         {[<tr />]}
+        {[<tr />, [[[[<tr />]]]], <tr />]}
+        <tr />
     </table>
 </div>
+
+div = createElement("div", {style: "width: 100%; height: 100%;"})
+;<div style="width: 100%; height: 100%;"></div>
+
+div = createElement("div", {style: {width: "100%", height: "100%", transition: null}})
+;<div style={{width: "100%", height: "100%", transition: null}}></div>
+
+// @ts-expect-error
+div = createElement("div", {width: "100%", height: "100%", transition: null, style: {other: "e"}})
+// @ts-expect-error
+;<div style={{width: "100%", height: "100%", transition: null, other: "e"}}></div>

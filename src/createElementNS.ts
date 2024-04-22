@@ -3,7 +3,7 @@ import {bindChildren, bindProps} from "./utils"
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
 /**
- * All HTML namespaces
+ * Default HTML namespaces
  *
  * @see {@link https://www.w3.org/TR/2011/WD-html5-20110405/namespaces.html}
  */

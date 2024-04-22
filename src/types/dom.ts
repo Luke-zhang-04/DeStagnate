@@ -180,3 +180,13 @@ export interface HTMLAttributeDeprecatedTagNameMap {
 }
 
 export interface ElementAttributes extends ReactTypes.AriaAttributes, ReactTypes.DOMAttributes {}
+
+export type CSSStyles = Omit<
+    Pick<
+        CSSStyleDeclaration,
+        {
+            [K in keyof CSSStyleDeclaration]: CSSStyleDeclaration[K] extends string ? K : never
+        }[keyof CSSStyleDeclaration]
+    >,
+    number
+>

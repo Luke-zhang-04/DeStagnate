@@ -6,7 +6,7 @@ class CalcState extends DeStagnate.StateContainer<string, HTMLDivElement | null>
     }
 
     protected updateDOM(calcDisplay: DeStagnate.Ref<HTMLDivElement>) {
-        // `calcDisplay` is the same as `this.ref`, except `calcDisplay.current` is garunteed not
+        // `calcDisplay` is the same as `this.ref`, except `calcDisplay.current` is guaranteed not
         // to be null.
         DeStagnate.clearChildren(calcDisplay.current)
         DeStagnate.bindChildren(calcDisplay.current, this.value)

@@ -21,12 +21,13 @@ class RectState extends DeStagnate.StateContainer<number, SVGRectElement | null>
         )
     }
 }
+const paragraphContent = '"My paragraph" <i>Escaped</i> <script>alert("xss")</script>'
 
 createElement: {
     const rectState = new RectState()
     const divRef = DeStagnate.createRef<HTMLDivElement>()
 
-    const ReactiveRect: DeStagnate.FC<{state: RectState}> = () =>
+    const ReactiveRect: DeStagnate.FC<{state: RectState}> = ({state}) =>
         DeStagnate.createElement(
             "svg:svg",
             {
@@ -38,9 +39,9 @@ createElement: {
             DeStagnate.createElement("svg:rect", {
                 width,
                 height: width,
-                fill: rectState.value % 2 === 0 ? "#0D6EFD" : "#28A745",
-                x: rectState.value,
-                ref: rectState.ref,
+                fill: state.value % 2 === 0 ? "#0D6EFD" : "#28A745",
+                x: state.value,
+                ref: state.ref,
             }),
         )
 
@@ -58,11 +59,17 @@ createElement: {
                         console.log(event)
                         rectState.update(rectState.value + 25)
                     },
+                    style: {
+                        borderStyle: "solid",
+                        borderColor: "black",
+                        borderWidth: "1px",
+                        paddingTop: "1rem",
+                    },
                 },
                 DeStagnate.createElement(
                     "p",
                     null,
-                    "My paragraph",
+                    paragraphContent,
                     DeStagnate.createElement("i", null, " italic"),
                 ),
             ),
@@ -82,12 +89,12 @@ createElement: {
     )
 }
 
-// Alternatively, you can use JSX. You will need a tranpiler, though.
+// Alternatively, you can use JSX. You will need a transpiler, though.
 jsx: {
     const rectState = new RectState()
     const divRef = DeStagnate.createRef<HTMLDivElement>()
 
-    const ReactiveRect: DeStagnate.FC<{state: RectState}> = () => (
+    const ReactiveRect: DeStagnate.FC<{state: RectState}> = ({state}) => (
         <svg:svg
             width={width * 2}
             height={width}
@@ -97,9 +104,9 @@ jsx: {
             <svg:rect
                 width={width}
                 height={width}
-                fill={rectState.value % 2 === 0 ? "#0D6EFD" : "#28A745"}
-                x={rectState.value}
-                ref={rectState.ref}
+                fill={state.value % 2 === 0 ? "#0D6EFD" : "#28A745"}
+                x={state.value}
+                ref={state.ref}
             />
         </svg:svg>
     )
@@ -113,9 +120,15 @@ jsx: {
                     console.log(event)
                     rectState.update(rectState.value + 25)
                 }}
+                style={{
+                    borderStyle: "solid",
+                    borderColor: "black",
+                    borderWidth: "1px",
+                    paddingTop: "1rem",
+                }}
             >
                 <p>
-                    My paragraph
+                    {paragraphContent}
                     <i> italic</i>
                 </p>
             </div>
@@ -143,7 +156,7 @@ htm: {
     const rectState = new RectState()
     const divRef = DeStagnate.createRef<HTMLDivElement>()
 
-    const ReactiveRect: DeStagnate.FC<{state: RectState}> = () =>
+    const ReactiveRect: DeStagnate.FC<{state: RectState}> = ({state}) =>
         html`<svg:svg
             width=${width * 2}
             height=${width}
@@ -153,9 +166,9 @@ htm: {
             <svg:rect
                 width=${width}
                 height=${width}
-                fill=${rectState.value % 2 === 0 ? "#0D6EFD" : "#28A745"}
-                x=${rectState.value}
-                ref=${rectState.ref}
+                fill=${state.value % 2 === 0 ? "#0D6EFD" : "#28A745"}
+                x=${state.value}
+                ref=${state.ref}
             />
         </svg:svg>` as Element
 
@@ -168,9 +181,15 @@ htm: {
                     console.log(event)
                     rectState.update(rectState.value + 25)
                 }}
+                style=${{
+                    borderStyle: "solid",
+                    borderColor: "black",
+                    borderWidth: "1px",
+                    paddingTop: "1rem",
+                }}
             >
                 <p>
-                    My paragraph
+                    ${paragraphContent}
                     <i> italic</i>
                 </p>
             </div>
@@ -218,10 +237,14 @@ vanillaDOM: {
         rect.setAttributeNS(null, "fill", rectStateValue % 2 === 0 ? "#0D6EFD" : "#28A745")
         rect.setAttributeNS(null, "x", rectStateValue.toString())
     })
+    div.style.borderStyle = "solid"
+    div.style.borderColor = "black"
+    div.style.borderWidth = "1px"
+    div.style.paddingTop = "1rem"
 
     const paragraph = document.createElement("p")
 
-    paragraph.innerText = "My paragraph"
+    paragraph.appendChild(document.createTextNode(paragraphContent))
 
     const italic = document.createElement("i")
 

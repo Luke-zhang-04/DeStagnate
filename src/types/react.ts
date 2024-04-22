@@ -19,7 +19,8 @@
  */
 /** @file Type definitions copied from @types/react */
 
-import type {EventFunc} from "."
+import type {EventFunc, PartialNullable} from "."
+import type {CSSStyles} from "./dom"
 
 export type Booleanish = boolean | "true" | "false"
 export type CrossOrigin = "" | "anonymous" | "use-credentials" | undefined
@@ -559,7 +560,7 @@ export interface HTMLAttributes extends AriaAttributes, DOMAttributes {
     nonce?: string | undefined
     slot?: string | undefined
     spellCheck?: Booleanish | undefined
-    style?: string | undefined
+    style?: string | PartialNullable<CSSStyles> | undefined
     tabIndex?: number | undefined
     title?: string | undefined
     translate?: "yes" | "no" | undefined
@@ -1160,7 +1161,7 @@ export interface SVGAttributes extends AriaAttributes, DOMAttributes {
     method?: string | undefined
     min?: number | string | undefined
     name?: string | undefined
-    style?: string | undefined
+    style?: string | PartialNullable<CSSStyles> | undefined
     target?: string | undefined
     type?: string | undefined
     width?: number | string | undefined

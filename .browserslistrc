@@ -1,5 +1,6 @@
 [es6]
-defaults
+# About 90% global coverage
+last 9 versions
 
 not IE >= 0
 not IE_mob >= 0
@@ -7,10 +8,10 @@ not IE_mob >= 0
 not dead
 
 [es5]
+# About 98% global coverage
 defaults
 
 supports es5
 
 > 0.2%
 not dead
-not op_mini all

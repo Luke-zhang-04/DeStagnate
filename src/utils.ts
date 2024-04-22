@@ -1,4 +1,13 @@
-import type {ChildType, ChildrenType, EventFunc, GeneralProps, RefProp} from "./types"
+import type {
+    AllHTMLElementProps,
+    ChildType,
+    ChildrenType,
+    EventFunc,
+    GeneralProps,
+    RefProp,
+    SVGElementProps,
+} from "./types"
+import {CSSStyles} from "./types/dom"
 
 const isStringable = (val: unknown): val is boolean | number | bigint | string =>
     typeof val === "boolean" ||
@@ -27,10 +36,49 @@ export const setRefs = (element: Node, refs: RefProp<Node>): void => {
 }
 
 /**
+ * Better `Object.entries`, which is faster, returns an iterator instead of an array, and is typed
+ * better
+ *
+ * @example
+ *     ;```ts
+ *     Array.from(objectEntries({a: 1, b: 2})) // [["a", 1], ["b", 2]]
+ *     ```
+ *
+ * @param obj - Object to get entries for
+ * @returns Generator producing the key and value of each item
+ * @see {@link https://github.com/Luke-zhang-04/utils}
+ */
+function* objectEntries<T extends {}>(
+    obj: T,
+): Generator<{[K in keyof T]: [K, T[K]]}[keyof T], void, void> {
+    for (const key in obj) {
+        /* eslint-disable-next-line no-prototype-builtins */
+        if (obj.hasOwnProperty(key)) {
+            yield [key, obj[key]]
+        }
+    }
+
+    return
+}
+
+type BindProps = {
+    (
+        element: HTMLElement,
+        props?: AllHTMLElementProps | null | undefined,
+        ns?: false | undefined,
+    ): void
+    (element: SVGElement, props: SVGElementProps | null | undefined, ns: true): void
+    (element: Element, props?: GeneralProps | null | undefined, ns?: boolean): void
+}
+
+/**
  * Binds children to element.
  *
- * - Props of type `string`, `number`, `bigint`, `boolean` will be cast to a string before being
- *   added as an attribute to `element`
+ * - Props of type `boolean` will be treated as a boolean attribute usind `toggleAttribute`, and will
+ *   follow the rules of [boolean
+ *   attributes](https://developer.mozilla.org/en-US/docs/Glossary/Boolean/HTML)
+ * - Props of type `string`, `number`, `bigint` will be cast to a string before being added as an
+ *   attribute to `element`
  * - Props that begin with "on" and have a function value will be added as event listeners, where the
  *   name of the event is the key name without the "on" prefix, all set to lower case, and the
  *   function is the handler.
@@ -44,10 +92,16 @@ export const setRefs = (element: Node, refs: RefProp<Node>): void => {
  * @param props - Props to bind with
  * @param ns - If namespace element
  */
-export const bindProps = (element: Element, props?: GeneralProps | null, ns = false): void => {
+export const bindProps: BindProps = (
+    element: Element,
+    props?: GeneralProps | null | undefined,
+    ns = false,
+): void => {
     if (props) {
-        for (const [key, val] of Object.entries(props)) {
-            if (isStringable(val)) {
+        for (const [key, val] of objectEntries(props)) {
+            if (typeof val === "boolean") {
+                element.toggleAttribute(key, val)
+            } else if (isStringable(val)) {
                 if (ns) {
                     element.setAttributeNS(null, key, val.toString())
                 } else {
@@ -62,6 +116,16 @@ export const bindProps = (element: Element, props?: GeneralProps | null, ns = fa
                 ("current" in val || Array.isArray(val))
             ) {
                 setRefs(element, val)
+            } else if (
+                key === "style" &&
+                typeof val === "object" &&
+                element instanceof HTMLElement
+            ) {
+                for (const [name, value] of objectEntries(val as CSSStyles)) {
+                    if (value !== undefined) {
+                        element.style[name] = value ?? ""
+                    }
+                }
             } else if (val === null) {
                 if (ns) {
                     element.removeAttributeNS(null, key)
@@ -69,7 +133,7 @@ export const bindProps = (element: Element, props?: GeneralProps | null, ns = fa
                     element.removeAttribute(key)
                 }
             } else if (val !== undefined) {
-                console.warn(`Invalid prop type ${typeof val} at ${key}: ${val}`)
+                console.warn(`Invalid prop at ${key}: ${val} for ${element}`)
             }
         }
     }
@@ -77,7 +141,8 @@ export const bindProps = (element: Element, props?: GeneralProps | null, ns = fa
 
 /**
  * Adds children to element. A nested array of children will be recursively appended to `element`
- * in the order that they appear. `null`, `undefined`, and `false` will be ignored.
+ * in the order that they appear. Values `null`, `undefined`, and `false` for children will be
+ * ignored.
  *
  * @param element - Element to add children to
  * @param children - Children to append to `element`
@@ -85,7 +150,7 @@ export const bindProps = (element: Element, props?: GeneralProps | null, ns = fa
  * @remark This function will **sequentially** append `children` to `element`. If `element` is already in the DOM (due to a ref for example), each child will cause DOM reflow when appended. To avoid this, wrap children in a Fragment when necessary.
  */
 export const bindChildren = (element: Node, children?: ChildrenType | ChildType): void => {
-    if (children !== null && children !== undefined && children !== false) {
+    if (children !== undefined && children !== null && children !== false) {
         if (Array.isArray(children)) {
             for (const child of children) {
                 bindChildren(element, child)

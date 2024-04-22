@@ -1,10 +1,14 @@
 import type {AllHTMLAttributes, HTMLAttributes, SVGAttributes} from "./react"
 import type {
+    CSSStyles,
     ElementAttributes,
     HTMLAttributeDeprecatedTagNameMap,
     HTMLAttributeTagNameMap,
 } from "./dom"
 import type {Ref} from "../createRef"
+
+export type PartialNullable<T> = {[P in keyof T]?: T[P] | undefined | null}
+export type IsAllPartial<T> = Partial<T> extends T ? true : false
 
 export type ChildType = Node | boolean | number | BigInt | string | null | undefined
 
@@ -40,6 +44,7 @@ export interface GeneralProps<T extends Node = Node> {
         | Element
         | EventFuncs[keyof EventFuncs]
         | RefProp<T>
+        | PartialNullable<CSSStyles>
         | undefined
 }
 
